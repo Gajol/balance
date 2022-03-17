@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-16T22:18:49-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">balance</title><subtitle>Balance, Technology and Life</subtitle><entry><title type="html">Github Pandoc</title><link href="http://localhost:4000/2022/03/14/github-pandoc.html" rel="alternate" type="text/html" title="Github Pandoc" /><published>2022-03-14T00:00:00-04:00</published><updated>2022-03-14T00:00:00-04:00</updated><id>http://localhost:4000/2022/03/14/github-pandoc</id><content type="html" xml:base="http://localhost:4000/2022/03/14/github-pandoc.html">&lt;hr /&gt;
+&lt;p&gt;layout: post
+title:  “Github Actions”
+date:   2022-03-04 14:55:59 -0500
+categories: pandoc
+tags: pandoc github-actions
+—&lt;/p&gt;
+
+&lt;p&gt;Try to get the actions and the makefile to work on the gulp-generated MD file.   The gulp-generated MD file is a version-controlled file in Github.   The file is generated on the Linux server and pushed to github.&lt;/p&gt;
+
+&lt;p&gt;The makefile generates the PDF, but pandoc does not process the markdown syntax.   For example, the headers and lists show with #, ##, and - instead of being formatted.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/pandoc/pandoc-action-example&quot;&gt;Pandoc Github Action Examples&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://docs.github.com/en/actions/using-workflows#referencing-a-container-on-docker-hub&quot;&gt;Github - Using Workflows&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/softprops/action-gh-release&quot;&gt;Github - Actions - Release&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/9721944/automatic-toc-in-github-flavoured-markdown&quot;&gt;Github TOC - gitdown or…&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/3220277/what-do-the-makefile-symbols-and-mean&quot;&gt;Makefile Symbols&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;thought&quot;&gt;Thought&lt;/h2&gt;
+&lt;p&gt;The gulp/gitdown script creates HTML anchors before each heading similar to this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-HTML&quot;&gt;&amp;lt;a name=&quot;introduction&quot;&amp;gt;&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This seems to cause pandoc to stop process the file as markdown.&lt;/p&gt;
+
+&lt;p&gt;Google “pandow with markdown and HTML anchors”&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.npmjs.com/package/gitdown&quot;&gt;gitdown&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;decision&quot;&gt;Decision&lt;/h2&gt;
+&lt;p&gt;To display the gulp-generated markdown on github, the gitdown “contents” with HTML anchors is needed.  This allows the output-markdown to be usable on Github directly.&lt;/p&gt;
+
+&lt;p&gt;The drawback, is this file (with the HTML &lt;a&gt; anchor tags) is rather useless for the Github Actions workflow to generate a PDF.   A separate build for a PDF using pandoc can be done with a ARA.md that does not have anchors.&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Use gulp to generate a combined markdown without a TOC.  This ensures are no anchors in the output file: foo.md.&lt;/li&gt;
+  &lt;li&gt;Use github actions (pandoc) to generate a PDF from this markdown.   Can an line-option in pandoc be used to generate a TOC???  &lt;a href=&quot;https://stackoverflow.com/questions/25591517/pandoc-inserting-pages-before-generated-table-of-contents&quot;&gt;pandoc toc q&amp;amp;a&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;see &lt;a href=&quot;https://stackoverflow.com/questions/9721944/automatic-toc-in-github-flavoured-markdown&quot;&gt;Auto TOC for GH flavour markdown&lt;/a&gt;.&lt;/li&gt;
+      &lt;li&gt;uses &lt;a href=&quot;https://github.com/thlorenz/doctoc&quot;&gt;DocToc Nodejs&lt;/a&gt;.  Can be used as a &lt;a href=&quot;http://pre-commit.com/&quot;&gt;pre commit hook&lt;/a&gt;.&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Concern/TBD: This pre commit hook can change TOC files for Markdowns (I guess if the file is unchanged the Markdow is unchanged - so not an issue.)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;result&quot;&gt;Result&lt;/h3&gt;
+&lt;p&gt;Working better after playin with Gulp and serialize the tasks.   The build now gives a LateX
+&lt;a href=&quot;https://texfaq.org/FAQ-toodeep&quot;&gt;LaTex Too Deeply Nest Error&lt;/a&gt;.   There is &lt;strong&gt;no indication&lt;/strong&gt; of where this nesting issue is.&lt;/p&gt;</content><author><name></name></author><summary type="html">layout: post title: “Github Actions” date: 2022-03-04 14:55:59 -0500 categories: pandoc tags: pandoc github-actions —</summary></entry></feed>

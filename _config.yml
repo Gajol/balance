@@ -1,2 +1,21 @@
+theme: minimal-mistakes-jekyll
 plugins:
   - jekyll-remote-theme
+  - jekyll-include-cache
+
+# https://github.com/benbalter/jekyll-remote-theme
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+
+# post defaults - https://mmistakes.github.io/minimal-mistakes/docs/posts/
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
