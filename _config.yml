@@ -9,6 +9,8 @@ twitter_username: Aqvavit
 github_username:  Gajol
 linkedin_username: nielsencanada
 
+include: ["_pages"]
+
 # theme: minimal-mistakes-jekyll
 plugins:
   - jekyll-remote-theme
@@ -30,3 +32,11 @@ defaults:
       comments: true
       share: true
       related: true
+
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
