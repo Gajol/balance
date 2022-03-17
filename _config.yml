@@ -9,8 +9,6 @@ twitter_username: Aqvavit
 github_username:  Gajol
 linkedin_username: nielsencanada
 
-
-
 # theme: minimal-mistakes-jekyll
 plugins:
   - jekyll-remote-theme
