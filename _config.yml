@@ -3,7 +3,7 @@ title: Technology and Balancing Life
 email: tuborgjunior@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Quick musings on technology mixed with some biking, kayaking, skiing and skating.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/balance" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: Aqvavit
 github_username:  Gajol
