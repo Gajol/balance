@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: posts
 title:  "Github Actions"
 date:   2022-03-04 14:55:59 -0500
 categories: pandoc
