@@ -4,6 +4,9 @@ title:  "Github Actions"
 date:   2022-03-04 14:55:59 -0500
 categories: pandoc
 tags: pandoc github-actions
+sidebar:
+  title: "Git Posts"
+  nav: sidebar-sample
 ---
 
 Try to get the actions and the makefile to work on the gulp-generated MD file.   The gulp-generated MD file is a version-controlled file in Github.   The file is generated on the Linux server and pushed to github.
