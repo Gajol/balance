@@ -1,3 +1,5 @@
+# MM _config.yml https://github.com/mmistakes/minimal-mistakes/blob/master/_config.yml
+# - to view on Github set branch to gh-pages-3.1.6
 # Site Information
 title: Technology and Balancing Life
 email: tuborgjunior@gmail.com
@@ -9,7 +11,27 @@ twitter_username: Aqvavit
 github_username:  Gajol
 linkedin_username: nielsencanada
 
+# as per jekyll https://jekyllrb.com/docs/permalinks/, and
+# as per MM https://mmistakes.github.io/minimal-mistakes/docs/navigation/
+permalink: /:categories/:title/
+
 include: ["_pages"]
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:path/
+#  recipes:
+#    output: true
+#    permalink: /:collection/:path/
+#  pets:
+#    output: true
+#    permalink: /:collection/:path/
+  portfolio:
+    output: true
+    permalink: /:collection/:path/
+
 
 # theme: minimal-mistakes-jekyll
 plugins:
@@ -40,3 +62,13 @@ defaults:
     values:
       layout: single
       author_profile: true
+
+  # collections
+  # _portfolio
+  - scope:
+      path: ""
+      type: portfolio
+    values:
+      layout: single
+      author_profile: false
+      share: true

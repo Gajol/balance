@@ -9,6 +9,9 @@ Learning Github Pages and Jekyll Navigation.
 - [Jekyll RB Tutorials - Navigation](https://jekyllrb.com/tutorials/navigation/)
   - [Include based on Property - Order](https://jekyllrb.com/tutorials/navigation/)
 
+## Permalinks
+- [Permalinks](https://jekyllrb.com/docs/permalinks/) are the output path for your pages, posts, or collections. They allow you to structure the directories of your source code different from the directories in your output.
+
 ## Sidebar - Find another Jekyll Theme
 - [Stack Overflow - Sidebar](https://stackoverflow.com/questions/63410862/sidebar-on-github-pages).
 - [Themes for Documentation](https://jekyllthemes.io/jekyll-documentation-themes) : some free others paid-themes.

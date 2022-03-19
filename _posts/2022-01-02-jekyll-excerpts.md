@@ -1,6 +1,6 @@
 ---
 layout: posts
-title:  "Site Excerpt"
+title:  "Site Excerpt and Sidebar Navigation"
 date:   2022-02-01 14:55:59 -0500
 description: This post describes how to create an excerpt using the description metadata
 excerpt: "A unique line of text to describe this post that will display in an archive listing and meta description with SEO benefits."

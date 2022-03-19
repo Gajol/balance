@@ -1,6 +1,6 @@
 ---
-layout: posts
-title:  "aaaJekyll Github Pages : Setting up Minimal Mistakes"
+layout: single
+title:  "Jekyll Github Pages : Setting up Minimal Mistakes"
 date:   2022-01-06 14:55:59 -0500
 categories: jekyll update
 tags: nielsen themes actions CI

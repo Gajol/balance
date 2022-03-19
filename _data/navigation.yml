@@ -14,8 +14,10 @@ main:
     url: /page-archive/
   - title: "Collections"
     url: /collection-archive/
-  - title: "External Link"
-    url: https://google.com
+  - title: "Portfolio"
+    url: /portfolio/
+  - title: "GitHub Source"
+    url: https://github.com/Gajol/balance/tree/gh-pages
 
 sidebar-sample:
   - title: "Parent Page A"
