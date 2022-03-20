@@ -1,8 +1,8 @@
 ---
-title: "Foo Bar Identity"
-excerpt: "Foo Bar design system including logo mark, website design, and branding applications."
+title: "Architecture for the Enterprise"
+excerpt: "Enterprise Architecture, and its benefits within an organization are often misunderstood.  Transformation initiatives can benefit from enterprise architecture."
 header:
-  image: /assets/images/bridge.jpg
+  image: /assets/images/bridge - smaller.jpg
   teaser: /assets/images/bridge.jpg
 sidebar:
   - title: "Role"
