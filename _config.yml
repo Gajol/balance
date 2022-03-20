@@ -11,9 +11,9 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "/balance" # the subpath of your site, e.g. /blog
 url: "https://gajol.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
-twitter_username: Aqvavit
-github_username:  Gajol
-linkedin_username: nielsencanada
+# twitter_username: Aqvavit
+# github_username:  Gajol
+# linkedin_username: nielsencanada
 
 author:
   name: "Doug Nielsen"
@@ -117,3 +117,6 @@ twitter:
   username               : &twitter "Aqvavit"
 facebook:
   username               : &facebook "doug.nielsen.370"
+
+
+og_image: /assets/images/bridge - smaller.png
