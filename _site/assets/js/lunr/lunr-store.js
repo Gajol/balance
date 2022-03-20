@@ -1,4 +1,34 @@
 var store = [{
+        "title": "rust",
+        "excerpt":"Rust Rust language installation: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh sudo apt-get curl if curl is not installed check installation with which cargo amd cargo --version cargo, clippy and rustdocs are installed. cargo is the rust compilation manager rustc is the compiler rustdoc is documentation. rustup doc --std...","categories": [],
+        "tags": [],
+        "url": "/balance/docs/rust-intro/",
+        "teaser": null
+      },{
+        "title": "rust",
+        "excerpt":"Replace Front Matter Problem: I have 12 markdown files with a Front Matter attribute I want to change. The layout is “posts” and I want to change this to “single”. Options: Linux sed/awk, (sed - stream editor: sed -i 's/old-text/new-text/g' input.txt sed -i 's/layout: posts/layout: single/g' input.txt Challenge: Do this...","categories": [],
+        "tags": [],
+        "url": "/balance/docs/rust-replace-front-matter/",
+        "teaser": null
+      },{
+        "title": "rust",
+        "excerpt":"Rust Rust language installation: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh sudo apt-get curl if curl is not installed check installation with which cargo amd cargo --version cargo, clippy and rustdocs are installed. cargo is the rust compilation manager rustc is the compiler rustdoc is documentation. rustup doc --std...","categories": [],
+        "tags": [],
+        "url": "/balance/docs/rust/rust-intro/",
+        "teaser": null
+      },{
+        "title": "rust",
+        "excerpt":"Replace Front Matter Problem: I have 12 markdown files with a Front Matter attribute I want to change. The layout is “posts” and I want to change this to “single”. Options: Linux sed/awk, (sed - stream editor: sed -i 's/old-text/new-text/g' input.txt sed -i 's/layout: posts/layout: single/g' input.txt Challenge: Do this...","categories": [],
+        "tags": [],
+        "url": "/balance/docs/rust/rust-replace-front-matter/",
+        "teaser": null
+      },{
+        "title": "Foo Bar Identity",
+        "excerpt":"Pictures of Goats section West Seattle Blog dingbat newspaper rubber cement Google+ newsroom cafe news.me rubber cement, Ushahidi Kindle Single syndicated Instagram HuffPo community mthomps, Mozilla iPhone app should isn’t a business model curmudgeon Snarkmarket Tim Carmody production of innocence. Fuego tweets community DocumentCloud metered model Gardening &amp; War section...","categories": [],
+        "tags": [],
+        "url": "/balance/portfolio/foo-bar-website/",
+        "teaser": "/balance/assets/images/foo-bar-identity-th.jpg"
+      },{
         "title": "Welcome to Jekyll!",
         "excerpt":"Jekyll Official Docs Jekyll Front Matter tags : Similar to categories, one or multiple tags can be added to a post. Also like categories, tags can be specified as a YAML list or a space-separated string. Note: tags separated by a space must use the tags keyword. The frontmatter must...","categories": ["jekyll","update"],
         "tags": ["nielsen"],
@@ -24,9 +54,15 @@ var store = [{
         "teaser": null
       },{
         "title": "Site Tags",
-        "excerpt":"Site Tags - Raw Liquid {“nielsen”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-06-welcome-to-jekyll.md collection=posts&gt;], “nielsen themes actions CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-githubpages.md collection=posts&gt;], “themes”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “actions”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “jekyll”=&gt;[#&lt;Jekyll::Document _posts/2022-03-02-tags.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-01-github-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-02-01-site-tags-list.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-02-jekyll-excerpts.md collection=posts&gt;], “excerpt”=&gt;[#&lt;Jekyll::Document _posts/2022-01-02-jekyll-excerpts.md collection=posts&gt;], “tags”=&gt;[#&lt;Jekyll::Document _posts/2022-03-02-tags.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-02-01-site-tags-list.md collection=posts&gt;], “github”=&gt;[#&lt;Jekyll::Document _posts/2022-03-05-jekyll-navigation.md collection=posts&gt;,...","categories": ["jekyll","tags"],
+        "excerpt":"Site Tags - Raw Liquid {“nielsen”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-06-welcome-to-jekyll.md collection=posts&gt;], “nielsen themes actions CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-githubpages.md collection=posts&gt;], “themes”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “actions”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “jekyll”=&gt;[#&lt;Jekyll::Document _posts/2022-03-19-jekyll-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-02-tags.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-01-github-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-collections.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-02-01-site-tags-list.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-02-jekyll-excerpts.md collection=posts&gt;], “excerpt”=&gt;[#&lt;Jekyll::Document _posts/2022-03-19-jekyll-collections.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-02-jekyll-excerpts.md collection=posts&gt;],...","categories": ["jekyll","tags"],
         "tags": ["tags","jekyll"],
         "url": "/balance/jekyll/tags/site-tags-list/",
+        "teaser": null
+      },{
+        "title": "Jekyll Collections & Minimal Mistakes - Typos Matter",
+        "excerpt":"It turned out that I had a typo in the collection I was making. The directory for where the markdown posts was to be stored, _portfolio had a typo. As a result, there were no source-pages for Jekyll to process into the _site/portfolio folder. Minimal Mistakes Collections Jekyll Collectoins There...","categories": ["jekyll","tags"],
+        "tags": ["jekyll","excerpt"],
+        "url": "/balance/jekyll/tags/jekyll-collections/",
         "teaser": null
       },{
         "title": "Github Pages & Jekyll",
@@ -57,5 +93,11 @@ var store = [{
         "excerpt":"Liquid Overview Liquid is an open-source template language created by Shopify in 2006. It is written in Ruby and it is used by many hosted web applications like Jekyll websites. Since my website is a Jekyll website, I thought that it would be very helpful to have something like a...","categories": ["jekyll"],
         "tags": ["jekyll,","liquid,","templating"],
         "url": "/balance/jekyll/jekyll-liquid/",
+        "teaser": null
+      },{
+        "title": "Jekyll Collections & Minimal Mistakes - Pages",
+        "excerpt":"Pages Following Minimal Mistakes Working with Pages requires.\\ On project folder create _pages Directory. Each page’s front matter should have a permalink (permalink: /about/ and permalink: / (for home.md)) Setup front matter defaults in _config.yml. This works, and I can directly navigation to pages using the permalink. For example, to...","categories": ["jekyll"],
+        "tags": ["jekyll","pages"],
+        "url": "/balance/jekyll/jekyll-pages/",
         "teaser": null
       }]

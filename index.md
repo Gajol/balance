@@ -1,3 +1,3 @@
 ## Welcome to :balance
 
-Doug was here.
+Doug was here.   This is index.md in ~/balance/ .
