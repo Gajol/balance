@@ -3,7 +3,7 @@ layout: posts
 title:  "Site Excerpt and Sidebar Navigation"
 date:   2022-02-01 14:55:59 -0500
 description: This post describes how to create an excerpt using the description metadata
-header.image: /assets/images/bridge-logo.png
+header.image: /assets/images/bridge-logo.jpg
 excerpt: "A unique line of text to describe this post that will display in an archive listing and meta description with SEO benefits."
 categories: jekyll tags
 tags: jekyll excerpt
