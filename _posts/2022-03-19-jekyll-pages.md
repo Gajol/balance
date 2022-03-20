@@ -27,7 +27,7 @@ The navigation on my site using a page-archive is not working.   This is where y
   - The [MM theme](https://github.com/mmistakes/minimal-mistakes) does not archive pages - [MM site](https://mmistakes.github.io/minimal-mistakes/).   Pages are simply refered to directly by directly URL.  For example, the data/navigation file links to the about.md directly as `title: "About" url: https://mmistakes.github.io/minimal-mistakes/about/`
 
 ## Try to Copy "Collections Approach"
-Can I do this similar to collections - see [Jekyll Collections]({% post_url 2022-03-19-jekyll-collections %}) - cannot get post_url Liquid to work?  I have lost the link to the explanation, but I believe the steps are as follows:
+Can I do this similar to collections - see [Jekyll Collections]({{ site.baseurl }}{% post_url 2022-03-19-jekyll-collections %}) - cannot get post_url Liquid to work?  I have lost the link to the explanation, but I believe the steps are as follows:
 1. Find the head.html file in the Minimal Mistakes gem.  This file is the gems installation folder: `~/gems/gems/minimal-mistakes-jekyll-4.24.0`
 1. Copy the `layouts/head.html` to your local `project _layouts` folder.   You likely have to create the `_layouts` folder in your project site if this is your first layout customization.
 

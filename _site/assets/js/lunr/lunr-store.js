@@ -41,7 +41,7 @@ var store = [{
         "url": "/balance/jekyll/update/jekyll-githubpages/",
         "teaser": null
       },{
-        "title": "Jekyll Github Pages : Setting up Minimal Mistakes",
+        "title": "Jekyll Github Pages : Minimal Mistakes",
         "excerpt":"Minimal Mistakes Minimal Mistakes - Github Minimal Mistakes - Installation Features Theme Documentation Setting up a GitHub Pages Site using MM Theme Try to get GitHub Pages working with MM theme Theme Install Jekyll Talk - Develop with a Remote Theme : GitLab Pages question. SO - Gem steps basics...","categories": ["jekyll","update"],
         "tags": ["nielsen","themes","actions","CI"],
         "url": "/balance/jekyll/update/jekyll-minimal-mistakes/",
@@ -54,7 +54,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Site Tags",
-        "excerpt":"Site Tags - Raw Liquid {“nielsen”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-06-welcome-to-jekyll.md collection=posts&gt;], “nielsen themes actions CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-githubpages.md collection=posts&gt;], “themes”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “actions”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “jekyll”=&gt;[#&lt;Jekyll::Document _posts/2022-03-19-jekyll-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-02-tags.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-01-github-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-collections.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-02-01-site-tags-list.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-02-jekyll-excerpts.md collection=posts&gt;], “excerpt”=&gt;[#&lt;Jekyll::Document _posts/2022-03-19-jekyll-collections.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-02-jekyll-excerpts.md collection=posts&gt;],...","categories": ["jekyll","tags"],
+        "excerpt":"Site Tags - Raw Liquid {“nielsen”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-06-welcome-to-jekyll.md collection=posts&gt;], “nielsen themes actions CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-githubpages.md collection=posts&gt;], “themes”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “actions”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “jekyll”=&gt;[#&lt;Jekyll::Document _posts/2022-03-19-jekyll-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-linked-posts.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-02-tags.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-01-github-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-collections.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-02-01-site-tags-list.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-02-jekyll-excerpts.md collection=posts&gt;], “excerpt”=&gt;[#&lt;Jekyll::Document _posts/2022-03-19-jekyll-collections.md collection=posts&gt;,...","categories": ["jekyll","tags"],
         "tags": ["tags","jekyll"],
         "url": "/balance/jekyll/tags/site-tags-list/",
         "teaser": null
@@ -93,6 +93,12 @@ var store = [{
         "excerpt":"Liquid Overview Liquid is an open-source template language created by Shopify in 2006. It is written in Ruby and it is used by many hosted web applications like Jekyll websites. Since my website is a Jekyll website, I thought that it would be very helpful to have something like a...","categories": ["jekyll"],
         "tags": ["jekyll,","liquid,","templating"],
         "url": "/balance/jekyll/jekyll-liquid/",
+        "teaser": null
+      },{
+        "title": "Jekyll Linked Posts",
+        "excerpt":"Problem: Links to posts are not working using posturl syntax, however, I believe I have setup my site’s configuration correctly. Using the Liquid post_url does not navigate to the post. Jekyll Collections; the page when rendered has a link of: Actual: http://127.0.0.1:4000/jekyll/tags/jekyll-collections/ Want: http://127.0.0.1:4000/balance/jekyll/tags/jekyll-collections/ Solution Options: First ensure baseurl and...","categories": ["jekyll","tags"],
+        "tags": ["jekyll","posts"],
+        "url": "/balance/jekyll/tags/jekyll-linked-posts/",
         "teaser": null
       },{
         "title": "Jekyll Collections & Minimal Mistakes - Pages",

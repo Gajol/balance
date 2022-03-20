@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "Jekyll Github Pages : Setting up Minimal Mistakes"
+title:  "Jekyll Github Pages : Minimal Mistakes"
 date:   2022-01-06 14:55:59 -0500
 categories: jekyll update
 tags: nielsen themes actions CI
@@ -34,7 +34,7 @@ Try to get GitHub Pages working with MM theme
 - [MM - Working with Posts](https://mmistakes.github.io/minimal-mistakes/docs/posts/)
 - [MM - Posts - Year Archive](https://mmistakes.github.io/minimal-mistakes/docs/layouts/#archive-layout) : [Grouped by Year](https://github.com/mmistakes/minimal-mistakes/blob/master/docs/_pages/year-archive.md)
 - [Jekyll Posts](https://jekyllrb.com/docs/liquid/tags/#linking-to-posts)
-   - {% raw  %}`{% post_url 2010-07-21-name-of-post %}`{% endraw  %}
+   - {% raw  %}`{% post_url 2010-07-21-name-of-post %}`{% endraw%}
 
 - Layout not applying to posts. [link](https://talk.jekyllrb.com/t/solved-layout-not-applying-to-individual-posts-only/2971)
   - Is it baseurl and base? [link](https://talk.jekyllrb.com/t/relative-url-and-baseurl/2051)
@@ -90,4 +90,13 @@ bundle install
 ```
 
 ## TO DO
+- [ ] : [Cleanup Content to be under docs](https://github.com/mmistakes/minimal-mistakes/tree/master/docs)
 - [ ] : [Page Archive](https://github.com/mmistakes/minimal-mistakes/blob/master/docs/_pages/sitemap.md)
+- [ ] : [Social Config]()
+- [ ] : [Twitter Cards for Sharing](https://mmistakes.github.io/minimal-mistakes/docs/configuration/#twitter-cards-and-facebook-open-graph). See [Twitter Cards](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/player-card)
+
+## Done
+- [x] : [Masthead Navigation](https://mmistakes.github.io/minimal-mistakes/docs/navigation/) : top-header (global) navigation
+- [x] : [Pages]({{ site.baseurl }}{% post_url 2022-03-19-jekyll-pages %})
+- [x] : [Collections]({{ site.baseurl }}{% post_url 2022-03-19-jekyll-collections %})
+- [x] : [Linked Posts working with baseurl]({{ site.baseurl }}{% post_url 2022-03-19-jekyll-linked-posts %})

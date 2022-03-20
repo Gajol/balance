@@ -15,6 +15,28 @@ twitter_username: Aqvavit
 github_username:  Gajol
 linkedin_username: nielsencanada
 
+author:
+  name: "Doug Nielsen"
+  avatar: "/assets/images/doug-bio-2021-11-06.jpg"
+  bio: "Working in technology with a passion for recreation." # Note: Markdown is allowed
+  location: "Ottawa, ON, Canada"
+  links:
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://linkedin.com/in/nielsencanada"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/Aqvavit"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/Gajol"
+    - label: "Instagram"
+      icon: "fab fa-fw fa-instagram"
+      url: "https://instagram.com/doug.djn"
+
+
+
+
 # as per jekyll https://jekyllrb.com/docs/permalinks/, and
 # as per MM https://mmistakes.github.io/minimal-mistakes/docs/navigation/
 permalink: /:categories/:title/
@@ -88,3 +110,10 @@ defaults:
       layout: single
       author_profile: false
       share: true
+
+
+# Social Sharing
+twitter:
+  username               : &twitter "Aqvavit"
+facebook:
+  username               : &facebook "doug.nielsen.370"
