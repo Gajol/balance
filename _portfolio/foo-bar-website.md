@@ -1,6 +1,7 @@
 ---
 title: "Architecture for the Enterprise"
 excerpt: "Enterprise Architecture, and its benefits within an organization are often misunderstood.  Transformation initiatives can benefit from enterprise architecture."
+header.image: /assets/images/bridge.jpg
 header:
   image: /assets/images/bridge - smaller.jpg
   teaser: /assets/images/bridge.jpg
