@@ -2,18 +2,6 @@ var store = [{
         "title": "rust",
         "excerpt":"Rust Rust language installation: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh sudo apt-get curl if curl is not installed check installation with which cargo amd cargo --version cargo, clippy and rustdocs are installed. cargo is the rust compilation manager rustc is the compiler rustdoc is documentation. rustup doc --std...","categories": [],
         "tags": [],
-        "url": "/balance/docs/rust-intro/",
-        "teaser": null
-      },{
-        "title": "rust",
-        "excerpt":"Replace Front Matter Problem: I have 12 markdown files with a Front Matter attribute I want to change. The layout is “posts” and I want to change this to “single”. Options: Linux sed/awk, (sed - stream editor: sed -i 's/old-text/new-text/g' input.txt sed -i 's/layout: posts/layout: single/g' input.txt Challenge: Do this...","categories": [],
-        "tags": [],
-        "url": "/balance/docs/rust-replace-front-matter/",
-        "teaser": null
-      },{
-        "title": "rust",
-        "excerpt":"Rust Rust language installation: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh sudo apt-get curl if curl is not installed check installation with which cargo amd cargo --version cargo, clippy and rustdocs are installed. cargo is the rust compilation manager rustc is the compiler rustdoc is documentation. rustup doc --std...","categories": [],
-        "tags": [],
         "url": "/balance/docs/rust/rust-intro/",
         "teaser": null
       },{
@@ -23,10 +11,22 @@ var store = [{
         "url": "/balance/docs/rust/rust-replace-front-matter/",
         "teaser": null
       },{
-        "title": "Foo Bar Identity",
+        "title": "rust test link",
+        "excerpt":"Rust Rust language installation: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh sudo apt-get curl if curl is not installed check installation with which cargo amd cargo --version cargo, clippy and rustdocs are installed. cargo is the rust compilation manager rustc is the compiler rustdoc is documentation. rustup doc --std...","categories": [],
+        "tags": [],
+        "url": "/balance/docs/rust/rust-test-permalink/",
+        "teaser": null
+      },{
+        "title": "Architecture for the Enterprise",
         "excerpt":"Pictures of Goats section West Seattle Blog dingbat newspaper rubber cement Google+ newsroom cafe news.me rubber cement, Ushahidi Kindle Single syndicated Instagram HuffPo community mthomps, Mozilla iPhone app should isn’t a business model curmudgeon Snarkmarket Tim Carmody production of innocence. Fuego tweets community DocumentCloud metered model Gardening &amp; War section...","categories": [],
         "tags": [],
         "url": "/balance/portfolio/foo-bar-website/",
+        "teaser": "/balance/assets/images/bridge.jpg"
+      },{
+        "title": "Splash Page",
+        "excerpt":"Nullam suscipit et nam, tellus velit pellentesque at malesuada, enim eaque. Quis nulla, netus tempor in diam gravida tincidunt, proin faucibus voluptate felis id sollicitudin. Centered with type=\"center\" Placeholder 1 This is some sample content that goes here with Markdown formatting. Placeholder 2 This is some sample content that goes...","categories": [],
+        "tags": [],
+        "url": "/balance/splash-page/",
         "teaser": "/balance/assets/images/bridge.jpg"
       },{
         "title": "Welcome to Jekyll!",
@@ -108,7 +108,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Web Site Images",
-        "excerpt":"Pages     https://fosspost.org/open-source-images/            https://unsplash.com/wallpaper       https://stocksnap.io/       https://pixabay.com/service/license/       https://www.pexels.com/       https://www.flickr.com/search/          ","categories": ["jekyll"],
+        "excerpt":"Pages     https://fosspost.org/open-source-images/            https://unsplash.com/wallpaper, https://unsplash.com/images                    created account (via FB dougottawa)                       https://stocksnap.io/       https://pixabay.com/service/license/       https://www.pexels.com/       https://www.flickr.com/search/           Teaser Image     Python - ML - Jan Meppe  ","categories": ["jekyll"],
         "tags": ["images"],
         "url": "/balance/jekyll/web-site-images/",
         "teaser": null

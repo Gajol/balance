@@ -13,8 +13,13 @@ sidebar:
 
 ## Pages
 - https://fosspost.org/open-source-images/
-  - https://unsplash.com/wallpaper
+  - https://unsplash.com/wallpaper, https://unsplash.com/images
+    - created account (via FB dougottawa)
   - https://stocksnap.io/
   - https://pixabay.com/service/license/
   - https://www.pexels.com/
   - https://www.flickr.com/search/
+
+
+# Teaser Image
+- [Python - ML - Jan Meppe](https://www.janmeppe.com/tags/#python)
