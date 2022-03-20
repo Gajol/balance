@@ -27,7 +27,7 @@ var store = [{
         "excerpt":"Pictures of Goats section West Seattle Blog dingbat newspaper rubber cement Google+ newsroom cafe news.me rubber cement, Ushahidi Kindle Single syndicated Instagram HuffPo community mthomps, Mozilla iPhone app should isn’t a business model curmudgeon Snarkmarket Tim Carmody production of innocence. Fuego tweets community DocumentCloud metered model Gardening &amp; War section...","categories": [],
         "tags": [],
         "url": "/balance/portfolio/foo-bar-website/",
-        "teaser": "/balance/assets/images/foo-bar-identity-th.jpg"
+        "teaser": "/balance/assets/images/bridge.jpg"
       },{
         "title": "Welcome to Jekyll!",
         "excerpt":"Jekyll Official Docs Jekyll Front Matter tags : Similar to categories, one or multiple tags can be added to a post. Also like categories, tags can be specified as a YAML list or a space-separated string. Note: tags separated by a space must use the tags keyword. The frontmatter must...","categories": ["jekyll","update"],
@@ -105,5 +105,11 @@ var store = [{
         "excerpt":"Pages Following Minimal Mistakes Working with Pages requires.\\ On project folder create _pages Directory. Each page’s front matter should have a permalink (permalink: /about/ and permalink: / (for home.md)) Setup front matter defaults in _config.yml. This works, and I can directly navigation to pages using the permalink. For example, to...","categories": ["jekyll"],
         "tags": ["jekyll","pages"],
         "url": "/balance/jekyll/jekyll-pages/",
+        "teaser": null
+      },{
+        "title": "Web Site Images",
+        "excerpt":"Pages     https://fosspost.org/open-source-images/            https://unsplash.com/wallpaper       https://stocksnap.io/       https://pixabay.com/service/license/       https://www.pexels.com/       https://www.flickr.com/search/          ","categories": ["jekyll"],
+        "tags": ["images"],
+        "url": "/balance/jekyll/web-site-images/",
         "teaser": null
       }]
