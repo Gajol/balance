@@ -118,5 +118,5 @@ twitter:
 facebook:
   username               : &facebook "doug.nielsen.370"
 
-
+# Default card image for Facebook / Twitter Link Preview (Cards)
 og_image: /assets/images/bridge-logo.jpg
