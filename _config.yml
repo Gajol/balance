@@ -132,4 +132,14 @@ facebook:
 #   - https://www.opengraph.xyz/url/https%3A%2F%2Fgajol.github.io%2Fbalance%2F/
 #   - proves good on Facebook, LinkedIn, Discord and Twitter
 #   - but preview is not working on Twitter to my knowledge
+#     - it works, it just takes about 30-60 seconds for the Twitter validator
+#       to display the preview.
+# Note: You need to validate cards are working and have Twitter approve
+# Player Cards before they will begin showing up.
+# https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/player-card
+# https://github.com/twitterdev/cards-player-samples
+
+
+
+
 og_image: /assets/images/bridge-generated-og.jpeg
