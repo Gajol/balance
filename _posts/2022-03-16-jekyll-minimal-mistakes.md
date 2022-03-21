@@ -103,6 +103,11 @@ bundle install
 - [ ] : [Integrate Google Analytics - to a Dashboard Rudderstack](https://www.rudderstack.com/guides/how-to-event-stream-data-from-your-jekyll-site-to-google-analytics-using-rudderstack/)
 - [ ] : How to track page-not-found broken links
 
+### Debuggin
+- run jekyll in verbose mode
+
+`bundle exec jekyll serve --verbose`
+
 ## Done
 - [x] : [Masthead Navigation](https://mmistakes.github.io/minimal-mistakes/docs/navigation/) : top-header (global) navigation
 - [x] : [Pages]({{ site.baseurl }}{% post_url 2022-03-19-jekyll-pages %})

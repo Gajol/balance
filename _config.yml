@@ -15,6 +15,10 @@ url: "https://gajol.github.io" # the base hostname & protocol for your site, e.g
 # github_username:  Gajol
 # linkedin_username: nielsencanada
 
+repository: "gajol/balance"
+
+
+
 author:
   name: "Doug Nielsen"
   avatar: "/assets/images/doug-bio-2021-11-06.jpg"
@@ -119,4 +123,13 @@ facebook:
   username               : &facebook "doug.nielsen.370"
 
 # Default card image for Facebook / Twitter Link Preview (Cards)
+# would a CDN cdn.kapwing.com be better
+# https://metatags.io/ to see what it looks like - metatags - not
+#    open graph tags...
+# debugger - https://www.linkedin.com/post-inspector/inspect/
+# trying to find help: https://www.opengraph.xyz/
+#   - says it works Title, Description & Image are all correct.
+#   - https://www.opengraph.xyz/url/https%3A%2F%2Fgajol.github.io%2Fbalance%2F/
+#   - proves good on Facebook, LinkedIn, Discord and Twitter
+#   - but preview is not working on Twitter to my knowledge
 og_image: /assets/images/bridge-generated-og.jpeg

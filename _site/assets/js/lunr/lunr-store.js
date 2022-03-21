@@ -54,7 +54,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Site Tags",
-        "excerpt":"Site Tags - Raw Liquid {“nielsen”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-06-welcome-to-jekyll.md collection=posts&gt;], “nielsen themes actions CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-githubpages.md collection=posts&gt;], “themes”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “actions”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “jekyll”=&gt;[#&lt;Jekyll::Document _posts/2022-03-19-jekyll-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-linked-posts.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-02-tags.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-01-github-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-collections.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-02-01-site-tags-list.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-02-jekyll-excerpts.md collection=posts&gt;], “excerpt”=&gt;[#&lt;Jekyll::Document _posts/2022-03-19-jekyll-collections.md collection=posts&gt;,...","categories": ["jekyll","tags"],
+        "excerpt":"Site Tags - Raw Liquid {“nielsen”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-06-welcome-to-jekyll.md collection=posts&gt;], “nielsen themes actions CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-githubpages.md collection=posts&gt;], “themes”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “actions”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “jekyll”=&gt;[#&lt;Jekyll::Document _posts/2022-03-19-jekyll-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-linked-posts.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-02-tags.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-01-github-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-23-basic-linux-file-text-search.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-collections.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-02-01-site-tags-list.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-02-jekyll-excerpts.md collection=posts&gt;],...","categories": ["jekyll","tags"],
         "tags": ["tags","jekyll"],
         "url": "/balance/jekyll/tags/site-tags-list/",
         "teaser": null
@@ -63,6 +63,12 @@ var store = [{
         "excerpt":"It turned out that I had a typo in the collection I was making. The directory for where the markdown posts was to be stored, _portfolio had a typo. As a result, there were no source-pages for Jekyll to process into the _site/portfolio folder. Minimal Mistakes Collections Jekyll Collectoins There...","categories": ["jekyll","tags"],
         "tags": ["jekyll","excerpt"],
         "url": "/balance/jekyll/tags/jekyll-collections/",
+        "teaser": null
+      },{
+        "title": "Site Excerpt and Sidebar Navigation",
+        "excerpt":"Techadmin - Find Files Containing Text: grep -rwl “search-string” /path/to/serch/dir I wish I had been a little bit more respectful of the pile of poker chips God put in front of me to get started on. But, you know that’s life. Mistakes and lost poker chips. - Duke Montana The...","categories": ["jekyll","tags"],
+        "tags": ["jekyll","excerpt"],
+        "url": "/balance/jekyll/tags/basic-linux-file-text-search/",
         "teaser": null
       },{
         "title": "Github Pages & Jekyll",
