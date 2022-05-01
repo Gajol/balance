@@ -96,6 +96,8 @@ bundle install
 - [ ] : [Twitter Cards for Sharing](https://mmistakes.github.io/minimal-mistakes/docs/configuration/#twitter-cards-and-facebook-open-graph). See [Twitter Cards](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/player-card)
 - [ ] :J [Splash Page and Image](https://mmistakes.github.io/minimal-mistakes/splash-page/) - [Splash Page MD](https://github.com/mmistakes/minimal-mistakes/blob/gh-pages-3.1.6/_pages/splash-page.md)
   - [ ] : How does author of MM use basic image paths [ref](image_path: building-swiss-vanilla.jpg).  I seem to have to use `/assets/images/filename.jpg`
+ - [ ] : fix posts to follow [better guidelines](https://blog.canada.ca/2021/07/20/effective-links) (few inline links, etc)
+
 - [Layouts - Grid View](https://mmistakes.github.io/minimal-mistakes/docs/layouts/) - [Porfolio Collection Grid View](https://github.com/mmistakes/minimal-mistakes/blob/master/docs/_pages/portfolio-archive.md)
 - [404 Page](https://github.com/mmistakes/minimal-mistakes/issues/2188) - basic Jekyll stuff - _config.yml and 404.md must match.
 
