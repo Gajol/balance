@@ -1,0 +1,145 @@
+# MM _config.yml https://github.com/mmistakes/minimal-mistakes/blob/master/_config.yml
+# - to view on Github set branch to gh-pages-3.1.6
+# Site Information
+title: Technology and Balancing Life
+email: tuborgjunior@gmail.com
+description: >- # this means to ignore newlines until "baseurl:"
+  Quick musings on technology mixed with some biking, kayaking, skiing and skating.
+# set as per https://mmistakes.github.io/minimal-mistakes/docs/configuration/
+#   - https://byparker.com/blog/2014/clearing-up-confusion-around-baseurl/
+#     TL;DR: Use baseurl when you are building a site that doesn’t sit at the root of the domain.
+baseurl: "/balance" # the subpath of your site, e.g. /blog
+url: "https://gajol.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+
+# twitter_username: Aqvavit
+# github_username:  Gajol
+# linkedin_username: nielsencanada
+
+repository: "gajol/balance"
+
+
+
+author:
+  name: "Doug Nielsen"
+  avatar: "/assets/images/doug-bio-2021-11-06.jpg"
+  bio: "Working in technology with a passion for recreation." # Note: Markdown is allowed
+  location: "Ottawa, ON, Canada"
+  links:
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://linkedin.com/in/nielsencanada"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/Aqvavit"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/Gajol"
+    - label: "Instagram"
+      icon: "fab fa-fw fa-instagram"
+      url: "https://instagram.com/doug.djn"
+
+
+
+
+# as per jekyll https://jekyllrb.com/docs/permalinks/, and
+# as per MM https://mmistakes.github.io/minimal-mistakes/docs/navigation/
+permalink: /:categories/:title/
+
+include: ["_pages"]
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:path/
+#  recipes:
+#    output: true
+#    permalink: /:collection/:path/
+#  pets:
+#    output: true
+#    permalink: /:collection/:path/
+  portfolio:
+    output: true
+    permalink: /:collection/:path/
+
+  docs:
+    output: true
+    permalink: /:collection/:path/
+
+# theme: minimal-mistakes-jekyll
+plugins:
+  - jekyll-remote-theme
+  - jekyll-include-cache
+
+# https://github.com/benbalter/jekyll-remote-theme
+remote_theme: "mmistakes/minimal-mistakes@4.24.0"
+
+# post defaults - https://mmistakes.github.io/minimal-mistakes/docs/posts/
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+
+  # collections
+  # _portfolio
+  - scope:
+      path: ""
+      type: portfolio
+    values:
+      layout: single
+      author_profile: false
+      share: true
+
+  # _docs - but its not a "collection"
+  - scope:
+      path: ""
+      type: docs
+    values:
+      layout: single
+      author_profile: false
+      share: true
+
+
+# Social Sharing
+twitter:
+  username               : &twitter "Aqvavit"
+facebook:
+  username               : &facebook "doug.nielsen.370"
+
+# Default card image for Facebook / Twitter Link Preview (Cards)
+# would a CDN cdn.kapwing.com be better
+# https://metatags.io/ to see what it looks like - metatags - not
+#    open graph tags...
+# debugger - https://www.linkedin.com/post-inspector/inspect/
+# trying to find help: https://www.opengraph.xyz/
+#   - says it works Title, Description & Image are all correct.
+#   - https://www.opengraph.xyz/url/https%3A%2F%2Fgajol.github.io%2Fbalance%2F/
+#   - proves good on Facebook, LinkedIn, Discord and Twitter
+#   - but preview is not working on Twitter to my knowledge
+#     - it works, it just takes about 30-60 seconds for the Twitter validator
+#       to display the preview.
+# Note: You need to validate cards are working and have Twitter approve
+# Player Cards before they will begin showing up.
+# https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/player-card
+# https://github.com/twitterdev/cards-player-samples
+
+
+
+
+og_image: /assets/images/bridge-generated-og.jpeg
