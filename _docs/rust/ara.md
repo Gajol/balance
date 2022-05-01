@@ -2,7 +2,7 @@
 title: "Application Architecture test link"
 excerpt: "ARA, hello world."
 last_modified_at: 2022-04-30T10:23:16-04:00
-layout: single
+toc: true
 ---
 
 <!--
