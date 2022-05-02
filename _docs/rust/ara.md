@@ -2,7 +2,7 @@
 title: "Application Reference Architecture"
 excerpt: "ARA, first draft."
 last_modified_at: 2022-04-30T10:23:16-04:00
-toc: true
+toc: false
 classes: wide
 ---
 
