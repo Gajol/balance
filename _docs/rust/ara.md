@@ -6,18 +6,13 @@ toc: false
 classes: wide
 ---
 
-<!--
-Testing ARA copied from ARA repo
-
--->
-
 <a name="application-reference-architecture"></a>
 # Application Reference Architecture
 
 
 <a name="application-reference-architecture-table-of-contents"></a>
 ## Table of Contents
-*Document Generation Date: 2022-05-01 22:05*
+*Document Generation Date: 2022-05-02 06:05*
 
 * [Application Reference Architecture](#application-reference-architecture)
 * [Introduction](#introduction)
@@ -76,7 +71,7 @@ This section provides some definitions relating to the application architecture 
 The following table describes some common terms associated with application architecture.
 
 | Term                               | Definition                                                                                                                                                                                                                                                                                                                                                                                            |
-| :--------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :-- | :---- |
 | Application                        | An application, application program or application software is a computer program designed to help people perform an activity                                                                                                                                                                                                                                                                         |
 | Application Architecture (GC EARB) | Application Architecture consists of the interaction of applications with each other and with users. It focuses less on internal mechanics and specific programming and more on the overall design, and how data is consumed and created by the system. It views the interactions between applications, databases, and middleware to ensure scalability, reliability, availability and manageability. |
 | Architecture Style                 | The combination of distinctive features related to the specific context within which architecture is performed or expressed; a collection of principles and characteristics that steer or constrain how architecture is formed. (TOGAF)                                                                                                                                                               |
@@ -89,7 +84,7 @@ The following table describes some common terms associated with application arch
 An application platform provides an environment for software to be executed.
 
 | Platform      | Definition                                                                                              | Example Products                           |
-| :-------------------------- | :------------------------------------------------------------------------------------------------------ | :----------------------------------------- |
+| :-- | :------ | :----- |
 | Low Code Application        | A platform which allows for the creation of applications with little to no code.                        | Mendix, ServiceNow, Outsystems, Salesforce |
 | Business Process Management | A platform which supports business processes through workflows, processes, orchestration and monitoring | Pega Platform, Microsoft Dynamics          |
 | Robotic Process Automation  | A tool which can automate repeated manual tasks.                                                        | uiPath                                     |
@@ -101,7 +96,7 @@ An web framework is a software framework used by software developers following a
 
 
 | Framework             | Definition                                                                                                                           | Examples                                                                                                                            |
-| :-------------------- | :----------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------- |
+| :-- | :----- | :---- |
 | Application Framework | Software framework for enterprise applications                                                                                       | Spring's framework is used to create Java-based enterprise applications.  .Net is a Microsoft-led framework (free and open-source). |
 | Front-End Frameworks  | Create and provide the aesthetics, the user experience, and the visual appeal of web applications                                    | React.js, JQuery, Angular, Vue.js                                                                                                   |
 | Back-End Frameworks   | Provides the framework for the aspects the user does not see, typcially on a server. APIs, dbs, search, caching are common functions | Nodejs, Spring, Ruby on Rails                                                                                                       |
@@ -125,7 +120,7 @@ There are many technology stacks.
 There are many groups of terms relating to applications and application development.
 
 | Term                 | Definition                                                                                                                                                                                                                                                                                                                                                       |
-| :------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :-- | :----|
 | API                  | An application programming interface (API) is a connection befferstween computers or ocomputer programs. An API is a software interface, offering a service to other pieces of software.  An API may be a web-service call (REST API, ...) or a software library or framework (function calls, methods, libraries, ...).                                         |
 | Front-End & Back-End | In simple application terms, the front-end of an application is concerned with the presentation to the end-user. In simple application terms, the back-end interacts with the data access layer.                                                                                                                                                                 |
 | Web Service          | An API to invoke a service over a network.  Many different standards exist for web service APIs (Service Oriented Architecture - SOA and SOAP, REST API, CORBA). gRPC is newer option (2015) using HTTP and ProtoBuf; while more complex than REST APIs, offers programatic interface description language.   gRPC is often used in micro-service architectures. |
@@ -235,8 +230,8 @@ Application architecture should include these as over-arching guidelines.
 
 
 
-| Principle                                            | Description                                                                                                                                                                                      |
-| :--------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Principle  | Description   |
+| - | ---- |
 | Use Open Standards and Solutions by Default          | Open Source, Prioritize (open source, COTS, custom), contribute to open-source                                                                                                                   |
 | Maximize Reuse, Reuse and Improve                    | Leverage existing solutions, minimize duplication.                                                                                                                                               |
 | Design for Users First                               | User-centered methods, focus on users, using agile.                                                                                                                                               |
@@ -291,7 +286,7 @@ The high-level characteristics of the application should be assessed as part of 
 ### Department Application Characteristics
 
 | Attribute                  | Description                                                                                                                                                                        | Note                                                                                                                                                                                                                                                                                                                                     |
-| :------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| :-- | :---- | :---- |
 | Criticality                | How critical is this application to the business. This is sometimes referred to as Tier-1, 2, 3.                                                                                   | The department lacks an official list of application criticality.   Based on criticality, and TBS guidance, critical applications must have certain quality components like a business continuity plan (BCP) and a Disaster Recover Plan (DRP).  This lists needs to be maintained; and programs established to ensure their ongoing health. |
 | Security Profile           | Based on the security triad of Confidentiality, Integrity and Availability (CIA) and indicating the impacts of integrity and availability to the organization (High, Medium, Low). | Common profiles are PBMM (Protected-B, Medium, Medium) and TSHH (Top Secret, High, High).  The security profile can help guide development of quality requirements (non-functional requirements)                                                                                                                                         |
 | Information Classification | What classification of information is managed by the system                                                                                                                        | Unclassified, Confidential, Protected A/B/C, Secret and Top Secret are common security classifications                                                                                                                                                                                                                                   |
@@ -760,9 +755,9 @@ Aside:  An interesting article, *MACH Sitecore Architecture*[^Guidance-10] on ho
 
 [^Guidance-14]: [Wikipedia - Connascense](https://en.wikipedia.org/wiki/Connascence)
 
-[^API-ServiceMesh](https://www.redhat.com/en/resources/api-management-and-service-mesh-checklist)
+[^API-ServiceMesh]: [API Management and Sevice Mesh Checlist - Redhat](https://www.redhat.com/en/resources/api-management-and-service-mesh-checklist)
 
-[^Accessibility][Accessibility Act - Summary](https://www.canada.ca/en/employment-social-development/programs/accessible-people-disabilities/act-summary.html)
+[^Accessibility]: [Accessibility Act - Summary](https://www.canada.ca/en/employment-social-development/programs/accessible-people-disabilities/act-summary.html)
 
 [^Guidance-15]: [Martin, J. Principles of object-oriented analysis and design. (Prentice-Hall, 1993)](http://www.worldcat.org/isbn/978-0-13-720871-5)
 
@@ -876,7 +871,7 @@ Our department has an abundance of *ball of mud* applications.
 <a name="application-architecture-styles-1-event-driven-architecture-patterns"></a>
 ## Event Driven Architecture Patterns
 
-Event Driven Architecture (EDA) is a architecture pattern based on the production, detection, consumption of, and reaction to events.  This architectural style is extremely useful in distributed systems for scalability and performance.  EDA architectures are not simple, nor are they easy to test.  EDA leverages the Publish/Subscribe Enterprise Integration Pattern[^Style-6]
+Event Driven Architecture (EDA) is a architecture pattern based on the production, detection, consumption of, and reaction to events.  This architectural style is extremely useful in distributed systems for scalability and performance.  EDA architectures are not simple, nor are they easy to test.  EDA leverages the Publish/Subscribe Enterprise Integration Pattern[^EIP]
 
 <a name="application-architecture-styles-1-event-driven-architecture-patterns-request-response-communication-has-the-following-characteristics"></a>
 ### Request-Response communication has the following characteristics:
@@ -897,17 +892,12 @@ Event Driven Architecture (EDA) is a architecture pattern based on the productio
 
 <a name="application-architecture-styles-1-event-driven-architecture-patterns-eda-integration-patterns"></a>
 ### EDA Integration Patterns
-- single partition / single consumer : simple pattern, provides orderin, but due to a single partition does not scale
+- single partition / single consumer : simple pattern, provides ordering, but due to a single partition does not scale
 - single partition / multiple consumer : fan-out, sharing events with multiple consumers
 - at-least once delivery : product ensures message is committed by the delivery mechanism.  
-- multi-partitions / multi-consuers : ordering is by partition, consumers must understand partition ordering
+- multi-partitions / multi-consumers : ordering is by partition, consumers must understand partition ordering
 
-
-[^1]: [Building Microservices - Sam Newman](www.worldcat.org/isbn/978-1492034025)
-
-[^2]: Gregor Hohpe and Bobby Woolf, Enterprise Integration Patterns (Boston: Addison-Wesley, 2003).
-
-[Style-6]: [Hohpe, Gregor, and Bobby Woolf. Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions. The Addison-Wesley Signature Series. Boston: Addison-Wesley, 2004.](www.worldcat.org./isbn/978-0321200686)
+[^EIP]: [Hohpe, Gregor, and Bobby Woolf. Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions. The Addison-Wesley Signature Series. Boston: Addison-Wesley, 2004.](www.worldcat.org./isbn/978-0321200686)
 
 
 <a name="patterns"></a>
@@ -1324,6 +1314,8 @@ Technical debt is somewhat misunderstood within IT and our department.   Technic
 [^Appendix-Arch-Evol]: [Architectural Evolution - Neal Ford](http://nealford.com/downloads/Evolutionary_Architectures_by_Neal_Ford.pdf)
 
 [^Principles-TOGAF]: [TOGAF Architecture Principles](https://pubs.opengroup.org/architecture/togaf8-doc/arch/chap29.html)
+
+[^Hewitt]: [Hewitt, E. Technology strategy patterns: architecture as a strategy. (O’Reilly, 2018)](http://www.worldcat.org/isbn/978-1-4920-4087-3)
 
 
 <a name="footnotes"></a>
