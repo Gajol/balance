@@ -1,6 +1,6 @@
 ---
-title: "Application Architecture test link"
-excerpt: "ARA, hello world."
+title: "Application Reference Architecture"
+excerpt: "ARA, first draft."
 last_modified_at: 2022-04-30T10:23:16-04:00
 toc: true
 classes: wide
