@@ -5,14 +5,10 @@ last_modified_at: 2022-04-30T10:23:16-04:00
 toc: false
 classes: wide
 ---
-
 <a name="application-reference-architecture"></a>
-# Application Reference Architecture
-
-
 <a name="application-reference-architecture-table-of-contents"></a>
 ## Table of Contents
-*Document Generation Date: 2022-05-02 06:05*
+*Document Generation Date: 2022-05-02 08:05*
 
 * [Application Reference Architecture](#application-reference-architecture)
 * [Introduction](#introduction)
@@ -339,7 +335,7 @@ Event Driven Architecture
 
 [^Application-1]: [Fundamentals of Software Architecture](www.worldcat.org/isbn/978-1-4920-4345-4) : Richards, Mark, and Neal Ford. Fundamentals of Software Architecture: An Engineering Approach. First edition. Beijing Boston Farnham Sebastopol Tokyo: O’Reilly, 2020.
 
-[^Application-SOA]: [Josuttis, Nicolai M. SOA in Practice. 1st ed. Beijing ; Sebastopol: O’Reilly, 2007.]](http://www.worldcat.org/978-0-596-52955-0)]
+[^Application-SOA]: [Josuttis, Nicolai M. SOA in Practice. 1st ed. Beijing ; Sebastopol: O’Reilly, 2007.](http://www.worldcat.org/978-0-596-52955-0)
 
 
 <a name="goals-for-application-architecture"></a>
