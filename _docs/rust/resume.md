@@ -1,3 +1,11 @@
+---
+title: "Doug Nielsen - Resume"
+excerpt: "Senior IT Strategist - Resume."
+last_modified_at: 2022-04-30T10:23:16-04:00
+toc: true
+classes: wide
+---
+
 # Doug Nielsen Resume
 
 ## Objective
