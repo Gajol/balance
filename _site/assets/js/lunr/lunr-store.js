@@ -2,7 +2,7 @@ var store = [{
         "title": "Queen Elizabeth Cake",
         "excerpt":"Queen Elizabeth Cake Recipe: Queen Elizabeth Cake - Redpath Canadian Bake Book Recipe: Alternative Recipe: All Recipes - Queen Elizabeth Cake. This recipe is very similar, but does not include the warm sauce. Story: The origins of this cake are shrouded in mystery, although some sources claim the cake was...","categories": [],
         "tags": [],
-        "url": "/balance/docs/Queen%20Elizabeth%20Cake/",
+        "url": "/balance/docs/Queen-Elizabeth-Cake/",
         "teaser": null
       },{
         "title": "Application Reference Architecture",
