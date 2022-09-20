@@ -29,7 +29,7 @@ Cake:
 
 - 1 cup pitted dates, cut in half
 - 1 cup water
-- 1 ½ cups all-purpose flout
+- 1 ½ cups all-purpose flour
 - 1 tsp baking power
 - ½ tsp baking soda
 - ¼ tsp fine sea salt
@@ -89,11 +89,17 @@ Serving:
 
 # Queen Elizabeth's Funeral
 
-We had this cake in honour of Queen Elizabeth II on the day of her funeral, September 19, 2022.   Grandpa joined us for Sheppard's Pie and dessert.    Without less than an hours warning, Grandpa was tasked with making a toast.   After the entré had been cleared and before dessert was served grandpa gave the toast.   Grandpa indicated this was customary etiqueete for [Toasting the Queen](https://d21toastmasters.org/toasting-the-queen/).   We toasted the Queen, and grandpa added that in his lifetime he had sworn an oath to three Queens.   The first the Queen of Denmark, the second the Queen of England and the third your Grandmother.
+We had this cake in honour of Queen Elizabeth II on the day of her funeral, September 19, 2022.   Grandpa joined us for Sheppard's Pie and dessert.    Without less than an hours warning, Grandpa was tasked with making a toast.   After the entré had been cleared and before dessert was served grandpa gave the toast.   Grandpa indicated this was customary etiquette for [Toasting the Queen](https://d21toastmasters.org/toasting-the-queen/).   We toasted the Queen, and grandpa added that in his lifetime he had sworn an oath to three Queens.   The first the Queen of Denmark, the second the Queen of England and the third your Grandmother.
 
 ![Cake-Queen-Elizabeth-Cake-2022-09-20](/assets/images/Cake-Queen-Elizabeth-Cake-2022-09-20.jpg)
 
-Grandpa mentioned everyone stood for the toast, except one time when he was in training for EMO (Emergence Measures Office??) where one person refused to stand.
+![Cake-Queen-Elizabeth-Cake-2022-09-20](/assets/images/Cake-Queen-Elizabeth-Cake-2022-09-20.jpg)
+
+
+![Cake-Queen-Elizabeth-Cake-2022-09-20](assets/images/Cake-Queen-Elizabeth-Cake-2022-09-20.jpg)
+
+
+Grandpa mentioned everyone stood for the toast, except one time when he was in training for EMO (Emergency Measures Office??) where one person refused to stand.
 
 On a less serious note, Grandpa was questioning what mooning someone meant, is it funny or rude.  Could he moon people?   We did not know what he was thinking, until saying goodbye...
 
