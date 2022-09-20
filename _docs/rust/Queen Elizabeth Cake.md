@@ -91,13 +91,13 @@ Serving:
 
 We had this cake in honour of Queen Elizabeth II on the day of her funeral, September 19, 2022.   Grandpa joined us for Sheppard's Pie and dessert.    Without less than an hours warning, Grandpa was tasked with making a toast.   After the entré had been cleared and before dessert was served grandpa gave the toast.   Grandpa indicated this was customary etiqueete for [Toasting the Queen](https://d21toastmasters.org/toasting-the-queen/).   We toasted the Queen, and grandpa added that in his lifetime he had sworn an oath to three Queens.   The first the Queen of Denmark, the second the Queen of England and the third your Grandmother.
 
-![Cake-Queen-Elizabeth-Cake-2022-09-20](https://1drv.ms/u/s!AkwXSmFk-_xpgqxtHdQFT1XqwNSP-Q?e=tVHnOe)
+![Cake-Queen-Elizabeth-Cake-2022-09-20](/assets/images/Cake-Queen-Elizabeth-Cake-2022-09-20.jpg)
 
 Grandpa mentioned everyone stood for the toast, except one time when he was in training for EMO (Emergence Measures Office??) where one person refused to stand.
 
 On a less serious note, Grandpa was questioning what mooning someone meant, is it funny or rude.  Could he moon people?   We did not know what he was thinking, until saying goodbye...
 
-![Grandpa-Mooning-in-Car-From-Scotty](https://1drv.ms/u/s!AkwXSmFk-_xpgqxvdYUYBxLqZ7CQ5Q?e=o3BChZ)
+![Grandpa-Mooning-in-Car-From-Scotty](/assets/images/Grandpa-Mooning-in-Car-From-Scotty.png)
 
 ## Loyal Toast
 
