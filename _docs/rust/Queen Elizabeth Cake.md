@@ -97,7 +97,7 @@ Grandpa mentioned everyone stood for the toast, except one time when he was in t
 
 On a less serious note, Grandpa was questioning what mooning someone meant, is it funny or rude.  Could he moon people?   We did not know what he was thinking, until saying goodbye...
 
-![Grandpa-Mooning-in-Car-From-Scotty](C:\Users\doug\OneDrive\Documents\GitHub\Eloquent-JavaScript\Notes\2022-Sept\Grandpa-Mooning-in-Car-From-Scotty.png)
+![Grandpa-Mooning-in-Car-From-Scotty](https://1drv.ms/u/s!AkwXSmFk-_xpgqxvdYUYBxLqZ7CQ5Q?e=o3BChZ)
 
 ## Loyal Toast
 
