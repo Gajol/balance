@@ -91,30 +91,13 @@ Serving:
 
 We had this cake in honour of Queen Elizabeth II on the day of her funeral, September 19, 2022.   Grandpa joined us for Sheppard's Pie and dessert.    Without less than an hours warning, Grandpa was tasked with making a toast.   After the entré had been cleared and before dessert was served grandpa gave the toast.   Grandpa indicated this was customary etiquette for [Toasting the Queen](https://d21toastmasters.org/toasting-the-queen/).   We toasted the Queen, and grandpa added that in his lifetime he had sworn an oath to three Queens.   The first the Queen of Denmark, the second the Queen of England and the third your Grandmother.
 
-![1. Cake-Queen-Elizabeth-Cake-2022-09-20](/assets/images/Cake-Queen-Elizabeth-Cake-2022-09-20.jpg)
-
-![3. Cake-Queen-Elizabeth-Cake-2022-09-20](assets/images/Cake-Queen-Elizabeth-Cake-2022-09-20.jpg)
-
-![4. Cake-Queen-Elizabeth-Cake-2022-09-20](../assets/images/Cake-Queen-Elizabeth-Cake-2022-09-20.jpg)
-
-![5. Cake-Queen-Elizabeth-Cake-2022-09-20](docs/assets/images/Cake-Queen-Elizabeth-Cake-2022-09-20.jpg)
-
-![6. with template]({{ base_path }}/assets/images/bridge - smaller.jpg)
-
-Maybe
-
-[2022-09-20 16:49:14] ERROR `/assets/images/Cake-Queen-Elizabeth-Cake-2022-09-20.jpg' not found.
-[2022-09-20 16:49:14] ERROR `/balance/docs/rust/Queen Elizabeth Cake/assets/images/Cake-Queen-Elizabeth-Cake-2022-09-20.jpg' not found.
-[2022-09-20 16:49:14] ERROR `/balance/docs/rust/assets/images/Cake-Queen-Elizabeth-Cake-2022-09-20.jpg' not found.
-[2022-09-20 16:49:14] ERROR `/balance/docs/rust/Queen Elizabeth Cake/docs/assets/images/Cake-Queen-Elizabeth-Cake-2022-09-20.jpg' not found.
-[2022-09-20 16:49:14] ERROR `/assets/images/Grandpa-Mooning-in-Car-From-Scotty.png' not found.
-
+![Cake-Queen-Elizabeth-Cake-2022-09-20](assets/images/Cake-Queen-Elizabeth-Cake-2022-09-20.jpg)
 
 Grandpa mentioned everyone stood for the toast, except one time when he was in training for EMO (Emergency Measures Office??) where one person refused to stand.
 
 On a less serious note, Grandpa was questioning what mooning someone meant, is it funny or rude.  Could he moon people?   We did not know what he was thinking, until saying goodbye...
 
-![Grandpa-Mooning-in-Car-From-Scotty](/assets/images/Grandpa-Mooning-in-Car-From-Scotty.png)
+![Grandpa-Mooning-in-Car-From-Scotty](assets/images/Grandpa-Mooning-in-Car-From-Scotty.png)
 
 ## Loyal Toast
 
