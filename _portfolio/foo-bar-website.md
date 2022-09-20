@@ -11,7 +11,7 @@ sidebar:
     image_alt: "logo"
     text: "Designer, Front-End Developer"
   - title: "Responsibilities"
-    text: "Reuters try PR stupid commenters should isn't a business model"
+    text: "Reuters try PR stupid commentators should isn't a business model"
 gallery:
   - url: /assets/images/bridge.jpg
     image_path: assets/images/bridge.jpg

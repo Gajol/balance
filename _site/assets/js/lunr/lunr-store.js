@@ -1,4 +1,34 @@
 var store = [{
+        "title": "Queen Elizabeth Cake",
+        "excerpt":"Queen Elizabeth Cake Recipe: Queen Elizabeth Cake - Redpath Canadian Bake Book Recipe: Alternative Recipe: All Recipes - Queen Elizabeth Cake. This recipe is very similar, but does not include the warm sauce. Story: The origins of this cake are shrouded in mystery, although some sources claim the cake was...","categories": [],
+        "tags": [],
+        "url": "/balance/docs/Queen%20Elizabeth%20Cake/",
+        "teaser": null
+      },{
+        "title": "rust test link",
+        "excerpt":"Rust Rust language installation: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh sudo apt-get curl if curl is not installed check installation with which cargo amd cargo --version September 2022 cargo, clippy and rustdocs are installed. cargo is the rust compilation manager rustc is the compiler rustdoc is documentation. rustup...","categories": [],
+        "tags": [],
+        "url": "/balance/docs/rust-test-permalink/",
+        "teaser": null
+      },{
+        "title": "Queen Elizabeth Cake",
+        "excerpt":"Queen Elizabeth Cake Recipe: Queen Elizabeth Cake - Redpath Canadian Bake Book Recipe: Alternative Recipe: All Recipes - Queen Elizabeth Cake. This recipe is very similar, but does not include the warm sauce. Story: The origins of this cake are shrouded in mystery, although some sources claim the cake was...","categories": [],
+        "tags": [],
+        "url": "/balance/docs/rust/Queen%20Elizabeth%20Cake/",
+        "teaser": null
+      },{
+        "title": "Application Reference Architecture",
+        "excerpt":"Table of Contents Document Generation Date: 2022-05-02 08:05 Application Reference Architecture Introduction Definitions Business Principles Application Characteristics and Styles Goals for Application Architecture Goals for Business Architecture Application Architecture Styles Patterns Discovery References Appendix - Definitions Footnotes Introduction This document outlines the Application Reference Architecture (ARA) as it applies to...","categories": [],
+        "tags": [],
+        "url": "/balance/docs/rust/ara/",
+        "teaser": null
+      },{
+        "title": "Doug Nielsen - Resume",
+        "excerpt":"Doug Nielsen Resume doug@nielsenfamily.ca : 613-879-5027 Objective Provide technical advice and guidance to major transformational projects helping the Government of Canada modernize service delivery to Canadians. Education Bachelor of Computer Systems Engineering - High Distinction - Carleton University Certified Information Systems Security Professional (CISSP), Project Management Professional (PMP), Change Management...","categories": [],
+        "tags": [],
+        "url": "/balance/docs/rust/resume/",
+        "teaser": null
+      },{
         "title": "rust",
         "excerpt":"Rust Rust language installation: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh sudo apt-get curl if curl is not installed check installation with which cargo amd cargo --version cargo, clippy and rustdocs are installed. cargo is the rust compilation manager rustc is the compiler rustdoc is documentation. rustup doc --std...","categories": [],
         "tags": [],
