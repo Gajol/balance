@@ -19,6 +19,8 @@ sidebar-defining-decade:
   - title: "The Defining Decade"
     url: /docs/The-Defining-Decade/
     children:
+      - title: "Summary"
+        url: /docs//#summary
       - title: "Work"
         url: /docs//#work
       - title: "Love"
