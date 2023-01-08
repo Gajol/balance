@@ -4,6 +4,7 @@ excerpt: "Why 30 is not the new 20 by Meg Jay."
 last_modified_at: 2023-01-07T10:23:16-04:00
 toc: false
 classes: wide
+categories: psychology
 sidebar:
   title: "Contents"
   nav: sidebar-defining-decade

@@ -6,7 +6,7 @@ var store = [{
         "teaser": null
       },{
         "title": "The Defining Decade",
-        "excerpt":"The Define Decade: Why Your 20’s Matter &amp; How to Make the Most of Them Author: Meg Jay Book Title: Jay, Meg. The Defining Decade: Why Your Twenties Matter and How to Make the Most of Them Now. First revised trade paperback edition. New York: Twelve, 2021. Summary The book...","categories": [],
+        "excerpt":"The Define Decade: Why Your 20’s Matter &amp; How to Make the Most of Them Author: Meg Jay Book Title: Jay, Meg. The Defining Decade: Why Your Twenties Matter and How to Make the Most of Them Now. First revised trade paperback edition. New York: Twelve, 2021. Summary The book...","categories": ["psychology"],
         "tags": [],
         "url": "/balance/docs/The-Defining-Decade/",
         "teaser": null
@@ -84,7 +84,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Site Tags",
-        "excerpt":"Site Tags - Raw Liquid {“nielsen”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-06-welcome-to-jekyll.md collection=posts&gt;], “nielsen themes actions CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-githubpages.md collection=posts&gt;], “themes”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “actions”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “jekyll”=&gt;[#&lt;Jekyll::Document _posts/2022-03-19-jekyll-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-linked-posts.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-02-tags.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-01-github-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-23-basic-linux-file-text-search.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-collections.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-02-01-site-tags-list.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-02-jekyll-excerpts.md collection=posts&gt;],...","categories": ["jekyll","tags"],
+        "excerpt":"Site Tags - Raw Liquid {“nielsen”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-06-welcome-to-jekyll.md collection=posts&gt;], “nielsen themes actions CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-githubpages.md collection=posts&gt;], “themes”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “actions”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “jekyll”=&gt;[#&lt;Jekyll::Document _posts/2023-01-07-psychology-defining-decade.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-linked-posts.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-02-tags.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-01-github-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-23-basic-linux-file-text-search.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-collections.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-02-01-site-tags-list.md collection=posts&gt;,...","categories": ["jekyll","tags"],
         "tags": ["tags","jekyll"],
         "url": "/balance/jekyll/tags/site-tags-list/",
         "teaser": null
@@ -147,5 +147,11 @@ var store = [{
         "excerpt":"Pages     https://fosspost.org/open-source-images/            https://unsplash.com/wallpaper, https://unsplash.com/images                    created account (via FB dougottawa)                       https://stocksnap.io/       https://pixabay.com/service/license/       https://www.pexels.com/       https://www.flickr.com/search/           Teaser Image     Python - ML - Jan Meppe  ","categories": ["jekyll"],
         "tags": ["images"],
         "url": "/balance/jekyll/web-site-images/",
+        "teaser": null
+      },{
+        "title": "The Defining Decare",
+        "excerpt":"The Jekyll documentation on excerpts link describes a method for excerpts. However, the blog on how to use tags with Github &amp; Jekyll had a much pretty excerpt which was different text from the actual blog post Blog Post. See the Tag Page. Local Host Link to Tags on Jekyll...","categories": ["jekyll","tags"],
+        "tags": ["jekyll","excerpt"],
+        "url": "/balance/jekyll/tags/psychology-defining-decade/",
         "teaser": null
       }]
