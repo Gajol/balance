@@ -84,7 +84,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Site Tags",
-        "excerpt":"Site Tags - Raw Liquid {“nielsen”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-06-welcome-to-jekyll.md collection=posts&gt;], “nielsen themes actions CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-githubpages.md collection=posts&gt;], “themes”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “actions”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “jekyll”=&gt;[#&lt;Jekyll::Document _posts/2023-01-07-psychology-defining-decade.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-linked-posts.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-02-tags.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-01-github-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-23-basic-linux-file-text-search.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-collections.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-02-01-site-tags-list.md collection=posts&gt;,...","categories": ["jekyll","tags"],
+        "excerpt":"Site Tags - Raw Liquid {“nielsen”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-06-welcome-to-jekyll.md collection=posts&gt;], “nielsen themes actions CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-githubpages.md collection=posts&gt;], “themes”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “actions”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “CI”=&gt;[#&lt;Jekyll::Document _posts/2022-03-16-jekyll-minimal-mistakes.md collection=posts&gt;], “jekyll”=&gt;[#&lt;Jekyll::Document _posts/2022-03-19-jekyll-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-linked-posts.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-02-tags.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-01-github-pages.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-23-basic-linux-file-text-search.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-03-19-jekyll-collections.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-02-01-site-tags-list.md collection=posts&gt;, #&lt;Jekyll::Document _posts/2022-01-02-jekyll-excerpts.md collection=posts&gt;],...","categories": ["jekyll","tags"],
         "tags": ["tags","jekyll"],
         "url": "/balance/jekyll/tags/site-tags-list/",
         "teaser": null
@@ -149,9 +149,9 @@ var store = [{
         "url": "/balance/jekyll/web-site-images/",
         "teaser": null
       },{
-        "title": "The Defining Decare",
-        "excerpt":"The Jekyll documentation on excerpts link describes a method for excerpts. However, the blog on how to use tags with Github &amp; Jekyll had a much pretty excerpt which was different text from the actual blog post Blog Post. See the Tag Page. Local Host Link to Tags on Jekyll...","categories": ["jekyll","tags"],
-        "tags": ["jekyll","excerpt"],
-        "url": "/balance/jekyll/tags/psychology-defining-decade/",
+        "title": "The Defining Decade",
+        "excerpt":"A summary of an book help young adults and others understand the pressures, anxiety and differences people in their 20’s experience today.           Summary of The Defining Decade - Base URL            Summary of The Defining Decade - Link fails “missing ‘balance’ “      ","categories": ["pyschology"],
+        "tags": ["adulthood"],
+        "url": "/balance/pyschology/psychology-defining-decade/",
         "teaser": null
       }]

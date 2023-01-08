@@ -11,7 +11,7 @@ sidebar:
 [Jekyll Official Docs](https://jekyllrb.com/docs/)
 
 - [Jekyll Front Matter](https://jekyllrb.com/docs/front-matter/)
-  - tags :  Similar to categories, one or multiple tags can be added to a post. Also like categories, tags can be specified as a [YAML list](https://en.wikipedia.org/wiki/YAML#Basic_components) or a space-separated string.
+  - tags :  Similar to categories, one or multiple tags can be added to a post. Also like categories, tags can be specified as a [YAML list](https://en.wikipedia.org/wiki/YAML#Basic_components -[milk, pumpkin pie, eggs, juice]) or a space-separated string.
     - Note: tags separated by a space must use the `tags` keyword.  The frontmatter must use the plural `tags`.   Using `tag` treats the entire line as the tag. [][Jekyll Posts](https://jekyllrb.com/docs/posts/)].  Similar for `category` and `categories`.
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
