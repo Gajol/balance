@@ -24,6 +24,8 @@ The book provides insights into the challenges modern young adults in their 20's
 
 The author, [Meg Jay](https://megjay.com/about/), wrote this book to help people in their 20's.  The author identifies that changing world, expectations and pressures on people in their 20's and relates their concerns.   There is life guidance in terms being deliberate in your choices.   Meg's Ted Talk, [Why 30 is not the new 20](https://www.ted.com/talks/meg_jay_why_30_is_not_the_new_20), is famous for framing contemporary twentysomethings journey into adulthood.
 
+[![TedTalk - Why 30 is not the new 20](https://img.youtube.com/vi/vhhgI4tSMwc/0.jpg)](https://www.youtube.com/watch?v=vhhgI4tSMwc "30 is not the new 20")
+
 The twenties are important for many reasons.  In their 20's:
 
 - 80% of person's defining moments occur
