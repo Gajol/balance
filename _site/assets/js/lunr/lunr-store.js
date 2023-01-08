@@ -8,7 +8,7 @@ var store = [{
         "title": "The Defining Decade",
         "excerpt":"The Define Decade: Why Your 20’s Matter &amp; How to Make the Most of Them Author: Meg Jay Book Title: Jay, Meg. The Defining Decade: Why Your Twenties Matter and How to Make the Most of Them Now. First revised trade paperback edition. New York: Twelve, 2021. Summary The book...","categories": [],
         "tags": [],
-        "url": "/balance/docs/The%20Defining%20Decade/",
+        "url": "/balance/docs/The-Defining-Decade/",
         "teaser": null
       },{
         "title": "B:  Queen Elizabeth Cake",
