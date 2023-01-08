@@ -20,7 +20,7 @@ sidebar-defining-decade:
     url: /docs/The-Defining-Decade/
     children:
       - title: "Summary"
-        url: /docs//#summary
+        url: /docs/The-Defining-Decade/#summary
       - title: "Work"
         url: /docs//#work
       - title: "Love"
