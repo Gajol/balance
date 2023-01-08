@@ -17,18 +17,18 @@ main:
 
 sidebar-defining-decade:
   - title: "The Defining Decade"
-    url: /docs/The Defining Decade/
+    url: /docs/The-Defining-Decade/
     children:
       - title: "Work"
-        url: /docs/The Defining Decade/#work
+        url: /docs//#work
       - title: "Love"
-        url: /docs/The Defining Decade/#love
+        url: /docs/The-Defining-Decade/#love
       - title: "Brain & Body"
-        url: /docs/The Defining Decade/#the-brain-and-the-body
+        url: /docs/The-Defining-Decade/#the-brain-and-the-body
       - title: "Summary & Assignments"
-        url: /docs/The Defining Decade/#summary-and-assignments
+        url: /docs/The-Defining-Decade/#summary-and-assignments
       - title: "Theories"
-        url: /docs/The Defining Decade/#theories
+        url: /docs/The-Defining-Decade/#theories
 
 sidebar-sample:
   - title: "Parent Page A"
