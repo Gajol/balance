@@ -42,7 +42,8 @@ The twenties are important for many reasons.  In their 20's:
 In the 21st century, in just one generation, our culture has changed from immediately leaving home, studying, graduating, marrying and raising a family.  There is now a gap between the time when one lives in their childhood home and when they have their own home.
 
 | Childhood Home | *What to do with this time* | Own Home |
-| -------------- | --------------------------- | -------- |
+| :--------------: | --------------------------- | :--------: |
+| *childhood* | | *adulthood* |
 
 Essential questions are being asked during this time:
 
@@ -127,7 +128,7 @@ How to approach a weak tie for help:
   - [Mark Granovetter - Wikipedia](https://en.wikipedia.org/wiki/Mark_Granovetter) ; Social network theory and economic sociology. [Mark Granovetter - Stanford](https://profiles.stanford.edu/mark-granovetter)
   - [Rose Coser](https://en.wikipedia.org/wiki/Rose_Laub_Coser) : Weakness of Strong Ties
 
-## The Unthought Known
+## The Unthought Unnown
 
 Unthought unknowns refer to:
 
@@ -137,14 +138,9 @@ Unthought unknowns refer to:
 
 We fear what the unthought unknowns means and what we should do next.   Our fear (and anxiety) is that making a choice will lead to hard work, failure and heart break.
 
-``` mermaid
-flowchart LR
-C{It Could Happen?} -->|Choose, Succee| G[Success]
-C -->|Choose, but Fail| D[Reflect]
-C -->|Don't Choose| E[Not Safe, Future Consequences]
-D -->|negatively| H[Wrong Perspective]
-D -->|positively| I[Better Informed, Idenity Capital]
-```
+Figure: *Choices: Lead to success or increased identity capital*
+
+![Image - Choice - Unthought Unknowns](../assets/images/Defining-Decade-Choice.drawio.png)
 
 Paradox of Choice[^Choice-Paradox].  The example in the book is a study where two different booths with choices of jam were provided.   One booth had 18 choices and one had 6.
 
@@ -948,6 +944,28 @@ Growth mindset practices:
 [Bollas Christopher. 2018. *The Shadow of the Object : Psychoanalysis of the Unthought Known*](https://worldcat.org/en/title/994882801)
 
 Bill Gates: Bill Gates is a believer in continual learning, and a growth mindset. *A growth mindset as the foundation and drive to stay curious and keep learning, says Gates, will help prepare students for immense changes that will take place in health care and climate change.*
+
+# TODO
+
+## TODO: Mermaid Diagram (failing)
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
+```mermaid
+flowchart LR
+C{It Could Happen?} -->|Choose, Succee| G[Success]
+C -->|Choose, but Fail| D[Reflect]
+C -->|Don't Choose| E[Not Safe, Future Consequences]
+D -->|negatively| H[Wrong Perspective]
+D -->|positively| I[Better Informed, Idenity Capital]
+```
+Workaround:  Used Drawio to draw a picture and display as PNG.
 
 # Footnotes
 
