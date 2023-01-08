@@ -5,7 +5,7 @@ date:   2022-03-19 14:55:59 -0500
 description: Setup for pages and hopefully page-archive, too.
 excerpt: "Struggles to get a _pages folder working locally on Linux and then on GitHub pages"
 categories: jekyll
-tags: jekyll pages
+tags: jekyll tags categories doug
 sidebar:
   title: "Git Posts"
   nav: sidebar-sample

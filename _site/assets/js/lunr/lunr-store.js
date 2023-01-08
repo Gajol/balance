@@ -1,8 +1,20 @@
 var store = [{
-        "title": "Queen Elizabeth Cake",
+        "title": "Abc: Queen Elizabeth Cake",
         "excerpt":"Queen Elizabeth Cake Recipe: Queen Elizabeth Cake - Redpath Canadian Bake Book Recipe: Alternative Recipe: All Recipes - Queen Elizabeth Cake. This recipe is very similar, but does not include the warm sauce. Story: The origins of this cake are shrouded in mystery, although some sources claim the cake was...","categories": [],
         "tags": [],
         "url": "/balance/docs/Queen-Elizabeth-Cake/",
+        "teaser": null
+      },{
+        "title": "The Defining Decade",
+        "excerpt":"The Define Decade: Why Your 20’s Matter &amp; How to Make the Most of Them Author: Meg Jay Book Title: Jay, Meg. The Defining Decade: Why Your Twenties Matter and How to Make the Most of Them Now. First revised trade paperback edition. New York: Twelve, 2021. Summary The book...","categories": [],
+        "tags": [],
+        "url": "/balance/docs/The%20Defining%20Decade/",
+        "teaser": null
+      },{
+        "title": "B:  Queen Elizabeth Cake",
+        "excerpt":"Queen Elizabeth Cake Recipe: Queen Elizabeth Cake - Redpath Canadian Bake Book Recipe: Alternative Recipe: All Recipes - Queen Elizabeth Cake. This recipe is very similar, but does not include the warm sauce. Story: The origins of this cake are shrouded in mystery, although some sources claim the cake was...","categories": [],
+        "tags": [],
+        "url": "/balance/docs/rust/Queen%20Elizabeth%20Cake/",
         "teaser": null
       },{
         "title": "Application Reference Architecture",
@@ -17,13 +29,13 @@ var store = [{
         "url": "/balance/docs/rust/resume/",
         "teaser": null
       },{
-        "title": "rust",
+        "title": "rust hello",
         "excerpt":"Rust Rust language installation: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh sudo apt-get curl if curl is not installed check installation with which cargo amd cargo --version cargo, clippy and rustdocs are installed. cargo is the rust compilation manager rustc is the compiler rustdoc is documentation. rustup doc --std...","categories": [],
         "tags": [],
         "url": "/balance/docs/rust/rust-intro/",
         "teaser": null
       },{
-        "title": "rust",
+        "title": "rust front matter",
         "excerpt":"Replace Front Matter Problem: I have 12 markdown files with a Front Matter attribute I want to change. The layout is “posts” and I want to change this to “single”. Options: Linux sed/awk, (sed - stream editor: sed -i 's/old-text/new-text/g' input.txt sed -i 's/layout: posts/layout: single/g' input.txt Challenge: Do this...","categories": [],
         "tags": [],
         "url": "/balance/docs/rust/rust-replace-front-matter/",
@@ -38,7 +50,7 @@ var store = [{
         "title": "Architecture for the Enterprise",
         "excerpt":"Pictures of Goats section West Seattle Blog dingbat newspaper rubber cement Google+ newsroom cafe news.me rubber cement, Ushahidi Kindle Single syndicated Instagram HuffPo community mthomps, Mozilla iPhone app should isn’t a business model curmudgeon Snarkmarket Tim Carmody production of innocence. Fuego tweets community DocumentCloud metered model Gardening &amp; War section...","categories": [],
         "tags": [],
-        "url": "/balance/portfolio/foo-bar-website/",
+        "url": "/balance/portfolio/Architecture-for-Enterprise/",
         "teaser": "/balance/assets/images/bridge.jpg"
       },{
         "title": "Splash Page",
@@ -127,7 +139,7 @@ var store = [{
       },{
         "title": "Jekyll Collections & Minimal Mistakes - Pages",
         "excerpt":"Pages Following Minimal Mistakes Working with Pages requires.\\ On project folder create _pages Directory. Each page’s front matter should have a permalink (permalink: /about/ and permalink: / (for home.md)) Setup front matter defaults in _config.yml. This works, and I can directly navigation to pages using the permalink. For example, to...","categories": ["jekyll"],
-        "tags": ["jekyll","pages"],
+        "tags": ["jekyll","tags","categories","doug"],
         "url": "/balance/jekyll/jekyll-pages/",
         "teaser": null
       },{

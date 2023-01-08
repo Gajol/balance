@@ -15,6 +15,21 @@ main:
   - title: "GitHub Source"
     url: https://github.com/Gajol/balance/tree/gh-pages
 
+sidebar-defining-decade:
+  - title: "The Defining Decade"
+    url: /docs/The Defining Decade/
+    children:
+      - title: "Work"
+        url: /docs/The Defining Decade/#work
+      - title: "Love"
+        url: /docs/The Defining Decade/#love
+      - title: "Brain & Body"
+        url: /docs/The Defining Decade/#the-brain-and-the-body
+      - title: "Summary & Assignments"
+        url: /docs/The Defining Decade/#summary-and-assignments
+      - title: "Theories"
+        url: /docs/The Defining Decade/#theories
+
 sidebar-sample:
   - title: "Parent Page A"
     children:

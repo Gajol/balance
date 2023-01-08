@@ -1,16 +1,13 @@
 ---
 permalink: /about/
 title: "About"
-excerpt: "About Minimal Mistakes is a flexible two-column Jekyll theme."
-last_modified_at: 2021-05-11T10:23:16-04:00
+excerpt: "My profession is in technology leadership as an architect.  My current interests are in psychology and economics."
+last_modified_at: 2023-01-07T10:23:16-04:00
 toc: true
 ---
 
-## Location of file
-./_pages/about.md
-
 ## About
-Minimal Mistakes is a flexible two-column Jekyll theme. Perfect for hosting your personal site, blog, or portfolio on GitHub or self-hosting on your own server. As the name implies --- styling is purposely minimalistic to be enhanced and customized by you :smile:.
+This site is a collection of things that interest me both professional and personally.   I have had a long career in technology, starting with telecommunications and then moving into enterprise information technology.  Leadership development in areas to help influence technology's role in enabling the business is a focus of my reading in 2023.   What are modern approaches to development using psychology and design thinking.  I'm also interested in learning more about foreign policy and contemporary history.
 
-## Something
-Else, TOC is True, what happens?
+## 2023 Goals
+I am deciding what I would like to study in 2023.  Economic models and theories, including behavioral economics is of interest as it plays a role in world policy, and, how Canada and the make decisions on investments.
