@@ -136,7 +136,7 @@ Unthought unknowns refer to:
 - the dreams we lost sight of
 - the truths we sense but don't say out loud
 
-We fear what the unthought unknowns means and what we should do next.   Our fear (and anxiety) is that making a choice will lead to hard work, failure and heart break.
+We fear what the unthought unknowns means and what we should do next.   Our fear (and anxiety) is that making a choice will lead to hard work, failure and heart break.  
 
 Figure: *Choices: Lead to success or increased identity capital*
 
@@ -146,6 +146,14 @@ Paradox of Choice[^Choice-Paradox].  The example in the book is a study where tw
 
 - most people went to the booth with 18 choices, but only 3% bought jam
 - fewer people went to the booth with 6 flavours, but 30% bought jam
+
+### Kurt Vonnegut - Myth of talent
+
+> When I was 15, I spent a month working on an archeological dig. I was talking to one of the archeologists one day during our lunch break and he asked those kinds of “getting to know you” questions you ask young people: Do you play sports? What’s your favorite subject? And I told him, no I don’t play any sports. I do theater, I’m in choir, I play the violin and piano, I used to take art classes.  And he went WOW. That’s amazing! And I said, “Oh no, but I’m not any good at ANY of them.”
+>
+> And he said something then that I will never forget and which absolutely blew my mind because no one had ever said anything like it to me before: “I don’t think being good at things is the point of doing them. I think you’ve got all these wonderful experiences with different skills, and that all teaches you things and makes you an interesting person, no matter how well you do them.”
+>
+>And that honestly changed my life. Because I went from a failure, someone who hadn’t been talented enough at anything to excel, to someone who did things because I enjoyed them. I had been raised in such an achievement-oriented environment, so inundated with the myth of Talent, that I thought it was only worth doing things if you could “Win” at them.” — [Kurt Vonnegut](https://en.wikipedia.org/wiki/Kurt_Vonnegut)
 
 ## My Life Should Look Better on Instagram
 
