@@ -12,7 +12,9 @@ classes: wide
 - [Minimal Mistakes - Installation](https://mmistakes.github.io/minimal-mistakes/docs/installation/)
 - [Features](https://mmistakes.github.io/minimal-mistakes/about/)
 - [Theme Documentation](https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/)
-
+- [MM Github Pages Starter](https://github.com/mmistakes/mm-github-pages-starter)
+- [The Noun Project - Images & Icons](https://thenounproject.com/)
+- [Minimal Mistakes - Layouts](https://mmistakes.github.io/minimal-mistakes/docs/layouts/)
 
 ## Setting up a GitHub Pages Site using MM Theme
 Try to get GitHub Pages working with MM theme

@@ -4,7 +4,7 @@
 title: Technology and Balancing Life
 email: tuborgjunior@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Quick musings on technology mixed with some biking, kayaking, skiing and skating.
+  Quick musings on technology mixed social sciences and sports; some biking, kayaking, skiing and skating.
 # set as per https://mmistakes.github.io/minimal-mistakes/docs/configuration/
 #   - https://byparker.com/blog/2014/clearing-up-confusion-around-baseurl/
 #     TL;DR: Use baseurl when you are building a site that doesn’t sit at the root of the domain.
@@ -17,8 +17,6 @@ url: "https://gajol.github.io" # the base hostname & protocol for your site, e.g
 
 repository: "gajol/balance"
 
-
-
 author:
   name: "Doug Nielsen"
   avatar: "/assets/images/doug-bio-2021-11-06.jpg"
@@ -26,7 +24,7 @@ author:
   location: "Ottawa, ON, Canada"
   links:
     - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
+      icon: "fab fa-fw fa-linkedin"  # font-awwesome fonts https://fontawesome.com/
       url: "https://linkedin.com/in/nielsencanada"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
@@ -39,8 +37,6 @@ author:
       url: "https://instagram.com/doug.djn"
 
 
-
-
 # as per jekyll https://jekyllrb.com/docs/permalinks/, and
 # as per MM https://mmistakes.github.io/minimal-mistakes/docs/navigation/
 permalink: /:categories/:title/
@@ -49,16 +45,11 @@ include: ["_pages"]
 
 # Collections
 collections:
-  docs:
+  architecture:
     output: true
     permalink: /:collection/:path/
-#  recipes:
-#    output: true
-#    permalink: /:collection/:path/
-#  pets:
-#    output: true
-#    permalink: /:collection/:path/
-  portfolio:
+
+  books:
     output: true
     permalink: /:collection/:path/
 
@@ -66,7 +57,6 @@ collections:
     output: true
     permalink: /:collection/:path/
 
-# theme: minimal-mistakes-jekyll
 plugins:
   - jekyll-remote-theme
   - jekyll-include-cache
@@ -97,6 +87,27 @@ defaults:
       author_profile: true
 
   # collections
+
+
+  # architecture
+  - scope:
+      path: ""
+      type: architecture
+    values:
+      layout: single
+      author_profile: false
+      share: true
+
+  # books
+  - scope:
+      path: ""
+      type: books
+    values:
+      layout: single
+      author_profile: false
+      share: true
+
+
   # _portfolio
   - scope:
       path: ""
@@ -138,8 +149,4 @@ facebook:
 # Player Cards before they will begin showing up.
 # https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/player-card
 # https://github.com/twitterdev/cards-player-samples
-
-
-
-
 og_image: /assets/images/bridge-generated-og.jpeg

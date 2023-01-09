@@ -1,9 +1,12 @@
 ---
 title: "Application Reference Architecture"
-excerpt: "ARA, first draft."
+excerpt: "ARA, modular, APIs, business engagement."
 last_modified_at: 2022-04-30T10:23:16-04:00
-toc: false
-classes: wide
+toc: true
+toc_sticky: false
+header:
+  # image: /assets/images/Architecture-AI-wide.jpg
+  teaser: /assets/images/Architecture-AI-Generated.jpg
 ---
 <a name="application-reference-architecture"></a>
 <a name="application-reference-architecture-table-of-contents"></a>
@@ -186,7 +189,7 @@ Process Map
 
 Our Corporate Risk Profile (CRP) has identified the risk of our aging IT portfolio.   The health of our portfolio needs to improve.   Several leadership principles have been established over the years to provide guidance when addressing business needs.   
 
-Key business principles relating to governing and directing architecture and application design are: 
+Key business principles relating to governing and directing architecture and application design are:
 
 1. __Rationalization__:  Application functionality must be constantly rationalized to allow us to tackle the large backlog of valuable business requests and opportunities.   During the software development phase, requirements must be rationalized against the originally approved project scope and other competing for business needs.  The costs of increment application development, both in project costs and ongoing costs must be carefully understood.  This is the process of rationalizing business needs and should include the senior management team when necessary.  [*See Guidance - Rationalization for more information*]
 
@@ -794,7 +797,9 @@ Use design-thinking in the cross-functional project team to arrive at appropriat
 1. Refine Solutions
 1. Try Prototypes
 
-![Design Thinking Process - Nielsen Norman Group](./ARA/Assets/DesignThinkingNNG.png)
+*Figure: Design Thinking Process - Nielsen Norman Group (NNG)
+
+![Design Thinking Process - Nielsen Norman Group](../assets/images/DesignThinkingNNG.png)
 
 
 <a name="goals-for-business-architecture-guidance-incorporate-design-thinking-in-transformation-programs-design-thinking-principles"></a>

@@ -1,4 +1,34 @@
 var store = [{
+        "title": "Architecture for the Enterprise",
+        "excerpt":"Pictures of Goats section West Seattle Blog dingbat newspaper rubber cement Google+ newsroom cafe news.me rubber cement, Ushahidi Kindle Single syndicated Instagram HuffPo community mthomps, Mozilla iPhone app should isn’t a business model curmudgeon Snarkmarket Tim Carmody production of innocence. Fuego tweets community DocumentCloud metered model Gardening &amp; War section...","categories": [],
+        "tags": [],
+        "url": "/balance/architecture/Architecture-for-Enterprise/",
+        "teaser": "/balance/assets/images/bridge.jpg"
+      },{
+        "title": "Application Reference Architecture",
+        "excerpt":"Table of Contents Document Generation Date: 2022-05-02 08:05 Application Reference Architecture Introduction Definitions Business Principles Application Characteristics and Styles Goals for Application Architecture Goals for Business Architecture Application Architecture Styles Patterns Discovery References Appendix - Definitions Footnotes Introduction This document outlines the Application Reference Architecture (ARA) as it applies to...","categories": [],
+        "tags": [],
+        "url": "/balance/architecture/application-reference-architecture/",
+        "teaser": "/balance/assets/images/Architecture-AI-Generated.jpg"
+      },{
+        "title": "Splash Page",
+        "excerpt":"Nullam suscipit et nam, tellus velit pellentesque at malesuada, enim eaque. Quis nulla, netus tempor in diam gravida tincidunt, proin faucibus voluptate felis id sollicitudin. Centered with type=\"center\" Placeholder 1 This is some sample content that goes here with Markdown formatting. Placeholder 2 This is some sample content that goes...","categories": [],
+        "tags": [],
+        "url": "/balance/splash-page/",
+        "teaser": "/balance/assets/images/bridge.jpg"
+      },{
+        "title": "The Drunkard's Walk",
+        "excerpt":"Drunkard’s Walk Book Summary: The Drunkard’s Walk by Leonard Mlodinow (tobysinclair.com) The Drunkard’s Walk Summary, Review PDF (lifeclub.org) Human Nature We don’t see randomness because we want to apply order to what we see. why receiving a positive HIV test might not be as terrifying as you think; conditional probability...","categories": ["psychology","statistics"],
+        "tags": [],
+        "url": "/balance/books/Book-Drunkards-Walk/",
+        "teaser": null
+      },{
+        "title": "The Defining Decade",
+        "excerpt":"The Define Decade: Why Your 20’s Matter &amp; How to Make the Most of Them Author: Meg Jay Book Title: Jay, Meg. The Defining Decade: Why Your Twenties Matter and How to Make the Most of Them Now. First revised trade paperback edition. New York: Twelve, 2021. Summary The book...","categories": ["psychology"],
+        "tags": [],
+        "url": "/balance/books/The-Defining-Decade/",
+        "teaser": null
+      },{
         "title": "Abc: Queen Elizabeth Cake",
         "excerpt":"Queen Elizabeth Cake Recipe: Queen Elizabeth Cake - Redpath Canadian Bake Book Recipe: Alternative Recipe: All Recipes - Queen Elizabeth Cake. This recipe is very similar, but does not include the warm sauce. Story: The origins of this cake are shrouded in mystery, although some sources claim the cake was...","categories": [],
         "tags": [],
@@ -15,12 +45,6 @@ var store = [{
         "excerpt":"Queen Elizabeth Cake Recipe: Queen Elizabeth Cake - Redpath Canadian Bake Book Recipe: Alternative Recipe: All Recipes - Queen Elizabeth Cake. This recipe is very similar, but does not include the warm sauce. Story: The origins of this cake are shrouded in mystery, although some sources claim the cake was...","categories": [],
         "tags": [],
         "url": "/balance/docs/rust/Queen%20Elizabeth%20Cake/",
-        "teaser": null
-      },{
-        "title": "Application Reference Architecture",
-        "excerpt":"Table of Contents Document Generation Date: 2022-05-02 08:05 Application Reference Architecture Introduction Definitions Business Principles Application Characteristics and Styles Goals for Application Architecture Goals for Business Architecture Application Architecture Styles Patterns Discovery References Appendix - Definitions Footnotes Introduction This document outlines the Application Reference Architecture (ARA) as it applies to...","categories": [],
-        "tags": [],
-        "url": "/balance/docs/rust/ara/",
         "teaser": null
       },{
         "title": "Doug Nielsen - Resume",
@@ -47,18 +71,6 @@ var store = [{
         "url": "/balance/docs/rust/rust-test-permalink/",
         "teaser": null
       },{
-        "title": "Architecture for the Enterprise",
-        "excerpt":"Pictures of Goats section West Seattle Blog dingbat newspaper rubber cement Google+ newsroom cafe news.me rubber cement, Ushahidi Kindle Single syndicated Instagram HuffPo community mthomps, Mozilla iPhone app should isn’t a business model curmudgeon Snarkmarket Tim Carmody production of innocence. Fuego tweets community DocumentCloud metered model Gardening &amp; War section...","categories": [],
-        "tags": [],
-        "url": "/balance/portfolio/Architecture-for-Enterprise/",
-        "teaser": "/balance/assets/images/bridge.jpg"
-      },{
-        "title": "Splash Page",
-        "excerpt":"Nullam suscipit et nam, tellus velit pellentesque at malesuada, enim eaque. Quis nulla, netus tempor in diam gravida tincidunt, proin faucibus voluptate felis id sollicitudin. Centered with type=\"center\" Placeholder 1 This is some sample content that goes here with Markdown formatting. Placeholder 2 This is some sample content that goes...","categories": [],
-        "tags": [],
-        "url": "/balance/splash-page/",
-        "teaser": "/balance/assets/images/bridge.jpg"
-      },{
         "title": "Welcome to Jekyll!",
         "excerpt":"Jekyll Official Docs Jekyll Front Matter tags : Similar to categories, one or multiple tags can be added to a post. Also like categories, tags can be specified as a YAML list or a space-separated string. Note: tags separated by a space must use the tags keyword. The frontmatter must...","categories": ["jekyll","update"],
         "tags": ["nielsen"],
@@ -72,7 +84,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Jekyll Github Pages : Minimal Mistakes",
-        "excerpt":"Minimal Mistakes Minimal Mistakes - Github Minimal Mistakes - Installation Features Theme Documentation Setting up a GitHub Pages Site using MM Theme Try to get GitHub Pages working with MM theme Theme Install Jekyll Talk - Develop with a Remote Theme : GitLab Pages question. SO - Gem steps basics...","categories": ["jekyll","update"],
+        "excerpt":"Minimal Mistakes Minimal Mistakes - Github Minimal Mistakes - Installation Features Theme Documentation MM Github Pages Starter The Noun Project - Images &amp; Icons Minimal Mistakes - Layouts Setting up a GitHub Pages Site using MM Theme Try to get GitHub Pages working with MM theme Theme Install Jekyll Talk...","categories": ["jekyll","update"],
         "tags": ["nielsen","themes","actions","CI"],
         "url": "/balance/jekyll/update/jekyll-minimal-mistakes/",
         "teaser": null
@@ -127,7 +139,7 @@ var store = [{
       },{
         "title": "Liquid",
         "excerpt":"Liquid Overview Liquid is an open-source template language created by Shopify in 2006. It is written in Ruby and it is used by many hosted web applications like Jekyll websites. Since my website is a Jekyll website, I thought that it would be very helpful to have something like a...","categories": ["jekyll"],
-        "tags": ["jekyll,","liquid,","templating"],
+        "tags": ["jekyll","liquid","templating"],
         "url": "/balance/jekyll/jekyll-liquid/",
         "teaser": null
       },{
@@ -139,7 +151,7 @@ var store = [{
       },{
         "title": "Jekyll Collections & Minimal Mistakes - Pages",
         "excerpt":"Pages Following Minimal Mistakes Working with Pages requires.\\ On project folder create _pages Directory. Each page’s front matter should have a permalink (permalink: /about/ and permalink: / (for home.md)) Setup front matter defaults in _config.yml. This works, and I can directly navigation to pages using the permalink. For example, to...","categories": ["jekyll"],
-        "tags": ["jekyll","tags","categories","doug"],
+        "tags": ["jekyll","tags","categories","doug","2023"],
         "url": "/balance/jekyll/jekyll-pages/",
         "teaser": null
       },{

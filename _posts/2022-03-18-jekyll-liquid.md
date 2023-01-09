@@ -3,7 +3,7 @@ layout: posts
 title:  "Liquid"
 date:   2022-03-18 14:55:59 -0500
 categories: jekyll
-tags: jekyll, liquid, templating
+tags: jekyll liquid templating
 ---
 
 ## Liquid Overview

@@ -5,7 +5,9 @@ date:   2022-03-19 14:55:59 -0500
 description: Setup for pages and hopefully page-archive, too.
 excerpt: "Struggles to get a _pages folder working locally on Linux and then on GitHub pages"
 categories: jekyll
-tags: jekyll tags categories doug
+tags: jekyll tags categories doug 2023
+toc: true
+toc_sticky: true
 sidebar:
   title: "Git Posts"
   nav: sidebar-sample
@@ -36,3 +38,7 @@ Can I do this similar to collections - see [Jekyll Collections]({{ site.baseurl 
 ## Miscellaneous - Linked Posts
 - [Linked Posts](https://mmistakes.github.io/minimal-mistakes/post%20formats/post-link/) : To use, just add link: http://url-you-want-linked to the post’s YAML front matter and you’re done.
 - [Link to Other Posts](https://github.com/mmistakes/minimal-mistakes/issues/581) : ...
+
+## Posts with Sticky TOC
+
+- [MM Post on Sticky Table of Contents - TOC](https://mmistakes.github.io/minimal-mistakes/layout-table-of-contents-sticky/)
