@@ -943,17 +943,11 @@ Growth mindset practices:
 - write about and share with others something you used to be poor at, but are now good at.
 - reflective journal writing
 
-# References
+# Further Reading
 
-[^WeakTies]:  [Mark_Granovetter](https://en.wikipedia.org/wiki/Mark_Granovetter) is a Sociologist at Standford University. He is best known for his work in [social network](https://en.wikipedia.org/wiki/Social_network) theory and in [economic sociology](https://en.wikipedia.org/wiki/Economic_sociology), particularly his theory on the spread of [information](https://en.wikipedia.org/wiki/Information) in social networks known as *The Strength of Weak Ties* (1973). In 1969 Granovetter submitted this paper to American Sociological Review, but it was rejected. Eventually this pioneering research was published in 1973 in American Journal of Sociology and became the most cited work in the social sciences.
+- [Bollas Christopher. 2018. *The Shadow of the Object : Psychoanalysis of the Unthought Known*](https://worldcat.org/en/title/994882801)
 
-[^TippingPoints]: Granovetter has done research on a model of how fads are created.  This threshold model of social behavior was proposed previously by Thomas Schelling and later popularized by Malcolm Gladwell's book [The Tipping Point](https://en.wikipedia.org/wiki/The_Tipping_Point).\
-
-[Bollas Christopher. 2018. *The Shadow of the Object : Psychoanalysis of the Unthought Known*](https://worldcat.org/en/title/994882801)
-
-Bill Gates: Bill Gates is a believer in continual learning, and a growth mindset. *A growth mindset as the foundation and drive to stay curious and keep learning, says Gates, will help prepare students for immense changes that will take place in health care and climate change.*
-
-# TODO
+- Bill Gates: Bill Gates is a believer in continual learning, and a growth mindset. *A growth mindset as the foundation and drive to stay curious and keep learning, says Gates, will help prepare students for immense changes that will take place in health care and climate change.*
 
 ## TODO: Mermaid Diagram (failing)
 
@@ -977,4 +971,10 @@ Workaround:  Used Drawio to draw a picture and display as PNG.
 
 # Footnotes
 
+[^WeakTies]:  [https://en.wikipedia.org/wiki/Mark_Granovetter](https://en.wikipedia.org/wiki/Mark_Granovetter): Sociologist at Standford University. He is best known for his work in [social network](https://en.wikipedia.org/wiki/Social_network) theory and in [economic sociology](https://en.wikipedia.org/wiki/Economic_sociology), particularly his theory on the spread of [information](https://en.wikipedia.org/wiki/Information) in social networks known as *The Strength of Weak Ties* (1973). In 1969 Granovetter submitted this paper to American Sociological Review, but it was rejected. Eventually this pioneering research was published in 1973 in American Journal of Sociology and became the most cited work in the social sciences.
+
 [^Choice-Paradox]: The Paradox of Choice theory  suggests that having too many options can actually decrease overall satisfaction and lead to decision paralysis. This idea is often attributed to the psychologist Barry Schwartz, who wrote a book on the topic called "The Paradox of Choice: Why More Is Less." In the book, Schwartz argues that having too many choices can lead to increased anxiety, regret, and frustration, especially when the choices are complex or involve significant trade-offs. He suggests that simplifying choices and limiting the number of options available can lead to greater satisfaction and well-being.
+
+[^TippingPoints]: Granovetter has done research on a model of how fads are created.  This threshold model of social behavior was proposed previously by Thomas Schelling and later popularized by Malcolm Gladwell's book [The Tipping Point](https://en.wikipedia.org/wiki/The_Tipping_Point).\
+
+[^Homework]: See "Summary and Assignments" section for homework to do after reading the book.

@@ -18,7 +18,7 @@ var store = [{
         "teaser": "/balance/assets/images/bridge.jpg"
       },{
         "title": "The Drunkard's Walk",
-        "excerpt":"Drunkard’s Walk Book Summary: The Drunkard’s Walk by Leonard Mlodinow (tobysinclair.com) The Drunkard’s Walk Summary, Review PDF (lifeclub.org) Human Nature We don’t see randomness because we want to apply order to what we see. why receiving a positive HIV test might not be as terrifying as you think; conditional probability...","categories": ["psychology","statistics"],
+        "excerpt":"Drunkard’s Walk Book Summary: The Drunkard’s Walk by Leonard Mlodinow (tobysinclair.com) The Drunkard’s Walk Summary, Review PDF (lifeclub.org) Human Nature We don’t see randomness because we want to apply order to what we see. why receiving a positive HIV test might not be as terrifying as you think; dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddconditional probability...","categories": ["psychology","statistics"],
         "tags": [],
         "url": "/balance/books/Book-Drunkards-Walk/",
         "teaser": null

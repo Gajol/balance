@@ -23,7 +23,7 @@ Human Nature
 We don’t see randomness because we want to apply order to what we see.
 - why receiving a positive HIV     test might not be as terrifying as you think;
 
-conditional probability
+dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddconditional probability
 
 Tie into Lies, Spies and Algorithms
 
