@@ -23,10 +23,22 @@ var store = [{
         "url": "/balance/books/Book-Drunkards-Walk/",
         "teaser": null
       },{
+        "title": "Change Your Questions, Change Your Life",
+        "excerpt":"Adams, Marilee G. Change Your Questions, Change Your Life: 12 Powerful Tools for Leadership, Coaching, and Life. Third edition. Inquiry Institute Library Series. Oakland: Berrett-Koehler Publishers, 2015. Summary This book discusses the power of questions and the benefits of asking questions from a learning perspective. The author helps you assess...","categories": ["leadership","thinking"],
+        "tags": [],
+        "url": "/balance/books/Change-Your-Questions-Change-Your-Life/",
+        "teaser": null
+      },{
         "title": "The Defining Decade",
         "excerpt":"The Define Decade: Why Your 20’s Matter &amp; How to Make the Most of Them Author: Meg Jay Book Title: Jay, Meg. The Defining Decade: Why Your Twenties Matter and How to Make the Most of Them Now. First revised trade paperback edition. New York: Twelve, 2021. Summary The book...","categories": ["psychology"],
         "tags": [],
         "url": "/balance/books/The-Defining-Decade/",
+        "teaser": null
+      },{
+        "title": "Think Fast, Think Slow",
+        "excerpt":"Kahneman, Daniel, 1934- author. Thinking, Fast and Slow. New York :Farrar, Straus and Giroux, 2011. Part 1: Two Systems Systems In lay-terms, the human has two systems in the brain, System 1 and System 2. Understanding the behaviour of the two systems can help people understand human behaviour and their...","categories": ["psychology","statistics","thinking"],
+        "tags": [],
+        "url": "/balance/books/Think-Fast-Think-Slow/",
         "teaser": null
       },{
         "title": "Abc: Queen Elizabeth Cake",

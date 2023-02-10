@@ -34,6 +34,47 @@ sidebar-defining-decade:
       - title: "Theories"
         url: /docs/The-Defining-Decade/#theories
 
+sidebar-change-your-questions:
+  - title: "Change Your Questions"
+    url: /books/Change-Your-Questions-Change-Your-Life/
+    children:
+      - title: "Summary"
+        url: /books/Change-Your-Questions-Change-Your-Life/#summary
+      - title: "12 Tools"
+        url: /books/Change-Your-Questions-Change-Your-Life/#12-tools
+      - title: "Choice M ap"
+        url: /books/Change-Your-Questions-Change-Your-Life/#choice-map-1
+      - title: "Observing Questions"
+        url: /books/Change-Your-Questions-Change-Your-Life/#tools-3-put-the-power-of-question-to-work
+      - title: "Judger / Learner Mindset"
+        url: /books/Change-Your-Questions-Change-Your-Life/#learner--judger-mindset-chart
+      - title: "Question Assumptions"
+        url: /books/Change-Your-Questions-Change-Your-Life/#tool-6-question-assumptions
+      - title: "Switching Questions"
+        url: /books/Change-Your-Questions-Change-Your-Life/#tool-7-take-advantage-of-switching-questions
+      - title: "12 Questions for Success"
+        url: /books/Change-Your-Questions-Change-Your-Life/#12-questions-for-success-1
+
+sidebar-think-fast-think-slow:
+  - title: "Think Fast Think Slow"
+    url: /books/Think-Fast-Think-Slow/
+    children:
+      - title: "Two Systems"
+        url: /books/Think-Fast-Think-Slow/#part-1-two-systems
+      - title: "Heuristics and Biases"
+        url: /books/Think-Fast-Think-Slow/#part-2-heuristics-and-biases
+      - title: "Overconfidence"
+        url: /books/Think-Fast-Think-Slow/#3-overconfidence
+      - title: "Choices"
+        url: /books/Think-Fast-Think-Slow/#4-choices
+      - Children:
+        - title: "Prospect Theory"
+          url: /books/Think-Fast-Think-Slow/#prospect-theory
+      - title: "Two Selves"
+        url: /books/Think-Fast-Think-Slow/#two-selves
+      - title: "Conclusions"
+        url: /books/Think-Fast-Think-Slow/#conclusions
+
 sidebar-sample:
   - title: "Parent Page A"
     children:
