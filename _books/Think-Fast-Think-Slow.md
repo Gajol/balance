@@ -17,6 +17,8 @@ sidebar:
 
 [Think Fast, Think Slow](https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow) by Daniel Kahneman helps the public understand behavioural science, engineering and medicine.  The book explores rational and non-rational motivations for decision making by describing two systems of the brain; System 1 (instinctive and emotional) and System 2 (slow, deliberate, logical).
 
+Rating: 5 Stars.  Makes me want to read [Noise](https://www.amazon.ca/Noise-Human-Judgment-Daniel-Kahneman/dp/0316451401) by the same author.
+
 # Part 1: Two Systems
 
 ## Systems
@@ -339,7 +341,7 @@ Fourfold: a gambling bet, where all four bets must be successful.
 
 In decision making, apply weights to characteristics that will affect the decision.
 
-certainty effect: outcomes that are almost certain are given less weight than their probability justifies.  Insurance industry and structured settlements take advantage of the certainty effect (settle before going to court).  Overweighting of small probabilities increases the attractiveness of both gambles and insurance policies.
+ - certainty effect: outcomes that are almost certain are given less weight than their probability justifies.  Insurance industry and structured settlements take advantage of the certainty effect (settle before going to court).  Overweighting of small probabilities increases the attractiveness of both gambles and insurance policies. People are generally risk-averse when they have a high chance of getting a desired outcome.
 
 - possibility effect: improbable outcomes are overwieghted
 
@@ -350,7 +352,7 @@ Allais's Paradox:  Choose an option in each of the below:
 
 Most people choose the first and then the second option.  This violates the rules of rational choice. The paradox is that the second decision just added 37% to each choice (61+37 = 98), (63 + 37 = 100).   This should not have affected choice.  But the "certainty effect" came into play.
 
-The fourfold patternn;
+The fourfold pattern;
 
 - people attach values to gains and losses (rather than to wealth)
 - the weights that they assign to outcomes are different from probabilities
@@ -359,6 +361,26 @@ The fourfold patternn;
 | -------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | High Probability<br />Certainty Effect | 95% chance to win $10,000<br />Fear of disappointment<br />Risk Averse<br />Accept unfavourable settlement | 95% chance to lose $10,000<br />Hope to avoid loss<br />Risk Seeking<br />Reject favorable settlement |
 | Low Probabilty<br />Possibility Effect | 5% chance to win $10,000<br />Hope of large gain<br />Risk Seeking<br />Reject favorable settlement | 5% chance to lose $10,000<br />Fear of large loss<br />Risk Averse<br />Accept unfavourable settlement |
+
+Certainty Effect:
+
+- In Quadrant 1 (high probability, big gains), people will accept a less-than-expected value of the gamble to lock in a big gain. After all, isn’t it better to have “something” rather than “nothing”? For example, someone may accept a $910,000 settlement rather than go for a lawsuit with a 95% chance of winning $1 million (i.e. they end up accepting $40,000 less than the expected gamble value).
+
+- In Quadrant 4 (low probability, big loss), people are willing to pay a premium for the certainty of not losing. They pay more to remove our anxiety and buy a peace of mind, e.g. that’s why we buy insurance.
+
+Possibility Effect:
+
+- In Quadrant 3 (low probability, big gains), people over-invest in a miniscule chance to win, e.g. why we buy lottery tickets. We unconsciously pay a premium for the right to dream.
+
+- In Quadrant 2 (high probability, big losses), people take desperate gambles, often making things worse in exchange for a small hope of avoiding a large loss. This is why people throw in everything they have to treat a terminal illness, or sink in all their business assets in a futile attempt to catch up with competition. The sad thing is, such challenges would have been manageable, but the fear of loss drives people and companies into take gambles that end in disasters.
+
+### Leveraging Fourfold pattern
+
+1. Awareness: Identify and be aware of your biases:  Ask smarter questions about the possible outcomes, and make more conscious, educated decisions.
+
+1. Emotions: Use the pattern to help understand and manage your emotions.  Do not invest in the financial market based on emotions.  
+
+1. Influence: Be aware of how others are influencing you.   Realize a 10% change to win and a 90% chance to lose are the same thing.   
 
 ### Rare Events
 
