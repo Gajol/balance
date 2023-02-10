@@ -19,10 +19,10 @@ sidebar:
 
 There are many aspects to apply work environment:
 
-- Simplicity over Complexity:  Ashefelter predicted wine prices based on three variables.  And the Apgar Test of five quick variables to assess a new borns health.   Simple statistics can outperform experts. 
+- Simplicity over Complexity:  Ashefelter predicted wine prices based on three variables.  And the Apgar Test of five quick variables to assess a new borns health.   Simple statistics can outperform experts.
 - Premortem:  An exercise to think about a plan, and imagine it failing.  Write a report about how this plan failed.  Discuss these fictitious reports as a team to assess biases and improve plan.
 
-Rating: 5 Stars.  Makes me want to read [Noise](https://www.amazon.ca/Noise-Human-Judgment-Daniel-Kahneman/dp/0316451401) by the same author.
+Rating: 5 Stars :+1:!.  Makes me want to read [Noise](https://www.amazon.ca/Noise-Human-Judgment-Daniel-Kahneman/dp/0316451401) by the same author.
 
 # Part 1: Two Systems
 
