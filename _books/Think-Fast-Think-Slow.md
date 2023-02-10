@@ -11,7 +11,11 @@ sidebar:
 ---
 
 
-[Kahneman, Daniel, 1934- author. Thinking, Fast and Slow. New York :Farrar, Straus and Giroux, 2011.](https://worldcat.org/en/title/1028955141)
+[Kahneman, Daniel, 1934 - Thinking, Fast and Slow. New York 2011.](https://worldcat.org/en/title/1028955141)
+
+# Summary
+
+[Think Fast, Think Slow](https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow) by Daniel Kahneman helps the public understand behavioural science, engineering and medicine.  The book explores rational and non-rational motivations for decision making by describing two systems of the brain; System 1 (instinctive and emotional) and System 2 (slow, deliberate, logical).
 
 # Part 1: Two Systems
 
@@ -19,7 +23,7 @@ sidebar:
 
 In lay-terms, the human has two systems in the brain, System 1 and System 2.   Understanding the behaviour of the two systems can help people understand human behaviour and their decision making.
 
-| System 1                                                     | System 2                                                     |
+| System 1 - Instinctive & Emotional                   | System 2 - Deliberate, Logical                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | causal connections (sucks at statistical facts) - satisfying sense of causation (versus lack thereof in statistical sampling).  Not prone to doubt. |                                                              |
 | Continuous assessment of main problems an organism must solve to survive. | Acquiescent Monitor                                          |
@@ -178,7 +182,7 @@ Examples of hindsight bias:
 - A bridge that was damaged when the city chose not to hire a monitor.  24% of one group, shown only the at-the-time evidence, thought the city should hire a monitor.  56% of a second group, who were informed that debris did block the river, but informed to not let hindsight distort their judgment, thought the city should have hired the monitor.
 - 9/11 hindsight bias: July 10, 2001 George Tenet (director of CIA) knew of Al-Qaeda planning a major attack, but only briefed the National Security Advisor Condoleezza Rice.  Washington Post executive editor, Ben Bradlee, declared, "It seems to me elementary that if you've got the story that's going to dominate history you might as well go right to the president."
 
-## recipes for success
+## Recipes for success
 
 System 1 wants the world to by tidy, simple and predictable, and coherent.  The illusion that one has understood the past feeds the illusion that one can predict and control the future.
 
@@ -248,7 +252,7 @@ Overconfidence: Studies have shown CFO's forecasts are useless.  Social factors 
 
 Trying to train out over-optimism:  Use the Premortem.
 
-premortem (Gary Klein):  Procedure of premortem:  When the organization has almost come to an important decision but has not formally committed itself, gather a group of individuals who know about the decision for a brief session.  The premise of the session is a short speech, "Imagine that we are a year into the ftuure.  We implemented the plan as it now exists.  The outcome was a disaster.  Please take 5 to 10 minutes to write a brief history of that disaster. " As a team converges on a decision (especially when a leader tips her hand) public doubts about the wisdom of the decision are gradually suppressed and eventually come to be treated as evidence of **flawed loyalty** to the team and leaders.  
+premortem (Gary Klein)[^Klein]:  Procedure of premortem:  When the organization has almost come to an important decision but has not formally committed itself, gather a group of individuals who know about the decision for a brief session.  The premise of the session is a short speech, "Imagine that we are a year into the ftuure.  We implemented the plan as it now exists.  The outcome was a disaster.  Please take 5 to 10 minutes to write a brief history of that disaster. " As a team converges on a decision (especially when a leader tips her hand) public doubts about the wisdom of the decision are gradually suppressed and eventually come to be treated as evidence of **flawed loyalty** to the team and leaders.  
 
 The benefits of a premortem are:
 
@@ -263,7 +267,9 @@ The benefits of a premortem are:
 
 ## Bernoulli's Theory
 
-Based on the utility of wealth makes people more or less health.  Theory allows for diminishing returns as people are more wealth.
+Based on the utility of wealth makes people more or less health.  Theory allows for diminishing returns (utility value) as people are more wealthy. Bernoulli's hypothesis states a person accepts risk both on the basis of possible losses or gains and the utility gained from the action itself.  Simply stated, a possible $1 gain has a different utility value based on someone's wealth.
+
+  > Bernoulli's Hypothesis states a person accepts risk not only on the basis of possible losses or gains, but also based upon the utility gained from the risky action itself. - [Bernoulli's Hypothesis - Investopedia](https://www.investopedia.com/terms/b/bernoulli_hypothesis.asp).
 
 Problems with theory:
 
@@ -277,9 +283,11 @@ Three principles that govern the value of outcomes.
 2. Diminishing Sensitivity: Applies to both sensory and changes in wealth.  $900 -> $1,000 is different than $100->$200.
 3. Loss Aversion:  Losses loom larger than gains.   Loss aversion is the most significant contribution to economics from psychology.
 
-![Loss Aversion Chart](https://github.com/Gajol/Eloquent-JavaScript/blob/main/Notes/2022-Sept/Hedonic-Framing-Loss-Aversion.jpg)
+Figure: Loss Aversion Chart
 
-Benefits of Prospect Theory
+![Loss Aversion Chart](../assets/images/Loss-Aversion-Hedonic-Framing.jpg)
+
+### Benefits of Prospect Theory
 
 Prospect Theory complicates the Bernoulli Theory, but the complication has been proven to be useful:
 
@@ -516,13 +524,12 @@ Law of Small Numbers: The law of small numbers is the bias of making generalizat
 
 | Topic                                                        | Test                                                         | Reference                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Associative Machine : Creating Coherent Story - *Jumping to Conclusions* | "Will Mindik be a good leader?  She is intelligent and strong...".  People answer Yes, but what if next words were corrupt and cruel.  We fail to ask "What would I need to know before I formed an opinion about the quality of some's leadership.?"  There is no subjective discomfort in providing the answer. As more information comes, there is a bias to first impression. | Part 1 - Chapter 7                                           |
+| Associative Machine : Creating Coherent Story - *Jumping to Conclusions* | "Will Mindy be a good leader?  She is intelligent and strong...".  People answer Yes, but what if next words were corrupt and cruel.  We fail to ask "What would I need to know before I formed an opinion about the quality of someone's leadership.?"  There is no subjective discomfort in providing the answer. As more information comes, there is a bias to first impression. | Part 1 - Chapter 7                                           |
 | Anchoring                                                    | Wheel of fortune; spin and get a number either 10 or 65.   Now guess the percent of African nations in the UN.  Guesses- strongly impacted on the wheel of fortune spin |                                                              |
 | Anchoring                                                    | Draw a line 2 1/2 inches going up, starting at the bottom of the page.  On a second sheet, start at the top and draw a line going down until is is 2 1/2 inches from the bottom |                                                              |
 | Judgment of Representativeness                               | A person is reading the NYT on the NY subway.  Which of the following is a better bet about the stranger?   She has a PhD?  She does not have a college degree.<br />People overlook that the base rate of people without a degree is much higher the those with PhD.  The associate PhD to NYT readers and think this is the best bet.  Base rate information is neglected. (ignorance or laziness of System 2) | Part 2 - Availability, Risk - Let your judgments of probability stay close to the base rate. |
 | Logic versus Representativeness                              | Linda is 31, single, outspoken, and very bright. Share majored in philosophy.  As a student, she was deeply concerned with issues of discrimination and social justice, and also participated in antinuclear demonstrations.  What is more likely; a) Linda is a bank teller.  b) Linda is a bank teller and is active in the feminist movement. | Logic loses to representativeness.  Most people (even statisticians) incorrectly chose (a).  fallacy: when people fail to apply a logical rule that is obviously relevant.  *She can't just be a bank teller.* |
-| Muller-Lyer illusion                                         | the two lines of equal length                                |                                                              |
-|                                                              |                                                              |                                                              |
+| Muller-Lyer illusion                                         | the two lines of equal length                                |        |
 
 # Reference
 
@@ -537,7 +544,7 @@ Law of Small Numbers: The law of small numbers is the bias of making generalizat
 
 - Overconfidence:  We fail to allow for the possiblity that evidence that should be critical to our judgment is missing.  Our beliefs depend mostly on the quality of the story.
 
-- Framing Effects:  Presenting the same information differently can evoke different effects.  The odds of surviving are 90%.  The odds of dying are 10%.
+- [Framing Effects](https://en.wikipedia.org/wiki/Framing_effect_(psychology)):  Presenting the same information differently can evoke different effects.  The odds of surviving are 90%.  The odds of dying are 10%.  The framing effect is a cognitive bias where people decide on options based on whether the options are presented with positive or negative connotations; e.g. as a loss or as a gain.
 
 - Base-Rate Neglect
 
@@ -578,9 +585,9 @@ Law of Small Numbers: The law of small numbers is the bias of making generalizat
 
 - [Polya, G. *How to Solve It: A New Aspect of Mathematical Method*. Princeton Science Library. Princeton, NJ: Princeton University Press, 2014.](https://worldcat.org/en/title/893557156): [Wikipedia](https://en.wikipedia.org/wiki/How_to_Solve_It)
 
-- [^Wisdom]: [Surowiecki James. 2004. *The Wisdom of Crowds : Why the Many Are Smarter Than the Few and How Collective Wisdom Shapes Business Economies Societies and Nations*. 1st ed. New York: Doubleday.](https://worldcat.org/en/title/54022622)
+- [Surowiecki James. 2004. *The Wisdom of Crowds : Why the Many Are Smarter Than the Few and How Collective Wisdom Shapes Business Economies Societies and Nations*. 1st ed. New York: Doubleday.](https://worldcat.org/en/title/54022622)
 
-- [^smallschool]: [Wainer, Howard and Harris L. Zwerling. “Evidence That Smaller Schools Do Not Improve Student Achievement.” *Phi Delta Kappan Magazine* 88 (2006): 300 - 303.](https://www.semanticscholar.org/paper/Evidence-That-Smaller-Schools-Do-Not-Improve-Wainer-Zwerling/7dd9b8c39bde33b3464060717e0052d86d8ec040) - [Smenatic Scholar - Google Account](https://www.semanticscholar.org/paper/Evidence-That-Smaller-Schools-Do-Not-Improve-Wainer-Zwerling/7dd9b8c39bde33b3464060717e0052d86d8ec040)
+- [Wainer, Howard and Harris L. Zwerling. “Evidence That Smaller Schools Do Not Improve Student Achievement.” *Phi Delta Kappan Magazine* 88 (2006): 300 - 303.](https://www.semanticscholar.org/paper/Evidence-That-Smaller-Schools-Do-Not-Improve-Wainer-Zwerling/7dd9b8c39bde33b3464060717e0052d86d8ec040) - [Smenatic Scholar - Google Account](https://www.semanticscholar.org/paper/Evidence-That-Smaller-Schools-Do-Not-Improve-Wainer-Zwerling/7dd9b8c39bde33b3464060717e0052d86d8ec040)
 
 - [Epley Nicholas. 2014. *Mindwise : How We Understand What Others Think Believe Feel and Want* First ed. New York: Alfred A. Knopf.](https://worldcat.org/en/title/869739904): An exploration of the human mind's capacity for instinctive understanding about the feelings and desires of others explains how the ability or inability to understand the minds of those around us leads to connection or conflict.  
 
@@ -590,7 +597,7 @@ Law of Small Numbers: The law of small numbers is the bias of making generalizat
 
 - A Random Walk Down Wall Street - Malkiel
 
-- [^disturbing]: [Meehl Paul E. 2013. *Clinical Versus Statistical Prediction : A Theoretical Analysis and a Review of the Evidence*. place of publication not identified: Echo Point Books & Media.](https://worldcat.org/en/title/946987970) — *My disturbing little book.*
+- [Meehl Paul E. 2013. *Clinical Versus Statistical Prediction : A Theoretical Analysis and a Review of the Evidence*. place of publication not identified: Echo Point Books & Media.](https://worldcat.org/en/title/946987970) — *My disturbing little book.*
 
 - A Checklist Manifesto - Atul Gawande
 
@@ -613,9 +620,10 @@ Three Men Illusion : perspective.  Once on a 3D perspective the same sized figur
 - [diagnosticity](https://dictionary.apa.org/diagnosticity): the informational value of an interaction, event, or feedback for someone seeking self-knowledge. Information with high diagnosticity has clear implications for the [self-concept](https://dictionary.apa.org/self-concept), whereas information with low diagnosticity may be unclear, ambiguous, or inaccurate.
 
 - Halo Effect
+
 - Loss Aversion: Respond more strongly to losses than to gains (System 1)
 
-- Naturalistic Decision Making (NDM): Study real people doing things that matter.   Opposite of this book which is focused on biases in heuristics and biases approach.  Gary Klein - Sources of Power : intuition in experienced professionals (Firefighters)
+- [Naturalistic Decision Making (NDM)](https://en.wikipedia.org/wiki/Naturalistic_decision-making): Study real people doing things that matter in a real-world environment.   Opposite of this book which is focused on biases in heuristics and biases approach.  Gary Klein[^Klein] - Sources of Power : intuition in experienced professionals (Firefighters)
 
 - [Planning Fallacy](https://en.wikipedia.org/wiki/Planning_fallacy):  Basing plans while ignoring information you have from past experience.  Instead realistic plans should be provided.
   - *The **planning fallacy** is a phenomenon in which predictions about how much time will be needed to complete a future task display an [optimism bias](https://en.wikipedia.org/wiki/Optimism_bias) and underestimate the time needed. This phenomenon sometimes occurs regardless of the individual's knowledge that past tasks of a similar nature have taken longer to complete than generally planned.*
@@ -672,8 +680,8 @@ Psychology of effective training:  Important principle of skill training; reward
 ## Theories
 
 - [Decision Theory - Wikipedia](https://en.wikipedia.org/wiki/Decision_theory)
-- [Bernouli Principle](https://en.wikipedia.org/wiki/Bernoulli%27s_principle) by [Daniel Bernouli](https://en.wikipedia.org/wiki/Daniel_Bernoulli): same person who has the fluid dynamics principles.
-  - [St Petersburg Paradox](https://en.wikipedia.org/wiki/St._Petersburg_paradox): The **St. Petersburg paradox** or **St. Petersburg lottery** is a paradox involving the game of flipping a coin where the expected payoff of the theoretical lottery game approaches infinity but nevertheless seems to be worth only a very small amount to the participants
+- [Bernoulli Principle](https://en.wikipedia.org/wiki/Bernoulli%27s_principle) by [Daniel Bernoulli](https://en.wikipedia.org/wiki/Daniel_Bernoulli): same person who has the fluid dynamics principles.
+  - [St Petersburg Paradox](https://en.wikipedia.org/wiki/St._Petersburg_paradox): The **St. Petersburg paradox** or **St. Petersburg lottery** is a paradox involving the game of flipping a coin where the expected payoff of the theoretical lottery game approaches infinity but nevertheless seems to be worth only a very small amount to the participants.    
 
 ## Words
 
@@ -701,15 +709,17 @@ Unrelated to the thinking.  Simply words I am not familiar with using:
 
 ### Psychology
 
-- [^Gilovich]:[Thomas Gilovich](https://en.wikipedia.org/wiki/Thomas_Gilovich) : [The Hot Hand in Basketball](https://doi.org/10.1016%2F0010-0285%2885%2990010-6)
+- [Thomas Gilovich](https://en.wikipedia.org/wiki/Thomas_Gilovich) : [The Hot Hand in Basketball](https://doi.org/10.1016%2F0010-0285%2885%2990010-6)
 
 
-- [^Slovic]: [Paul Slovic](https://en.wikipedia.org/wiki/Paul_Slovic). Professor of [psychology](https://en.wikipedia.org/wiki/Psychology) at the [University of Oregon](https://en.wikipedia.org/wiki/University_of_Oregon) and the president of [Decision Research](https://www.decisionresearch.org/about/)Proposed **affect heurist**.  A leading theorist and researcher in the [risk perception](https://en.wikipedia.org/wiki/Risk_perception) field.  Argues public has a richer concept of risks than experts. Has received [Bower Award](https://en.wikipedia.org/wiki/Franklin_Institute_Awards#Bower_Awards) - Noam Chomsky has won this award, too.
+- [Paul Slovic](https://en.wikipedia.org/wiki/Paul_Slovic). Professor of [psychology](https://en.wikipedia.org/wiki/Psychology) at the [University of Oregon](https://en.wikipedia.org/wiki/University_of_Oregon) and the president of [Decision Research](https://www.decisionresearch.org/about/)Proposed **affect heurist**.  A leading theorist and researcher in the [risk perception](https://en.wikipedia.org/wiki/Risk_perception) field.  Argues public has a richer concept of risks than experts. Has received [Bower Award](https://en.wikipedia.org/wiki/Franklin_Institute_Awards#Bower_Awards) - Noam Chomsky has won this award, too.
 
   - [Perception of Risk - Slovic - 1987](https://doi.org/10.1126/science.3563507).  Nine ways of defining the mortality risk.  The evaluation of the risk depends on the choice of measure.  Death per million people.  Death per million dollars of product produced.  Defining risk is an exercise in power.
 
 
-- [^Hertwig]: [Hertwig, Ralph](https://en.wikipedia.org/wiki/Ralph_Hertwig): German psychologist whose work focuses on the psychology of human judgment and decision making.  Phd University of Konstanz 1995.
+- [Gary Klein](https://en.wikipedia.org/wiki/Gary_A._Klein) is a pyschologist famous for [naturalistic decision making](https://en.wikipedia.org/wiki/Naturalistic_decision_making). The naturalistic decision making (NDM) framework emerged as a means of studying how people make decisions and perform cognitively complex functions in demanding, real-world situations. These include situations marked by limited time, uncertainty, high stakes, team and organizational constraints, unstable conditions, and varying amounts of experience.
+
+- [Hertwig, Ralph](https://en.wikipedia.org/wiki/Ralph_Hertwig): German psychologist whose work focuses on the psychology of human judgment and decision making.  Phd University of Konstanz 1995.
 
 
 - [Baruch Fischhoff](https://en.wikipedia.org/wiki/Baruch_Fischhoff): Studied under Kahneman.  His research focuses on judgment and decision making, including [risk perception](https://en.wikipedia.org/wiki/Risk_perception) and risk Analysis
@@ -741,7 +751,7 @@ Unrelated to the thinking.  Simply words I am not familiar with using:
 
 ### Legal Scholar
 
-- [^Sunstein]: [Case Sunstein](https://en.wikipedia.org/wiki/Cass_Sunstein): Case Sunstein is a Regulatory and Constitution Law expert. Sunstein believes risk assessment can be objective by science, expertise and careful deliberation.   Contract to Slovice[^Slovic] who believes risk and its measurement is subjective.  2014 - most frequently cited American legal scholar by a wide margin.  Brings [behavioral economics](https://en.wikipedia.org/wiki/Behavioral_economics) to bear on law, suggesting that the "rational actor" model will sometimes produce an inadequate understanding of how people will respond to legal intervention.
+- [Case Sunstein](https://en.wikipedia.org/wiki/Cass_Sunstein): Case Sunstein is a Regulatory and Constitution Law expert. Sunstein believes risk assessment can be objective by science, expertise and careful deliberation.   Contract to Slovice[^Slovic] who believes risk and its measurement is subjective.  2014 - most frequently cited American legal scholar by a wide margin.  Brings [behavioral economics](https://en.wikipedia.org/wiki/Behavioral_economics) to bear on law, suggesting that the "rational actor" model will sometimes produce an inadequate understanding of how people will respond to legal intervention.
 
 
 ### Statisticians
@@ -807,3 +817,19 @@ Social movements of  the 20th century; Hitler, Stalin, Mao Zedong
 - Influence: Understand use perspectives and help understand reference points for decision making and organizational improvement.
 
 # Footnotes
+
+[^Wisdom]: [Surowiecki James. 2004. *The Wisdom of Crowds : Why the Many Are Smarter Than the Few and How Collective Wisdom Shapes Business Economies Societies and Nations*. 1st ed. New York: Doubleday.](https://worldcat.org/en/title/54022622)
+
+[^smallschool]: [Wainer, Howard and Harris L. Zwerling. “Evidence That Smaller Schools Do Not Improve Student Achievement.” *Phi Delta Kappan Magazine* 88 (2006): 300 - 303.](https://www.semanticscholar.org/paper/Evidence-That-Smaller-Schools-Do-Not-Improve-Wainer-Zwerling/7dd9b8c39bde33b3464060717e0052d86d8ec040) - [Smenatic Scholar - Google Account](https://www.semanticscholar.org/paper/Evidence-That-Smaller-Schools-Do-Not-Improve-Wainer-Zwerling/7dd9b8c39bde33b3464060717e0052d86d8ec040)
+
+[^disturbing]: [Meehl Paul E. 2013. *Clinical Versus Statistical Prediction : A Theoretical Analysis and a Review of the Evidence*. place of publication not identified: Echo Point Books & Media.](https://worldcat.org/en/title/946987970) — *My disturbing little book.*
+
+[^Klein]: [Gary Klein](https://en.wikipedia.org/wiki/Gary_A._Klein) is a pyschologist famous for [naturalistic decision making](https://en.wikipedia.org/wiki/Naturalistic_decision_making). The naturalistic decision making (NDM) framework emerged as a means of studying how people make decisions and perform cognitively complex functions in demanding, real-world situations. These include situations marked by limited time, uncertainty, high stakes, team and organizational constraints, unstable conditions, and varying amounts of experience.
+
+[^Hertwig]: [Hertwig, Ralph](https://en.wikipedia.org/wiki/Ralph_Hertwig): German psychologist whose work focuses on the psychology of human judgment and decision making.  Phd University of Konstanz 1995.
+
+[^Gilovich]:[Thomas Gilovich](https://en.wikipedia.org/wiki/Thomas_Gilovich) : [The Hot Hand in Basketball](https://doi.org/10.1016%2F0010-0285%2885%2990010-6)
+
+[^Slovic]: [Paul Slovic](https://en.wikipedia.org/wiki/Paul_Slovic). Professor of [psychology](https://en.wikipedia.org/wiki/Psychology) at the [University of Oregon](https://en.wikipedia.org/wiki/University_of_Oregon) and the president of [Decision Research](https://www.decisionresearch.org/about/)Proposed **affect heurist**.  A leading theorist and researcher in the [risk perception](https://en.wikipedia.org/wiki/Risk_perception) field.  Argues public has a richer concept of risks than experts. Has received [Bower Award](https://en.wikipedia.org/wiki/Franklin_Institute_Awards#Bower_Awards) - Noam Chomsky has won this award, too.
+
+[^Sunstein]: [Case Sunstein](https://en.wikipedia.org/wiki/Cass_Sunstein): Case Sunstein is a Regulatory and Constitution Law expert. Sunstein believes risk assessment can be objective by science, expertise and careful deliberation.   Contract to Slovice[^Slovic] who believes risk and its measurement is subjective.  2014 - most frequently cited American legal scholar by a wide margin.  Brings [behavioral economics](https://en.wikipedia.org/wiki/Behavioral_economics) to bear on law, suggesting that the "rational actor" model will sometimes produce an inadequate understanding of how people will respond to legal intervention.

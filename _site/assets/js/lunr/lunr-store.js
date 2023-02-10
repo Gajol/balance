@@ -36,7 +36,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Think Fast, Think Slow",
-        "excerpt":"Kahneman, Daniel, 1934- author. Thinking, Fast and Slow. New York :Farrar, Straus and Giroux, 2011. Part 1: Two Systems Systems In lay-terms, the human has two systems in the brain, System 1 and System 2. Understanding the behaviour of the two systems can help people understand human behaviour and their...","categories": ["psychology","statistics","thinking"],
+        "excerpt":"Kahneman, Daniel, 1934 - Thinking, Fast and Slow. New York 2011. Summary Think Fast, Think Slow by Daniel Kahneman helps the public understand behavioural science, engineering and medicine. The book explores rational and non-rational motivations for decision making by describing two systems of the brain; System 1 (instinctive and emotional)...","categories": ["psychology","statistics","thinking"],
         "tags": [],
         "url": "/balance/books/Think-Fast-Think-Slow/",
         "teaser": null
