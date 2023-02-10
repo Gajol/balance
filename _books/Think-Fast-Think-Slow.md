@@ -17,6 +17,11 @@ sidebar:
 
 [Think Fast, Think Slow](https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow) by Daniel Kahneman helps the public understand behavioural science, engineering and medicine.  The book explores rational and non-rational motivations for decision making by describing two systems of the brain; System 1 (instinctive and emotional) and System 2 (slow, deliberate, logical).
 
+There are many aspects to apply work environment:
+
+- Simplicity over Complexity:  Ashefelter predicted wine prices based on three variables.  And the Apgar Test of five quick variables to assess a new borns health.   Simple statistics can outperform experts. 
+- Premortem:  An exercise to think about a plan, and imagine it failing.  Write a report about how this plan failed.  Discuss these fictitious reports as a team to assess biases and improve plan.
+
 Rating: 5 Stars.  Makes me want to read [Noise](https://www.amazon.ca/Noise-Human-Judgment-Daniel-Kahneman/dp/0316451401) by the same author.
 
 # Part 1: Two Systems
@@ -46,7 +51,7 @@ The author provides many examples where generalizations are made based on a smal
 
 Two different mechanisms produce anchoring effects:
 
-- System 1:Occurs by a priming effect, an automatic manifestation. The concept of suggestion is a priming effect; which selectively evokes compatible evidence.
+- System 1: Occurs by a priming effect, an automatic manifestation. The concept of suggestion is a priming effect; which selectively evokes compatible evidence.
 
 - System 2: A deliberate process of adjustment, starting from the anchor.  
 
@@ -139,13 +144,14 @@ Speaking of Regression to Mediocrity.
 Address the concept that people who see one good trait, extrapolate that trait to other traits (or vice versa) when there is likely no correlation to the traits.
 
 - prediction matches evaluation.  The prediction of future is not distinguished from an evaluation of current evidence.  The example is a description of some with average (but good traits) {intelligent, self-confident, well-read, ...}; the study shows people judged these questions identical (the first is an evaluation/description, the second is a prediction):
-  - 1) How much does the description impress you with respect to the candidate?
-  - 2. What is the your estimate of the GPA that the student will obtain?
+
+  1. How much does the description impress you with respect to the candidate?
+  2. What is the your estimate of the GPA that the student will obtain?
 
 Another study, was the young 4 year old girl who was a precocious reader.  The question was what would her GPA be.   People's intuitive equates reading at a young age to a high-GPA; and ignore the many factors specific to reading-age and GPA.
 
 - reading age = shared factors + factors specific to reading age = 100%
-- GPA = shared factors + factors specific to GPS = 100%
+- GPA = shared factors + factors specific to GPA = 100%
 
 What is the correlation coefficient between reading age and GPA?
 
@@ -172,7 +178,7 @@ social costs of hindsight: once the someone changes their mind, they have a hard
 
 ### Hindsight Bias
 
-Hindsight bias is unkind to decision makes who act for others (physicians, financial advisors, third base-coaches, CEOs, social workers, diplomats, politicians).  
+Hindsight bias is unkind to decision makes who act for others (physicians, financial advisors, third base-coaches, CEO's, social workers, diplomats, politicians).  
 
 - People are prone to blame them for good decisions that turn out bad.
 - People are prone to not credit them for successes that appear obvious after the fact.
@@ -192,9 +198,9 @@ System 1 wants the world to by tidy, simple and predictable, and coherent.  The 
 
 ## Illusion of Vanity
 
-cognitive illusion: even though a past failure of a prediction is known, people still have confidence in using the same approach for similar predictions (example: measure cadets during an exercise and predicting who will be a leader).  The testers, accepted the fact intellectually that they did poorly.  But it had no impact on either their feelings or on subsequent actions/predictions.
+- cognitive illusion: even though a past failure of a prediction is known, people still have confidence in using the same approach for similar predictions (example: measure cadets during an exercise and predicting who will be a leader).  The testers, accepted the fact intellectually that they did poorly.  But it had no impact on either their feelings or on subsequent actions/predictions.
 
-illusion of skill:  the stock market industry.  Cognitive illusions are more stubborn than visual illusions. — *illusion of valid prediction*
+- illusion of skill:  the stock market industry.  Cognitive illusions are more stubborn than visual illusions. — *illusion of valid prediction*
 
 ## Illusions of Pundits
 
@@ -723,11 +729,11 @@ Unrelated to the thinking.  Simply words I am not familiar with using:
 
 ## Videos
 
-- [The riddle of experience vs. memory - TED 2010](https://www.ted.com/talks/daniel_kahneman_the_riddle_of_experience_vs_memory)
+- [The riddle of experience vs. memory - TED 2010 - Daniel Kahneman](https://www.ted.com/talks/daniel_kahneman_the_riddle_of_experience_vs_memory)
 
 ##  People
 
-- [Nick Eplyey](https://wwsssssw.nicholasepley.com/): Behavioural Science and Decision Research at the University of Chicago Booth School of Business.
+- [Nick Eplyey](https://www.nicholasepley.com/): Behavioural Science and Decision Research at the University of Chicago Booth School of Business.
 
 ### Psychology
 
