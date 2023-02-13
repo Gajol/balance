@@ -355,10 +355,10 @@ See Also
 
 Bicep file `.bicep` components: scope, parameters, variable, modules and outputs
 
-- [What is Bicep? | Azure Bicep documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview).
+- [What is Bicep? - Azure Bicep documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview).
 - [Bicep on Microsoft Learn](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/learn-bicep).
-- [Best practices for Bicep | Microsoft documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/best-practices).
-- [Migrate to Bicep | Microsoft documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/migrate).
+- [Best practices for Bicep - Microsoft documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/best-practices).
+- [Migrate to Bicep - Microsoft documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/migrate).
 
 
 
