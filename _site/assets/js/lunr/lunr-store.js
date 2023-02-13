@@ -185,6 +185,12 @@ var store = [{
         "url": "/balance/Azure-DevOps-AZ-400-Training/",
         "teaser": null
       },{
+        "title": "Azure  Design and Implement DevOps Solutions",
+        "excerpt":"Microsoft’s AZ-400 Design and Implementing Microsoft DevOps Solutions is designed to prepare you to take the $174 USD certification exam. The course explains why Agile and DevOps are desirable ways to deliver software to the business. Below are my course notes from the following topics: DevOps Transformation Journey Development in...","categories": [],
+        "tags": ["Azure","DevOps","Engineering"],
+        "url": "/balance/Azure-DevOps-AZ-400-Training0/",
+        "teaser": null
+      },{
         "title": "Think Fast, Think Slow",
         "excerpt":"Kahneman, Daniel, 1934 - Thinking, Fast and Slow. New York 2011. Summary Think Fast, Think Slow by Daniel Kahneman helps the public understand behavioural science, engineering and medicine. The book explores rational and non-rational motivations for decision making by describing two systems of the brain; System 1 (instinctive and emotional)...","categories": ["psychology","statistics","thinking"],
         "tags": [],

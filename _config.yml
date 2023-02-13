@@ -65,6 +65,9 @@ plugins:
   - jekyll-remote-theme
   - jekyll-include-cache
   - jemoji
+  - jekyll-feed
+
+
 
 # https://github.com/benbalter/jekyll-remote-theme
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
