@@ -57,6 +57,10 @@ collections:
     output: true
     permalink: /:collection/:path/
 
+  tests:
+    output: true
+    permalink: /:collection/:path/
+
 plugins:
   - jekyll-remote-theme
   - jekyll-include-cache
@@ -86,9 +90,9 @@ defaults:
     values:
       layout: single
       author_profile: true
+      read_time: true
 
   # collections
-
 
   # architecture
   - scope:
@@ -108,6 +112,14 @@ defaults:
       author_profile: false
       share: true
 
+  # tests
+  - scope:
+      path: ""
+      type: tests
+    values:
+      layout: single
+      author_profile: false
+      share: true
 
   # _portfolio
   - scope:
@@ -126,6 +138,15 @@ defaults:
       layout: single
       author_profile: false
       share: true
+
+  # _devops
+  - scope:
+      path: ""
+      type: devops
+    values:
+      layout: single
+      author_profile: true
+
 
 
 # Social Sharing

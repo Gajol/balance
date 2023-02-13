@@ -3,7 +3,7 @@ layout: single
 title:  "Jekyll Github Pages : Minimal Mistakes"
 date:   2022-01-06 14:55:59 -0500
 categories: jekyll update
-tags: nielsen themes actions CI
+tags: nielsen themes actions CI tags archives
 classes: wide
 ---
 

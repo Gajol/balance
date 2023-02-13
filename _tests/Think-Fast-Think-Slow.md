@@ -5,7 +5,6 @@ last_modified_at: 2023-02-09T10:23:16-04:00
 toc: false
 classes: wide
 categories: psychology statistics thinking
-read_time: true
 sidebar:
   title: "Contents"
   nav: sidebar-think-fast-think-slow
