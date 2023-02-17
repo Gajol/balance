@@ -29,6 +29,12 @@ var store = [{
         "url": "/balance/books/Change-Your-Questions-Change-Your-Life/",
         "teaser": null
       },{
+        "title": "How the World Really Works",
+        "excerpt":"How the World Really Works Smil Vaclav. 2022. How the World Really Works : The Science Behind How We Got Here and Where We’re Going First North American ed. New York: Viking. Summary Vaclav Smil discusses in this book how four fundamental materials (Ammonia, Plastics, Steel and Cement) will limit...","categories": ["world","economics","canada"],
+        "tags": [],
+        "url": "/balance/books/How%20the%20World%20Really%20Works/",
+        "teaser": null
+      },{
         "title": "The Defining Decade",
         "excerpt":"The Define Decade: Why Your 20’s Matter &amp; How to Make the Most of Them Author: Meg Jay Book Title: Jay, Meg. The Defining Decade: Why Your Twenties Matter and How to Make the Most of Them Now. First revised trade paperback edition. New York: Twelve, 2021. Summary The book...","categories": ["psychology"],
         "tags": [],
