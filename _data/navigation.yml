@@ -15,6 +15,9 @@ main:
     url: /docs/
   - title: "GitHub Source"
     url: https://github.com/Gajol/balance/tree/gh-pages
+  - title: "Search"
+    icon: "fas fa-search"
+    url: /search/
   - title: "About"
     url: /about/
 

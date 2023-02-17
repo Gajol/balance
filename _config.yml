@@ -175,3 +175,11 @@ facebook:
 # https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/player-card
 # https://github.com/twitterdev/cards-player-samples
 og_image: /assets/images/bridge-generated-og.jpeg
+
+# search
+
+search: true
+
+lunr:
+  search_within_pages: true
+  search_full_content: true # impacts page load performance (but if false, only 1st 50 words are searched)
