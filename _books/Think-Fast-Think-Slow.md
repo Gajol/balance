@@ -871,6 +871,10 @@ Unrelated to the thinking.  Simply words I am not familiar with using:
 
 - [The riddle of experience vs. memory - TED 2010 - Daniel Kahneman](https://www.ted.com/talks/daniel_kahneman_the_riddle_of_experience_vs_memory)
 
+## Other Summaries
+
+- [The Art of Living Summary](https://theartofliving.com/thinking-fast-and-slow-summary/#hindsight-bias)
+
 # Footnotes
 
 [^Wisdom]: [Surowiecki James. 2004. *The Wisdom of Crowds : Why the Many Are Smarter Than the Few and How Collective Wisdom Shapes Business Economies Societies and Nations*. 1st ed. New York: Doubleday.](https://worldcat.org/en/title/54022622)
