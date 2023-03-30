@@ -33,7 +33,7 @@ Can I do this similar to collections - see [Jekyll Collections]({{ site.baseurl 
 1. Find the head.html file in the Minimal Mistakes gem.  This file is the gems installation folder: `~/gems/gems/minimal-mistakes-jekyll-4.24.0`
 1. Copy the `layouts/head.html` to your local `project _layouts` folder.   You likely have to create the `_layouts` folder in your project site if this is your first layout customization.
 
-- [x] : I will look at this later.  For now pages will be static pages related to the site (About, Home, 404-NotFound, etc).   Site Content like technology, software, recreational activiites will be in specific collections.
+- [x] : I will look at this later.  For now pages will be static pages related to the site (About, Home, 404-NotFound, etc).   Site Content like technology, software, recreational activities will be in specific collections.
 
 ## Miscellaneous - Linked Posts
 - [Linked Posts](https://mmistakes.github.io/minimal-mistakes/post%20formats/post-link/) : To use, just add link: http://url-you-want-linked to the post’s YAML front matter and you’re done.

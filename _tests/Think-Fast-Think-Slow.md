@@ -5,7 +5,6 @@ last_modified_at: 2023-02-09T10:23:16-04:00
 toc: false
 classes: wide
 categories: psychology statistics thinking
-read_time: true
 sidebar:
   title: "Contents"
   nav: sidebar-think-fast-think-slow
@@ -24,19 +23,6 @@ There are many aspects to apply work environment:
 - Premortem:  An exercise to think about a plan, and imagine it failing.  Write a report about how this plan failed.  Discuss these fictitious reports as a team to assess biases and improve plan.
 
 Rating: 5 Stars :+1:!.  Makes me want to read [Noise](https://www.amazon.ca/Noise-Human-Judgment-Daniel-Kahneman/dp/0316451401) by the same author.
-
-## Motivators to Read This Book
-
-I had heard of the book through a few different interest areas including understanding how people interact with technology, and in leadership articles.   Personally the following areas are why I chose this book to read:
-
-- **Curiosity**:  The author and his partner influenced economics and introduced behaviour economics based on the psychology behind decision making.  Kahneman is the first psychologies to win a Noble Price in Economics.    
-
-- **Coaching**, Skill  Improvement, Self-Help, Teaching, ...Influencing:  Understanding the way people interact with the world and what science can do help collaborate with team mates.   
-
-- **Diversity, Equity and Inclusion** (DEI):  Understanding the theory and science behind biases; both conscious and unconscious.  The theory behind how diverse teams are more productive.
-- **Influence**: Understand use perspectives and help understand reference points for decision making and organizational improvement.  The book identifies human nature characteristics like oversimplifying reality and a desire to have understanding and meaning in outcomes.  Recommendations like premortems help identify and reduce impacts of biases.
-- **Economics**:  I wanted to learn some early models of prospect theory and utility value.  Understanding how people make decisions when economic risk is involved is not the focus of the book, but it provides background on the genesis of prospect theory from the creators; Kahneman and Tversky.
-- **Biased Data Sets & Explainable AI**:  With Machine Learning and Artificial Intelligence automating and obfuscating the rationale behind decisions (automated decision making), how should we reflect to ensure the right actions are being conducted.  Biased data-sets, biased correlations, ...
 
 # Part 1: Two Systems
 
@@ -562,27 +548,6 @@ Principle of Independent Judgement :  Before an issue is discussed, all members 
 
 Law of Small Numbers: The law of small numbers is the bias of making generalizations from a small sample size. In truth, the smaller your sample size, the more likely you are to have extreme results.   People are not adequately sensitive to sample size.  Problem extends to small counties and small schools.[^smallschool]
 
-# 2022 Insights
-
-## Post Theory Science
-
-[Dawn of Post Theory Science - 2022 - The Guardian](https://www.theguardian.com/technology/2022/jan/09/are-we-witnessing-the-dawn-of-post-theory-science) : The article highlights the history in Newton's era to the present where theory science where a theory was formulated and scientific experimentation was used to prove the theory.   Today with machine learning (ML) and artificial intelligence (AI) where there is little knowledge on why the models work.
-
-- Facebook prediction model beats any psychologist
-- DeepMind predicts protein structures based on amino acids
-
-The article refers to the 2008 Wired article "The End of Theory" which highlights how Google can rank a page higher without knowing semantically why, just based on an algorithm, and, how Google can translate into any language without knowing the language.  The Wired article concludes with "What can science learn from Google?".
-
-Neural networks have been setup to validate prospect theory.  The theory is fairly well validated, but a gap in terms of understanding how humans deal with new information (at increasing speeds) and how then their behavior defaults to rule-of-thumb. — [Using Large-Scale Experiments and Machine Learning  to discover theories of Human Decision Making](https://www.science.org/doi/10.1126/science.abe2629).
-
-## Tversky & Kahneman - 2016
-
-[How Two Friends Changed How We Think about How We Think - The New Yorker](https://www.newyorker.com/books/page-turner/the-two-friends-who-changed-how-we-think-about-how-we-think).  A short article co-written by Richard Thaler recommending the book "[The Undoing Project - A Friendship that Changed Our Minds - Michael Lewis](https://www.amazon.com/Undoing-Project-Friendship-Changed-Minds/dp/0393254593)".   The article calls Kahneman and Tversky the Lennon and McCartney of social science.
-
-> "We study natural stupidity" — Tversky
->
-> "How do you understand memory? You don’t study memory. You study forgetting." — Kahneman
-
 # Tests
 
 | Topic                                                        | Test                                                         | Reference                                                    |
@@ -601,8 +566,7 @@ Neural networks have been setup to validate prospect theory.  The theory is fair
 - [Afiki, Y., Bar, M. Our need for associative coherence. *Humanit Soc Sci Commun* **7**, 80 (2020).](https://doi.org/10.1057/s41599-020-00577-w)
 - [Conditions for intuitive expertise: a failure to disagree](https://doi.org/10.1037/a0016755)
 - Judgment Under Uncertainty: Heuristics and Biases - Tversky and Kahneman
-- [[PDF\] Choices, Values, and Frames | Semantic Scholar](https://www.semanticscholar.org/paper/Choices%2C-Values%2C-and-Frames-Kahneman-Tversky/44eab3013cb6c63a534570994c9cffe3935ec7ed)
-- [Dawn of Post Theory Science - 2022 - The Guardian](https://www.theguardian.com/technology/2022/jan/09/are-we-witnessing-the-dawn-of-post-theory-science)
+- Choices, Values and Frames - Kahneman and Tversky
 
 ## Biases of Judgment
 
@@ -669,16 +633,103 @@ Neural networks have been setup to validate prospect theory.  The theory is fair
 
 Three Men Illusion : perspective.  Once on a 3D perspective the same sized figures look progressively smaller.
 
-## Institutions
+## Terms
 
-- [American Economic Review](https://www.aeaweb.org/journals/aer/issues)
-- [American Psychology Association ](https://www.apa.org/).  [Psychology Dictionary](dictionary.apa.org)
+- [Anchoring Effect](https://en.wikipedia.org/wiki/Anchoring_(cognitive_bias)): The **anchoring effect** is a [cognitive bias](https://en.wikipedia.org/wiki/Cognitive_bias) whereby an individual's decisions are influenced by a particular reference point or 'anchor'.   If you consider how much you should pay for a house, you will be influenced by the asking price.  [Judgment under Uncertainty: Heuristics and Biases](https://www.science.org/doi/10.1126/science.185.4157.1124)
 
-- [Oregon Research Institute](http://www.ori.org/): Where Kahneman was a guest in 1971-72.   Worked on judgment, decision making and intuitive prediction.
+- Associative Coherence: A stimulus evokes a coherent and self-reinforcing pattern of reciprocal activation in associative memory. [Associative Processes in Intuitive Judgment - Kahneman](https://doi.org/10.1016%2Fj.tics.2010.07.004). Consistent affect is a central element of associative coherence.
 
-##  Inventions
+- [base rate](https://en.wikipedia.org/wiki/Base_rate): statistics the rate of group. If 1% of the public were medical professionals, and 99% of the public were *not* medical professionals, then the base rate of medical professionals is 1%.
+- Bayesian statistics.  18th century Thomas Bayes.  [Bayes Rule / Bayes Theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem) describes the [probability](https://en.wikipedia.org/wiki/Probability) of an [event](https://en.wikipedia.org/wiki/Event_(probability_theory)), based on prior knowledge of conditions that might be related to the event.  Bayesian reasoning; a) anchor your judgment of the probability fo an outcome on a plausible base rate, b) question the diagnosticity of your evidence.
+- bounded rationality:  the study of bounded rationality, or how people search for information and make decisions with limited resources. Hertwig[^Hertwig] has been a key contributor.
+- Cognitive Ease (Part 1 - Chapter 5)
+- coherence, plausibility and probability: easily confused by unwary (those not using System 2).  People want to substitute plausibility for probability.  In the absence of competing intuition (plausibility), logic prevails.
+- conjunction fallacy: the conflict between intuition and logic.
+- [diagnosticity](https://dictionary.apa.org/diagnosticity): the informational value of an interaction, event, or feedback for someone seeking self-knowledge. Information with high diagnosticity has clear implications for the [self-concept](https://dictionary.apa.org/self-concept), whereas information with low diagnosticity may be unclear, ambiguous, or inaccurate.
 
-1953 Anaesthesiologist Virginia Apgar developed standard procedure to prevent infant birth deaths.  Prior to this much deliberation was done, danger signs missed, and many new-borns died. — A systemic assessment of new-borns; 5-variables heart rate, respiration, reflex, muscle tone and colour.   Rate each one 0, 1 or 2; sum them for the Apgar score.  A consistent standard.
+- Halo Effect
+
+- Loss Aversion: Respond more strongly to losses than to gains (System 1)
+
+- [Naturalistic Decision Making (NDM)](https://en.wikipedia.org/wiki/Naturalistic_decision-making): Study real people doing things that matter in a real-world environment.   Opposite of this book which is focused on biases in heuristics and biases approach.  Gary Klein[^Klein] - Sources of Power : intuition in experienced professionals (Firefighters)
+
+- [Planning Fallacy](https://en.wikipedia.org/wiki/Planning_fallacy):  Basing plans while ignoring information you have from past experience.  Instead realistic plans should be provided.
+  - *The **planning fallacy** is a phenomenon in which predictions about how much time will be needed to complete a future task display an [optimism bias](https://en.wikipedia.org/wiki/Optimism_bias) and underestimate the time needed. This phenomenon sometimes occurs regardless of the individual's knowledge that past tasks of a similar nature have taken longer to complete than generally planned.*
+
+- Polymath: A polymath is an individual whose knowledge spans a substantial number of subjects, known to draw on complex bodies of knowledge to solve specific problems.
+
+- Probability Neglect: A basic limitation in the ability of our mind to deal with small risks.  We either ignore them, or give them too much weight.  Teorrists, daughter coming home late.
+- Prospect Theory
+
+- Regression to the mean:  
+
+- Children's heights in relation to their parents.  Francis Galton (a polymath & cousin of Charles Darin)
+
+- Research Techniques
+- Sense of agency (subject sense of ..)
+- Sense of autonomy (subject sense of ..)
+
+- Single-Issue Negotiations.  Example, when price is the only issue to be settled (like selling a house).  Initial anchor effect has a powerful effect.  Advice:  When the other party starts with an outrageous proposal (high price) do not make an equally outrageous counteroffer.  This creates a gap that will be difficult to bridge in further negotiations.   Instead, make a scene, storm out, or threaten to storm out.   Make it clear, to yourself (to break the anchor effect) and to the other side, that you will not continue the negotiation with that number on the table.  
+  - *Any number of the table has had an anchoring effect on you, and if the stakes are high (buying a house) you should ask yourself to combat the effect*.
+
+- Stereotyping: neutral word is psychology (bad word in culture).  There is a social norm against stereotyping, including the opposition to profiling.  This has been beneficial in creating a more civilized and more equal society.  However neglecting valid stereotypes inevitably results in suboptimal judgments.  The costs are worth paying to achieve a better society.
+- Test of Understanding Psychology:  The test of learning psychology is whether your understanding of situations you encounter has changed, not whether you have learned a new fact.  There is a deep gap between our thinking about statistics and out thinking about individual cases.  It is better to learn psychology through individual cases, than by statistical means.
+- Theoretical Ideas
+- WYSIATI: What you see is all there is.
+
+## Thinking
+
+- Associative Thinking
+- Causal Thinking
+- Conscious Thinking
+- Intuitive Thinking
+- Intuitive Judgment
+- Decision Making
+- Problem Solving
+
+
+## Psychology
+
+Cognitive Psychology
+
+Psychology of effective training:  Important principle of skill training; rewards for improved performance training are better than punishment of mistakes.   
+
+- Four key traits for successful learning; aspiration (focus on what we will gain from learning), self-awareness (be objective and not defensive), curiosity (foster it, and follow-up with learning), vulnerability (expect to be slow at first, needing detailed guidance) - [[reference]](https://www.learnlight.com/en/articles/7-learning-psychology-routes-effective-training/)
+- efficacy of reward and punishment: *regression to the mean* (praise a good outcome, and next attempt is worse, is likely caused by luck/probability creating the good outcome)
+
+## Statistics
+
+- artifact:
+
+- intuitive statistics:
+
+- sample size: belief in the law of small numbers (not experimenting with a sufficiently large enough sample size)
+
+## Theories
+
+- [Decision Theory - Wikipedia](https://en.wikipedia.org/wiki/Decision_theory)
+- [Bernoulli Principle](https://en.wikipedia.org/wiki/Bernoulli%27s_principle) by [Daniel Bernoulli](https://en.wikipedia.org/wiki/Daniel_Bernoulli): same person who has the fluid dynamics principles.
+  - [St Petersburg Paradox](https://en.wikipedia.org/wiki/St._Petersburg_paradox): The **St. Petersburg paradox** or **St. Petersburg lottery** is a paradox involving the game of flipping a coin where the expected payoff of the theoretical lottery game approaches infinity but nevertheless seems to be worth only a very small amount to the participants.    
+
+## Words
+
+Unrelated to the thinking.  Simply words I am not familiar with using:
+
+- [axiom](https://www.merriam-webster.com/dictionary/axiom): an established rule or principle or a self-evident truth,  a statement accepted as true as the basis for argument or inference
+- economics: is the social science that studies the production, distribution, and consumption of goods and services.
+- [epidemiology](https://www.merriam-webster.com/dictionary/epidemiology): a branch of medical science that deals with the incidence, distribution, and control of disease in a population
+- [heuristic](https://www.merriam-webster.com/dictionary/heuristic): A simple procedure that helps find adequate, though often imperfect, answers to difficult questions.  The word comes the same root as eureka.  involving or serving as an aid to learning, discovery, or problem-solving by experimental and especially [trial-and-error](https://www.merriam-webster.com/dictionary/trial and error) methods.  *heuristic assumption*: of or relating to exploratory problem-solving techniques that utilize self-educating techniques (such as the evaluation of [feedback](https://www.merriam-webster.com/dictionary/feedback)) to improve performance
+  - Affect Heuristic: Emotions and the dominance of conclusions over arguments.   People let their likes and dislikes determine their beliefs about the world.  Paul Slovic.
+  - Availability Heuristic: 1971 definition: the process of judging frequency by "the ease with which instances come to mind."
+  - Mood Heuristic:  The present state of mind looms very large when people evaluate questions.  Students (How many dates last month?  How happy are you?  is highly correlated.   Reverse the question order and there is no correlation.).  Impact on surveys.
+
+- [poignancy](**poignancy**): that state of being poignant (painfully affecting the feelings, deeply affecting)
+- [precocious](https://www.merriam-webster.com/dictionary/precocious): exceptionally early in development or occurrence, exhibiting mature qualities at an unusually early age
+- [salient](https://www.merriam-webster.com/dictionary/salient): projecting beyond a line, surface, or level. standing out conspicuously
+
+## Videos
+
+- [The riddle of experience vs. memory - TED 2010 - Daniel Kahneman](https://www.ted.com/talks/daniel_kahneman_the_riddle_of_experience_vs_memory)
 
 ##  People
 
@@ -749,16 +800,14 @@ Three Men Illusion : perspective.  Once on a 3D perspective the same sized figur
 
 - [Jonathan Haidt](https://en.wikipedia.org/wiki/Jonathan_Haidt): Social Pychologist.  Main areas of study are the [psychology of morality](https://en.wikipedia.org/wiki/Moral_psychology) and [moral emotions](https://en.wikipedia.org/wiki/Moral_emotions).
 
-## Psychology
+# Institutions
 
-### Cognitive Psychology
+- [American Economic Review](https://www.aeaweb.org/journals/aer/issues)
+- [American Psychology Association ](https://www.apa.org/).  [Psychology Dictionary](dictionary.apa.org)
 
-Psychology of effective training:  Important principle of skill training; rewards for improved performance training are better than punishment of mistakes.   
+- [Oregon Research Institute](http://www.ori.org/): Where Kahneman was a guest in 1971-72.   Worked on judgment, decision making and intuitive prediction.
 
-- Four key traits for successful learning; aspiration (focus on what we will gain from learning), self-awareness (be objective and not defensive), curiosity (foster it, and follow-up with learning), vulnerability (expect to be slow at first, needing detailed guidance) - [[reference]](https://www.learnlight.com/en/articles/7-learning-psychology-routes-effective-training/)
-- efficacy of reward and punishment: *regression to the mean* (praise a good outcome, and next attempt is worse, is likely caused by luck/probability creating the good outcome)
-
-## Quotes
+# Quotes
 
 > "We evolved to be goal-striving creatures. You'll regret more the things that you didn't do than the things you did."
 > —**Thomas Gilovic**
@@ -776,105 +825,24 @@ Psychology of effective training:  Important principle of skill training; reward
 > **— Slovic - The Perception of Risk[^slovic]**
 
 > "Subject's unwillingness to deduce the particular from the general was matched only their willingness to infer the general from the particular."
-> **— Nisbett and Borgida - The Helping Experiment**  *When aware of the general statistic that 45% will not help, students still predicted a person would help.  When shown particulars of two people not helping, they were quick to infer a low rate of people helping.*
+**— Nisbett and Borgida - The Helping Experiment**  *When aware of the general statistic that 45% will not help, students still predicted a person would help.  When shown particulars of two people not helping, they were quick to infer a low rate of people helping.*
 
-## Terms
+#  Inventions
 
-- [Anchoring Effect](https://en.wikipedia.org/wiki/Anchoring_(cognitive_bias)): The **anchoring effect** is a [cognitive bias](https://en.wikipedia.org/wiki/Cognitive_bias) whereby an individual's decisions are influenced by a particular reference point or 'anchor'.   If you consider how much you should pay for a house, you will be influenced by the asking price.  [Judgment under Uncertainty: Heuristics and Biases](https://www.science.org/doi/10.1126/science.185.4157.1124)
+1953 Anaesthesiologist Virginia Apgar developed standard procedure to prevent infant birth deaths.  Prior to this much deliberation was done, danger signs missed, and many new-borns died. — A systemic assessment of new-borns; 5-variables heart rate, respiration, reflex, muscle tone and colour.   Rate each one 0, 1 or 2; sum them for the Apgar score.  A consistent standard.
 
-- Associative Coherence: A stimulus evokes a coherent and self-reinforcing pattern of reciprocal activation in associative memory. [Associative Processes in Intuitive Judgment - Kahneman](https://doi.org/10.1016%2Fj.tics.2010.07.004). Consistent affect is a central element of associative coherence.
-
-- [base rate](https://en.wikipedia.org/wiki/Base_rate): statistics the rate of group. If 1% of the public were medical professionals, and 99% of the public were *not* medical professionals, then the base rate of medical professionals is 1%.
-- Bayesian statistics.  18th century Thomas Bayes.  [Bayes Rule / Bayes Theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem) describes the [probability](https://en.wikipedia.org/wiki/Probability) of an [event](https://en.wikipedia.org/wiki/Event_(probability_theory)), based on prior knowledge of conditions that might be related to the event.  Bayesian reasoning; a) anchor your judgment of the probability fo an outcome on a plausible base rate, b) question the diagnosticity of your evidence.
-- bounded rationality:  the study of bounded rationality, or how people search for information and make decisions with limited resources. Hertwig[^Hertwig] has been a key contributor.
-- Cognitive Ease (Part 1 - Chapter 5)
-- coherence, plausibility and probability: easily confused by unwary (those not using System 2).  People want to substitute plausibility for probability.  In the absence of competing intuition (plausibility), logic prevails.
-- conjunction fallacy: the conflict between intuition and logic.
-- [diagnosticity](https://dictionary.apa.org/diagnosticity): the informational value of an interaction, event, or feedback for someone seeking self-knowledge. Information with high diagnosticity has clear implications for the [self-concept](https://dictionary.apa.org/self-concept), whereas information with low diagnosticity may be unclear, ambiguous, or inaccurate.
-
-- Halo Effect
-
-- Loss Aversion: Respond more strongly to losses than to gains (System 1)
-
-- [Naturalistic Decision Making (NDM)](https://en.wikipedia.org/wiki/Naturalistic_decision-making): Study real people doing things that matter in a real-world environment.   Opposite of this book which is focused on biases in heuristics and biases approach.  Gary Klein[^Klein] - Sources of Power : intuition in experienced professionals (Firefighters)
-
-- [Planning Fallacy](https://en.wikipedia.org/wiki/Planning_fallacy):  Basing plans while ignoring information you have from past experience.  Instead realistic plans should be provided.
-  - *The **planning fallacy** is a phenomenon in which predictions about how much time will be needed to complete a future task display an [optimism bias](https://en.wikipedia.org/wiki/Optimism_bias) and underestimate the time needed. This phenomenon sometimes occurs regardless of the individual's knowledge that past tasks of a similar nature have taken longer to complete than generally planned.*
-
-- Polymath: A polymath is an individual whose knowledge spans a substantial number of subjects, known to draw on complex bodies of knowledge to solve specific problems.
-
-- Probability Neglect: A basic limitation in the ability of our mind to deal with small risks.  We either ignore them, or give them too much weight.  Teorrists, daughter coming home late.
-- Prospect Theory
-
-- Regression to the mean:  
-
-- Children's heights in relation to their parents.  Francis Galton (a polymath & cousin of Charles Darin)
-
-- Research Techniques
-- Sense of agency (subject sense of ..)
-- Sense of autonomy (subject sense of ..)
-
-- Single-Issue Negotiations.  Example, when price is the only issue to be settled (like selling a house).  Initial anchor effect has a powerful effect.  Advice:  When the other party starts with an outrageous proposal (high price) do not make an equally outrageous counteroffer.  This creates a gap that will be difficult to bridge in further negotiations.   Instead, make a scene, storm out, or threaten to storm out.   Make it clear, to yourself (to break the anchor effect) and to the other side, that you will not continue the negotiation with that number on the table.  
-  - *Any number of the table has had an anchoring effect on you, and if the stakes are high (buying a house) you should ask yourself to combat the effect*.
-
-- Stereotyping: neutral word is psychology (bad word in culture).  There is a social norm against stereotyping, including the opposition to profiling.  This has been beneficial in creating a more civilized and more equal society.  However neglecting valid stereotypes inevitably results in suboptimal judgments.  The costs are worth paying to achieve a better society.
-- Test of Understanding Psychology:  The test of learning psychology is whether your understanding of situations you encounter has changed, not whether you have learned a new fact.  There is a deep gap between our thinking about statistics and out thinking about individual cases.  It is better to learn psychology through individual cases, than by statistical means.
-- Theoretical Ideas
-- WYSIATI: What you see is all there is.
-
-## Thinking
-
-- Associative Thinking
-- Causal Thinking
-- Conscious Thinking
-- Intuitive Thinking
-- Intuitive Judgment
-- Decision Making
-- Problem Solving
-
-## Thoughts
+# Thoughts
 
 Social movements of  the 20th century; Hitler, Stalin, Mao Zedong
 
 - 1/8 (12% chance) these three great villians might not have existed (they could have been female).   It is impossible to argue that history would have been roughly the same in their absence.   Long term developments are not predictable; since these three people had incredible impact on the world, but they may not have existed.
 
-## Statistics
+# Why Reading
 
-- artifact:
+- Coaching, Skill Improvement, Self-Help, Teaching, ...Influencing
 
-- intuitive statistics:
-
-- sample size: belief in the law of small numbers (not experimenting with a sufficiently large enough sample size)
-
-## Theories
-
-- [Decision Theory - Wikipedia](https://en.wikipedia.org/wiki/Decision_theory)
-- [Bernoulli Principle](https://en.wikipedia.org/wiki/Bernoulli%27s_principle) by [Daniel Bernoulli](https://en.wikipedia.org/wiki/Daniel_Bernoulli): same person who has the fluid dynamics principles.
-  - [St Petersburg Paradox](https://en.wikipedia.org/wiki/St._Petersburg_paradox): The **St. Petersburg paradox** or **St. Petersburg lottery** is a paradox involving the game of flipping a coin where the expected payoff of the theoretical lottery game approaches infinity but nevertheless seems to be worth only a very small amount to the participants.    
-
-## Words
-
-Unrelated to the thinking.  Simply words I am not familiar with using:
-
-- [axiom](https://www.merriam-webster.com/dictionary/axiom): an established rule or principle or a self-evident truth,  a statement accepted as true as the basis for argument or inference
-- economics: is the social science that studies the production, distribution, and consumption of goods and services.
-- [epidemiology](https://www.merriam-webster.com/dictionary/epidemiology): a branch of medical science that deals with the incidence, distribution, and control of disease in a population
-- [heuristic](https://www.merriam-webster.com/dictionary/heuristic): A simple procedure that helps find adequate, though often imperfect, answers to difficult questions.  The word comes the same root as eureka.  involving or serving as an aid to learning, discovery, or problem-solving by experimental and especially [trial-and-error](https://www.merriam-webster.com/dictionary/trial and error) methods.  *heuristic assumption*: of or relating to exploratory problem-solving techniques that utilize self-educating techniques (such as the evaluation of [feedback](https://www.merriam-webster.com/dictionary/feedback)) to improve performance
-  - Affect Heuristic: Emotions and the dominance of conclusions over arguments.   People let their likes and dislikes determine their beliefs about the world.  Paul Slovic.
-  - Availability Heuristic: 1971 definition: the process of judging frequency by "the ease with which instances come to mind."
-  - Mood Heuristic:  The present state of mind looms very large when people evaluate questions.  Students (How many dates last month?  How happy are you?  is highly correlated.   Reverse the question order and there is no correlation.).  Impact on surveys.
-
-- [poignancy](**poignancy**): that state of being poignant (painfully affecting the feelings, deeply affecting)
-- [precocious](https://www.merriam-webster.com/dictionary/precocious): exceptionally early in development or occurrence, exhibiting mature qualities at an unusually early age
-- [salient](https://www.merriam-webster.com/dictionary/salient): projecting beyond a line, surface, or level. standing out conspicuously
-
-## Videos
-
-- [The riddle of experience vs. memory - TED 2010 - Daniel Kahneman](https://www.ted.com/talks/daniel_kahneman_the_riddle_of_experience_vs_memory)
-
-## Other Summaries
-
-- [The Art of Living Summary](https://theartofliving.com/thinking-fast-and-slow-summary/#hindsight-bias)
+- DEI : Diversity, Equity and Inclusion:  Understanding the theory and science behind biases.
+- Influence: Understand use perspectives and help understand reference points for decision making and organizational improvement.
 
 # Footnotes
 

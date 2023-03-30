@@ -29,6 +29,12 @@ var store = [{
         "url": "/balance/books/Change-Your-Questions-Change-Your-Life/",
         "teaser": null
       },{
+        "title": "How the World Really Works",
+        "excerpt":"How the World Really Works Smil Vaclav. 2022. How the World Really Works : The Science Behind How We Got Here and Where We’re Going First North American ed. New York: Viking. Summary Vaclav Smil discusses in this book how four fundamental materials (Ammonia, Plastics, Steel and Cement) will limit...","categories": ["world","economics","canada"],
+        "tags": [],
+        "url": "/balance/books/How%20the%20World%20Really%20Works/",
+        "teaser": null
+      },{
         "title": "The Defining Decade",
         "excerpt":"The Define Decade: Why Your 20’s Matter &amp; How to Make the Most of Them Author: Meg Jay Book Title: Jay, Meg. The Defining Decade: Why Your Twenties Matter and How to Make the Most of Them Now. First revised trade paperback edition. New York: Twelve, 2021. Summary The book...","categories": ["psychology"],
         "tags": [],
@@ -97,7 +103,7 @@ var store = [{
       },{
         "title": "Jekyll Github Pages : Minimal Mistakes",
         "excerpt":"Minimal Mistakes Minimal Mistakes - Github Minimal Mistakes - Installation Features Theme Documentation MM Github Pages Starter The Noun Project - Images &amp; Icons Minimal Mistakes - Layouts Setting up a GitHub Pages Site using MM Theme Try to get GitHub Pages working with MM theme Theme Install Jekyll Talk...","categories": ["jekyll","update"],
-        "tags": ["nielsen","themes","actions","CI"],
+        "tags": ["nielsen","themes","actions","CI","tags","archives"],
         "url": "/balance/jekyll/update/jekyll-minimal-mistakes/",
         "teaser": null
       },{
@@ -177,5 +183,23 @@ var store = [{
         "excerpt":"A summary of an book help young adults and others understand the pressures, anxiety and differences people in their 20’s experience today.           Summary of The Defining Decade - Base URL            Summary of The Defining Decade - Link fails “missing ‘balance’ “      ","categories": ["pyschology"],
         "tags": ["adulthood"],
         "url": "/balance/pyschology/psychology-defining-decade/",
+        "teaser": null
+      },{
+        "title": "Azure  Design and Implement DevOps Solutions",
+        "excerpt":"Microsoft’s AZ-400 Design and Implementing Microsoft DevOps Solutions is designed to prepare you to take the $174 USD certification exam. The course explains why Agile and DevOps are desirable ways to deliver software to the business. Below are my course notes from the following topics: DevOps Transformation Journey Development in...","categories": [],
+        "tags": ["Azure","DevOps","Engineering"],
+        "url": "/balance/Azure-DevOps-AZ-400-Training/",
+        "teaser": null
+      },{
+        "title": "Azure  Design and Implement DevOps Solutions",
+        "excerpt":"Microsoft’s AZ-400 Design and Implementing Microsoft DevOps Solutions is designed to prepare you to take the $174 USD certification exam. The course explains why Agile and DevOps are desirable ways to deliver software to the business. Below are my course notes from the following topics: DevOps Transformation Journey Development in...","categories": [],
+        "tags": ["Azure","DevOps","Engineering"],
+        "url": "/balance/Azure-DevOps-AZ-400-Training0/",
+        "teaser": null
+      },{
+        "title": "Think Fast, Think Slow",
+        "excerpt":"Kahneman, Daniel, 1934 - Thinking, Fast and Slow. New York 2011. Summary Think Fast, Think Slow by Daniel Kahneman helps the public understand behavioural science, engineering and medicine. The book explores rational and non-rational motivations for decision making by describing two systems of the brain; System 1 (instinctive and emotional)...","categories": ["psychology","statistics","thinking"],
+        "tags": [],
+        "url": "/balance/tests/Think-Fast-Think-Slow/",
         "teaser": null
       }]

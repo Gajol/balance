@@ -4,6 +4,8 @@ excerpt: "ARA, modular, APIs, business engagement."
 last_modified_at: 2022-04-30T10:23:16-04:00
 toc: true
 toc_sticky: false
+#layout: wide
+read_time: true
 header:
   # image: /assets/images/Architecture-AI-wide.jpg
   teaser: /assets/images/Architecture-AI-Generated.jpg

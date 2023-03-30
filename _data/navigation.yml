@@ -1,7 +1,6 @@
 main:
     # seems the trailing "/" is important
-  - title: "About"
-    url: /about/
+
   - title: "Posts"
     url: /year-archive/
   - title: "Architecture"
@@ -16,6 +15,11 @@ main:
     url: /docs/
   - title: "GitHub Source"
     url: https://github.com/Gajol/balance/tree/gh-pages
+  - title: "Search"
+    icon: "fas fa-search"
+    url: /search/
+  - title: "About"
+    url: /about/
 
 sidebar-defining-decade:
   - title: "The Defining Decade"
