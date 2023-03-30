@@ -38,7 +38,7 @@ __Application Architect__: Public Safety Canada, Ottawa: July 2017 - Present: HR
 
 ​	__Application Portfolio Management__
 
-- Provide leadership in managing the department's portfolio of applications using a variety of indicators to help triage applications according to their health, risk, value and technology.  The methodology has proven useful in establishing and communicating an application decommissioning strategies and identifying key modernization programs.
+- Provide leadership in managing the department's portfolio of applications.  Categorized business applications using a variety of indicators to help triage applications according to their health, risk, value and technology.  The methodology has proven useful in establishing and communicating application decommissioning strategies and identifying key modernization programs.
 
 ​	__Process Automation__
 

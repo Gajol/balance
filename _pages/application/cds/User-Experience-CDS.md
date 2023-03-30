@@ -1,8 +1,7 @@
 ---
-permalink: /application/cds/cds-user-experience
-title: "CDS - User Experience"
-excerpt: "GC's Canadian Digital Service is digital leader within the Government of Canada.  CDS's approach
-to user experience is a human-centric design approach adopting industry recognized processes and tools."
+permalink: /application/cds/User-Experience-CDS
+title: "CDS User Experience"
+excerpt: "CDS User Experience"
 last_modified_at: 2023-01-07T10:23:16-04:00
 toc: true
 ---

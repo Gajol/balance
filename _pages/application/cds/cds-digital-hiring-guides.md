@@ -1,9 +1,9 @@
 ---
-title: "CDS - Hiring Guides"
-excerpt: "CDS - Hire Guides."
-last_modified_at: 2023-03-29
+permalink: /application/cds/cds-digital-hiring-guides
+title: "CDS Hiring Guide"
+excerpt: "CDS Hiring Guide"
+last_modified_at: 2023-01-07T10:23:16-04:00
 toc: true
-classes: wide
 ---
 # Hiring Guides - Canada Digital Service
 

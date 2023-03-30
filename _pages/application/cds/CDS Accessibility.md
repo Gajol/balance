@@ -1,3 +1,11 @@
+---
+permalink: /application/cds/cds-ccessibility
+title: "CDS Accessibility"
+excerpt: "CDS Accessibility"
+last_modified_at: 2023-01-07T10:23:16-04:00
+toc: true
+---
+
 # CDS Accessibility
 
 CDS identifies service standards and has a [priority 1 checklist for accessibility](https://resources.alpha.canada.ca/resource/a11y-product-lifecycle/).   Accessibility compliance is measures throughout the agile product phases (discovery, alpha, beta, live)
