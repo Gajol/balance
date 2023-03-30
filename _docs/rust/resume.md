@@ -27,7 +27,7 @@ Bachelor of Computer Systems Engineering - High Distinction - Carleton Universit
 
 # Work Experience
 
-## Application Architect
+## Application Architect — 2017 - Present
 
 Public Safety Canada, Ottawa: July 2017 - Present: HR Modernization, Process Automation
 
@@ -56,7 +56,7 @@ Public Safety Canada, Ottawa: July 2017 - Present: HR Modernization, Process Aut
 
 ---
 
-## Project Manager
+## Project Manager — 2014-17
 
 Public Safety Canada, Ottawa: July 2014 - July 2017: Cyber Security
 
@@ -66,7 +66,7 @@ Public Safety Canada, Ottawa: July 2014 - July 2017: Cyber Security
 
 ---
 
-## Enterprise Architect
+## Enterprise Architect — 2013-14
 
 Innovapost: January 2013 - June 2014: Cloud
 
@@ -78,12 +78,12 @@ Innovapost: January 2013 - June 2014: Cloud
 
 ---
 
-## Application Architect
+## Application Architect — 1990-2012
 
-Genband: July 2010 - December 2012: Unified Communications
+**Solution Architect**: Genband: July 2010 - December 2012: Unified Communications
 
 - Defined software architecture for a unified communications system providing voice, messaging, presence and other collaboration capabilities for both legacy, mobile and desktop phones.
-- Defined major software components and led teams in developing C++ and Java-based systems using Agile Scrum methodologies.
+- Defined major technology and software components and led teams in developing C++ and Java-based systems using Agile Scrum methodologies.
 - Engaged with business teams to prioritize and develop a product roadmap.
 - Presented solutions and live product demonstrations to international customers resulting in product trials in several markets.
 
