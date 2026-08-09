@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Trail</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<style>
+  html, body { margin:0; padding:0; height:100%; font-family: system-ui, sans-serif; background:#111; color:#eee; }
+  #layout { display:flex; flex-direction:column; height:100%; }
+  #status { padding:8px 16px; background:#1b1b1b; font-size:13px; display:flex; gap:20px; flex-wrap:wrap; }
+  #status span b { color:#9fd; }
+  #map { flex: 1 1 auto; min-height: 55vh; }
+  #panel { flex: 0 0 auto; max-height: 30vh; overflow-y:auto; background:#181818; border-top:1px solid #333; }
+  #panel h3 { margin:8px 16px 4px; font-size:13px; color:#9fd; text-transform:uppercase; letter-spacing:.05em;}
+  .msg { padding:6px 16px; border-bottom:1px solid #262626; font-size:14px; }
+  .msg time { display:block; font-size:11px; color:#888; }
+</style>
+</head>
+<body>
+<div id="layout">
+  <div id="status">
+    <span>Speed: <b id="speedVal">–</b></span>
+    <span>Distance: <b id="distanceVal">–</b></span>
+    <span>Elevation: <b id="elevationVal">–</b></span>
+    <span>Weather: <b id="weatherVal">–</b></span>
+    <span>Last update: <b id="lastUpdate">–</b></span>
+    <span>Points tracked: <b id="pointCount">0</b></span>
+  </div>
+  <div id="map"></div>
+  <div id="panel">
+    <h3>Messages</h3>
+    <div id="messages"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+  // Point this at your serverless proxy, NOT at protegear.io directly —
+  // the proxy holds your Protegear API key/session server-side and simply
+  // forwards this call:
+  //
+  //   GET https://protegear.io/protegear/api/v1/device/{IMEI}/events
+  //       ?from=...&until=...&nomessages=false
+  //
+  // and returns the raw JSON array it gets back (array of base.EventData,
+  // per Protegear's own Swagger — no reshaping needed in the proxy).
+  const PROXY_URL = "https://protegear-trail-proxy.tuborgjunior.workers.dev/events";
+  const IMEI = "301434031808490"; // sent as a query param to the proxy
+  const LOOKBACK_DAYS = 7; // how far back to pull trail history
+  const REFRESH_MS = 5 * 60 * 1000; // 5 minutes
+  const UNITS = "km"; // "km" or "mi"
+
+  // One-time cutoff to crop out the car drive to the trailhead: any event
+  // sent before this instant is dropped before rendering the trail/markers/
+  // messages. Adjust the date/time for your trip; the "Z" means this value
+  // is in UTC — 6:45am Eastern Daylight Time (Ottawa/NH in August, UTC-4)
+  // is 10:45 UTC, so this reads as "2026-08-09 6:45am local" (the actual
+  // drive happened overnight into the morning of the 9th, not the 7th).
+  const TRIM_BEFORE = "2026-08-09T10:45:00Z";
+
+  const map = L.map('map').setView([0, 0], 2);
+
+  // Three free, no-API-key base styles to pick from via the layer switcher
+  // (top right) — OpenTopoMap is contour-heavy but flatter on land cover;
+  // Esri World Topo adds shaded relief + vegetation color; OSM Streets is
+  // the original land-use-coloring view.
+  const topoLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data: &copy; OpenStreetMap contributors, SRTM | Map style: &copy; OpenTopoMap (CC-BY-SA)',
+    maxZoom: 17,
+  });
+  const esriTerrainLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+    maxZoom: 19,
+  });
+  const streetsLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
+    maxZoom: 19,
+  });
+
+  esriTerrainLayer.addTo(map);
+  L.control.layers({
+    'Terrain (Esri)': esriTerrainLayer,
+    'Topo (contours)': topoLayer,
+    'Streets (OSM)': streetsLayer,
+  }).addTo(map);
+
+  let trail = L.polyline([], { color: '#4fd1c5', weight: 3 }).addTo(map);
+  let marker = null;
+  let fitted = false;
+
+  function kmhToDisplay(kmh) {
+    if (kmh == null) return "–";
+    const val = UNITS === "mi" ? kmh * 0.621371 : kmh;
+    return val.toFixed(1) + " " + (UNITS === "mi" ? "mph" : "km/h");
+  }
+
+  // Great-circle distance between two lat/lng points, in km
+  function haversineKm(lat1, lon1, lat2, lon2) {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = Math.sin(dLat / 2) ** 2 +
+      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) ** 2;
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  }
+
+  function totalDistanceKm(latlngs) {
+    let total = 0;
+    for (let i = 1; i < latlngs.length; i++) {
+      total += haversineKm(latlngs[i - 1][0], latlngs[i - 1][1], latlngs[i][0], latlngs[i][1]);
+    }
+    return total;
+  }
+
+  function distanceToDisplay(km) {
+    const val = UNITS === "mi" ? km * 0.621371 : km;
+    return val.toFixed(2) + " " + (UNITS === "mi" ? "mi" : "km");
+  }
+
+  // Sums positive/negative altitude deltas between consecutive pings
+  function elevationGainLoss(withPos) {
+    let gain = 0, loss = 0;
+    for (let i = 1; i < withPos.length; i++) {
+      const alt1 = withPos[i - 1].event.position.alt;
+      const alt2 = withPos[i].event.position.alt;
+      if (alt1 == null || alt2 == null) continue;
+      const delta = alt2 - alt1;
+      if (delta > 0) gain += delta; else loss += -delta;
+    }
+    return { gain, loss };
+  }
+
+  function elevationToDisplay(meters) {
+    const val = UNITS === "mi" ? meters * 3.28084 : meters;
+    return Math.round(val) + (UNITS === "mi" ? "ft" : "m");
+  }
+
+  // WMO weather codes used by Open-Meteo
+  const WEATHER_CODES = {
+    0: "Clear", 1: "Mainly clear", 2: "Partly cloudy", 3: "Overcast",
+    45: "Fog", 48: "Fog",
+    51: "Light drizzle", 53: "Drizzle", 55: "Dense drizzle",
+    56: "Freezing drizzle", 57: "Freezing drizzle",
+    61: "Light rain", 63: "Rain", 65: "Heavy rain",
+    66: "Freezing rain", 67: "Freezing rain",
+    71: "Light snow", 73: "Snow", 75: "Heavy snow", 77: "Snow grains",
+    80: "Rain showers", 81: "Rain showers", 82: "Violent rain showers",
+    85: "Snow showers", 86: "Snow showers",
+    95: "Thunderstorm", 96: "Thunderstorm w/ hail", 99: "Thunderstorm w/ hail",
+  };
+
+  async function loadWeather(lat, lng) {
+    try {
+      const tempUnit = UNITS === "mi" ? "fahrenheit" : "celsius";
+      const windUnit = UNITS === "mi" ? "mph" : "kmh";
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}` +
+        `&current_weather=true&temperature_unit=${tempUnit}&windspeed_unit=${windUnit}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("Weather API returned " + res.status);
+      const data = await res.json();
+      const cw = data.current_weather;
+      const desc = WEATHER_CODES[cw.weathercode] || "Unknown";
+      const tempSymbol = tempUnit === "fahrenheit" ? "°F" : "°C";
+      document.getElementById('weatherVal').textContent =
+        `${cw.temperature.toFixed(1)}${tempSymbol}, ${desc}`;
+    } catch (err) {
+      document.getElementById('weatherVal').textContent = "Unavailable";
+      console.error(err);
+    }
+  }
+
+  function renderMessages(events) {
+    const el = document.getElementById('messages');
+    el.innerHTML = "";
+    // Protegear events carry text on event.event.text when present
+    const withText = events.filter(e => e.event && e.event.text);
+    if (withText.length === 0) {
+      el.innerHTML = '<div class="msg" style="color:#666">No messages yet.</div>';
+      return;
+    }
+    withText
+      .slice()
+      .sort((a, b) => new Date(b.sent) - new Date(a.sent))
+      .forEach(e => {
+        const div = document.createElement('div');
+        div.className = 'msg';
+        div.innerHTML = `<time>${new Date(e.sent).toLocaleString()}</time>${e.event.text}`;
+        el.appendChild(div);
+      });
+  }
+
+  async function loadTrack() {
+    try {
+      const until = new Date();
+      const from = new Date(until.getTime() - LOOKBACK_DAYS * 86400000);
+      const url = `${PROXY_URL}?imei=${encodeURIComponent(IMEI)}` +
+                  `&from=${encodeURIComponent(from.toISOString())}` +
+                  `&until=${encodeURIComponent(until.toISOString())}`;
+
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("Proxy returned " + res.status);
+      const rawEvents = await res.json(); // array of base.EventData
+
+      // Drop the car-drive leg: anything sent before TRIM_BEFORE
+      const cutoff = new Date(TRIM_BEFORE);
+      const events = rawEvents.filter(e => new Date(e.sent) >= cutoff);
+
+      // Only entries whose event carries a position (base.PositionInfo)
+      const withPos = events
+        .filter(e => e.event && e.event.position && !e.event.position.invalid)
+        .sort((a, b) => new Date(a.sent) - new Date(b.sent));
+
+      if (withPos.length === 0) {
+        document.getElementById('lastUpdate').textContent = "No position data yet";
+        renderMessages(events);
+        return;
+      }
+
+      const latlngs = withPos.map(e => [e.event.position.lat, e.event.position.lng]);
+      trail.setLatLngs(latlngs);
+
+      const last = withPos[withPos.length - 1];
+      if (marker) marker.remove();
+      marker = L.marker([last.event.position.lat, last.event.position.lng]).addTo(map);
+
+      if (!fitted) {
+        map.fitBounds(trail.getBounds(), { padding: [30, 30] });
+        fitted = true;
+      } else {
+        map.panTo([last.event.position.lat, last.event.position.lng]);
+      }
+
+      // speedkmh comes pre-computed straight from the device/Protegear
+      document.getElementById('speedVal').textContent = kmhToDisplay(last.event.position.speedkmh);
+      document.getElementById('distanceVal').textContent = distanceToDisplay(totalDistanceKm(latlngs));
+      const { gain, loss } = elevationGainLoss(withPos);
+      document.getElementById('elevationVal').textContent =
+        `↑${elevationToDisplay(gain)} ↓${elevationToDisplay(loss)}`;
+      document.getElementById('lastUpdate').textContent = new Date(last.sent).toLocaleString();
+      document.getElementById('pointCount').textContent = withPos.length;
+
+      loadWeather(last.event.position.lat, last.event.position.lng);
+      renderMessages(events);
+    } catch (err) {
+      document.getElementById('lastUpdate').textContent = "Error: " + err.message;
+      console.error(err);
+    }
+  }
+
+  loadTrack();
+  setInterval(loadTrack, REFRESH_MS);
+</script>
+</body>
+</html>
