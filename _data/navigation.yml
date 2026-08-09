@@ -1,6 +1,8 @@
 main:
     # seems the trailing "/" is important
 
+  - title: "Trail"
+    url: /trail.html
   - title: "Posts"
     url: /year-archive/
   - title: "Architecture"
