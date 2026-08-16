@@ -47,17 +47,26 @@
   // per Protegear's own Swagger — no reshaping needed in the proxy).
   const PROXY_URL = "https://protegear-trail-proxy.tuborgjunior.workers.dev/events";
   const IMEI = "301434031808490"; // sent as a query param to the proxy
-  const LOOKBACK_DAYS = 7; // how far back to pull trail history
   const REFRESH_MS = 5 * 60 * 1000; // 5 minutes
   const UNITS = "km"; // "km" or "mi"
 
-  // One-time cutoff to crop out the car drive to the trailhead: any event
-  // sent before this instant is dropped before rendering the trail/markers/
-  // messages. Adjust the date/time for your trip; the "Z" means this value
-  // is in UTC — 6:45am Eastern Daylight Time (Ottawa/NH in August, UTC-4)
-  // is 10:45 UTC, so this reads as "2026-08-09 6:45am local" (the actual
-  // drive happened overnight into the morning of the 9th, not the 7th).
-  const TRIM_BEFORE = "2026-08-09T10:45:00Z";
+  // Trail window for the current hike: from the start of today (local
+  // time) through 1am next Monday (local time) — covers this trip without
+  // pulling in any previous hike's history. Both are computed fresh each
+  // load, so this doesn't need updating as the days pass during the trip.
+  function startOfToday() {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
+  }
+
+  function nextMondayAt1am() {
+    const now = new Date();
+    let daysUntilMonday = (1 - now.getDay() + 7) % 7; // getDay(): 0=Sun..6=Sat
+    if (daysUntilMonday === 0) daysUntilMonday = 7; // if today's Monday, mean next week's
+    const result = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 1, 0, 0);
+    result.setDate(result.getDate() + daysUntilMonday);
+    return result;
+  }
 
   const map = L.map('map').setView([0, 0], 2);
 
@@ -192,19 +201,15 @@
 
   async function loadTrack() {
     try {
-      const until = new Date();
-      const from = new Date(until.getTime() - LOOKBACK_DAYS * 86400000);
+      const from = startOfToday();
+      const until = nextMondayAt1am();
       const url = `${PROXY_URL}?imei=${encodeURIComponent(IMEI)}` +
                   `&from=${encodeURIComponent(from.toISOString())}` +
                   `&until=${encodeURIComponent(until.toISOString())}`;
 
       const res = await fetch(url);
       if (!res.ok) throw new Error("Proxy returned " + res.status);
-      const rawEvents = await res.json(); // array of base.EventData
-
-      // Drop the car-drive leg: anything sent before TRIM_BEFORE
-      const cutoff = new Date(TRIM_BEFORE);
-      const events = rawEvents.filter(e => new Date(e.sent) >= cutoff);
+      const events = await res.json(); // array of base.EventData
 
       // Only entries whose event carries a position (base.PositionInfo)
       const withPos = events
