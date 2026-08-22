@@ -100,6 +100,14 @@
   let marker = null;
   let fitted = false;
 
+  // Compact display for the configured trip window, e.g. "Aug 23, 3:00 PM"
+  function formatTripTime(isoOrDate) {
+    const d = isoOrDate instanceof Date ? isoOrDate : new Date(isoOrDate);
+    return d.toLocaleString(undefined, {
+      month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit',
+    });
+  }
+
   function kmhToDisplay(kmh) {
     if (kmh == null) return "–";
     const val = UNITS === "mi" ? kmh * 0.621371 : kmh;
@@ -220,8 +228,10 @@
       const until = config ? new Date(config.until) : nextMondayAt1am();
 
       const tripLabelRow = document.getElementById('tripLabelRow');
-      if (config && config.label) {
-        document.getElementById('tripLabel').textContent = config.label;
+      if (config) {
+        const window = `${formatTripTime(from)} – ${formatTripTime(until)}`;
+        document.getElementById('tripLabel').textContent =
+          config.label ? `${config.label} (${window})` : window;
         tripLabelRow.style.display = '';
       } else {
         tripLabelRow.style.display = 'none';
