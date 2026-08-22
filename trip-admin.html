@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Trip Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  html, body { margin:0; padding:0; min-height:100%; font-family: system-ui, sans-serif; background:#111; color:#eee; }
+  #wrap { max-width: 480px; margin: 40px auto; padding: 0 20px; }
+  h1 { font-size: 20px; margin-bottom: 4px; }
+  p.hint { color: #888; font-size: 13px; margin-top: 0; }
+  label { display: block; margin-top: 16px; font-size: 13px; color: #9fd; text-transform: uppercase; letter-spacing: .05em; }
+  input { width: 100%; box-sizing: border-box; margin-top: 6px; padding: 8px 10px; font-size: 15px; background:#1b1b1b; border:1px solid #333; color:#eee; border-radius: 4px; }
+  button { margin-top: 24px; width: 100%; padding: 10px; font-size: 15px; background:#4fd1c5; color:#111; border:none; border-radius: 4px; cursor: pointer; font-weight: 600; }
+  button:hover { background:#3fb8ad; }
+  #status { margin-top: 16px; font-size: 14px; padding: 10px; border-radius: 4px; display: none; }
+  #status.ok { display: block; background: #1b3a2e; color: #9fd; }
+  #status.err { display: block; background: #3a1b1b; color: #fda; }
+  #current { margin-top: 32px; padding-top: 16px; border-top: 1px solid #262626; font-size: 13px; color: #888; }
+  #current b { color: #ccc; }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <h1>Trip Admin</h1>
+  <p class="hint">Sets the trip trail.html shows to everyone — no code edit or git push needed.</p>
+
+  <label for="imei">Device IMEI</label>
+  <input id="imei" type="text" placeholder="301434031808490">
+
+  <label for="label">Trip label (optional)</label>
+  <input id="label" type="text" placeholder="e.g. August hike">
+
+  <label for="from">Trip start</label>
+  <input id="from" type="datetime-local">
+
+  <label for="until">Trip end</label>
+  <input id="until" type="datetime-local">
+
+  <label for="token">Admin token</label>
+  <input id="token" type="password" placeholder="not saved anywhere — enter each time">
+
+  <button id="saveBtn">Save trip</button>
+
+  <div id="status"></div>
+
+  <div id="current">Current trip: <span id="currentSummary">loading…</span></div>
+</div>
+
+<script>
+  const WORKER_BASE = "https://protegear-trail-proxy.tuborgjunior.workers.dev";
+  const TRIP_CONFIG_URL = `${WORKER_BASE}/trip-config`;
+  const DEFAULT_IMEI = "301434031808490";
+
+  function toLocalInputValue(isoString) {
+    const d = new Date(isoString);
+    const pad = n => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+
+  async function loadCurrent() {
+    try {
+      const res = await fetch(TRIP_CONFIG_URL);
+      const config = await res.json();
+      const summaryEl = document.getElementById('currentSummary');
+      if (!config) {
+        summaryEl.textContent = "none set (trail.html is using its built-in fallback window)";
+        document.getElementById('imei').value = DEFAULT_IMEI;
+        return;
+      }
+      summaryEl.innerHTML =
+        `<b>${config.label || '(no label)'}</b> — IMEI ${config.imei}, ` +
+        `${new Date(config.from).toLocaleString()} → ${new Date(config.until).toLocaleString()}`;
+      document.getElementById('imei').value = config.imei;
+      document.getElementById('label').value = config.label || '';
+      document.getElementById('from').value = toLocalInputValue(config.from);
+      document.getElementById('until').value = toLocalInputValue(config.until);
+    } catch (err) {
+      document.getElementById('currentSummary').textContent = "failed to load: " + err.message;
+    }
+  }
+
+  async function saveTrip() {
+    const statusEl = document.getElementById('status');
+    statusEl.className = '';
+    statusEl.textContent = '';
+
+    const imei = document.getElementById('imei').value.trim();
+    const label = document.getElementById('label').value.trim();
+    const fromVal = document.getElementById('from').value;
+    const untilVal = document.getElementById('until').value;
+    const token = document.getElementById('token').value;
+
+    if (!imei || !fromVal || !untilVal || !token) {
+      statusEl.className = 'err';
+      statusEl.textContent = 'IMEI, trip start, trip end, and admin token are all required.';
+      return;
+    }
+
+    try {
+      const res = await fetch(TRIP_CONFIG_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Admin-Token': token,
+        },
+        body: JSON.stringify({
+          imei,
+          label,
+          from: new Date(fromVal).toISOString(),
+          until: new Date(untilVal).toISOString(),
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+
+      statusEl.className = 'ok';
+      statusEl.textContent = 'Saved. trail.html will pick this up on its next refresh.';
+      loadCurrent();
+    } catch (err) {
+      statusEl.className = 'err';
+      statusEl.textContent = 'Failed: ' + err.message;
+    }
+  }
+
+  document.getElementById('saveBtn').addEventListener('click', saveTrip);
+  loadCurrent();
+</script>
+</body>
+</html>

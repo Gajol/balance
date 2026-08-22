@@ -20,6 +20,7 @@
 <body>
 <div id="layout">
   <div id="status">
+    <span id="tripLabelRow" style="display:none">Trip: <b id="tripLabel">–</b></span>
     <span>Speed: <b id="speedVal">–</b></span>
     <span>Distance: <b id="distanceVal">–</b></span>
     <span>Elevation: <b id="elevationVal">–</b></span>
@@ -45,15 +46,16 @@
   //
   // and returns the raw JSON array it gets back (array of base.EventData,
   // per Protegear's own Swagger — no reshaping needed in the proxy).
-  const PROXY_URL = "https://protegear-trail-proxy.tuborgjunior.workers.dev/events";
-  const IMEI = "301434031808490"; // sent as a query param to the proxy
+  const WORKER_BASE = "https://protegear-trail-proxy.tuborgjunior.workers.dev";
+  const PROXY_URL = `${WORKER_BASE}/events`;
+  const TRIP_CONFIG_URL = `${WORKER_BASE}/trip-config`;
+  const DEFAULT_IMEI = "301434031808490"; // used only if no trip is configured yet
   const REFRESH_MS = 5 * 60 * 1000; // 5 minutes
   const UNITS = "km"; // "km" or "mi"
 
-  // Trail window for the current hike: from the start of today (local
-  // time) through 1am next Monday (local time) — covers this trip without
-  // pulling in any previous hike's history. Both are computed fresh each
-  // load, so this doesn't need updating as the days pass during the trip.
+  // Fallback trail window, used only when /trip-config has nothing set
+  // (e.g. before the admin form has been used for the first time): from
+  // the start of today (local time) through 1am next Monday (local time).
   function startOfToday() {
     const now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
@@ -199,11 +201,33 @@
       });
   }
 
+  async function loadTripConfig() {
+    try {
+      const res = await fetch(TRIP_CONFIG_URL);
+      if (!res.ok) return null;
+      return await res.json(); // {imei, from, until, label} or null if unset
+    } catch (err) {
+      console.error("trip-config fetch failed", err);
+      return null;
+    }
+  }
+
   async function loadTrack() {
     try {
-      const from = startOfToday();
-      const until = nextMondayAt1am();
-      const url = `${PROXY_URL}?imei=${encodeURIComponent(IMEI)}` +
+      const config = await loadTripConfig();
+      const imei = config ? config.imei : DEFAULT_IMEI;
+      const from = config ? new Date(config.from) : startOfToday();
+      const until = config ? new Date(config.until) : nextMondayAt1am();
+
+      const tripLabelRow = document.getElementById('tripLabelRow');
+      if (config && config.label) {
+        document.getElementById('tripLabel').textContent = config.label;
+        tripLabelRow.style.display = '';
+      } else {
+        tripLabelRow.style.display = 'none';
+      }
+
+      const url = `${PROXY_URL}?imei=${encodeURIComponent(imei)}` +
                   `&from=${encodeURIComponent(from.toISOString())}` +
                   `&until=${encodeURIComponent(until.toISOString())}`;
 
