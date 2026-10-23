@@ -44,7 +44,7 @@ There are two ways in. Both can work.
 
 ### The picture
 
-Pick a front door to follow its path. Everything inside the dashed box is yours to control.
+Pick a front door to follow its path. Everything inside the dashed box is yours to control. **Hover over, tap or tab to any box to see what it is.**
 
 <style>
 .fd{border:1px solid rgba(128,128,128,.4);border-radius:10px;padding:12px;margin:1.2em 0}
@@ -71,19 +71,19 @@ Pick a front door to follow its path. Everything inside the dashed box is yours 
 <text x="10" y="22" class="t2">PEOPLE</text><text x="205" y="22" class="t2">FRONT DOORS</text>
 <rect class="bd" x="395" y="30" width="495" height="380" rx="10"/><text x="410" y="50" class="t2">YOUR HOSTING BOUNDARY (confirm with security and privacy)</text>
 
-<g data-p="2" class="a2"><rect class="bx" x="10" y="75" width="150" height="70" rx="8"/><text x="22" y="105" class="t1">Visitors on</text><text x="22" y="124" class="t1">the site</text></g>
-<g data-p="1" class="a1"><rect class="bx" x="10" y="215" width="150" height="70" rx="8"/><text x="22" y="245" class="t1">People in their</text><text x="22" y="264" class="t1">own AI chat</text></g>
-<g data-p="1"><rect class="bd" x="10" y="335" width="150" height="62" rx="8"/><text x="22" y="361" class="t1">Outside AI model</text><text x="22" y="380" class="t2">out of scope</text></g>
+<g data-k="v" tabindex="0" style="cursor:help" data-p="2" class="a2"><rect class="bx" x="10" y="75" width="150" height="70" rx="8"/><text x="22" y="105" class="t1">Visitors on</text><text x="22" y="124" class="t1">the site</text></g>
+<g data-k="p" tabindex="0" style="cursor:help" data-p="1" class="a1"><rect class="bx" x="10" y="215" width="150" height="70" rx="8"/><text x="22" y="245" class="t1">People in their</text><text x="22" y="264" class="t1">own AI chat</text></g>
+<g data-k="m" tabindex="0" style="cursor:help" data-p="1"><rect class="bd" x="10" y="335" width="150" height="62" rx="8"/><text x="22" y="361" class="t1">Outside AI model</text><text x="22" y="380" class="t2">out of scope</text></g>
 
-<g data-p="2" class="a2"><rect class="bx" x="205" y="75" width="170" height="70" rx="8"/><text x="217" y="100" class="t1">Door 2</text><text x="217" y="119" class="t2">Chat box on a page</text><text x="217" y="135" class="t2">You build and run it</text></g>
-<g data-p="1" class="a1"><rect class="bx" x="205" y="215" width="170" height="70" rx="8"/><text x="217" y="240" class="t1">Door 1</text><text x="217" y="259" class="t2">AI chat tool calls you</text><text x="217" y="275" class="t2">No chat screen to build</text></g>
+<g data-k="d2" tabindex="0" style="cursor:help" data-p="2" class="a2"><rect class="bx" x="205" y="75" width="170" height="70" rx="8"/><text x="217" y="100" class="t1">Door 2</text><text x="217" y="119" class="t2">Chat box on a page</text><text x="217" y="135" class="t2">You build and run it</text></g>
+<g data-k="d1" tabindex="0" style="cursor:help" data-p="1" class="a1"><rect class="bx" x="205" y="215" width="170" height="70" rx="8"/><text x="217" y="240" class="t1">Door 1</text><text x="217" y="259" class="t2">AI chat tool calls you</text><text x="217" y="275" class="t2">No chat screen to build</text></g>
 
-<g data-p="2" class="sh"><rect class="bx" x="425" y="75" width="150" height="70" rx="8"/><text x="437" y="100" class="t1">Gateway</text><text x="437" y="119" class="t2">Who is asking?</text><text x="437" y="135" class="t2">Logs, remove personal info</text></g>
-<g data-p="1 2" class="sh"><rect class="bx" x="425" y="215" width="150" height="70" rx="8"/><text x="437" y="240" class="t1">Tool server</text><text x="437" y="259" class="t2">Search, get page,</text><text x="437" y="275" class="t2">find contact, last updated</text></g>
+<g data-k="gw" tabindex="0" style="cursor:help" data-p="2" class="sh"><rect class="bx" x="425" y="75" width="150" height="70" rx="8"/><text x="437" y="100" class="t1">Gateway</text><text x="437" y="119" class="t2">Who is asking?</text><text x="437" y="135" class="t2">Logs, remove personal info</text></g>
+<g data-k="ts" tabindex="0" style="cursor:help" data-p="1 2" class="sh"><rect class="bx" x="425" y="215" width="150" height="70" rx="8"/><text x="437" y="240" class="t1">Tool server</text><text x="437" y="259" class="t2">Search, get page,</text><text x="437" y="275" class="t2">find contact, last updated</text></g>
 
-<g data-p="1 2"><rect class="bx" x="670" y="75" width="200" height="70" rx="8"/><text x="682" y="100" class="t1">Search</text><text x="682" y="119" class="t2">Index with access tags</text><text x="682" y="135" class="t2">Fresh via change events</text></g>
-<g data-p="1 2"><rect class="bx" x="670" y="215" width="200" height="70" rx="8"/><text x="682" y="240" class="t1">Page reads</text><text x="682" y="259" class="t2">Checked against the</text><text x="682" y="275" class="t2">user's permissions</text></g>
-<g data-p="1 2"><rect class="bx" x="670" y="330" width="200" height="66" rx="8"/><text x="682" y="357" class="t1">Content store</text><text x="682" y="377" class="t2">Source of truth</text></g>
+<g data-k="se" tabindex="0" style="cursor:help" data-p="1 2"><rect class="bx" x="670" y="75" width="200" height="70" rx="8"/><text x="682" y="100" class="t1">Search</text><text x="682" y="119" class="t2">Index with access tags</text><text x="682" y="135" class="t2">Fresh via change events</text></g>
+<g data-k="pr" tabindex="0" style="cursor:help" data-p="1 2"><rect class="bx" x="670" y="215" width="200" height="70" rx="8"/><text x="682" y="240" class="t1">Page reads</text><text x="682" y="259" class="t2">Checked against the</text><text x="682" y="275" class="t2">user's permissions</text></g>
+<g data-k="cm" tabindex="0" style="cursor:help" data-p="1 2"><rect class="bx" x="670" y="330" width="200" height="66" rx="8"/><text x="682" y="354" class="t1">Content system (CMS)</text><text x="682" y="372" class="t2">Where pages live, for example</text><text x="682" y="387" class="t2">Drupal. The source of truth.</text></g>
 
 <path class="ln p2" data-p="2" d="M160 110H205"/><path class="ln p2" data-p="2" d="M375 110H425"/><path class="ln p2" data-p="2" d="M500 145V215"/>
 <path class="ln p1" data-p="1" d="M160 250H205"/><path class="ln p1" data-p="1" d="M375 250H425"/><path class="ln p1" data-p="1" d="M85 335V285"/>
@@ -96,14 +96,43 @@ Pick a front door to follow its path. Everything inside the dashed box is yours 
 <script>
 (function(){
 var el=document.getElementById('fd'),n=document.getElementById('fdn');
+var DEF={
+v:"Visitors on the site: people reading your pages. They meet Door 2, the chat box on the page.",
+p:"People in their own AI chat: people using an AI assistant they already know. They meet Door 1.",
+m:"Outside AI model: the AI company's model that writes answers. It is outside your control, so it is out of scope here. (Door 2 also needs a model: you host it or a vendor does, and personal information is removed before any prompt goes out.)",
+d1:"Door 1, the AI chat tool: a chat assistant people already use. It calls your site through a connector and sends who the person is. You build no chat screen, but it must support your connector.",
+d2:"Door 2, the chat box on a page: a help box you place on your own page. You build it, run it and control how it looks, logs and behaves.",
+gw:"Gateway: the checkpoint for Door 2. It confirms who is asking (the person's sign-in), writes a log of each step, removes personal information before a prompt leaves your boundary, and applies limits.",
+ts:"Tool server: a small service that offers the AI a short list of safe actions, called tools: search, get one page, find a contact, and when a page was last updated. A tool is one action; the server is the program that offers them. At first all are read-only, and each call checks the person's access. This follows the open MCP standard.",
+se:"Search: a fast copy of your content built for searching (an index). Each entry carries an access tag, so people only get results they may see. Change events keep it fresh.",
+pr:"Page reads: asking the content system for one page. The content system checks that this person is allowed to read it.",
+cm:"Content system (CMS): where editors write and publish pages, for example Drupal. It is the source of truth. AI never edits it here; it only reads."};
 var T=["Both doors end at the same purple layer. You build the tool server, the permission checks and the logging once.",
 "Door 1: people keep the AI tool they already use. It sends who they are with each request. The tool server checks their access. You build no chat screen, but you depend on that tool supporting your connector.",
 "Door 2: a chat box on your own page. The gateway reads the user's sign-in, then calls the same tool server. You control the look, logs and behaviour, and you build and run more."];
 function set(d){el.className='fd d'+d;n.textContent=T[d];[].forEach.call(el.querySelectorAll('button'),function(b){b.setAttribute('aria-pressed',b.dataset.d==d);});}
 [].forEach.call(el.querySelectorAll('button'),function(b){b.onclick=function(){set(+b.dataset.d);};});
+var cur=0;
+[].forEach.call(el.querySelectorAll('g[data-k]'),function(g){var k=g.getAttribute('data-k');
+ function show(){n.textContent=DEF[k];}
+ function back(){n.textContent=T[cur];}
+ g.addEventListener('mouseenter',show);g.addEventListener('focus',show);g.addEventListener('click',show);
+ g.addEventListener('mouseleave',back);g.addEventListener('blur',back);});
+var _set=set;set=function(d){cur=d;_set(d);};
 set(0);
 })();
 </script>
+
+### What each box is
+
+- **Door 1: AI chat tool.** A chat assistant people already use. It calls your site through a connector. You build no chat screen.
+- **Door 2: chat box on a page.** A help box on your own page. You build and run it.
+- **Gateway.** The checkpoint for Door 2. It checks who is asking, keeps a log, removes personal information, and applies limits.
+- **Tool server.** A small service that offers the AI a few safe actions, called **tools**: search, get one page, find a contact, and check when a page was last updated. A *tool* is one action. The *server* is the program that offers them. They only read, and they check the person's access every time. Both doors use the same tool server.
+- **Search.** A fast copy of your content made for searching, with access tags so people only see what they may.
+- **Page reads.** A request to the content system for one page, which checks that the person may read it.
+- **Content system (CMS).** Where editors write and publish pages, for example Drupal. It stays the source of truth. The AI reads from it and never changes it here.
+- **Outside AI model.** The AI company's model that writes the answers. It is outside your boundary.
 
 ## Try it: four uses, ranked by risk
 
