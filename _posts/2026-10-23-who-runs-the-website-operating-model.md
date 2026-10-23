@@ -26,7 +26,7 @@ In a small team, one person may wear several hats. The roles still need to be cl
 
 ## A RACI you can explore
 
-RACI stands for **R**esponsible (does the work), **A**ccountable (owns the result, only one per task), **C**onsulted and **I**nformed. Click a role to highlight its column. Hover a cell for its meaning.
+RACI stands for **R**esponsible (does the work), **A**ccountable (owns the result, only one per task), **C**onsulted and **I**nformed. Hover or focus a role to see what it does, the skills and tools it needs, and what the system shows it. Click a role to pin it and highlight its column. Hover a cell for the meaning of a letter.
 
 <style>
 .wx{border:1px solid rgba(128,128,128,.4);border-radius:10px;padding:14px;margin:1.2em 0;font-size:.95em}
@@ -47,19 +47,22 @@ RACI stands for **R**esponsible (does the work), **A**ccountable (owns the resul
 </style>
 <div class="wx" markdown="0" id="w5">
 <div style="overflow-x:auto"><table id="w5t"></table></div>
-<div class="card" id="w5s" aria-live="polite"><span class="note">Click a role heading.</span></div>
+<div class="card" id="w5s" aria-live="polite"><span class="note">Hover or focus a role heading to see what it does, the skills and tools it needs, and what the system shows it. Click to pin it and highlight its column.</span></div>
 </div>
 <script>
 (function(){
 var R=["Content owner","Editor","Platform admin","Product owner","Service desk"];
 var A=[["Write and update a page","AR","C","-","I","-"],["Publish content","A","R","I","I","-"],["Send yearly review reminders","AR","I","R","I","-"],["Archive retired content","C","R","I","A","-"],["Manage access and roles","I","I","R","A","C"],["Patch and back up the platform","-","-","AR","I","I"],["Handle user problems","I","-","A","I","R"],["Report on content health","C","I","R","A","-"],["Decide what to improve next","C","C","C","AR","C"]];
 var X={A:"Accountable: owns the result. Only one per task.",R:"Responsible: does the work.",AR:"Accountable and responsible: owns it and does it.",C:"Consulted: asked for input before a decision.",I:"Informed: told after it is done.","-":"Not involved."};
+var D=[{d:"Accountable for the accuracy of their own pages. Keeps them current, or retires them.",k:"Subject knowledge; plain-language writing in both official languages; accessible content.",t:"Authoring tool; a My content view.",v:"Review-due list, per-page feedback (was this useful?), accessibility check results, page health."},{d:"Prepares, checks and publishes content on behalf of owners.",k:"Writing for the web; bilingual editing; accessible content; captioning video.",t:"Authoring and workflow in the CMS; caption files; link checker.",v:"Work queue, accessibility checks when publishing, review-due lists, English and French pair status."},{d:"Keeps the platform running, secure and patched.",k:"Linux and containers; CMS, search and cache operations; backup and restore; monitoring; patching through a pipeline.",t:"Container platform; monitoring; backup tools; code repository and pipeline.",v:"Health dashboards, alerts, backup and restore-drill results, patch status."},{d:"Decides what to improve next, using evidence, and reports on content health.",k:"Product management; web analytics; report design for executives and owners; information architecture and taxonomy; usability and accessibility testing.",t:"Analytics dashboards; search logs; reporting tool; usability testing tools.",v:"Content health and parity reports, zero-result searches, unused terms, accessibility results, task-success feedback."},{d:"First point of contact for questions and problems. Fixes what it can, passes on the rest.",k:"Triage; clear communication in both languages; good knowledge of the platform.",t:"Ticketing system; knowledge base.",v:"Open tickets, repeat issues, known-problem list."}];
+function info(i){if(i<0)return;var d=D[i];document.getElementById('w5s').innerHTML='<strong>'+R[i]+'</strong><br>'+d.d+'<div class="cols" style="margin-top:8px"><div><span class="note">Skills and experience</span><br>'+d.k+'</div><div><span class="note">Tools</span><br>'+d.t+'</div><div><span class="note">What the system shows them</span><br>'+d.v+'</div></div>';}
+function counts(){if(sel<0)return '';var doR=A.filter(function(a){return a[sel+1].indexOf('R')>-1}).length,doA=A.filter(function(a){return a[sel+1].indexOf('A')>-1}).length;return '<p class="note" style="margin:8px 0 0">Responsible for '+doR+' of '+A.length+' activities, accountable for '+doA+'.</p>';}
 var sel=-1;
 function draw(){
 var h='<tr><th>Activity</th>';R.forEach(function(r,i){h+='<th><button class="'+(sel==i?'on':'')+'" data-i="'+i+'">'+r+'</button></th>';});h+='</tr>';
 A.forEach(function(a){h+='<tr><td>'+a[0]+'</td>';for(var i=1;i<=5;i++){var v=a[i],hi=sel==i-1&&v!='-';h+='<td title="'+X[v]+'" class="'+(hi?'hl':'')+'">'+v+'</td>';}h+='</tr>';});
 document.getElementById('w5t').innerHTML=h;
-document.querySelectorAll('#w5t button').forEach(function(b){b.onclick=function(){sel=+b.dataset.i;draw();var doR=A.filter(function(a){return a[sel+1].indexOf('R')>-1}).length,doA=A.filter(function(a){return a[sel+1].indexOf('A')>-1}).length;document.getElementById('w5s').innerHTML='<strong>'+R[sel]+'</strong>: responsible for '+doR+' of '+A.length+' activities, accountable for '+doA+'.';};});
+document.querySelectorAll('#w5t button').forEach(function(b){var i=+b.dataset.i;function show(){info(i);if(i==sel)document.getElementById('w5s').insertAdjacentHTML('beforeend',counts());}b.onmouseenter=show;b.onfocus=show;b.onmouseleave=b.onblur=function(){if(sel>=0){info(sel);document.getElementById('w5s').insertAdjacentHTML('beforeend',counts());}else document.getElementById('w5s').innerHTML='<span class="note">Hover or focus a role heading to see what it does, the skills and tools it needs, and what the system shows it. Click to pin it and highlight its column.</span>';};b.onclick=function(){sel=(sel==i)?-1:i;draw();if(sel>=0){info(sel);document.getElementById('w5s').insertAdjacentHTML('beforeend',counts());}else document.getElementById('w5s').innerHTML='<span class="note">Hover or focus a role heading to see what it does, the skills and tools it needs, and what the system shows it. Click to pin it and highlight its column.</span>';};});
 }
 draw();
 })();
