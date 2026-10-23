@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Adding AI to a Web Platform: Where It Helps, Where People Decide"
-date: 2026-10-23 15:40:00 -0400
+date: 2026-10-23 12:00:00 -0400
 description: "Two ways to bring AI to a website or intranet, one shared integration layer, four uses ranked by risk, and the guardrails that keep answers trusted."
 excerpt: "Two ways to bring AI to a website or intranet, one shared integration layer, four uses ranked by risk, and the guardrails that keep answers trusted."
 theme: digital
