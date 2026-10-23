@@ -1,0 +1,37 @@
+{%- assign my_tags = page.tags -%}
+{%- if my_tags and my_tags.size > 0 and page.layout == 'single' and page.classes != 'tags-page' -%}
+{%- assign pool = site.posts | concat: site.books | concat: site.architecture | concat: site.pages -%}
+{%- assign picked = "" -%}
+{%- assign count = 0 -%}
+{%- assign levels = "6,5,4,3,2,1" | split: "," -%}
+{%- for lvl in levels -%}
+  {%- assign need = lvl | plus: 0 -%}
+  {%- for doc in pool -%}
+    {%- if count < 3 and doc.url != page.url and doc.title and doc.tags and doc.tags.size > 0 -%}
+      {%- assign shared = 0 -%}
+      {%- for t in doc.tags -%}
+        {%- if t != 'books' and my_tags contains t -%}{%- assign shared = shared | plus: 1 -%}{%- endif -%}
+      {%- endfor -%}
+      {%- assign marker = "|" | append: doc.url | append: "|" -%}
+      {%- unless picked contains marker -%}
+      {%- if shared == need -%}
+        {%- assign picked = picked | append: marker -%}
+        {%- assign count = count | plus: 1 -%}
+        {%- capture cards -%}{{ cards }}<a class="rel-card" href="{{ doc.url | relative_url }}"><strong>{{ doc.title | escape }}</strong><span>{{ doc.excerpt | default: doc.description | strip_html | strip_newlines | truncate: 110 }}</span></a>{%- endcapture -%}
+      {%- endif -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+{%- if count > 0 -%}
+<style>
+.rel-box{margin:1.5em 0 1em}
+.rel-box h3{margin:0 0 .6em;font-size:1em}
+.rel-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.rel-card{display:flex;flex-direction:column;gap:4px;border:1px solid rgba(128,128,128,.4);border-radius:8px;padding:10px 12px;text-decoration:none;color:inherit;border-bottom:1px solid rgba(128,128,128,.4)}
+.rel-card:hover{border-color:#1f6feb;box-shadow:0 2px 8px rgba(31,111,235,.2)}
+.rel-card span{font-size:.85em;opacity:.8}
+</style>
+<div class="rel-box"><h3>You might also like</h3><div class="rel-cards">{{ cards }}</div></div>
+{%- endif -%}
+{%- endif -%}
