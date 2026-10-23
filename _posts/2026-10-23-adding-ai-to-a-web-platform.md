@@ -42,6 +42,69 @@ There are two ways in. Both can work.
 
 **The useful idea: build the integration layer once, then choose the front doors.** Both patterns call the same tool server, the same gateway and the same permission checks. Start with the cheaper door. Add the second only when people show they want it.
 
+### The picture
+
+Pick a front door to follow its path. Everything inside the dashed box is yours to control.
+
+<style>
+.fd{border:1px solid rgba(128,128,128,.4);border-radius:10px;padding:12px;margin:1.2em 0}
+.fd .row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;align-items:center}
+.fd button{font:inherit;padding:4px 10px;border:1px solid rgba(128,128,128,.55);border-radius:6px;background:transparent;color:inherit;cursor:pointer}
+.fd button[aria-pressed=true]{background:#1f6feb;color:#fff;border-color:#1f6feb}
+.fd svg{width:100%;height:auto;display:block}
+.fd .bx{fill:rgba(128,128,128,.08);stroke:rgba(128,128,128,.6);stroke-width:1.5}
+.fd .bd{fill:none;stroke:rgba(128,128,128,.7);stroke-width:1.5;stroke-dasharray:6 4}
+.fd text{fill:currentColor;font-size:13px;font-family:inherit}
+.fd .t1{font-weight:700;font-size:14px}.fd .t2{font-size:11.5px;opacity:.8}
+.fd .ln{stroke:rgba(128,128,128,.6);stroke-width:2;fill:none;marker-end:url(#fda)}
+.fd .shared{stroke:#7d4cdb;opacity:.9}
+.fd [data-p]{opacity:.28;transition:opacity .25s}
+.fd.d1 [data-p~="1"],.fd.d2 [data-p~="2"],.fd.d0 [data-p]{opacity:1}
+.fd .a1 .bx{stroke:#1f6feb}.fd .a2 .bx{stroke:#d98e04}.fd .sh .bx{stroke:#7d4cdb;fill:rgba(125,76,219,.12)}
+.fd.d1 .ln.p1,.fd.d0 .ln.p1{stroke:#1f6feb}.fd.d2 .ln.p2,.fd.d0 .ln.p2{stroke:#d98e04}
+.fd #fdn{margin:.4em 0 0;font-size:.92em}
+</style>
+<div class="fd d0" id="fd" markdown="0">
+<div class="row" role="group" aria-label="Front door"><button data-d="0" aria-pressed="true">Show both</button><button data-d="1" aria-pressed="false">Door 1: AI chat tool</button><button data-d="2" aria-pressed="false">Door 2: chat box on a page</button></div>
+<svg viewBox="0 0 900 420" role="img" aria-label="Two front doors, a shared gateway and tool server, then search and content">
+<defs><marker id="fda" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="rgba(128,128,128,.9)"/></marker></defs>
+<text x="10" y="22" class="t2">PEOPLE</text><text x="205" y="22" class="t2">FRONT DOORS</text>
+<rect class="bd" x="395" y="30" width="495" height="380" rx="10"/><text x="410" y="50" class="t2">YOUR HOSTING BOUNDARY (confirm with security and privacy)</text>
+
+<g data-p="2" class="a2"><rect class="bx" x="10" y="75" width="150" height="70" rx="8"/><text x="22" y="105" class="t1">Visitors on</text><text x="22" y="124" class="t1">the site</text></g>
+<g data-p="1" class="a1"><rect class="bx" x="10" y="215" width="150" height="70" rx="8"/><text x="22" y="245" class="t1">People in their</text><text x="22" y="264" class="t1">own AI chat</text></g>
+<g data-p="1"><rect class="bd" x="10" y="335" width="150" height="62" rx="8"/><text x="22" y="361" class="t1">Outside AI model</text><text x="22" y="380" class="t2">out of scope</text></g>
+
+<g data-p="2" class="a2"><rect class="bx" x="205" y="75" width="170" height="70" rx="8"/><text x="217" y="100" class="t1">Door 2</text><text x="217" y="119" class="t2">Chat box on a page</text><text x="217" y="135" class="t2">You build and run it</text></g>
+<g data-p="1" class="a1"><rect class="bx" x="205" y="215" width="170" height="70" rx="8"/><text x="217" y="240" class="t1">Door 1</text><text x="217" y="259" class="t2">AI chat tool calls you</text><text x="217" y="275" class="t2">No chat screen to build</text></g>
+
+<g data-p="2" class="sh"><rect class="bx" x="425" y="75" width="150" height="70" rx="8"/><text x="437" y="100" class="t1">Gateway</text><text x="437" y="119" class="t2">Who is asking?</text><text x="437" y="135" class="t2">Logs, remove personal info</text></g>
+<g data-p="1 2" class="sh"><rect class="bx" x="425" y="215" width="150" height="70" rx="8"/><text x="437" y="240" class="t1">Tool server</text><text x="437" y="259" class="t2">Search, get page,</text><text x="437" y="275" class="t2">find contact, last updated</text></g>
+
+<g data-p="1 2"><rect class="bx" x="670" y="75" width="200" height="70" rx="8"/><text x="682" y="100" class="t1">Search</text><text x="682" y="119" class="t2">Index with access tags</text><text x="682" y="135" class="t2">Fresh via change events</text></g>
+<g data-p="1 2"><rect class="bx" x="670" y="215" width="200" height="70" rx="8"/><text x="682" y="240" class="t1">Page reads</text><text x="682" y="259" class="t2">Checked against the</text><text x="682" y="275" class="t2">user's permissions</text></g>
+<g data-p="1 2"><rect class="bx" x="670" y="330" width="200" height="66" rx="8"/><text x="682" y="357" class="t1">Content store</text><text x="682" y="377" class="t2">Source of truth</text></g>
+
+<path class="ln p2" data-p="2" d="M160 110H205"/><path class="ln p2" data-p="2" d="M375 110H425"/><path class="ln p2" data-p="2" d="M500 145V215"/>
+<path class="ln p1" data-p="1" d="M160 250H205"/><path class="ln p1" data-p="1" d="M375 250H425"/><path class="ln p1" data-p="1" d="M85 335V285"/>
+<path class="ln shared" data-p="1 2" d="M575 235C620 235 620 120 670 115"/>
+<path class="ln shared" data-p="1 2" d="M575 255H670"/>
+<path class="ln shared" data-p="1 2" d="M770 285V330"/>
+</svg>
+<p id="fdn" class="note"></p>
+</div>
+<script>
+(function(){
+var el=document.getElementById('fd'),n=document.getElementById('fdn');
+var T=["Both doors end at the same purple layer. You build the tool server, the permission checks and the logging once.",
+"Door 1: people keep the AI tool they already use. It sends who they are with each request. The tool server checks their access. You build no chat screen, but you depend on that tool supporting your connector.",
+"Door 2: a chat box on your own page. The gateway reads the user's sign-in, then calls the same tool server. You control the look, logs and behaviour, and you build and run more."];
+function set(d){el.className='fd d'+d;n.textContent=T[d];[].forEach.call(el.querySelectorAll('button'),function(b){b.setAttribute('aria-pressed',b.dataset.d==d);});}
+[].forEach.call(el.querySelectorAll('button'),function(b){b.onclick=function(){set(+b.dataset.d);};});
+set(0);
+})();
+</script>
+
 ## Try it: four uses, ranked by risk
 
 Pick a use. Then switch the guardrails on and off and watch what people feel.
