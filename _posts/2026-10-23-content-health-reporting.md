@@ -21,7 +21,7 @@ Analytics tools already collect most of what you need. Combine them with a littl
 - **Orphan.** No other page links to it, so people only find it by search or bookmark.
 - **Failed searches.** Searches in that area that returned nothing, or that people abandoned.
 
-Fictional data below. Pick a measure, sort, and click a branch. The suggested next step opens inside that row.
+Fictional data below. Pick a measure and sort. The worst branch opens a suggested next step. Click any other row to open its next step.
 
 <style>
 .wx{border:1px solid rgba(128,128,128,.4);border-radius:10px;padding:14px;margin:1.2em 0;font-size:.95em}
@@ -48,20 +48,21 @@ Fictional data below. Pick a measure, sort, and click a branch. The suggested ne
 <button data-m="failed" aria-pressed="false">Failed searches</button>
 <button id="w2s" aria-pressed="true">Worst first</button>
 </div>
-<div class="note" id="w2d"><strong>Click a branch</strong> to see the suggested next step.</div>
+<style>#w2 .card[data-n]:hover{border-color:#1f6feb;background:rgba(31,111,235,.08)}</style>
+<div class="note" id="w2d">Each row opens a suggested next step. Click a row, or its &ldquo;See next step&rdquo; link.</div>
 <div id="w2l"></div>
 </div>
 <script>
 (function(){
 var D=[["Finance",120,18,4,6,14],["Human Resources",210,60,22,15,40],["IT Services",340,150,60,48,25],["Communications",95,8,2,3,5],["Operations",180,70,35,20,30],["Policy",150,30,50,12,9]];
 var idx={stale:2,noOwner:3,orphan:4,failed:5},tip={stale:"Send review reminders to the owners. Archive pages nobody claims.",noOwner:"Assign an owner for each page, or archive it. Start with the most visited.",orphan:"Link the page from its topic hub, or retire it if it is no longer needed.",failed:"Read the search terms. Add the missing content, a synonym, or a better title."};
-var m="stale",sort=true,sel=null;
+var m="stale",sort=true,sel="IT Services";
 function draw(){
 var k=idx[m],rows=D.slice();
 if(sort)rows.sort(function(a,b){return b[k]/b[1]-a[k]/a[1];});
 var h='';
 rows.forEach(function(r){var p=Math.round(r[k]/r[1]*100);
-h+='<div class="'+(sel==r[0]?'card hl':'card')+'" style="cursor:pointer" data-n="'+r[0]+'" tabindex="0" role="button" title="'+r[k]+' of '+r[1]+' pages"><div class="row" style="justify-content:space-between;margin:0"><span>'+r[0]+'</span><strong>'+p+'%</strong></div><div class="track"><div class="fill" style="width:'+Math.min(p,100)+'%"></div></div>'+(sel==r[0]?'<div style="margin-top:8px;padding:8px;border-left:4px solid #1f6feb;background:rgba(31,111,235,.12)"><strong>Next step:</strong> '+tip[m]+' <span class="note">('+r[k]+' of '+r[1]+' pages)</span></div>':'')+'</div>';});
+h+='<div class="'+(sel==r[0]?'card hl':'card')+'" style="cursor:pointer" data-n="'+r[0]+'" tabindex="0" role="button" title="'+r[k]+' of '+r[1]+' pages"><div class="row" style="justify-content:space-between;margin:0"><span><span aria-hidden="true">'+(sel==r[0]?'&#9662;':'&#9656;')+'</span> '+r[0]+'</span><span><strong>'+p+'%</strong> <span class="note" style="margin-left:8px;text-decoration:underline">'+(sel==r[0]?'Hide next step':'See next step')+'</span></span></div><div class="track"><div class="fill" style="width:'+Math.min(p,100)+'%"></div></div>'+(sel==r[0]?'<div style="margin-top:8px;padding:8px;border-left:4px solid #1f6feb;background:rgba(31,111,235,.12)"><strong>Next step:</strong> '+tip[m]+' <span class="note">('+r[k]+' of '+r[1]+' pages)</span></div>':'')+'</div>';});
 document.getElementById('w2l').innerHTML=h;
 document.querySelectorAll('#w2l .card').forEach(function(c){function go(){sel=(sel==c.dataset.n)?null:c.dataset.n;draw();}c.onclick=go;c.onkeydown=function(e){if(e.key=='Enter'||e.key==' '){e.preventDefault();go();}};});
 }
