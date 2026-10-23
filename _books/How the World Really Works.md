@@ -889,7 +889,7 @@ Frightening prophecies and unrealistic promises abound.
 
 - 1920 25% of US farmland was devoted to feed for horses and mules
 - Transitions can happen (they happened quickly in the past); energy deman was much less in 1920.  
-- The global inertia behind fossil-fuels will take time to change.  For example, past 20 years our fossil carbon dependence shrank from 85% to 85% (2% decrease) based on hydroelectricity generation expansion.  Tripling our renewable electricity generation in 30-years would still leave fossil-fuels as the dominant supplier.
+- The global inertia behind fossil-fuels will take time to change.  For example, past 20 years our fossil carbon dependence shrank from about 87% to 85% (a 2% decrease) based on hydroelectricity generation expansion.  Tripling our renewable electricity generation in 30-years would still leave fossil-fuels as the dominant supplier.
 - **category mistake**: assigning to something a quality or action that is properly attributable only to things of another category.
   - comparing the category of "electronically enabled world" (adoption of personal gadgets, social media profiles, smartphones) with the category sufficient delivery of water, crops, feeding and slaughtering animals, converting energy, extracting and altering raw materials at an enormous scale (billions of consumers) and infrastructures.
     - replacing landlines with mobiles in a generation is not equivalent to replacing terawatts of power generation
