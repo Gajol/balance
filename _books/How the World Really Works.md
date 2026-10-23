@@ -1162,6 +1162,10 @@ More terms from the notes, grouped by theme. They are also underlined in the tex
 - **coronal mass ejection**: A giant burst of plasma and magnetic field thrown out by the Sun.
 - **Great Oxidation Event**: The time, about 2.5 billion years ago, when oxygen first built up in Earth's atmosphere.
 
+### People
+
+- **Mao Zedong (1893 to 1976)**: founded the People's Republic of China in 1949 and led the Communist Party until his death. He united the country after decades of civil war and foreign invasion, with gains in land reform, literacy and health. But the Great Leap Forward (1958 to 1962) caused the deadliest famine in history, and the Cultural Revolution (1966 to 1976) brought widespread persecution. History's verdict is mixed: mostly negative abroad, while the Party in China still honours him and officially calls his later years mistakes. See [Mao Zedong](https://en.wikipedia.org/wiki/Mao_Zedong).
+
 ## Authors
 - [Robert Ayres](https://en.wikipedia.org/wiki/Robert_Ayres_(scientist)): an American-born physicist and economist. His career has focused on the application of physical ideas, especially the laws of thermodynamics, to economics; a long-standing pioneering interest in material flows and transformations (industrial ecology or industrial metabolism)—a concept which he originated.  Criticises how economists ignore energy due to its low cost. His most recent work challenges the widely held economic theory of growth.
 - H. T. Odum, *Environment, Power, and Society* (New York: Wiley-Interscience, 1971). *Modern societies did not understand the energetics involved and the various means by which the energies entering a complex system are fed back as subsidies indirectly into all parts of the network . . . industrial man no longer eats potatoes made from solar energy; now he eats potatoes partly made of oil.*
@@ -1191,12 +1195,13 @@ More terms from the notes, grouped by theme. They are also underlined in the tex
 <style>
 .gl{border-bottom:1px dotted #1f6feb;cursor:help;position:relative;text-decoration:none}
 .gl:hover,.gl:focus{background:rgba(31,111,235,.12);outline:none}
-.gl .gt{display:none;position:absolute;left:0;top:1.5em;z-index:30;width:min(320px,80vw);padding:8px 10px;border-radius:8px;background:#1b1f24;color:#fff;font-size:.85rem;line-height:1.4;font-weight:400;font-style:normal;box-shadow:0 4px 14px rgba(0,0,0,.3);text-align:left}
+.gl .gt{white-space:pre-line;display:none;position:absolute;left:0;top:1.5em;z-index:30;width:min(320px,80vw);padding:8px 10px;border-radius:8px;background:#1b1f24;color:#fff;font-size:.85rem;line-height:1.4;font-weight:400;font-style:normal;box-shadow:0 4px 14px rgba(0,0,0,.3);text-align:left}
 .gl:hover .gt,.gl:focus .gt{display:block}
 </style>
 <script>
 (function(){
 var G=[
+["Mao","Mao Zedong (1893 to 1976). Founded the People's Republic of China in 1949 and led the Communist Party until he died.\nWhy he matters: ended decades of civil war and foreign invasion and united the country, with gains in land reform, literacy and health. But the Great Leap Forward (1958 to 1962) caused the deadliest famine in history, and the Cultural Revolution (1966 to 1976) brought widespread persecution.\nHistory's verdict: mixed. Abroad, mostly negative. In China the Party still honours him, while officially calling his later years mistakes."],
 ["arbitrage","Buying and selling the same thing in different markets to profit from a price gap. Labour arbitrage means moving work to wherever labour costs least."],
 ["anthropogenic","Caused by human activity."],
 ["category mistake","Treating something as if it belonged to a different category, for example comparing how fast phones spread with how fast power plants can be replaced."],
