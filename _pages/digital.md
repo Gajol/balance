@@ -11,8 +11,8 @@ Notes on how digital services get designed, built and run, with a focus on gover
 ## Architecture
 {% include theme-list.html theme="digital" path="_architecture/" %}
 
-## Canadian Digital Service and service design
-{% include theme-list.html theme="digital" path="application/cds" %}
+## Service design
+- [Canadian Digital Service and service design]({{ '/service-design/' | relative_url }}) &mdash; older notes on CDS, user experience, accessibility and design thinking.
 
 ## Product management and UX
 - [Client email capability tiers]({{ '/client-email-tiers/' | relative_url }}) - an interactive tool to pick capability tiers for client email, with the dependencies and transition value carried into the BRD, security and integration work.
