@@ -1,8 +1,8 @@
 ---
 layout: null
-permalink: /portal-email-capability-tiers/
-title: "Portal client email: capability tiers"
-description: Ten capabilities at three tiers, so a product team can choose a level rather than approve a list.
+permalink: /client-email-tiers/
+title: "Client email: capability tiers"
+description: A generic pattern for deciding how much email a client portal needs, and how each choice carries into the BRD, security and integration work.
 tags: [ux, "product management"]
 sitemap: true
 ---
@@ -11,13 +11,11 @@ sitemap: true
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Portal Email Capability Tiers</title>
+<title>Client Email Capability Tiers</title>
 <style>
 /* Layout: navy title band, then a sticky contents rail beside a single reading
-   column. One committed light theme — the department's design system has no dark theme,
-   and this file is made to be printed and read on a department desktop.
-   No external fonts, scripts or styles: it has to open from a file share on an
-   air-gapped network. */
+   column. One committed light theme, made to be printed and read at a desk.
+   No external fonts, scripts or styles: it opens from a file share or offline. */
 :root {
   --navy: #26374a;
   --text: #333333;
@@ -165,6 +163,14 @@ td.size, th.size { text-align: center; white-space: nowrap; }
 .panel p:last-child, .panel ul:last-child { margin-bottom: 0; }
 .panel ul { padding-left: 20px; }
 
+/* ---- carry-forward notes ---- */
+.carry { border: 1px solid var(--rule); border-left: 5px solid var(--navy); background: var(--bg); padding: 12px 16px; margin: 16px 0 0; }
+.carry h4 { margin: 0 0 8px; font-size: .9rem; text-transform: uppercase; letter-spacing: .06em; color: var(--navy); }
+.carry dl { margin: 0; display: grid; grid-template-columns: 9.5rem 1fr; gap: 8px 16px; }
+.carry dt { font-weight: 700; font-size: .9rem; color: var(--text-2); }
+.carry dd { margin: 0; font-size: .94rem; line-height: 1.5; }
+@media (max-width: 640px) { .carry dl { grid-template-columns: 1fr; gap: 2px; } .carry dd { margin-bottom: 8px; } }
+
 /* ---- tier cards ---- */
 .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
 .tier-card { border: 1px solid var(--rule); border-top: 5px solid var(--navy); padding: 14px 16px; min-width: 0; }
@@ -299,9 +305,9 @@ footer.src {
 
 <header class="band">
   <div class="band-inner">
-    <p class="kicker">Enterprise architecture · Draft for review</p>
-    <h1>Portal client email: capability tiers</h1>
-    <p class="meta"><span>A department portal</span><span>Drupal, Solr, Matomo and a shared notification service</span><span>23 October 2026</span></p>
+    <p class="kicker">Enterprise architecture · Generic pattern</p>
+    <h1>Client email: capability tiers</h1>
+    <p class="meta"><span>A client-facing portal</span><span>CMS, search index, analytics and a shared notification service</span><span>October 2026</span></p>
   </div>
 </header>
 
@@ -310,7 +316,7 @@ footer.src {
     <h2>Contents</h2>
     <ol>
       <li><a href="#use">1. How to use this</a></li>
-      <li><a href="#provenance">2. Borrowed and new</a></li>
+      <li><a href="#provenance">2. Borrow or decide fresh</a></li>
       <li><a href="#product">3. The product</a></li>
       <li><a href="#tiers">4. The three tiers</a></li>
       <li><a href="#datasheets">5. Capability datasheets</a>
@@ -334,7 +340,8 @@ footer.src {
       <li><a href="#wizard">10. The campaign wizard</a></li>
       <li><a href="#build">11. Work and phasing</a></li>
       <li><a href="#decisions">12. Decisions owed</a></li>
-      <li><a href="#workshop">13. Running the session</a></li>
+      <li><a href="#carry">13. Carrying it forward</a></li>
+      <li><a href="#workshop">14. Running the session</a></li>
     </ol>
   </nav>
 
@@ -355,25 +362,26 @@ footer.src {
     <li>Not a business requirements document.</li>
     <li>Not a commitment to build everything listed.</li>
     <li>Not a verdict on anyone's work.</li>
+    <li>Not the end of the line: it is written to feed a business requirements document (BRD), a security assessment and an integration design.</li>
   </ul>
 </div>
 </section>
 
 <section id="provenance">
-<h2>2. What is borrowed, and what is new</h2>
-<p>This portal shares a platform with the an earlier project on the same platform work, and nothing else. The distinction matters, because a borrowed decision read as a settled one is how a programme inherits rules nobody agreed to.</p>
+<h2>2. What to borrow, and what to decide fresh</h2>
+<p>A portal often shares a platform with a sibling programme. Share the platform and the mechanics, and nothing else. The distinction matters, because a borrowed decision read as a settled one is how a programme inherits rules nobody agreed to.</p>
 <div class="tw">
 <table>
   <thead><tr><th style="width:18%">Status</th><th>What it covers</th></tr></thead>
   <tbody>
-    <tr><td><strong>Borrowed</strong></td><td>Platform patterns: Drupal as the source of truth, the notification service as the send channel, Solr for content matching, Matomo for measurement.</td></tr>
-    <tr><td><strong>Borrowed</strong></td><td>The mechanics of bounces, unsubscribes and template design. These are properties of the notification service, not of a programme.</td></tr>
-    <tr><td><strong>New</strong></td><td>Every use case, audience rule, tier and policy call in this document. The portal is its own programme.</td></tr>
-    <tr><td><strong>Not carried over</strong></td><td>The the earlier project decision records, its personas and its content calendar. Those were agreed for that programme only.</td></tr>
+    <tr><td><strong>Borrow</strong></td><td>Platform patterns: the CMS as the source of truth, the notification service as the send channel, a search index for content matching, an analytics tool for measurement.</td></tr>
+    <tr><td><strong>Borrow</strong></td><td>The mechanics of bounces, unsubscribes and template design. These are properties of the notification service, not of a programme.</td></tr>
+    <tr><td><strong>Decide fresh</strong></td><td>Every use case, audience rule, tier and policy call in this document. Each portal is its own programme.</td></tr>
+    <tr><td><strong>Do not carry over</strong></td><td>A sibling programme's decision records, personas and content calendar. Those were agreed for that programme only.</td></tr>
   </tbody>
 </table>
 </div>
-<p class="hint">Scale: 2,500 to 3,000 registered accounts. Comparable to the earlier project, which is why the same platform choices hold — but the similarity is in size, not in purpose.</p>
+<p class="hint">Scale assumption: low thousands of registered accounts. If yours is an order of magnitude larger, re-check the provider's rate limits and every size estimate here.</p>
 </section>
 
 <section id="product">
@@ -430,11 +438,11 @@ footer.src {
   </div>
   <div class="tier-card">
     <h3>Tier 2 — Targeted</h3>
-    <p>Drupal sends by itself. Preference centre, segmented campaigns, approval workflow, automatic suppression.</p>
+    <p>The CMS sends by itself. Preference centre, segmented campaigns, approval workflow, automatic suppression.</p>
   </div>
   <div class="tier-card">
     <h3>Tier 3 — Personalised</h3>
-    <p>Content finds the client. Digests from Solr, saved searches, correction notices, re-engagement, full reporting.</p>
+    <p>Content finds the client. Digests from the search index, saved searches, correction notices, re-engagement, full reporting.</p>
   </div>
 </div>
 <div class="panel">
@@ -458,7 +466,7 @@ footer.src {
   </div>
   <div class="cap-body">
     <div class="pick" data-cap="C-1" role="group" aria-label="Tier for C-1 Account and identity email">
-      <label><input type="radio" name="C-1" value="1" data-size="L"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Clients can register, confirm, sign in with MFA and reset a password</span><span class="tbuild">Template registry, send service, Drupal event hooks for T-1 to T-4</span></span><span class="tsize">L</span></label>
+      <label><input type="radio" name="C-1" value="1" data-size="L"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Clients can register, confirm, sign in with MFA and reset a password</span><span class="tbuild">Template registry, send service, CMS event hooks for T-1 to T-4</span></span><span class="tsize">L</span></label>
       <label><input type="radio" name="C-1" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">Clients are told when their address or access changes</span><span class="tbuild">Security event hooks for T-5 and T-6, sent to both old and new address</span></span><span class="tsize">M</span></label>
       <label><input type="radio" name="C-1" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Dormant and closed accounts are handled on a stated rule</span><span class="tbuild">Inactivity job and retention wiring for T-7 and T-8</span></span><span class="tsize">M</span></label>
     </div>
@@ -466,6 +474,14 @@ footer.src {
       <h4>MFA makes this a sign-in dependency, not an email feature</h4>
       <p>With MFA in scope, a client who does not receive the code cannot sign in. The notification service is a shared cloud service with published service objectives and is explicitly not for emergencies, so sign-in now depends on it.</p>
       <p>Tier 1 therefore has to include a documented account-recovery fallback — a help-desk route that does not need the code — and monitoring of the notification service status page. Treat that as part of the L, not as a later addition.</p>
+    </div>
+    <div class="carry">
+      <h4>Carry it forward</h4>
+      <dl>
+        <dt>For the BRD</dt><dd>Account email is a launch requirement, not a campaign feature. Record the MFA decision and the account-recovery fallback as requirements, not assumptions.</dd>
+        <dt>For security</dt><dd>Sign-in codes and reset links put the notification service on the authentication path. Assess its availability, keep codes short-lived, and keep sensitive content out of the email (notify-and-pull).</dd>
+        <dt>For integration</dt><dd>Needs a synchronous API path from the identity function to the service, retry on failure, monitoring of the service status, and an event hook for each account lifecycle change.</dd>
+      </dl>
     </div>
   </div>
 </div>
@@ -486,6 +502,14 @@ footer.src {
       <h4>Settles decisions D-2, D-3 and D-4</h4>
       <p>These three shape the consent data model, so they close before Phase 1 is scoped. Tier 1 is viable only if the answer to D-2 is that the programme assigns topics; if clients choose, Tier 2 is the floor, not an upgrade.</p>
     </div>
+    <div class="carry">
+      <h4>Carry it forward</h4>
+      <dl>
+        <dt>For the BRD</dt><dd>Write the consent rules (default state, opt-out, any non-optional class) as numbered requirements. D-2 to D-4 become the first assumptions on the log.</dd>
+        <dt>For security</dt><dd>Consent records are personal information. Log who changed what and when, sign unsubscribe tokens so links cannot be forged, and cover the storage in the privacy impact assessment.</dd>
+        <dt>For integration</dt><dd>Every send path reads the consent flag, so it lives in one place (the profile) and is checked at send time, not copied into the notification service.</dd>
+      </dl>
+    </div>
   </div>
 </div>
 
@@ -505,6 +529,14 @@ footer.src {
       <h4>A segment label is personal information</h4>
       <p>Targeting by role and sector is a use of personal information under privacy legislation, and belongs in the privacy impact assessment whichever tier is chosen. Tier 3 adds behavioural data about named clients, which is a further use and may need the assessment reopened.</p>
     </div>
+    <div class="carry">
+      <h4>Carry it forward</h4>
+      <dl>
+        <dt>For the BRD</dt><dd>Express audiences as named, testable rules and make the recipient count shown before approval an acceptance criterion.</dd>
+        <dt>For security</dt><dd>Segment labels and behavioural criteria are personal information. Limit who can build audiences and keep the query used for each send.</dd>
+        <dt>For integration</dt><dd>One reusable audience query, shared by every stream, reading profile and taxonomy data. Exports carry the unsubscribe link column.</dd>
+      </dl>
+    </div>
   </div>
 </div>
 
@@ -516,13 +548,21 @@ footer.src {
   </div>
   <div class="cap-body">
     <div class="pick" data-cap="C-4" role="group" aria-label="Tier for C-4 Templates and authoring">
-      <label><input type="radio" name="C-4" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Templates exist in both languages and staff know which is which</span><span class="tbuild">Templates authored in the notification service; IDs recorded in Drupal by hand</span></span><span class="tsize">XS</span></label>
+      <label><input type="radio" name="C-4" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Templates exist in both languages and staff know which is which</span><span class="tbuild">Templates authored in the notification service; IDs recorded in the CMS by hand</span></span><span class="tsize">XS</span></label>
       <label><input type="radio" name="C-4" value="2" data-size="S"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">A wrong or stale template ID cannot reach a client</span><span class="tbuild">Config entity per use case; variables validated before every send</span></span><span class="tsize">S</span></label>
-      <label><input type="radio" name="C-4" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Campaign content is written in Drupal, not retyped into the notification service</span><span class="tbuild">Approved content converted to Notify markdown, with a lint step</span></span><span class="tsize">M</span></label>
+      <label><input type="radio" name="C-4" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Campaign content is written in the CMS, not retyped into the notification service</span><span class="tbuild">Approved content converted to the service's markdown, with a lint step</span></span><span class="tsize">M</span></label>
     </div>
     <div class="panel">
       <h4>A limit no tier removes</h4>
-      <p>The notification service has no API for creating templates. Every template is authored by hand in its web interface at every tier, and the ID is then registered in Drupal. Build the registry at Tier 2 or that manual step becomes the thing that breaks a send.</p>
+      <p>Many shared notification services have no API for creating templates. If yours is one, every template is authored by hand in its web interface at every tier, and the ID is then registered in the CMS. Build the registry at Tier 2 or that manual step becomes the thing that breaks a send.</p>
+    </div>
+    <div class="carry">
+      <h4>Carry it forward</h4>
+      <dl>
+        <dt>For the BRD</dt><dd>Record language coverage, who translates and approves, and the lead time, as an operating requirement.</dd>
+        <dt>For security</dt><dd>Templates must carry no sensitive content and no unapproved links. Control who can edit them in the service and review changes.</dd>
+        <dt>For integration</dt><dd>Where the service has no template API, keep a registry in the CMS that maps each use case to a template ID and its expected variables, and validate before every send.</dd>
+      </dl>
     </div>
   </div>
 </div>
@@ -536,12 +576,20 @@ footer.src {
   <div class="cap-body">
     <div class="pick" data-cap="C-5" role="group" aria-label="Tier for C-5 Sending, queueing and scheduling">
       <label><input type="radio" name="C-5" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Staff send a campaign by hand from the notification service screen</span><span class="tbuild">Views export with the unsubscribe link column</span></span><span class="tsize">XS</span></label>
-      <label><input type="radio" name="C-5" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">Drupal sends, and a failed send retries instead of vanishing</span><span class="tbuild">API client, queue, retry with backoff, idempotency guard</span></span><span class="tsize">M</span></label>
-      <label><input type="radio" name="C-5" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Campaigns are scheduled ahead and paced to the API</span><span class="tbuild">Scheduler, batch rate control, handoff inside the 72-hour window</span></span><span class="tsize">M</span></label>
+      <label><input type="radio" name="C-5" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">The CMS sends, and a failed send retries instead of vanishing</span><span class="tbuild">API client, queue, retry with backoff, idempotency guard</span></span><span class="tsize">M</span></label>
+      <label><input type="radio" name="C-5" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Campaigns are scheduled ahead and paced to the API</span><span class="tbuild">Scheduler, batch rate control, handoff inside the service's scheduling horizon</span></span><span class="tsize">M</span></label>
     </div>
     <div class="panel warn">
       <h4>Account email cannot stay at Tier 1</h4>
       <p>Tier 1 here is for campaigns only. Password resets and MFA codes are triggered by the client and have to go through the API, so C-1 at Tier 1 already requires C-5 at Tier 2. These two capabilities are coupled; the others are not.</p>
+    </div>
+    <div class="carry">
+      <h4>Carry it forward</h4>
+      <dl>
+        <dt>For the BRD</dt><dd>Separate campaign sends from triggered account email in the requirements. The second is needed at launch.</dd>
+        <dt>For security</dt><dd>API keys are credentials: keep them out of code, rotate them, and use separate keys for test and live. With on-premises hosting, outbound access needs an approved rule.</dd>
+        <dt>For integration</dt><dd>Queue, retry with backoff, an idempotency guard and rate control against the provider's limits. Poll for status where inbound callbacks are not allowed.</dd>
+      </dl>
     </div>
   </div>
 </div>
@@ -550,17 +598,25 @@ footer.src {
   <div class="cap-head">
     <span class="code">C-6</span>
     <h3>Suppression and list health</h3>
-    <span class="head-note">Keeping the department able to send at all</span>
+    <span class="head-note">Keeping the organization able to send at all</span>
   </div>
   <div class="cap-body">
     <div class="pick" data-cap="C-6" role="group" aria-label="Tier for C-6 Suppression and list health">
-      <label><input type="radio" name="C-6" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Bad addresses stop being emailed, if staff remember</span><span class="tbuild">A documented manual step inside the notification service's 7-day status window</span></span><span class="tsize">XS</span></label>
+      <label><input type="radio" name="C-6" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Bad addresses stop being emailed, if staff remember</span><span class="tbuild">A documented manual step inside the service's delivery-status window (about 7 days)</span></span><span class="tsize">XS</span></label>
       <label><input type="radio" name="C-6" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">Bad addresses stop being emailed automatically</span><span class="tbuild">Daily status poll, permanent failures suppressed, soft bounces counted</span></span><span class="tsize">M</span></label>
       <label><input type="radio" name="C-6" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">The list stays clean over years, not just at launch</span><span class="tbuild">Annual re-confirmation, engagement sunsetting, list health report</span></span><span class="tsize">M</span></label>
     </div>
     <div class="panel bad">
       <h4>Tier 1 carries a service-level risk, not just an admin cost</h4>
-      <p>The notification service can suspend a service when too large a share of a day's sends fail. At Tier 1 that protection depends on a person remembering, every time, inside seven days. With MFA in scope, a suspension also stops sign-in codes.</p>
+      <p>Shared notification services can suspend a sender when too large a share of a day's sends fail. At Tier 1 that protection depends on a person remembering, every time, inside the delivery-status window. With MFA in scope, a suspension also stops sign-in codes.</p>
+    </div>
+    <div class="carry">
+      <h4>Carry it forward</h4>
+      <dl>
+        <dt>For the BRD</dt><dd>State the list-health rule (what counts as a permanent failure, and when an address stops being emailed) as a requirement, not a habit.</dd>
+        <dt>For security</dt><dd>Low failure rates protect sender reputation and the provider's trust in you. Unconfirmed addresses are also an account-takeover risk.</dd>
+        <dt>For integration</dt><dd>Poll delivery status inside the provider's retention window and write bounces back to the profile.</dd>
+      </dl>
     </div>
   </div>
 </div>
@@ -574,12 +630,20 @@ footer.src {
   <div class="cap-body">
     <div class="pick" data-cap="C-7" role="group" aria-label="Tier for C-7 Approval and audit">
       <label><input type="radio" name="C-7" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Someone approved it, somewhere, by email</span><span class="tbuild">Nothing in the system; the record lives in a mailbox</span></span><span class="tsize">XS</span></label>
-      <label><input type="radio" name="C-7" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">The approver is named in the record, beside the recipient count</span><span class="tbuild">Two-person approval in Drupal, campaign record, notification IDs stored</span></span><span class="tsize">M</span></label>
+      <label><input type="radio" name="C-7" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">The approver is named in the record, beside the recipient count</span><span class="tbuild">Two-person approval in the CMS, campaign record, notification IDs stored</span></span><span class="tsize">M</span></label>
       <label><input type="radio" name="C-7" value="3" data-size="S"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">All-client sends need a director, and the trail can be exported</span><span class="tbuild">Role-based approval rules, audit export</span></span><span class="tsize">S</span></label>
     </div>
     <div class="panel warn">
       <h4>Sent campaigns are records of business value</h4>
       <p>Records policy makes a sent campaign a record. At Tier 1 that record is a mailbox, which is not a records system and cannot answer who approved a send after the approver has left.</p>
+    </div>
+    <div class="carry">
+      <h4>Carry it forward</h4>
+      <dl>
+        <dt>For the BRD</dt><dd>Name the approver roles and thresholds (for example, director sign-off for all-client sends) and the record-keeping rule.</dd>
+        <dt>For security</dt><dd>Separation of duties: an author cannot approve their own send. The audit trail is itself a protected record.</dd>
+        <dt>For integration</dt><dd>Store the campaign record, approver, recipient count and provider notification IDs together, so the audit trail is one query.</dd>
+      </dl>
     </div>
   </div>
 </div>
@@ -593,12 +657,20 @@ footer.src {
   <div class="cap-body">
     <div class="pick" data-cap="C-8" role="group" aria-label="Tier for C-8 Measurement">
       <label><input type="radio" name="C-8" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">How many were sent, delivered and failed</span><span class="tbuild">Counts stored on the campaign record</span></span><span class="tsize">XS</span></label>
-      <label><input type="radio" name="C-8" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">Which campaigns bring clients back to the portal</span><span class="tbuild">Matomo campaign parameters generated at send time, visits by segment</span></span><span class="tsize">M</span></label>
+      <label><input type="radio" name="C-8" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">Which campaigns bring clients back to the portal</span><span class="tbuild">Analytics campaign parameters generated at send time, visits by segment</span></span><span class="tsize">M</span></label>
       <label><input type="radio" name="C-8" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Whether clients completed the task the email was sent for</span><span class="tbuild">Goals, funnel and content reports, monthly trend by segment</span></span><span class="tsize">M</span></label>
     </div>
     <div class="panel">
       <h4>No tier buys open rates</h4>
-      <p>The notification service reports delivery status only. Opens and clicks do not exist at any tier, and corporate link scanners open every link before the client does, so click counts on an executive segment are close to meaningless. Open rates would mean a separate marketing platform: procurement, a security assessment, and a privacy impact assessment for a new processor.</p>
+      <p>Many shared notification services report delivery status only. Where that is so, opens and clicks do not exist at any tier, and corporate link scanners open every link before the client does, so click counts on an executive segment are close to meaningless. Open rates would mean a separate marketing platform: procurement, a security assessment, and a privacy impact assessment for a new processor.</p>
+    </div>
+    <div class="carry">
+      <h4>Carry it forward</h4>
+      <dl>
+        <dt>For the BRD</dt><dd>Define what success means before choosing metrics. Open rates are a procurement decision, not a report.</dd>
+        <dt>For security</dt><dd>Open and click tracking adds a new processor and new personal data, and link scanners distort the numbers anyway.</dd>
+        <dt>For integration</dt><dd>Tag links with campaign parameters at send time, so the analytics tool can attribute visits to a segment.</dd>
+      </dl>
     </div>
   </div>
 </div>
@@ -613,11 +685,19 @@ footer.src {
     <div class="pick" data-cap="C-9" role="group" aria-label="Tier for C-9 Subscription content">
       <label><input type="radio" name="C-9" value="1" data-size="0"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Nothing. Clients hear from the programme when the programme writes</span><span class="tbuild">Not built</span></span><span class="tsize">—</span></label>
       <label><input type="radio" name="C-9" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">Clients hear when something is published in a topic they follow</span><span class="tbuild">Publication event to audience query to queue</span></span><span class="tsize">M</span></label>
-      <label><input type="radio" name="C-9" value="3" data-size="L"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Each client gets what is new for their role and sector</span><span class="tbuild">Solr digests per segment, saved searches, correction notices</span></span><span class="tsize">L</span></label>
+      <label><input type="radio" name="C-9" value="3" data-size="L"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Each client gets what is new for their role and sector</span><span class="tbuild">Search-index digests per segment, saved searches, correction notices</span></span><span class="tsize">L</span></label>
     </div>
     <div class="panel bad">
       <h4>S-3 is a policy question before it is a build</h4>
       <p>If this portal publishes guidance people act on, telling a client that something they read has been corrected may not be optional and may not be opt-out-able. That changes the consent model for everything else, so settle it before choosing a tier here.</p>
+    </div>
+    <div class="carry">
+      <h4>Carry it forward</h4>
+      <dl>
+        <dt>For the BRD</dt><dd>Decide whether corrections are optional (S-3) before writing the consent requirements.</dd>
+        <dt>For security</dt><dd>Saved searches and reading history are personal information. A digest must not reveal anything the client could not see after sign-in.</dd>
+        <dt>For integration</dt><dd>Publication event, audience query, queue. Digests need the search index to select content per segment.</dd>
+      </dl>
     </div>
   </div>
 </div>
@@ -636,7 +716,15 @@ footer.src {
     </div>
     <div class="panel bad">
       <h4>This is decision D-5, and it has no safe default</h4>
-      <p>The tiers here are not degrees of the same thing. Tier 1 puts replies in a mailbox outside Drupal, outside the audit trail, and caps what can be said to low-sensitivity content. Tier 3 keeps the record and the classification but is a build of its own. Choosing a tier here is choosing between three different projects.</p>
+      <p>The tiers here are not degrees of the same thing. Tier 1 puts replies in a mailbox outside the CMS, outside the audit trail, and caps what can be said to low-sensitivity content. Tier 3 keeps the record and the classification but is a build of its own. Choosing a tier here is choosing between three different projects.</p>
+    </div>
+    <div class="carry">
+      <h4>Carry it forward</h4>
+      <dl>
+        <dt>For the BRD</dt><dd>D-5 must be answered before this can be written. It selects between three different requirements.</dd>
+        <dt>For security</dt><dd>An email reply caps what can be said to low-sensitivity content and sits outside the audit trail. A secure message keeps the classification and the record.</dd>
+        <dt>For integration</dt><dd>A mailbox, a ticket queue and an in-portal thread are three different integrations with different records. Choose before design.</dd>
+      </dl>
     </div>
   </div>
 </div>
@@ -657,7 +745,7 @@ footer.src {
 <div class="panel">
   <h4>My read, for the product team to argue with</h4>
   <ul>
-    <li>Tier 2 is the honest target. Tier 1 is not a smaller version of the product — it is the product with the consent model and the suppression loop left out, and both of those are what keep the department able to send at all.</li>
+    <li>Tier 2 is the honest target. Tier 1 is not a smaller version of the product — it is the product with the consent model and the suppression loop left out, and both of those are what keep the organization able to send at all.</li>
     <li>The one place to spend above Tier 2 is C-9, because that is the capability that gives a client a reason to come back.</li>
     <li>The one place to stay at Tier 1 is C-8, until the programme has said what success means.</li>
   </ul>
@@ -679,7 +767,7 @@ footer.src {
     <tr><td>T-4</td><td>Sign-in verification code</td><td>Every sign-in (MFA in scope)</td><td>No</td><td>The notification service priority send</td></tr>
     <tr><td>T-5</td><td>Email address changed</td><td>Profile change — both addresses</td><td>No</td><td>privacy legislation</td></tr>
     <tr><td>T-6</td><td>Unusual sign-in, account locked</td><td>Security event</td><td>No</td><td>Security policy</td></tr>
-    <tr><td>T-7</td><td>Account inactive, act now</td><td>Inactivity threshold</td><td>No</td><td>Privacy Practices — retention</td></tr>
+    <tr><td>T-7</td><td>Account inactive, act now</td><td>Inactivity threshold</td><td>No</td><td>Retention schedule</td></tr>
     <tr><td>T-8</td><td>Account closed</td><td>Deactivation</td><td>No</td><td>privacy legislation; records</td></tr>
   </tbody>
 </table>
@@ -696,9 +784,9 @@ footer.src {
   <tbody>
     <tr><td>S-1</td><td>New content in a topic you follow</td><td>Publication, to subscribers of that topic</td><td>Per topic</td><td>anti-spam benchmark; official languages</td></tr>
     <tr><td>S-2</td><td>Periodic digest</td><td>Weekly or monthly, by role × sector × region</td><td>Per topic</td><td>official languages; WCAG 2.1 AA</td></tr>
-    <tr><td>S-3</td><td>Content you read was corrected or withdrawn</td><td>Editorial change on a page the client opened</td><td>Decision</td><td>Service and Digital; duty to inform</td></tr>
+    <tr><td>S-3</td><td>Content you read was corrected or withdrawn</td><td>Editorial change on a page the client opened</td><td>Decision</td><td>Duty to inform; service standards</td></tr>
     <tr><td>S-4</td><td>Scheduled release is now available</td><td>Publication calendar date</td><td>Per topic</td><td>official languages</td></tr>
-    <tr><td>S-5</td><td>Saved search has new results</td><td>Solr query matches new content</td><td>Per search</td><td>privacy legislation — stored queries</td></tr>
+    <tr><td>S-5</td><td>Saved search has new results</td><td>Search query matches new content</td><td>Per search</td><td>privacy legislation — stored queries</td></tr>
   </tbody>
 </table>
 </div>
@@ -763,22 +851,22 @@ footer.src {
 </table>
 </div>
 <div class="panel warn">
-  <h4>One correction before this reaches the BRD</h4>
-  <p>The working note cites the private-sector privacy statute. A public institution is governed by the public-sector one, and the two set different consent and notice rules. Worth correcting before it reaches the requirements document.</p>
+  <h4>Check which privacy regime applies</h4>
+  <p>Public-sector and private-sector privacy legislation set different consent and notice rules. Confirm which one governs your organization before this analysis reaches the requirements document, so the BRD cites the right statute.</p>
 </div>
 </section>
 
 <section id="levels">
 <h2>9. Integration levels</h2>
-<p>How far Drupal and the notification service are wired together. The levels map onto the tiers, but they are worth stating separately because they are what the developers will argue about.</p>
+<p>How far the CMS and the notification service are wired together. The levels map onto the tiers, but they are worth stating separately because they are what the developers will argue about.</p>
 <div class="tw">
 <table>
-  <thead><tr><th style="width:15%">Level</th><th style="width:26%">What staff do</th><th style="width:30%">What Drupal does</th><th>Fits which streams</th></tr></thead>
+  <thead><tr><th style="width:15%">Level</th><th style="width:26%">What staff do</th><th style="width:30%">What the CMS does</th><th>Fits which streams</th></tr></thead>
   <tbody>
     <tr><td><strong>0. Notify only</strong></td><td>Build a list by hand, upload a spreadsheet, send from the notification service</td><td>Nothing</td><td>None safely — no consent gate</td></tr>
-    <tr><td><strong>1. Drupal builds the list</strong></td><td>Pick filters in Drupal, export CSV, upload to the notification service</td><td>Owns profiles, consent, unsubscribe links, bounce flags</td><td>E-1, E-2, O-1</td></tr>
-    <tr><td><strong>2. Drupal sends</strong></td><td>Pick filters, preview, approve, press send in Drupal</td><td>Calls the notification service API per recipient, logs the notification ID</td><td>All of T, plus E</td></tr>
-    <tr><td><strong>3. Drupal orchestrates</strong></td><td>Author a campaign, approve it, read the results</td><td>Queue, schedule, poll delivery status, suppress bounces, build digests</td><td>All streams including S-2 and S-5</td></tr>
+    <tr><td><strong>1. The CMS builds the list</strong></td><td>Pick filters in the CMS, export CSV, upload to the notification service</td><td>Owns profiles, consent, unsubscribe links, bounce flags</td><td>E-1, E-2, O-1</td></tr>
+    <tr><td><strong>2. The CMS sends</strong></td><td>Pick filters, preview, approve, press send in the CMS</td><td>Calls the notification service API per recipient, logs the notification ID</td><td>All of T, plus E</td></tr>
+    <tr><td><strong>3. The CMS orchestrates</strong></td><td>Author a campaign, approve it, read the results</td><td>Queue, schedule, poll delivery status, suppress bounces, build digests</td><td>All streams including S-2 and S-5</td></tr>
   </tbody>
 </table>
 </div>
@@ -787,8 +875,8 @@ footer.src {
   <p>Level 1 is not throwaway scaffolding. Levels 2 and 3 run on the same consent model, profiles and audience query — only the last mile changes, from a CSV export to an API call. Level 0 is the throwaway one, and it has no consent gate, which is why it is not a starting point.</p>
 </div>
 <div class="panel warn">
-  <h4>The on-premises constraint</h4>
-  <p>Outbound HTTPS from Drupal to the notification service API, through the departmental proxy, is the single dependency that can stop the whole design. Polling, not callbacks: an inbound endpoint into on-premises Drupal needs a DMZ and a security review. Firewall changes take weeks, so raise it now rather than at build time.</p>
+  <h4>If the CMS is hosted on-premises</h4>
+  <p>Outbound HTTPS from the CMS to the notification service API, through the organization's proxy, is the single dependency that can stop the whole design. Prefer polling to callbacks: an inbound endpoint into an on-premises system usually needs a DMZ and a security review. Firewall changes can take weeks, so raise the request early rather than at build time.</p>
 </div>
 </section>
 
@@ -814,9 +902,9 @@ footer.src {
     <div class="screen-t">2. Audience</div>
     <div class="screen-b">
       <span class="fl">Role</span>
-      <div class="fd">[x] EX &nbsp; [ ] Mgr &nbsp; [ ] WL</div>
+      <div class="fd">[x] Executive &nbsp; [ ] Manager &nbsp; [ ] Staff</div>
       <span class="fl">Sector · Region</span>
-      <div class="fd">Energy ▾ &nbsp; Prairie ▾</div>
+      <div class="fd">Manufacturing ▾ &nbsp; West ▾</div>
       <span class="fl">Topic</span>
       <div class="fd">Events ▾</div>
       <div><span class="fb">38 recipients</span></div>
@@ -852,7 +940,7 @@ footer.src {
       <span class="fl">Summary</span>
       <div class="fd">E-2 · 38 recipients</div>
       <span class="fl">Approver</span>
-      <div class="fd">Director, Programs ▾</div>
+      <div class="fd">Director ▾</div>
       <span class="fl">Comment to author</span>
       <div class="fd">optional</div>
       <div><span class="fb">Approve</span> <span class="fb warn">Return</span></div>
@@ -869,7 +957,7 @@ footer.src {
       <div class="fd">2026-11-14 &nbsp; 09:40</div>
       <span class="fl">Batch rate</span>
       <div class="fd">200 per minute</div>
-      <p class="fn">Drupal holds the queue. The notification service takes a send 72 hours ahead at most.</p>
+      <p class="fn">The CMS holds the queue. The notification service accepts a send only a limited time ahead (for example, 72 hours).</p>
     </div>
   </div>
   <div class="screen">
@@ -881,7 +969,7 @@ footer.src {
       <div class="fd">1 permanent failure</div>
       <span class="fl">On the landing page</span>
       <div class="fd">Visits 22 · Reg. 15</div>
-      <div><span class="fb info">Open in Matomo</span></div>
+      <div><span class="fb info">Open in analytics</span></div>
       <p class="fn">The bounce is suppressed already. This record is the audit trail.</p>
     </div>
   </div>
@@ -904,7 +992,7 @@ footer.src {
 <table>
   <thead><tr><th style="width:24%">Component</th><th style="width:48%">What it covers</th><th style="width:12%">Level</th><th class="size" style="width:10%">Size</th></tr></thead>
   <tbody>
-    <tr><td>The notification service service setup</td><td>Service created, keys issued, sender name, reply-to mailbox</td><td>1</td><td class="size">XS</td></tr>
+    <tr><td>Notification service setup</td><td>Service created, keys issued, sender name, reply-to mailbox</td><td>1</td><td class="size">XS</td></tr>
     <tr><td>Network and security</td><td>Outbound HTTPS egress rule, key storage, privacy assessment update</td><td>1</td><td class="size">S</td></tr>
     <tr><td>Profile and taxonomy</td><td>Role, sector, region and topic vocabularies, shared with content tagging</td><td>1</td><td class="size">M</td></tr>
     <tr><td>Preference centre</td><td>Client-facing page to choose topics and language</td><td>1</td><td class="size">M</td></tr>
@@ -913,12 +1001,12 @@ footer.src {
     <tr><td>CSV export</td><td>Views Data Export with the unsubscribe link column</td><td>1</td><td class="size">XS</td></tr>
     <tr><td>Template registry</td><td>Config entity mapping use case to template IDs and expected variables</td><td>2</td><td class="size">S</td></tr>
     <tr><td>Send service</td><td>API client, retry and backoff, idempotency guard, notification log</td><td>2</td><td class="size">M</td></tr>
-    <tr><td>Transactional hooks</td><td>Wire T-1 to T-8 to Drupal events</td><td>2</td><td class="size">M</td></tr>
+    <tr><td>Transactional hooks</td><td>Wire T-1 to T-8 to the CMS events</td><td>2</td><td class="size">M</td></tr>
     <tr><td>Campaign entity and wizard</td><td>Content type, six-screen workflow, two-person approval, seed test</td><td>3</td><td class="size">L</td></tr>
     <tr><td>Queue and scheduler</td><td>Batched sending, rate limiting, scheduled release</td><td>3</td><td class="size">M</td></tr>
     <tr><td>Delivery polling</td><td>Daily status poll, bounce write-back, campaign report</td><td>3</td><td class="size">M</td></tr>
-    <tr><td>Matomo campaign reporting</td><td>Parameter generation, goals, segment dimensions</td><td>3</td><td class="size">M</td></tr>
-    <tr><td>Solr digest builder</td><td>Per-segment content selection into template slots</td><td>3</td><td class="size">L</td></tr>
+    <tr><td>Analytics campaign reporting</td><td>Parameter generation, goals, segment dimensions</td><td>3</td><td class="size">M</td></tr>
+    <tr><td>Digest builder</td><td>Per-segment content selection into template slots</td><td>3</td><td class="size">L</td></tr>
   </tbody>
 </table>
 </div>
@@ -928,12 +1016,12 @@ footer.src {
 <table>
   <thead><tr><th style="width:16%">Phase</th><th style="width:32%">What it delivers</th><th style="width:32%">What it unblocks</th><th>Streams live</th></tr></thead>
   <tbody>
-    <tr><td><strong>0. Prerequisites</strong></td><td>The notification service service, egress rule, privacy assessment update</td><td>Everything — nothing is buildable until egress clears</td><td>None</td></tr>
+    <tr><td><strong>0. Prerequisites</strong></td><td>Notification service account, egress rule, privacy assessment update</td><td>Everything — with on-premises hosting, nothing is buildable until egress clears</td><td>None</td></tr>
     <tr><td><strong>1. Consent base</strong></td><td>Profiles, taxonomies, preferences, consent, suppression</td><td>The right to send anything at all</td><td>None yet</td></tr>
     <tr><td><strong>2. Manual sends</strong></td><td>CSV export with unsubscribe links; staff send</td><td>Proves content, approval and operating model</td><td>E-1, E-2, O-1</td></tr>
     <tr><td><strong>3. Transactional</strong></td><td>Template registry, send service, event hooks</td><td>The account lifecycle needed for launch</td><td>All of T</td></tr>
-    <tr><td><strong>4. Campaigns</strong></td><td>Campaign entity, wizard, queue, polling, Matomo</td><td>Targeted sending without staff handling lists</td><td>E and O in full</td></tr>
-    <tr><td><strong>5. Subscription</strong></td><td>Solr digests, saved searches, corrections</td><td>Needs S-3 and S-5 decided first</td><td>S</td></tr>
+    <tr><td><strong>4. Campaigns</strong></td><td>Campaign entity, wizard, queue, polling, analytics</td><td>Targeted sending without staff handling lists</td><td>E and O in full</td></tr>
+    <tr><td><strong>5. Subscription</strong></td><td>Search-index digests, saved searches, corrections</td><td>Needs S-3 and S-5 decided first</td><td>S</td></tr>
   </tbody>
 </table>
 </div>
@@ -947,7 +1035,7 @@ footer.src {
 <table>
   <thead><tr><th style="width:24%">Risk</th><th style="width:40%">Why it matters here</th><th>What to do now</th></tr></thead>
   <tbody>
-    <tr><td>Outbound egress not approved</td><td>On-premises hosting; without it no stream above Level 1 works, and MFA codes cannot be sent at all</td><td>Raise the firewall request this month, before design is finished</td></tr>
+    <tr><td>Outbound access not approved</td><td>If hosting is on-premises: without it no stream above Level 1 works, and MFA codes cannot be sent at all</td><td>Raise the firewall request early, before design is finished</td></tr>
     <tr><td>Requirements stay at "send email"</td><td>Solution architecture cannot be written against it; the project stalls further</td><td>This strawman plus the decision table; assumptions close on a date</td></tr>
     <tr><td>D-5 stays undecided</td><td>Three different builds hide behind one "to be determined"</td><td>Force the choice before Phase 1 scope is fixed</td></tr>
     <tr><td>Mandatory email question unresolved</td><td>Determines whether consent has an exception class, which changes the data model</td><td>Decision D-4</td></tr>
@@ -971,7 +1059,7 @@ footer.src {
     <tr><td>D-4</td><td>Is any email non-optional?</td><td>(a) no, everything opt-out &nbsp; (b) a named class cannot be refused &nbsp; (c) non-optional notices go on the dashboard</td><td>(b) a named, documented class <strong>— blocking</strong></td></tr>
     <tr><td>D-5</td><td>How does client feedback get answered?</td><td>(a) email reply to a monitored mailbox &nbsp; (b) secure message inside the portal &nbsp; (c) offline only</td><td><strong>Blocked — no safe default</strong></td></tr>
     <tr><td>D-6</td><td>Do we need open rates?</td><td>(a) no, portal activity is the measure &nbsp; (b) yes, and we accept a marketing platform</td><td>(a) portal activity</td></tr>
-    <tr><td>D-7</td><td>Which sender domain?</td><td>(a) the service's own domain &nbsp; (b) the department's own domain</td><td>(a) the service's own domain</td></tr>
+    <tr><td>D-7</td><td>Which sender domain?</td><td>(a) the service's own domain &nbsp; (b) the organization's own domain</td><td>(a) the service's own domain</td></tr>
     <tr><td>D-8</td><td>What is the account inactivity policy?</td><td>(a) no reminders &nbsp; (b) remind at 90 days, up to three times, then review</td><td>(b)</td></tr>
     <tr><td>D-9</td><td>Who approves a campaign before it sends?</td><td>(a) author alone &nbsp; (b) two people &nbsp; (c) two people, director for all-client sends</td><td>(c)</td></tr>
   </tbody>
@@ -992,8 +1080,49 @@ footer.src {
 </div>
 </section>
 
+<section id="carry">
+<h2>13. Carrying it forward</h2>
+<p>A strawman is only useful if what it settles flows into the documents that come next. Every capability card ends with three short notes: one for the BRD, one for security, one for integration. This section shows what each handoff receives, and how one choice travels through all three.</p>
+
+<h3>Three handoffs</h3>
+<div class="tw">
+<table>
+  <thead><tr><th style="width:16%">Handoff</th><th style="width:50%">What it receives from this document</th><th>Where it lands</th></tr></thead>
+  <tbody>
+    <tr><td><strong>BRD</strong></td><td>Tiers become scope statements, such as "C-1 to C-8 at Tier 2". The use cases in section 7 become requirements. Each default in section 12 becomes a numbered assumption with a close date.</td><td>Requirements and the assumption log</td></tr>
+    <tr><td><strong>Security</strong></td><td>The policy map (section 8), the rule that email carries low-sensitivity content only, credential custody, separation of duties, and the sign-in dependency. Consent and segment data are personal information.</td><td>Privacy impact assessment, threat and risk assessment, data classification</td></tr>
+    <tr><td><strong>Integration</strong></td><td>The integration levels (section 9), the build components and phases (section 11), and the interfaces they imply: identity to service, CMS to service, service status back to the CMS, CMS to analytics, search index to digests.</td><td>Interface list, dependency register, network and access requests</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>How one choice travels</h3>
+<div class="tw">
+<table>
+  <thead><tr><th style="width:17%">The choice</th><th style="width:27%">For the BRD</th><th style="width:28%">For security</th><th>For integration</th></tr></thead>
+  <tbody>
+    <tr><td><strong>MFA is in scope</strong><br>C-1 at Tier 1 forces C-5 to Tier 2</td><td>Sign-in codes are a launch requirement. The account-recovery fallback is a stated requirement, not a later fix.</td><td>Sign-in now depends on a shared external service. Keep codes short-lived and monitor the service status.</td><td>A synchronous API path from the identity function to the service, with retry and an event hook for each lifecycle change.</td></tr>
+    <tr><td><strong>Clients choose their topics</strong><br>D-2, so C-2 at Tier 2 is the floor</td><td>The consent model is written as numbered requirements, with defaults from D-3 and D-4.</td><td>Consent and preference records are personal information. Log changes, sign unsubscribe links, and cover them in the privacy impact assessment.</td><td>A preference centre and a topic list shared with content tagging, read by every send path.</td></tr>
+    <tr><td><strong>Feedback is answered by secure message</strong><br>D-5, so C-10 at Tier 3</td><td>A records requirement: the reply is kept with the client record.</td><td>Classification stays inside the authenticated portal. The email only says "log in".</td><td>An in-portal message thread plus a notify-and-pull email, not a mailbox.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="panel">
+  <h4>Why keep all three in view</h4>
+  <p>A choice that looks small in one place is rarely small in the others. Something cheap to write into a BRD can be expensive to secure, and something cheap to secure can be expensive to integrate. Reading the three notes side by side is how a tier choice gets its real price.</p>
+</div>
+
+<h3>Handoff checklist</h3>
+<ul>
+  <li><strong>BRD:</strong> every selected tier is written as a scope statement. Every default is on the assumption log with an owner and a date. D-2 to D-4 are marked blocking.</li>
+  <li><strong>Security:</strong> the policy map is attached to the privacy impact assessment. Credential custody and the fallback for sign-in codes are named. Who can build an audience and who can approve a send is written down.</li>
+  <li><strong>Integration:</strong> every interface has an owner. Any network or access request has been raised early, because it can take weeks. The provider's limits (scheduling horizon, status window, template API, failure-rate suspension) are in the dependency register.</li>
+</ul>
+</section>
+
 <section id="workshop">
-<h2>13. Running the session</h2>
+<h2>14. Running the session</h2>
 <p class="standfirst">Ninety minutes, four people, no slides in the room at the start.</p>
 <p>Asking "what are the requirements?" asks people to produce an abstraction. Asking "what happens next to Marie?" asks them to retrieve an experience. The second is something anyone can do, and it yields the first as a by-product. It also changes whose requirement it is: when they narrate it, it is theirs; when you state it, it is a demand from IT.</p>
 
@@ -1015,7 +1144,7 @@ footer.src {
 
 <h3>How to run it</h3>
 <ul>
-  <li>Use a name and a specific situation: "Marie, works at a mid-size utility in Saskatchewan, has used the portal twice." Specificity triggers concrete recall; "the user" triggers abstraction, which is the thing to avoid.</li>
+  <li>Use a name and a specific situation: "Marie, works at a mid-size company, has used the portal twice." Specificity triggers concrete recall; "the user" triggers abstraction, which is the thing to avoid.</li>
   <li>Your only two lines are <strong>"what does she see?"</strong> and <strong>"then what happens?"</strong> Not "what's the requirement" — that is the question that has been failing.</li>
   <li>Bring the tables out around minute sixty, framed as <em>here is what you just told me, written up</em>. Not as a challenge.</li>
   <li>End by filling in the decision table together. Nine rows, multiple choice, defaults already marked. Two non-technical people can finish it in one sitting.</li>
@@ -1036,8 +1165,8 @@ footer.src {
 </section>
 
 <footer class="src">
-  <p><strong>Sources.</strong> the notification service capabilities, limits and delivery statuses: the notification service documentation, the service's own domain, October 2026. Platform patterns reused from the an earlier project on the same platform. Everything else is the architect's draft for review, and is not yet agreed by the business.</p>
-  <p>Prepared by Enterprise Architecture · 23 October 2026 · Draft for discussion</p>
+  <p><strong>Sources.</strong> Capabilities, limits and delivery statuses differ by provider: confirm each against your notification service's current documentation. Everything else is an architect's draft pattern for adaptation, and is not agreed by any business.</p>
+  <p>Enterprise architecture pattern · Generic version · October 2026</p>
 </footer>
 
   </main>
@@ -1069,7 +1198,8 @@ footer.src {
     "C-9": "Subscription content", "C-10": "Feedback and reply"
   };
   var CAPS = Object.keys(NAMES);
-  var KEY = "portal-email-tiers-v1";
+  var CARRY = {"C-1": ["Account email is a launch requirement, not a campaign feature. Record the MFA decision and the account-recovery fallback as requirements, not assumptions.", "Sign-in codes and reset links put the notification service on the authentication path. Assess its availability, keep codes short-lived, and keep sensitive content out of the email (notify-and-pull).", "Needs a synchronous API path from the identity function to the service, retry on failure, monitoring of the service status, and an event hook for each account lifecycle change."], "C-2": ["Write the consent rules (default state, opt-out, any non-optional class) as numbered requirements. D-2 to D-4 become the first assumptions on the log.", "Consent records are personal information. Log who changed what and when, sign unsubscribe tokens so links cannot be forged, and cover the storage in the privacy impact assessment.", "Every send path reads the consent flag, so it lives in one place (the profile) and is checked at send time, not copied into the notification service."], "C-3": ["Express audiences as named, testable rules and make the recipient count shown before approval an acceptance criterion.", "Segment labels and behavioural criteria are personal information. Limit who can build audiences and keep the query used for each send.", "One reusable audience query, shared by every stream, reading profile and taxonomy data. Exports carry the unsubscribe link column."], "C-4": ["Record language coverage, who translates and approves, and the lead time, as an operating requirement.", "Templates must carry no sensitive content and no unapproved links. Control who can edit them in the service and review changes.", "Where the service has no template API, keep a registry in the CMS that maps each use case to a template ID and its expected variables, and validate before every send."], "C-5": ["Separate campaign sends from triggered account email in the requirements. The second is needed at launch.", "API keys are credentials: keep them out of code, rotate them, and use separate keys for test and live. With on-premises hosting, outbound access needs an approved rule.", "Queue, retry with backoff, an idempotency guard and rate control against the provider's limits. Poll for status where inbound callbacks are not allowed."], "C-6": ["State the list-health rule (what counts as a permanent failure, and when an address stops being emailed) as a requirement, not a habit.", "Low failure rates protect sender reputation and the provider's trust in you. Unconfirmed addresses are also an account-takeover risk.", "Poll delivery status inside the provider's retention window and write bounces back to the profile."], "C-7": ["Name the approver roles and thresholds (for example, director sign-off for all-client sends) and the record-keeping rule.", "Separation of duties: an author cannot approve their own send. The audit trail is itself a protected record.", "Store the campaign record, approver, recipient count and provider notification IDs together, so the audit trail is one query."], "C-8": ["Define what success means before choosing metrics. Open rates are a procurement decision, not a report.", "Open and click tracking adds a new processor and new personal data, and link scanners distort the numbers anyway.", "Tag links with campaign parameters at send time, so the analytics tool can attribute visits to a segment."], "C-9": ["Decide whether corrections are optional (S-3) before writing the consent requirements.", "Saved searches and reading history are personal information. A digest must not reveal anything the client could not see after sign-in.", "Publication event, audience query, queue. Digests need the search index to select content per segment."], "C-10": ["D-5 must be answered before this can be written. It selects between three different requirements.", "An email reply caps what can be said to low-sensitivity content and sits outside the audit trail. A secure message keeps the classification and the record.", "A mailbox, a ticket queue and an in-portal thread are three different integrations with different records. Choose before design."]};
+  var KEY = "client-email-tiers-v1";
   var radios = Array.prototype.slice.call(document.querySelectorAll('.pick input[type=radio]'));
 
   function read() {
@@ -1138,11 +1268,16 @@ footer.src {
 
   document.getElementById("copy").addEventListener("click", function () {
     var sel = chosen();
-    var lines = ["Portal client email — capability tiers", ""];
+    var lines = ["Client email — capability tiers", ""];
     CAPS.forEach(function (c) {
       var r = sel[c];
       lines.push(c + "  " + NAMES[c] + "  —  " +
         (r ? "Tier " + r.value + " (" + r.getAttribute("data-size") + ")" : "not set"));
+      if (r && CARRY[c]) {
+        lines.push("    BRD: " + CARRY[c][0]);
+        lines.push("    Security: " + CARRY[c][1]);
+        lines.push("    Integration: " + CARRY[c][2]);
+      }
     });
     lines.push("");
     lines.push("Rough build: " + document.getElementById("n-sprints").textContent);
@@ -1186,11 +1321,11 @@ footer.src {
     "C-1": ["Capability", "Account and identity email", "The only capability the portal cannot launch without. MFA makes it a sign-in dependency, not an email feature."],
     "C-2": ["Capability", "Consent and preferences", "The right to send anything at all. Settles decisions D-2, D-3 and D-4.", "Blocking for Phase 1 scope"],
     "C-3": ["Capability", "Audience and segmentation", "Who a given message is actually for. A segment label is personal information under privacy legislation."],
-    "C-4": ["Capability", "Templates and authoring", "Where the words live. The notification service has no API for creating templates, so part of this stays manual at every tier."],
+    "C-4": ["Capability", "Templates and authoring", "Where the words live. Many shared services have no template API, so part of this stays manual at every tier."],
     "C-5": ["Capability", "Sending, queueing and scheduling", "How a message leaves the building. Coupled to C-1: MFA codes and password resets must go through the API, so it cannot sit below Tier 2."],
-    "C-6": ["Capability", "Suppression and list health", "Keeps the department able to send at all. The notification service can suspend a service when too large a share of a day's sends fail."],
+    "C-6": ["Capability", "Suppression and list health", "Keeps the organization able to send at all. Shared services can suspend a sender when too large a share of a day's sends fail."],
     "C-7": ["Capability", "Approval and audit", "Who authorised a send, and what happened. A sent campaign is a record of business value."],
-    "C-8": ["Capability", "Measurement", "What the programme can honestly claim. No tier buys open rates — the notification service reports delivery only."],
+    "C-8": ["Capability", "Measurement", "What the programme can honestly claim. No tier buys open rates where the service reports delivery only."],
     "C-9": ["Capability", "Subscription content", "What gives a client a reason to come back. The one place worth spending above Tier 2."],
     "C-10": ["Capability", "Feedback and reply", "Three tiers that are three different projects.", "Blocked on decision D-5"],
     /* decisions */
@@ -1214,10 +1349,10 @@ footer.src {
     "T-8": ["Account email", "Account closed", "Sent on deactivation. A record of business value."],
     /* subscription */
     "S-1": ["Subscription email", "New content in a topic you follow", "Triggered by publication, to the subscribers of that topic. Opt-out per topic."],
-    "S-2": ["Subscription email", "Periodic digest", "Weekly or monthly, built per segment: role by sector by region. Needs Solr."],
+    "S-2": ["Subscription email", "Periodic digest", "Weekly or monthly, built per segment: role by sector by region. Needs the search index."],
     "S-3": ["Subscription email", "Content you read was corrected or withdrawn", "Triggered by an editorial change to a page the client opened. May not be optional, which would change the consent model.", "Policy question before it is a build"],
     "S-4": ["Subscription email", "Scheduled release is now available", "Triggered by the publication calendar date."],
-    "S-5": ["Subscription email", "Saved search has new results", "A stored Solr query matches new content. Stored queries are personal information."],
+    "S-5": ["Subscription email", "Saved search has new results", "A stored search query matches new content. Stored queries are personal information."],
     /* engagement */
     "E-1": ["Engagement email", "Announcement to all clients", "Sent by hand to all active accounts. Opt-out per topic."],
     "E-2": ["Engagement email", "Targeted announcement", "Sent by hand to a role, sector and/or region. The segment labels are personal information."],
