@@ -960,36 +960,46 @@ Doubt Everything: *De omnibus dubitandum*
 - Technical Factors: Prime Movers: engines, turbines and motors. Communication and Information: storage, transmission and retrieval
 
 
-### Major World Events : Globalization Setbacks
+### Major World Events: Globalization Setbacks
 
-From 1913 to 1945 share of trade in global GDP fell from 14% to 4%.  Factors include:
+From 1913 to 1945 the share of trade in global GDP fell from 14% to 4%. These events were the main factors:
 
-- China: End of last imperial dynasty 1912.  End of Qing
+<style>
+.tlx{margin:1.2em 0}
+.tlx .bar{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:nowrap}.tlx .bl{flex:0 0 3em;font-weight:700}
+.tlx .bar span{font-size:.9em}
+.tlx .tr{flex:1 1 200px;max-width:360px;height:16px;border-radius:8px;background:linear-gradient(90deg,#1f6feb 100%,#1f6feb);position:relative;overflow:hidden;background:rgba(128,128,128,.25)}
+.tlx .tr i{display:block;height:100%;width:29%;background:#e5534b;border-radius:8px}
+.tlx ol{list-style:none;margin:0;padding:0 0 0 14px;border-left:3px solid rgba(128,128,128,.45)}
+.tlx li{position:relative;display:flex;gap:14px;padding:6px 0 6px 14px;align-items:baseline}
+.tlx li:before{content:"";position:absolute;left:-23px;top:13px;width:12px;height:12px;border-radius:50%;background:#888;border:2px solid var(--tlbg,#fff)}
+.tlx li.war:before{background:#e5534b}.tlx li.pol:before{background:#d98e04}.tlx li.eco:before{background:#1f6feb}
+.tlx .y{flex:0 0 6.5em;font-weight:700;font-variant-numeric:tabular-nums}
+.tlx .key{display:flex;gap:14px;flex-wrap:wrap;font-size:.85em;margin:0 0 8px}
+.tlx .key b{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
+@media (max-width:560px){.tlx li{flex-direction:column;gap:0}.tlx .y{flex:none}}
+</style>
+<div class="tlx" markdown="0">
+<div class="bar"><span class="bl">1913</span><div class="tr"><i style="width:100%;background:#1f6feb"></i></div><span>14% of world GDP</span></div>
+<div class="bar"><span class="bl">1945</span><div class="tr"><i style="width:29%"></i></div><span>4% of world GDP</span></div>
 
-- WWI 1914-1918
-
-- End of Czarist Russia, when Bolsheviks took power, and years of civil war followed, ending in establishment of USSR (1917-1921)
-
-- Fall of Ottoman Empire and final dissolution by 1923
-
-- Europe political instability post-WWI
-
-- Stock market collapse of October 1929 and subsequent worldwide economic crises that lasted most of the 1930's; the Great Depression
-
-- Japan's invasion of Manchuria 1931
-
-- Beginning of WWII; Nazi takeover of Germany 1933
-
-- Spanish civil war 1936-1939
-
-- WWII 1939-1945
-
-- China Civil War 1945-1949
-
-- Cold War 1947
-
-- Proclamation of People's Republic of China (PRC) by Mao 1949
-
+<div class="key"><span><b style="background:#e5534b"></b>War</span><span><b style="background:#d98e04"></b>Politics and empires</span><span><b style="background:#1f6feb"></b>Economy</span></div>
+<ol>
+<li class="war"><span class="y">1912</span><span class="t">China: end of the last imperial dynasty (the Qing)</span></li>
+<li class="war"><span class="y">1914&ndash;18</span><span class="t">World War I</span></li>
+<li class="pol"><span class="y">1917&ndash;21</span><span class="t">End of Czarist Russia: the Bolsheviks take power, civil war follows, and the USSR is established</span></li>
+<li class="pol"><span class="y">1923</span><span class="t">Ottoman Empire finally dissolved</span></li>
+<li class="pol"><span class="y">1920s&ndash;30s</span><span class="t">Political instability in Europe after World War I</span></li>
+<li class="eco"><span class="y">1929</span><span class="t">Stock market collapse of October 1929, then worldwide economic crises through most of the 1930s: the Great Depression</span></li>
+<li class="war"><span class="y">1931</span><span class="t">Japan invades Manchuria</span></li>
+<li class="pol"><span class="y">1933</span><span class="t">Nazi takeover of Germany</span></li>
+<li class="war"><span class="y">1936&ndash;39</span><span class="t">Spanish civil war</span></li>
+<li class="war"><span class="y">1939&ndash;45</span><span class="t">World War II</span></li>
+<li class="war"><span class="y">1945&ndash;49</span><span class="t">Chinese civil war</span></li>
+<li class="pol"><span class="y">1947</span><span class="t">Start of the Cold War</span></li>
+<li class="pol"><span class="y">1949</span><span class="t">Mao proclaims the People's Republic of China (PRC)</span></li>
+</ol>
+</div>
 
 ## Words
 
