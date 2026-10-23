@@ -15,7 +15,7 @@ Microsoft's AZ-400 Design and Implementing Microsoft DevOps Solutions is designe
 Below are my course notes from  the following topics:
 
 1. [DevOps Transformation Journey](../application/devops/Azure-DevOps-AZ-400-Training)
-2. [Development in Enterprise DevOps](../application/devops/AZ-400-Development-Enterprise DevOps)
+2. [Development in Enterprise DevOps](../application/devops/AZ-400-Development-Enterprise-DevOps)
 3. [CI with Azure Pipelines and GitHub Actions](../application/devops/AZ-400-CI-Azure-Pipelines-GH-Actions)
 4. [Release Strategy](../application/devops/AZ-400-CI-Azure-Release-Strategy)
 5. [Secure Continuous Deployment using Azure Pipelines](../application/devops/AZ-400-Secure-Continuous-Deployment)
@@ -24,29 +24,10 @@ Below are my course notes from  the following topics:
 8. [Continuous Feedback](../application/devops/AZ-400-Continuous-Feedback)
 9. [Security and validate codes bases for compliance](../application/devops/AZ-400-Security-and-Code-Bases)
 
-#Linking to other Pages
-
- /application/devops/AZ-400-CI-Azure-Release-Strategy
-
-[strategy](AZ-400-CI-Azure-Release-Strategy) - put categories in link - I guess due to the categories url part.
-
-- http://localhost:4000/balance/devops/software/Azure-DevOps-AZ-400-Training/AZ-400-CI-Azure-Release-Strategy
-
-[strategy 2]
-- site url
-- site base url {{ site.baseurl }}
-- [strategy 2](..)
-
-https://mademistakes.com/mastering-jekyll/how-to-link/
-
-
-
-
-
 Other references mentioned in the course include:
 
 - [Puppet 5-Stages of DevOps - 2018](https://1drv.ms/b/s!AkwXSmFk-_xpgt4JBmrEEbU9UE17Rw?e=qpOe92)
-- [OWASP Code Review Guide - 2017]()
+- OWASP Code Review Guide - 2017
 - [Microsoft Digital Defense Report - 2022](https://1drv.ms/b/s!AkwXSmFk-_xpgt4Mf7uknchv_f1Fvg?e=FRDWca) :  [Executive Summary](https://1drv.ms/b/s!AkwXSmFk-_xpgt4LQ1o0lDk-tQ0ipg?e=llnFcx)
 - [AZ-400 Study Guide](https://1drv.ms/b/s!AkwXSmFk-_xpgt4NdTvkIMA9s9d2lQ?e=r0IOfc)
 

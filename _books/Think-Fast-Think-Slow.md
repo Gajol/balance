@@ -3,7 +3,7 @@ title: "Think Fast, Think Slow"
 excerpt: "Insight into two systems in our brain which affect our judgment, behaviour and actions.  Identifies why people do not always make rational decisions based on psychological research."
 last_modified_at: 2023-02-09T10:23:16-04:00
 toc: false
-classes: wide
+classes: wide-text
 categories: psychology statistics thinking
 read_time: true
 sidebar:
@@ -703,7 +703,7 @@ Three Men Illusion : perspective.  Once on a 3D perspective the same sized figur
 
 - [Baruch Fischhoff](https://en.wikipedia.org/wiki/Baruch_Fischhoff): Studied under Kahneman.  His research focuses on judgment and decision making, including [risk perception](https://en.wikipedia.org/wiki/Risk_perception) and risk Analysis
 
-- [ Martin Seligman](): founder of positive psychology
+- Martin Seligman: founder of positive psychology
 
 - [Richard](https://en.wikipedia.org/wiki/Richard_Thaler) Thaler - Nobel Prize in Economics for individual decision making and behavioural economics
 

@@ -3,7 +3,7 @@ title: "Change Your Questions, Change Your Life"
 excerpt: "Revolutionize your thinking with questions that create a learning mindset."
 last_modified_at: 2023-01-07T10:23:16-04:00
 toc: false
-classes: wide
+classes: wide-text
 categories: leadership thinking
 sidebar:
   title: "Contents"

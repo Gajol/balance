@@ -1,5 +1,5 @@
 ---
-permalink: /application/cds/cds-ccessibility
+permalink: /application/cds/CDS-Accessibility
 title: "CDS Accessibility"
 excerpt: "CDS Accessibility"
 last_modified_at: 2023-01-07T10:23:16-04:00

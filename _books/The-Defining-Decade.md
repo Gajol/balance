@@ -3,7 +3,7 @@ title: "The Defining Decade"
 excerpt: "Why 30 is not the new 20 by Meg Jay."
 last_modified_at: 2023-01-07T10:23:16-04:00
 toc: false
-classes: wide
+classes: wide-text
 categories: psychology
 sidebar:
   title: "Contents"
@@ -950,26 +950,6 @@ Growth mindset practices:
 - [Bollas Christopher. 2018. *The Shadow of the Object : Psychoanalysis of the Unthought Known*](https://worldcat.org/en/title/994882801)
 
 - Bill Gates: Bill Gates is a believer in continual learning, and a growth mindset. *A growth mindset as the foundation and drive to stay curious and keep learning, says Gates, will help prepare students for immense changes that will take place in health care and climate change.*
-
-## TODO: Mermaid Diagram (failing)
-
-```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-```
-
-```mermaid
-flowchart LR
-C{It Could Happen?} -->|Choose, Succee| G[Success]
-C -->|Choose, but Fail| D[Reflect]
-C -->|Don't Choose| E[Not Safe, Future Consequences]
-D -->|negatively| H[Wrong Perspective]
-D -->|positively| I[Better Informed, Idenity Capital]
-```
-Workaround:  Used Drawio to draw a picture and display as PNG.
 
 # Footnotes
 

@@ -3,31 +3,38 @@ title: "Tags"
 permalink: /tags/
 layout: single
 author_profile: false
+classes: tags-page
 excerpt: "Find notes by topic."
 ---
-
-Pick a tag to jump to its notes.
 
 {%- assign items = site.pages | concat: site.posts | concat: site.books | concat: site.architecture | where_exp: "i", "i.tags" -%}
 {%- assign all_tags = "" | split: "," -%}
 {%- for i in items -%}
   {%- assign all_tags = all_tags | concat: i.tags -%}
 {%- endfor -%}
-{%- assign all_tags = all_tags | uniq | sort %}
+{%- assign all_tags = all_tags | uniq | sort -%}
 
-<p>
+Pick a tag to jump to its notes. Larger tags have more notes.
+
+<div class="tag-cloud">
 {%- for tag in all_tags %}
   {%- assign tagged = items | where_exp: "i", "i.tags contains tag" %}
-  <a href="#{{ tag | slugify }}" class="btn btn--inverse btn--small">{{ tag }} ({{ tagged.size }})</a>
+  {%- assign n = tagged.size %}
+  {%- if n >= 12 %}{% assign sz = "s4" %}{% elsif n >= 6 %}{% assign sz = "s3" %}{% elsif n >= 3 %}{% assign sz = "s2" %}{% else %}{% assign sz = "s1" %}{% endif %}
+  <a class="{{ sz }}" href="#{{ tag | slugify }}">{{ tag }}<small>{{ n }}</small></a>
 {%- endfor %}
-</p>
+</div>
 
-{% for tag in all_tags %}
-{%- assign tagged = items | where_exp: "i", "i.tags contains tag" | sort: "title" %}
-<h2 id="{{ tag | slugify }}">{{ tag }}</h2>
-<ul>
-{%- for i in tagged %}
-  <li><a href="{{ i.url | relative_url }}">{{ i.title }}</a></li>
+<div class="tag-grid">
+{%- for tag in all_tags %}
+  {%- assign tagged = items | where_exp: "i", "i.tags contains tag" | sort: "title" %}
+  <div class="tag-card">
+    <h2 id="{{ tag | slugify }}"><a href="#{{ tag | slugify }}">{{ tag }}</a> <small>{{ tagged.size }}</small></h2>
+    <ul>
+    {%- for i in tagged %}
+      <li><a href="{{ i.url | relative_url }}">{{ i.title }}</a></li>
+    {%- endfor %}
+    </ul>
+  </div>
 {%- endfor %}
-</ul>
-{% endfor %}
+</div>
