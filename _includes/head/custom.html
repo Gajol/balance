@@ -8,6 +8,11 @@
   body.wide-text .masthead__inner-wrap,
   body.wide-text .initial-content,
   body.wide-text .page__footer { max-width: 1900px; }
+  /* extra-wide: content fills the space beside the sidebar (classes: wide-text wider) */
+  @media (min-width: 80em) {
+    body.wider .page { width: calc(100% - 220px); padding-right: 0; }
+    body.wider .page__content, body.wider .page__inner-wrap { max-width: none; }
+  }
 </style>
 
 <style>

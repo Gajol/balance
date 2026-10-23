@@ -3,7 +3,7 @@ title: "Think Fast, Think Slow"
 excerpt: "Insight into two systems in our brain which affect our judgment, behaviour and actions.  Identifies why people do not always make rational decisions based on psychological research."
 last_modified_at: 2026-10-23T09:00:00-04:00
 toc: false
-classes: wide-text
+classes: wide-text wider
 categories: psychology statistics thinking
 read_time: true
 sidebar:
