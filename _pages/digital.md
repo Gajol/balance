@@ -14,6 +14,9 @@ Notes on how digital services get designed, built and run, with a focus on gover
 ## Canadian Digital Service and service design
 {% include theme-list.html theme="digital" path="application/cds" %}
 
+## Product management and UX
+- [Client email capability tiers]({{ '/client-email-tiers/' | relative_url }}) - an interactive tool to pick capability tiers for client email, with the dependencies and transition value carried into the BRD, security and integration work.
+
 ## Azure DevOps (AZ-400)
 {% include theme-list.html theme="digital" path="application/devops" %}
 
