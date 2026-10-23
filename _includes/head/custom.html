@@ -20,10 +20,14 @@
   .tag-cloud a { display: inline-block; padding: .2em .7em; border: 1px solid #ccc; border-radius: 3px; background: transparent; color: #333; text-decoration: none; font-size: .95em; line-height: 1.4; }
   .tag-cloud a:hover { background: #f2f2f2; border-color: #999; color: #000; }
   .tag-cloud a small { color: #888; margin-left: .4em; font-size: .85em; }
+  .tag-group { display: flex; align-items: baseline; gap: 1em; }
+  .tag-group .tag-label { flex: 0 0 5.5em; font-size: .8em; text-transform: uppercase; letter-spacing: .06em; color: #888; }
+  .tag-group .tag-cloud { margin: .4em 0 .6em; }
+  .tag-cloud a.active { background: #333; border-color: #333; color: #fff; }
+  .tag-cloud a.active small { color: #ccc; }
   .tag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.2em; }
   .tag-card { border: 1px solid #e2e2e2; border-radius: 6px; padding: .2em 1.1em 1em; }
   .tag-card h2 { margin: .8em 0 .4em; padding: 0; border: 0; font-size: 1.4em; }
-  .tag-card h2 a { color: inherit; text-decoration: none; }
   .tag-card h2 small { font-weight: 400; color: #888; font-size: .65em; }
   .tag-card ul { margin: 0; padding-left: 1.1em; }
   .tag-card li { margin: .25em 0; }
