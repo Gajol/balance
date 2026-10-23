@@ -21,7 +21,7 @@ Analytics tools already collect most of what you need. Combine them with a littl
 - **Orphan.** No other page links to it, so people only find it by search or bookmark.
 - **Failed searches.** Searches in that area that returned nothing, or that people abandoned.
 
-Fictional data below. Pick a measure, sort, and click a row for the suggested next step.
+Fictional data below. Pick a measure, sort, and click a branch. The suggested next step opens inside that row.
 
 <style>
 .wx{border:1px solid rgba(128,128,128,.4);border-radius:10px;padding:14px;margin:1.2em 0;font-size:.95em}
@@ -48,8 +48,8 @@ Fictional data below. Pick a measure, sort, and click a row for the suggested ne
 <button data-m="failed" aria-pressed="false">Failed searches</button>
 <button id="w2s" aria-pressed="true">Worst first</button>
 </div>
+<div class="note" id="w2d"><strong>Click a branch</strong> to see the suggested next step.</div>
 <div id="w2l"></div>
-<div class="card" id="w2d"><span class="note">Click a branch to see a suggested action.</span></div>
 </div>
 <script>
 (function(){
@@ -61,11 +61,11 @@ var k=idx[m],rows=D.slice();
 if(sort)rows.sort(function(a,b){return b[k]/b[1]-a[k]/a[1];});
 var h='';
 rows.forEach(function(r){var p=Math.round(r[k]/r[1]*100);
-h+='<div class="'+(sel==r[0]?'card hl':'card')+'" style="cursor:pointer" data-n="'+r[0]+'" tabindex="0" role="button" title="'+r[k]+' of '+r[1]+' pages"><div class="row" style="justify-content:space-between;margin:0"><span>'+r[0]+'</span><strong>'+p+'%</strong></div><div class="track"><div class="fill" style="width:'+Math.min(p,100)+'%"></div></div></div>';});
+h+='<div class="'+(sel==r[0]?'card hl':'card')+'" style="cursor:pointer" data-n="'+r[0]+'" tabindex="0" role="button" title="'+r[k]+' of '+r[1]+' pages"><div class="row" style="justify-content:space-between;margin:0"><span>'+r[0]+'</span><strong>'+p+'%</strong></div><div class="track"><div class="fill" style="width:'+Math.min(p,100)+'%"></div></div>'+(sel==r[0]?'<div style="margin-top:8px;padding:8px;border-left:4px solid #1f6feb;background:rgba(31,111,235,.12)"><strong>Next step:</strong> '+tip[m]+' <span class="note">('+r[k]+' of '+r[1]+' pages)</span></div>':'')+'</div>';});
 document.getElementById('w2l').innerHTML=h;
-document.querySelectorAll('#w2l .card').forEach(function(c){function go(){sel=c.dataset.n;draw();var r=D.filter(function(x){return x[0]==sel})[0];document.getElementById('w2d').innerHTML='<strong>'+sel+'</strong>: '+r[idx[m]]+' of '+r[1]+' pages. <br>'+tip[m];}c.onclick=go;c.onkeydown=function(e){if(e.key=='Enter'||e.key==' '){e.preventDefault();go();}};});
+document.querySelectorAll('#w2l .card').forEach(function(c){function go(){sel=(sel==c.dataset.n)?null:c.dataset.n;draw();}c.onclick=go;c.onkeydown=function(e){if(e.key=='Enter'||e.key==' '){e.preventDefault();go();}};});
 }
-document.querySelectorAll('#w2 button[data-m]').forEach(function(b){b.onclick=function(){m=b.dataset.m;document.querySelectorAll('#w2 button[data-m]').forEach(function(x){x.setAttribute('aria-pressed',x==b)});draw();if(sel){document.querySelector('#w2l .card.hl')&&document.querySelector('#w2l .card.hl').click();}};});
+document.querySelectorAll('#w2 button[data-m]').forEach(function(b){b.onclick=function(){m=b.dataset.m;document.querySelectorAll('#w2 button[data-m]').forEach(function(x){x.setAttribute('aria-pressed',x==b)});draw();};});
 document.getElementById('w2s').onclick=function(){sort=!sort;this.setAttribute('aria-pressed',sort);draw();};
 draw();
 })();
