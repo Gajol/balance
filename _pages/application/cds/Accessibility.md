@@ -41,8 +41,10 @@ The [Accessible Canada Act](https://laws-lois.justice.gc.ca/eng/acts/a-0.6/) aim
 
 It sets out **seven priority areas**. Two matter most for digital teams:
 
-- **Information and communication technologies (ICT):** websites, applications, documents and tools.
-- **Design and delivery of programs and services:** the online service itself, not only the technology under it.
+- **[Information and communication technologies (ICT)](https://accessible.canada.ca/node/228):** websites, applications, documents and tools.
+- **[Design and delivery of programs and services](https://accessible.canada.ca/priority-areas-guide-our-work/design-and-delivery-programs-and-services):** the online service itself, not only the technology under it. Accessibility Standards Canada also publishes a [technical guide](https://accessible.canada.ca/creating-accessibility-standards/design-and-delivery-accessible-programs-and-services-including-customer-services) for this area.
+
+**The ICT standard: CAN/ASC - EN 301 549:2024.** Accessibility Standards Canada adopted the European standard EN 301 549:2021 as the Canadian standard for ICT, [published in May 2024](https://accessible.canada.ca/creating-accessibility-standards/summary-can-asc-en-301-5492024-accessibility-requirements-ict-products-and-services-en-301-5492021-idt). It covers web content, non-web documents, software and hardware, plus functional performance, two-way voice and video, support services and relay services. It is aimed at private and public organizations in federally regulated sectors. The summary does not say whether it is already required by regulation, so confirm that with your accessibility or legal advisors. The Standards Council of Canada also has a [notice for the standard](https://scc-ccn.ca/standards/notices-of-intent/accessibility-standards-canada/accessibility-requirements-ict-products).
 
 The other areas are employment, the built environment, communication other than ICT, procurement, and transportation. Procurement matters too: what you buy should be accessible.
 
@@ -73,6 +75,7 @@ For Government of Canada sites, also check the Treasury Board [Standard on Web A
 - [Accessible Canada Act](https://laws-lois.justice.gc.ca/eng/acts/a-0.6/)
 - [Summary of the Accessible Canada Regulations](https://www.canada.ca/en/employment-social-development/programs/accessible-canada/regulations-summary-act.html)
 - [Feedback process descriptions: publishing and handling](https://www.canada.ca/en/employment-social-development/programs/accessible-canada-regulations-guidance/feedback-process/publishing-handling.html)
+- [CAN/ASC - EN 301 549:2024 summary (Accessibility Standards Canada)](https://accessible.canada.ca/creating-accessibility-standards/summary-can-asc-en-301-5492024-accessibility-requirements-ict-products-and-services-en-301-5492021-idt)
 - [Standard on Web Accessibility (Treasury Board)](https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=23601)
 - USA: [Section 508](https://www.section508.gov/), *Accessibility of Federal Electronic and Information Technology*, reported to Congress and the President.
 
