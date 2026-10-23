@@ -5,7 +5,7 @@ last_modified_at: 2022-04-30T10:23:16-04:00
 toc: true
 toc_sticky: true
 toc_label: "Contents"
-classes: wide
+classes: wide-text
 read_time: true
 header:
   # image: /assets/images/Architecture-AI-wide.jpg
@@ -14,25 +14,6 @@ theme: digital
 tags: [architecture, apis, microservices, devops, government]
 ---
 <a name="application-reference-architecture"></a>
-<a name="application-reference-architecture-table-of-contents"></a>
-## Table of Contents
-*Document Generation Date: 2022-05-02 08:05*
-
-* [Application Reference Architecture](#application-reference-architecture)
-* [Introduction](#introduction)
-* [Definitions](#definitions)
-* [Business](#business)
-* [Principles](#principles)
-* [Application Characteristics and Styles](#application-characteristics-and-styles)
-* [Goals for Application Architecture](#goals-for-application-architecture)
-* [Goals for Business Architecture](#goals-for-business-architecture)
-* [Application Architecture Styles](#application-architecture-styles-1)
-* [Patterns](#patterns)
-* [Discovery](#discovery)
-* [References](#references)
-* [Appendix - Definitions](#appendix-definitions)
-* [Footnotes](#footnotes)
-
 
 <a name="introduction"></a>
 # Introduction
