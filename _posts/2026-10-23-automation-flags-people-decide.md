@@ -6,7 +6,7 @@ description: "A health report only helps if someone acts on it. See how flags, r
 excerpt: "A health report only helps if someone acts on it. See how flags, reminders, escalation and archiving move a stale page to its owner, and why people stay in charge."
 theme: digital
 author_profile: false
-classes: wide
+classes: full-width
 tags: [product management, automation, content, governance, workflow]
 ---
 

@@ -6,7 +6,7 @@ description: "Owner, last reviewed date and status: three small signals that tur
 excerpt: "Owner, last reviewed date and status: three small signals that turn a page people doubt into a page people use."
 theme: digital
 author_profile: false
-classes: wide
+classes: full-width
 tags: [intranet, content, trust, ux]
 ---
 

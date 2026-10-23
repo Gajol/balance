@@ -6,7 +6,7 @@ description: "Owners with many pages, and managers above them, need one prioriti
 excerpt: "Owners with many pages, and managers above them, need one prioritized queue instead of dozens of separate tasks. See how roll-up views and bulk actions save time."
 theme: digital
 author_profile: false
-classes: wide
+classes: full-width
 tags: [product management, ux, automation, content, governance]
 ---
 

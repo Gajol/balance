@@ -7,7 +7,7 @@ excerpt: "A guide to nine sets of notes from the Microsoft AZ-400 DevOps course:
 header.image: /assets/images/bridge-generated-og.jpeg
 theme: digital
 author_profile: false
-classes: wide
+classes: full-width
 tags: [azure, devops, engineering, training]
 ---
 

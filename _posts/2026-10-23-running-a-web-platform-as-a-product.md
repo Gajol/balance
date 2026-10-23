@@ -6,47 +6,13 @@ description: "A short guide to nine articles on search, analytics, content owner
 excerpt: "A short guide to nine articles on search, analytics, content ownership, operating models and teams, and how they fit together into one product management approach."
 theme: digital
 author_profile: false
-classes: wide
+classes: full-width
 tags: [product management, ux, intranet, governance, operating model, search, analytics]
 ---
 
 A web platform is not finished at launch. It is a product. People use it, it ages, and someone has to look after it.
 
-These nine short articles share one idea: **a site stays useful when people can trust it, and trust comes from ownership, evidence and a team that stays.** They are written generically, so they apply to any intranet or content-heavy website. Each has a small interactive piece you can play with.
-
-## The big picture
-
-Read them as a chain.
-
-1. **Readers need to trust a page.** That comes from visible owners and review dates.
-2. **Trust has to be measured.** That is content health reporting.
-3. **Measurement has to lead to action.** Automation sends flags to owners, and people decide.
-4. **Action has to be efficient.** One ranked queue with bulk actions, for owners, managers and the product owner.
-5. **Search shows whether it is working.** It also depends on owned, current content.
-6. **One shared vocabulary lets the tools line up.**
-7. **Someone must run it day to day.** That is the operating model.
-8. **Someone must decide what to improve.** That is the product owner.
-9. **The team must exist and stay.** That is skills, experience and resourcing over time.
-
-## The nine articles
-
-### For readers: trust
-
-- [Can I Trust This Page?]({{ '/can-i-trust-this-page/' | relative_url }}) Three signals (owner, last reviewed, status) that let a reader act without phoning a colleague. *Try it: switch the signals on and off, and age the page.*
-
-### For measurement: evidence
-
-- [Content Health: Measuring Whether Your Website Is Current and Owned]({{ '/content-health-reporting/' | relative_url }}) Four simple measures, reported by branch, that turn "how good is our content?" into a to-do list. *Try it: switch measures and click a branch.*
-- [Automation Flags, People Decide]({{ '/automation-flags-people-decide/' | relative_url }}) How a health report becomes a task in the owner's view, with reminders, escalation and safe archiving. *Try it: pick a reminder style and an owner response and watch what happens.*
-- [One Queue: Consolidated Views So Owners and Managers Can Act in Bulk]({{ '/one-queue-consolidated-views/' | relative_url }}) A ranked, roll-up view for owners, managers and the product owner, with bulk actions. *Try it: switch views, sort, tick pages and act on them together.*
-- [Your Search Box Is Only as Good as Your Content Owners]({{ '/search-needs-content-owners/' | relative_url }}) Why search quality is mostly a people problem, and how owners and review dates help the right page rank first. *Try it: turn ranking rules on and watch results reorder.*
-- [One Vocabulary: Sharing a Taxonomy Across Search, Analytics and Navigation]({{ '/one-vocabulary-for-search-analytics-navigation/' | relative_url }}) One controlled list of terms, so search, reports and menus can finally be compared. *Try it: switch between a shared and separate vocabularies.*
-
-### For delivery: people and roles
-
-- [Who Runs the Website? A Simple Operating Model]({{ '/who-runs-the-website-operating-model/' | relative_url }}) Five roles and a RACI, with what each role needs and what the system shows them. *Try it: hover a role to see its skills, tools and views.*
-- [Why Your Website Needs a Product Manager After Launch]({{ '/product-manager-after-launch/' | relative_url }}) What happens to content freshness when nobody owns the product. *Try it: choose habits and watch the three-year curve.*
-- [Getting and Keeping the Team]({{ '/getting-and-keeping-the-team/' | relative_url }}) Which skills a team covers, how experience changes it, and how hiring delays and turnover open gaps. *Try it: hire a team and see how much of the vision is realized.*
+These nine short articles share one idea: **a site stays useful when people can trust it, and trust comes from ownership, evidence and a team that stays.** They are written generically, so they apply to any intranet or content-heavy website. Each has a small interactive piece. Read them in order as a chain, or jump to the one that matches your problem.
 
 ## Which one should I read first?
 
@@ -79,6 +45,29 @@ function show(){var q=Q[s.value];a.innerHTML='Start with: <a href="{{ site.baseu
 s.onchange=show;show();
 })();
 </script>
+
+
+## The nine articles
+
+<style>
+.gcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;margin:1em 0}
+.gcard{display:flex;flex-direction:column;gap:6px;border:1px solid rgba(128,128,128,.4);border-radius:10px;padding:14px;text-decoration:none;color:inherit;border-bottom:1px solid rgba(128,128,128,.4)}
+.gcard:hover{border-color:#1f6feb;box-shadow:0 2px 10px rgba(31,111,235,.2)}
+.gcard .gn{font-size:.8em;text-transform:uppercase;letter-spacing:.06em;opacity:.7}
+.gcard strong{font-size:1.1em}
+.gcard em{font-size:.88em;opacity:.8;margin-top:auto}
+</style>
+<div class="gcards" markdown="0">
+<a class="gcard" href="{{ '/can-i-trust-this-page/' | relative_url }}"><span class="gn">1 &middot; Trust</span><strong>Can I Trust This Page?</strong><span>Owner, last reviewed and status: three signals that let a reader act without phoning anyone.</span><em>Try it: Age a page and switch signals.</em></a>
+<a class="gcard" href="{{ '/content-health-reporting/' | relative_url }}"><span class="gn">2 &middot; Measure</span><strong>Content Health</strong><span>Four simple measures, reported by branch, that turn quality into a to-do list.</span><em>Try it: Sort branches and open an action.</em></a>
+<a class="gcard" href="{{ '/automation-flags-people-decide/' | relative_url }}"><span class="gn">3 &middot; Act</span><strong>Automation Flags, People Decide</strong><span>Reminders, escalation and safe archiving, with the impact on each page at every step.</span><em>Try it: Pick reminders and an owner response.</em></a>
+<a class="gcard" href="{{ '/one-queue-consolidated-views/' | relative_url }}"><span class="gn">4 &middot; Act in bulk</span><strong>One Queue</strong><span>A ranked, roll-up view for owners, managers and the product owner, with bulk actions.</span><em>Try it: Switch views and clear a queue.</em></a>
+<a class="gcard" href="{{ '/search-needs-content-owners/' | relative_url }}"><span class="gn">5 &middot; Find</span><strong>Search Needs Content Owners</strong><span>Why search quality is mostly a people problem, and how owners and review dates help.</span><em>Try it: Turn ranking rules on and off.</em></a>
+<a class="gcard" href="{{ '/one-vocabulary-for-search-analytics-navigation/' | relative_url }}"><span class="gn">6 &middot; Connect</span><strong>One Vocabulary</strong><span>One list of terms shared by search, analytics and navigation, so reports line up.</span><em>Try it: Compare shared and separate lists.</em></a>
+<a class="gcard" href="{{ '/who-runs-the-website-operating-model/' | relative_url }}"><span class="gn">7 &middot; Run</span><strong>Who Runs the Website?</strong><span>Five roles and a RACI, with skills, tools and what the system shows each role.</span><em>Try it: Hover a role for its details.</em></a>
+<a class="gcard" href="{{ '/product-manager-after-launch/' | relative_url }}"><span class="gn">8 &middot; Improve</span><strong>A Product Manager After Launch</strong><span>What happens to content freshness when nobody owns the product.</span><em>Try it: Choose habits, watch three years.</em></a>
+<a class="gcard" href="{{ '/getting-and-keeping-the-team/' | relative_url }}"><span class="gn">9 &middot; Staff</span><strong>Getting and Keeping the Team</strong><span>Skills, experience and resourcing over time, including hiring delays and turnover.</span><em>Try it: Hire a team, see the vision realized.</em></a>
+</div>
 
 ## The thread running through all of them
 

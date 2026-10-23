@@ -6,7 +6,7 @@ description: "Four simple measures show which parts of a site are healthy and wh
 excerpt: "Four simple measures show which parts of a site are healthy and which need attention, with no extra work for readers."
 theme: digital
 author_profile: false
-classes: wide
+classes: full-width
 tags: [analytics, content, governance, matomo]
 ---
 

@@ -6,7 +6,7 @@ description: "Better search is mostly a people problem. Owners and review dates 
 excerpt: "Better search is mostly a people problem. Owners and review dates help the engine rank the right page first."
 theme: digital
 author_profile: false
-classes: wide
+classes: full-width
 tags: [search, intranet, content, solr]
 ---
 

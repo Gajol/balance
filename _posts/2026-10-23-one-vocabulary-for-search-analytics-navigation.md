@@ -6,7 +6,7 @@ description: "If search, reports and menus all use the same list of terms, you c
 excerpt: "If search, reports and menus all use the same list of terms, you can finally compare them."
 theme: digital
 author_profile: false
-classes: wide
+classes: full-width
 tags: [taxonomy, search, analytics, navigation]
 ---
 

@@ -6,7 +6,7 @@ description: "A platform that launches without a plan for who runs it will drift
 excerpt: "A platform that launches without a plan for who runs it will drift. A short RACI and five roles keep it healthy."
 theme: digital
 author_profile: false
-classes: wide
+classes: full-width
 tags: [operating model, raci, governance, roles]
 ---
 

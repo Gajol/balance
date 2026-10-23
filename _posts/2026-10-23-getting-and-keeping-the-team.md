@@ -6,7 +6,7 @@ description: "A web platform is only as strong as the team behind it. Explore wh
 excerpt: "A web platform is only as strong as the team behind it. Explore which skills a team needs, how experience changes coverage, and how hiring delays and turnover open gaps over time."
 theme: digital
 author_profile: false
-classes: wide
+classes: full-width
 tags: [resourcing, skills, operating model, product management, staffing]
 ---
 
