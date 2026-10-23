@@ -1,0 +1,1356 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portal Email Capability Tiers</title>
+<style>
+/* Layout: navy title band, then a sticky contents rail beside a single reading
+   column. One committed light theme — the GC Design System has no dark theme,
+   and this file is made to be printed and read on a department desktop.
+   No external fonts, scripts or styles: it has to open from a file share on an
+   air-gapped network. */
+:root {
+  --navy: #26374a;
+  --text: #333333;
+  --text-2: #595959;
+  --text-light: #ffffff;
+  --link: #1f497a;
+  --link-hover: #1354ec;
+  --bg: #ffffff;
+  --bg-light: #f2f2f2;
+  --rule: #e6e6e6;
+  --border: #8c8c8c;
+  --focus: #1354ec;
+  --info-bg: #ebf2fa;
+  --info-edge: #1f497a;
+  --good-bg: #eef6ee;
+  --good-edge: #2a6b2a;
+  --warn-bg: #fdf7e5;
+  --warn-edge: #9a7b14;
+  --bad-bg: #fcf0f1;
+  --bad-edge: #a8282f;
+  --font-head: Lato, "Segoe UI Semibold", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Noto Sans", "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: "Noto Sans Mono", Consolas, "SFMono-Regular", monospace;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+a { color: var(--link); text-underline-offset: 2px; }
+a:hover { color: var(--link-hover); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+img, svg { max-width: 100%; }
+
+.skip {
+  position: absolute; left: -9999px; top: 0; background: var(--navy);
+  color: var(--text-light); padding: 10px 16px; z-index: 20;
+}
+.skip:focus { left: 0; }
+
+/* ---- title band ---- */
+.band { background: var(--navy); color: var(--text-light); }
+.band-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding-block: 34px 30px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.kicker {
+  margin: 0 0 8px; font-size: .9rem; font-weight: 700;
+  letter-spacing: .07em; text-transform: uppercase; color: #cfd8e3;
+}
+.band h1 {
+  font-family: var(--font-head); font-weight: 700;
+  font-size: clamp(1.8rem, 4.2vw, 2.5rem); line-height: 1.15;
+  margin: 0 0 10px; text-wrap: balance;
+}
+.band .meta { margin: 0; font-size: .95rem; color: #d6dde6; }
+.band .meta span + span::before { content: "·"; margin: 0 9px; }
+
+/* ---- shell ---- */
+.layout {
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 44px;
+  padding-block: 28px 70px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+nav.toc {
+  position: sticky; top: 16px; align-self: start;
+  max-height: calc(100vh - 32px); overflow-y: auto; font-size: .95rem;
+}
+nav.toc h2 {
+  font-family: var(--font-head); font-size: 1rem; margin: 0 0 10px;
+  text-transform: uppercase; letter-spacing: .06em; color: var(--text-2);
+}
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc li { margin-bottom: 5px; }
+nav.toc a { text-decoration: none; display: block; padding: 2px 0; }
+nav.toc a:hover { text-decoration: underline; }
+nav.toc .sub { padding-left: 12px; font-size: .9rem; }
+
+main { min-width: 0; }
+section { scroll-margin-top: 20px; }
+h2 {
+  font-family: var(--font-head); font-weight: 700; font-size: 1.95rem;
+  line-height: 1.22; margin: 56px 0 6px; padding-top: 20px;
+  border-top: 4px solid var(--navy); text-wrap: balance;
+}
+section:first-of-type h2 { margin-top: 0; }
+h3 {
+  font-family: var(--font-head); font-weight: 700; font-size: 1.3rem;
+  margin: 36px 0 8px; text-wrap: balance;
+}
+h4 {
+  font-family: var(--font-head); font-weight: 700; font-size: 1.05rem;
+  margin: 24px 0 6px;
+}
+p, ul, ol { margin: 0 0 14px; max-width: 70ch; }
+li { margin-bottom: 5px; }
+.standfirst { font-size: 1.15rem; color: var(--text-2); max-width: 62ch; }
+code {
+  font-family: var(--font-mono); font-size: .9em;
+  background: var(--bg-light); padding: 1px 4px;
+}
+
+/* ---- tables ---- */
+.tw { overflow-x: auto; margin: 0 0 22px; border: 1px solid var(--rule); }
+table {
+  border-collapse: collapse; width: 100%; font-size: .94rem; line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}
+th, td {
+  text-align: left; vertical-align: top; padding: 9px 13px;
+  border-bottom: 1px solid var(--rule); min-width: 7ch;
+}
+th {
+  background: var(--navy); color: var(--text-light); font-weight: 700;
+  font-size: .85rem; letter-spacing: .02em;
+}
+tbody tr:nth-child(even) { background: var(--bg-light); }
+tbody tr:last-child td { border-bottom: 0; }
+td.size, th.size { text-align: center; white-space: nowrap; }
+
+/* ---- panels ---- */
+.panel {
+  border-left: 5px solid var(--info-edge); background: var(--info-bg);
+  padding: 14px 18px; margin: 0 0 22px;
+}
+.panel.good { border-left-color: var(--good-edge); background: var(--good-bg); }
+.panel.warn { border-left-color: var(--warn-edge); background: var(--warn-bg); }
+.panel.bad  { border-left-color: var(--bad-edge);  background: var(--bad-bg); }
+.panel h4 { margin: 0 0 6px; color: var(--info-edge); }
+.panel.good h4 { color: var(--good-edge); }
+.panel.warn h4 { color: var(--warn-edge); }
+.panel.bad h4 { color: var(--bad-edge); }
+.panel p:last-child, .panel ul:last-child { margin-bottom: 0; }
+.panel ul { padding-left: 20px; }
+
+/* ---- tier cards ---- */
+.tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+.tier-card { border: 1px solid var(--rule); border-top: 5px solid var(--navy); padding: 14px 16px; min-width: 0; }
+.tier-card h3 { margin: 0 0 6px; font-size: 1.05rem; }
+.tier-card p { font-size: .94rem; margin: 0; }
+
+/* ---- capability blocks ---- */
+.cap { border: 1px solid var(--rule); margin-bottom: 30px; }
+.cap-head {
+  background: var(--navy); color: var(--text-light);
+  padding: 11px 16px; display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline;
+}
+.cap-head .code { font-family: var(--font-mono); font-size: .9rem; color: #b9c6d6; }
+.cap-head h3 { margin: 0; font-size: 1.12rem; color: var(--text-light); }
+.cap-head .head-note { font-size: .9rem; color: #cfd8e3; width: 100%; }
+.cap-body { padding: 14px 16px; }
+.cap-body > *:last-child { margin-bottom: 0; }
+
+/* tier picker rows */
+.pick { display: grid; gap: 8px; margin-bottom: 16px; }
+.pick label {
+  display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: start;
+  border: 1px solid var(--rule); padding: 10px 12px; cursor: pointer;
+  font-size: .94rem; min-width: 0;
+}
+.pick label:hover { border-color: var(--border); }
+.pick input { margin: 3px 0 0; }
+.pick label:has(input:checked) { border-color: var(--navy); background: var(--bg-light); border-left: 5px solid var(--navy); }
+.pick .tname { font-weight: 700; display: block; }
+.pick .tgets { display: block; }
+.pick .tbuild { display: block; color: var(--text-2); font-size: .88rem; margin-top: 2px; }
+.pick .tsize {
+  font-weight: 700; font-family: var(--font-mono); font-size: .85rem;
+  border: 1px solid var(--border); padding: 1px 7px; white-space: nowrap; align-self: start;
+}
+
+/* ---- running summary ---- */
+.summary {
+  position: sticky; bottom: 0; background: var(--bg);
+  border-top: 3px solid var(--navy); padding: 12px 0 14px; margin-top: 10px;
+  padding-bottom: max(14px, env(safe-area-inset-bottom, 0px));
+}
+.summary .row { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: baseline; }
+.summary strong { font-family: var(--font-head); font-size: 1.05rem; }
+.summary .fig { font-variant-numeric: tabular-nums; }
+.btn {
+  font: 600 .9rem var(--font-body); color: var(--link); background: var(--bg);
+  border: 1px solid var(--border); padding: 5px 13px; cursor: pointer;
+}
+.btn:hover { border-color: var(--link-hover); color: var(--link-hover); }
+.hint { font-size: .85rem; color: var(--text-2); margin: 6px 0 0; }
+
+/* ---- wizard wireframes ---- */
+.screens { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+.screen { border: 1px solid var(--border); min-width: 0; }
+.screen-t {
+  background: var(--navy); color: var(--text-light); font-weight: 700;
+  font-size: .82rem; padding: 6px 10px;
+}
+.screen-b { padding: 10px; display: grid; gap: 7px; }
+.fl { font-size: .68rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--text-2); }
+.fd { border: 1px solid var(--rule); background: var(--bg-light); padding: 4px 7px; font-size: .78rem; }
+.fn { font-size: .78rem; color: var(--text-2); }
+.fb {
+  display: inline-block; border: 1px solid var(--good-edge); background: var(--good-bg);
+  color: var(--good-edge); font-weight: 700; font-size: .78rem; padding: 3px 11px; border-radius: 20px;
+}
+.fb.info { border-color: var(--info-edge); background: var(--info-bg); color: var(--info-edge); }
+.fb.warn { border-color: var(--warn-edge); background: var(--warn-bg); color: var(--warn-edge); }
+
+figure { margin: 0 0 22px; }
+figcaption { font-size: .85rem; color: var(--text-2); font-weight: 700; margin-top: 6px; }
+
+footer.src {
+  margin-top: 50px; padding-top: 16px; border-top: 1px solid var(--rule);
+  color: var(--text-2); font-size: .92rem; max-width: 70ch;
+}
+
+@media (max-width: 980px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  nav.toc { position: static; max-height: none; border: 1px solid var(--rule); padding: 12px 14px; }
+  .tiers, .screens { grid-template-columns: 1fr; }
+  h2 { font-size: 1.6rem; }
+}
+
+/* ---- code references and their tooltips ---- */
+.ref {
+  border-bottom: 1px dotted var(--link); cursor: help;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.ref:hover, .ref:focus-visible { background: var(--info-bg); }
+#reftip {
+  position: fixed; z-index: 60; max-width: 330px;
+  background: var(--navy); color: var(--text-light);
+  padding: 10px 13px; font-size: .86rem; line-height: 1.45;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .28);
+}
+#reftip .tip-kind {
+  display: block; font-size: .68rem; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; color: #a9bace; margin-bottom: 3px;
+}
+#reftip .tip-name {
+  display: block; font-family: var(--font-head); font-weight: 700;
+  font-size: .95rem; margin-bottom: 3px;
+}
+#reftip p { margin: 0; max-width: none; }
+#reftip .tip-flag { display: block; margin-top: 5px; color: #ffd4a8; font-weight: 700; }
+
+@media print {
+  @page { size: letter; margin: .65in .7in; }
+  .ref { border-bottom: 0; }
+  #reftip { display: none !important; }
+  body { font-size: 10.5pt; line-height: 1.42; }
+  nav.toc, .summary, .btn, .skip { display: none !important; }
+  .band { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .layout { display: block; max-width: none; padding: 0; }
+  h2 { font-size: 16pt; break-before: page; margin-top: 0; }
+  section:first-of-type h2 { break-before: avoid; }
+  h3, h4 { break-after: avoid; }
+  table { font-size: 8.5pt; }
+  th, td { padding: 4pt 6pt; }
+  .tw, .cap, .panel, .screen, tr, figure { break-inside: avoid; }
+  .tiers, .screens { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .pick label { break-inside: avoid; }
+  a { color: var(--text); text-decoration: none; }
+  p, ul, ol { max-width: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="band">
+  <div class="band-inner">
+    <p class="kicker">Enterprise architecture · Draft for review</p>
+    <h1>Portal client email: capability tiers</h1>
+    <p class="meta"><span>Public-information portal modernization</span><span>Drupal, GC Notify, Solr, Matomo</span><span>23 October 2026</span></p>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="toc" aria-label="Contents">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#use">1. How to use this</a></li>
+      <li><a href="#provenance">2. Borrowed and new</a></li>
+      <li><a href="#product">3. The product</a></li>
+      <li><a href="#tiers">4. The three tiers</a></li>
+      <li><a href="#datasheets">5. Capability datasheets</a>
+        <ol class="sub">
+          <li><a href="#c1">C-1 Account and identity</a></li>
+          <li><a href="#c2">C-2 Consent</a></li>
+          <li><a href="#c3">C-3 Audience</a></li>
+          <li><a href="#c4">C-4 Templates</a></li>
+          <li><a href="#c5">C-5 Sending</a></li>
+          <li><a href="#c6">C-6 Suppression</a></li>
+          <li><a href="#c7">C-7 Approval and audit</a></li>
+          <li><a href="#c8">C-8 Measurement</a></li>
+          <li><a href="#c9">C-9 Subscription content</a></li>
+          <li><a href="#c10">C-10 Feedback and reply</a></li>
+        </ol>
+      </li>
+      <li><a href="#rollup">6. Tier roll-up</a></li>
+      <li><a href="#strawman">7. Use-case strawman</a></li>
+      <li><a href="#policy">8. Policy map</a></li>
+      <li><a href="#levels">9. Integration levels</a></li>
+      <li><a href="#wizard">10. The campaign wizard</a></li>
+      <li><a href="#build">11. Work and phasing</a></li>
+      <li><a href="#decisions">12. Decisions owed</a></li>
+      <li><a href="#workshop">13. Running the session</a></li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+<section id="use">
+<h2>1. How to use this</h2>
+<p class="standfirst">This is a strawman. It is deliberately wrong in places, so that the business has something concrete to correct.</p>
+<p>The requirement captured so far is the ability to send email and manage client lists. That is true, and it is not enough to design against: it does not say who is emailed, on what trigger, with whose consent, or how anyone knows the right people received it. Rather than ask for those answers again, this document guesses them.</p>
+<ul>
+  <li>You are not being asked to invent requirements. You are being asked to read a draft and say where it is wrong.</li>
+  <li>Three kinds of mark-up help most: <em>this use case does not exist</em>, <em>this audience rule is wrong</em>, <em>this is missing</em>.</li>
+  <li>Anything not corrected by the date on the assumption log becomes an assumption the design is built on.</li>
+</ul>
+<div class="panel">
+  <h4>What this is not</h4>
+  <ul>
+    <li>Not a business requirements document.</li>
+    <li>Not a commitment to build everything listed.</li>
+    <li>Not a verdict on anyone's work.</li>
+  </ul>
+</div>
+</section>
+
+<section id="provenance">
+<h2>2. What is borrowed, and what is new</h2>
+<p>This portal shares a platform with the Information Sharing System work, and nothing else. The distinction matters, because a borrowed decision read as a settled one is how a programme inherits rules nobody agreed to.</p>
+<div class="tw">
+<table>
+  <thead><tr><th style="width:18%">Status</th><th>What it covers</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Borrowed</strong></td><td>Platform patterns: Drupal as the source of truth, GC Notify as the send channel, Solr for content matching, Matomo for measurement.</td></tr>
+    <tr><td><strong>Borrowed</strong></td><td>The mechanics of bounces, unsubscribes and template design. These are properties of GC Notify, not of a programme.</td></tr>
+    <tr><td><strong>New</strong></td><td>Every use case, audience rule, tier and policy call in this document. The portal is its own programme.</td></tr>
+    <tr><td><strong>Not carried over</strong></td><td>The ISS decision records, its personas and its content calendar. Those were agreed for that programme only.</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="hint">Scale: 2,500 to 3,000 registered accounts. Comparable to ISS, which is why the same platform choices hold — but the similarity is in size, not in purpose.</p>
+</section>
+
+<section id="product">
+<h2>3. The product</h2>
+<p>Every capability in this document is one part of a single loop. The tier chosen for each decides how much of that part gets built.</p>
+<figure>
+<svg viewBox="0 0 700 250" role="img" aria-label="A loop: the client account holds role, sector and topics; the portal builds the audience and sends through GC Notify; the client clicks through to a portal page where the real content lives; what they read there shapes the next send." style="width:100%;height:auto">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect x="8" y="30" width="170" height="76" fill="#fdf7e5" stroke="#333333" stroke-width="2" stroke-dasharray="6 3"/>
+  <text x="93" y="60" text-anchor="middle" font-family="Lato, Arial, sans-serif" font-size="17" font-weight="700" fill="#333333">Client account</text>
+  <text x="93" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#595959">BUSINESS</text>
+  <text x="93" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#595959">role + topics</text>
+
+  <rect x="265" y="30" width="170" height="76" fill="#ebf2fa" stroke="#333333" stroke-width="2"/>
+  <text x="350" y="60" text-anchor="middle" font-family="Lato, Arial, sans-serif" font-size="17" font-weight="700" fill="#333333">Portal</text>
+  <text x="350" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#595959">APPLICATION</text>
+  <text x="350" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#595959">builds audience</text>
+
+  <rect x="522" y="30" width="170" height="76" fill="#f2f2f2" stroke="#333333" stroke-width="2" stroke-dasharray="2 3"/>
+  <text x="607" y="63" text-anchor="middle" font-family="Lato, Arial, sans-serif" font-size="17" font-weight="700" fill="#333333">GC Notify</text>
+  <text x="607" y="83" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#595959">EXTERNAL</text>
+
+  <rect x="265" y="160" width="170" height="76" fill="#ebf2fa" stroke="#333333" stroke-width="2"/>
+  <text x="350" y="190" text-anchor="middle" font-family="Lato, Arial, sans-serif" font-size="17" font-weight="700" fill="#333333">Portal page</text>
+  <text x="350" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#595959">APPLICATION</text>
+  <text x="350" y="226" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#595959">real content</text>
+
+  <line x1="178" y1="68" x2="263" y2="68" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="220" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#595959">topics</text>
+  <line x1="435" y1="68" x2="520" y2="68" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="477" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#595959">send</text>
+  <path d="M607 106 L607 198 L437 198" fill="none" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="560" y="192" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#595959">client clicks</text>
+  <path d="M265 198 L93 198 L93 108" fill="none" stroke="#333333" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+  <text x="175" y="192" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#595959">shapes the next send</text>
+</svg>
+<figcaption>Figure 1 — The portal email loop</figcaption>
+</figure>
+<p>The email is a short, plain teaser. The real content stays on the portal, behind sign-in. That is not a style preference: GC Notify carries unclassified and Protected A content only, so anything more sensitive has to stay where the client has authenticated.</p>
+</section>
+
+<section id="tiers">
+<h2>4. The three tiers</h2>
+<p class="standfirst">Pick a tier, not a feature list.</p>
+<div class="tiers">
+  <div class="tier-card">
+    <h3>Tier 1 — Foundation</h3>
+    <p>The portal can launch and send lawfully. Account email including MFA codes, one consent switch, manual campaigns.</p>
+  </div>
+  <div class="tier-card">
+    <h3>Tier 2 — Targeted</h3>
+    <p>Drupal sends by itself. Preference centre, segmented campaigns, approval workflow, automatic suppression.</p>
+  </div>
+  <div class="tier-card">
+    <h3>Tier 3 — Personalised</h3>
+    <p>Content finds the client. Digests from Solr, saved searches, correction notices, re-engagement, full reporting.</p>
+  </div>
+</div>
+<div class="panel">
+  <h4>How to read the datasheets</h4>
+  <ul>
+    <li>Each capability shows the same three tiers. A capability can sit at a different tier from its neighbours — Tier 2 consent with Tier 1 measurement is a legitimate choice, and that is the point of splitting them.</li>
+    <li>Sizes are relative: <strong>XS</strong> is configuration, <strong>S</strong> is a few days, <strong>M</strong> is a sprint, <strong>L</strong> is more than one sprint with a decision inside it.</li>
+    <li>Select a tier on each card below and the running total at the foot of the page updates. Your selections stay in this browser only; nothing is sent anywhere.</li>
+  </ul>
+</div>
+</section>
+
+<section id="datasheets">
+<h2>5. Capability datasheets</h2>
+
+<div class="cap" id="c1">
+  <div class="cap-head">
+    <span class="code">C-1</span>
+    <h3>Account and identity email</h3>
+    <span class="head-note">The only capability the portal cannot launch without</span>
+  </div>
+  <div class="cap-body">
+    <div class="pick" data-cap="C-1" role="group" aria-label="Tier for C-1 Account and identity email">
+      <label><input type="radio" name="C-1" value="1" data-size="L"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Clients can register, confirm, sign in with MFA and reset a password</span><span class="tbuild">Template registry, send service, Drupal event hooks for T-1 to T-4</span></span><span class="tsize">L</span></label>
+      <label><input type="radio" name="C-1" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">Clients are told when their address or access changes</span><span class="tbuild">Security event hooks for T-5 and T-6, sent to both old and new address</span></span><span class="tsize">M</span></label>
+      <label><input type="radio" name="C-1" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Dormant and closed accounts are handled on a stated rule</span><span class="tbuild">Inactivity job and retention wiring for T-7 and T-8</span></span><span class="tsize">M</span></label>
+    </div>
+    <div class="panel bad">
+      <h4>MFA makes this a sign-in dependency, not an email feature</h4>
+      <p>With MFA in scope, a client who does not receive the code cannot sign in. GC Notify is a shared cloud service with published service objectives and is explicitly not for emergencies, so sign-in now depends on it.</p>
+      <p>Tier 1 therefore has to include a documented account-recovery fallback — a help-desk route that does not need the code — and monitoring of the GC Notify status page. Treat that as part of the L, not as a later addition.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cap" id="c2">
+  <div class="cap-head">
+    <span class="code">C-2</span>
+    <h3>Consent and preferences</h3>
+    <span class="head-note">The right to send anything at all</span>
+  </div>
+  <div class="cap-body">
+    <div class="pick" data-cap="C-2" role="group" aria-label="Tier for C-2 Consent and preferences">
+      <label><input type="radio" name="C-2" value="1" data-size="M"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">One switch: optional email on or off, with a working unsubscribe link</span><span class="tbuild">Boolean on the profile, signed token, confirmation page, consent log</span></span><span class="tsize">M</span></label>
+      <label><input type="radio" name="C-2" value="2" data-size="L"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">Clients choose which topics they hear about</span><span class="tbuild">Preference centre, per-topic subscriptions, full consent audit trail</span></span><span class="tsize">L</span></label>
+      <label><input type="radio" name="C-2" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Clients choose how often, and in which language, per topic</span><span class="tbuild">Frequency and language held per subscription, honoured by the queue</span></span><span class="tsize">M</span></label>
+    </div>
+    <div class="panel warn">
+      <h4>Settles decisions D-2, D-3 and D-4</h4>
+      <p>These three shape the consent data model, so they close before Phase 1 is scoped. Tier 1 is viable only if the answer to D-2 is that the programme assigns topics; if clients choose, Tier 2 is the floor, not an upgrade.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cap" id="c3">
+  <div class="cap-head">
+    <span class="code">C-3</span>
+    <h3>Audience and segmentation</h3>
+    <span class="head-note">Who a given message is actually for</span>
+  </div>
+  <div class="cap-body">
+    <div class="pick" data-cap="C-3" role="group" aria-label="Tier for C-3 Audience and segmentation">
+      <label><input type="radio" name="C-3" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Everyone, minus the people who opted out or bounced</span><span class="tbuild">One query: active, valid address, not opted out</span></span><span class="tsize">XS</span></label>
+      <label><input type="radio" name="C-3" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">Role, sector, region and topic, with the count shown before approval</span><span class="tbuild">Filtered query with a live count, shared by every stream</span></span><span class="tsize">M</span></label>
+      <label><input type="radio" name="C-3" value="3" data-size="L"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Audiences defined by behaviour, not just by profile</span><span class="tbuild">Last sign-in, content read, saved-search match as audience criteria</span></span><span class="tsize">L</span></label>
+    </div>
+    <div class="panel warn">
+      <h4>A segment label is personal information</h4>
+      <p>Targeting by role and sector is a use of personal information under the Privacy Act, and belongs in the privacy impact assessment whichever tier is chosen. Tier 3 adds behavioural data about named clients, which is a further use and may need the assessment reopened.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cap" id="c4">
+  <div class="cap-head">
+    <span class="code">C-4</span>
+    <h3>Templates and authoring</h3>
+    <span class="head-note">Where the words live, and who can change them</span>
+  </div>
+  <div class="cap-body">
+    <div class="pick" data-cap="C-4" role="group" aria-label="Tier for C-4 Templates and authoring">
+      <label><input type="radio" name="C-4" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Templates exist in both languages and staff know which is which</span><span class="tbuild">Templates authored in GC Notify; IDs recorded in Drupal by hand</span></span><span class="tsize">XS</span></label>
+      <label><input type="radio" name="C-4" value="2" data-size="S"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">A wrong or stale template ID cannot reach a client</span><span class="tbuild">Config entity per use case; variables validated before every send</span></span><span class="tsize">S</span></label>
+      <label><input type="radio" name="C-4" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Campaign content is written in Drupal, not retyped into GC Notify</span><span class="tbuild">Approved content converted to Notify markdown, with a lint step</span></span><span class="tsize">M</span></label>
+    </div>
+    <div class="panel">
+      <h4>A limit no tier removes</h4>
+      <p>GC Notify has no API for creating templates. Every template is authored by hand in its web interface at every tier, and the ID is then registered in Drupal. Build the registry at Tier 2 or that manual step becomes the thing that breaks a send.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cap" id="c5">
+  <div class="cap-head">
+    <span class="code">C-5</span>
+    <h3>Sending, queueing and scheduling</h3>
+    <span class="head-note">How a message actually leaves the building</span>
+  </div>
+  <div class="cap-body">
+    <div class="pick" data-cap="C-5" role="group" aria-label="Tier for C-5 Sending, queueing and scheduling">
+      <label><input type="radio" name="C-5" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Staff send a campaign by hand from the GC Notify screen</span><span class="tbuild">Views export with the unsubscribe link column</span></span><span class="tsize">XS</span></label>
+      <label><input type="radio" name="C-5" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">Drupal sends, and a failed send retries instead of vanishing</span><span class="tbuild">API client, queue, retry with backoff, idempotency guard</span></span><span class="tsize">M</span></label>
+      <label><input type="radio" name="C-5" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Campaigns are scheduled ahead and paced to the API</span><span class="tbuild">Scheduler, batch rate control, handoff inside the 72-hour window</span></span><span class="tsize">M</span></label>
+    </div>
+    <div class="panel warn">
+      <h4>Account email cannot stay at Tier 1</h4>
+      <p>Tier 1 here is for campaigns only. Password resets and MFA codes are triggered by the client and have to go through the API, so C-1 at Tier 1 already requires C-5 at Tier 2. These two capabilities are coupled; the others are not.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cap" id="c6">
+  <div class="cap-head">
+    <span class="code">C-6</span>
+    <h3>Suppression and list health</h3>
+    <span class="head-note">Keeping the department able to send at all</span>
+  </div>
+  <div class="cap-body">
+    <div class="pick" data-cap="C-6" role="group" aria-label="Tier for C-6 Suppression and list health">
+      <label><input type="radio" name="C-6" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Bad addresses stop being emailed, if staff remember</span><span class="tbuild">A documented manual step inside GC Notify's 7-day status window</span></span><span class="tsize">XS</span></label>
+      <label><input type="radio" name="C-6" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">Bad addresses stop being emailed automatically</span><span class="tbuild">Daily status poll, permanent failures suppressed, soft bounces counted</span></span><span class="tsize">M</span></label>
+      <label><input type="radio" name="C-6" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">The list stays clean over years, not just at launch</span><span class="tbuild">Annual re-confirmation, engagement sunsetting, list health report</span></span><span class="tsize">M</span></label>
+    </div>
+    <div class="panel bad">
+      <h4>Tier 1 carries a service-level risk, not just an admin cost</h4>
+      <p>GC Notify can suspend a service when too large a share of a day's sends fail. At Tier 1 that protection depends on a person remembering, every time, inside seven days. With MFA in scope, a suspension also stops sign-in codes.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cap" id="c7">
+  <div class="cap-head">
+    <span class="code">C-7</span>
+    <h3>Approval and audit</h3>
+    <span class="head-note">Who authorised this, and what happened</span>
+  </div>
+  <div class="cap-body">
+    <div class="pick" data-cap="C-7" role="group" aria-label="Tier for C-7 Approval and audit">
+      <label><input type="radio" name="C-7" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Someone approved it, somewhere, by email</span><span class="tbuild">Nothing in the system; the record lives in a mailbox</span></span><span class="tsize">XS</span></label>
+      <label><input type="radio" name="C-7" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">The approver is named in the record, beside the recipient count</span><span class="tbuild">Two-person approval in Drupal, campaign record, notification IDs stored</span></span><span class="tsize">M</span></label>
+      <label><input type="radio" name="C-7" value="3" data-size="S"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">All-client sends need a director, and the trail can be exported</span><span class="tbuild">Role-based approval rules, audit export</span></span><span class="tsize">S</span></label>
+    </div>
+    <div class="panel warn">
+      <h4>Sent campaigns are records of business value</h4>
+      <p>The Directive on Service and Digital makes a sent campaign a record. At Tier 1 that record is a mailbox, which is not a records system and cannot answer who approved a send after the approver has left.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cap" id="c8">
+  <div class="cap-head">
+    <span class="code">C-8</span>
+    <h3>Measurement</h3>
+    <span class="head-note">What the programme can honestly claim</span>
+  </div>
+  <div class="cap-body">
+    <div class="pick" data-cap="C-8" role="group" aria-label="Tier for C-8 Measurement">
+      <label><input type="radio" name="C-8" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">How many were sent, delivered and failed</span><span class="tbuild">Counts stored on the campaign record</span></span><span class="tsize">XS</span></label>
+      <label><input type="radio" name="C-8" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">Which campaigns bring clients back to the portal</span><span class="tbuild">Matomo campaign parameters generated at send time, visits by segment</span></span><span class="tsize">M</span></label>
+      <label><input type="radio" name="C-8" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Whether clients completed the task the email was sent for</span><span class="tbuild">Goals, funnel and content reports, monthly trend by segment</span></span><span class="tsize">M</span></label>
+    </div>
+    <div class="panel">
+      <h4>No tier buys open rates</h4>
+      <p>GC Notify reports delivery status only. Opens and clicks do not exist at any tier, and corporate link scanners open every link before the client does, so click counts on an executive segment are close to meaningless. Open rates would mean a separate marketing platform: procurement, a security assessment, and a privacy impact assessment for a new processor.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cap" id="c9">
+  <div class="cap-head">
+    <span class="code">C-9</span>
+    <h3>Subscription content</h3>
+    <span class="head-note">The capability that makes the portal worth returning to</span>
+  </div>
+  <div class="cap-body">
+    <div class="pick" data-cap="C-9" role="group" aria-label="Tier for C-9 Subscription content">
+      <label><input type="radio" name="C-9" value="1" data-size="0"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Nothing. Clients hear from the programme when the programme writes</span><span class="tbuild">Not built</span></span><span class="tsize">—</span></label>
+      <label><input type="radio" name="C-9" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">Clients hear when something is published in a topic they follow</span><span class="tbuild">Publication event to audience query to queue</span></span><span class="tsize">M</span></label>
+      <label><input type="radio" name="C-9" value="3" data-size="L"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Each client gets what is new for their role and sector</span><span class="tbuild">Solr digests per segment, saved searches, correction notices</span></span><span class="tsize">L</span></label>
+    </div>
+    <div class="panel bad">
+      <h4>S-3 is a policy question before it is a build</h4>
+      <p>If this portal publishes guidance people act on, telling a client that something they read has been corrected may not be optional and may not be opt-out-able. That changes the consent model for everything else, so settle it before choosing a tier here.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cap" id="c10">
+  <div class="cap-head">
+    <span class="code">C-10</span>
+    <h3>Feedback and reply</h3>
+    <span class="head-note">The capability nobody has decided on</span>
+  </div>
+  <div class="cap-body">
+    <div class="pick" data-cap="C-10" role="group" aria-label="Tier for C-10 Feedback and reply">
+      <label><input type="radio" name="C-10" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Clients get a reply from a monitored mailbox</span><span class="tbuild">A mailbox and a documented triage routine; nothing in the portal</span></span><span class="tsize">XS</span></label>
+      <label><input type="radio" name="C-10" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">The programme can show that feedback was received and answered</span><span class="tbuild">Acknowledgement email, reply logged against the client record</span></span><span class="tsize">M</span></label>
+      <label><input type="radio" name="C-10" value="3" data-size="L"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Replies can carry case detail without leaving the portal</span><span class="tbuild">Secure in-portal message thread, notify-and-pull email</span></span><span class="tsize">L</span></label>
+    </div>
+    <div class="panel bad">
+      <h4>This is decision D-5, and it has no safe default</h4>
+      <p>The tiers here are not degrees of the same thing. Tier 1 puts replies in a mailbox outside Drupal, outside the audit trail, and caps what can be said at Protected A. Tier 3 keeps the record and the classification but is a build of its own. Choosing a tier here is choosing between three different projects.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="rollup">
+<h2>6. Tier roll-up</h2>
+<div class="tw">
+<table>
+  <thead><tr><th style="width:14%">Tier</th><th style="width:30%">Capabilities at this tier</th><th style="width:16%">Rough size</th><th>What is still missing</th></tr></thead>
+  <tbody>
+    <tr><td><strong>1 Foundation</strong></td><td>C-1 and C-5 at Tier 2 (forced by MFA), everything else at Tier 1</td><td>About 2 sprints</td><td>Topic choice, targeting, automatic suppression, any reporting</td></tr>
+    <tr><td><strong>2 Targeted</strong></td><td>C-1 to C-8 at Tier 2, C-9 at Tier 2, C-10 by decision</td><td>About 5 to 6 sprints</td><td>Digests, saved searches, correction notices, behavioural audiences</td></tr>
+    <tr><td><strong>3 Personalised</strong></td><td>Everything at Tier 3</td><td>About 9 to 10 sprints</td><td>Nothing in this scope; open rates remain impossible</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="panel">
+  <h4>My read, for the product team to argue with</h4>
+  <ul>
+    <li>Tier 2 is the honest target. Tier 1 is not a smaller version of the product — it is the product with the consent model and the suppression loop left out, and both of those are what keep the department able to send at all.</li>
+    <li>The one place to spend above Tier 2 is C-9, because that is the capability that gives a client a reason to come back.</li>
+    <li>The one place to stay at Tier 1 is C-8, until the programme has said what success means.</li>
+  </ul>
+</div>
+</section>
+
+<section id="strawman">
+<h2>7. Use-case strawman</h2>
+<p>Twenty-five guesses at what this portal needs to send, in five streams. Each stream has a different consent rule, a different approver and a different legal footing — which is why a requirement that says "send email" cannot be designed against.</p>
+
+<h3>Stream T — account email, always sent</h3>
+<div class="tw">
+<table>
+  <thead><tr><th style="width:7%">ID</th><th style="width:26%">Use case</th><th style="width:24%">Trigger</th><th style="width:9%">Opt-out</th><th>Policy to check</th></tr></thead>
+  <tbody>
+    <tr><td>T-1</td><td>Confirm your email address</td><td>Registration submitted</td><td>No</td><td>Privacy Act; CASL benchmark</td></tr>
+    <tr><td>T-2</td><td>Account approved, welcome</td><td>Account activated</td><td>No</td><td>Official Languages Act; WCAG 2.1 AA</td></tr>
+    <tr><td>T-3</td><td>Password reset</td><td>Client requests it</td><td>No</td><td>Policy on Government Security</td></tr>
+    <tr><td>T-4</td><td>Sign-in verification code</td><td>Every sign-in (MFA in scope)</td><td>No</td><td>GC Notify priority send</td></tr>
+    <tr><td>T-5</td><td>Email address changed</td><td>Profile change — both addresses</td><td>No</td><td>Privacy Act</td></tr>
+    <tr><td>T-6</td><td>Unusual sign-in, account locked</td><td>Security event</td><td>No</td><td>Policy on Government Security</td></tr>
+    <tr><td>T-7</td><td>Account inactive, act now</td><td>Inactivity threshold</td><td>No</td><td>Privacy Practices — retention</td></tr>
+    <tr><td>T-8</td><td>Account closed</td><td>Deactivation</td><td>No</td><td>Privacy Act; records</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="panel bad">
+  <h4>MFA puts T-4 on the critical path</h4>
+  <p>A client who does not receive the code cannot sign in. See capability C-1 for what that obliges at Tier 1.</p>
+</div>
+
+<h3>Stream S — subscription email, the client asked for it</h3>
+<div class="tw">
+<table>
+  <thead><tr><th style="width:7%">ID</th><th style="width:26%">Use case</th><th style="width:28%">Trigger and audience</th><th style="width:10%">Opt-out</th><th>Policy to check</th></tr></thead>
+  <tbody>
+    <tr><td>S-1</td><td>New content in a topic you follow</td><td>Publication, to subscribers of that topic</td><td>Per topic</td><td>CASL benchmark; OLA</td></tr>
+    <tr><td>S-2</td><td>Periodic digest</td><td>Weekly or monthly, by role × sector × region</td><td>Per topic</td><td>OLA; WCAG 2.1 AA</td></tr>
+    <tr><td>S-3</td><td>Content you read was corrected or withdrawn</td><td>Editorial change on a page the client opened</td><td>Decision</td><td>Service and Digital; duty to inform</td></tr>
+    <tr><td>S-4</td><td>Scheduled release is now available</td><td>Publication calendar date</td><td>Per topic</td><td>OLA</td></tr>
+    <tr><td>S-5</td><td>Saved search has new results</td><td>Solr query matches new content</td><td>Per search</td><td>Privacy Act — stored queries</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Stream E — engagement, the programme reaches out</h3>
+<div class="tw">
+<table>
+  <thead><tr><th style="width:7%">ID</th><th style="width:26%">Use case</th><th style="width:28%">Trigger and audience</th><th style="width:10%">Opt-out</th><th>Policy to check</th></tr></thead>
+  <tbody>
+    <tr><td>E-1</td><td>Announcement to all clients</td><td>Manual, all active accounts</td><td>Per topic</td><td>CASL benchmark; OLA</td></tr>
+    <tr><td>E-2</td><td>Targeted announcement</td><td>Manual, role and/or sector and/or region</td><td>Per topic</td><td>Privacy Act — segments are personal information</td></tr>
+    <tr><td>E-3</td><td>Event invitation</td><td>Manual, segment subscribed to events</td><td>Per topic</td><td>Accessible Canada Act — accessible registration</td></tr>
+    <tr><td>E-4</td><td>Event reminder and follow-up</td><td>Scheduled from registration</td><td>Per topic</td><td>OLA</td></tr>
+    <tr><td>E-5</td><td>Re-engagement of dormant accounts</td><td>Scheduled, no sign-in in N days</td><td>Per topic</td><td>Privacy Act — retention</td></tr>
+    <tr><td>E-6</td><td>Survey or consultation invitation</td><td>Manual, segment</td><td>Per topic</td><td>Privacy Act; Accessible Canada Act</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Stream O — service email, the awkward ones</h3>
+<div class="tw">
+<table>
+  <thead><tr><th style="width:7%">ID</th><th style="width:26%">Use case</th><th style="width:28%">Trigger and audience</th><th style="width:10%">Opt-out</th><th>Policy to check</th></tr></thead>
+  <tbody>
+    <tr><td>O-1</td><td>Planned maintenance notice</td><td>Scheduled, all active accounts</td><td>Decision</td><td>Service and Digital directive</td></tr>
+    <tr><td>O-2</td><td>Unplanned outage notice</td><td>Incident</td><td>Decision</td><td>Not an emergency channel</td></tr>
+    <tr><td>O-3</td><td>Terms or privacy notice change</td><td>Policy change, all accounts</td><td>Decision</td><td>Privacy Act — changed use</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="panel bad">
+  <h4>The mandatory question</h4>
+  <p>If a client has opted out of all email, how do they learn the privacy notice changed? Two honest answers: a banner they see when they next sign in, or a small, named class of service email that cannot be refused and is disclosed at registration. This is decision D-4, and it changes the consent data model, so it cannot wait until build.</p>
+</div>
+
+<h3>Stream F — feedback, the undecided stream</h3>
+<div class="tw">
+<table>
+  <thead><tr><th style="width:7%">ID</th><th style="width:24%">Use case</th><th style="width:40%">What has to be decided</th><th>Policy to check</th></tr></thead>
+  <tbody>
+    <tr><td>F-1</td><td>We received your feedback</td><td>Auto-acknowledge or not. If the form is anonymous there is no address to reply to.</td><td>Privacy Act — collecting an address changes the form</td></tr>
+    <tr><td>F-2</td><td>A staff member replies to you</td><td>The real decision: reply by email, by secure message inside the portal, or offline.</td><td>Privacy Act; records of business value</td></tr>
+    <tr><td>F-3</td><td>Was this page useful — follow-up</td><td>Whether a one-click rating ever produces an email at all.</td><td>Privacy Act — linking a rating to an account</td></tr>
+  </tbody>
+</table>
+</div>
+</section>
+
+<section id="policy">
+<h2>8. Policy map</h2>
+<div class="tw">
+<table>
+  <thead><tr><th style="width:26%">Instrument</th><th style="width:42%">What it actually constrains here</th><th>Where it bites</th></tr></thead>
+  <tbody>
+    <tr><td>Privacy Act; Directive on Privacy Practices</td><td>Collecting, using and keeping email, role, sector and region. A segment label is personal information.</td><td>Privacy impact assessment; privacy notice at registration</td></tr>
+    <tr><td>Official Languages Act</td><td>Both languages, and the client served in their choice.</td><td>Two template IDs per use case</td></tr>
+    <tr><td>Accessible Canada Act; WCAG 2.1 AA</td><td>Email, landing page and any form must all be usable.</td><td>The portal pages are the risk, not the email</td></tr>
+    <tr><td>CASL</td><td>Probably not binding on a federal institution sending non-commercial notices — but it is the benchmark clients expect.</td><td>Unsubscribe valid 60 days; honoured within 10 business days</td></tr>
+    <tr><td>Policy on Government Security</td><td>GC Notify carries unclassified and Protected A only.</td><td>Notify-and-pull: the email says log in</td></tr>
+    <tr><td>Directive on Service and Digital</td><td>Outage communication; records of business value.</td><td>Sent campaigns are records</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="panel warn">
+  <h4>One correction before this reaches the BRD</h4>
+  <p>The working note names PIPEDA. PIPEDA governs private-sector organisations in commercial activity; a federal institution is governed by the Privacy Act. The two have different consent and notice rules.</p>
+</div>
+</section>
+
+<section id="levels">
+<h2>9. Integration levels</h2>
+<p>How far Drupal and GC Notify are wired together. The levels map onto the tiers, but they are worth stating separately because they are what the developers will argue about.</p>
+<div class="tw">
+<table>
+  <thead><tr><th style="width:15%">Level</th><th style="width:26%">What staff do</th><th style="width:30%">What Drupal does</th><th>Fits which streams</th></tr></thead>
+  <tbody>
+    <tr><td><strong>0. Notify only</strong></td><td>Build a list by hand, upload a spreadsheet, send from GC Notify</td><td>Nothing</td><td>None safely — no consent gate</td></tr>
+    <tr><td><strong>1. Drupal builds the list</strong></td><td>Pick filters in Drupal, export CSV, upload to GC Notify</td><td>Owns profiles, consent, unsubscribe links, bounce flags</td><td>E-1, E-2, O-1</td></tr>
+    <tr><td><strong>2. Drupal sends</strong></td><td>Pick filters, preview, approve, press send in Drupal</td><td>Calls the GC Notify API per recipient, logs the notification ID</td><td>All of T, plus E</td></tr>
+    <tr><td><strong>3. Drupal orchestrates</strong></td><td>Author a campaign, approve it, read the results</td><td>Queue, schedule, poll delivery status, suppress bounces, build digests</td><td>All streams including S-2 and S-5</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="panel">
+  <h4>My read</h4>
+  <p>Level 1 is not throwaway scaffolding. Levels 2 and 3 run on the same consent model, profiles and audience query — only the last mile changes, from a CSV export to an API call. Level 0 is the throwaway one, and it has no consent gate, which is why it is not a starting point.</p>
+</div>
+<div class="panel warn">
+  <h4>The on-premises constraint</h4>
+  <p>Outbound HTTPS from Drupal to the GC Notify API, through the departmental proxy, is the single dependency that can stop the whole design. Polling, not callbacks: an inbound endpoint into on-premises Drupal needs a DMZ and a security review. Firewall changes take weeks, so raise it now rather than at build time.</p>
+</div>
+</section>
+
+<section id="wizard">
+<h2>10. The campaign wizard</h2>
+<p>What a communications officer actually sees at Level 2 and above. These are wireframes, not visual design: the values shown are invented examples.</p>
+
+<h3>Screens 1 to 3</h3>
+<div class="screens">
+  <div class="screen">
+    <div class="screen-t">1. Use case</div>
+    <div class="screen-b">
+      <span class="fl">Use case</span>
+      <div class="fd">E-2 Targeted notice ▾</div>
+      <span class="fl">Templates EN · FR</span>
+      <div class="fd">a1f3-9c2e · b7c2-4d81</div>
+      <span class="fl">Language</span>
+      <div class="fd">Client's choice ▾</div>
+      <p class="fn">Chosen from the registry. Template IDs are never typed in.</p>
+    </div>
+  </div>
+  <div class="screen">
+    <div class="screen-t">2. Audience</div>
+    <div class="screen-b">
+      <span class="fl">Role</span>
+      <div class="fd">[x] EX &nbsp; [ ] Mgr &nbsp; [ ] WL</div>
+      <span class="fl">Sector · Region</span>
+      <div class="fd">Energy ▾ &nbsp; Prairie ▾</div>
+      <span class="fl">Topic</span>
+      <div class="fd">Events ▾</div>
+      <div><span class="fb">38 recipients</span></div>
+      <p class="fn">Live count. Excludes 4 bounced, 11 unsubscribed.</p>
+    </div>
+  </div>
+  <div class="screen">
+    <div class="screen-t">3. Preview</div>
+    <div class="screen-b">
+      <span class="fl">Subject</span>
+      <div class="fd">Invitation: roundtable</div>
+      <span class="fl">Rendered email</span>
+      <div class="fd">Bonjour ((first_name)),<br>You are invited to…<br>Register ›</div>
+      <div><span class="fb info">Send seed test</span></div>
+      <p class="fn">Seeds first: Gmail, Outlook, Yahoo, filtered corporate.</p>
+    </div>
+  </div>
+</div>
+<div class="panel">
+  <h4>What each screen prevents</h4>
+  <ul>
+    <li><strong>Screen 1</strong> — a typed template ID pointing at old content.</li>
+    <li><strong>Screen 2</strong> — the wrong segment: the count shows before approval. This is the screen that earns the build, and it is the number the approver signs off against.</li>
+    <li><strong>Screen 3</strong> — a template that looks fine here and breaks in Outlook.</li>
+  </ul>
+</div>
+
+<h3>Screens 4 to 6</h3>
+<div class="screens">
+  <div class="screen">
+    <div class="screen-t">4. Approve</div>
+    <div class="screen-b">
+      <span class="fl">Summary</span>
+      <div class="fd">E-2 · 38 recipients</div>
+      <span class="fl">Approver</span>
+      <div class="fd">Director, Programs ▾</div>
+      <span class="fl">Comment to author</span>
+      <div class="fd">optional</div>
+      <div><span class="fb">Approve</span> <span class="fb warn">Return</span></div>
+      <p class="fn">An author cannot approve their own campaign.</p>
+    </div>
+  </div>
+  <div class="screen">
+    <div class="screen-t">5. Schedule</div>
+    <div class="screen-b">
+      <span class="fl">When</span>
+      <div class="fd">( ) Send now</div>
+      <div class="fd">(•) Schedule</div>
+      <span class="fl">Date and time</span>
+      <div class="fd">2026-11-14 &nbsp; 09:40</div>
+      <span class="fl">Batch rate</span>
+      <div class="fd">200 per minute</div>
+      <p class="fn">Drupal holds the queue. GC Notify takes a send 72 hours ahead at most.</p>
+    </div>
+  </div>
+  <div class="screen">
+    <div class="screen-t">6. Results</div>
+    <div class="screen-b">
+      <span class="fl">Delivery</span>
+      <div class="fd">Sent 38 · Delivered 37</div>
+      <span class="fl">Failures</span>
+      <div class="fd">1 permanent failure</div>
+      <span class="fl">On the landing page</span>
+      <div class="fd">Visits 22 · Reg. 15</div>
+      <div><span class="fb info">Open in Matomo</span></div>
+      <p class="fn">The bounce is suppressed already. This record is the audit trail.</p>
+    </div>
+  </div>
+</div>
+<div class="panel">
+  <h4>What each screen prevents</h4>
+  <ul>
+    <li><strong>Screen 4</strong> — a send nobody owns: the approver is named in the record.</li>
+    <li><strong>Screen 5</strong> — a queue that outruns the API rate limit.</li>
+    <li><strong>Screen 6</strong> — a bounce noticed a month late, and an audit question nobody can answer.</li>
+  </ul>
+</div>
+</section>
+
+<section id="build">
+<h2>11. Work and phasing</h2>
+
+<h3>The build, by component</h3>
+<div class="tw">
+<table>
+  <thead><tr><th style="width:24%">Component</th><th style="width:48%">What it covers</th><th style="width:12%">Level</th><th class="size" style="width:10%">Size</th></tr></thead>
+  <tbody>
+    <tr><td>GC Notify service setup</td><td>Service created, keys issued, sender name, reply-to mailbox</td><td>1</td><td class="size">XS</td></tr>
+    <tr><td>Network and security</td><td>Outbound HTTPS egress rule, key storage, privacy assessment update</td><td>1</td><td class="size">S</td></tr>
+    <tr><td>Profile and taxonomy</td><td>Role, sector, region and topic vocabularies, shared with content tagging</td><td>1</td><td class="size">M</td></tr>
+    <tr><td>Preference centre</td><td>Client-facing page to choose topics and language</td><td>1</td><td class="size">M</td></tr>
+    <tr><td>Consent and suppression</td><td>Consent log, email status, signed unsubscribe tokens, confirmation page</td><td>1</td><td class="size">L</td></tr>
+    <tr><td>Audience query</td><td>Reusable filtered query with a live count, used by every stream</td><td>1</td><td class="size">M</td></tr>
+    <tr><td>CSV export</td><td>Views Data Export with the unsubscribe link column</td><td>1</td><td class="size">XS</td></tr>
+    <tr><td>Template registry</td><td>Config entity mapping use case to template IDs and expected variables</td><td>2</td><td class="size">S</td></tr>
+    <tr><td>Send service</td><td>API client, retry and backoff, idempotency guard, notification log</td><td>2</td><td class="size">M</td></tr>
+    <tr><td>Transactional hooks</td><td>Wire T-1 to T-8 to Drupal events</td><td>2</td><td class="size">M</td></tr>
+    <tr><td>Campaign entity and wizard</td><td>Content type, six-screen workflow, two-person approval, seed test</td><td>3</td><td class="size">L</td></tr>
+    <tr><td>Queue and scheduler</td><td>Batched sending, rate limiting, scheduled release</td><td>3</td><td class="size">M</td></tr>
+    <tr><td>Delivery polling</td><td>Daily status poll, bounce write-back, campaign report</td><td>3</td><td class="size">M</td></tr>
+    <tr><td>Matomo campaign reporting</td><td>Parameter generation, goals, segment dimensions</td><td>3</td><td class="size">M</td></tr>
+    <tr><td>Solr digest builder</td><td>Per-segment content selection into template slots</td><td>3</td><td class="size">L</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Phasing</h3>
+<div class="tw">
+<table>
+  <thead><tr><th style="width:16%">Phase</th><th style="width:32%">What it delivers</th><th style="width:32%">What it unblocks</th><th>Streams live</th></tr></thead>
+  <tbody>
+    <tr><td><strong>0. Prerequisites</strong></td><td>GC Notify service, egress rule, privacy assessment update</td><td>Everything — nothing is buildable until egress clears</td><td>None</td></tr>
+    <tr><td><strong>1. Consent base</strong></td><td>Profiles, taxonomies, preferences, consent, suppression</td><td>The right to send anything at all</td><td>None yet</td></tr>
+    <tr><td><strong>2. Manual sends</strong></td><td>CSV export with unsubscribe links; staff send</td><td>Proves content, approval and operating model</td><td>E-1, E-2, O-1</td></tr>
+    <tr><td><strong>3. Transactional</strong></td><td>Template registry, send service, event hooks</td><td>The account lifecycle needed for launch</td><td>All of T</td></tr>
+    <tr><td><strong>4. Campaigns</strong></td><td>Campaign entity, wizard, queue, polling, Matomo</td><td>Targeted sending without staff handling lists</td><td>E and O in full</td></tr>
+    <tr><td><strong>5. Subscription</strong></td><td>Solr digests, saved searches, corrections</td><td>Needs S-3 and S-5 decided first</td><td>S</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="panel warn">
+  <h4>The argument to make to the project manager</h4>
+  <p>A portal that requires an account cannot launch without password reset — and now, with MFA in scope, without sign-in codes. If the project is squeezed, Phases 0, 1 and 3 are the floor. Phase 2 is what keeps the business engaged while they are built.</p>
+</div>
+
+<h3>Risks</h3>
+<div class="tw">
+<table>
+  <thead><tr><th style="width:24%">Risk</th><th style="width:40%">Why it matters here</th><th>What to do now</th></tr></thead>
+  <tbody>
+    <tr><td>Outbound egress not approved</td><td>On-premises hosting; without it no stream above Level 1 works, and MFA codes cannot be sent at all</td><td>Raise the firewall request this month, before design is finished</td></tr>
+    <tr><td>Requirements stay at "send email"</td><td>Solution architecture cannot be written against it; the project stalls further</td><td>This strawman plus the decision table; assumptions close on a date</td></tr>
+    <tr><td>D-5 stays undecided</td><td>Three different builds hide behind one "to be determined"</td><td>Force the choice before Phase 1 scope is fixed</td></tr>
+    <tr><td>Mandatory email question unresolved</td><td>Determines whether consent has an exception class, which changes the data model</td><td>Decision D-4</td></tr>
+    <tr><td>List quality at launch</td><td>GC Notify can suspend a service if too many sends fail in a day — which would also stop sign-in</td><td>Confirm addresses at registration; clean the list before the first send</td></tr>
+    <tr><td>Translation capacity</td><td>Every template and every campaign is bilingual</td><td>Operating model must name who translates, and add the lead time</td></tr>
+  </tbody>
+</table>
+</div>
+</section>
+
+<section id="decisions">
+<h2>12. Decisions owed</h2>
+<p>Nine questions. Each has a default that applies if nobody answers by the date on the assumption log.</p>
+<div class="tw">
+<table>
+  <thead><tr><th style="width:6%">#</th><th style="width:26%">Question</th><th style="width:42%">Options</th><th>Default if unanswered</th></tr></thead>
+  <tbody>
+    <tr><td>D-1</td><td>Does targeting combine role AND sector, or role OR sector?</td><td>(a) AND — small precise groups &nbsp; (b) OR — wider reach &nbsp; (c) author chooses per campaign</td><td>(c) author chooses, with a live count</td></tr>
+    <tr><td>D-2</td><td>Can clients subscribe to topics, or does the programme decide?</td><td>(a) client chooses topics &nbsp; (b) programme assigns by role &nbsp; (c) both</td><td>(a) client chooses <strong>— blocking</strong></td></tr>
+    <tr><td>D-3</td><td>Are new accounts subscribed by default, or do they opt in?</td><td>(a) all topics on &nbsp; (b) all off until chosen &nbsp; (c) announcements on, rest off</td><td>(c) announcements on, rest off <strong>— blocking</strong></td></tr>
+    <tr><td>D-4</td><td>Is any email non-optional?</td><td>(a) no, everything opt-out &nbsp; (b) a named class cannot be refused &nbsp; (c) non-optional notices go on the dashboard</td><td>(b) a named, documented class <strong>— blocking</strong></td></tr>
+    <tr><td>D-5</td><td>How does client feedback get answered?</td><td>(a) email reply to a monitored mailbox &nbsp; (b) secure message inside the portal &nbsp; (c) offline only</td><td><strong>Blocked — no safe default</strong></td></tr>
+    <tr><td>D-6</td><td>Do we need open rates?</td><td>(a) no, portal activity is the measure &nbsp; (b) yes, and we accept a marketing platform</td><td>(a) portal activity</td></tr>
+    <tr><td>D-7</td><td>Which sender domain?</td><td>(a) notification.canada.ca &nbsp; (b) the department's own domain</td><td>(a) notification.canada.ca</td></tr>
+    <tr><td>D-8</td><td>What is the account inactivity policy?</td><td>(a) no reminders &nbsp; (b) remind at 90 days, up to three times, then review</td><td>(b)</td></tr>
+    <tr><td>D-9</td><td>Who approves a campaign before it sends?</td><td>(a) author alone &nbsp; (b) two people &nbsp; (c) two people, director for all-client sends</td><td>(c)</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="panel bad">
+  <h4>D-5 has no default on purpose</h4>
+  <p>The other eight can proceed on a reasonable assumption and be corrected cheaply. D-5 selects between three different builds, so guessing it wastes a phase. This is the one to escalate if it is not answered.</p>
+</div>
+<div class="panel warn">
+  <h4>How this closes without anyone being blamed</h4>
+  <ul>
+    <li>Every default goes into the BRD and the architecture as a numbered assumption: <em>we will proceed on the basis of X unless the business confirms otherwise by [date]</em>.</li>
+    <li>The project manager owns the log and reviews it at every status meeting. That turns a stalled conversation into a tracked risk.</li>
+    <li>When an assumption is confirmed it becomes a decision record. When it is corrected, the correction is the requirement — which is the outcome everyone wanted.</li>
+    <li>D-2, D-3 and D-4 shape the consent data model, so they must close before Phase 1 is scoped. Mark those three as blocking.</li>
+  </ul>
+</div>
+</section>
+
+<section id="workshop">
+<h2>13. Running the session</h2>
+<p class="standfirst">Ninety minutes, four people, no slides in the room at the start.</p>
+<p>Asking "what are the requirements?" asks people to produce an abstraction. Asking "what happens next to Marie?" asks them to retrieve an experience. The second is something anyone can do, and it yields the first as a by-product. It also changes whose requirement it is: when they narrate it, it is theirs; when you state it, it is a demand from IT.</p>
+
+<h3>The journey, and what each beat is really asking</h3>
+<div class="tw">
+<table>
+  <thead><tr><th style="width:26%">Beat</th><th style="width:38%">What it surfaces</th><th>Decision or use case</th></tr></thead>
+  <tbody>
+    <tr><td>Registers</td><td>What you collect, who approves an account</td><td>T-1, privacy notice</td></tr>
+    <tr><td>Confirms her email</td><td>Double opt-in, and what happens if she never confirms</td><td>T-1</td></tr>
+    <tr><td>Picks two sectors</td><td>Does she choose, or does the programme assign? What is on by default?</td><td>D-2, D-3</td></tr>
+    <tr><td>Gets a publication alert</td><td>Immediate or digest, and how often</td><td>S-1, S-2</td></tr>
+    <tr><td>Forgets her password</td><td>The launch blocker nobody costs — and with MFA, the sign-in path too</td><td>T-3, T-4</td></tr>
+    <tr><td>Sends feedback</td><td>Email, secure message, or offline. Budget twenty minutes for this beat alone.</td><td>D-5</td></tr>
+    <tr><td>Goes quiet</td><td>Inactivity, re-engagement, retention. Reliably produces a long silence.</td><td>D-8, E-5</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>How to run it</h3>
+<ul>
+  <li>Use a name and a specific situation: "Marie, works at a mid-size utility in Saskatchewan, has used the portal twice." Specificity triggers concrete recall; "the user" triggers abstraction, which is the thing to avoid.</li>
+  <li>Your only two lines are <strong>"what does she see?"</strong> and <strong>"then what happens?"</strong> Not "what's the requirement" — that is the question that has been failing.</li>
+  <li>Bring the tables out around minute sixty, framed as <em>here is what you just told me, written up</em>. Not as a challenge.</li>
+  <li>End by filling in the decision table together. Nine rows, multiple choice, defaults already marked. Two non-technical people can finish it in one sitting.</li>
+</ul>
+
+<div class="panel">
+  <h4>The hesitation is the point</h4>
+  <p>A pause means there is no rule yet. Mark it on the drawing — a red dot, a different sticky colour. By the end there should be a dozen, and that constellation is the argument for why the architecture could not start, made by the artifact rather than by you.</p>
+  <p>The hardest discipline is not filling the silence. You know the answer and will want to supply it. The moment you do, it is your requirement again, and it will not be captured as something anyone owes you.</p>
+</div>
+<div class="panel warn">
+  <h4>Two failure modes</h4>
+  <ul>
+    <li>If they answer everything confidently, you learn nothing. Probe once or twice with "how do we know that?" to tell real knowledge from guessing-to-please.</li>
+    <li>Parked items need an owner named in the room. Otherwise you leave with a dozen red dots and nobody accountable for any of them.</li>
+  </ul>
+</div>
+</section>
+
+<footer class="src">
+  <p><strong>Sources.</strong> GC Notify capabilities, limits and delivery statuses: GC Notify documentation, notification.canada.ca, October 2026. Platform patterns reused from the Information Sharing System client-email work. Everything else is the architect's draft for review, and is not yet agreed by the business.</p>
+  <p>Prepared by Enterprise Architecture · 23 October 2026 · Draft for discussion</p>
+  <p><a href="/balance/">‹ Back to Balance</a></p>
+</footer>
+
+  </main>
+</div>
+
+<div class="summary" id="summary" role="status" aria-live="polite">
+  <div class="layout" style="padding-block:0;display:block;max-width:1280px">
+    <div class="row">
+      <strong>Your selection</strong>
+      <span class="fig"><span id="n-chosen">0</span> of 10 capabilities set</span>
+      <span class="fig" id="n-mix">—</span>
+      <span class="fig">Rough build: <strong id="n-sprints">—</strong></span>
+      <button type="button" class="btn" id="copy">Copy summary</button>
+      <button type="button" class="btn" id="reset">Clear</button>
+    </div>
+    <p class="hint" id="n-warn"></p>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var WEIGHT = { XS: 0.2, S: 0.5, M: 1, L: 2, "0": 0 };
+  var NAMES = {
+    "C-1": "Account and identity email", "C-2": "Consent and preferences",
+    "C-3": "Audience and segmentation", "C-4": "Templates and authoring",
+    "C-5": "Sending and scheduling", "C-6": "Suppression and list health",
+    "C-7": "Approval and audit", "C-8": "Measurement",
+    "C-9": "Subscription content", "C-10": "Feedback and reply"
+  };
+  var CAPS = Object.keys(NAMES);
+  var KEY = "portal-email-tiers-v1";
+  var radios = Array.prototype.slice.call(document.querySelectorAll('.pick input[type=radio]'));
+
+  function read() {
+    try { return JSON.parse(localStorage.getItem(KEY) || "{}") || {}; }
+    catch (e) { return {}; }
+  }
+  function write(state) {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* private window */ }
+  }
+
+  function chosen() {
+    var out = {};
+    radios.forEach(function (r) { if (r.checked) out[r.name] = r; });
+    return out;
+  }
+
+  function update() {
+    var sel = chosen();
+    var keys = Object.keys(sel);
+    var counts = { 1: 0, 2: 0, 3: 0 };
+    var total = 0;
+    keys.forEach(function (k) {
+      counts[sel[k].value] += 1;
+      total += WEIGHT[sel[k].getAttribute("data-size")] || 0;
+    });
+    document.getElementById("n-chosen").textContent = String(keys.length);
+    document.getElementById("n-mix").textContent = keys.length
+      ? counts[1] + " at Tier 1 · " + counts[2] + " at Tier 2 · " + counts[3] + " at Tier 3"
+      : "—";
+    // A cumulative tier includes the tiers below it, so a Tier 3 choice carries
+    // the Tier 1 and Tier 2 work for that capability too.
+    var cumulative = 0;
+    keys.forEach(function (k) {
+      var cap = sel[k].name, lvl = parseInt(sel[k].value, 10);
+      document.querySelectorAll('.pick[data-cap="' + cap + '"] input').forEach(function (r) {
+        if (parseInt(r.value, 10) <= lvl) cumulative += WEIGHT[r.getAttribute("data-size")] || 0;
+      });
+    });
+    document.getElementById("n-sprints").textContent = keys.length
+      ? (Math.max(1, Math.round(cumulative * 0.8)) + " to " + Math.max(2, Math.round(cumulative * 1.25)) + " sprints")
+      : "—";
+
+    var warns = [];
+    if (sel["C-1"] && sel["C-5"] && sel["C-5"].value === "1") {
+      warns.push("C-5 at Tier 1 cannot support C-1: MFA codes and password resets must go through the API, so C-5 needs Tier 2.");
+    }
+    if (sel["C-10"]) {
+      warns.push("C-10 is blocked until decision D-5 is answered — record the choice, but treat it as provisional.");
+    }
+    if (sel["C-2"] && sel["C-2"].value === "1") {
+      warns.push("C-2 at Tier 1 assumes the programme assigns topics (decision D-2). If clients choose, Tier 2 is the floor.");
+    }
+    document.getElementById("n-warn").textContent = warns.join("  ");
+
+    var state = {};
+    keys.forEach(function (k) { state[k] = sel[k].value; });
+    write(state);
+  }
+
+  radios.forEach(function (r) { r.addEventListener("change", update); });
+
+  document.getElementById("reset").addEventListener("click", function () {
+    radios.forEach(function (r) { r.checked = false; });
+    update();
+  });
+
+  document.getElementById("copy").addEventListener("click", function () {
+    var sel = chosen();
+    var lines = ["Portal client email — capability tiers", ""];
+    CAPS.forEach(function (c) {
+      var r = sel[c];
+      lines.push(c + "  " + NAMES[c] + "  —  " +
+        (r ? "Tier " + r.value + " (" + r.getAttribute("data-size") + ")" : "not set"));
+    });
+    lines.push("");
+    lines.push("Rough build: " + document.getElementById("n-sprints").textContent);
+    var text = lines.join("\n");
+    var btn = this;
+    function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = "Copy summary"; }, 1800); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { done("Copied"); },
+        function () { fallback(); });
+    } else { fallback(); }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly", "");
+      ta.style.position = "fixed"; ta.style.left = "-9999px";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); done("Copied"); }
+      catch (e) { done("Press Ctrl+C"); }
+      setTimeout(function () { document.body.removeChild(ta); }, 100);
+    }
+  });
+
+  // Restore any previous selection in this browser.
+  var saved = read();
+  Object.keys(saved).forEach(function (cap) {
+    var r = document.querySelector('.pick input[name="' + cap + '"][value="' + saved[cap] + '"]');
+    if (r) r.checked = true;
+  });
+  update();
+})();
+</script>
+
+<script>
+/* Every C-, D-, T-, S-, E-, O- and F- code in the body gets a tooltip, so a
+   reader meeting "settles D-2" three sections away from the decision table
+   does not have to go and find it. The codes are wrapped at load rather than
+   in the markup: one definition list, and nothing to keep in step by hand. */
+(function () {
+  "use strict";
+  var CODES = {
+    /* capabilities */
+    "C-1": ["Capability", "Account and identity email", "The only capability the portal cannot launch without. MFA makes it a sign-in dependency, not an email feature."],
+    "C-2": ["Capability", "Consent and preferences", "The right to send anything at all. Settles decisions D-2, D-3 and D-4.", "Blocking for Phase 1 scope"],
+    "C-3": ["Capability", "Audience and segmentation", "Who a given message is actually for. A segment label is personal information under the Privacy Act."],
+    "C-4": ["Capability", "Templates and authoring", "Where the words live. GC Notify has no API for creating templates, so part of this stays manual at every tier."],
+    "C-5": ["Capability", "Sending, queueing and scheduling", "How a message leaves the building. Coupled to C-1: MFA codes and password resets must go through the API, so it cannot sit below Tier 2."],
+    "C-6": ["Capability", "Suppression and list health", "Keeps the department able to send at all. GC Notify can suspend a service when too large a share of a day's sends fail."],
+    "C-7": ["Capability", "Approval and audit", "Who authorised a send, and what happened. A sent campaign is a record of business value."],
+    "C-8": ["Capability", "Measurement", "What the programme can honestly claim. No tier buys open rates — GC Notify reports delivery only."],
+    "C-9": ["Capability", "Subscription content", "What gives a client a reason to come back. The one place worth spending above Tier 2."],
+    "C-10": ["Capability", "Feedback and reply", "Three tiers that are three different projects.", "Blocked on decision D-5"],
+    /* decisions */
+    "D-1": ["Decision", "Role AND sector, or role OR sector?", "Default if unanswered: the author chooses per campaign, with a live recipient count."],
+    "D-2": ["Decision", "Do clients choose topics, or does the programme assign them?", "Default if unanswered: the client chooses.", "Blocking — shapes the data model"],
+    "D-3": ["Decision", "Are new accounts subscribed by default, or do they opt in?", "Default if unanswered: announcements on, everything else off until chosen.", "Blocking — shapes the data model"],
+    "D-4": ["Decision", "Is any email non-optional?", "Default if unanswered: a small, named, disclosed class that cannot be refused.", "Blocking — shapes the data model"],
+    "D-5": ["Decision", "How does client feedback get answered?", "Email reply, secure in-portal message, or offline only. These are three different builds.", "No safe default — escalate"],
+    "D-6": ["Decision", "Do we need open rates?", "Default if unanswered: no — portal activity is the measure. Open rates would mean a separate marketing platform."],
+    "D-7": ["Decision", "Which sender domain?", "Default if unanswered: notification.canada.ca, which leaves SPF, DKIM and DMARC with the Canadian Digital Service."],
+    "D-8": ["Decision", "What is the account inactivity policy?", "Default if unanswered: remind at 90 days, up to three times, then review the account."],
+    "D-9": ["Decision", "Who approves a campaign before it sends?", "Default if unanswered: two people, and a director for all-client sends."],
+    /* account email */
+    "T-1": ["Account email", "Confirm your email address", "Triggered when registration is submitted. Always sent; no opt-out."],
+    "T-2": ["Account email", "Account approved, welcome", "Triggered when the account is activated. Always sent; no opt-out."],
+    "T-3": ["Account email", "Password reset", "Triggered by the client. Always sent, and a launch blocker for an account-gated portal."],
+    "T-4": ["Account email", "Sign-in verification code", "Sent on every sign-in now that MFA is in scope. A client who does not receive it cannot get in.", "On the critical path for access"],
+    "T-5": ["Account email", "Email address changed", "Sent to both the old and the new address, so a hijacked change is visible."],
+    "T-6": ["Account email", "Unusual sign-in or account locked", "Triggered by a security event."],
+    "T-7": ["Account email", "Account inactive, action needed", "Triggered when the inactivity threshold is reached. Depends on decision D-8."],
+    "T-8": ["Account email", "Account closed", "Sent on deactivation. A record of business value."],
+    /* subscription */
+    "S-1": ["Subscription email", "New content in a topic you follow", "Triggered by publication, to the subscribers of that topic. Opt-out per topic."],
+    "S-2": ["Subscription email", "Periodic digest", "Weekly or monthly, built per segment: role by sector by region. Needs Solr."],
+    "S-3": ["Subscription email", "Content you read was corrected or withdrawn", "Triggered by an editorial change to a page the client opened. May not be optional, which would change the consent model.", "Policy question before it is a build"],
+    "S-4": ["Subscription email", "Scheduled release is now available", "Triggered by the publication calendar date."],
+    "S-5": ["Subscription email", "Saved search has new results", "A stored Solr query matches new content. Stored queries are personal information."],
+    /* engagement */
+    "E-1": ["Engagement email", "Announcement to all clients", "Sent by hand to all active accounts. Opt-out per topic."],
+    "E-2": ["Engagement email", "Targeted announcement", "Sent by hand to a role, sector and/or region. The segment labels are personal information."],
+    "E-3": ["Engagement email", "Event invitation", "To the segment subscribed to events. Registration has to be accessible."],
+    "E-4": ["Engagement email", "Event reminder and follow-up", "Scheduled from the registration."],
+    "E-5": ["Engagement email", "Re-engagement of dormant accounts", "Scheduled, to clients who have not signed in for N days. Depends on decision D-8."],
+    "E-6": ["Engagement email", "Survey or consultation invitation", "Sent by hand to a segment."],
+    /* service */
+    "O-1": ["Service email", "Planned maintenance notice", "Scheduled, to all active accounts. Whether it can be refused is decision D-4."],
+    "O-2": ["Service email", "Unplanned outage notice", "Triggered by an incident. GC Notify is explicitly not an emergency channel."],
+    "O-3": ["Service email", "Terms or privacy notice change", "A changed use of personal information, so clients who opted out still have to learn of it. See decision D-4."],
+    /* feedback */
+    "F-1": ["Feedback", "We received your feedback", "Whether this exists depends on whether the form collects an address at all."],
+    "F-2": ["Feedback", "A staff member replies to you", "The real decision behind D-5: email, secure in-portal message, or offline."],
+    "F-3": ["Feedback", "Was this page useful — follow-up", "Whether a one-click rating ever produces an email. Linking a rating to an account is a use of personal information."]
+  };
+
+  var RE = /\b([CDTSEOF]-\d{1,2})(?![\w-])/g;
+  var SKIP = { SCRIPT: 1, STYLE: 1, svg: 1, SVG: 1 };
+  var main = document.getElementById("main");
+  if (!main) return;
+
+  function skip(node) {
+    for (var el = node.parentNode; el && el !== main; el = el.parentNode) {
+      if (SKIP[el.nodeName] || el.nodeName.toLowerCase() === "svg") return true;
+      if (el.classList && (el.classList.contains("ref") || el.classList.contains("cap-head"))) return true;
+    }
+    return false;
+  }
+
+  var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, null);
+  var targets = [], n;
+  while ((n = walker.nextNode())) {
+    RE.lastIndex = 0;
+    if (RE.test(n.nodeValue) && !skip(n)) targets.push(n);
+  }
+
+  targets.forEach(function (node) {
+    var frag = document.createDocumentFragment();
+    var text = node.nodeValue, last = 0, m;
+    RE.lastIndex = 0;
+    while ((m = RE.exec(text))) {
+      if (!CODES[m[1]]) continue;
+      if (m.index > last) frag.appendChild(document.createTextNode(text.slice(last, m.index)));
+      var span = document.createElement("span");
+      span.className = "ref";
+      span.setAttribute("tabindex", "0");
+      span.setAttribute("data-code", m[1]);
+      span.textContent = m[1];
+      frag.appendChild(span);
+      last = m.index + m[1].length;
+    }
+    if (!frag.childNodes.length) return;
+    if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+    node.parentNode.replaceChild(frag, node);
+  });
+
+  var tip = document.createElement("div");
+  tip.id = "reftip";
+  tip.setAttribute("role", "tooltip");
+  tip.hidden = true;
+  document.body.appendChild(tip);
+  var current = null;
+
+  function show(el) {
+    var d = CODES[el.getAttribute("data-code")];
+    if (!d) return;
+    tip.innerHTML = "";
+    var kind = document.createElement("span");
+    kind.className = "tip-kind";
+    kind.textContent = d[0] + " " + el.getAttribute("data-code");
+    var name = document.createElement("span");
+    name.className = "tip-name";
+    name.textContent = d[1];
+    var body = document.createElement("p");
+    body.textContent = d[2];
+    tip.appendChild(kind); tip.appendChild(name); tip.appendChild(body);
+    if (d[3]) {
+      var flag = document.createElement("span");
+      flag.className = "tip-flag";
+      flag.textContent = d[3];
+      tip.appendChild(flag);
+    }
+    tip.hidden = false;
+    el.setAttribute("aria-describedby", "reftip");
+    current = el;
+    place();
+  }
+
+  function place() {
+    if (!current) return;
+    var r = current.getBoundingClientRect();
+    var w = tip.offsetWidth, h = tip.offsetHeight, pad = 8;
+    var left = Math.min(Math.max(pad, r.left), window.innerWidth - w - pad);
+    var top = r.top - h - 6;
+    if (top < pad) top = r.bottom + 6;
+    // Keyboard focus scrolls smoothly, so the reference can still be off-screen
+    // for a few frames. Clamp rather than let the tooltip fly off the viewport.
+    top = Math.min(Math.max(pad, top), window.innerHeight - h - pad);
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  }
+
+  function hide() {
+    tip.hidden = true;
+    if (current) { current.removeAttribute("aria-describedby"); current = null; }
+  }
+
+  main.addEventListener("mouseover", function (e) {
+    var el = e.target.closest ? e.target.closest(".ref") : null;
+    if (el) show(el);
+  });
+  main.addEventListener("mouseout", function (e) {
+    var el = e.target.closest ? e.target.closest(".ref") : null;
+    if (el && el === current) hide();
+  });
+  main.addEventListener("focusin", function (e) {
+    var el = e.target.closest ? e.target.closest(".ref") : null;
+    if (el) show(el);
+  });
+  main.addEventListener("focusout", hide);
+  // Touch: a tap opens the tooltip, and a tap anywhere else closes it.
+  main.addEventListener("click", function (e) {
+    var el = e.target.closest ? e.target.closest(".ref") : null;
+    if (el) { e.stopPropagation(); if (el === current) { hide(); } else { show(el); } }
+  });
+  document.addEventListener("click", function () { if (current) hide(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") hide(); });
+  // Follow the reference rather than hiding. Focusing a ref scrolls the page
+  // smoothly towards it, so for the length of that animation the ref is still
+  // off-screen: hiding on scroll would close every keyboard-opened tooltip the
+  // moment it opened. A focused ref keeps its tooltip and the tooltip follows;
+  // a hover-opened one closes once its ref has scrolled out of view.
+  window.addEventListener("scroll", function () {
+    if (!current) return;
+    if (current === document.activeElement) { place(); return; }
+    var r = current.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > window.innerHeight) { hide(); } else { place(); }
+  }, true);
+  window.addEventListener("resize", function () { if (current) place(); });
+})();
+</script>
+</body>
+</html>
