@@ -18,7 +18,7 @@ Three small signals fix most of this.
 2. **Last reviewed.** Not "last edited". A page can be edited yesterday and not checked in years.
 3. **Status.** Current, needs review, or retired.
 
-Try it below. Turn each signal on and off, then move the slider to age the page.
+Below is a mock-up of staff searching an intranet for **leave policy**. Three results come back. Switch the signals on and off to see how much easier the choice becomes. Then fast-forward a year to see what happens when nobody looks after the pages.
 
 <style>
 .wx{border:1px solid rgba(128,128,128,.4);border-radius:10px;padding:14px;margin:1.2em 0;font-size:.95em}
@@ -38,35 +38,63 @@ Try it below. Turn each signal on and off, then move the slider to age the page.
 .wx .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
 </style>
 <div class="wx" markdown="0" id="w1">
-<div class="row" role="group" aria-label="Signals">
-<button aria-pressed="true" data-k="owner" title="Who to ask, and who is accountable">Owner</button>
-<button aria-pressed="true" data-k="date" title="When a person last checked the facts">Last reviewed</button>
-<button aria-pressed="true" data-k="status" title="Tells the reader how far to rely on the page">Status</button>
+<style>
+#w1 .sr{border-bottom:1px solid rgba(128,128,128,.3);padding:10px 2px}
+#w1 .sr:last-child{border-bottom:0}
+#w1 .st{font-size:1.05em;color:#1a73e8;font-weight:600}
+#w1 .su{font-size:.8em;color:#2da44e}
+#w1 .sn{opacity:.9;margin:2px 0}
+#w1 .sg{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:5px;font-size:.88em}
+#w1 .sg span{white-space:nowrap}
+#w1 .sg i{font-style:normal;opacity:.7}
+#w1 .sb{border:1px solid rgba(128,128,128,.4);border-radius:8px;padding:6px 14px;background:rgba(128,128,128,.06)}
+</style>
+<div class="row"><strong>What the search results show:</strong>
+<button data-k="owner" aria-pressed="true">Owner</button>
+<button data-k="date" aria-pressed="true">Last reviewed</button>
+<button data-k="status" aria-pressed="true">Status</button>
 </div>
-<label>Months since last review: <input type="range" min="0" max="24" value="3" id="w1m"> <strong id="w1mv">3</strong></label>
-<div class="card" id="w1c"></div>
-<div id="w1t" aria-live="polite"></div>
+<div class="row"><button id="w1ff" aria-pressed="false">Fast-forward 12 months</button><span class="note" id="w1ffn">Today</span></div>
+<div class="note" style="margin-top:8px">Staff search for: <strong>leave policy</strong></div>
+<div class="sb" id="w1l"></div>
+<div class="card" id="w1v" aria-live="polite" style="margin-top:10px"></div>
 </div>
 <script>
 (function(){
-var on={owner:true,date:true,status:true},m=document.getElementById('w1m');
+var R=[{t:"Leave policy",u:"intranet / hr / leave-policy",s:"How much leave you earn, how to request it, and who approves it.",o:"HR Policy team",m:3},{t:"Leave policy (2019 version)",u:"intranet / hr / archive / leave-2019",s:"How much leave you earn, how to request it, and who approves it.",o:null,m:52},{t:"Leave: frequently asked questions",u:"intranet / hr / leave-faq",s:"Quick answers about carry-over, sick leave and special leave.",o:"Pay and Benefits team",m:14}];
+var on={owner:true,date:true,status:true},ff=0;
+function g(i){return document.getElementById(i);}
+function ok(r){var m=r.m+ff;return {owner:!!r.o,date:m<=12,status:m<=12};}
 function draw(){
-var mo=+m.value,stale=mo>12;
-document.getElementById('w1mv').textContent=mo;
-var h='<strong>Travel claim process</strong><br>';
-h+=on.owner?'Owner: Finance Services team, <u>contact the team</u><br>':'<span class="note">No owner shown</span><br>';
-h+=on.date?'Last reviewed: '+mo+' month'+(mo==1?'':'s')+' ago<br>':'<span class="note">No review date shown</span><br>';
-if(on.status)h+='Status: '+(stale?'<span class="bad">Needs review</span>':'<span class="good">Current</span>');
-else h+='<span class="note">No status shown</span>';
-document.getElementById('w1c').innerHTML=h;
-var n=on.owner+on.date+on.status,t;
-if(n==3)t=stale?'The page admits it is old. Readers know to double-check. That honesty keeps trust.':'All three signals are shown and the page is fresh. A reader can act without phoning anyone.';
-else if(n==0)t='No signals. The reader has to guess. Most will ask a colleague instead.';
-else t='Only '+n+' of 3 signals. Better, but the reader still has a gap to fill with guesswork.';
-document.getElementById('w1t').innerHTML='<p>'+t+'</p>';
+var h='',trusted=[],n=(on.owner?1:0)+(on.date?1:0)+(on.status?1:0);
+R.forEach(function(r,i){var m=r.m+ff,k=ok(r),g2='';
+if(on.owner)g2+='<span><i>Owner:</i> '+(r.o?r.o:'<b class="bad">none</b>')+'</span>';
+if(on.date)g2+='<span><i>Last reviewed:</i> '+m+' months ago</span>';
+if(on.status)g2+='<span><i>Status:</i> '+(k.status?'<b class="good">&#9679; Current</b>':'<b class="bad">&#9679; Needs review</b>')+'</span>';
+var pass=(!on.owner||k.owner)&&(!on.date||k.date)&&(!on.status||k.status);
+if(pass)trusted.push(i+1);
+h+='<div class="sr"><div class="su">'+r.u+'</div><div class="st">'+(i+1)+'. '+r.t+'</div><div class="sn">'+r.s+'</div>'+(g2?'<div class="sg">'+g2+'</div>':'')+'</div>';});
+g('w1l').innerHTML=h;
+g('w1ffn').textContent=ff?'Twelve months later. Nobody reviewed anything.':'Today';
+var v;
+if(n==0)v='<strong>Which one is right?</strong> The three results look almost the same. A reader has to open each one, or phone HR. Many will phone.';
+else{
+ var hidden=n<3?' <span class="note">(Only '+n+' of 3 signals are shown. Switch on the rest for the full picture.)</span>':'';
+ if(trusted.length==0)v='<strong class="bad">No result passes.</strong> Every result is old or unowned. The honest signals tell the reader to check before relying on any of them. That prompts a review.'+hidden;
+ else if(trusted.length==1)v='<strong class="good">Click result '+trusted[0]+'.</strong> It is the one with the signals you can rely on. The others show why they should not be trusted.'+hidden;
+ else v='<strong>Results '+trusted.join(' and ')+' pass.</strong> The reader can pick without phoning anyone. Result(s) not listed show a warning.'+hidden;
 }
-document.querySelectorAll('#w1 button').forEach(function(b){b.onclick=function(){var k=b.dataset.k;on[k]=!on[k];b.setAttribute('aria-pressed',on[k]);draw();};});
-m.oninput=draw;draw();
+var em,ml;
+if(n==0){em="&#128533;";ml="Confused";}
+else if(trusted.length==0){em="&#128543;";ml="Worried";}
+else if(trusted.length==1&&n==3){em="&#128516;";ml="Confident";}
+else if(n<3){em="&#128528;";ml="Not sure yet";}
+else{em="&#128578;";ml="Comfortable";}
+g('w1v').innerHTML='<div class="row" style="margin:0 0 6px"><span style="font-size:2.2em;line-height:1" aria-hidden="true">'+em+'</span><span><span class="note">How the reader feels</span><br><strong style="font-size:1.1em">'+ml+'</strong></span></div>'+v;
+}
+document.querySelectorAll('#w1 button[data-k]').forEach(function(b){b.onclick=function(){var k=b.dataset.k;on[k]=!on[k];b.setAttribute('aria-pressed',on[k]);draw();};});
+g('w1ff').onclick=function(){ff=ff?0:12;this.setAttribute('aria-pressed',!!ff);draw();};
+draw();
 })();
 </script>
 
