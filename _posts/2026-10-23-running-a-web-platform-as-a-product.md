@@ -2,8 +2,8 @@
 layout: single
 title: "Running a Web Platform as a Product: A Reading Guide"
 date: 2026-10-23 09:35:00 -0400
-description: "A short guide to seven articles on search, analytics, content ownership, operating models and teams, and how they fit together into one product management approach."
-excerpt: "A short guide to seven articles on search, analytics, content ownership, operating models and teams, and how they fit together into one product management approach."
+description: "A short guide to eight articles on search, analytics, content ownership, operating models and teams, and how they fit together into one product management approach."
+excerpt: "A short guide to eight articles on search, analytics, content ownership, operating models and teams, and how they fit together into one product management approach."
 theme: digital
 author_profile: false
 classes: wide
@@ -12,7 +12,7 @@ tags: [product management, ux, intranet, governance, operating model, search, an
 
 A web platform is not finished at launch. It is a product. People use it, it ages, and someone has to look after it.
 
-These seven short articles share one idea: **a site stays useful when people can trust it, and trust comes from ownership, evidence and a team that stays.** They are written generically, so they apply to any intranet or content-heavy website. Each has a small interactive piece you can play with.
+These eight short articles share one idea: **a site stays useful when people can trust it, and trust comes from ownership, evidence and a team that stays.** They are written generically, so they apply to any intranet or content-heavy website. Each has a small interactive piece you can play with.
 
 ## The big picture
 
@@ -20,13 +20,14 @@ Read them as a chain.
 
 1. **Readers need to trust a page.** That comes from visible owners and review dates.
 2. **Trust has to be measured.** That is content health reporting.
-3. **Search shows whether it is working.** It also depends on owned, current content.
-4. **One shared vocabulary lets the tools line up.**
-5. **Someone must run it day to day.** That is the operating model.
-6. **Someone must decide what to improve.** That is the product owner.
-7. **The team must exist and stay.** That is skills, experience and resourcing over time.
+3. **Measurement has to lead to action.** Automation sends flags to owners, and people decide.
+4. **Search shows whether it is working.** It also depends on owned, current content.
+5. **One shared vocabulary lets the tools line up.**
+6. **Someone must run it day to day.** That is the operating model.
+7. **Someone must decide what to improve.** That is the product owner.
+8. **The team must exist and stay.** That is skills, experience and resourcing over time.
 
-## The seven articles
+## The eight articles
 
 ### For readers: trust
 
@@ -35,6 +36,7 @@ Read them as a chain.
 ### For measurement: evidence
 
 - [Content Health: Measuring Whether Your Website Is Current and Owned]({{ '/content-health-reporting/' | relative_url }}) Four simple measures, reported by branch, that turn "how good is our content?" into a to-do list. *Try it: switch measures and click a branch.*
+- [Automation Flags, People Decide]({{ '/automation-flags-people-decide/' | relative_url }}) How a health report becomes a task in the owner's view, with reminders, escalation and safe archiving. *Try it: pick a reminder style and an owner response and watch what happens.*
 - [Your Search Box Is Only as Good as Your Content Owners]({{ '/search-needs-content-owners/' | relative_url }}) Why search quality is mostly a people problem, and how owners and review dates help the right page rank first. *Try it: turn ranking rules on and watch results reorder.*
 - [One Vocabulary: Sharing a Taxonomy Across Search, Analytics and Navigation]({{ '/one-vocabulary-for-search-analytics-navigation/' | relative_url }}) One controlled list of terms, so search, reports and menus can finally be compared. *Try it: switch between a shared and separate vocabularies.*
 
@@ -62,6 +64,7 @@ Pick the question closest to yours.
 var Q=[
 ["People do not believe what is on our pages","{{ '/can-i-trust-this-page/' | relative_url }}","Can I Trust This Page?"],
 ["I cannot tell which parts of the site are healthy","{{ '/content-health-reporting/' | relative_url }}","Content Health"],
+["Reports tell us what is wrong but nothing gets fixed","{{ '/automation-flags-people-decide/' | relative_url }}","Automation Flags, People Decide"],
 ["Search keeps returning the wrong page","{{ '/search-needs-content-owners/' | relative_url }}","Your Search Box Is Only as Good as Your Content Owners"],
 ["Our reports, menus and search do not match up","{{ '/one-vocabulary-for-search-analytics-navigation/' | relative_url }}","One Vocabulary"],
 ["I do not know who should do what after launch","{{ '/who-runs-the-website-operating-model/' | relative_url }}","Who Runs the Website?"],

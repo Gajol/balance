@@ -71,6 +71,10 @@ draw();
 })();
 </script>
 
+## From report to action
+
+A report only helps if someone acts on it. The goal is to send each flag to the person who owns that page, not to IT. For example, a stale page goes to the owner's review list, and a failed search goes to the product owner. Reminders, escalation and archiving can then be automated, with people making every decision. See [Automation Flags, People Decide]({{ '/automation-flags-people-decide/' | relative_url }}) for how that loop works.
+
 ## How to use the report
 
 - **Report by branch or team, not by page.** Managers can act on a branch. Nobody can act on 3,000 rows.
