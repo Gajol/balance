@@ -3,11 +3,9 @@ title: "How the World Really Works"
 excerpt: "Think about net zero, and how realistic it is based on our current food, energy and globalization model."
 last_modified_at: 2023-02-16T10:23:16-04:00
 toc: true
-classes: wide
+toc_sticky: true
+toc_label: "Contents"
 categories: world economics canada
-# sidebar:
-#  title: "Contents"
-#  nav: sidebar-change-your-questions
 theme: economics
 ---
 # How the World Really Works

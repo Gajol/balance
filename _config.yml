@@ -35,6 +35,9 @@ author:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/doug.djn"
+    - label: "Linktree"
+      icon: "fas fa-fw fa-link"
+      url: "https://linktr.ee/dougnielsen"
 
 
 # as per jekyll https://jekyllrb.com/docs/permalinks/, and
