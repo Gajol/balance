@@ -9,6 +9,7 @@ read_time: true
 header:
   # image: /assets/images/Architecture-AI-wide.jpg
   teaser: /assets/images/Architecture-AI-Generated.jpg
+theme: digital
 ---
 <a name="application-reference-architecture"></a>
 <a name="application-reference-architecture-table-of-contents"></a>

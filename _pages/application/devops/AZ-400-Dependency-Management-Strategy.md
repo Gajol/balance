@@ -4,6 +4,7 @@ title: "Dependency Management Strategy"
 excerpt: "Understanding and managing dependencies is key, especially in large complex projects.  Package Feeds (Aftifact Repositories) and scanning tools help manage dependencies."
 last_modified_at: 2023-01-07T10:23:16-04:00
 toc: true
+theme: digital
 ---
 # AZ-400 Dependency Management Strategy
 

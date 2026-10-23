@@ -8,6 +8,7 @@ categories: world economics canada
 # sidebar:
 #  title: "Contents"
 #  nav: sidebar-change-your-questions
+theme: economics
 ---
 # How the World Really Works
 

@@ -9,6 +9,7 @@ read_time: true
 sidebar:
   title: "Contents"
   nav: sidebar-think-fast-think-slow
+theme: psychology
 ---
 
 

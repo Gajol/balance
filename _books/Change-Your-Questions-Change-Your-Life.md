@@ -8,6 +8,7 @@ categories: leadership thinking
 sidebar:
   title: "Contents"
   nav: sidebar-change-your-questions
+theme: psychology
 ---
 
 [Adams, Marilee G. *Change Your Questions, Change Your Life: 12 Powerful Tools for Leadership, Coaching, and Life*. Third edition. Inquiry Institute Library Series. Oakland: Berrett-Koehler Publishers, 2015.](https://worldcat.org/en/title/910091020)

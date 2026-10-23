@@ -4,6 +4,7 @@ title: "CDS User Experience"
 excerpt: "CDS User Experience"
 last_modified_at: 2023-01-07T10:23:16-04:00
 toc: true
+theme: digital
 ---
 
 # User Experience at CDS

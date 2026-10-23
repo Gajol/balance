@@ -1,0 +1,16 @@
+{%- comment -%}
+  Lists every page, post, book summary and architecture note tagged with
+  `theme: <name>` in its front matter.
+  Usage: {% include theme-list.html theme="digital" path="application/cds" %}
+  `path` is optional and narrows the list to files whose path contains it.
+{%- endcomment -%}
+{%- assign items = site.pages | concat: site.posts | concat: site.books | concat: site.architecture | where: "theme", include.theme -%}
+{%- if include.path -%}
+  {%- assign items = items | where_exp: "i", "i.path contains include.path" -%}
+{%- endif -%}
+{%- assign items = items | sort: "title" -%}
+<ul>
+{%- for i in items %}
+  <li><a href="{{ i.url | relative_url }}">{{ i.title }}</a>{% if i.excerpt and i.excerpt != i.title %} &mdash; {{ i.excerpt | strip_html | strip_newlines | truncate: 160 }}{% endif %}</li>
+{%- endfor %}
+</ul>

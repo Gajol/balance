@@ -4,6 +4,7 @@ title: "Open Source Security"
 excerpt: "Managing open source software, using static application security testing (SAST) and keeping informed of latest security concerns are key to using open-source securely."
 last_modified_at: 2023-01-07T10:23:16-04:00
 toc: true
+theme: digital
 ---
 # AZ-400 Security and Code Bases
 

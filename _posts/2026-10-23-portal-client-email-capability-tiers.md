@@ -1,10 +1,11 @@
 ---
-layout: posts
+layout: single
 title:  "Portal client email: capability tiers"
 date:   2026-10-23 08:50:00 -0400
 description: Ten capabilities at three tiers, so a product team can choose a level rather than approve a list.
 excerpt: "What to do when the captured requirement is 'send email and manage client lists' and the architecture cannot start. Ten capabilities, three tiers each, and a picker that tallies the build."
 tags: [ux, "product management"]
+theme: digital
 ---
 
 A portal modernization I am working on had its email requirement captured as *the ability to send email and manage email client lists*. That is true, and it is not enough to design against. It does not say who is emailed, on what trigger, with whose consent, or how anyone would know the right people received it.

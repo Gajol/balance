@@ -1,4 +1,9 @@
-# User Interface Design
+---
+title: "User Interface Design"
+excerpt: "User Interface Design"
+permalink: /application/cds/User-Interface
+theme: digital
+---
 
 Rules of Interface Design
 

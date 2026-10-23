@@ -4,6 +4,7 @@ title: "Secure Continuous Deployment"
 excerpt: "Deliverying smaller components often with observability to help refine solutions enables success.  Feature toggles can help on blue-green, A/B testing, canary and progressive-exposure release strategies."
 last_modified_at: 2023-01-07T10:23:16-04:00
 toc: true
+theme: digital
 ---
 # AZ-400 Secure Continuous Deployment
 

@@ -1,4 +1,9 @@
-# Design Thinking
+---
+title: "Design Thinking"
+excerpt: "Design Thinking"
+permalink: /application/cds/Design-Thinking
+theme: digital
+---
 
 ## Leaders in Design Thinking
 

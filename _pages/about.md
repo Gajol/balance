@@ -1,7 +1,7 @@
 ---
 permalink: /about/
 title: "About"
-excerpt: "My profession is in technology leadership as an architect.  My current interests are in psychology and economics."
+excerpt: "My profession is in technology leadership as an architect.  My interests are digital technology, psychology, economics and cycling."
 last_modified_at: 2023-01-07T10:23:16-04:00
 toc: true
 ---
@@ -11,3 +11,9 @@ This site is a collection of things that interest me both professional and perso
 
 ## 2023 Goals
 I am deciding what I would like to study in 2023.  Economic models and theories, including behavioral economics is of interest as it plays a role in world policy, and, how Canada and the make decisions on investments.
+
+## What is here
+- [Digital](/balance/digital/): architecture, digital government, service design and DevOps.
+- [Psychology](/balance/psychology/): book summaries on judgment, choice and growing up.
+- [Economics](/balance/economics/): energy, food, trade and policy.
+- [Cycling](/balance/cycling/): bikes, routes and trips.

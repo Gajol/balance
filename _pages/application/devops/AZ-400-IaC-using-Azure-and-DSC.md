@@ -4,6 +4,7 @@ title: "Azure IaC and DSC"
 excerpt: "DevOps needs to treat infrastructure like cattle.  The ability to create environments that are consistent is critical to DevOps success.  Infrastructure as Code (IaC) and Desired State Configuration (DSC) and key DevOps aims."
 last_modified_at: 2023-01-07T10:23:16-04:00
 toc: true
+theme: digital
 ---
 # AZ-400 IaC using Azure and DSC
 

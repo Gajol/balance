@@ -1,6 +1,6 @@
 ---
 title: "The Drunkard's Walk"
-excerpt: "Why 30 is not the new 20 by Meg Jay."
+excerpt: "How randomness and chance shape outcomes more than we like to believe, by Leonard Mlodinow."
 last_modified_at: 2023-01-07T10:23:16-04:00
 toc: false
 classes: wide
@@ -8,6 +8,7 @@ categories: psychology statistics
 sidebar:
   title: "Contents"
   nav: sidebar-defining-decade
+theme: psychology
 ---
 
 # Drunkard's Walk
