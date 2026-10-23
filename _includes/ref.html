@@ -1,0 +1,15 @@
+{%- comment -%}
+  Cites an entry from _data/references.yml.
+  Usage: {% include ref.html key="iea-weo-2020" %}
+  Optional: text="custom link text"
+  Output is one line of Markdown: [Title](url) ([archived](archive-url)) ([copy](local-copy))
+{%- endcomment -%}
+{%- assign r = site.data.references[include.key] -%}
+{%- if r -%}
+{%- assign label = include.text | default: r.title -%}
+{%- assign arch = r.archive -%}
+{%- unless arch %}{% capture arch %}https://web.archive.org/web/2/{{ r.url }}{% endcapture %}{% endunless -%}
+[{{ label }}]({{ r.url }}) ([archived]({{ arch }})){% if r.copy %} ([copy]({{ r.copy | relative_url }})){% endif %}
+{%- else -%}
+**Missing reference: {{ include.key }}**
+{%- endif -%}

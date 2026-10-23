@@ -1039,12 +1039,12 @@ From 1913 to 1945 share of trade in global GDP fell from 14% to 4%.  Factors inc
 #  References
 
 [^1]: [1973 Oil Crisis](https://en.wikipedia.org/wiki/1973_oil_crisis) : The embargo was targeted at nations that had supported Israel during the [Yom Kippur War](https://en.wikipedia.org/wiki/Yom_Kippur_War). States targeted: Canada, Japan, the Netherlands, the United Kingdom and the United States, though the embargo also later extended to Portugal, Rhodesia and South Africa
-[^2 ]: International Energy Agency, *World Energy Outlook 2020* (Paris: IEA, 2020), https://www.iea.org/reports/world-energy-outlook-2020.   Other publications include Net Zero by 2050 - A Roadmap for the Global Energy Sector, and World Energy Outlook 2021
+[^2]: {% include ref.html key="iea-weo-2020" text="International Energy Agency, World Energy Outlook 2020 (Paris: IEA, 2020)" %}.  Other publications include {% include ref.html key="iea-net-zero-2050" %}, and {% include ref.html key="iea-weo-2021" %}.
 [^3]: Haber-Bosch Process 1913: Holdermann Karl. 1960. *Im Banne Der Chemie : Carl Bosch ; Leben Und Werk* 7. - 10. Tsd ed. Düsseldorf: Econ-Verl.
-[^4]: [McKinsey Report . Lund et al., *Globalization in Transition: The Future of Trade and Value Chains* (Washington, DC: McKinsey Global Institute, 2019).](https://www.mckinsey.com/featured-insights/innovation-and-growth/globalization-in-transition-the-future-of-trade-and-value-chains).
+[^4]: Lund et al., {% include ref.html key="mckinsey-globalization-2019" text="Globalization in Transition: The Future of Trade and Value Chains" %} (Washington, DC: McKinsey Global Institute, 2019).
 
-[^5]: [Princeton Net-Zero America](https://acore.org/net-zero-america-potential-pathways-infrastructure-and-impacts/).
+[^5]: {% include ref.html key="princeton-net-zero-america" text="Princeton Net-Zero America" %}.
 
 ## Institutions
 
-[PIIE - Peterson Institute for International Economics](https://www.piie.com/microsites/globalization/what-is-globalization)
+{% include ref.html key="piie-globalization" text="PIIE - Peterson Institute for International Economics" %}

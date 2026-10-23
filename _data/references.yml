@@ -1,0 +1,55 @@
+# Reference register: one entry per outside source.
+# Cite from a page with: {% include ref.html key="mckinsey-globalization-2019" %}
+# Fields:
+#   title, author, year, publisher  - shown in the citation
+#   url      - original source
+#   archive  - optional; defaults to the latest Wayback Machine snapshot of url
+#   copy     - optional; only set when the licence allows hosting a copy, e.g. /assets/docs/file.pdf
+# Do not put private file paths or personal share links in this file; it is published.
+
+iea-weo-2020:
+  title: "World Energy Outlook 2020"
+  author: "International Energy Agency"
+  year: 2020
+  publisher: "IEA"
+  url: "https://www.iea.org/reports/world-energy-outlook-2020"
+
+iea-weo-2021:
+  title: "World Energy Outlook 2021"
+  author: "International Energy Agency"
+  year: 2021
+  publisher: "IEA"
+  url: "https://www.iea.org/reports/world-energy-outlook-2021"
+
+iea-net-zero-2050:
+  title: "Net Zero by 2050: A Roadmap for the Global Energy Sector"
+  author: "International Energy Agency"
+  year: 2021
+  publisher: "IEA"
+  url: "https://www.iea.org/reports/net-zero-by-2050"
+
+mckinsey-globalization-2019:
+  title: "Globalization in Transition: The Future of Trade and Value Chains"
+  author: "Lund et al."
+  year: 2019
+  publisher: "McKinsey Global Institute"
+  url: "https://www.mckinsey.com/featured-insights/innovation-and-growth/globalization-in-transition-the-future-of-trade-and-value-chains"
+
+princeton-net-zero-america:
+  title: "Net-Zero America: Potential Pathways, Infrastructure, and Impacts"
+  author: "Princeton University"
+  publisher: "ACORE"
+  url: "https://acore.org/net-zero-america-potential-pathways-infrastructure-and-impacts/"
+
+granovetter-1973:
+  title: "The Strength of Weak Ties"
+  author: "Mark Granovetter"
+  year: 1973
+  publisher: "American Journal of Sociology"
+  url: "https://www.jstor.org/stable/2776392"
+
+piie-globalization:
+  title: "What Is Globalization?"
+  author: "Peterson Institute for International Economics"
+  publisher: "PIIE"
+  url: "https://www.piie.com/microsites/globalization/what-is-globalization"
