@@ -47,17 +47,24 @@ Below is a mock-up of staff searching an intranet for **leave policy**. Three re
 #w1 .sg{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:5px;font-size:.88em}
 #w1 .sg span{white-space:nowrap}
 #w1 .sg i{font-style:normal;opacity:.7}
+#w1 .w1wrap{display:grid;grid-template-columns:minmax(230px,300px) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:760px){#w1 .w1wrap{grid-template-columns:1fr}}
+#w1 .w1side{position:sticky;top:10px}
 #w1 .sb{border:1px solid rgba(128,128,128,.4);border-radius:8px;padding:6px 14px;background:rgba(128,128,128,.06)}
 </style>
-<div class="row"><strong>What the search results show:</strong>
-<button data-k="owner" aria-pressed="true">Owner</button>
-<button data-k="date" aria-pressed="true">Last reviewed</button>
-<button data-k="status" aria-pressed="true">Status</button>
-</div>
-<div class="row"><button id="w1ff" aria-pressed="false">Fast-forward 12 months</button><span class="note" id="w1ffn">Today</span></div>
-<div class="note" style="margin-top:8px">Staff search for: <strong>leave policy</strong></div>
-<div class="sb" id="w1l"></div>
+<div class="w1wrap">
+<div class="w1side">
+<div><strong>What the search results show</strong></div>
+<div class="row"><button data-k="owner" aria-pressed="true">Owner</button><button data-k="date" aria-pressed="true">Last reviewed</button><button data-k="status" aria-pressed="true">Status</button></div>
+<div class="row"><button id="w1ff" aria-pressed="false">Fast-forward 12 months</button></div>
+<div class="note" id="w1ffn">Today</div>
 <div class="card" id="w1v" aria-live="polite" style="margin-top:10px"></div>
+</div>
+<div class="w1main">
+<div class="note" style="margin-bottom:6px">Staff search for: <strong>leave policy</strong></div>
+<div class="sb" id="w1l"></div>
+</div>
+</div>
 </div>
 <script>
 (function(){
@@ -90,7 +97,7 @@ else if(trusted.length==0){em="&#128543;";ml="Worried";}
 else if(trusted.length==1&&n==3){em="&#128516;";ml="Confident";}
 else if(n<3){em="&#128528;";ml="Not sure yet";}
 else{em="&#128578;";ml="Comfortable";}
-g('w1v').innerHTML='<div class="row" style="margin:0 0 6px"><span style="font-size:2.2em;line-height:1" aria-hidden="true">'+em+'</span><span><span class="note">How the reader feels</span><br><strong style="font-size:1.1em">'+ml+'</strong></span></div>'+v;
+g('w1v').innerHTML='<div class="row" style="margin:0 0 6px"><span style="font-size:3.4em;line-height:1" aria-hidden="true">'+em+'</span><span><span class="note">How the reader feels</span><br><strong style="font-size:1.1em">'+ml+'</strong></span></div>'+v;
 }
 document.querySelectorAll('#w1 button[data-k]').forEach(function(b){b.onclick=function(){var k=b.dataset.k;on[k]=!on[k];b.setAttribute('aria-pressed',on[k]);draw();};});
 g('w1ff').onclick=function(){ff=ff?0:12;this.setAttribute('aria-pressed',!!ff);draw();};
