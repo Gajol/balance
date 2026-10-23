@@ -1,0 +1,18 @@
+title: Balance
+description: Balance, technology and life
+author: gajol
+
+url: "https://gajol.github.io"
+baseurl: "/balance"
+
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Posts that are self-contained HTML documents carry their own styling and
+# omit `layout` in their front matter, so Jekyll serves them as written.
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
