@@ -21,7 +21,7 @@ This post gives you a small model for each. The numbers are made up. Use your ow
 
 ## Part 1: Who covers which skill?
 
-Nine generic positions. Tick a person as hired, set their experience, and watch the skill coverage. Experience counts as junior 0.5, intermediate 0.8, senior 1.0. Tick "leaves" to see what one departure does.
+Nine generic positions. Tick a person as hired, set their experience, and watch the skill coverage feed one headline result: how much of the product vision is realized. Experience counts as junior 0.5, intermediate 0.8, senior 1.0. Tick "leaves" to see what one departure does.
 
 <style>
 .wx{border:1px solid rgba(128,128,128,.4);border-radius:10px;padding:14px;margin:1.2em 0;font-size:.95em}
@@ -56,12 +56,14 @@ function draw(){
 var h='<tr><th>Position</th><th>Type</th><th>Skill</th><th>Hired</th><th>Experience</th><th>Leaves</th></tr>';
 P.forEach(function(p,i){var s=st[i];h+='<tr class="'+(s.on&&!s.gone?'pick':'')+'"><td>'+p[0]+'</td><td>'+p[1]+'</td><td>'+p[2]+'</td><td><input type="checkbox" aria-label="Hired: '+p[0]+'" data-a="on" data-i="'+i+'"'+(s.on?' checked':'')+'></td><td><select aria-label="Experience: '+p[0]+'" data-a="x" data-i="'+i+'">'+L.map(function(l,j){return '<option value="'+j+'"'+(s.x==j?' selected':'')+'>'+l+'</option>';}).join('')+'</select></td><td><input type="checkbox" aria-label="Leaves: '+p[0]+'" data-a="gone" data-i="'+i+'"'+(s.gone?' checked':'')+(s.on?'':' disabled')+'></td></tr>';});
 document.getElementById('w7t').innerHTML=h;
-var c='',gaps=0,thin=0,single=0;
+var c='',gaps=0,thin=0,single=0,pcts=[];
 skills.forEach(function(k){var w=0,n=0;P.forEach(function(p,i){if(p[2]==k&&st[i].on&&!st[i].gone){w+=W[st[i].x];n++;}});
-var need=k=="Operations"||k=="Bilingual content"?2:1,pct=Math.min(100,Math.round(w/need*100)),lab,cls;
+var need=k=="Operations"||k=="Bilingual content"?2:1,pct=Math.min(100,Math.round(w/need*100)),lab,cls;pcts.push(pct);
 if(n==0){lab="Gap";cls="bad";gaps++;}else if(pct<80){lab="Thin";cls="bad";thin++;}else if(n==1&&need==1){lab="Covered by one person";cls="";single++;}else{lab="Covered";cls="good";}
-c+='<div style="margin:6px 0"><div class="row" style="justify-content:space-between;margin:0"><span>'+k+'</span><span class="'+cls+'">'+lab+'</span></div><div class="track"><div class="fill" style="width:'+pct+'%"></div></div></div>';});
-document.getElementById('w7c').innerHTML=c;
+c+='<div style="margin:6px 0"><div class="row" style="justify-content:space-between;margin:0"><span>'+k+'</span><span class="'+cls+'">'+lab+'</span></div><div class="track"><div class="fill" style="width:'+pct+'%;background:rgba(128,128,128,.7)"></div></div></div>';});
+var avg=pcts.reduce(function(x,y){return x+y;},0)/pcts.length,mn=Math.min.apply(null,pcts),v=Math.round(0.6*avg+0.4*mn),vc=v>=80?'#12b886':v>=50?'#f59f00':'#e5534b',vl=v>=80?'On track':v>=50?'Partly realized':'At risk';
+var vh='<div class="card" style="border:2px solid '+vc+';padding:12px"><div class="row" style="justify-content:space-between;margin:0"><strong style="font-size:1.15em">Vision realized: the product people will actually use</strong><strong style="font-size:1.3em;color:'+vc+'">'+v+'%</strong></div><div class="track" style="height:22px;margin-top:6px"><div class="fill" style="height:22px;width:'+v+'%;background:'+vc+'"></div></div><div class="note" style="margin-top:6px">'+vl+'. Skills below feed it, and it is held back by the weakest ones.</div></div><div class="note" style="margin:8px 0 2px">Skills that feed the vision</div>';
+document.getElementById('w7c').innerHTML=vh+c;
 var m=gaps?gaps+' skill'+(gaps>1?'s have':' has')+' nobody. ':'No skill is empty. ';
 if(thin)m+=thin+' thin. ';
 if(single)m+=single+' depend on a single person, so one resignation becomes a gap. ';
@@ -76,6 +78,7 @@ draw();
 
 What to notice:
 
+- **The vision is only as strong as its weakest skills.** One empty skill drags the headline down far more than one strong skill lifts it.
 - **Two juniors do not equal one senior.** Coverage counts experience, not bodies.
 - **One-person skills are fragile.** They look "covered" until that person resigns.
 - **Shared skills are safer.** Two people who each partly cover a skill beat one who covers it fully.
