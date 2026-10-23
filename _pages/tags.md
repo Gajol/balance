@@ -14,14 +14,13 @@ excerpt: "Find notes by topic."
 {%- endfor -%}
 {%- assign all_tags = all_tags | uniq | sort -%}
 
-Pick a tag to jump to its notes. Larger tags have more notes.
+Pick a tag to jump to its notes.
 
 <div class="tag-cloud">
 {%- for tag in all_tags %}
   {%- assign tagged = items | where_exp: "i", "i.tags contains tag" %}
   {%- assign n = tagged.size %}
-  {%- if n >= 12 %}{% assign sz = "s4" %}{% elsif n >= 6 %}{% assign sz = "s3" %}{% elsif n >= 3 %}{% assign sz = "s2" %}{% else %}{% assign sz = "s1" %}{% endif %}
-  <a class="{{ sz }}" href="#{{ tag | slugify }}">{{ tag }}<small>{{ n }}</small></a>
+  <a href="#{{ tag | slugify }}">{{ tag }}<small>{{ n }}</small></a>
 {%- endfor %}
 </div>
 
