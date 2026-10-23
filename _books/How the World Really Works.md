@@ -849,7 +849,7 @@ CFC's outlaws in 1987 Montreal Protocol.
 
 The media, public and politicians discovered global warming in 1988.  Scientists have known about this since:
 
-- 1856 Joseph Fourier (French Mathematician) realized the atmosphere absorbs some of the radiation emanating from the ground.   1856 Eunice Foote (American scientist) linked CO<sub>2</sub> with global warming.  1861 John Tyndall (English physicist) explained water vapour is the most important absorber of radiation.
+- 1820s Joseph Fourier (French mathematician) realized the atmosphere absorbs some of the radiation emanating from the ground.   1856 Eunice Foote (American scientist) linked CO<sub>2</sub> with global warming.  1861 John Tyndall (Irish-born physicist) explained water vapour is the most important absorber of radiation.
 - 1957 *Thus human beings are now carrying out a large scale geophysical experiment of a kind that could not have happened in the past nor be reproduced in the future. Within a few centuries we are returning to the atmosphere and oceans the concentrated organic carbon stored in sedimentary rocks over hundreds of millions of years* - Roger Revelle (American oceanographer) and Hans Suess (Physical Chemist)
 
 - the 1960's with the first global atmospheric models (long before computers).
