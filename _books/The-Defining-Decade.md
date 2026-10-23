@@ -126,7 +126,7 @@ How to approach a weak tie for help:
 
 ### Background
 
-- [The Strength of Weak Ties - 1973 Granovetter](https://www.jstor.org/stable/2776392). [ [Strength of Weak Ties - Onedrive ](https://1drv.ms/b/s!AkwXSmFk-_xpgrV8bzG8n95FTVavEw?e=dLI2dd)]
+- [The Strength of Weak Ties - 1973 Granovetter](https://www.jstor.org/stable/2776392)
   - [Mark Granovetter - Wikipedia](https://en.wikipedia.org/wiki/Mark_Granovetter) ; Social network theory and economic sociology. [Mark Granovetter - Stanford](https://profiles.stanford.edu/mark-granovetter)
   - [Rose Coser](https://en.wikipedia.org/wiki/Rose_Laub_Coser) : Weakness of Strong Ties
 

@@ -1039,11 +1039,11 @@ From 1913 to 1945 share of trade in global GDP fell from 14% to 4%.  Factors inc
 #  References
 
 [^1]: [1973 Oil Crisis](https://en.wikipedia.org/wiki/1973_oil_crisis) : The embargo was targeted at nations that had supported Israel during the [Yom Kippur War](https://en.wikipedia.org/wiki/Yom_Kippur_War). States targeted: Canada, Japan, the Netherlands, the United Kingdom and the United States, though the embargo also later extended to Portugal, Rhodesia and South Africa
-[^2 ]: International Energy Agency, *World Energy Outlook 2020* (Paris: IEA, 2020), https://www.iea.org/reports/world-energy-outlook-2020. [OneDrive - World Energy Outlook 2020](https://1drv.ms/b/s!AkwXSmFk-_xpgq1PRd51t5KYY_thJg?e=Mkvg3s).   Other publications include [Net Zero by 2050 - A Roadmap for the Global Energy Sector](https://1drv.ms/b/s!AkwXSmFk-_xpgq1SrR_6ZmZHdel_CQ?e=Mh0tI3), and [World Energy Outlook 2021](https://1drv.ms/b/s!AkwXSmFk-_xpgq1PRd51t5KYY_thJg?e=RxgxRu)
+[^2 ]: International Energy Agency, *World Energy Outlook 2020* (Paris: IEA, 2020), https://www.iea.org/reports/world-energy-outlook-2020.   Other publications include Net Zero by 2050 - A Roadmap for the Global Energy Sector, and World Energy Outlook 2021
 [^3]: Haber-Bosch Process 1913: Holdermann Karl. 1960. *Im Banne Der Chemie : Carl Bosch ; Leben Und Werk* 7. - 10. Tsd ed. Düsseldorf: Econ-Verl.
-[^4]: [McKinsey Report . Lund et al., *Globalization in Transition: The Future of Trade and Value Chains* (Washington, DC: McKinsey Global Institute, 2019).](https://www.mckinsey.com/featured-insights/innovation-and-growth/globalization-in-transition-the-future-of-trade-and-value-chains).  [Onedrive - McKinsey Globalization 2019](https://1drv.ms/b/s!AkwXSmFk-_xpgq1VCp1XbHs3UBsi7A?e=B65K3R)
+[^4]: [McKinsey Report . Lund et al., *Globalization in Transition: The Future of Trade and Value Chains* (Washington, DC: McKinsey Global Institute, 2019).](https://www.mckinsey.com/featured-insights/innovation-and-growth/globalization-in-transition-the-future-of-trade-and-value-chains).
 
-[^5]: [Princeton Net-Zero America](https://acore.org/net-zero-america-potential-pathways-infrastructure-and-impacts/). [OneDrive-World-Princeton]
+[^5]: [Princeton Net-Zero America](https://acore.org/net-zero-america-potential-pathways-infrastructure-and-impacts/).
 
 ## Institutions
 

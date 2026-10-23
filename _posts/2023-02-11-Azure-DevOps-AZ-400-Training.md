@@ -26,10 +26,10 @@ Below are my course notes from  the following topics:
 
 Other references mentioned in the course include:
 
-- [Puppet 5-Stages of DevOps - 2018](https://1drv.ms/b/s!AkwXSmFk-_xpgt4JBmrEEbU9UE17Rw?e=qpOe92)
+- Puppet 5-Stages of DevOps - 2018
 - OWASP Code Review Guide - 2017
-- [Microsoft Digital Defense Report - 2022](https://1drv.ms/b/s!AkwXSmFk-_xpgt4Mf7uknchv_f1Fvg?e=FRDWca) :  [Executive Summary](https://1drv.ms/b/s!AkwXSmFk-_xpgt4LQ1o0lDk-tQ0ipg?e=llnFcx)
-- [AZ-400 Study Guide](https://1drv.ms/b/s!AkwXSmFk-_xpgt4NdTvkIMA9s9d2lQ?e=r0IOfc)
+- Microsoft Digital Defense Report - 2022 (and its Executive Summary)
+- AZ-400 Study Guide
 
 
 > *I wish I had been a little bit more respectful of the pile of poker chips God put in front of me to get started on.  But, you know that's life.  Mistakes and lost poker chips.*  - Duke Montana The Comeback Trail - Tommy Lee Jones.
