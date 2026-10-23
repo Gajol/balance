@@ -1025,6 +1025,94 @@ Hover over a highlighted word in the notes above to see its meaning.
 - **WWW (wind, water and solar)**: the main renewable energy sources.
 - **Common Era (CE) and Before Common Era (BCE)**: the same calendar as AD and BC. 400 BCE and 400 BC are the same year. See [Common Era](https://en.wikipedia.org/wiki/Common_Era).
 
+## Technical Terms
+
+More terms from the notes, grouped by theme. They are also underlined in the text above.
+
+### Energy and electricity
+
+- **joule**: The standard unit of energy. Lifting a small apple about one metre takes roughly one joule.
+- **MJ (megajoule)**: One million joules.
+- **exajoule (EJ)**: One billion billion joules (10<sup>18</sup>). Used for world-scale energy totals.
+- **Wh/kg (watt-hours per kilogram)**: How much energy a battery or fuel stores for its weight.
+- **energy density**: Energy stored per unit of volume (or, loosely, of weight). It decides how easy a fuel is to store and carry.
+- **pumped hydro storage (PHS)**: Using spare electricity to pump water uphill, then letting it fall through turbines at peak demand.
+- **small modular reactor**: A small nuclear reactor built in a factory and shipped to site, instead of built from scratch on site.
+- **decarbonization**: Cutting the carbon dioxide released by an activity, a sector or a whole economy.
+- **electrification**: Switching from burning fuel to using electricity.
+- **carbon capture**: Trapping carbon dioxide from smokestacks or the air and storing it, so it stays out of the atmosphere.
+- **firm power**: Electricity that is available on demand, whatever the weather or time of day (for example nuclear, hydro or gas).
+- **net zero**: Removing as much greenhouse gas as you release, so the net addition is zero.
+- **IEA (International Energy Agency)**: The Paris-based agency that publishes the World Energy Outlook and other energy forecasts.
+- **OPEC**: The Organization of the Petroleum Exporting Countries, a group of oil producers that coordinates oil output and prices. Founded in 1960.
+- **Stated Policies Scenario**: An IEA forecast of where energy goes if governments only do what they have already announced.
+- **Sustainable Development Scenario**: An IEA forecast of the most aggressive path to cutting emissions.
+- **Fukushima**: The 2011 nuclear accident in Japan after an earthquake and tsunami. Japan shut reactors afterwards and burned more fossil fuel.
+
+### Food and farming
+
+- **pelagic**: Living near the surface of open water, like anchovies, sardines and mackerel.
+- **aquaculture**: Farming fish and shellfish.
+- **leguminous**: Describes plants (beans, peas, lentils, soybeans, peanuts) whose root bacteria make their own nitrogen.
+- **nitrogenous fertilizer**: A fertilizer that supplies nitrogen, such as ammonia or urea.
+- **Haber-Bosch process**: The industrial way to make ammonia from nitrogen in the air and hydrogen (usually from natural gas), using high pressure and an iron catalyst.
+- **volatilization**: Ammonia escaping into the air as a gas instead of staying in the soil.
+- **eutrophication**: Too many nutrients (phosphorus, nitrogen) in water, causing huge algae growth that uses up the oxygen.
+- **anoxic**: Without oxygen.
+- **agrochemicals**: Chemicals used in farming: fertilizers, herbicides (weeds), insecticides (insects) and fungicides (fungi).
+- **potash**: Potassium salts, mostly potassium chloride (KCl), mined and used as fertilizer.
+- **superphosphate**: Fertilizer made by treating phosphate rock with acid so plants can use the phosphorus.
+- **cover crops**: Crops such as alfalfa and clover grown to protect and feed the soil, then ploughed in.
+- **draft animals**: Horses, oxen and mules used to pull ploughs and wagons.
+- **hectare**: 10,000 square metres, about 2.5 acres.
+
+### Materials
+
+- **electric arc furnace (EAF)**: A furnace that melts scrap steel using electric arcs, used to recycle steel.
+- **clinker**: The hard lumps made by heating limestone and clay in a kiln. Ground up, they become cement.
+- **Portland cement**: The common modern cement, patented in 1824. Named after limestone from the Isle of Portland.
+- **aggregates**: Sand, gravel and crushed stone mixed into concrete.
+- **re-bar**: Steel bars set inside concrete to strengthen it.
+- **alloy**: A metal mixed with other elements to change its properties. Steel is an alloy of iron.
+- **thermoplastic**: Plastic that softens when heated and can be re-moulded.
+- **thermoset plastic**: Plastic that sets permanently and does not soften when heated again.
+- **monomer**: A small molecule that links with others into long chains (polymers), the building block of plastics.
+- **steam cracking**: Heating hydrocarbons with steam to very high temperatures to split them into ethylene and propylene.
+- **polymerized**: Joined into long chains of repeating molecules.
+- **nacelle**: The housing on top of a wind turbine tower that holds the gearbox and generator.
+- **turbofan**: A jet engine with a large front fan. Quieter and more efficient than a plain turbojet.
+- **turbojet**: An early type of jet engine where all the air goes through the engine core.
+- **chronometer**: A very accurate clock used to find longitude at sea.
+
+### Globalization and economy
+
+- **GDP (gross domestic product)**: The total value of goods and services a country produces in a year.
+- **foreign direct investment (FDI)**: Money invested in a business, factory or property in another country.
+- **offshoring**: Moving work or production to another country.
+- **reshoring**: Bringing work or production back to the home country.
+- **de-risking**: Reducing dependence on a single supplier or country.
+- **supply chain**: The linked steps and suppliers that take a product from raw material to the customer.
+- **bulk carrier**: A ship that carries loose cargo such as ore, grain or coal.
+- **containerization**: Shipping goods in standard sealed boxes that move between ship, train and truck.
+- **Moore's Law**: The observation that the number of transistors on a chip doubles roughly every two years.
+- **Modern Monetary Theory (MMT)**: An economic view that a government issuing its own currency cannot run out of money, so debt ratios matter less than inflation and real resources.
+- **WTO (World Trade Organization)**: The body that sets and oversees trade rules between countries.
+
+### Risk, climate and environment
+
+- **psychometric scale**: A way of measuring how people rate risks, for example by how dreadful or unknown they feel.
+- **biosphere**: The parts of Earth where life exists.
+- **greenhouse gas**: A gas, such as carbon dioxide or methane, that traps heat in the atmosphere.
+- **ozone layer**: A layer high in the atmosphere that shields us from ultraviolet radiation.
+- **CFC**: Chlorofluorocarbon: a chemical once used in fridges and sprays that damaged the ozone layer.
+- **Montreal Protocol**: The 1987 treaty that phased out CFCs.
+- **Paris Accord**: The 2015 international climate agreement.
+- **CVD (cardiovascular disease)**: Disease of the heart and blood vessels.
+- **PPE (personal protective equipment)**: Gloves, masks, gowns and similar gear.
+- **Carrington Event**: The huge solar storm of 1859 that disrupted telegraph systems worldwide.
+- **coronal mass ejection**: A giant burst of plasma and magnetic field thrown out by the Sun.
+- **Great Oxidation Event**: The time, about 2.5 billion years ago, when oxygen first built up in Earth's atmosphere.
+
 ## Authors
 - [Robert Ayres](https://en.wikipedia.org/wiki/Robert_Ayres_(scientist)): an American-born physicist and economist. His career has focused on the application of physical ideas, especially the laws of thermodynamics, to economics; a long-standing pioneering interest in material flows and transformations (industrial ecology or industrial metabolism)—a concept which he originated.  Criticises how economists ignore energy due to its low cost. His most recent work challenges the widely held economic theory of growth.
 - H. T. Odum, *Environment, Power, and Society* (New York: Wiley-Interscience, 1971). *Modern societies did not understand the energetics involved and the various means by which the energies entering a complex system are fed back as subsidies indirectly into all parts of the network . . . industrial man no longer eats potatoes made from solar energy; now he eats potatoes partly made of oil.*
@@ -1076,7 +1164,76 @@ var G=[
 ["R/P","Reserves-to-production ratio: how many years a resource lasts at today's rate of production."],
 ["WWW","Wind, water and solar: the main renewable energy sources."],
 ["BCE","Before Common Era: the same as BC."],
-["arid","Too dry to support farming."]];
+["arid","Too dry to support farming."],
+[["joule", "joules"],"The standard unit of energy. Lifting a small apple about one metre takes roughly one joule."],
+[["MJ"],"One million joules."],
+[["exajoule", "exajoules"],"One billion billion joules (1018). Used for world-scale energy totals."],
+[["Wh/kg"],"How much energy a battery or fuel stores for its weight."],
+[["energy density"],"Energy stored per unit of volume (or, loosely, of weight). It decides how easy a fuel is to store and carry."],
+[["Pump Hydro Storage", "PHS"],"Using spare electricity to pump water uphill, then letting it fall through turbines at peak demand."],
+[["modular reactors"],"A small nuclear reactor built in a factory and shipped to site, instead of built from scratch on site."],
+[["decarbonization"],"Cutting the carbon dioxide released by an activity, a sector or a whole economy."],
+[["electrification"],"Switching from burning fuel to using electricity."],
+[["carbon capture"],"Trapping carbon dioxide from smokestacks or the air and storing it, so it stays out of the atmosphere."],
+[["firm power"],"Electricity that is available on demand, whatever the weather or time of day (for example nuclear, hydro or gas)."],
+[["net zero"],"Removing as much greenhouse gas as you release, so the net addition is zero."],
+[["IEA"],"The Paris-based agency that publishes the World Energy Outlook and other energy forecasts."],
+[["OPEC"],"The Organization of the Petroleum Exporting Countries, a group of oil producers that coordinates oil output and prices. Founded in 1960."],
+[["Stated Policies"],"An IEA forecast of where energy goes if governments only do what they have already announced."],
+[["Sustainable Development Scenario"],"An IEA forecast of the most aggressive path to cutting emissions."],
+[["Fukushima"],"The 2011 nuclear accident in Japan after an earthquake and tsunami. Japan shut reactors afterwards and burned more fossil fuel."],
+[["pelagic"],"Living near the surface of open water, like anchovies, sardines and mackerel."],
+[["aquaculture"],"Farming fish and shellfish."],
+[["leguminous"],"Describes plants (beans, peas, lentils, soybeans, peanuts) whose root bacteria make their own nitrogen."],
+[["nitrogenous"],"A fertilizer that supplies nitrogen, such as ammonia or urea."],
+[["Haber-Bosch"],"The industrial way to make ammonia from nitrogen in the air and hydrogen (usually from natural gas), using high pressure and an iron catalyst."],
+[["volatilization", "volatization"],"Ammonia escaping into the air as a gas instead of staying in the soil."],
+[["eutrophication"],"Too many nutrients (phosphorus, nitrogen) in water, causing huge algae growth that uses up the oxygen."],
+[["anoxic"],"Without oxygen."],
+[["agrochemicals"],"Chemicals used in farming: fertilizers, herbicides (weeds), insecticides (insects) and fungicides (fungi)."],
+[["potash"],"Potassium salts, mostly potassium chloride (KCl), mined and used as fertilizer."],
+[["superphosphate"],"Fertilizer made by treating phosphate rock with acid so plants can use the phosphorus."],
+[["cover crops"],"Crops such as alfalfa and clover grown to protect and feed the soil, then ploughed in."],
+[["draft animals"],"Horses, oxen and mules used to pull ploughs and wagons."],
+[["hectare", "hectares"],"10,000 square metres, about 2.5 acres."],
+[["electric arc furnace", "EAF"],"A furnace that melts scrap steel using electric arcs, used to recycle steel."],
+[["clinker"],"The hard lumps made by heating limestone and clay in a kiln. Ground up, they become cement."],
+[["Portland cement"],"The common modern cement, patented in 1824. Named after limestone from the Isle of Portland."],
+[["aggregates"],"Sand, gravel and crushed stone mixed into concrete."],
+[["re-bar", "rebar"],"Steel bars set inside concrete to strengthen it."],
+[["alloy", "alloys"],"A metal mixed with other elements to change its properties. Steel is an alloy of iron."],
+[["thermoplastics"],"Plastic that softens when heated and can be re-moulded."],
+[["thermoset"],"Plastic that sets permanently and does not soften when heated again."],
+[["monomers"],"A small molecule that links with others into long chains (polymers), the building block of plastics."],
+[["steam cracking"],"Heating hydrocarbons with steam to very high temperatures to split them into ethylene and propylene."],
+[["polymerized"],"Joined into long chains of repeating molecules."],
+[["nacelles"],"The housing on top of a wind turbine tower that holds the gearbox and generator."],
+[["turbofan"],"A jet engine with a large front fan. Quieter and more efficient than a plain turbojet."],
+[["turbojet"],"An early type of jet engine where all the air goes through the engine core."],
+[["chronometer"],"A very accurate clock used to find longitude at sea."],
+[["GDP"],"The total value of goods and services a country produces in a year."],
+[["foreign direct investment"],"Money invested in a business, factory or property in another country."],
+[["offshoring"],"Moving work or production to another country."],
+[["reshoring"],"Bringing work or production back to the home country."],
+[["de-risking"],"Reducing dependence on a single supplier or country."],
+[["supply chain"],"The linked steps and suppliers that take a product from raw material to the customer."],
+[["bulk carriers"],"A ship that carries loose cargo such as ore, grain or coal."],
+[["containerization"],"Shipping goods in standard sealed boxes that move between ship, train and truck."],
+[["Moore's Law"],"The observation that the number of transistors on a chip doubles roughly every two years."],
+[["Modern Monetary Theory"],"An economic view that a government issuing its own currency cannot run out of money, so debt ratios matter less than inflation and real resources."],
+[["WTO"],"The body that sets and oversees trade rules between countries."],
+[["psychometric"],"A way of measuring how people rate risks, for example by how dreadful or unknown they feel."],
+[["biosphere"],"The parts of Earth where life exists."],
+[["greenhouse gas", "greenhouse gases"],"A gas, such as carbon dioxide or methane, that traps heat in the atmosphere."],
+[["ozone"],"A layer high in the atmosphere that shields us from ultraviolet radiation."],
+[["CFC", "CFCs"],"Chlorofluorocarbon: a chemical once used in fridges and sprays that damaged the ozone layer."],
+[["Montreal Protocol"],"The 1987 treaty that phased out CFCs."],
+[["Paris Accord"],"The 2015 international climate agreement."],
+[["CVD"],"Disease of the heart and blood vessels."],
+[["PPE"],"Gloves, masks, gowns and similar gear."],
+[["Carrington"],"The huge solar storm of 1859 that disrupted telegraph systems worldwide."],
+[["coronal mass ejection"],"A giant burst of plasma and magnetic field thrown out by the Sun."],
+[["Great Oxidation Event"],"The time, about 2.5 billion years ago, when oxygen first built up in Earth's atmosphere."]];
 var root=document.querySelector('.page__content')||document.body;
 var wh=root.querySelector('#words');
 var skip=wh?wh.nextElementSibling:null;
@@ -1085,7 +1242,10 @@ function ok(n){for(var e=n.parentNode;e&&e!==root;e=e.parentNode){var t=e.nodeNa
 var nodes=[],w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null);
 while(w.nextNode())nodes.push(w.currentNode);
 G.forEach(function(g){
- var re=new RegExp('(^|[^A-Za-z])('+g[0].replace(/[.*+?^${}()|[\]\\\/]/g,'\\$&')+')(?![A-Za-z])',g[0]==='WWW'?'':'i');
+ var al=[].concat(g[0]);
+ var cs=al.every(function(a){return /^[A-Z0-9\/]+$/.test(a);});
+ var pat=al.map(function(a){return a.replace(/[.*+?^${}()|[\]\\\/]/g,'\\$&');}).join('|');
+ var re=new RegExp('(^|[^A-Za-z])('+pat+')(?![A-Za-z])',cs?'':'i');
  for(var i=0;i<nodes.length;i++){var n=nodes[i];if(!n.parentNode||!ok(n))continue;var m=re.exec(n.nodeValue);if(!m)continue;
   var st=m.index+m[1].length,tx=m[2];
   var after=n.splitText(st);var rest=after.splitText(tx.length);
