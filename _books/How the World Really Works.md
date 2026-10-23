@@ -1180,6 +1180,26 @@ More terms from the notes, grouped by theme. They are also underlined in the tex
 
 ### People
 
+- **Vaclav Smil (born 1943)**: Czech-Canadian scientist, professor emeritus at the University of Manitoba. Writes about energy, food, materials and risk, backed by numbers. Respected and widely read. Critics say he is too sceptical about fast energy change. *Verdict: mostly positive.*
+- **Robert Ayres (born 1932)**: American-born physicist and economist. Argued that energy, not just labour and money, drives economic growth. Respected in ecological economics. Mainstream economists have mostly set his energy view aside. *Verdict: positive, but niche.*
+- **Fritz Haber (1868 to 1934)**: German chemist. Invented ammonia synthesis in 1908, which made modern fertilizer possible, and won the 1918 Nobel Prize. Also led Germany's chemical weapons work in World War I. Feeds billions of people, but is also tied to poison gas. *Verdict: mixed.*
+- **Carl Bosch (1874 to 1940)**: German engineer at BASF. Turned Haber's lab method into a factory process (first plant at Oppau, 1913) and shared the 1931 Nobel Prize. His process fed the world. His later leadership of the IG Farben chemical group is criticized. *Verdict: mostly positive.*
+- **Richard Nixon (1913 to 1994)**: US president from 1969 to 1974. His 1972 visit to China opened relations after decades apart. Resigned in 1974 over Watergate. Praised for opening China, criticized over Watergate and Vietnam. *Verdict: mixed.*
+- **Deng Xiaoping (1904 to 1997)**: China's leader from 1978. Started market reforms and opened China to trade and foreign investment, lifting hundreds of millions out of poverty. Credited with China's economic rise. Criticized for ordering the 1989 Tiananmen crackdown. *Verdict: mixed, mostly positive on the economy.*
+- **Joseph Fourier (1768 to 1830)**: French mathematician. In the 1820s he showed that Earth's atmosphere keeps the planet warmer than it would otherwise be. An early step toward the greenhouse effect. Honoured as a founder of climate science. *Verdict: positive.*
+- **Eunice Foote (1819 to 1888)**: American scientist. In 1856 her experiments showed that carbon dioxide and water vapour trap heat. Largely forgotten for over a century, now recognized as a pioneer. *Verdict: positive, credit came late.*
+- **John Tyndall (1820 to 1893)**: Irish-born physicist. Measured how water vapour and carbon dioxide absorb heat, explaining the greenhouse effect. Honoured as a founder of climate science. *Verdict: positive.*
+- **Roger Revelle (1909 to 1991)**: American oceanographer. His 1957 paper with Hans Suess warned that humans were running a huge experiment by adding carbon to the atmosphere. Helped start the CO<sub>2</sub> measurements at Mauna Loa. Honoured as an early voice on climate change. *Verdict: positive.*
+- **Hans Suess (1909 to 1993)**: Austrian-American chemist. With Revelle, showed that fossil-fuel carbon was building up in the air. Honoured as an early voice on climate change. *Verdict: positive.*
+- **Joseph Aspdin (1778 to 1855)**: English bricklayer who patented Portland cement in 1824, the base of modern concrete. Remembered as the inventor of modern cement. *Verdict: positive.*
+- **Ernest Ransome (1852 to 1917)**: English-American engineer. Pioneer of reinforced concrete, with steel bars set inside. Remembered as a builder of modern concrete construction. *Verdict: positive.*
+- **Robert Maillart (1872 to 1940)**: Swiss engineer who designed light, graceful concrete bridges, such as the Salginatobel Bridge (1930). Celebrated as a master of concrete design. *Verdict: positive.*
+- **John Harrison (1693 to 1776)**: English clockmaker. His sea clock (the chronometer) let ships find their longitude, a big step for safe ocean travel. Celebrated as solving the longitude problem. *Verdict: positive.*
+- **Chauncey Starr (1912 to 2007)**: American nuclear engineer. His 1969 paper compared voluntary and involuntary risks, and started modern risk analysis. Respected as a founder of risk analysis. *Verdict: positive.*
+- **Osama bin Laden (1957 to 2011)**: Founder of al-Qaeda. Behind the 9/11 attacks in 2001, which led to the wars in Afghanistan and Iraq. Condemned for mass murder. *Verdict: overwhelmingly negative.*
+- **The Wright brothers (Wilbur 1867 to 1912, Orville 1871 to 1948)**: American inventors who made the first powered, controlled airplane flight in 1903. Celebrated as aviation's founders. *Verdict: positive.*
+- **Francisco Franco (1892 to 1975)**: Spain's dictator from 1939 until he died. Ruled through repression, and the country stayed poor and isolated for years. Remembered mainly for repression and civil-war killings. *Verdict: mostly negative.*
+- **Hannah Ritchie**: Scottish data scientist at Our World in Data. Author of *Not the End of the World* (2024). Widely praised for clear, data-based writing. Some critics think she is too optimistic. *Verdict: mostly positive.*
 - **Mao Zedong (1893 to 1976)**: founded the People's Republic of China in 1949 and led the Communist Party until his death. He united the country after decades of civil war and foreign invasion, with gains in land reform, literacy and health. But the Great Leap Forward (1958 to 1962) caused the deadliest famine in history, and the Cultural Revolution (1966 to 1976) brought widespread persecution. History's verdict is mixed: mostly negative abroad, while the Party in China still honours him and officially calls his later years mistakes. See [Mao Zedong](https://en.wikipedia.org/wiki/Mao_Zedong).
 
 ## Authors
@@ -1217,6 +1237,26 @@ More terms from the notes, grouped by theme. They are also underlined in the tex
 <script>
 (function(){
 var G=[
+[["Vaclav Smil"],"Vaclav Smil (born 1943). Czech-Canadian scientist, professor emeritus at the University of Manitoba. Writes about energy, food, materials and risk, backed by numbers.\nRespected and widely read. Critics say he is too sceptical about fast energy change.\nHistory's verdict: Mostly positive.",0],
+[["Robert Ayres"],"Robert Ayres (born 1932). American-born physicist and economist. Argued that energy, not just labour and money, drives economic growth.\nRespected in ecological economics. Mainstream economists have mostly set his energy view aside.\nHistory's verdict: Positive, but niche.",1],
+[["Fritz Haber"],"Fritz Haber (1868 to 1934). German chemist. Invented ammonia synthesis in 1908, which made modern fertilizer possible, and won the 1918 Nobel Prize. Also led Germany's chemical weapons work in World War I.\nFeeds billions of people, but is also tied to poison gas.\nHistory's verdict: Mixed.",0],
+[["Carl Bosch"],"Carl Bosch (1874 to 1940). German engineer at BASF. Turned Haber's lab method into a factory process (first plant at Oppau, 1913) and shared the 1931 Nobel Prize.\nHis process fed the world. His later leadership of the IG Farben chemical group is criticized.\nHistory's verdict: Mostly positive.",0],
+[["Richard Nixon"],"Richard Nixon (1913 to 1994). US president from 1969 to 1974. His 1972 visit to China opened relations after decades apart. Resigned in 1974 over Watergate.\nPraised for opening China, criticized over Watergate and Vietnam.\nHistory's verdict: Mixed.",0],
+[["Deng Xiaoping"],"Deng Xiaoping (1904 to 1997). China's leader from 1978. Started market reforms and opened China to trade and foreign investment, lifting hundreds of millions out of poverty.\nCredited with China's economic rise. Criticized for ordering the 1989 Tiananmen crackdown.\nHistory's verdict: Mixed, mostly positive on the economy.",0],
+[["Joseph Fourier"],"Joseph Fourier (1768 to 1830). French mathematician. In the 1820s he showed that Earth's atmosphere keeps the planet warmer than it would otherwise be. An early step toward the greenhouse effect.\nHonoured as a founder of climate science.\nHistory's verdict: Positive.",0],
+[["Eunice Foote"],"Eunice Foote (1819 to 1888). American scientist. In 1856 her experiments showed that carbon dioxide and water vapour trap heat.\nLargely forgotten for over a century, now recognized as a pioneer.\nHistory's verdict: Positive, credit came late.",0],
+[["John Tyndall"],"John Tyndall (1820 to 1893). Irish-born physicist. Measured how water vapour and carbon dioxide absorb heat, explaining the greenhouse effect.\nHonoured as a founder of climate science.\nHistory's verdict: Positive.",0],
+[["Roger Revelle"],"Roger Revelle (1909 to 1991). American oceanographer. His 1957 paper with Hans Suess warned that humans were running a huge experiment by adding carbon to the atmosphere. Helped start the CO2 measurements at Mauna Loa.\nHonoured as an early voice on climate change.\nHistory's verdict: Positive.",0],
+[["Hans Suess"],"Hans Suess (1909 to 1993). Austrian-American chemist. With Revelle, showed that fossil-fuel carbon was building up in the air.\nHonoured as an early voice on climate change.\nHistory's verdict: Positive.",0],
+[["Joseph Aspdin"],"Joseph Aspdin (1778 to 1855). English bricklayer who patented Portland cement in 1824, the base of modern concrete.\nRemembered as the inventor of modern cement.\nHistory's verdict: Positive.",0],
+[["Ernest Ransome"],"Ernest Ransome (1852 to 1917). English-American engineer. Pioneer of reinforced concrete, with steel bars set inside.\nRemembered as a builder of modern concrete construction.\nHistory's verdict: Positive.",0],
+[["Robert Maillart"],"Robert Maillart (1872 to 1940). Swiss engineer who designed light, graceful concrete bridges, such as the Salginatobel Bridge (1930).\nCelebrated as a master of concrete design.\nHistory's verdict: Positive.",0],
+[["John Harrison"],"John Harrison (1693 to 1776). English clockmaker. His sea clock (the chronometer) let ships find their longitude, a big step for safe ocean travel.\nCelebrated as solving the longitude problem.\nHistory's verdict: Positive.",0],
+[["Chauncey Starr"],"Chauncey Starr (1912 to 2007). American nuclear engineer. His 1969 paper compared voluntary and involuntary risks, and started modern risk analysis.\nRespected as a founder of risk analysis.\nHistory's verdict: Positive.",0],
+[["bin Laden"],"Osama bin Laden (1957 to 2011). Founder of al-Qaeda. Behind the 9/11 attacks in 2001, which led to the wars in Afghanistan and Iraq.\nCondemned for mass murder.\nHistory's verdict: Overwhelmingly negative.",0],
+[["Wright brothers"],"The Wright brothers (Wilbur 1867 to 1912, Orville 1871 to 1948). American inventors who made the first powered, controlled airplane flight in 1903.\nCelebrated as aviation's founders.\nHistory's verdict: Positive.",0],
+[["Franco"],"Francisco Franco (1892 to 1975). Spain's dictator from 1939 until he died. Ruled through repression, and the country stayed poor and isolated for years.\nRemembered mainly for repression and civil-war killings.\nHistory's verdict: Mostly negative.",0],
+[["Hannah Ritchie"],"Hannah Ritchie. Scottish data scientist at Our World in Data. Author of Not the End of the World (2024).\nWidely praised for clear, data-based writing. Some critics think she is too optimistic.\nHistory's verdict: Mostly positive.",0],
 ["Mao","Mao Zedong (1893 to 1976). Founded the People's Republic of China in 1949 and led the Communist Party until he died.\nWhy he matters: ended decades of civil war and foreign invasion and united the country, with gains in land reform, literacy and health. But the Great Leap Forward (1958 to 1962) caused the deadliest famine in history, and the Cultural Revolution (1966 to 1976) brought widespread persecution.\nHistory's verdict: mixed. Abroad, mostly negative. In China the Party still honours him, while officially calling his later years mistakes."],
 ["arbitrage","Buying and selling the same thing in different markets to profit from a price gap. Labour arbitrage means moving work to wherever labour costs least."],
 ["anthropogenic","Caused by human activity."],
@@ -1307,7 +1347,7 @@ var G=[
 var root=document.querySelector('.page__content')||document.body;
 var wh=root.querySelector('#words');
 var skip=wh?wh.nextElementSibling:null;
-function ok(n){for(var e=n.parentNode;e&&e!==root;e=e.parentNode){var t=e.nodeName;if(/^(A|H[1-6]|SCRIPT|STYLE|CODE|BUTTON|SUP|SUB|TEXTAREA)$/.test(t)||(e.classList&&(e.classList.contains('gl')||e.classList.contains('footnotes')))||e===skip||e.id==='glossary-host')return false;}
+function ok(n,al){for(var e=n.parentNode;e&&e!==root;e=e.parentNode){var t=e.nodeName;if(/^(A|H[1-6]|SCRIPT|STYLE|CODE|BUTTON|SUP|SUB|TEXTAREA)$/.test(t)&&!(al&&t==='A')||(e.classList&&(e.classList.contains('gl')||e.classList.contains('footnotes')))||e===skip||e.id==='glossary-host')return false;}
  if(wh){var pos=wh.compareDocumentPosition(n);if(pos&Node.DOCUMENT_POSITION_FOLLOWING)return false;}return true;}
 var nodes=[],w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null);
 while(w.nextNode())nodes.push(w.currentNode);
@@ -1316,7 +1356,7 @@ G.forEach(function(g){
  var cs=al.every(function(a){return /^[A-Z0-9\/]+$/.test(a);});
  var pat=al.map(function(a){return a.replace(/[.*+?^${}()|[\]\\\/]/g,'\\$&');}).join('|');
  var re=new RegExp('(^|[^A-Za-z])('+pat+')(?![A-Za-z])',cs?'':'i');
- for(var i=0;i<nodes.length;i++){var n=nodes[i];if(!n.parentNode||!ok(n))continue;var m=re.exec(n.nodeValue);if(!m)continue;
+ for(var i=0;i<nodes.length;i++){var n=nodes[i];if(!n.parentNode||!ok(n,g[2]))continue;var m=re.exec(n.nodeValue);if(!m)continue;
   var st=m.index+m[1].length,tx=m[2];
   var after=n.splitText(st);var rest=after.splitText(tx.length);
   var sp=document.createElement('span');sp.className='gl';sp.tabIndex=0;sp.textContent=tx;
