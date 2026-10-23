@@ -1003,27 +1003,27 @@ From 1913 to 1945 the share of trade in global GDP fell from 14% to 4%. These ev
 
 ## Words
 
-- [arbitrage](https://www.merriam-webster.com/dictionary/arbitrage): the nearly simultaneous purchase and sale of securities or foreign exchange in different markets in order to profit from price discrepancies
-- arid: having insufficient rainfall to support agriculture
-- [anthropogenic](https://www.merriam-webster.com/dictionary/anthropogenic): of, relating to, or resulting from the influence of human beings on nature
-- **category mistake**: assigning to something a quality or action that is properly attributable only to things of another category.
-  - comparing the category of "electronically enabled world" (adoption of personal gadgets, social media profiles, smartphones) with the category sufficient delivery of water, crops, feeding and slaughtering animals, converting energy, extracting and altering raw materials at an enormous scale (billions of consumers) and infrastructures.
-- [concomitant](https://www.merriam-webster.com/dictionary/concomitant): something that accompanies or is collaterally connected with something else. *Certainly, the affluent world—given its wealth, technical capabilities, high level of per capita consumption and the concomitant level of waste—can take some impressive and relatively rapid decarbonization steps *
-- Energy:  The capacity for doing work. Scalar.   Joules.
-- globalization: *the growing interdependence of the world’s economies, cultures, and populations, brought about by cross-border trade in goods and services, technology, and flows of investment, people, and information* - [Peterson Institute for International Economics - What is globalization?](https://www.piie.com/microsites/globalization/what-is-globalization)
-- [immiseration](https://www.merriam-webster.com/dictionary/immiseration): the act of making miserable
-- [lipid](https://www.merriam-webster.com/dictionary/lipid): any of a [diverse](https://www.merriam-webster.com/dictionary/diverse) group of [organic compounds](https://www.britannica.com/science/organic-compound) including [fats](https://www.britannica.com/topic/fat), [oils](https://www.britannica.com/science/oil-chemical-compound), [hormones](https://www.britannica.com/science/hormone), and certain components of membranes that are grouped together because they do not interact appreciably with [water](https://www.britannica.com/science/water).
-- natural gas:  methane is main component (CH<sub>4</sub>)
-- Power: measures energy per unit of time (rate).   Watts = Joules/second
-- *primus inter pares*: First among equals
-- [proscription](https://www.merriam-webster.com/dictionary/proscriptions): an imposed restraint or restriction. *Given the religious proscriptions on the consumption of pork and beef, chicken is the only universally favored meat.*
-- R/P: Resource / Production Ratio.  The R/P for crude oil is 50 years.  The R/P for iron ore is 300 years.
-- Scalar: Described only by its magnitude.  Ubiquitous scalars are volume, mass, density, time and speed.
-- [Singularity](https://en.wikipedia.org/wiki/Singularity_(system_theory)): In the study of unstable systems, [James Clerk Maxwell](https://en.wikipedia.org/wiki/James_Clerk_Maxwell) in 1873 was the first to use the term **singularity** in its most general sense: that in which it refers to *contexts in which arbitrarily small changes, commonly unpredictably, may lead to arbitrarily large effects.*
-- [Singularity - Mathematics](https://singularityhub.com/ray-kurzweil/): This comes from the Latin *singularis*, meaning “individual, unique, unmatched”—but in this chapter it refers to futurist Ray Kurzweil’s notion of singularity, i.e. to the mathematical meaning of the term as a point in time at which a function assumes an infinite value. He predicts that, come 2045, machine intelligence will have surpassed human intelligence, what he calls biological and nonbiological intelligence will merge, and machine intelligence will fill the universe at infinite speed.  This is the ultimate ascension. It will make colonization of the rest of the universe an inevitably effortless endeavor.
-- [strident](https://www.merriam-webster.com/dictionary/strident): characterized by harsh, insistent, and discordant sound, commanding attention by a loud or obtrusive quality
-- WWW: Wind, Water and Solar.  The renewable energies.
-- [Common Era](https://en.wikipedia.org/wiki/Common_Era) & Before Common Era.  Similar to AD/BC.  400 BCE and 400 BC are the same year.
+Hover over a highlighted word in the notes above to see its meaning.
+
+- [**arbitrage**](https://www.merriam-webster.com/dictionary/arbitrage): buying and selling the same thing at nearly the same time in different markets to profit from a price difference. *Labour arbitrage* is the same idea applied to jobs: moving work to wherever labour costs least.
+- **arid**: too dry to support farming; very little rainfall.
+- [**anthropogenic**](https://www.merriam-webster.com/dictionary/anthropogenic): caused by human activity, such as anthropogenic CO<sub>2</sub> emissions.
+- **category mistake**: treating something as if it belonged to a different category. Example: comparing how fast phones replaced landlines (an "electronically enabled world") with how fast we could replace terawatts of power generation, water, crops and raw materials supplied to billions of people.
+- [**concomitant**](https://www.merriam-webster.com/dictionary/concomitant): something that goes along with, or comes as a side effect of, something else. *"Certainly, the affluent world, given its wealth, technical capabilities, high level of per capita consumption and the concomitant level of waste, can take some impressive and relatively rapid decarbonization steps."*
+- **energy**: the capacity to do work. A scalar, measured in joules.
+- **globalization**: *the growing interdependence of the world's economies, cultures, and populations, brought about by cross-border trade in goods and services, technology, and flows of investment, people, and information.* [Peterson Institute for International Economics](https://www.piie.com/microsites/globalization/what-is-globalization)
+- [**immiseration**](https://www.merriam-webster.com/dictionary/immiseration): the process of making people poorer or more miserable.
+- [**lipid**](https://www.merriam-webster.com/dictionary/lipid): any of a group of organic compounds, including fats, oils and hormones, that do not mix with water.
+- **natural gas**: a fuel made mostly of methane (CH<sub>4</sub>).
+- **power**: energy per unit of time (a rate). Watts = joules per second.
+- *primus inter pares*: Latin for "first among equals".
+- [**proscription**](https://www.merriam-webster.com/dictionary/proscription): a ban or restriction. *"Given the religious proscriptions on the consumption of pork and beef, chicken is the only universally favored meat."*
+- **R/P (reserves-to-production ratio)**: how many years a resource would last at today's rate of production. About 50 years for crude oil and 300 years for iron ore.
+- **scalar**: a quantity described only by its size, with no direction. Volume, mass, density, time, speed and energy are scalars.
+- **singularity**: a word with several meanings. In maths, a point where a function becomes infinite. In the study of unstable systems, where [James Clerk Maxwell](https://en.wikipedia.org/wiki/James_Clerk_Maxwell) first used it in 1873, a situation where arbitrarily small changes may lead to arbitrarily large effects. In futurism, [Ray Kurzweil's](https://singularityhub.com/ray-kurzweil/) prediction that by 2045 machine intelligence will surpass human intelligence and the two will merge. See also [Singularity (system theory)](https://en.wikipedia.org/wiki/Singularity_(system_theory)).
+- [**strident**](https://www.merriam-webster.com/dictionary/strident): harsh, loud and insistent.
+- **WWW (wind, water and solar)**: the main renewable energy sources.
+- **Common Era (CE) and Before Common Era (BCE)**: the same calendar as AD and BC. 400 BCE and 400 BC are the same year. See [Common Era](https://en.wikipedia.org/wiki/Common_Era).
 
 ## Authors
 - [Robert Ayres](https://en.wikipedia.org/wiki/Robert_Ayres_(scientist)): an American-born physicist and economist. His career has focused on the application of physical ideas, especially the laws of thermodynamics, to economics; a long-standing pioneering interest in material flows and transformations (industrial ecology or industrial metabolism)—a concept which he originated.  Criticises how economists ignore energy due to its low cost. His most recent work challenges the widely held economic theory of growth.
@@ -1049,3 +1049,50 @@ From 1913 to 1945 the share of trade in global GDP fell from 14% to 4%. These ev
 ## Institutions
 
 {% include ref.html key="piie-globalization" text="PIIE - Peterson Institute for International Economics" %}
+
+<div markdown="0" id="glossary-host" hidden>
+<style>
+.gl{border-bottom:1px dotted #1f6feb;cursor:help;position:relative;text-decoration:none}
+.gl:hover,.gl:focus{background:rgba(31,111,235,.12);outline:none}
+.gl .gt{display:none;position:absolute;left:0;top:1.5em;z-index:30;width:min(320px,80vw);padding:8px 10px;border-radius:8px;background:#1b1f24;color:#fff;font-size:.85rem;line-height:1.4;font-weight:400;font-style:normal;box-shadow:0 4px 14px rgba(0,0,0,.3);text-align:left}
+.gl:hover .gt,.gl:focus .gt{display:block}
+</style>
+<script>
+(function(){
+var G=[
+["arbitrage","Buying and selling the same thing in different markets to profit from a price gap. Labour arbitrage means moving work to wherever labour costs least."],
+["anthropogenic","Caused by human activity."],
+["category mistake","Treating something as if it belonged to a different category, for example comparing how fast phones spread with how fast power plants can be replaced."],
+["concomitant","Going along with, or coming as a side effect of, something else."],
+["immiseration","Making people poorer or more miserable."],
+["lipid","A fat, oil or similar compound that does not mix with water."],
+["natural gas","A fuel that is mostly methane (CH4)."],
+["primus inter pares","Latin: first among equals."],
+["proscription","A ban or restriction."],
+["scalar","A quantity with size only, no direction (mass, volume, time, energy)."],
+["singularity","A point where a function becomes infinite. In futurism, the point where machine intelligence passes human intelligence (Kurzweil predicts 2045)."],
+["strident","Harsh, loud and insistent."],
+["globalization","The growing interdependence of the world's economies, cultures and populations through cross-border trade, technology and flows of money, people and information."],
+["R/P","Reserves-to-production ratio: how many years a resource lasts at today's rate of production."],
+["WWW","Wind, water and solar: the main renewable energy sources."],
+["BCE","Before Common Era: the same as BC."],
+["arid","Too dry to support farming."]];
+var root=document.querySelector('.page__content')||document.body;
+var wh=root.querySelector('#words');
+var skip=wh?wh.nextElementSibling:null;
+function ok(n){for(var e=n.parentNode;e&&e!==root;e=e.parentNode){var t=e.nodeName;if(/^(A|H[1-6]|SCRIPT|STYLE|CODE|BUTTON|SUP|SUB|TEXTAREA)$/.test(t)||(e.classList&&(e.classList.contains('gl')||e.classList.contains('footnotes')))||e===skip||e.id==='glossary-host')return false;}
+ if(wh){var pos=wh.compareDocumentPosition(n);if(pos&Node.DOCUMENT_POSITION_FOLLOWING)return false;}return true;}
+var nodes=[],w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null);
+while(w.nextNode())nodes.push(w.currentNode);
+G.forEach(function(g){
+ var re=new RegExp('(^|[^A-Za-z])('+g[0].replace(/[.*+?^${}()|[\]\\\/]/g,'\\$&')+')(?![A-Za-z])',g[0]==='WWW'?'':'i');
+ for(var i=0;i<nodes.length;i++){var n=nodes[i];if(!n.parentNode||!ok(n))continue;var m=re.exec(n.nodeValue);if(!m)continue;
+  var st=m.index+m[1].length,tx=m[2];
+  var after=n.splitText(st);var rest=after.splitText(tx.length);
+  var sp=document.createElement('span');sp.className='gl';sp.tabIndex=0;sp.textContent=tx;
+  var tip=document.createElement('span');tip.className='gt';tip.setAttribute('role','tooltip');tip.textContent=g[1];sp.appendChild(tip);
+  after.parentNode.replaceChild(sp,after);nodes.splice(i+1,0,rest);break;}
+});
+})();
+</script>
+</div>
