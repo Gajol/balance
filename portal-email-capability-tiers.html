@@ -1,3 +1,11 @@
+---
+layout: null
+permalink: /portal-email-capability-tiers/
+title: "Portal client email: capability tiers"
+description: Ten capabilities at three tiers, so a product team can choose a level rather than approve a list.
+tags: [ux, "product management"]
+sitemap: true
+---
 <!doctype html>
 <html lang="en-CA">
 <head>
@@ -6,7 +14,7 @@
 <title>Portal Email Capability Tiers</title>
 <style>
 /* Layout: navy title band, then a sticky contents rail beside a single reading
-   column. One committed light theme — the GC Design System has no dark theme,
+   column. One committed light theme — the department's design system has no dark theme,
    and this file is made to be printed and read on a department desktop.
    No external fonts, scripts or styles: it has to open from a file share on an
    air-gapped network. */
@@ -293,7 +301,7 @@ footer.src {
   <div class="band-inner">
     <p class="kicker">Enterprise architecture · Draft for review</p>
     <h1>Portal client email: capability tiers</h1>
-    <p class="meta"><span>Public-information portal modernization</span><span>Drupal, GC Notify, Solr, Matomo</span><span>23 October 2026</span></p>
+    <p class="meta"><span>A department portal</span><span>Drupal, Solr, Matomo and a shared notification service</span><span>23 October 2026</span></p>
   </div>
 </header>
 
@@ -353,26 +361,26 @@ footer.src {
 
 <section id="provenance">
 <h2>2. What is borrowed, and what is new</h2>
-<p>This portal shares a platform with the Information Sharing System work, and nothing else. The distinction matters, because a borrowed decision read as a settled one is how a programme inherits rules nobody agreed to.</p>
+<p>This portal shares a platform with the an earlier project on the same platform work, and nothing else. The distinction matters, because a borrowed decision read as a settled one is how a programme inherits rules nobody agreed to.</p>
 <div class="tw">
 <table>
   <thead><tr><th style="width:18%">Status</th><th>What it covers</th></tr></thead>
   <tbody>
-    <tr><td><strong>Borrowed</strong></td><td>Platform patterns: Drupal as the source of truth, GC Notify as the send channel, Solr for content matching, Matomo for measurement.</td></tr>
-    <tr><td><strong>Borrowed</strong></td><td>The mechanics of bounces, unsubscribes and template design. These are properties of GC Notify, not of a programme.</td></tr>
+    <tr><td><strong>Borrowed</strong></td><td>Platform patterns: Drupal as the source of truth, the notification service as the send channel, Solr for content matching, Matomo for measurement.</td></tr>
+    <tr><td><strong>Borrowed</strong></td><td>The mechanics of bounces, unsubscribes and template design. These are properties of the notification service, not of a programme.</td></tr>
     <tr><td><strong>New</strong></td><td>Every use case, audience rule, tier and policy call in this document. The portal is its own programme.</td></tr>
-    <tr><td><strong>Not carried over</strong></td><td>The ISS decision records, its personas and its content calendar. Those were agreed for that programme only.</td></tr>
+    <tr><td><strong>Not carried over</strong></td><td>The the earlier project decision records, its personas and its content calendar. Those were agreed for that programme only.</td></tr>
   </tbody>
 </table>
 </div>
-<p class="hint">Scale: 2,500 to 3,000 registered accounts. Comparable to ISS, which is why the same platform choices hold — but the similarity is in size, not in purpose.</p>
+<p class="hint">Scale: 2,500 to 3,000 registered accounts. Comparable to the earlier project, which is why the same platform choices hold — but the similarity is in size, not in purpose.</p>
 </section>
 
 <section id="product">
 <h2>3. The product</h2>
 <p>Every capability in this document is one part of a single loop. The tier chosen for each decides how much of that part gets built.</p>
 <figure>
-<svg viewBox="0 0 700 250" role="img" aria-label="A loop: the client account holds role, sector and topics; the portal builds the audience and sends through GC Notify; the client clicks through to a portal page where the real content lives; what they read there shapes the next send." style="width:100%;height:auto">
+<svg viewBox="0 0 700 250" role="img" aria-label="A loop: the client account holds role, sector and topics; the portal builds the audience and sends through the notification service, the client clicks through to a portal page where the real content lives; what they read there shapes the next send." style="width:100%;height:auto">
   <defs>
     <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0 0 L10 5 L0 10 z" fill="#333333"/>
@@ -389,8 +397,9 @@ footer.src {
   <text x="350" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#595959">builds audience</text>
 
   <rect x="522" y="30" width="170" height="76" fill="#f2f2f2" stroke="#333333" stroke-width="2" stroke-dasharray="2 3"/>
-  <text x="607" y="63" text-anchor="middle" font-family="Lato, Arial, sans-serif" font-size="17" font-weight="700" fill="#333333">GC Notify</text>
-  <text x="607" y="83" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#595959">EXTERNAL</text>
+  <text x="607" y="56" text-anchor="middle" font-family="Lato, Arial, sans-serif" font-size="17" font-weight="700" fill="#333333">Notification</text>
+  <text x="607" y="76" text-anchor="middle" font-family="Lato, Arial, sans-serif" font-size="17" font-weight="700" fill="#333333">service</text>
+  <text x="607" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#595959">EXTERNAL</text>
 
   <rect x="265" y="160" width="170" height="76" fill="#ebf2fa" stroke="#333333" stroke-width="2"/>
   <text x="350" y="190" text-anchor="middle" font-family="Lato, Arial, sans-serif" font-size="17" font-weight="700" fill="#333333">Portal page</text>
@@ -408,7 +417,7 @@ footer.src {
 </svg>
 <figcaption>Figure 1 — The portal email loop</figcaption>
 </figure>
-<p>The email is a short, plain teaser. The real content stays on the portal, behind sign-in. That is not a style preference: GC Notify carries unclassified and Protected A content only, so anything more sensitive has to stay where the client has authenticated.</p>
+<p>The email is a short, plain teaser. The real content stays on the portal, behind sign-in. That is not a style preference: the notification service carries low-sensitivity content only, so anything more sensitive has to stay where the client has authenticated.</p>
 </section>
 
 <section id="tiers">
@@ -455,8 +464,8 @@ footer.src {
     </div>
     <div class="panel bad">
       <h4>MFA makes this a sign-in dependency, not an email feature</h4>
-      <p>With MFA in scope, a client who does not receive the code cannot sign in. GC Notify is a shared cloud service with published service objectives and is explicitly not for emergencies, so sign-in now depends on it.</p>
-      <p>Tier 1 therefore has to include a documented account-recovery fallback — a help-desk route that does not need the code — and monitoring of the GC Notify status page. Treat that as part of the L, not as a later addition.</p>
+      <p>With MFA in scope, a client who does not receive the code cannot sign in. The notification service is a shared cloud service with published service objectives and is explicitly not for emergencies, so sign-in now depends on it.</p>
+      <p>Tier 1 therefore has to include a documented account-recovery fallback — a help-desk route that does not need the code — and monitoring of the notification service status page. Treat that as part of the L, not as a later addition.</p>
     </div>
   </div>
 </div>
@@ -494,7 +503,7 @@ footer.src {
     </div>
     <div class="panel warn">
       <h4>A segment label is personal information</h4>
-      <p>Targeting by role and sector is a use of personal information under the Privacy Act, and belongs in the privacy impact assessment whichever tier is chosen. Tier 3 adds behavioural data about named clients, which is a further use and may need the assessment reopened.</p>
+      <p>Targeting by role and sector is a use of personal information under privacy legislation, and belongs in the privacy impact assessment whichever tier is chosen. Tier 3 adds behavioural data about named clients, which is a further use and may need the assessment reopened.</p>
     </div>
   </div>
 </div>
@@ -507,13 +516,13 @@ footer.src {
   </div>
   <div class="cap-body">
     <div class="pick" data-cap="C-4" role="group" aria-label="Tier for C-4 Templates and authoring">
-      <label><input type="radio" name="C-4" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Templates exist in both languages and staff know which is which</span><span class="tbuild">Templates authored in GC Notify; IDs recorded in Drupal by hand</span></span><span class="tsize">XS</span></label>
+      <label><input type="radio" name="C-4" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Templates exist in both languages and staff know which is which</span><span class="tbuild">Templates authored in the notification service; IDs recorded in Drupal by hand</span></span><span class="tsize">XS</span></label>
       <label><input type="radio" name="C-4" value="2" data-size="S"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">A wrong or stale template ID cannot reach a client</span><span class="tbuild">Config entity per use case; variables validated before every send</span></span><span class="tsize">S</span></label>
-      <label><input type="radio" name="C-4" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Campaign content is written in Drupal, not retyped into GC Notify</span><span class="tbuild">Approved content converted to Notify markdown, with a lint step</span></span><span class="tsize">M</span></label>
+      <label><input type="radio" name="C-4" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Campaign content is written in Drupal, not retyped into the notification service</span><span class="tbuild">Approved content converted to Notify markdown, with a lint step</span></span><span class="tsize">M</span></label>
     </div>
     <div class="panel">
       <h4>A limit no tier removes</h4>
-      <p>GC Notify has no API for creating templates. Every template is authored by hand in its web interface at every tier, and the ID is then registered in Drupal. Build the registry at Tier 2 or that manual step becomes the thing that breaks a send.</p>
+      <p>The notification service has no API for creating templates. Every template is authored by hand in its web interface at every tier, and the ID is then registered in Drupal. Build the registry at Tier 2 or that manual step becomes the thing that breaks a send.</p>
     </div>
   </div>
 </div>
@@ -526,7 +535,7 @@ footer.src {
   </div>
   <div class="cap-body">
     <div class="pick" data-cap="C-5" role="group" aria-label="Tier for C-5 Sending, queueing and scheduling">
-      <label><input type="radio" name="C-5" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Staff send a campaign by hand from the GC Notify screen</span><span class="tbuild">Views export with the unsubscribe link column</span></span><span class="tsize">XS</span></label>
+      <label><input type="radio" name="C-5" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Staff send a campaign by hand from the notification service screen</span><span class="tbuild">Views export with the unsubscribe link column</span></span><span class="tsize">XS</span></label>
       <label><input type="radio" name="C-5" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">Drupal sends, and a failed send retries instead of vanishing</span><span class="tbuild">API client, queue, retry with backoff, idempotency guard</span></span><span class="tsize">M</span></label>
       <label><input type="radio" name="C-5" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">Campaigns are scheduled ahead and paced to the API</span><span class="tbuild">Scheduler, batch rate control, handoff inside the 72-hour window</span></span><span class="tsize">M</span></label>
     </div>
@@ -545,13 +554,13 @@ footer.src {
   </div>
   <div class="cap-body">
     <div class="pick" data-cap="C-6" role="group" aria-label="Tier for C-6 Suppression and list health">
-      <label><input type="radio" name="C-6" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Bad addresses stop being emailed, if staff remember</span><span class="tbuild">A documented manual step inside GC Notify's 7-day status window</span></span><span class="tsize">XS</span></label>
+      <label><input type="radio" name="C-6" value="1" data-size="XS"><span><span class="tname">Tier 1 — Foundation</span><span class="tgets">Bad addresses stop being emailed, if staff remember</span><span class="tbuild">A documented manual step inside the notification service's 7-day status window</span></span><span class="tsize">XS</span></label>
       <label><input type="radio" name="C-6" value="2" data-size="M"><span><span class="tname">Tier 2 — Targeted</span><span class="tgets">Bad addresses stop being emailed automatically</span><span class="tbuild">Daily status poll, permanent failures suppressed, soft bounces counted</span></span><span class="tsize">M</span></label>
       <label><input type="radio" name="C-6" value="3" data-size="M"><span><span class="tname">Tier 3 — Personalised</span><span class="tgets">The list stays clean over years, not just at launch</span><span class="tbuild">Annual re-confirmation, engagement sunsetting, list health report</span></span><span class="tsize">M</span></label>
     </div>
     <div class="panel bad">
       <h4>Tier 1 carries a service-level risk, not just an admin cost</h4>
-      <p>GC Notify can suspend a service when too large a share of a day's sends fail. At Tier 1 that protection depends on a person remembering, every time, inside seven days. With MFA in scope, a suspension also stops sign-in codes.</p>
+      <p>The notification service can suspend a service when too large a share of a day's sends fail. At Tier 1 that protection depends on a person remembering, every time, inside seven days. With MFA in scope, a suspension also stops sign-in codes.</p>
     </div>
   </div>
 </div>
@@ -570,7 +579,7 @@ footer.src {
     </div>
     <div class="panel warn">
       <h4>Sent campaigns are records of business value</h4>
-      <p>The Directive on Service and Digital makes a sent campaign a record. At Tier 1 that record is a mailbox, which is not a records system and cannot answer who approved a send after the approver has left.</p>
+      <p>Records policy makes a sent campaign a record. At Tier 1 that record is a mailbox, which is not a records system and cannot answer who approved a send after the approver has left.</p>
     </div>
   </div>
 </div>
@@ -589,7 +598,7 @@ footer.src {
     </div>
     <div class="panel">
       <h4>No tier buys open rates</h4>
-      <p>GC Notify reports delivery status only. Opens and clicks do not exist at any tier, and corporate link scanners open every link before the client does, so click counts on an executive segment are close to meaningless. Open rates would mean a separate marketing platform: procurement, a security assessment, and a privacy impact assessment for a new processor.</p>
+      <p>The notification service reports delivery status only. Opens and clicks do not exist at any tier, and corporate link scanners open every link before the client does, so click counts on an executive segment are close to meaningless. Open rates would mean a separate marketing platform: procurement, a security assessment, and a privacy impact assessment for a new processor.</p>
     </div>
   </div>
 </div>
@@ -627,7 +636,7 @@ footer.src {
     </div>
     <div class="panel bad">
       <h4>This is decision D-5, and it has no safe default</h4>
-      <p>The tiers here are not degrees of the same thing. Tier 1 puts replies in a mailbox outside Drupal, outside the audit trail, and caps what can be said at Protected A. Tier 3 keeps the record and the classification but is a build of its own. Choosing a tier here is choosing between three different projects.</p>
+      <p>The tiers here are not degrees of the same thing. Tier 1 puts replies in a mailbox outside Drupal, outside the audit trail, and caps what can be said to low-sensitivity content. Tier 3 keeps the record and the classification but is a build of its own. Choosing a tier here is choosing between three different projects.</p>
     </div>
   </div>
 </div>
@@ -664,14 +673,14 @@ footer.src {
 <table>
   <thead><tr><th style="width:7%">ID</th><th style="width:26%">Use case</th><th style="width:24%">Trigger</th><th style="width:9%">Opt-out</th><th>Policy to check</th></tr></thead>
   <tbody>
-    <tr><td>T-1</td><td>Confirm your email address</td><td>Registration submitted</td><td>No</td><td>Privacy Act; CASL benchmark</td></tr>
-    <tr><td>T-2</td><td>Account approved, welcome</td><td>Account activated</td><td>No</td><td>Official Languages Act; WCAG 2.1 AA</td></tr>
-    <tr><td>T-3</td><td>Password reset</td><td>Client requests it</td><td>No</td><td>Policy on Government Security</td></tr>
-    <tr><td>T-4</td><td>Sign-in verification code</td><td>Every sign-in (MFA in scope)</td><td>No</td><td>GC Notify priority send</td></tr>
-    <tr><td>T-5</td><td>Email address changed</td><td>Profile change — both addresses</td><td>No</td><td>Privacy Act</td></tr>
-    <tr><td>T-6</td><td>Unusual sign-in, account locked</td><td>Security event</td><td>No</td><td>Policy on Government Security</td></tr>
+    <tr><td>T-1</td><td>Confirm your email address</td><td>Registration submitted</td><td>No</td><td>privacy legislation; anti-spam benchmark</td></tr>
+    <tr><td>T-2</td><td>Account approved, welcome</td><td>Account activated</td><td>No</td><td>Official-languages policy; WCAG 2.1 AA</td></tr>
+    <tr><td>T-3</td><td>Password reset</td><td>Client requests it</td><td>No</td><td>Security policy</td></tr>
+    <tr><td>T-4</td><td>Sign-in verification code</td><td>Every sign-in (MFA in scope)</td><td>No</td><td>The notification service priority send</td></tr>
+    <tr><td>T-5</td><td>Email address changed</td><td>Profile change — both addresses</td><td>No</td><td>privacy legislation</td></tr>
+    <tr><td>T-6</td><td>Unusual sign-in, account locked</td><td>Security event</td><td>No</td><td>Security policy</td></tr>
     <tr><td>T-7</td><td>Account inactive, act now</td><td>Inactivity threshold</td><td>No</td><td>Privacy Practices — retention</td></tr>
-    <tr><td>T-8</td><td>Account closed</td><td>Deactivation</td><td>No</td><td>Privacy Act; records</td></tr>
+    <tr><td>T-8</td><td>Account closed</td><td>Deactivation</td><td>No</td><td>privacy legislation; records</td></tr>
   </tbody>
 </table>
 </div>
@@ -685,11 +694,11 @@ footer.src {
 <table>
   <thead><tr><th style="width:7%">ID</th><th style="width:26%">Use case</th><th style="width:28%">Trigger and audience</th><th style="width:10%">Opt-out</th><th>Policy to check</th></tr></thead>
   <tbody>
-    <tr><td>S-1</td><td>New content in a topic you follow</td><td>Publication, to subscribers of that topic</td><td>Per topic</td><td>CASL benchmark; OLA</td></tr>
-    <tr><td>S-2</td><td>Periodic digest</td><td>Weekly or monthly, by role × sector × region</td><td>Per topic</td><td>OLA; WCAG 2.1 AA</td></tr>
+    <tr><td>S-1</td><td>New content in a topic you follow</td><td>Publication, to subscribers of that topic</td><td>Per topic</td><td>anti-spam benchmark; official languages</td></tr>
+    <tr><td>S-2</td><td>Periodic digest</td><td>Weekly or monthly, by role × sector × region</td><td>Per topic</td><td>official languages; WCAG 2.1 AA</td></tr>
     <tr><td>S-3</td><td>Content you read was corrected or withdrawn</td><td>Editorial change on a page the client opened</td><td>Decision</td><td>Service and Digital; duty to inform</td></tr>
-    <tr><td>S-4</td><td>Scheduled release is now available</td><td>Publication calendar date</td><td>Per topic</td><td>OLA</td></tr>
-    <tr><td>S-5</td><td>Saved search has new results</td><td>Solr query matches new content</td><td>Per search</td><td>Privacy Act — stored queries</td></tr>
+    <tr><td>S-4</td><td>Scheduled release is now available</td><td>Publication calendar date</td><td>Per topic</td><td>official languages</td></tr>
+    <tr><td>S-5</td><td>Saved search has new results</td><td>Solr query matches new content</td><td>Per search</td><td>privacy legislation — stored queries</td></tr>
   </tbody>
 </table>
 </div>
@@ -699,12 +708,12 @@ footer.src {
 <table>
   <thead><tr><th style="width:7%">ID</th><th style="width:26%">Use case</th><th style="width:28%">Trigger and audience</th><th style="width:10%">Opt-out</th><th>Policy to check</th></tr></thead>
   <tbody>
-    <tr><td>E-1</td><td>Announcement to all clients</td><td>Manual, all active accounts</td><td>Per topic</td><td>CASL benchmark; OLA</td></tr>
-    <tr><td>E-2</td><td>Targeted announcement</td><td>Manual, role and/or sector and/or region</td><td>Per topic</td><td>Privacy Act — segments are personal information</td></tr>
-    <tr><td>E-3</td><td>Event invitation</td><td>Manual, segment subscribed to events</td><td>Per topic</td><td>Accessible Canada Act — accessible registration</td></tr>
-    <tr><td>E-4</td><td>Event reminder and follow-up</td><td>Scheduled from registration</td><td>Per topic</td><td>OLA</td></tr>
-    <tr><td>E-5</td><td>Re-engagement of dormant accounts</td><td>Scheduled, no sign-in in N days</td><td>Per topic</td><td>Privacy Act — retention</td></tr>
-    <tr><td>E-6</td><td>Survey or consultation invitation</td><td>Manual, segment</td><td>Per topic</td><td>Privacy Act; Accessible Canada Act</td></tr>
+    <tr><td>E-1</td><td>Announcement to all clients</td><td>Manual, all active accounts</td><td>Per topic</td><td>anti-spam benchmark; official languages</td></tr>
+    <tr><td>E-2</td><td>Targeted announcement</td><td>Manual, role and/or sector and/or region</td><td>Per topic</td><td>privacy legislation — segments are personal information</td></tr>
+    <tr><td>E-3</td><td>Event invitation</td><td>Manual, segment subscribed to events</td><td>Per topic</td><td>accessibility — accessible registration</td></tr>
+    <tr><td>E-4</td><td>Event reminder and follow-up</td><td>Scheduled from registration</td><td>Per topic</td><td>official languages</td></tr>
+    <tr><td>E-5</td><td>Re-engagement of dormant accounts</td><td>Scheduled, no sign-in in N days</td><td>Per topic</td><td>privacy legislation — retention</td></tr>
+    <tr><td>E-6</td><td>Survey or consultation invitation</td><td>Manual, segment</td><td>Per topic</td><td>privacy legislation; accessibility legislation</td></tr>
   </tbody>
 </table>
 </div>
@@ -714,9 +723,9 @@ footer.src {
 <table>
   <thead><tr><th style="width:7%">ID</th><th style="width:26%">Use case</th><th style="width:28%">Trigger and audience</th><th style="width:10%">Opt-out</th><th>Policy to check</th></tr></thead>
   <tbody>
-    <tr><td>O-1</td><td>Planned maintenance notice</td><td>Scheduled, all active accounts</td><td>Decision</td><td>Service and Digital directive</td></tr>
+    <tr><td>O-1</td><td>Planned maintenance notice</td><td>Scheduled, all active accounts</td><td>Decision</td><td>service and records policy</td></tr>
     <tr><td>O-2</td><td>Unplanned outage notice</td><td>Incident</td><td>Decision</td><td>Not an emergency channel</td></tr>
-    <tr><td>O-3</td><td>Terms or privacy notice change</td><td>Policy change, all accounts</td><td>Decision</td><td>Privacy Act — changed use</td></tr>
+    <tr><td>O-3</td><td>Terms or privacy notice change</td><td>Policy change, all accounts</td><td>Decision</td><td>privacy legislation — changed use</td></tr>
   </tbody>
 </table>
 </div>
@@ -730,9 +739,9 @@ footer.src {
 <table>
   <thead><tr><th style="width:7%">ID</th><th style="width:24%">Use case</th><th style="width:40%">What has to be decided</th><th>Policy to check</th></tr></thead>
   <tbody>
-    <tr><td>F-1</td><td>We received your feedback</td><td>Auto-acknowledge or not. If the form is anonymous there is no address to reply to.</td><td>Privacy Act — collecting an address changes the form</td></tr>
-    <tr><td>F-2</td><td>A staff member replies to you</td><td>The real decision: reply by email, by secure message inside the portal, or offline.</td><td>Privacy Act; records of business value</td></tr>
-    <tr><td>F-3</td><td>Was this page useful — follow-up</td><td>Whether a one-click rating ever produces an email at all.</td><td>Privacy Act — linking a rating to an account</td></tr>
+    <tr><td>F-1</td><td>We received your feedback</td><td>Auto-acknowledge or not. If the form is anonymous there is no address to reply to.</td><td>privacy legislation — collecting an address changes the form</td></tr>
+    <tr><td>F-2</td><td>A staff member replies to you</td><td>The real decision: reply by email, by secure message inside the portal, or offline.</td><td>privacy legislation; records of business value</td></tr>
+    <tr><td>F-3</td><td>Was this page useful — follow-up</td><td>Whether a one-click rating ever produces an email at all.</td><td>privacy legislation — linking a rating to an account</td></tr>
   </tbody>
 </table>
 </div>
@@ -744,31 +753,31 @@ footer.src {
 <table>
   <thead><tr><th style="width:26%">Instrument</th><th style="width:42%">What it actually constrains here</th><th>Where it bites</th></tr></thead>
   <tbody>
-    <tr><td>Privacy Act; Directive on Privacy Practices</td><td>Collecting, using and keeping email, role, sector and region. A segment label is personal information.</td><td>Privacy impact assessment; privacy notice at registration</td></tr>
-    <tr><td>Official Languages Act</td><td>Both languages, and the client served in their choice.</td><td>Two template IDs per use case</td></tr>
-    <tr><td>Accessible Canada Act; WCAG 2.1 AA</td><td>Email, landing page and any form must all be usable.</td><td>The portal pages are the risk, not the email</td></tr>
-    <tr><td>CASL</td><td>Probably not binding on a federal institution sending non-commercial notices — but it is the benchmark clients expect.</td><td>Unsubscribe valid 60 days; honoured within 10 business days</td></tr>
-    <tr><td>Policy on Government Security</td><td>GC Notify carries unclassified and Protected A only.</td><td>Notify-and-pull: the email says log in</td></tr>
-    <tr><td>Directive on Service and Digital</td><td>Outage communication; records of business value.</td><td>Sent campaigns are records</td></tr>
+    <tr><td>Privacy legislation and policy</td><td>Collecting, using and keeping email, role, sector and region. A segment label is personal information.</td><td>Privacy impact assessment; privacy notice at registration</td></tr>
+    <tr><td>Official-languages policy</td><td>Both languages, and the client served in their choice.</td><td>Two template IDs per use case</td></tr>
+    <tr><td>Accessibility legislation; WCAG 2.1 AA</td><td>Email, landing page and any form must all be usable.</td><td>The portal pages are the risk, not the email</td></tr>
+    <tr><td>Anti-spam law</td><td>Probably not binding on a public institution sending non-commercial notices — but it is the benchmark clients expect.</td><td>Unsubscribe valid 60 days; honoured within 10 business days</td></tr>
+    <tr><td>Security policy</td><td>The notification service carries low-sensitivity content only.</td><td>Notify-and-pull: the email says log in</td></tr>
+    <tr><td>Service and records policy</td><td>Outage communication; records of business value.</td><td>Sent campaigns are records</td></tr>
   </tbody>
 </table>
 </div>
 <div class="panel warn">
   <h4>One correction before this reaches the BRD</h4>
-  <p>The working note names PIPEDA. PIPEDA governs private-sector organisations in commercial activity; a federal institution is governed by the Privacy Act. The two have different consent and notice rules.</p>
+  <p>The working note cites the private-sector privacy statute. A public institution is governed by the public-sector one, and the two set different consent and notice rules. Worth correcting before it reaches the requirements document.</p>
 </div>
 </section>
 
 <section id="levels">
 <h2>9. Integration levels</h2>
-<p>How far Drupal and GC Notify are wired together. The levels map onto the tiers, but they are worth stating separately because they are what the developers will argue about.</p>
+<p>How far Drupal and the notification service are wired together. The levels map onto the tiers, but they are worth stating separately because they are what the developers will argue about.</p>
 <div class="tw">
 <table>
   <thead><tr><th style="width:15%">Level</th><th style="width:26%">What staff do</th><th style="width:30%">What Drupal does</th><th>Fits which streams</th></tr></thead>
   <tbody>
-    <tr><td><strong>0. Notify only</strong></td><td>Build a list by hand, upload a spreadsheet, send from GC Notify</td><td>Nothing</td><td>None safely — no consent gate</td></tr>
-    <tr><td><strong>1. Drupal builds the list</strong></td><td>Pick filters in Drupal, export CSV, upload to GC Notify</td><td>Owns profiles, consent, unsubscribe links, bounce flags</td><td>E-1, E-2, O-1</td></tr>
-    <tr><td><strong>2. Drupal sends</strong></td><td>Pick filters, preview, approve, press send in Drupal</td><td>Calls the GC Notify API per recipient, logs the notification ID</td><td>All of T, plus E</td></tr>
+    <tr><td><strong>0. Notify only</strong></td><td>Build a list by hand, upload a spreadsheet, send from the notification service</td><td>Nothing</td><td>None safely — no consent gate</td></tr>
+    <tr><td><strong>1. Drupal builds the list</strong></td><td>Pick filters in Drupal, export CSV, upload to the notification service</td><td>Owns profiles, consent, unsubscribe links, bounce flags</td><td>E-1, E-2, O-1</td></tr>
+    <tr><td><strong>2. Drupal sends</strong></td><td>Pick filters, preview, approve, press send in Drupal</td><td>Calls the notification service API per recipient, logs the notification ID</td><td>All of T, plus E</td></tr>
     <tr><td><strong>3. Drupal orchestrates</strong></td><td>Author a campaign, approve it, read the results</td><td>Queue, schedule, poll delivery status, suppress bounces, build digests</td><td>All streams including S-2 and S-5</td></tr>
   </tbody>
 </table>
@@ -779,7 +788,7 @@ footer.src {
 </div>
 <div class="panel warn">
   <h4>The on-premises constraint</h4>
-  <p>Outbound HTTPS from Drupal to the GC Notify API, through the departmental proxy, is the single dependency that can stop the whole design. Polling, not callbacks: an inbound endpoint into on-premises Drupal needs a DMZ and a security review. Firewall changes take weeks, so raise it now rather than at build time.</p>
+  <p>Outbound HTTPS from Drupal to the notification service API, through the departmental proxy, is the single dependency that can stop the whole design. Polling, not callbacks: an inbound endpoint into on-premises Drupal needs a DMZ and a security review. Firewall changes take weeks, so raise it now rather than at build time.</p>
 </div>
 </section>
 
@@ -860,7 +869,7 @@ footer.src {
       <div class="fd">2026-11-14 &nbsp; 09:40</div>
       <span class="fl">Batch rate</span>
       <div class="fd">200 per minute</div>
-      <p class="fn">Drupal holds the queue. GC Notify takes a send 72 hours ahead at most.</p>
+      <p class="fn">Drupal holds the queue. The notification service takes a send 72 hours ahead at most.</p>
     </div>
   </div>
   <div class="screen">
@@ -895,7 +904,7 @@ footer.src {
 <table>
   <thead><tr><th style="width:24%">Component</th><th style="width:48%">What it covers</th><th style="width:12%">Level</th><th class="size" style="width:10%">Size</th></tr></thead>
   <tbody>
-    <tr><td>GC Notify service setup</td><td>Service created, keys issued, sender name, reply-to mailbox</td><td>1</td><td class="size">XS</td></tr>
+    <tr><td>The notification service service setup</td><td>Service created, keys issued, sender name, reply-to mailbox</td><td>1</td><td class="size">XS</td></tr>
     <tr><td>Network and security</td><td>Outbound HTTPS egress rule, key storage, privacy assessment update</td><td>1</td><td class="size">S</td></tr>
     <tr><td>Profile and taxonomy</td><td>Role, sector, region and topic vocabularies, shared with content tagging</td><td>1</td><td class="size">M</td></tr>
     <tr><td>Preference centre</td><td>Client-facing page to choose topics and language</td><td>1</td><td class="size">M</td></tr>
@@ -919,7 +928,7 @@ footer.src {
 <table>
   <thead><tr><th style="width:16%">Phase</th><th style="width:32%">What it delivers</th><th style="width:32%">What it unblocks</th><th>Streams live</th></tr></thead>
   <tbody>
-    <tr><td><strong>0. Prerequisites</strong></td><td>GC Notify service, egress rule, privacy assessment update</td><td>Everything — nothing is buildable until egress clears</td><td>None</td></tr>
+    <tr><td><strong>0. Prerequisites</strong></td><td>The notification service service, egress rule, privacy assessment update</td><td>Everything — nothing is buildable until egress clears</td><td>None</td></tr>
     <tr><td><strong>1. Consent base</strong></td><td>Profiles, taxonomies, preferences, consent, suppression</td><td>The right to send anything at all</td><td>None yet</td></tr>
     <tr><td><strong>2. Manual sends</strong></td><td>CSV export with unsubscribe links; staff send</td><td>Proves content, approval and operating model</td><td>E-1, E-2, O-1</td></tr>
     <tr><td><strong>3. Transactional</strong></td><td>Template registry, send service, event hooks</td><td>The account lifecycle needed for launch</td><td>All of T</td></tr>
@@ -942,7 +951,7 @@ footer.src {
     <tr><td>Requirements stay at "send email"</td><td>Solution architecture cannot be written against it; the project stalls further</td><td>This strawman plus the decision table; assumptions close on a date</td></tr>
     <tr><td>D-5 stays undecided</td><td>Three different builds hide behind one "to be determined"</td><td>Force the choice before Phase 1 scope is fixed</td></tr>
     <tr><td>Mandatory email question unresolved</td><td>Determines whether consent has an exception class, which changes the data model</td><td>Decision D-4</td></tr>
-    <tr><td>List quality at launch</td><td>GC Notify can suspend a service if too many sends fail in a day — which would also stop sign-in</td><td>Confirm addresses at registration; clean the list before the first send</td></tr>
+    <tr><td>List quality at launch</td><td>The notification service can suspend a service if too many sends fail in a day — which would also stop sign-in</td><td>Confirm addresses at registration; clean the list before the first send</td></tr>
     <tr><td>Translation capacity</td><td>Every template and every campaign is bilingual</td><td>Operating model must name who translates, and add the lead time</td></tr>
   </tbody>
 </table>
@@ -962,7 +971,7 @@ footer.src {
     <tr><td>D-4</td><td>Is any email non-optional?</td><td>(a) no, everything opt-out &nbsp; (b) a named class cannot be refused &nbsp; (c) non-optional notices go on the dashboard</td><td>(b) a named, documented class <strong>— blocking</strong></td></tr>
     <tr><td>D-5</td><td>How does client feedback get answered?</td><td>(a) email reply to a monitored mailbox &nbsp; (b) secure message inside the portal &nbsp; (c) offline only</td><td><strong>Blocked — no safe default</strong></td></tr>
     <tr><td>D-6</td><td>Do we need open rates?</td><td>(a) no, portal activity is the measure &nbsp; (b) yes, and we accept a marketing platform</td><td>(a) portal activity</td></tr>
-    <tr><td>D-7</td><td>Which sender domain?</td><td>(a) notification.canada.ca &nbsp; (b) the department's own domain</td><td>(a) notification.canada.ca</td></tr>
+    <tr><td>D-7</td><td>Which sender domain?</td><td>(a) the service's own domain &nbsp; (b) the department's own domain</td><td>(a) the service's own domain</td></tr>
     <tr><td>D-8</td><td>What is the account inactivity policy?</td><td>(a) no reminders &nbsp; (b) remind at 90 days, up to three times, then review</td><td>(b)</td></tr>
     <tr><td>D-9</td><td>Who approves a campaign before it sends?</td><td>(a) author alone &nbsp; (b) two people &nbsp; (c) two people, director for all-client sends</td><td>(c)</td></tr>
   </tbody>
@@ -1027,9 +1036,8 @@ footer.src {
 </section>
 
 <footer class="src">
-  <p><strong>Sources.</strong> GC Notify capabilities, limits and delivery statuses: GC Notify documentation, notification.canada.ca, October 2026. Platform patterns reused from the Information Sharing System client-email work. Everything else is the architect's draft for review, and is not yet agreed by the business.</p>
+  <p><strong>Sources.</strong> the notification service capabilities, limits and delivery statuses: the notification service documentation, the service's own domain, October 2026. Platform patterns reused from the an earlier project on the same platform. Everything else is the architect's draft for review, and is not yet agreed by the business.</p>
   <p>Prepared by Enterprise Architecture · 23 October 2026 · Draft for discussion</p>
-  <p><a href="/balance/">‹ Back to Balance</a></p>
 </footer>
 
   </main>
@@ -1177,12 +1185,12 @@ footer.src {
     /* capabilities */
     "C-1": ["Capability", "Account and identity email", "The only capability the portal cannot launch without. MFA makes it a sign-in dependency, not an email feature."],
     "C-2": ["Capability", "Consent and preferences", "The right to send anything at all. Settles decisions D-2, D-3 and D-4.", "Blocking for Phase 1 scope"],
-    "C-3": ["Capability", "Audience and segmentation", "Who a given message is actually for. A segment label is personal information under the Privacy Act."],
-    "C-4": ["Capability", "Templates and authoring", "Where the words live. GC Notify has no API for creating templates, so part of this stays manual at every tier."],
+    "C-3": ["Capability", "Audience and segmentation", "Who a given message is actually for. A segment label is personal information under privacy legislation."],
+    "C-4": ["Capability", "Templates and authoring", "Where the words live. The notification service has no API for creating templates, so part of this stays manual at every tier."],
     "C-5": ["Capability", "Sending, queueing and scheduling", "How a message leaves the building. Coupled to C-1: MFA codes and password resets must go through the API, so it cannot sit below Tier 2."],
-    "C-6": ["Capability", "Suppression and list health", "Keeps the department able to send at all. GC Notify can suspend a service when too large a share of a day's sends fail."],
+    "C-6": ["Capability", "Suppression and list health", "Keeps the department able to send at all. The notification service can suspend a service when too large a share of a day's sends fail."],
     "C-7": ["Capability", "Approval and audit", "Who authorised a send, and what happened. A sent campaign is a record of business value."],
-    "C-8": ["Capability", "Measurement", "What the programme can honestly claim. No tier buys open rates — GC Notify reports delivery only."],
+    "C-8": ["Capability", "Measurement", "What the programme can honestly claim. No tier buys open rates — the notification service reports delivery only."],
     "C-9": ["Capability", "Subscription content", "What gives a client a reason to come back. The one place worth spending above Tier 2."],
     "C-10": ["Capability", "Feedback and reply", "Three tiers that are three different projects.", "Blocked on decision D-5"],
     /* decisions */
@@ -1192,7 +1200,7 @@ footer.src {
     "D-4": ["Decision", "Is any email non-optional?", "Default if unanswered: a small, named, disclosed class that cannot be refused.", "Blocking — shapes the data model"],
     "D-5": ["Decision", "How does client feedback get answered?", "Email reply, secure in-portal message, or offline only. These are three different builds.", "No safe default — escalate"],
     "D-6": ["Decision", "Do we need open rates?", "Default if unanswered: no — portal activity is the measure. Open rates would mean a separate marketing platform."],
-    "D-7": ["Decision", "Which sender domain?", "Default if unanswered: notification.canada.ca, which leaves SPF, DKIM and DMARC with the Canadian Digital Service."],
+    "D-7": ["Decision", "Which sender domain?", "Default if unanswered: the notification service's own domain, which leaves SPF, DKIM and DMARC with the service provider."],
     "D-8": ["Decision", "What is the account inactivity policy?", "Default if unanswered: remind at 90 days, up to three times, then review the account."],
     "D-9": ["Decision", "Who approves a campaign before it sends?", "Default if unanswered: two people, and a director for all-client sends."],
     /* account email */
@@ -1219,7 +1227,7 @@ footer.src {
     "E-6": ["Engagement email", "Survey or consultation invitation", "Sent by hand to a segment."],
     /* service */
     "O-1": ["Service email", "Planned maintenance notice", "Scheduled, to all active accounts. Whether it can be refused is decision D-4."],
-    "O-2": ["Service email", "Unplanned outage notice", "Triggered by an incident. GC Notify is explicitly not an emergency channel."],
+    "O-2": ["Service email", "Unplanned outage notice", "Triggered by an incident. The notification service is explicitly not an emergency channel."],
     "O-3": ["Service email", "Terms or privacy notice change", "A changed use of personal information, so clients who opted out still have to learn of it. See decision D-4."],
     /* feedback */
     "F-1": ["Feedback", "We received your feedback", "Whether this exists depends on whether the form collects an address at all."],

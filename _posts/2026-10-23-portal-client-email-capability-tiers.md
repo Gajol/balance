@@ -31,8 +31,8 @@ Two things fell out of it that a feature list would have hidden.
 
 It is a strawman. It is meant to be marked up, and the point of publishing a draft with wrong answers in it is that corrections arrive far faster than answers do. Anything not corrected by a date becomes a recorded assumption rather than an open question, which is what lets a stalled requirement turn into something a project manager can track.
 
-[**Read the capability tiers**]({{ site.baseurl }}/portal-email-capability-tiers.html)
+[**Read the capability tiers**]({{ site.baseurl }}/portal-email-capability-tiers/)
 
 The page is self-contained — it carries its own styling and script and loads nothing from the network, so it also opens offline from a file share. Every capability has a tier selector that tallies a rough build size as you go, and every code reference in the text has a tooltip, so you can read "settles D-2" without going to find out what D-2 was.
 
-Platform specifics in it are Government of Canada ones: GC Notify as the sending service, Drupal as the source of truth, Solr and Matomo behind it. The shape of the argument is not specific to any of that. Any team that has been handed *send email* as a requirement has the same ten questions to answer.
+The platform behind it is a shared notification service for sending, Drupal as the source of truth, with Solr and Matomo for search and measurement. The shape of the argument does not depend on any of that. Any team handed *send email* as a requirement has the same ten questions to answer.
