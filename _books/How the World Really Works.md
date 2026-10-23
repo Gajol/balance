@@ -943,6 +943,12 @@ Doubt Everything: *De omnibus dubitandum*
 
 > "I am not a pessimist or an optimist, I am a scientist. There is no agenda in understanding how the world really works. A realistic grasp of our past, present, and uncertain future is the best foundation for approaching the unknowable expanse of time before us. While we cannot be specific, we know that the most likely prospect is a mixture of progress and setbacks, of seemingly insurmountable difficulties and near-miraculous advances. The future, as ever, is not predetermined. Its outcome depends on our actions." - Vaclav Smil
 
+## Next Read (2026)
+
+If you want one more book in this field, start with Vaclav Smil's newest, **[Numbers Tell Stories: How Data Can Reveal the Surprising Truths About Our World](https://vaclavsmil.com/publications/)** (2026). It continues the theme of this book: question the headline, and check the numbers and the scale. I have not read it yet, so this is a pick from the title and its place in his list, not a review.
+
+Two other good follow-ups from [his publications list](https://vaclavsmil.com/publications/): *How to Feed the World* (2025) goes deeper on the food chapter, and *Speed: How It Explains the World* (2025) is another short, readable one. For a more hopeful counterpoint written for general readers, try Hannah Ritchie, *Not the End of the World* (2024), which is data-driven and easy to read.
+
 ## Fables
 
 - [Fox and the Hedgehog](https://conceptually.org/concepts/fox-vs-hedgehog):
