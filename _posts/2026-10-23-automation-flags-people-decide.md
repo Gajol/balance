@@ -69,22 +69,23 @@ function g(i){return document.getElementById(i);}
 function draw(){
 var sc=S[+g('w10s').value],ow=+g('w10o').value,gr=+g('w10g').value;
 g('w10gv').textContent=gr;
-var ev=[[0,"Flagged: page not reviewed in 12 months. Task created in the owner’s My content view.","n"]],done=null,res;
+var IM={owner:"No change yet. The page keeps its <b>Needs review</b> label.",manager:"<b>Ranked lower in search.</b> The manager sees it in their team view.",pm:"<b>Archive candidate.</b> Dropped from featured lists and menus.",bounce:"Owner record shown as out of date. Task rerouted to the product owner.",ok:"<span class=\"good\">Stale label removed. Search rank restored. Review date reset.</span>",arch:"<span class=\"bad\">Removed from search and menus.</span> Kept in the archive. Visitors see a notice with a restore link."};
+var ev=[[0,"Flagged: page not reviewed in 12 months. Task created in the owner’s My content view.","n","<b>Marked stale.</b> Shows a <b>Needs review</b> label and ranks slightly lower in search."]],done=null,res;
 sc.sort(function(a,b){return a[0]-b[0];});
 for(var i=0;i<sc.length&&done===null;i++){
  var w=sc[i][0],to=sc[i][1];
  if(w>=gr)break;
- if(ow==2&&to=="owner"){ev.push([w,"Reminder to the owner bounced: the owner has left. Page moved to the product owner.","w"]);
-   if(w+1<gr){ev.push([w+1,"Product owner reviews the page and chooses: update it.","g"]);done=w+1;res="reassigned";}else{break;}
+ if(ow==2&&to=="owner"){ev.push([w,"Reminder to the owner bounced: the owner has left. Page moved to the product owner.","w",IM.bounce]);
+   if(w+1<gr){ev.push([w+1,"Product owner reviews the page and chooses: update it.","g",IM.ok]);done=w+1;res="reassigned";}else{break;}
  }else{
-  ev.push([w,"Reminder sent to the "+to+".","n"]);
-  if(ow==0&&to=="owner"){ev.push([w+1,"Owner reviews the page and confirms it is still correct.","g"]);done=w+1;res="current";}
+  ev.push([w,"Reminder sent to the "+to+".","n",to=="owner"?IM.owner:to=="manager"?IM.manager:IM.pm]);
+  if(ow==0&&to=="owner"){ev.push([w+1,"Owner reviews the page and confirms it is still correct.","g",IM.ok]);done=w+1;res="current";}
  }
 }
-if(done===null){ev.push([gr,"Grace period ended with no answer. Page archived (not deleted).","w"]);res="archived";}
+if(done===null){ev.push([gr,"Grace period ended with no answer. Page archived (not deleted).","w",IM.arch]);res="archived";}
 ev.sort(function(a,b){return a[0]-b[0];});
-var h='<table><tr><th>Week</th><th>What happens</th></tr>';
-ev.forEach(function(e){h+='<tr><td>'+e[0]+'</td><td style="text-align:left">'+e[1]+'</td></tr>';});
+var h='<table><tr><th>Week</th><th>What happens</th><th>Impact on the page</th></tr>';
+ev.forEach(function(e){h+='<tr><td>'+e[0]+'</td><td style="text-align:left">'+e[1]+'</td><td style="text-align:left">'+e[3]+'</td></tr>';});
 g('w10t').innerHTML=h+'</table>';
 var m={current:'<span class="good">Resolved by the owner in week '+done+'.</span> The page stays live and its review date resets. Automation did the chasing. A person made the call.',reassigned:'<span class="good">Resolved by the product owner in week '+done+'.</span> Because the owner had left, the system rerouted the task instead of letting it sit. Also worth checking: why was the owner field out of date?',archived:'<span class="bad">No one answered.</span> The page was archived in week '+gr+' and can be restored with one click. This is the safe default. A longer grace period is kinder to busy owners. A shorter one keeps the site cleaner.'};
 g('w10r').innerHTML=m[res];
@@ -94,8 +95,11 @@ draw();
 })();
 </script>
 
+Read the **Impact** column as the price of doing nothing. The page does not just wait: it is labelled, ranked lower in search, dropped from featured lists, and finally archived. That is the nudge. Owners act because staying silent has a visible effect on their own pages.
+
 What to notice:
 
+- **Impact grows in steps.** A label first, then lower search rank, then archive candidate, then archive. Each step is gentle and reversible.
 - **Light reminders and a busy owner end in an archive.** That is the system working, but it is a sign to ask whether the owner had a fair chance.
 - **A departed owner needs a rule.** Without rerouting, the page sits flagged forever.
 - **The grace period is a policy choice.** It trades kindness to owners against a clean site.
@@ -111,6 +115,10 @@ Different flags go to different people. This is the part that makes the report u
 | Orphan (nothing links to it) | Page owner and editor | Link it from a hub, or retire |
 | Failed searches in an area | Product owner and editor | Add content, add a synonym, improve a title |
 | Broken accessibility check | Editor | Fix before or after publishing |
+
+## Many pages, one queue
+
+Owners often look after dozens of pages. Give them one ranked queue with bulk actions, and give managers and the product owner roll-ups of the same data. See [One Queue]({{ '/one-queue-consolidated-views/' | relative_url }}).
 
 ## Keep it humane
 
