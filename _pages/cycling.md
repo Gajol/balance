@@ -11,7 +11,7 @@ excerpt: "Bikes, routes and trips."
   <figcaption>A windy lakeshore stop, bike loaded and ready to carry on.</figcaption>
 </figure>
 
-Cycling is the balance in *Technology and Balancing Life*. It gets me outdoors, away from screens, and it rewards the same habits I value at work: plan the route, check the gear, and keep going at a steady pace.
+Cycling is the balance in *Technology and Balancing Life*. It gets me outdoors, lets me be with friends, and rewards the same habits I value at work: enjoy the route, check the gear, and keep going at a steady pace.
 
 ## Follow along
 
