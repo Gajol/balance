@@ -58,6 +58,13 @@ Energy Substitutions:
 - Natural Gas: Natural gas (methane) is 3-orders of magnitude lower than that of aviation kerosene (a liquid fuel).  Liquid fuels have high-energy density.
 - Ocean liners did not burn wood because it would require 2.5X the volume of bituminous coal, and by 50% heavier.
 
+<div class="hv" markdown="0">
+<h4>Energy stored per kilogram: jet fuel vs the best battery</h4>
+<div class="r hot" tabindex="0"><div class="l">Best battery<small>lithium-ion</small></div><div class="b"><i style="width:3.3%"></i><em style="left:calc(3.3% + 8px)">400 Wh/kg</em></div><div class="tip">About what the best lithium-ion batteries store per kilogram.</div></div>
+<div class="r ok" tabindex="0"><div class="l">Jet fuel<small>aviation kerosene</small></div><div class="b"><i style="width:100.0%"></i><em style="color:#fff">12,000 Wh/kg</em></div><div class="tip">Roughly 30 times the energy per kilogram of the best battery. That is why long-distance electric flight is unrealistic.</div></div>
+<p class="n">Weight matters in a plane. The same idea explains why ships stopped burning wood: it needs about 2.5 times the volume of coal.</p>
+</div>
+
 ### Crude Oil
 
 Crude oil:  Refinement produces specific fuels (gasoline - lightest, and residual fuel oil - heaviest), and also lubricants, and asphalt (paving and roofing).
@@ -103,7 +110,7 @@ Nuclear can operate 90% of the time.  USA/Canada had small, safe, modular reacto
 
 China, India and South Korea are committed to nuclear.   Whereas Germany had committed to be nuclear free by 2022.
 
-Storage of Electricity.  The only viable storage is a Pump Hydro Storage (PHS) system which on off-hours pumps water to a higher elevation to then allow it to fall again in the peak demand.  This uses about the 25% of the generated electricity, and relies on natural elevation for the storage.  The most efficient batteries (Li-Ion) are able to store about 400 Watt-hours/kilogram (Wh/kg).   This is about 40X the energy-per-kilogram of jet kerosene (12,000 Wh/kg).
+Storage of Electricity.  The only viable storage is a Pump Hydro Storage (PHS) system which on off-hours pumps water to a higher elevation to then allow it to fall again in the peak demand.  This uses about the 25% of the generated electricity, and relies on natural elevation for the storage.  The most efficient batteries (Li-Ion) are able to store about 400 Watt-hours/kilogram (Wh/kg).   This is about 30X less than the energy-per-kilogram of jet kerosene (12,000 Wh/kg).
 
 Fossil fuels still provide the majority of the total energy demand:
 
@@ -187,6 +194,31 @@ A shift (epochal) the addition of non-solar forms of energy began to affect crop
 - harvesting by large combines transferring grain directly to trucks to be transported to storage silos and sold around the country or shipped to Asia or Africa.
 - 2 hours labour / hectare and 3.5 tonnes / hectare  (two seconds labour / kilogram of grain; from 10 minutes in 1801)
 
+<style>
+.hv{border:1px solid rgba(128,128,128,.4);border-radius:10px;padding:12px 14px;margin:1.2em 0;font-size:.95em}
+.hv h4{margin:0 0 .6em;font-size:1em}
+.hv .r{display:grid;grid-template-columns:minmax(120px,26%) 1fr;gap:10px;align-items:center;margin:6px 0}
+.hv .l{font-weight:600}
+.hv .l small{display:block;font-weight:400;opacity:.75}
+.hv .b{position:relative;height:24px;border-radius:6px;background:rgba(128,128,128,.15)}
+.hv .b i{position:absolute;left:0;top:0;bottom:0;border-radius:6px;background:#1f6feb;min-width:3px}
+.hv .b em{position:absolute;left:8px;top:50%;transform:translateY(-50%);font-style:normal;font-size:.85em;white-space:nowrap}
+.hv .b.out em{color:inherit}
+.hv .n{font-size:.85em;opacity:.8;margin:.6em 0 0}
+.hv .r:hover .b,.hv .r:focus .b{outline:2px solid #1f6feb}
+.hv .r .tip{display:none;grid-column:2;font-size:.85em;opacity:.9}
+.hv .r:hover .tip,.hv .r:focus .tip{display:block}
+.hv .hot i{background:#e5534b}.hv .ok i{background:#2da44e}
+@media (max-width:560px){.hv .r{grid-template-columns:1fr}.hv .r .tip{grid-column:1}}
+</style>
+<div class="hv" markdown="0">
+<h4>Hours of human labour to grow one hectare of wheat</h4>
+<div class="r hot" tabindex="0"><div class="l">1801<small>oxen, sickles, flails</small></div><div class="b"><i style="width:100.0%"></i><em style="color:#fff">147 hours</em></div><div class="tip">27 hours to plant plus 120 hours to harvest, per hectare. About 10 minutes of human labour per kilogram of wheat.</div></div>
+<div class="r " tabindex="0"><div class="l">1901<small>horses and steam threshers</small></div><div class="b"><i style="width:15.0%"></i><em style="left:calc(15.0% + 8px)">about 22 hours</em></div><div class="tip">Four horses pull steel ploughs and harrows, and machines cut and thresh. About 1/7 of the 1801 time. Around 25% of US farmland grew feed for the animals.</div></div>
+<div class="r ok" tabindex="0"><div class="l">2021<small>combines, tractors, fertilizer</small></div><div class="b"><i style="width:1.4%"></i><em style="left:calc(1.4% + 8px)">2 hours</em></div><div class="tip">One or two people and 400+ horsepower machines. About 3.5 tonnes per hectare and two seconds of labour per kilogram of grain.</div></div>
+<p class="n">Hover or tap a row for detail. The 1801 total adds the planting and harvest figures above. The labour did not vanish: it was replaced by fossil fuel, fertilizer and machines.</p>
+</div>
+
 ### Agrochemicals
 
 Agrochemicals fuel needs dwarfs the fuels required to power farm machinery.
@@ -223,6 +255,17 @@ Fossil fuel subsidy to create food.   Ranges exist based on transportation costs
 | Seafood: Mean                                                | 700mL/kg                                                     |
 | Seafood: Wild shrimp and lobster                             | 10L/kg.   Two skewers of shrimp (100g) requires about 500mL to **1,000mL fuel/kg** (2-4 cups of fuel) |
 
+
+<div class="hv" markdown="0">
+<h4>Fuel behind a kilogram of food (millilitres of diesel, log scale)</h4>
+<div class="r " tabindex="0"><div class="l">Bread<small>rain-fed wheat, per kg of grain</small></div><div class="b"><i style="width:50.0%"></i><em style="color:#fff">100 mL</em></div><div class="tip">Diesel equivalent. A sourdough loaf is about 250 mL.</div></div>
+<div class="r " tabindex="0"><div class="l">Pelagic fish<small>anchovies, sardines, mackerel</small></div><div class="b"><i style="width:50.0%"></i><em style="color:#fff">100 mL</em></div><div class="tip">Caught near the surface, so the least fuel-hungry seafood.</div></div>
+<div class="r " tabindex="0"><div class="l">Chicken<small>average</small></div><div class="b"><i style="width:63.6%"></i><em style="color:#fff">350 mL</em></div><div class="tip">Range is 200 mL to 1 L per kg. Farmed chickens use little energy because they are confined.</div></div>
+<div class="r hot" tabindex="0"><div class="l">Tomatoes<small>greenhouse, trucked 3,500 km</small></div><div class="b"><i style="width:70.3%"></i><em style="color:#fff">650 mL</em></div><div class="tip">Plastic structures, heavy fertilizer (10 times grain corn) and a truck from Spain to Sweden.</div></div>
+<div class="r hot" tabindex="0"><div class="l">Seafood<small>average</small></div><div class="b"><i style="width:71.1%"></i><em style="color:#fff">700 mL</em></div><div class="tip">Mean across all kinds.</div></div>
+<div class="r hot" tabindex="0"><div class="l">Wild shrimp and lobster<small>per kg</small></div><div class="b"><i style="width:100.0%"></i><em style="color:#fff">10 L</em></div><div class="tip">The most energy-intensive food in these notes.</div></div>
+<p class="n">This is a log scale, so a bar a little longer means several times more fuel. Differences are bigger than they look. Figures are the notes' typical values; real numbers vary with transport and irrigation. Hover or tap a row for detail.</p>
+</div>
 
 ### Seafood & Diesel Oil
 
