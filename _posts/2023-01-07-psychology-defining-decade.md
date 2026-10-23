@@ -9,11 +9,11 @@ comments: true
 share: true
 related: true
 categories: psychology
-tags: adulthood
 sidebar:
   title: "The Defining Decade"
   nav: sidebar-defining-decade
 theme: psychology
+tags: [psychology, career, books]
 ---
 
 A summary of an book help young adults and others understand the pressures, anxiety and differences people in their 20's experience today.

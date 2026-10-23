@@ -6,8 +6,8 @@ description: Course notes on doing the AZ-400 Azure DevOps training cover IaC, R
 header.image: /assets/images/bridge-generated-og.jpeg
 excerpt: "Azure-based DevOps training on building a CI/CD pipeline "
 # categories: DevOps Software
-tags: Azure DevOps Engineering
 theme: digital
+tags: [azure, devops, engineering, training]
 ---
 
 Microsoft's AZ-400 Design and Implementing Microsoft DevOps Solutions is designed to prepare you to take the $174 USD certification exam.  The course explains why Agile and DevOps are desirable ways to deliver software to the business.   

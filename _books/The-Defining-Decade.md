@@ -9,6 +9,7 @@ sidebar:
   title: "Contents"
   nav: sidebar-defining-decade
 theme: psychology
+tags: [psychology, career, books]
 ---
 
 The Define Decade: Why Your 20's Matter & How to Make the Most of Them

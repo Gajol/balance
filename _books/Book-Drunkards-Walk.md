@@ -9,6 +9,7 @@ sidebar:
   title: "Contents"
   nav: sidebar-defining-decade
 theme: psychology
+tags: [psychology, statistics, books]
 ---
 
 # Drunkard's Walk

@@ -110,6 +110,11 @@ defaults:
       author_profile: false
       share: true
 
+# Tags: pages show their tags at the bottom and link to /tags/#tag
+tag_archive:
+  type: liquid
+  path: /tags/
+
 # Social Sharing
 twitter:
   username               : &twitter "Aqvavit"

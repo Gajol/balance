@@ -5,6 +5,7 @@ excerpt: "DevOps needs to treat infrastructure like cattle.  The ability to crea
 last_modified_at: 2023-01-07T10:23:16-04:00
 toc: true
 theme: digital
+tags: [azure, "infrastructure as code", automation, devops]
 ---
 # AZ-400 IaC using Azure and DSC
 

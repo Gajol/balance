@@ -8,6 +8,7 @@ toc_label: "Contents"
 classes: wide
 categories: world economics canada
 theme: economics
+tags: [economics, energy, books]
 ---
 # How the World Really Works
 

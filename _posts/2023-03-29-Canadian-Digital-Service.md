@@ -6,8 +6,8 @@ description: A few notes about the Canadian Digital Service (CDS), its origins, 
 header.image: /assets/images/bridge-generated-og.jpeg
 excerpt: "A few notes about the Canadian Digital Service (CDS), its origins, strategy and recent evaluation. "
 # categories: CDS Digital
-tags: GC CDS Digital Ux
 theme: digital
+tags: [government, cds, ux, "service design"]
 ---
 
 CDS
