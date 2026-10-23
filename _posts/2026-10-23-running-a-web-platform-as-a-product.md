@@ -41,7 +41,7 @@ var Q=[
 ["We cannot get or keep the right people","{{ '/getting-and-keeping-the-team/' | relative_url }}","Getting and Keeping the Team"]];
 var s=document.getElementById('w9q'),a=document.getElementById('w9a');
 Q.forEach(function(q,i){var o=document.createElement('option');o.value=i;o.textContent=q[0];s.appendChild(o);});
-function show(){var q=Q[s.value];a.innerHTML='Start with: <a href="{{ site.baseurl }}'+q[1]+'"><strong>'+q[2]+'</strong></a>';}
+function show(){var q=Q[s.value];a.innerHTML='Start with: <a href="'+q[1]+'"><strong>'+q[2]+'</strong></a>';}
 s.onchange=show;show();
 })();
 </script>
