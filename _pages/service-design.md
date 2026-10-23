@@ -40,5 +40,5 @@ For a worked example of that idea, see [From strawman to blueprint]({{ '/journey
 
 A service that some people cannot use is not finished. Accessibility has to be part of the work from the first conversation, not a check at the end.
 
-- [Accessibility]({{ '/application/cds/Accessibility' | relative_url }}) &mdash; a reference list: what the Government of Canada, companies and other countries publish, and the digital standards to build against.
+- [Accessibility]({{ '/application/cds/Accessibility' | relative_url }}) &mdash; accessibility basics, what the Accessible Canada Act means for a website (including a public feedback process), and the standards to build against.
 - [CDS Accessibility]({{ '/application/cds/CDS-Accessibility' | relative_url }}) &mdash; accessibility stage by stage, from discovery (recognize bias and test with people) through alpha, where you validate with automated checks, to beta and live.
