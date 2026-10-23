@@ -30,6 +30,76 @@ The same flags, shown at three levels:
 4. **Honest roll-ups.** Counts at the top show whether the pile is growing or shrinking.
 5. **Same data for everyone.** Owners and managers see the same numbers at different levels, so nobody argues about whose figures are right.
 
+## How it feels
+
+The same 14 flagged pages can reach an owner in three very different ways. Pick one and watch the owner's mood. The times and counts are an illustrative model, not measurements.
+
+<style>
+#w12 .wc{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:760px){#w12 .wc{grid-template-columns:1fr}}
+#w12 .face{font-size:3.4em;line-height:1}
+#w12 .m{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;text-align:center;margin-top:8px}
+#w12 .m div{border:1px solid rgba(128,128,128,.35);border-radius:6px;padding:4px}
+#w12 .m b{display:block;font-size:1.3em}
+#w12 .em{border:1px solid rgba(128,128,128,.4);border-radius:6px;padding:5px 8px;margin:3px 0;font-size:.88em;display:flex;justify-content:space-between;gap:8px}
+#w12 .em .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#e5534b;margin-right:6px}
+#w12 .vis{max-height:330px;overflow:hidden;position:relative}
+#w12 .fade:after{content:"";position:absolute;left:0;right:0;bottom:0;height:60px;background:linear-gradient(transparent,var(--bgc,#fff))}
+#w12 .qrow{display:grid;grid-template-columns:1.5em 1fr 90px;gap:8px;align-items:center;padding:5px 2px;border-bottom:1px solid rgba(128,128,128,.25);font-size:.9em}
+#w12 .batch{border:1px solid rgba(128,128,128,.4);border-radius:8px;padding:10px;margin:6px 0;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+#w12 .batch.done{border-color:#2da44e;background:rgba(45,164,78,.12)}
+</style>
+<div class="wx" markdown="0" id="w12">
+<div class="row" role="group" aria-label="How the flags arrive">
+<button data-s="0" aria-pressed="true">1. Separate emails</button>
+<button data-s="1" aria-pressed="false">2. One ranked queue</button>
+<button data-s="2" aria-pressed="false">3. Bulk decisions</button>
+</div>
+<div class="wc">
+<div class="card" id="w12m" aria-live="polite"></div>
+<div class="vis" id="w12v"></div>
+</div>
+</div>
+<script>
+(function(){
+function g(i){return document.getElementById(i);}
+var P=[["Leave policy","Stale","c"],["VPN setup guide","Stale","u"],["Password reset","Broken link","u"],["Expense policy","Stale","c"],["Onboarding checklist","Failed searches","u"],["Travel claim process","Stale","c"],["Pay dates","Stale","c"],["Software catalogue","Failed searches","u"],["Year-end deadlines","Failed searches","u"],["Purchase card rules","Stale","c"],["Vendor onboarding","Broken link","u"],["Petty cash form","No accessibility check","r"],["Budget calendar","Stale","r"],["Printer help","Stale","r"]];
+var NAMES={c:"Still correct",u:"Needs an update",r:"Retire"};
+var st=0,done={c:false,u:false,r:false};
+function cnt(k){return P.filter(function(x){return x[2]==k;}).length;}
+function mood(){
+ if(st==0)return {f:"&#128565;",l:"Overwhelmed and confused",q:"Which one first? Is any of this urgent? I will deal with it later.",a:P.length,b:"~42 min",c:"~56"};
+ if(st==1)return {f:"&#128578;",l:"Clear",q:"Now I can see what matters most, and why.",a:1,b:"~20 min",c:"~28"};
+ var d=(done.c?1:0)+(done.u?1:0)+(done.r?1:0);
+ if(d==3)return {f:"&#128516;",l:"Efficient. Queue clear.",q:"Done in one sitting, and the report shows it.",a:0,b:"~8 min",c:"~9"};
+ return {f:"&#128578;",l:"In control",q:"Three decisions, not fourteen emails.",a:3-d,b:"~"+(8+(3-d)*4)+" min",c:"~"+(9+(3-d)*5)};
+}
+function draw(){
+ var m=mood(),lab=st==0?"Messages to open":st==1?"Views to open":"Decisions left";
+ g('w12m').innerHTML='<div class="row" style="margin:0"><span class="face" aria-hidden="true">'+m.f+'</span><span><span class="note">How the owner feels</span><br><strong style="font-size:1.1em">'+m.l+'</strong></span></div><div class="q" style="font-style:italic;margin-top:6px">“'+m.q+'”</div><div class="m"><div><b>'+m.a+'</b><span class="note">'+lab+'</span></div><div><b>'+m.b+'</b><span class="note">Time</span></div><div><b>'+m.c+'</b><span class="note">Clicks</span></div></div>';
+ var h='';
+ if(st==0){P.forEach(function(x,i){h+='<div class="em"><span><span class="dot"></span>Page flagged: '+x[0]+'</span><span class="note">'+x[1]+'</span></div>';});
+  g('w12v').className='vis fade';}
+ else if(st==1){h+='<div class="note" style="margin-bottom:4px">My content, ranked by readers affected and how overdue:</div>';
+  P.slice(0,8).forEach(function(x,i){var w=Math.round(100-i*9);h+='<div class="qrow"><span>'+(i+1)+'</span><span>'+x[0]+' <span class="note">('+x[1]+')</span></span><div class="track"><div class="fill" style="width:'+w+'%;background:'+(i<3?"#e5534b":"#1f6feb")+'"></div></div></div>';});
+  h+='<div class="note" style="margin-top:6px">+ 6 more below, grouped by the decision needed.</div>';g('w12v').className='vis';}
+ else{h+='<div class="note" style="margin-bottom:4px">Same 14 pages, grouped by decision. Apply each in one step.</div>';
+  ['c','u','r'].forEach(function(k){h+='<div class="batch'+(done[k]?' done':'')+'"><span><strong>'+NAMES[k]+'</strong> <span class="note">('+cnt(k)+' pages)</span></span>'+(done[k]?'<span class="good">Done</span>':'<button data-b="'+k+'">Apply to all '+cnt(k)+'</button>')+'</div>';});
+  g('w12v').className='vis';}
+ g('w12v').innerHTML=h;
+ document.querySelectorAll('#w12 button[data-b]').forEach(function(b){b.onclick=function(){done[b.dataset.b]=true;draw();};});
+}
+document.querySelectorAll('#w12 button[data-s]').forEach(function(b){b.onclick=function(){st=+b.dataset.s;document.querySelectorAll('#w12 button[data-s]').forEach(function(x){x.setAttribute('aria-pressed',x==b);});draw();};});
+draw();
+})();
+</script>
+
+What to notice:
+
+- **Fourteen emails are fourteen interruptions.** None says which matters most, so the easy response is to defer all of them.
+- **A ranked queue removes the guessing.** The owner still decides each page, but knows where to start.
+- **Bulk decisions are where the time comes back.** Grouping by the decision needed turns many small chores into a few confident choices.
+
 ## Try it
 
 Switch the view, change the sort, tick a few pages and choose an action. The numbers are made up.
