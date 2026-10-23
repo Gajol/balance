@@ -5,6 +5,7 @@ last_modified_at: 2023-02-16T10:23:16-04:00
 toc: true
 toc_sticky: true
 toc_label: "Contents"
+classes: wide
 categories: world economics canada
 theme: economics
 ---
