@@ -1,7 +1,7 @@
 ---
 title: "How the World Really Works"
 excerpt: "Think about net zero, and how realistic it is based on our current food, energy and globalization model."
-last_modified_at: 2023-02-16T10:23:16-04:00
+last_modified_at: 2026-10-23T16:30:00-04:00
 toc: true
 toc_sticky: true
 toc_label: "Contents"
@@ -11,8 +11,6 @@ theme: economics
 tags: [economics, energy, books]
 author_profile: false
 ---
-# How the World Really Works
-
 [Smil Vaclav. 2022. *How the World Really Works : The Science Behind How We Got Here and Where We're Going* First North American ed. New York: Viking.](https://worldcat.org/en/title/1312328649)
 
 # Summary
@@ -23,9 +21,12 @@ Smil discusses humans and governments inability to deal with risks, especially t
 
 Smil negates the EU's climate plan as wishful thinking considering the projection is EU citizens will consume 50% less energy in 25 years (2050).  And highlights the inability of democratic governments to make sustained long-term progress.
 
-Smil advises we should do immediately what is possible;
+Smil advises we should do immediately what is possible:
 
 - Raise efficiencies of homes and buildings
+- Displace coal-fired electricity with natural gas, taking care to limit methane leakage
+- Expand solar and wind generation
+- Move away from SUVs and accelerate mass-scale deployment of electric cars
 
 > *"**Energy is Interesting**: because a satisfactory grasp of that vast field requires you to combine an understanding of physics, chemistry, biology, geology, and engineering with an attention to history and to social, economic, and political factors."*
 
@@ -55,22 +56,22 @@ Energy Substitutions:
 - [Energy Density - Wikipedia](https://en.wikipedia.org/wiki/Energy_density): *In physics, energy density is the amount of energy stored in a given system or region of space per unit volume. It is sometimes confused with energy per unit mass which is properly called specific energy or gravimetric energy density.*
 - Aviation Kerosene
 - Natural Gas: Natural gas (methane) is 3-orders of magnitude lower than that of aviation kerosene (a liquid fuel).  Liquid fuels have high-energy density.
-- Ocean liners did not burn wood because it would require 2.5X the volume of bituminous coal, and by 50% heaver.
+- Ocean liners did not burn wood because it would require 2.5X the volume of bituminous coal, and by 50% heavier.
 
 ### Crude Oil
 
 Crude oil:  Refinement produces specific fuels (gasoline - lightest, and residual fuel oil - heaviest), and also lubricants, and asphalt (paving and roofing).
 
-- production of crude oil started in 1850's Russian, Canada and the US.    Discovery of giant oil fields in Middle East and USSR in 1920's.  Most discovered post WWII (Saudi Arabia primarily).  Largest Russian ones discovered in 1948 and 1965.
+- production of crude oil started in 1850s in Russia, Canada and the US.    Discovery of giant oil fields in Middle East and USSR in 1920's.  Most discovered post WWII (Saudi Arabia primarily).  Largest Russian ones discovered in 1948 and 1965.
 - crude oil was so cheap, there were no incentives to use it efficiently (single glazed window, no insulation, ...)
 - 1950 US produced 50% of world's crude oil.
-- 1960 Opec
+- 1960 OPEC founded
 - 1971 : Algeria, Libya, Iraq, Kuwait, Qatar and Saudi Arabia nationalized their oil fields.
 - 1973 OPEC raised price of oil to $3.01/barrel, followed by 17% raise by six Arab Gulf states.
 - 1973 Israeli victory over Egypt in Sinai; OPEC embargoes all oil exports to US.  [^1]
 - Two waves of oil price rises:
-	- 1974 Oil @ 11.65/barrel - 450% rise in one year:  End era of rapid economic expansion
-	- 1978 Fall of Iranian monarchy, takeover of Iran by a fundamentalist theocracy.  Oil went from $13 to $34/barrel from 1978 to 1981.
+  - 1974 Oil at $11.65/barrel - 450% rise in one year:  End era of rapid economic expansion
+  - 1978 Fall of Iranian monarchy, takeover of Iran by a fundamentalist theocracy.  Oil went from $13 to $34/barrel from 1978 to 1981.
 - 1986 $13/barrel: Globalization centered around China.  Deng Xiaoping economic reforms and massive foreign investment.  
 
 ### Electricity
@@ -79,9 +80,9 @@ Electricity is difficult to store, had high costs to produce and has many techni
 
 - the use of electricity at final consumption is effortless and clean
 - exceptionally efficient
-- no bukly storage
+- no bulky storage
 - no carrying and stoking
-- no dangers of incomplete combustion releasing poisonous gas (CO2)
+- no dangers of incomplete combustion releasing poisonous gas (CO)
 - no clean-up of lamps, stoves, furnace
 
 The service sector dominates the modern economy, and is reliant on electricity (elevators, trash compactors, mobile phone/vibrator motor (4mm x 3mm), electric pumps for water supply).
@@ -100,7 +101,7 @@ Transmission of electricity across a nation is difficult, and in USA/Canada ther
 
 Nuclear can operate 90% of the time.  USA/Canada had small, safe, modular reactors of the 1980's, but these have not been commercialized.  The access to cheap natural gas has lowered the need for nuclear.
 
-China, India and South Korea are committed to nuclear.   Whereas Germany has committed to be nuclear free by 2022.
+China, India and South Korea are committed to nuclear.   Whereas Germany had committed to be nuclear free by 2022.
 
 Storage of Electricity.  The only viable storage is a Pump Hydro Storage (PHS) system which on off-hours pumps water to a higher elevation to then allow it to fall again in the peak demand.  This uses about the 25% of the generated electricity, and relies on natural elevation for the storage.  The most efficient batteries (Li-Ion) are able to store about 400 Watt-hours/kilogram (Wh/kg).   This is about 40X the energy-per-kilogram of jet kerosene (12,000 Wh/kg).
 
@@ -114,13 +115,13 @@ Fossil fuels still provide the majority of the total energy demand:
 
 Global fossil consumption is 10 billion tons/year (10,000,000,000 tons/year).   This is two-times the mass of water consumed by the global population of 8 billion people.   Any rapid substitution is impossible; this is an engineering and scientific reality.
 
-Long-term energy supply scenarios:   Stated Policies scenario published by International Energy Agency (IEA) predics fossible fuels share of global deman declining from 2019 80% to 72% by 2040.  
+Long-term energy supply scenarios:   Stated Policies scenario published by International Energy Agency (IEA) predicts the fossil fuels share of global demand declining from 2019 80% to 72% by 2040.  
 
 - The IEA's Sustainable Development Scenario sees fossil fuels supplying 56% of global primary energy demand by 2040.  This is the most aggressive decarbonization scenario. [^2]
 
 # 2. Food Production
 
-The percent of undernourished people globally has decreased in the last 70-years while the population has increased.  From 1950 to 2019 there has been an 8-fold increase in our ability to fee the global population.
+The percent of undernourished people globally has decreased in the last 70-years while the population has increased.  From 1950 to 2019 there has been an 8-fold increase in our ability to feed the global population.
 
 | Year | % of undernourished people | Global Population |
 | ---- | -------------------------- | ----------------- |
@@ -161,15 +162,15 @@ A shift (epochal) the addition of non-solar forms of energy began to affect crop
   - 120 hours labour / hectare, 35 ox hours
   - 83% of US population were farmers in 1800
 - yield
-  - one tone of grain, 10% set aside for seed
+  - one tonne of grain, 10% set aside for seed
   - 10 minutes of human labour to produce a kilogram of wheat, which will yield 1.6 kilograms of bread (two loaves)
 
 1901: one hundred years later, most wheat comes from Great Plains.  Example, Red River Valley, North Dakota
 
 - four horses pull gang (multi-share) steel plows and harrows
-- mechanical seed drills plan, mechanical harvesters cut the stalks and bind the sheaves
+- mechanical seed drills plant, mechanical harvesters cut the stalks and bind the sheaves
 - threshing machines are powered by steam engines
-- grain is taking to tranaries
+- grain is taken to granaries
 - saves about 22 hours per hectare, about 1/7 of the time it did in 1801
 - use of draft animals is about 37 horse-hours per hectare (about 2 minutes / kilogram of grain)
   - Impact: about 25% of American farmland is devoted to growing fodder for draft animals.
@@ -181,10 +182,10 @@ A shift (epochal) the addition of non-solar forms of energy began to affect crop
 
 - farms are 3-4X larger than a century ago
 - most work is done by 1 or 2 people and large machinery (400 horsepower+)
-- seed comes from certiifed growers
+- seed comes from certified growers
 - plants receive fertilizers; nitrogen (applied as ammonia or urea), and protection from insects, fungi and weeds)
 - harvesting by large combines transferring grain directly to trucks to be transported to storage silos and sold around the country or shipped to Asia or Africa.
-- 2 hours labour / hectar and 3.5 tones / hectare  (two seconds labour / kilogram of grain; from 10 minutes in 1801)
+- 2 hours labour / hectare and 3.5 tonnes / hectare  (two seconds labour / kilogram of grain; from 10 minutes in 1801)
 
 ### Agrochemicals
 
@@ -192,20 +193,20 @@ Agrochemicals fuel needs dwarfs the fuels required to power farm machinery.
 
 - fungicides, herbicides, insecticides are high-energy-intensive products.  Applied in small quantities (fractions of kilograms / hectare)
 - fertilizers, supplying key macronutrients (nitrogen, phosphorus and potassium) require less energy to produce, but are needed in large quantities
-  - potassium: least costly, potash (KCI) from surface or underground mines
+  - potassium: least costly, potash (KCl) from surface or underground mines
   - phosphate: mine phosphates and process to to make superphosphate compounds
   - ammonia: compound for making nitrogen fertilizers.  Wheat, rice and many vegetables require 100-200 kilograms / hectare.  These high-needs make nitrogenous fertilizers the most important indirect energy input in modern farming.
 
 ### Leguminous Food Crops
 
-Leguminous crops can fix their own nitrogen supply (soybeans, beans, peas, lentils, peanuts).   They have a natural bacteria that can concert non-reactive nitrogen to reactive nitrogen and ammonia (NH3).   Cover crops (alfalfa, clovers and vetches) are also capable of creating their own nitrogen supply.  Their roots host bacteria capable of converting inert atmospheric nitrogen to nitrates.
+Leguminous crops can fix their own nitrogen supply (soybeans, beans, peas, lentils, peanuts).   They have a natural bacteria that can convert non-reactive nitrogen to reactive nitrogen and ammonia (NH<sub>3</sub>).   Cover crops (alfalfa, clovers and vetches) are also capable of creating their own nitrogen supply.  Their roots host bacteria capable of converting inert atmospheric nitrogen to nitrates.
 
-- no staple grains, no oil crops (except soybeans and peanuts) and no tubers can produce their own nitrogen.   Crop rotation with an alfalfa, clover or vetch for a few months and till into soil to replenish react nitrogen is required.   Traditional agriculture spread manure (laborious and inefficient, low nitrogen)
+- no staple grains, no oil crops (except soybeans and peanuts) and no tubers can produce their own nitrogen.   Crop rotation with an alfalfa, clover or vetch for a few months and till into soil to replenish reactive nitrogen is required.   Traditional agriculture spread manure (laborious and inefficient, low nitrogen)
 - cities capture human waste and spread it on fields.  This consumed 20-30% of labour in cropping.
 
 ### Green Revolution
 
-1909, Fritz Haber invented ammonia synthesis.  Green Revolution reliated on higher nitrogen applications.
+1909, Fritz Haber invented ammonia synthesis.  The Green Revolution relied on higher nitrogen applications.
 
 ## Energy Costs, Energy Subsidy Ladder
 
@@ -214,14 +215,13 @@ Fossil fuel subsidy to create food.   Ranges exist based on transportation costs
 | Food                                                         | Cost                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Bread (Carbohydrate)                                         |                                                              |
-| Bread : raind-fed wheat                                      | 4 MJ/kg grain, diesel has 37 MJ/L, therefore 100ml diesel/kg grain |
+| Bread : rain-fed wheat                                      | 4 MJ/kg grain, diesel has 37 MJ/L, therefore 100ml diesel/kg grain |
 | Bread: sour dough loaf                                       | 250 ml fuel                                                  |
 | Chicken (Protein)                                            | 200 mL fuel/kg to 1 L/kg; average 350ml/kg<br />Farmed chicken expend very little energy due to confinement. |
 | Tomatoes (Vitamin C)                                         | Plastic clips, wedges and gutter arrangements.  Plastic tarps to cover soil evaporation and weed maintenance.  Most fertilizer heavy crops (10X as much as grain corn).  Trucks, from Spain, travel 3,500km to Sweden. **650mL/kg**.  *How many vegans enjoying the salad are aware of its substantial fossil fuel pedigree?* |
 | Seafood - Pelagic: Living near the surface (anchovies, sardines and mackerel) | 100mL/kg                                                     |
 | Seafood: Mean                                                | 700mL/kg                                                     |
 | Seafood: Wild shrimp and lobster                             | 10L/kg.   Two skewers of shrimp (100g) requires about 500mL to **1,000mL fuel/kg** (2-4 cups of fuel) |
-
 
 
 ### Seafood & Diesel Oil
@@ -256,7 +256,7 @@ Other reasons to change agriculture status-quo:
 - USA would need 25,000,000 horses, and people to spread their manure (or find green rotation crops).  You need 10-40 times as much manure as urea nitrogen fertilizer for same amount of nitrogen.
 - Eat less meat, waste less food, however replacing 110 megatons of nitrogen by organic sources is theoretically impossible.
   - central animal feed waste has heavy metals and drug residues from feed additives
-  - human waste pathogens must be destroyed by high-eat sterilization, but this does kill all bacteria nor remove all heavy metals.
+  - human waste pathogens must be destroyed by high-heat sterilization, but this does not kill all bacteria nor remove all heavy metals.
   - reducing food waste is low-hanging fruit (UK study showed 70% of food waste was edible), but there is no desire to reduce waste
 
 # 3. Understanding Material World
@@ -290,40 +290,40 @@ Ammonia (NH<sub>3</sub>), is in the top position, as it would be impossible to f
 
 Synthesis of ammonia is difficult.
 
-- Accidental Discoveries:  inventions have led to accidental discoveries, Teflon.  Tetrafluoroethylene as a refrigerant compound.  When stored in refrigerate cylinders, it polymerized and turned into polytetrafluorethylene (white, waxy, slippery powder).  Post WWII Teflon was the best-known synthetic material.
+- Accidental Discoveries:  inventions have led to accidental discoveries, Teflon.  Tetrafluoroethylene was used as a refrigerant compound.  When stored in refrigerant cylinders, it polymerized and turned into polytetrafluorethylene (white, waxy, slippery powder).  Post WWII Teflon was the best-known synthetic material.
 - Deliberate Discovery:  Between 1850 to1900 the population of industrialized countries of Europe and North America grew from 300 million to 500 million.  The need for more food, and crop yields remained stagnant.  In this time period 200 million hectares of North & South America, Russia and Australia were converted to grain fields.   
-- Phosphates mined first in North Caolina and then in Florida.
+- Phosphates mined first in North Carolina and then in Florida.
 - Ammonia started with mining of guano from dry tropical islands, and importing Chilean nitrates.
 
 Synthesis invented in 1908 by Fritz Haber a professor of physical chemistry and electrochemistry, supported by BASF.  Solution used an iron catalyst and deploying a reaction pressure.
 
-- scaling this process was a major feat.   Carl Bosch (an chemical and metallurgical engineer) from BASF succeed in four years.   First ammonia synthesis plat in Oppau 1913.  The process is known as the **Haber-Bosch process[^3]**.  Spreading manure was still most popular method even in the 1950's.  Haber-Bosch synthesis of ammonia is perhaps the most momentous technical advance in history
+- scaling this process was a major feat.   Carl Bosch (an chemical and metallurgical engineer) from BASF succeed in four years.   First ammonia synthesis plant in Oppau 1913.  The process is known as the **Haber-Bosch process**[^3].  Spreading manure was still most popular method even in the 1950's.  Haber-Bosch synthesis of ammonia is perhaps the most momentous technical advance in history
 - Green Revolution started in the 1960's enabled by ammonia production (30 million tons).  Key innovations was using natural gas as source of hydrogen, and centrifugal compressors, and better catalysts.
 
 ### China
 
 Post-Mao China took the lead in ammonia production:
 
-- Mao was responsible for the deadlinest famine in history 1958-1961.  Mao, declared communist state in 1949, died in 1976.
-- China ordered 13 ammonia urea plants from M.W. Kellog (Texax) after President Nixon's trip to China Beijing in 1972.
+- Mao was responsible for the deadliest famine in history 1958-1961.  Mao, declared communist state in 1949, died in 1976.
+- China ordered 13 ammonia urea plants from M.W. Kellogg (Texas) after President Nixon's trip to China Beijing in 1972.
   - 1972 China abolished food rationing
   - 2000 China's data per capita food supply was higher than Japan's.
   - 60% of China's ammonia is synthetically produced
 
 Conserving Ammonia
 
-Spreading ammonia on fields results in loses of ammonia - volatization.  The only effective solutions to fields loses are:
+Spreading ammonia on fields results in losses of ammonia (volatilization).  The only effective solutions to field losses are:
 
 - spreading expensive slow-release compounds
 - using precision farming; applying fertilizers based on analyses of soil
 
 ### Africa
 
-Africa is the fasted growing population and does not have access to ammonia.  Africa is a food importer.  For Africa to be food self sufficient will require the use of ammonia.   
+Africa is the fastest growing population and does not have access to ammonia.  Africa is a food importer.  For Africa to be food self sufficient will require the use of ammonia.   
 
 ### Hopeful Invention
 
-- Radical: Genetic engineering create a non-leguminous plat with nitrogen-fixing capabilities.
+- Radical: Genetic engineering create a non-leguminous plant with nitrogen-fixing capabilities.
 - Less Radical:  Inoculate seeds with bacterium for the generation of nitrogen
 
 ## Plastics
@@ -341,7 +341,7 @@ PET - Polyethylene terephthalate : drink bottles (patented in 1941)
 
 Applications:
 
-- everywhere, first application was gear-shift knob on a Roles-Royce.
+- everywhere, first application was gear-shift knob on a Rolls-Royce.
 - indispensable roles in health care. PPE (personal protection equipment); gloves, masks, shields, gowns, booties.  Flexible tubes, catheters, intravenous and blood bags, sterile packaging, bedpans, rails, thermal blankets, labware.
 
 Environment: *This irresponsible dumping of plastics is not an argument against the proper use of these diverse and often truly indispensable synthetic materials.*
@@ -391,7 +391,7 @@ Concrete: 65-85% aggregates and water 15-20%.
 
 1824 Joseph Aspdin patented modern cement
 
-- firing limestone & clay; the clinker was glasslike and looked limestone from the Isle of Portland
+- firing limestone & clay; the clinker was glasslike and looked like limestone from the Isle of Portland
 - Portland cement.
 
 1884 Ernest Ransome invented reinforcing steel bars (re-bar)
@@ -408,7 +408,7 @@ World consumption of concrete annually equals the entire consumption from 1900 t
 
 Concrete is not highly durable:
 
-- exposed environment moisture, freeing, bacterial and algal growth, acid deposition and vibration.
+- exposed environment moisture, freezing, bacterial and algal growth, acid deposition and vibration.
 - buried concrete; crack inducing pressures
 - concrete's high alkalinity (fresh poured pH of 12.5) protect corrosion of steel (until cracks form)
 - 20-30 lifespans, up to 60-100 years
@@ -419,7 +419,7 @@ Concrete can be recycled.
 
 ## Material Outlook
 
-First half of 21<sup>st</sup> centry with slow population growth it is possible to meet the demands for steel, concrete, ammonia and plastic.  These industries will rely on fossil fuels and be significant contributors to the global CO<sub>2</sub> emissions.
+First half of 21<sup>st</sup> century with slow population growth it is possible to meet the demands for steel, concrete, ammonia and plastic.  These industries will rely on fossil fuels and be significant contributors to the global CO<sub>2</sub> emissions.
 
 Modernizing countries, replicating the post-1990 Chinese experience, will require:
 
@@ -447,14 +447,14 @@ electric cars: Lithium car battery of 450kg has 11kg of lithium and 14kg of coba
 Globalization manifests itself daily:
 
 - container ships from Asia bring electronic gadgets, kitchen gadgets, clothes, sports equipment
-- tankers with crude oil from Saudi Arabi's to refineries in India and Japan (return empty)
+- tankers with crude oil from Saudi Arabia to refineries in India and Japan (return empty)
 - tankers with liquefied natural gas from Texas to storage tanks in France and South Korea
 - Bulk carriers with iron ore from Brazil head to China (return empty to Brazil)
 - Apple iPhone from Taiwanese-owned factory (Hon Hai Precision trading as Foxconn) in China (Shenzhen, Guangdong province)
 - international migrations:  
   - people from Punjab and Lebanon arriving in Toronto or Sydney on jet flights
   - dinghies reaching Lampedusa or Malta
-  - education seeks migrating to London, Paris or small colleges in Iowa and Kansas
+  - education seekers migrating to London, Paris or small colleges in Iowa and Kansas
   - leisure travel
 - money movement, often illegal.  $20 trillion global merchandise trade, $6 trillion in commercial service.
   - global foreign direct investment: doubled from 2000 to 2019.  Now at about $2 trillion / year.
@@ -482,7 +482,7 @@ It is not just low labour costs:
 
 China's benefits over Nigeria, Bangladesh and even India:
 
-- one-party government that guarantees political stability and acceptable investment conditions
+- a one-party government that guarantees political stability and acceptable investment conditions
 - a large, largely homogeneous and literate population
 - an enormous domestic market
 
@@ -500,7 +500,7 @@ China is biggest beneficiary of globalization.
 - 1492 inclusion of New World
 - 1519 first circumnavigation of the Earth
 - East India Company (London 1600 to 1874): traded textiles, metals, spices, opium
-- Vereenigde Oost-Indische Companie (Dutch East India Company) imported spices, textiles, gems and coffee from southeast Asia.   Had a monopoly on trade with Japan (1641 to 1858).
+- Vereenigde Oost-Indische Compagnie (Dutch East India Company) imported spices, textiles, gems and coffee from southeast Asia.   Had a monopoly on trade with Japan (1641 to 1858).
 - four distinct eras of globalization defined by power/speed of transport and ability to communicate over long distances:
 
 Globalization eras:
@@ -536,12 +536,12 @@ Diesel Engines, Flight & Radio: Diesel engines provided superior efficiency and 
 
 ### Large Diesel, Turbines, Containers and Microchips
 
-Large Diesel, Turbines, Containers and Microchips: Post 1950 globalization ended in 1973 with OPEC's two round sof oil prices increases, and 15-years of relative stagnation.  Four technical advances:
+Large Diesel, Turbines, Containers and Microchips: Post 1950 globalization ended in 1973 with OPEC's two rounds of oil price increases, and 15-years of relative stagnation.  Four technical advances:
 
 - more powerful and efficient diesel engines
 - gas turbine: turbojet and turbofan.  Widebody jet.
 - intercontinental shipping design (bulk carriers and containerization of other cargoes)
-- quantum leaps in computing and information processing: Intel 1969 first microprocessor 4044.
+- quantum leaps in computing and information processing: Intel 1969 first microprocessor, the 4004.
 
 ### Globalization: 1970's
 
@@ -562,23 +562,23 @@ In the 1960's technical capabilities were ready for global integration.  Energy 
 
 ### China
 
-Richard Nixon's visit to Beijing in 1972, and the death of Mao Zedon in 1976 are turning points in China and led to the opening of China.  In 1978 Deng Xiaoping launched economic reforms:
+Richard Nixon's visit to Beijing in 1972, and the death of Mao Zedong in 1976 are turning points in China and led to the opening of China.  In 1978 Deng Xiaoping launched economic reforms:
 
 - privatization of farming
 - modernization of industry
 - partial return of private enterprise
 
-In 2001, China joined World Trade Organization WTO).
+In 2001, China joined World Trade Organization (WTO).
 
 - 1972 China had no trade with US
 - 1984 was last year US had a surplus trading goods with China
-- 2009 China became world's largest export of goods
+- 2009 China became world's largest exporter of goods
 - 2018 China exports account for 12% of global sales
 - 2018 China trade surplus with US is $420 billion (decline in 2019 due to superpower tensions)
 
 ### Russia
 
-USSR unravelling in 1980's.  States detached themselves, and Soviet state was dissolved in December 1991.  Every major economy was no open:
+USSR unravelling in 1980's.  States detached themselves, and Soviet state was dissolved in December 1991.  Every major economy was now open:
 
 - to foreign investment
 - international trade
@@ -593,9 +593,9 @@ USSR unravelling in 1980's.  States detached themselves, and Soviet state was di
 
 ### Summary
 
-Russia is enormous supply of energy and minerals.
+Russia is an enormous supply of energy and minerals.
 
-China is largest manufacture of consumer goods.
+China is the largest manufacturer of consumer goods.
 
 India is the largest supplier of software engineers in Silicon Valley
 
@@ -616,7 +616,7 @@ China tourists expenditures is 2X that of Americans.  Famous destinations (Paris
 ### Tragic impacts of Globalization
 
 - Canada imports toothpicks and toilet paper from China, yet Canada has the highest per-capita forest resources
-- rising midlife mortality among America's non-university educated white men attributed to globalization.  As production moved to China, the reasons of the deaths are despair, suicide, drug overdoes and alcohol-induced liver disease.
+- rising midlife mortality among America's non-university educated white men attributed to globalization.  As production moved to China, the reasons of the deaths are despair, suicide, drug overdoses and alcohol-induced liver disease.
 
 Global value chains[^4]:
 
@@ -640,14 +640,14 @@ The world is full of risk, but it is replete with wrong perceptions and irration
 
 Japan has the highest average longevity since the early 1980's with an 85 year life expectancy.
 
-- Japan diet transformed in past 150 years.  Tradition diet pre-1900 was insufficient and resulted in short statures.
+- Japan diet transformed in past 150 years.  Traditional diet pre-1900 was insufficient and resulted in short statures.
 - Japan consumption of milk introduced in school lunches to ward against malnutrition, and white rice became abundant post WWII.  Seafood became abundant with world's largest fishing and whaling fleet.  Meat became part of Japanese dishes, and baked goods emerged.  Higher blood cholesterol levels and blood pressure and body weight did not lead to heart disease and longevity increased.
 - Japan and US have similar food consumption as of 2015.  Biggest differences are:
   - US males consume 45% more fat, women consume 30% more fat
   - US consume 70% more sugar
-- Spain: Best European life expectancy is Spanish women, with the Mediterranean diet.  Vegetables, fruits, whole grains complements by beans, nuts, seeds and olive oil.
+- Spain: Best European life expectancy is Spanish women, with the Mediterranean diet.  Vegetables, fruits, whole grains complemented by beans, nuts, seeds and olive oil.
   - prior to 1950 Franco's Spain ate frugally (high starch diets)
-  - Spain joined EU in 1986 and diet changes accelerated, by 2000 Spain was Europe's leading carnivorous nation (4X increase in 15 years, and 2X the Japanese mean).  Diary products and cheese, fresh meat and cured hams (jamones).
+  - Spain joined EU in 1986 and diet changes accelerated, by 2000 Spain was Europe's leading carnivorous nation (4X increase in 15 years, and 2X the Japanese mean).  Dairy products and cheese, fresh meat and cured hams (jamones).
   - higher incomes (led to consumption of baked goods - sugar) and pop drinks.  Since 1960 sugar consumption has doubled (40% higher than Japan).  Wine drinking has declined from 45 litres to 11 litres in 2020.  Beer is most consumed alcoholic drink.
   - CVD (Cardio Vascular Disease) has been falling since 1960 despite increase in meats, sugar, salt and fat.
 
@@ -660,7 +660,7 @@ Analysis of Risks: Chauncey Starr 1969 ([Social Benefit vs Technological Risk](h
 Contrasts:
 
 - avoiding wrongly perceived risks: refuse to inoculate children due to discredited evidence of link to autism, or implanting microchips
-- fear of living next to a nuclear power plan.
+- fear of living next to a nuclear power plant.
 
 Object risk is not possible.  Our risk perceptions are inherently subjective and dependent on our understanding of specific dangers.  Terrorist attacks where fear drives our rational assessment.
 
@@ -699,7 +699,7 @@ Risk of Civilization Ending
 - two categories viral pandemic and natural catastrophe
   - supernovas, asteroids, exploding star, collision with large comet
   - eruption of supervolcano in Yellowstone
-  - geomagnetic storm caused coronal mass ejection (corona is outermost lay of the Sun's atmosphere).  One occurred in 1859, causing fires, but this predates modern communication.  Recent one in 1989 knocked out Quebec's power grid for 9-hours (Carrington Event).
+  - geomagnetic storm caused coronal mass ejection (corona is outermost layer of the Sun's atmosphere).  One occurred in 1859 (the Carrington Event), causing fires, but this predates modern communication.  A more recent one in 1989 knocked out Quebec's power grid for 9 hours.
 
 ### Viral Pandemics
 
@@ -717,13 +717,12 @@ Seasonal flu: 67% of deaths are among people over 65.
 COVID-19: USA 81% of deaths were people aged 65 and over.
 
 
-
 ### Attitudes
 
 People have some control.  Abstain from smoking, consuming alcohol and drugs, wear a seat belt, install smoke detectors, etc.  However people, and governments, are not able to deal with low-probability and high-impact risks.   High-impact and low-frequency risks (pandemic) are also difficult.
 
 - hypothesis:  USA's reaction to the 9/11 attacks fulfilled Osama bin Laden's wish.  The multitrillion dollar asymmetrical wars in Afghanistan and Iraq would ultimately weaken USA.
-- illustration:  Neglected low-cost measure to save lives is illustrated in USA's attitude to gun violence and mass murders.  2010-2019 125,000 Americnas killed by guns (excludes suicides), compared to 170 Americans who died in all terrorist attacks (300X difference)
+- illustration:  Neglected low-cost measure to save lives is illustrated in USA's attitude to gun violence and mass murders.  2010-2019 125,000 Americans killed by guns (excludes suicides), compared to 170 Americans who died in all terrorist attacks (300X difference)
 
 # 6. Understanding the Environment
 
@@ -736,8 +735,8 @@ The Earth is our only biosphere.  It is unrealistic to assume the near-term poss
 - interference in nitrogen and phosphorus cycles: the release of these nutrients into fresh and coastal waters
 - freshwater use: excessive withdrawals of underground, stream and lake waters
 - land use changes: deforestation, farming, urban and industrial expansion
-- biodiversity lose
-- chemical polution
+- biodiversity loss
+- chemical pollution
 
 Three existential requirements; breathing, drinking and eating.
 
@@ -751,7 +750,7 @@ Water:  It is not evenly distributed, and we waste water.
 
 - Sectors of water use: agriculture, thermal electricity generation, heavy industries, light manufacture, services, household) and categories of water.  
 - Blue water: rainfall entering rivers, water bodies and groundwater storage that gets incorporated into products or evaporates.
-- Green water: precipitation that is stored in soil and subsequently evaporated or incorporated into platns.
+- Green water: precipitation that is stored in soil and subsequently evaporated or incorporated into plants.
 - Grey water: freshwater required to dilute pollutants to meet specific water-quality standards.
 
 | Country       | Blue Water Consumption |
@@ -768,15 +767,15 @@ Food:  area used for food cultivation is 2X what it was a century ago.
 - potassium resources will last another 90 years
 - phosphate for 350 years
 
-The challenge is the leaking of phosphorous from fertilizers to water.  The additions to water lead to eutrophication resulting in excessive growth of algae.    Decomposing algae in water consume oxygen and create oxygen-les (anoxis) waters where fish and crustaceans cannot survive.
+The challenge is the leaking of phosphorous from fertilizers to water.  The additions to water lead to eutrophication resulting in excessive growth of algae.    Decomposing algae in water consume oxygen and create oxygen-less (anoxic) waters where fish and crustaceans cannot survive.
 
 - today examples of oxygen depleted zones are prominent along eastern and southern coasts of US and along coasts in Europe, China and Japan.
 
 ## Why the Earth is not Frozen
 
-Greenhouse Gas Effect.  This existential imperative is the regulation of the Earth’s atmospheric temperature by a few trace gases—above all by carbon dioxide (CO2) and methane (CH4). Compared to the two gases that make the bulk of the atmosphere (nitrogen at 78 percent, oxygen at 21 percent), their presence is negligible (small fractions of a percent) but their effect makes the difference between a lifeless, frozen planet and a blue and green Earth.
+Greenhouse Gas Effect.  This existential imperative is the regulation of the Earth’s atmospheric temperature by a few trace gases—above all by carbon dioxide (CO) and methane (CH4). Compared to the two gases that make the bulk of the atmosphere (nitrogen at 78 percent, oxygen at 21 percent), their presence is negligible (small fractions of a percent) but their effect makes the difference between a lifeless, frozen planet and a blue and green Earth.
 
-| Year | CO<sup>2</sup> Levels |
+| Year | CO<sub>2</sub> Levels |
 | ---- | --------------------- |
 | 1800 | 270 ppm               |
 | 1900 | 290 ppm               |
@@ -791,7 +790,7 @@ CFC's outlaws in 1987 Montreal Protocol.
 
 The media, public and politicians discovered global warming in 1988.  Scientists have known about this since:
 
-- 1856 Joseph Fourier (French Mathematician) realized the atmosphere absorbs some of the radiation emanating from the ground.   1856 Eunice Foot (American scientist) linked CO<sub>2</sub> with global warming.  1861 John Tyndall (English physicist) explained water vapour is the most important absorber of radiation.
+- 1856 Joseph Fourier (French Mathematician) realized the atmosphere absorbs some of the radiation emanating from the ground.   1856 Eunice Foote (American scientist) linked CO<sub>2</sub> with global warming.  1861 John Tyndall (English physicist) explained water vapour is the most important absorber of radiation.
 - 1957 *Thus human beings are now carrying out a large scale geophysical experiment of a kind that could not have happened in the past nor be reproduced in the future. Within a few centuries we are returning to the atmosphere and oceans the concentrated organic carbon stored in sedimentary rocks over hundreds of millions of years* - Roger Revelle (American oceanographer) and Hans Suess (Physical Chemist)
 
 - the 1960's with the first global atmospheric models (long before computers).
@@ -805,18 +804,18 @@ Although we have known for generations, there have been no determined, deliberat
 
 Oceans have an enormous capacity to absorb atmospheric heat.  
 
-- In the late 2010's, after a few centuries of burning fossil fuels, the temperature of global land and ocena surfaces was 1<sup>o</sup>C warmer than the 20th-century mean.
+- In the late 2010's, after a few centuries of burning fossil fuels, the temperature of global land and ocean surfaces was 1<sup>o</sup>C warmer than the 20th-century mean.
 - Oxygen is not affected by greenhouse gas changes in temperature.  Oxygen is declining marginally due to fossil-fuel burning.
 - Water:  With a warming of 2<sup>o</sup>C water scarcity will affect more people.
   - US has lowered per-capita water use.  Water use is only 4% higher than 1965, with a 70% increase in population.
   - desalination of water will become more common.
   - higher temperatures will increase evaporation
 
-Food:  We could lower consumption of beer, and raise the share of pork, chicken, eggs and dary products.
+Food:  We could lower consumption of beer, and raise the share of pork, chicken, eggs and dairy products.
 
 ### Uncertainties, Promises and Realities
 
-Our understanding of complex processes, natural factions and human actions is considerable, and steadily expanding.  Although we are uncomfortable degrees of ignorance and persistent uncertainties.   For example, COVID-19 and the global lessons learned.
+Our understanding of complex processes, natural factors and human actions is considerable, and steadily expanding.  Although we are uncomfortable degrees of ignorance and persistent uncertainties.   For example, COVID-19 and the global lessons learned.
 
 - near imminent certainty that a pandemic would occur, yet surprisingly unprepared.  There have been three pandemics since the 1950s.
 - national responses included dismissal, business as usual and draconian national shutdowns.
@@ -829,13 +828,13 @@ Climate Change
 
 - in the 3 decades since global warming became a modern topic; what has the global community done?  
   - global greenhouse gas emissions have increased by 65%
-  - US, Canada, Japan, Australia and EU reduced by about 4%.   India and Chine rose by 400%.
+  - US, Canada, Japan, Australia and EU reduced by about 4%.   India and China rose by 400%.
 - Fundamental realities
   - In 15 years we will surpass the 1.5<sup>o</sup>C increase in average global temperature
 
 ### Wishful Thinking
 
-- EU researches assume per capita energy demand in 2050 will be 52% lower than in 2020 (globally).
+- EU researchers assume per capita energy demand in 2050 will be 52% lower than in 2020 (globally).
   - In previous 30-years (1990-2020) demand has risen by 20%
   - EU basis on people moving away from consumption (owning goods), digitization and technical innovations to convert and store energy.
 - Princeton University study relies on a fourth pillar (carbon capture), but this assumes the ability to capture 2X the current US crude oil production.    The production-industry has grown for 160 years with trillions of dollars invested.[^5] 110,000km of CO<sub>2</sub> pipelines in Texas.
@@ -848,10 +847,10 @@ Studies, like the EU and Princeton do not:
 
 Where we can make a difference:
 
-- displace coal-fired electricity with natural gas; taking care to reduce transporation without methane leakage)
+- displace coal-fired electricity with natural gas; taking care to reduce transportation without methane leakage)
 - expand solar and wind generation
 - move away from SUVs, accelerate mass-scale deployment of electric cars
-- address inefficiencies in construction, houseld and commerical energy use
+- address inefficiencies in construction, household and commercial energy use
 
 ### Models, Doubts and Realities
 
@@ -866,9 +865,9 @@ Reference Princeton Interim Report [^5]
 3. Bioenergy and other zero-carbon fuels and feedstocks
 4. CO2 capture, utilization, and storage
 5. Reduced non-CO2 emissions
-6. Reduced non-CO2 emissions
+6. Enhanced land sinks
 
-# Understanding the Future
+# 7. Understanding the Future
 
 Between Apocalypse and Singularity
 
@@ -884,7 +883,7 @@ Quantitative forecast broad categories:
 
 Frightening prophecies and unrealistic promises abound.  
 
-- extremes are easy to imagine; modelling and long-range predications will continue to err
+- extremes are easy to imagine; modelling and long-range predictions will continue to err
 
 ## Inertia, mass and scale:
 
@@ -901,7 +900,7 @@ COVID-19 compared to AI (singularity-lite) and genome editing.
 
 - world superpower (USA) could not provide PPE for doctors and nurses
 - world superpower (USA) could not provide Oxygen for patients
-- as COVID was sweeping thought Europe (March 2020) USA media was discussion 5G connectivity.
+- as COVID was sweeping through Europe (March 2020) USA media was discussing 5G connectivity.
 - borderless Europe, competed for PPE and a EU-wide coordinate response never materialized.
 - highest ranked health nations UK, France, Italy, Spain, Switzerland and Luxembourg had world's highest pandemic mortality.  Switzerland and Luxembourg are the richest countries.
 
@@ -929,25 +928,17 @@ Persistence; Great Financial Crisis of 2007-2008
 | All four elements combined (Steel, Ammonia, Plastic, Cement) | 17%     |
 
 
-
 # Miscellaneous
-
 
 
 ## Quotes
 
 > "Rather than resorting to an ancient comparison of foxes and hedgehogs (a fox knows many things, but a hedgehog knows one big thing), I tend to think about modern scientists as either the drillers of ever-deeper holes (now the dominant route to fame) or scanners of wide horizons (now a much-diminished group)."
 
-> "Interest is Energy: because a satisfactory grasp of that vast field requires you to combine an understanding of physics, chemistry, biology, geology, and engineering with an attention to history and to social, economic, and political factors."
-
-> "An average inhabitant of the Earth nowadays has at their disposal nearly 700 times more useful energy than their ancestors had at the beginning of the 19th century."
-
-> "The economic system is essentially a system for extracting, processing and transforming energy as resources into energy embodied in products and services.” — Simply put, energy is the only truly universal currency - Robert Ayres
-
 Doubt Everything: *De omnibus dubitandum*
 
 - the very foundation of the scientific method is to question everything
-- critical perspective is required.  Acid rain was broad consensus in 1980ès, ozone depletion was infamous after Antarctic ozone hole discovered in 1985.
+- critical perspective is required.  Acid rain was broad consensus in 1980s, ozone depletion was infamous after Antarctic ozone hole discovered in 1985.
 - decarbonize our global system cannot be compared to the telephone : mobile phone : modern internet evolution.  This evolution was the gradual progress of technology still relying on massive electricity generation powered by fossil-fuels.  
 
 > "I am not a pessimist or an optimist, I am a scientist. There is no agenda in understanding how the world really works. A realistic grasp of our past, present, and uncertain future is the best foundation for approaching the unknowable expanse of time before us. While we cannot be specific, we know that the most likely prospect is a mixture of progress and setbacks, of seemingly insurmountable difficulties and near-miraculous advances. The future, as ever, is not predetermined. Its outcome depends on our actions." - Vaclav Smil
@@ -957,7 +948,7 @@ Doubt Everything: *De omnibus dubitandum*
 - [Fox and the Hedgehog](https://conceptually.org/concepts/fox-vs-hedgehog):
 - The fox vs hedgehog dichotomy describes two contrasting ways of viewing the world. If you adopt fox-like thinking you rely on various pieces of information to form your view on an issue and think about it from different angles. You’re also willing to admit when you’re uncertain. But if you have more of a hedgehog mindset, you develop your world views and predictions with a central, overarching principle in mind and talk about your views with more confidence.
 
-## Interest
+## Of Interest
 
 - Bridges:  Japan's Akashi Kaikyō Bridge, world's largest central span of 2km.  Steel towers support woven cables 1.2m in diameter.
 
@@ -973,7 +964,7 @@ Doubt Everything: *De omnibus dubitandum*
 
 From 1913 to 1945 share of trade in global GDP fell from 14% to 4%.  Factors include:
 
-- China: End of lat imperial dynasty 1912.  End of Quing
+- China: End of last imperial dynasty 1912.  End of Qing
 
 - WWI 1914-1918
 
@@ -1000,12 +991,11 @@ From 1913 to 1945 share of trade in global GDP fell from 14% to 4%.  Factors inc
 - Proclamation of People's Republic of China (PRC) by Mao 1949
 
 
-
 ## Words
 
 - [arbitrage](https://www.merriam-webster.com/dictionary/arbitrage): the nearly simultaneous purchase and sale of securities or foreign exchange in different markets in order to profit from price discrepancies
 - arid: having insufficient rainfall to support agriculture
-- [anthropogentic](https://www.merriam-webster.com/dictionary/anthropogenic): of, relating to, or resulting from the influence of human beings on nature
+- [anthropogenic](https://www.merriam-webster.com/dictionary/anthropogenic): of, relating to, or resulting from the influence of human beings on nature
 - **category mistake**: assigning to something a quality or action that is properly attributable only to things of another category.
   - comparing the category of "electronically enabled world" (adoption of personal gadgets, social media profiles, smartphones) with the category sufficient delivery of water, crops, feeding and slaughtering animals, converting energy, extracting and altering raw materials at an enormous scale (billions of consumers) and infrastructures.
 - [concomitant](https://www.merriam-webster.com/dictionary/concomitant): something that accompanies or is collaterally connected with something else. *Certainly, the affluent world—given its wealth, technical capabilities, high level of per capita consumption and the concomitant level of waste—can take some impressive and relatively rapid decarbonization steps *
@@ -1013,14 +1003,14 @@ From 1913 to 1945 share of trade in global GDP fell from 14% to 4%.  Factors inc
 - globalization: *the growing interdependence of the world’s economies, cultures, and populations, brought about by cross-border trade in goods and services, technology, and flows of investment, people, and information* - [Peterson Institute for International Economics - What is globalization?](https://www.piie.com/microsites/globalization/what-is-globalization)
 - [immiseration](https://www.merriam-webster.com/dictionary/immiseration): the act of making miserable
 - [lipid](https://www.merriam-webster.com/dictionary/lipid): any of a [diverse](https://www.merriam-webster.com/dictionary/diverse) group of [organic compounds](https://www.britannica.com/science/organic-compound) including [fats](https://www.britannica.com/topic/fat), [oils](https://www.britannica.com/science/oil-chemical-compound), [hormones](https://www.britannica.com/science/hormone), and certain components of membranes that are grouped together because they do not interact appreciably with [water](https://www.britannica.com/science/water).
-- natural gas:  methane is main component (NH<sub>4</sub>)
+- natural gas:  methane is main component (CH<sub>4</sub>)
 - Power: measures energy per unit of time (rate).   Watts = Joules/second
-- [*primus inter pares*](*primus inter pares* ): First among equals
+- *primus inter pares*: First among equals
 - [proscription](https://www.merriam-webster.com/dictionary/proscriptions): an imposed restraint or restriction. *Given the religious proscriptions on the consumption of pork and beef, chicken is the only universally favored meat.*
 - R/P: Resource / Production Ratio.  The R/P for crude oil is 50 years.  The R/P for iron ore is 300 years.
 - Scalar: Described only by its magnitude.  Ubiquitous scalars are volume, mass, density, time and speed.
 - [Singularity](https://en.wikipedia.org/wiki/Singularity_(system_theory)): In the study of unstable systems, [James Clerk Maxwell](https://en.wikipedia.org/wiki/James_Clerk_Maxwell) in 1873 was the first to use the term **singularity** in its most general sense: that in which it refers to *contexts in which arbitrarily small changes, commonly unpredictably, may lead to arbitrarily large effects.*
-- [Singularity - Mathematics](https://singularityhub.com/ray-kurzweil/): This comes from the Latin *singularis*, meaning “individual, unique, unmatched”—but in this chapter it refers to futurist Ray Kurzweil’s notion of singularity, i.e. to the mathematical meaning of the term as a point in time at which a function assumes an infinite value.[[2\]](http://127.0.0.1:5001/xhtml/14_References_and_Notes.xhtml#EndnoteNumber591) He predicts that, come 2045, machine intelligence will have surpassed human intelligence, what he calls biological and nonbiological intelligence will merge, and machine intelligence will fill the universe at infinite speed.  This is the ultimate ascension. It will make colonization of the rest of the universe an inevitably effortless endeavor.
+- [Singularity - Mathematics](https://singularityhub.com/ray-kurzweil/): This comes from the Latin *singularis*, meaning “individual, unique, unmatched”—but in this chapter it refers to futurist Ray Kurzweil’s notion of singularity, i.e. to the mathematical meaning of the term as a point in time at which a function assumes an infinite value. He predicts that, come 2045, machine intelligence will have surpassed human intelligence, what he calls biological and nonbiological intelligence will merge, and machine intelligence will fill the universe at infinite speed.  This is the ultimate ascension. It will make colonization of the rest of the universe an inevitably effortless endeavor.
 - [strident](https://www.merriam-webster.com/dictionary/strident): characterized by harsh, insistent, and discordant sound, commanding attention by a loud or obtrusive quality
 - WWW: Wind, Water and Solar.  The renewable energies.
 - [Common Era](https://en.wikipedia.org/wiki/Common_Era) & Before Common Era.  Similar to AD/BC.  400 BCE and 400 BC are the same year.
