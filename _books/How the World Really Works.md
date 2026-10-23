@@ -5,10 +5,11 @@ last_modified_at: 2023-02-16T10:23:16-04:00
 toc: true
 toc_sticky: true
 toc_label: "Contents"
-classes: wide-text
+classes: full-width
 categories: world economics canada
 theme: economics
 tags: [economics, energy, books]
+author_profile: false
 ---
 # How the World Really Works
 

@@ -5,13 +5,14 @@ last_modified_at: 2022-04-30T10:23:16-04:00
 toc: true
 toc_sticky: true
 toc_label: "Contents"
-classes: wide-text
+classes: full-width
 read_time: true
 header:
   # image: /assets/images/Architecture-AI-wide.jpg
   teaser: /assets/images/Architecture-AI-Generated.jpg
 theme: digital
 tags: [architecture, apis, microservices, devops, government]
+author_profile: false
 ---
 <a name="application-reference-architecture"></a>
 

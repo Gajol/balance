@@ -3,13 +3,14 @@ title: "The Defining Decade"
 excerpt: "Why 30 is not the new 20 by Meg Jay."
 last_modified_at: 2023-01-07T10:23:16-04:00
 toc: false
-classes: wide-text
+classes: wide-text wider
 categories: psychology
 sidebar:
   title: "Contents"
   nav: sidebar-defining-decade
 theme: psychology
 tags: [psychology, career, books]
+author_profile: false
 ---
 
 The Define Decade: Why Your 20's Matter & How to Make the Most of Them

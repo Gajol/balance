@@ -4,6 +4,8 @@ excerpt: "Service Design UK Government"
 permalink: /application/cds/Service-Design-UK-Government
 theme: digital
 tags: ["service design", government, ux]
+classes: full-width
+author_profile: false
 ---
 
 Transaction Scope: https://www.gov.uk/service-manual/design/scoping-your-service How transactions join up with a user’s wider journey

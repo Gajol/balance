@@ -4,6 +4,8 @@ excerpt: "User Interface Design"
 permalink: /application/cds/User-Interface
 theme: digital
 tags: [ux, "user interface"]
+classes: full-width
+author_profile: false
 ---
 
 Rules of Interface Design

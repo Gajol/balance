@@ -6,6 +6,8 @@ description: How a strawman, a set of capability tiers, a journey map and a serv
 excerpt: "A requirement that says 'send email' is not enough to design against. Four artefacts, used in order, turn it into something a business, a security team and an integration team can all work from."
 theme: digital
 tags: [ux, "product management", "service design", email, requirements]
+classes: full-width
+author_profile: false
 ---
 
 A requirement that says *send email and manage client lists* is true, and it is not enough. It does not say who gets the email, why, with whose consent, or what has to exist behind the screen for it to work. Architecture cannot start from that sentence, and asking again for "more detail" rarely helps.

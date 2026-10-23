@@ -6,6 +6,8 @@ last_modified_at: 2023-01-07T10:23:16-04:00
 toc: true
 theme: digital
 tags: [government, cds, "service design"]
+classes: full-width
+author_profile: false
 ---
 
 # Canadian Digital Service

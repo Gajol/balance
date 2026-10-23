@@ -4,6 +4,7 @@ permalink: /economics/
 layout: single
 author_profile: false
 excerpt: "Energy, food, trade and the systems behind them."
+classes: full-width
 ---
 
 {% assign smil = site.books | where: "title", "How the World Really Works" | first %}

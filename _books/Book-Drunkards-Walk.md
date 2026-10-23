@@ -3,13 +3,14 @@ title: "The Drunkard's Walk"
 excerpt: "How randomness and chance shape outcomes more than we like to believe, by Leonard Mlodinow."
 last_modified_at: 2023-01-07T10:23:16-04:00
 toc: false
-classes: wide-text
+classes: wide-text wider
 categories: psychology statistics
 sidebar:
   title: "Contents"
   nav: sidebar-defining-decade
 theme: psychology
 tags: [psychology, statistics, books]
+author_profile: false
 ---
 
 # Drunkard's Walk

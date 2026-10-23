@@ -4,6 +4,8 @@ excerpt: "Design Thinking"
 permalink: /application/cds/Design-Thinking
 theme: digital
 tags: ["design thinking", ux, "product management"]
+classes: full-width
+author_profile: false
 ---
 
 ## Leaders in Design Thinking

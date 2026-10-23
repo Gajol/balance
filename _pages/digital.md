@@ -4,6 +4,7 @@ permalink: /digital/
 layout: single
 author_profile: false
 excerpt: "Digital government, architecture, design and DevOps."
+classes: full-width
 ---
 
 Notes on how digital services get designed, built and run, with a focus on government.

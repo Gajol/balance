@@ -4,6 +4,7 @@ permalink: /cycling/
 layout: single
 author_profile: false
 excerpt: "Bikes, routes and trips."
+classes: full-width
 ---
 
 <figure style="margin:0 0 1.5em">

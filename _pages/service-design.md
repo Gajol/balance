@@ -4,6 +4,7 @@ permalink: /service-design/
 layout: single
 author_profile: false
 excerpt: "Notes on the Canadian Digital Service, user experience, accessibility and service design."
+classes: full-width
 ---
 
 Government services are built for people who did not choose to use them. They have a deadline, a form, and not much patience. Good service design starts from that fact. These notes follow the thread from the Canadian Digital Service (CDS), which was set up to change how the federal government designs and delivers services, to the everyday practices it relies on: user research, interface design and accessibility.

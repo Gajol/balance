@@ -4,6 +4,8 @@ excerpt: "User Experience"
 permalink: /application/cds/User-Experience-Overview
 theme: digital
 tags: [ux]
+classes: full-width
+author_profile: false
 ---
 
 User experience (UX) focuses on having **a deep understanding of users**, what they need, what they value, their abilities, and also their limitations. All while taking business goals and objectives into account. People realized that this mindset and practice can be adopted across every business function, and ultimately a business’ mission and vision.

@@ -6,6 +6,8 @@ last_modified_at: 2023-01-07T10:23:16-04:00
 toc: true
 theme: digital
 tags: [hiring, government, cds]
+classes: full-width
+author_profile: false
 ---
 # Hiring Guides - Canada Digital Service
 

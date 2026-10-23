@@ -3,6 +3,7 @@ title: "Technology and Balancing Life"
 permalink: /
 layout: single
 author_profile: true
+classes: full-width
 ---
 
 Notes on technology, how people think, and how the world works, plus time on the bike.

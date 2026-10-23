@@ -4,6 +4,7 @@ permalink: /references/
 layout: single
 author_profile: false
 excerpt: "Outside sources cited on this site, with archived copies."
+classes: full-width
 ---
 
 Outside sources cited on this site. Each has a link to the original and a link to the Internet Archive copy, in case the original moves or disappears.

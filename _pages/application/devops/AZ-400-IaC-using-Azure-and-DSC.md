@@ -6,6 +6,8 @@ last_modified_at: 2023-01-07T10:23:16-04:00
 toc: true
 theme: digital
 tags: [azure, "infrastructure as code", automation, devops]
+classes: full-width
+author_profile: false
 ---
 # AZ-400 IaC using Azure and DSC
 

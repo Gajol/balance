@@ -8,6 +8,8 @@ excerpt: "A few notes about the Canadian Digital Service (CDS), its origins, str
 # categories: CDS Digital
 theme: digital
 tags: [government, cds, ux, "service design"]
+classes: full-width
+author_profile: false
 ---
 
 CDS

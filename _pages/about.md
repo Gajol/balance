@@ -2,6 +2,8 @@
 permalink: /about/
 title: "About"
 excerpt: "My profession is in technology leadership as an architect.  My interests are digital technology, psychology, economics and cycling."
+classes: full-width
+author_profile: true
 ---
 
 ## About

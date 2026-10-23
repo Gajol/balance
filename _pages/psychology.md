@@ -4,6 +4,7 @@ permalink: /psychology/
 layout: single
 author_profile: false
 excerpt: "How people think, choose and change."
+classes: full-width
 ---
 
 {% assign tfs = site.books | where: "title", "Think Fast, Think Slow" | first %}
