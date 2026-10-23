@@ -34,7 +34,7 @@ theme: digital
 
 <a name="introduction"></a>
 # Introduction
-This document outlines the Application Reference Architecture (ARA) as it applies to our department.  
+This document outlines an Application Reference Architecture (ARA) that an organization can adapt to its own context. Government of Canada references are used as worked examples.  
 
 What is architecture in general?  
 
@@ -46,7 +46,7 @@ What is architecture in general?
 The Application Reference Architecture (ARA) borders on what many would consider an enterprise reference architecture.  This document, the ARA,  attempts to provide an overview of the enterprise environment with a focus on application architecture elements.
 
 This document documents:
-- existing application architecture within our department ???
+- an example of the application architecture of an organization
 - standards for technical leaders (mandatory)
 - guidelines for technical leaders (voluntary)
 
@@ -57,7 +57,7 @@ This document is intended for:
 <a name="introduction-out-of-scope"></a>
 ## Out-of-Scope
 - This document is not intended to be a strategy development document.   The ARA is not intended to be a vision, plan or actions towards such a vision.
-- The ARA is intended to align and support the many strategies, visions and roadmaps that exist within our department and branch.
+- The ARA is intended to align and support the many strategies, visions and roadmaps that exist within the organization.
 
 
 
@@ -168,7 +168,7 @@ Some common artifacts to communicate business architecture are[^Business-1]:
 A common way for the business to communicate what the organization does and needs is through a business capability model (BCM)[^Business-2]. There are many uses for a BCM.   
 
 - Product owners can use a BCM to drive convergence in technology and business processes to enterprise standards.  
-- Regular review of aligning the BCM with the department strategy and vision can allow enterprise architects and business architects to identify and prioritize the corresponding IT initiatives with business needs.  
+- Regular review of aligning the BCM with the organization's strategy and vision can allow enterprise architects and business architects to identify and prioritize the corresponding IT initiatives with business needs.  
 - Internal committees, working groups and forums can collaborate to identify reusable business processes and push for adoption across the organization.  
 
 Business capabilities, processes, information flows and value streams should be assessed routinely based on efficiency, priority, and complexity.
@@ -190,11 +190,11 @@ Process Map
 <a name="business-business-governance"></a>
 ## Business Governance
 
-Our Corporate Risk Profile (CRP) has identified the risk of our aging IT portfolio.   The health of our portfolio needs to improve.   Several leadership principles have been established over the years to provide guidance when addressing business needs.   
+An organization's corporate risk profile often identifies the risk of an aging IT portfolio, and the health of the portfolio needs to improve.   Leadership principles like the following can provide guidance when addressing business needs.   
 
 Key business principles relating to governing and directing architecture and application design are:
 
-1. __Rationalization__:  Application functionality must be constantly rationalized to allow us to tackle the large backlog of valuable business requests and opportunities.   During the software development phase, requirements must be rationalized against the originally approved project scope and other competing for business needs.  The costs of increment application development, both in project costs and ongoing costs must be carefully understood.  This is the process of rationalizing business needs and should include the senior management team when necessary.  [*See Guidance - Rationalization for more information*]
+1. __Rationalization__:  Application functionality must be constantly rationalized to allow the organization to tackle the large backlog of valuable business requests and opportunities.   During the software development phase, requirements must be rationalized against the originally approved project scope and other competing for business needs.  The costs of increment application development, both in project costs and ongoing costs must be carefully understood.  This is the process of rationalizing business needs and should include the senior management team when necessary.  [*See Guidance - Rationalization for more information*]
 
 1. __Executive Lead / Change Management__:  Projects and programs need executive sponsors who are committed to embrace change management and the rationalization that is required to allow IT to develop a product.
 
@@ -202,9 +202,9 @@ Key business principles relating to governing and directing architecture and app
 
 <a name="business-business-and-technology-environment"></a>
 ## Business and Technology Environment
-Our Information Technology (IT) operates in a complex and constrained environment due to the sensitivity of information management.  Awareness of the legislative and departmental directives and policies is crucial at the outset of application development.   
+Information technology (IT) in government operates in a complex and constrained environment due to the sensitivity of information management.  Awareness of legislation and of organizational directives and policies is crucial at the outset of application development.   
 
-A common phrase used in DevOps is to *shift-left* quality attributes like security and privacy.   Key non-functionality quality requirements derived from our environment should be considered at the outset (e.g., official languages act, accessibility act, information management).   The non-functional requirements should be realistic and follow the SMART guidelines (Specific, Measurable, Achievable, Realistic, Time-Bound)[^Business-6].  Product Owners should be encouraged to collaborate with key stakeholders to identify necessary quality requirements throughout the creation of the system.
+A common phrase used in DevOps is to *shift-left* quality attributes like security and privacy.   Key non-functionality quality requirements derived from the operating environment should be considered at the outset (e.g., official languages act, accessibility act, information management).   The non-functional requirements should be realistic and follow the SMART guidelines (Specific, Measurable, Achievable, Realistic, Time-Bound)[^Business-6].  Product Owners should be encouraged to collaborate with key stakeholders to identify necessary quality requirements throughout the creation of the system.
 
 
 [^Business-1]: Hewitt, Eben. Semantic Software Design: A New Theory and Practical Guide for Modern Architects, 2020.  - *[ISBN 978-1-4920-4594-6](http://www.worldcat.org/978-1-4920-4594-6)*
@@ -281,19 +281,19 @@ TOGAF defines Architecture Style as '*the combination of distinctive features re
 
 The high-level characteristics of the application should be assessed as part of the analysis and design some.  Some of these characteristics may be official documented as part of the project and application development, and others may have to be assumed or derived for requirements.   
 
-- Departmental Application Characteristics: Characteristics that should be defined for all applications and the information/data they manage.
+- Organizational Application Characteristics: Characteristics that should be defined for all applications and the information/data they manage.
 - Quality Characteristics: Quality attributes that significantly impact the architecture should be captured.
 
-<a name="application-characteristics-and-styles-application-characteristics-department-application-characteristics"></a>
-### Department Application Characteristics
+<a name="application-characteristics-and-styles-application-characteristics-organizational-application-characteristics"></a>
+### Organizational Application Characteristics
 
 | Attribute                  | Description                                                                                                                                                                        | Note                                                                                                                                                                                                                                                                                                                                     |
 | :-- | :---- | :---- |
-| Criticality                | How critical is this application to the business. This is sometimes referred to as Tier-1, 2, 3.                                                                                   | The department lacks an official list of application criticality.   Based on criticality, and TBS guidance, critical applications must have certain quality components like a business continuity plan (BCP) and a Disaster Recover Plan (DRP).  This lists needs to be maintained; and programs established to ensure their ongoing health. |
+| Criticality                | How critical is this application to the business. This is sometimes referred to as Tier-1, 2, 3.                                                                                   | Many organizations lack an official list of application criticality.   Based on criticality, and TBS guidance, critical applications must have certain quality components like a business continuity plan (BCP) and a Disaster Recover Plan (DRP).  This list needs to be maintained; and programs established to ensure their ongoing health. |
 | Security Profile           | Based on the security triad of Confidentiality, Integrity and Availability (CIA) and indicating the impacts of integrity and availability to the organization (High, Medium, Low). | Common profiles are PBMM (Protected-B, Medium, Medium) and TSHH (Top Secret, High, High).  The security profile can help guide development of quality requirements (non-functional requirements)                                                                                                                                         |
 | Information Classification | What classification of information is managed by the system                                                                                                                        | Unclassified, Confidential, Protected A/B/C, Secret and Top Secret are common security classifications                                                                                                                                                                                                                                   |
 | IM Repository Type         | Identifies whether the information in this system is transitory or corporate.                                                                                                      | Based on the repository type additional requirements relating to managing the information through its lifecycle are required. Reference [Guideline on Service and Digital](Requirements for departments under the Directive).                                                                                                             |
-| Information Business Type  | Our department treats operational information different from administrative information.                                                                                           | The distinction is often unclear. There are few guidelines to help projects to help manage this distinction.   Applications are categorized as managing operational or administrative information.  For example, CW is administrative, CWOPS is operational (however only administrative-operational information is permitted in CWOPS). |
+| Information Business Type  | Some organizations treat operational information differently from administrative information.                                                                                           | The distinction is often unclear. There are few guidelines to help projects to help manage this distinction.   Applications are categorized as managing operational or administrative information.  The rules that apply to each category differ. |
 
 <a name="application-characteristics-and-styles-application-characteristics-quality-non-functional-characteristics"></a>
 ### Quality / Non-Functional Characteristics
@@ -366,9 +366,9 @@ The proceeding section will identify guidance to achieve these goals.
 <a name="goals-for-application-architecture-goal-technical-debt-reduction"></a>
 ## Goal:  Technical Debt Reduction
 
-Our department's vision includes an *IT Rationalization* pillar which identifies the need to reduce the number of different applications supported by our team.  The Architecture Working Group (AWG) includes principles which address the need to rationalze the portfolio.  
+An organization's vision often includes an *IT Rationalization* pillar, which identifies the need to reduce the number of different applications supported.  Architecture principles can address the need to rationalize the portfolio.  
 
-By reducing technical debt our development teams can focus on contributing to high-value projects.  Debt reduction is reduced by the following guidance:
+By reducing technical debt development teams can focus on contributing to high-value projects.  Debt reduction is reduced by the following guidance:
 
   - Rationalization
   - Reuse / Buy / Build
@@ -391,18 +391,18 @@ Development of functional and non-functional requirements must be rationalized t
 <a name="goals-for-application-architecture-goal-technical-debt-reduction-guidance-reuse-buy-build"></a>
 ### Guidance: Reuse / Buy / Build.
 
-  Prior to a business case or project proceeds to development, any new application creation should be discussed with other stakeholders.  If a new application is justified, the options analysis should consider the TBS Digital Standards and GC EARB Application Architecture Standards [^Guidance-5]. In our department this list includes:
+  Prior to a business case or project proceeds to development, any new application creation should be discussed with other stakeholders.  If a new application is justified, the options analysis should consider the TBS Digital Standards and GC EARB Application Architecture Standards [^Guidance-5]. Typical stakeholders to discuss it with include:
 
-  - TMO - Transformation Management Office,
-  - BRMO - Business Relationship Management Office,
-  - TRB - Technology Review Board and the
-  - AWG - Architecture Review Board).     
+  - the transformation management office,
+  - the business relationship management office,
+  - the technology review board, and
+  - the architecture review board.     
 
   The following priorities for options analysis:
 
-  - __Reuse__:  Attempt to reuse what we currently own, or what other government departments / partners are using.     
-  - __Buy__: Buy solutions and integrate into our enterprise architecture
-  - __Build__:  As a last resort, custom build a solution.  This should be limited to business capabilities and processes that are unique to our department.  Executive approval (Department Architecture Review Board - DARB)  required.
+  - __Reuse__:  Attempt to reuse what the organization already owns, or what other government departments / partners are using.     
+  - __Buy__: Buy solutions and integrate into the enterprise architecture
+  - __Build__:  As a last resort, custom build a solution.  This should be limited to business capabilities and processes that are unique to the organization.  Executive approval (for example, through an architecture review board) is typically required.
 
 
 <a name="goals-for-application-architecture-goal-technical-debt-reduction-guidance-document-exercise-backup-recovery"></a>
@@ -415,15 +415,15 @@ Development of functional and non-functional requirements must be rationalized t
 
   Business critical applications require a Business Continuity Plan (BCP) and Disaster Recovery Plan (DRP) to be documented and reviewed on a regular basis.   The DRP must be exercised routinely.
 
-  - [ ] Enterprise Architecture Gap : Formally identification of critical applications is not available.  A formal list of application must be captured and recorded in the department's official configuration management database (CMDB).  
+  - [ ] Enterprise Architecture Gap : Many organizations have no formal identification of critical applications.  A formal list of applications must be captured and recorded in the official configuration management database (CMDB).  
 
-    - Note: *As of this writing the CMDB is not the official source of truth for the list of critical applications.  In the interim, projects should clearly identity application criticality and allow for analysis and design of the quality attributes required for critical applications.*
+    - Note: *Where the CMDB is not yet the official source of truth for the list of critical applications, in the interim, projects should clearly identify application criticality and allow for analysis and design of the quality attributes required for critical applications.*
 
 
 <a name="goals-for-application-architecture-goal-technical-debt-reduction-guidance-build-less-and-stay-lean"></a>
 ### Guidance: Build Less and Stay Lean
 
-  BaseCamp, a project management software provider, has a few short-narratives on ways to stay-competitive; which can be adopted to our department attempting to reduce technical debt.
+  BaseCamp, a project management software provider, has a few short-narratives on ways to stay-competitive; which can be adopted by an organization attempting to reduce technical debt.
 
   - [Basecamp - The Starting  - Build Less](https://basecamp.com/gettingreal/02.1-build-less):
 
@@ -435,14 +435,14 @@ Development of functional and non-functional requirements must be rationalized t
 
   -  [Basecamp - Stay Lean - Less Mass:](https://basecamp.com/gettingreal/03.1-less-mass)
       - Less "Thick process"
-      - Less "Long-Term Roadmaps"  (supported as by our ITSS Study - Ian Lovison 2017)
+      - Less "Long-Term Roadmaps"
       - Less of "The past ruling the future"
 
 
 <a name="goals-for-application-architecture-goal-composable-enterprise-composable-applications"></a>
 ## Goal:  Composable Enterprise, Composable Applications
 
-A composable application is a key pattern in micro-services.   In our current environment and infrastructure environment, the focus should be on designing *single purpose services" on virtual machines.   Applications should be thought of as thin user interfaces on top of this collections of services.  The design of the services/APIs is important to success of the project and application.  Some guidance to help in the design and communication of the service-architecture are:
+A composable application is a key pattern in micro-services.   In a virtual-machine-based environment, the focus should be on designing *single purpose services" on virtual machines.   Applications should be thought of as thin user interfaces on top of this collections of services.  The design of the services/APIs is important to success of the project and application.  Some guidance to help in the design and communication of the service-architecture are:
 
 - Domain Drive Design
 - Standards on API (Government of Canada)
@@ -474,7 +474,7 @@ Refer to *Domain Driven Design*[^Guidance-12] for details on this concept.
 <a name="goals-for-application-architecture-goal-composable-enterprise-composable-applications-guidance-decouple-user-interfaces"></a>
 ### Guidance: Decouple User Interfaces
 
-Design the web UI to work across ~~mobile devices, tablets, and~~ desktops at a minimum.  Text is ~~striked-out~~ to indicate we currently develop applications for use on a known standard-provisioned desktop with two-monitors; ideally supporting Edge and Chrome.
+Design the web UI to work across ~~mobile devices, tablets, and~~ desktops at a minimum.  Text is ~~striked-out~~ to indicate that applications are developed for a known, standard-provisioned desktop with two monitors, ideally supporting Edge and Chrome.  Adjust this to your own user environment.
 
 1. APIs, and the consuming services/applications should have *high-cohesion* and *loose-coupling*.  This is especially important as software communicates across business domains.   
 1. APIs should be used to reduce; especially at the high-level interactions between components.[^Guidance-1],[^Guidance-2],[^Guidance-3].
@@ -532,9 +532,9 @@ The *12-Factor Applications*[^Guidance-16] was defined by Heroku in 2011 as a me
 <a name="goals-for-application-architecture-goal-improved-api-developer-experience"></a>
 ## Goal: Improved API Developer Experience
 
-Our department's developers have inadequate guidance and tooling to build API's effectively and efficiently.  API's are a critical component of our technology stack.  The API strategy needs to mature as applications integrate more-and-more through API's.
+Developers in many organizations have inadequate guidance and tooling to build API's effectively and efficiently.  API's are a critical component of the technology stack.  The API strategy needs to mature as applications integrate more-and-more through API's.
 
-As per the GC DOSP, our department needs to develop an API Strategy.  The API Strategy should address concerns such as:
+As per the GC DOSP, departments need to develop an API Strategy.  The API Strategy should address concerns such as:
 
 - API Discovery / Catalog:  Provide tools to allow developers to discover integrations amd APIs?
 - API Testing: automated testing, performance testing, stubbed-out testing.
@@ -548,7 +548,7 @@ As per the GC DOSP, our department needs to develop an API Strategy.  The API St
 <a name="goals-for-application-architecture-goal-improved-api-developer-experience-guidance-develop-and-api-strategy"></a>
 ### Guidance:  Develop and API Strategy
 
-Develop an enterprise API Strategy to help mature our API approach and improve our ability to integrate systems.  API documentation, using standardized protocols and providing API management are aspects of the strategy.
+Develop an enterprise API Strategy to help mature the API approach and improve the ability to integrate systems.  API documentation, using standardized protocols and providing API management are aspects of the strategy.
 
 1. [API Documentation](https://www.gov.uk/guidance/how-to-document-apis): discover, affordances (understand how to use API), integration with API.  Examples: [GOV.UK Frontend](https://frontend.design-system.service.gov.uk/?_ga=2.152481273.1904569585.1642645779-431822512.1642645779#gov-uk-frontend), [Stripe API](https://stripe.com/docs/api), [Mailchimp](https://mailchimp.com/developer/).
 1. API Protocols: Leverage protocols and languages like gRPC and GraphQL for integrations.
@@ -601,7 +601,7 @@ Caution:  Although directed by the TBS Playbook Towards EARB, TDD can be burdeni
 <a name="goals-for-application-architecture-goal-user-experience"></a>
 ## Goal: User Experience
 
-Our user experience can be improved by looking at modern applications and their integration into varying computing platforms (desktop, mobile, tablet).  
+User experience can be improved by looking at modern applications and their integration into varying computing platforms (desktop, mobile, tablet).  
 
 User-experience is an entire-profession.  User-experience is the experience of a user as they interact with the system and the perception they feel throughout and after the interaction.   Understand usability, affordances and other behaviours is important.  Some resources include:
 
@@ -637,7 +637,7 @@ There are many modern application experiences users expect in an application.  A
 
 The Accessible Canada Act received Royal Assent on June 21, 2019, and came into force on July 11, 2019.[^Accessibility]   
 
-In light of no departmental policy, applications should strive to achieve WCAG 2.1 Level AA.  This goal changes by application, and development must ensure they are aware of the business requirements for accessibility.  
+Where there is no organizational policy, applications should strive to achieve WCAG 2.1 Level AA.  This goal changes by application, and development must ensure they are aware of the business requirements for accessibility.  
 
 WCAG 2.1 Level AA (Double-A) implies:
 
@@ -654,7 +654,7 @@ A basic checklist of minimal accessibility guidelines are:
 
 - [ ] Applications should meet WCAG 2.1 Level AA success criteria.
 - [ ] Applications should allow users to self-identity accessibility needs through an application profile setting.
-- [ ] Applications should be tested for accessibility, including, testing functionality with our accessibility tool suite (page readers, etc)
+- [ ] Applications should be tested for accessibility, including, testing functionality with an accessibility tool suite (page readers, etc)
 - [ ] Application develop and product teams must establish accessibility early in develop cycle interactions.  Shift-left accessibility.
 
 <a name="goals-for-application-architecture-goal-embrace-devops-and-agile"></a>
@@ -687,7 +687,7 @@ From [Coursera - DevOps Culture and Mindset](https://www.coursera.org/lecture/de
 <a name="goals-for-application-architecture-goal-embrace-devops-and-agile-guidance-adopt-agile-and-devops"></a>
 ### Guidance : Adopt Agile and DevOps
 
-Our department is maturing with agile.  A checklist to assess a few aspects of Agile are:
+As an organization matures with agile, a checklist to assess a few aspects of Agile is:
 
 - [ ] The Agile team has all skillsets needed for the product development and operations.
 - [ ] The team is delivering to production in an interative manner
@@ -705,7 +705,7 @@ This manifesto is "*Future proof enterprise technology and propel current and fu
 - __C__: Cloud: SaaS that leverages the cloud, beyond storage and hosting, including elastic scaling and automatically updating.
 - __H__: Headless: Front-end presentation is decoupled from back-end logic and channel, programming language, and is framework agnostic.
 
-his alliance is for cloud-native applications (CNA), and is worthwhile reading for CNA development.  Our constraints may limit our ability to leverage the cloud.  For on-premise constrained systems DevOps practices to automate updating and Kubernetes auto scaling should be prioritized.  A view of how MACH applies to guidance and industry patterns is below.
+his alliance is for cloud-native applications (CNA), and is worthwhile reading for CNA development.  Organizational constraints may limit the ability to leverage the cloud.  For on-premise constrained systems DevOps practices to automate updating and Kubernetes auto scaling should be prioritized.  A view of how MACH applies to guidance and industry patterns is below.
 
 |MACH|Description|ARA Guidance|Industry Patterns|
 |--|--|--|--|
@@ -870,7 +870,7 @@ A "Ball of Mud" application is an application without structure, software making
 
 The overall structure of the system may never have been well defined.
 
-Our department has an abundance of *ball of mud* applications.
+Many organizations have an abundance of *ball of mud* applications.
 
 <a name="application-architecture-styles-1-event-driven-architecture-patterns"></a>
 ## Event Driven Architecture Patterns
@@ -958,7 +958,7 @@ Conway's Law
 ## Microservices Patterns
 Sam Newman's book, "Building Microservices, Defining Fine-Grained Systems"[^Pattern-1] defines many patterns, including patterns to migrate from monoliths to microservices.   These patterns include:
 
-  - Strangle Fig Pattern: . You intercept calls to the existing system—in our case the existing monolithic application. If the call to that piece of functionality is implemented in our new microservice architecture, it is redirected to the microservice.
+  - Strangle Fig Pattern: . You intercept calls to the existing system—for example, the existing monolithic application. If the call to that piece of functionality is implemented in the new microservice architecture, it is redirected to the microservice.
   - Saga Pattern
   - References legacy Enterprise Integration Patterns (EIP)[^Pattern-2]
   - Backend for Front-End (BFF) : similar to an aggregating gateway, but limited to a single user-interface.  For example have a BFF for an Android vs Apple client.
@@ -984,24 +984,24 @@ References for microservices patterns:
 <a name="discovery"></a>
 # Discovery
 
-There are many initiatives within our department that require enterprise and domain architecture effort to recommend the path forward.  The below are a few initiatives that could serve as enablers for improved application development in the future.
+There are often initiatives within an organization that require enterprise and domain architecture effort to recommend the path forward.  The below are a few initiatives that could serve as enablers for improved application development in the future.
 
 <a name="discovery-identity-and-access-management-idam"></a>
 ## Identity and Access Management (IdAM)
 
 Analyze existing identity and access management options to provide multi-domain identity and access to highly  compartmentalized information.  Identify options for securing compartmentalized information while allowing information to be easily shared across business-domains (operational data and operation administration).  
 
-For example, research patterns on how *drag-and-drop* be simplified when dragging a secured-object into another collaborative application.   How can this be done in a user-friendly manner while respect the security constraints?  There are no known industry patterns for this (e.g., Google's Zanzibar for photo-sharing lacks the features required in our drag-and-drop problem space).
+For example, research patterns on how *drag-and-drop* be simplified when dragging a secured-object into another collaborative application.   How can this be done in a user-friendly manner while respect the security constraints?  There are no known industry patterns for this (e.g., Google's Zanzibar for photo-sharing lacks the features required in the drag-and-drop problem space).
 
 <a name="discovery-multi-security-zone-applications"></a>
 ## Multi-Security Zone Applications
 
-Our directorate has been asked to to move workloads to lower security zones.  This has the potential of reducing the security requirements for the systems and enabling more work-from-home opportunities.  As a consequence business processes may span security zones.  The cross-domain-solution has been identified as an enabler technology.  What overall application, data, information and security architecture is needed to realize these benefits?   
+Organizations may be asked to move workloads to lower security zones.  This has the potential of reducing the security requirements for the systems and enabling more work-from-home opportunities.  As a consequence business processes may span security zones.  The cross-domain-solution has been identified as an enabler technology.  What overall application, data, information and security architecture is needed to realize these benefits?   
 
 <a name="discovery-managing-media"></a>
 ## Managing Media
 
-Our department manages multimedia (images, audio and video files) as well as file-types on a diverse range of applications.  Media management can be addressed be a Media Management Platform and a Digital Experience Platform (DXP).  Industry leaders include OpenText, Oracle and Salesforce.  While some Content Management Systems (CMS) also support DXP features many new market entrants are SaaS-based and require cloud connectivity (e.g, Sanity.io).   
+Organizations often manage multimedia (images, audio and video files) as well as file-types on a diverse range of applications.  Media management can be addressed be a Media Management Platform and a Digital Experience Platform (DXP).  Industry leaders include OpenText, Oracle and Salesforce.  While some Content Management Systems (CMS) also support DXP features many new market entrants are SaaS-based and require cloud connectivity (e.g, Sanity.io).   
 
 OpenText DXP is not in the top-magic quadrant; however it deserves consideration since GCdocs being based on OpenText and the Government of Canada has many employees familiar with the technology.
 
@@ -1206,7 +1206,7 @@ Examples of architectural characteristics[^Appendix-Arch-Evol]:
 Shift-Left
 : Shift-Left is a term used to identify importance of prioritizing quality characteristics in all iterations of agile development and DevOps cycles.  The skill is balance the benefits of agile's quick product increments, and, the need to identify quality characteristics that become increasingly more expensive to introduce (high refactoring costs) if not included in the original design.  
 
-- Legislative: Our department has legislative requirements that impact applications information management, official languages, employment equity and accessibility characteristics.  These requirements often become *architecture characteristics* of the system.
+- Legislative: Government departments have legislative requirements that impact applications information management, official languages, employment equity and accessibility characteristics.  These requirements often become *architecture characteristics* of the system.
 - Testing & Observability: Testable and observable applications are important characteristics often overlooked in minimal viable product (MVP) product development. Balance the value of improved quality and include user-stories for these in MVP development cycles.
 
 <a name="appendix-definitions-architecture-characteristics-quality-characteristics"></a>
@@ -1291,7 +1291,7 @@ Systems thinking is a perspective of seeing and understanding systems as wholes 
 
 Technical debt is the coding you must do tomorrow because you took a shortcut to deliver the software today.
 
-Technical debt is somewhat misunderstood within IT and our department.   Technical debt goes beyond having aging end-of-life applications.  Below are some common definitions used to describe technical debt:
+Technical debt is somewhat misunderstood within IT and the wider organization.   Technical debt goes beyond having aging end-of-life applications.  Below are some common definitions used to describe technical debt:
 
 - Technical debt (also known as design debt or code debt, but can be also related to other technical endeavours) is a concept in software development that reflects the implied cost of additional rework caused by choosing an easy (limited) solution now instead of using a better approach that would take longer. [[Technical Debt - Wikipedia](https://en.wikipedia.org/wiki/Technical_debt)].
 
