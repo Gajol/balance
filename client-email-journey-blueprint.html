@@ -1,0 +1,722 @@
+---
+layout: null
+permalink: /client-email-journey-blueprint/
+title: "Client email: journey map and service blueprint"
+description: A worked example of a journey map and service blueprint for client email, showing the staff work, systems and dependencies behind each step.
+tags: [ux, "product management", "service design", email]
+sitemap: true
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Client email: journey map and service blueprint</title>
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}@media (prefers-color-scheme: dark){html{color-scheme:dark}}</style>
+<style>
+/* Layout: navy title band, scope block, journey map (curve, phase cards, storyboards), blueprint (lanes, systems, dependencies, flow), approval gate. */
+:root{
+  --bg:#ffffff; --card:#ffffff; --fg:#333333; --fg2:#595959; --title:#26374A;
+  --band:#26374A; --bandfg:#ffffff; --panel:#F2F2F2; --line:#8C8C8C; --link:#1F497A;
+  --pos:#1F7A40; --cau:#C28B0A; --dan:#B3192E; --c1:#2962A3;
+  --biz:#FEF7E7; --app:#EBF2FA; --tech:#EBFAF0; --ext:#F2F2F2;
+  --posbg:#E7F3EB; --caubg:#FBF3DF; --danbg:#F9E6E9; --neubg:#F2F2F2;
+  --head:'Lato','Helvetica Neue',Arial,sans-serif; --body:'Noto Sans','Segoe UI',Arial,sans-serif; --mono:'Noto Sans Mono',Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161b; --card:#171c22; --fg:#e4e7ea; --fg2:#a9b0b8; --title:#c9d6e6;
+  --band:#26374A; --bandfg:#ffffff; --panel:#1b2128; --line:#6f7882; --link:#8fb4e3;
+  --pos:#4fbf7a; --cau:#e0b040; --dan:#ef6a7b; --c1:#6ea6e6;
+  --biz:#2e2a1d; --app:#1b2837; --tech:#1a2e24; --ext:#262b31;
+  --posbg:#16291d; --caubg:#2e2815; --danbg:#331a1f; --neubg:#222830; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161b; --card:#171c22; --fg:#e4e7ea; --fg2:#a9b0b8; --title:#c9d6e6;
+  --band:#26374A; --bandfg:#ffffff; --panel:#1b2128; --line:#6f7882; --link:#8fb4e3;
+  --pos:#4fbf7a; --cau:#e0b040; --dan:#ef6a7b; --c1:#6ea6e6;
+  --biz:#2e2a1d; --app:#1b2837; --tech:#1a2e24; --ext:#262b31;
+  --posbg:#16291d; --caubg:#2e2815; --danbg:#331a1f; --neubg:#222830; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.55 var(--body);padding-block:0 48px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3,h4{font-family:var(--head);color:var(--title);text-wrap:balance;line-height:1.2;margin:0}
+.band{background:var(--band);color:var(--bandfg);margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px))) ;margin-inline-end:calc(-1*max(16px,env(safe-area-inset-right,0px)));
+  padding:28px max(16px,env(safe-area-inset-right,0px)) 26px max(16px,env(safe-area-inset-left,0px))}
+.band .wrap{max-width:1180px}
+.band h1{color:#fff;font-size:clamp(26px,4vw,36px);font-weight:900;margin:6px 0 8px}
+.eyebrow{font:700 12px var(--head);letter-spacing:.12em;text-transform:uppercase;color:#c9d6e6}
+.band p{margin:0;max-width:70ch;color:#e6edf5}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{font:600 12px var(--body);border:1px solid #8aa0b8;padding:3px 10px;border-radius:3px;color:#fff}
+section{margin-top:44px}
+h2{font-size:26px;font-weight:900;border-bottom:3px solid var(--title);padding-bottom:6px;margin-bottom:14px}
+h3{font-size:19px;font-weight:700;margin:26px 0 8px}
+p{max-width:75ch;margin:8px 0}
+.small{font-size:13px;color:var(--fg2)}
+.tag{display:inline-block;font:700 11px var(--head);letter-spacing:.06em;text-transform:uppercase;padding:1px 7px;border-radius:2px;border:1px solid currentColor;vertical-align:1px}
+.t-ass{color:var(--cau)} .t-ill{color:var(--fg2)} .t-pos{color:var(--pos)} .t-dan{color:var(--dan)} .t-neu{color:var(--fg2)}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.box{background:var(--panel);padding:14px 16px;border-left:4px solid var(--title);min-width:0}
+.box h4{font-size:15px;margin-bottom:6px}
+.box ul{margin:0;padding-left:18px} .box li{margin:3px 0}
+.confirm{background:var(--caubg);border-left:4px solid var(--cau);padding:12px 16px;margin-top:14px}
+.confirm h4{font-size:15px;margin-bottom:6px} .confirm ul{margin:0;padding-left:18px}
+.scroll{overflow-x:auto;max-width:100%}
+svg{display:block;max-width:100%;height:auto}
+svg text{font-family:var(--body);fill:var(--fg)}
+.curvewrap{background:var(--card);border:1px solid var(--line);padding:10px}
+/* phase cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
+.card header{padding:10px 12px;display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line)}
+.card header svg{flex:none;width:34px;height:34px}
+.card header .n{font:700 11px var(--head);letter-spacing:.08em;color:var(--fg2);text-transform:uppercase}
+.card header h4{font-size:16px}
+.card .score{margin-left:auto;text-align:right;font:700 12px var(--head);white-space:nowrap;padding:2px 8px;border-radius:2px}
+.s-pos{background:var(--posbg);color:var(--pos)} .s-neu{background:var(--neubg);color:var(--fg2)}
+.s-cau{background:var(--caubg);color:var(--cau)} .s-dan{background:var(--danbg);color:var(--dan)}
+.card dl{margin:0;padding:10px 12px;display:grid;gap:8px;font-size:13.5px}
+.card dt{font:700 11px var(--head);letter-spacing:.07em;text-transform:uppercase;color:var(--fg2)}
+.card dd{margin:0}
+.pain{padding:6px 8px;border-left:3px solid var(--cau);background:var(--caubg)}
+.pain.blocked{border-color:var(--dan);background:var(--danbg)}
+.pain b{font-family:var(--head)}
+/* storyboards */
+.story{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.panel{background:var(--card);border:1px solid var(--line);min-width:0}
+.panel .cap{padding:8px 10px 10px;font-size:13px;border-top:1px solid var(--line)}
+.panel .cap b{font-family:var(--head)}
+/* key */
+.key{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px 18px;background:var(--panel);padding:14px 16px;font-size:13.5px}
+.key div{display:flex;gap:8px;align-items:flex-start;min-width:0}
+.sw{flex:none;width:20px;height:14px;margin-top:3px;border:1px solid var(--line)}
+/* blueprint table */
+table.bp{border-collapse:collapse;min-width:1500px;width:100%;font-size:13px;background:var(--card)}
+table.bp th,table.bp td{border:1px solid var(--line);padding:7px 9px;vertical-align:top;text-align:left;min-width:150px}
+table.bp thead th{background:var(--band);color:#fff;font:700 13px var(--head);position:sticky;top:0;z-index:2}
+table.bp .lane{min-width:130px;width:130px;font:700 12px var(--head);background:var(--panel);color:var(--title);position:sticky;left:0;z-index:1}
+table.bp thead th.lane{background:var(--band);color:#fff;z-index:3}
+table.bp tr.l-front td{background:var(--app)} table.bp tr.l-back td{background:var(--biz)}
+table.bp tr.l-sys td{background:var(--tech)} table.bp tr.l-met td{background:var(--panel)}
+table.bp tr.sep td{padding:0;height:0;border:0;border-top:2px dashed var(--line);min-width:0}
+table.bp tr.sep.heavy td{border-top:4px dashed var(--title)}
+table.bp tr.sep .lane{font:700 10px var(--head);letter-spacing:.07em;text-transform:uppercase;color:var(--fg2);padding:2px 9px;background:var(--bg)}
+.nf{color:var(--cau);font-weight:700}
+.tbc{color:var(--fg2);font-style:italic}
+/* systems */
+.nodes{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.node{padding:10px 12px;border:2px solid var(--line);background:var(--card);min-width:0;font-size:13px}
+.node h4{font-size:15px;margin-bottom:4px}
+.node .layer{font:700 10px var(--head);letter-spacing:.08em;text-transform:uppercase;color:var(--fg2)}
+.node p{margin:3px 0;max-width:none}
+.node.biz{background:var(--biz);border-style:dashed} .node.app{background:var(--app);border-style:solid}
+.node.tech{background:var(--tech);border-style:dashed} .node.ext{background:var(--ext);border-style:dotted}
+.diagram{background:var(--card);border:1px solid var(--line);padding:10px}
+.flowstep{font-size:12.5px}
+.next{background:var(--panel);border-left:4px solid var(--pos);padding:14px 18px;margin-top:14px}
+.next ol{margin:6px 0 0;padding-left:20px} .next li{margin:4px 0}
+footer{margin-top:44px;font-size:12.5px;color:var(--fg2);border-top:1px solid var(--line);padding-top:12px}
+.callout{padding:12px 16px;margin:14px 0;border-left:4px solid var(--title);background:var(--panel);max-width:none}
+.callout p{margin:4px 0}
+.callout.teamview{border-color:var(--title)}
+.callout.learnbox{background:var(--app);border-color:var(--link)}
+.t-team{color:var(--title)} .t-res{color:var(--cau)}
+details.learn{margin:12px 0;background:var(--app);border-left:4px solid var(--link);padding:8px 14px;max-width:80ch}
+details.learn summary{cursor:pointer;font:700 13.5px var(--head);color:var(--link)}
+details.learn p,details.learn ul{margin:8px 0;font-size:14px}
+table.mx{border-collapse:collapse;min-width:900px;width:100%;font-size:13px;background:var(--card)}
+table.mx th,table.mx td{border:1px solid var(--line);padding:7px 9px;vertical-align:top;text-align:left}
+table.mx thead th{background:var(--band);color:#fff;font:700 13px var(--head)}
+table.mx tbody th{background:var(--panel);color:var(--title);font:700 13px var(--head);min-width:120px}
+table.mx td.nochg{color:var(--fg2)}
+.uc{border-bottom:1px dotted var(--link);cursor:help;text-decoration:none;color:inherit;white-space:nowrap}
+.uc:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+#tip{position:fixed;z-index:60;display:none;max-width:290px;background:var(--band);color:#fff;font:12.5px/1.45 var(--body);padding:8px 10px;border-radius:3px;pointer-events:none;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+#tip b{font-family:var(--head)}
+a{color:var(--link)}
+@media (max-width:600px){h2{font-size:22px}.card dl{font-size:14px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-form" viewBox="0 0 34 34"><rect x="6" y="3" width="22" height="28" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="10" y1="11" x2="24" y2="11" stroke="currentColor" stroke-width="2"/><line x1="10" y1="17" x2="24" y2="17" stroke="currentColor" stroke-width="2"/><line x1="10" y1="23" x2="19" y2="23" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 34 34"><rect x="3" y="8" width="28" height="19" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="3,9 17,20 31,9" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-page" viewBox="0 0 34 34"><rect x="3" y="5" width="28" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="3" y1="12" x2="31" y2="12" stroke="currentColor" stroke-width="2"/><circle cx="7" cy="8.5" r="1.2" fill="currentColor"/><line x1="8" y1="18" x2="26" y2="18" stroke="currentColor" stroke-width="2"/><line x1="8" y1="23" x2="20" y2="23" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 34 34"><rect x="7" y="15" width="20" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 15 V10 a6 6 0 0 1 12 0 V15" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="22" r="2" fill="currentColor"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 34 34"><path d="M8 24 V15 a9 9 0 0 1 18 0 V24 L29 27 H5 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 29 a3 3 0 0 0 6 0" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 34 34"><path d="M4 6 H30 V23 H15 L8 29 V23 H4 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><line x1="10" y1="12" x2="24" y2="12" stroke="currentColor" stroke-width="2"/><line x1="10" y1="17" x2="19" y2="17" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 34 34"><line x1="5" y1="10" x2="29" y2="10" stroke="currentColor" stroke-width="2"/><line x1="5" y1="17" x2="29" y2="17" stroke="currentColor" stroke-width="2"/><line x1="5" y1="24" x2="29" y2="24" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3" fill="var(--card)" stroke="currentColor" stroke-width="2"/><circle cx="22" cy="17" r="3" fill="var(--card)" stroke="currentColor" stroke-width="2"/><circle cx="14" cy="24" r="3" fill="var(--card)" stroke="currentColor" stroke-width="2"/></symbol>
+  </defs>
+</svg>
+
+<div class="band"><div class="wrap">
+  <div class="eyebrow">Worked example · Journey map and service blueprint</div>
+  <h1>Client email: journey map and service blueprint</h1>
+  <p>What a registered client goes through when the portal emails them, and the staff work and systems behind each step. All four email features are in scope: Account, Subscription, Engagement and Service.</p>
+  <div class="chips">
+    <span class="chip">Web draft</span>
+    <span class="chip">No user research yet: every feeling is Assumed</span>
+    <span class="chip">One official language first, the second at the file stage</span>
+    <span class="chip">Hover or tap a use case ID, such as T-1, for its name</span>
+  </div>
+</div></div>
+
+<div class="wrap">
+
+<section id="scope">
+  <h2>Scope and what this draft rests on</h2>
+  <p>This builds on the <a href="{{ '/client-email-tiers/' | relative_url }}">capability tiers page</a>. Use IDs such as T-1 or S-3 to find the matching use case there.</p>
+  <div class="grid4">
+    <div class="box"><h4>Persona and goal</h4>
+      <ul><li>A registered portal client. The portal has a few thousand accounts.</li>
+      <li>Goal: hear about the publications and notices that matter to them, and stay in control of what they receive.</li>
+      <li>Client types (role, government or non-government, sector) are <span class="tag t-res">To be resolved</span>. One composite client for now.</li></ul></div>
+    <div class="box"><h4>Scope</h4>
+      <ul><li>Starts: the client registers and gets the first email (T-1).</li>
+      <li>Ends: the client changes their topics, unsubscribes, or the account is closed (T-8).</li>
+      <li>Included: Account (T), Subscription (S), Engagement (E), Service (O).</li>
+      <li>Feedback appears in step 7 as a CMS form that owners view and close.</li></ul></div>
+    <div class="box"><h4>Operations</h4>
+      <ul><li>Staff: campaign author, approver, translator, content editor, taxonomy steward, privacy officer, support.</li>
+      <li>Systems: the CMS, a search index and an analytics tool (all on premises), and a shared notification service (cloud).</li>
+      <li>Limits: The notification service accepts only lower-sensitivity data, so emails point to the portal and never carry the content. Outbound access must pass the organization's proxy.</li></ul></div>
+    <div class="box"><h4>Evidence</h4>
+      <ul><li>None yet. No research, complaints, call data or analytics were provided.</li>
+      <li>Every feeling, quote and scene is <span class="tag t-ass">Assumed</span> or <span class="tag t-ill">Illustrative</span>.</li>
+      <li>System and policy facts come from the capability tiers page. Staff roles and system owners marked To confirm are Team view.</li></ul></div>
+  </div>
+  <div class="confirm">
+    <h4>I assumed these. Correct any that are wrong.</h4>
+    <ul>
+      <li>The use cases T-1 to T-8, S-1 to S-5, E-1 to E-6 and O-1 to O-3 all exist. Sizes and opt-out rules are not repeated here.</li>
+      <li>The portal has multi-factor authentication (MFA), so the verification code (T-4) is in scope. Confirmed in review. The MFA method (app, text or email code) is <span class="tbc">to confirm</span>.</li>
+      <li>New accounts get announcements only, and clients choose their own topics (the defaults for D-2 and D-3).</li>
+      <li>A small class of service email cannot be refused (the default for D-4). This changes step 6.</li>
+      <li>Feedback is a form in the CMS. Owners can view and close submissions, and nothing more is designed yet. The client gets no reply. This narrows decision D-5 to "no reply route for now".</li>
+    </ul>
+  </div>
+</section>
+
+<section id="learn">
+  <h2>Quick guide to the artefacts</h2>
+  <p>This page holds four drawings. Each answers a different question, so choose the drawing by the question.</p>
+  <div class="grid4">
+    <div class="box"><h4>Journey map</h4>
+      <p><b>Asks:</b> How does the client experience this over time?</p>
+      <p><b>Built from:</b> client research, then stakeholder input.</p>
+      <p><b>Used by:</b> product, content, communications, business analysts.</p>
+      <p><b>Common mistake:</b> treating assumed feelings as findings.</p></div>
+    <div class="box"><h4>Service blueprint</h4>
+      <p><b>Asks:</b> What work and systems make each step happen?</p>
+      <p><b>Built from:</b> the journey map, plus staff and architects.</p>
+      <p><b>Used by:</b> architects, delivery teams, operations.</p>
+      <p><b>Common mistake:</b> drawing systems nobody has named.</p></div>
+    <div class="box"><h4>Dependency view</h4>
+      <p><b>Asks:</b> What breaks if one thing stops?</p>
+      <p><b>Built from:</b> the support systems lane of the blueprint.</p>
+      <p><b>Used by:</b> architects, security, infrastructure.</p>
+      <p><b>Common mistake:</b> leaving out the dependencies that have no fallback.</p></div>
+    <div class="box"><h4>Process flow</h4>
+      <p><b>Asks:</b> What happens step by step, including when it goes wrong?</p>
+      <p><b>Built from:</b> one lane of the blueprint.</p>
+      <p><b>Used by:</b> delivery teams, testers, operations.</p>
+      <p><b>Common mistake:</b> drawing only the happy path.</p></div>
+  </div>
+  <h3>The four steps to build them</h3>
+  <ol>
+    <li><b>Discovery.</b> Confirm the client, the scope, the operations and the evidence.</li>
+    <li><b>Journey map.</b> Draft it as a web page.</li>
+    <li><b>Service blueprint.</b> Draft it as a web page.</li>
+    <li><b>PowerPoint and Word files.</b> Build them only after the web draft is approved.</li>
+  </ol>
+  <p>We stop for approval after each step. A web draft is quick to change. Finished files are not.</p>
+  <div class="callout teamview"><span class="tag t-team">Team view</span>
+    <p>After the first review, two changes (MFA and feedback) took minutes in the web draft. The same changes in finished PowerPoint and Word files would mean editing both, in two languages.</p></div>
+</section>
+
+<section id="journey">
+  <h2>Journey map</h2>
+  <h3>Emotional curve <span class="tag t-ass">All points Assumed</span></h3>
+  <p>The curve shows how a client might feel at each step, from -2 (very frustrated) to +2 (very positive). The line is dashed because no point is backed by research. The lowest point is the first thing to test.</p>
+  <div class="curvewrap scroll"><div id="curve"></div></div>
+  <p class="small">How long each low lasts: unknown. A long wait at the trough matters more than a short dip. Research to confirm: password reset and lockout data from the portal's support log.</p>
+  <details class="learn"><summary>Learn: how to read the emotional curve</summary>
+    <p>Score each step by asking how the client would describe it to a colleague: -2 is very frustrated and +2 is very positive. Use research when you have it. When you do not, mark the point as assumed and draw it dashed.</p>
+    <p>Look for the lowest point and how long it lasts. That is usually the first thing to fix. A flat curve often means the team scored what the service does, not what the client feels.</p></details>
+
+  <h3>Eight phases</h3>
+  <p>Each card shows the channel, what the client does, how they might feel, the pain point and what success looks like. Colour always comes with a word and an icon.</p>
+  <div class="cards" id="cards"></div>
+  <details class="learn"><summary>Learn: how to write a good phase card</summary>
+    <p>Write the pain point as something the client experiences, not as a system fault. "The email link leads to a sign-in" is better than "SSO redirect".</p>
+    <p>Friction slows the client. Risk could harm the client or the program. Blocked stops the client. Keep each success line measurable, so a later test can say yes or no.</p></details>
+
+  <h3>Storyboard <span class="tag t-ill">Illustrative</span></h3>
+  <p>Five key moments. These are plain sketches, not research. The thoughts are Assumed.</p>
+  <div class="story" id="story"></div>
+  <details class="learn"><summary>Learn: why storyboards, and why they are marked Illustrative</summary>
+    <p>A storyboard helps people who were not in the room picture one moment. Keep the figures plain and avoid stereotypes, including about age or disability.</p>
+    <p>A thought bubble can only be a research quote or be labelled Assumed. Otherwise a sketch starts to look like evidence.</p></details>
+
+  <h3>Key</h3>
+  <div class="key">
+    <div><span class="sw" style="background:var(--posbg);border-color:var(--pos)"></span><span><b>Positive</b> (+1 or +2). Works well. Always labelled with the word.</span></div>
+    <div><span class="sw" style="background:var(--neubg)"></span><span><b>Neutral</b> (0). Does the job. No strong feeling.</span></div>
+    <div><span class="sw" style="background:var(--caubg);border-color:var(--cau)"></span><span><b>Friction</b> (-1). Slows or worries the client.</span></div>
+    <div><span class="sw" style="background:var(--danbg);border-color:var(--dan)"></span><span><b>Blocked</b> (-2). The client cannot continue.</span></div>
+    <div><span style="flex:none"><svg width="40" height="8" aria-hidden="true"><line x1="0" y1="4" x2="40" y2="4" stroke="var(--c1)" stroke-width="3" stroke-dasharray="7 5"/></svg></span><span><b>Dashed line</b>: assumed. A solid line would mean evidenced.</span></div>
+    <div><span style="flex:none"><svg width="20" height="20" aria-hidden="true" style="color:var(--title)"><use href="#i-mail" width="20" height="20"/></svg></span><span>Icons mark the channel: form, email, web page, sign-in, bell (notice), chat (feedback), sliders (preferences).</span></div>
+  </div>
+</section>
+
+<section id="clienttypes">
+  <h2>What client types may change</h2>
+  <p>We do not yet know the client types. Three ways to split clients are in play: <b>role</b> (executive, manager, working-level), <b>government or non-government</b>, and <b>industry sector</b>. The table shows where each could change a step. Read it as a list of questions, not as findings.</p>
+  <div class="callout teamview"><span class="tag t-team">Team view</span>
+    <p>Role and government or non-government probably change the client's experience. Sector mostly changes the content. None of this is evidenced yet.</p></div>
+  <div class="scroll"><table class="mx">
+    <thead><tr><th>Step</th><th>Role</th><th>Government or non-government</th><th>Industry sector</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">1. Register and confirm</th><td>Role is chosen here. Wording must suit executives and working-level staff alike.</td><td>How we confirm the organization type may need a manual approval. <span class="tag t-res">To be resolved</span></td><td>Sector is chosen here. The list must cover every sector.</td></tr>
+      <tr><th scope="row">2. Choose topics</th><td>Defaults may differ by role. Executives may want fewer topics (D-3).</td><td>Some topics may be for one group only. <span class="tag t-res">To be resolved</span></td><td>The topic list and digests (S-2) follow sector.</td></tr>
+      <tr><th scope="row">3. First alert arrives</th><td>Length and frequency. Executives likely want short and rare.</td><td>Government mail gateways rewrite and scan links differently. Test both.</td><td>Relevance. A wrong segment is the main risk.</td></tr>
+      <tr><th scope="row">5. Locked out</th><td>An assistant may manage an executive's account. Delegated access is not in the draft.</td><td>MFA may be limited on work devices. The MFA method is to be confirmed.</td><td class="nochg">No change expected.</td></tr>
+      <tr><th scope="row">6. Hear about a service change</th><td class="nochg">No change expected.</td><td class="nochg">No change expected.</td><td>Maintenance timing may clash with a sector's busy period. <span class="tag t-res">To be resolved</span></td></tr>
+      <tr><th scope="row">8. Correction, change or leave</th><td>Mail scanners click every link. Unsubscribe must not fire on a click.</td><td>Same scanner risk, probably strongest on government gateways.</td><td>A small sector, role and region group can identify a person in reports. Set a minimum group size.</td></tr>
+    </tbody></table></div>
+  <h3>What the blueprint would change</h3>
+  <ul>
+    <li>The client profile needs role, organization type, sector, region and language as fields.</li>
+    <li>The audience query already filters on them (E-2, S-2).</li>
+    <li>Sends to an executive segment may need an extra approval (D-9). <span class="tag t-res">To be resolved</span></li>
+    <li>The privacy impact assessment (PIA) must cover the segment fields, because a segment label is personal information.</li>
+  </ul>
+  <div class="confirm"><h4>To be resolved</h4>
+    <ul>
+      <li><b>Personas:</b> not drawn. We need the real client types first.</li>
+      <li><b>How to resolve:</b> count registered accounts by role, organization type and sector if registration captures them, and ask the business analysts for the five client types that matter most.</li>
+      <li>Delegated access for assistants, and how organization type is confirmed at registration.</li>
+    </ul></div>
+  <details class="learn"><summary>Learn: segment or persona?</summary>
+    <p>A segment is a filter, such as "managers in sector X". A persona is a short story about a typical person, built from research. Draw personas only when there is evidence for them. Until then, segments are the safer choice, and sector is usually just a segment.</p></details>
+</section>
+
+<section id="blueprint">
+  <h2>Service blueprint</h2>
+  <p>The same eight phases, with the work and systems the client never sees. Scroll sideways to read the whole table. Anything marked <span class="tbc">to confirm</span> is not yet decided or known.</p>
+  <div class="scroll" id="bpwrap"></div>
+  <details class="learn"><summary>Learn: how to read a service blueprint</summary>
+    <p>Read each column from top to bottom. Above the dashed line of visibility, the client sees it. Below it, they do not. The heavier dashed line separates the teams from the systems.</p>
+    <p>Each cell must name something real: a screen, a role or a system. If the team has not decided, write "to confirm" instead of guessing.</p></details>
+
+  <h3>System nodes</h3>
+  <p>Each node shows its owner, hosting and availability. Where the team has not named a detail, it says to confirm.</p>
+  <div class="nodes">
+    <div class="node app"><div class="layer">Application · solid outline</div><h4>CMS</h4>
+      <p><b>Holds:</b> client profiles, consent log, campaigns, template registry.</p>
+      <p><b>Owner:</b> <span class="tbc">to confirm</span></p>
+      <p><b>Hosting:</b> on premises. Data stays in the organization's data centre.</p>
+      <p><b>Availability:</b> <span class="tbc">to confirm</span></p></div>
+    <div class="node app"><div class="layer">Application · solid outline</div><h4>Send queue</h4>
+      <p><b>Holds:</b> batches waiting to go to the notification service, with retry.</p>
+      <p><b>Owner:</b> <span class="tbc">to confirm</span></p>
+      <p><b>Hosting:</b> on premises, inside the CMS.</p>
+      <p><b>Availability:</b> <span class="tbc">to confirm</span></p></div>
+    <div class="node tech"><div class="layer">Technology · long-dash outline</div><h4>Search index</h4>
+      <p><b>Holds:</b> content index. Matches new content to topics and builds digests.</p>
+      <p><b>Owner:</b> <span class="tbc">to confirm</span></p>
+      <p><b>Hosting:</b> on premises.</p>
+      <p><b>Availability:</b> <span class="tbc">to confirm</span></p></div>
+    <div class="node tech"><div class="layer">Technology · long-dash outline</div><h4>Analytics</h4>
+      <p><b>Holds:</b> portal visits tagged by campaign. Never a person's identity.</p>
+      <p><b>Owner:</b> <span class="tbc">to confirm</span></p>
+      <p><b>Hosting:</b> on premises.</p>
+      <p><b>Availability:</b> <span class="tbc">to confirm</span></p></div>
+    <div class="node tech"><div class="layer">Technology · long-dash outline</div><h4>Outbound access via the organization's proxy</h4>
+      <p><b>Holds:</b> the firewall rule that lets the CMS call the notification service.</p>
+      <p><b>Owner:</b> <span class="tbc">network team, to confirm</span></p>
+      <p><b>Hosting:</b> on premises. Approval takes weeks.</p>
+      <p><b>Availability:</b> <span class="tbc">to confirm</span></p></div>
+    <div class="node ext"><div class="layer">External · dotted outline</div><h4>Notification service</h4>
+      <p><b>Holds:</b> templates and delivery status. Status is kept about seven days.</p>
+      <p><b>Owner:</b> the shared service's provider. <span class="tbc">The organization's service owner to confirm.</span></p>
+      <p><b>Hosting:</b> cloud service. Lower-sensitivity data only.</p>
+      <p><b>Availability:</b> <span class="tbc">to confirm</span></p></div>
+    <div class="node biz"><div class="layer">Business · dash-dot outline</div><h4>Staff roles</h4>
+      <p>Campaign author, approver (two people, director for all-client sends), translator, content editor, taxonomy steward, privacy officer, support.</p>
+      <p><b>Owner:</b> <span class="tbc">named leads to confirm</span></p></div>
+    <div class="node app"><div class="layer">Application · solid outline</div><h4>Feedback view in the CMS</h4>
+      <p><b>Holds:</b> submitted feedback forms. Owners view and close them.</p>
+      <p><b>Owner:</b> <span class="tbc">feedback owner, to confirm</span></p>
+      <p><b>Hosting:</b> on premises, inside the CMS.</p>
+      <p>Owner features beyond view and close are not designed. Suggest a separate UX and product management exploration.</p></div>
+  </div>
+
+  <h3>Dependencies <span class="tag t-ass">Team view</span></h3>
+  <p>An arrow points from the system that needs something to the system that provides it. Solid means a live call. Dashed means a batch or poll.</p>
+  <div class="diagram scroll"><svg id="dep" viewBox="0 0 960 470" role="img" aria-labelledby="dep-t" width="960">
+    <title id="dep-t">Every send passes through one outbound access rule to the notification service, and there is no fallback</title>
+    <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--fg)"/></marker></defs>
+    <!-- nodes -->
+    <rect x="20" y="30" width="170" height="80" fill="var(--biz)" stroke="var(--line)" stroke-width="2" stroke-dasharray="8 3 2 3"/>
+    <text x="105" y="62" text-anchor="middle" font-size="14" font-weight="700">Campaign author</text><text x="105" y="82" text-anchor="middle" font-size="14" font-weight="700">and approver</text><text x="105" y="100" text-anchor="middle" font-size="11" fill="var(--fg2)" style="fill:var(--fg2)">Business</text>
+    <rect x="270" y="30" width="200" height="100" fill="var(--app)" stroke="var(--line)" stroke-width="2"/>
+    <text x="370" y="62" text-anchor="middle" font-size="16" font-weight="700">CMS</text><text x="370" y="84" text-anchor="middle" font-size="12">profiles, consent log,</text><text x="370" y="100" text-anchor="middle" font-size="12">campaigns, audience query</text><text x="370" y="120" text-anchor="middle" font-size="11" style="fill:var(--fg2)">Application · on premises</text>
+    <rect x="560" y="30" width="170" height="56" fill="var(--tech)" stroke="var(--line)" stroke-width="2" stroke-dasharray="14 4"/>
+    <text x="645" y="55" text-anchor="middle" font-size="15" font-weight="700">Search index</text><text x="645" y="74" text-anchor="middle" font-size="11" style="fill:var(--fg2)">Technology · on premises</text>
+    <rect x="270" y="200" width="200" height="60" fill="var(--app)" stroke="var(--line)" stroke-width="2"/>
+    <text x="370" y="226" text-anchor="middle" font-size="15" font-weight="700">Send queue</text><text x="370" y="246" text-anchor="middle" font-size="11" style="fill:var(--fg2)">Application · on premises</text>
+    <rect x="560" y="200" width="170" height="60" fill="var(--tech)" stroke="var(--cau)" stroke-width="3" stroke-dasharray="14 4"/>
+    <text x="645" y="224" text-anchor="middle" font-size="13" font-weight="700">Outbound access</text><text x="645" y="241" text-anchor="middle" font-size="13" font-weight="700">via proxy</text><text x="645" y="256" text-anchor="middle" font-size="10" style="fill:var(--fg2)">Technology · on premises</text>
+    <rect x="800" y="200" width="140" height="60" fill="var(--ext)" stroke="var(--line)" stroke-width="2" stroke-dasharray="2 4"/>
+    <text x="870" y="226" text-anchor="middle" font-size="15" font-weight="700">Notification service</text><text x="870" y="246" text-anchor="middle" font-size="11" style="fill:var(--fg2)">External · cloud</text>
+    <rect x="20" y="330" width="200" height="60" fill="var(--app)" stroke="var(--line)" stroke-width="2"/>
+    <text x="120" y="356" text-anchor="middle" font-size="15" font-weight="700">Portal pages</text><text x="120" y="376" text-anchor="middle" font-size="11" style="fill:var(--fg2)">Application · on premises</text>
+    <rect x="560" y="330" width="170" height="60" fill="var(--tech)" stroke="var(--line)" stroke-width="2" stroke-dasharray="14 4"/>
+    <text x="645" y="356" text-anchor="middle" font-size="15" font-weight="700">Analytics</text><text x="645" y="376" text-anchor="middle" font-size="11" style="fill:var(--fg2)">Technology · on premises</text>
+    <!-- arrows -->
+    <line x1="190" y1="75" x2="268" y2="75" stroke="var(--fg)" stroke-width="2" marker-end="url(#ah)"/>
+    <text x="229" y="66" text-anchor="middle" font-size="11">approval</text>
+    <line x1="470" y1="58" x2="558" y2="58" stroke="var(--fg)" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#ah)"/>
+    <text x="514" y="50" text-anchor="middle" font-size="11">digest content</text>
+    <line x1="370" y1="130" x2="370" y2="198" stroke="var(--fg)" stroke-width="2" marker-end="url(#ah)"/>
+    <text x="378" y="168" font-size="11">recipient batch</text>
+    <line x1="470" y1="230" x2="558" y2="230" stroke="var(--fg)" stroke-width="2" marker-end="url(#ah)"/>
+    <text x="514" y="222" text-anchor="middle" font-size="11">send request</text>
+    <line x1="730" y1="230" x2="798" y2="230" stroke="var(--fg)" stroke-width="2" marker-end="url(#ah)"/>
+    <text x="764" y="222" text-anchor="middle" font-size="11">HTTPS</text>
+    <path d="M470,112 H870 V198" fill="none" stroke="var(--fg)" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#ah)"/>
+    <text x="700" y="106" text-anchor="middle" font-size="11">delivery status (daily poll)</text>
+    <path d="M120,330 V122 H268" fill="none" stroke="var(--fg)" stroke-width="2" marker-end="url(#ah)"/>
+    <text x="128" y="250" font-size="11">consent changes</text><text x="128" y="264" font-size="11">and unsubscribes</text>
+    <line x1="220" y1="360" x2="558" y2="360" stroke="var(--fg)" stroke-width="2" marker-end="url(#ah)"/>
+    <text x="390" y="352" text-anchor="middle" font-size="11">page views with campaign tag</text>
+    <text x="645" y="284" text-anchor="middle" font-size="12" font-weight="700" style="fill:var(--cau)">No fallback</text>
+    <text x="645" y="300" text-anchor="middle" font-size="11" style="fill:var(--cau)">Single point of failure: every send</text>
+    <text x="645" y="314" text-anchor="middle" font-size="11" style="fill:var(--cau)">and every status poll uses this rule</text>
+    <!-- legend -->
+    <line x1="20" y1="436" x2="60" y2="436" stroke="var(--fg)" stroke-width="2" marker-end="url(#ah)"/><text x="68" y="440" font-size="12">Live call (waits for an answer)</text>
+    <line x1="290" y1="436" x2="330" y2="436" stroke="var(--fg)" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#ah)"/><text x="338" y="440" font-size="12">Batch or poll</text>
+    <text x="460" y="440" font-size="12" style="fill:var(--cau)">Amber outline = no fallback</text>
+    <text x="690" y="440" font-size="12" style="fill:var(--fg2)">Layer tints as in the node list</text>
+  </svg></div>
+  <p class="small">The analytics tool only needs a campaign tag, never a client identity. The CMS checks the consent log in the audience query before any send. A stream that skips that query skips consent.</p>
+  <details class="learn"><summary>Learn: how to read the dependency view</summary>
+    <p>An arrow points from the system that needs something to the system that provides it. A solid arrow waits for an answer. A dashed arrow is a batch or a poll.</p>
+    <p>A box with many arrows into it is a single point of failure. If there is no fallback, say so in words, as the amber label does here.</p></details>
+
+  <h3>Process flow: one campaign send</h3>
+  <p>This covers the Engagement and Service streams, and the Subscription digests that go out in batches. The happy path runs along the top. The exception paths loop back or branch.</p>
+  <div class="diagram scroll"><svg id="flow" viewBox="0 0 960 400" role="img" aria-labelledby="flow-t" width="960">
+    <title id="flow-t">A campaign send passes two decisions before it goes out, then a daily poll suppresses hard bounces</title>
+    <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--fg)"/></marker></defs>
+    <text x="20" y="22" font-size="12" font-weight="700" style="fill:var(--title)">Happy path</text>
+    <g class="flowstep">
+      <rect x="20" y="40" width="150" height="72" fill="var(--app)" stroke="var(--line)" stroke-width="2"/>
+      <text x="95" y="58" text-anchor="middle" font-weight="700" font-size="12">1. Author</text><text x="95" y="74" text-anchor="middle" font-size="12">picks the use case</text><text x="95" y="90" text-anchor="middle" font-size="12">(wizard screen 1)</text>
+      <rect x="215" y="40" width="150" height="72" fill="var(--app)" stroke="var(--line)" stroke-width="2"/>
+      <text x="290" y="58" text-anchor="middle" font-weight="700" font-size="12">2. Author</text><text x="290" y="74" text-anchor="middle" font-size="12">builds the audience</text><text x="290" y="90" text-anchor="middle" font-size="12">with live count (screen 2)</text>
+      <rect x="410" y="40" width="150" height="72" fill="var(--biz)" stroke="var(--line)" stroke-width="2" stroke-dasharray="8 3 2 3"/>
+      <text x="485" y="58" text-anchor="middle" font-weight="700" font-size="12">Decision:</text><text x="485" y="76" text-anchor="middle" font-size="12">Is the recipient</text><text x="485" y="92" text-anchor="middle" font-size="12">count right?</text>
+      <rect x="605" y="40" width="150" height="72" fill="var(--biz)" stroke="var(--line)" stroke-width="2" stroke-dasharray="8 3 2 3"/>
+      <text x="680" y="58" text-anchor="middle" font-weight="700" font-size="12">3. Approver</text><text x="680" y="74" text-anchor="middle" font-size="12">signs off (two people,</text><text x="680" y="90" text-anchor="middle" font-size="12">director if all clients)</text>
+      <rect x="800" y="40" width="140" height="72" fill="var(--app)" stroke="var(--line)" stroke-width="2"/>
+      <text x="870" y="58" text-anchor="middle" font-weight="700" font-size="12">4. Seed test</text><text x="870" y="74" text-anchor="middle" font-size="12">to Gmail, Outlook,</text><text x="870" y="90" text-anchor="middle" font-size="12">Yahoo, filtered domain</text>
+    </g>
+    <line x1="170" y1="76" x2="213" y2="76" stroke="var(--fg)" stroke-width="2" marker-end="url(#ah2)"/>
+    <line x1="365" y1="76" x2="408" y2="76" stroke="var(--fg)" stroke-width="2" marker-end="url(#ah2)"/>
+    <line x1="560" y1="76" x2="603" y2="76" stroke="var(--fg)" stroke-width="2" marker-end="url(#ah2)"/>
+    <text x="582" y="68" text-anchor="middle" font-size="11" style="fill:var(--pos)">Yes</text>
+    <line x1="755" y1="76" x2="798" y2="76" stroke="var(--fg)" stroke-width="2" marker-end="url(#ah2)"/>
+    <path d="M485,40 V24 H290 V38" fill="none" stroke="var(--cau)" stroke-width="2" marker-end="url(#ah2)"/>
+    <text x="388" y="18" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--cau)">No: change the filters, check the count again</text>
+    <!-- connector to row 2 -->
+    <path d="M870,112 V150 H95 V198" fill="none" stroke="var(--fg)" stroke-width="2" marker-end="url(#ah2)"/>
+    <text x="500" y="144" text-anchor="middle" font-size="11">Seed test looks right</text>
+    <text x="20" y="182" font-size="12" font-weight="700" style="fill:var(--title)">Sending and the exception path</text>
+    <g class="flowstep">
+      <rect x="20" y="200" width="150" height="72" fill="var(--app)" stroke="var(--line)" stroke-width="2"/>
+      <text x="95" y="218" text-anchor="middle" font-weight="700" font-size="12">5. Queue</text><text x="95" y="234" text-anchor="middle" font-size="12">sends in batches</text><text x="95" y="250" text-anchor="middle" font-size="12">through the notification service</text>
+      <rect x="215" y="200" width="150" height="72" fill="var(--app)" stroke="var(--line)" stroke-width="2"/>
+      <text x="290" y="218" text-anchor="middle" font-weight="700" font-size="12">6. CMS polls</text><text x="290" y="234" text-anchor="middle" font-size="12">delivery status daily,</text><text x="290" y="250" text-anchor="middle" font-size="12">inside the 7-day window</text>
+      <rect x="410" y="200" width="150" height="72" fill="var(--biz)" stroke="var(--line)" stroke-width="2" stroke-dasharray="8 3 2 3"/>
+      <text x="485" y="218" text-anchor="middle" font-weight="700" font-size="12">Decision:</text><text x="485" y="236" text-anchor="middle" font-size="12">Did the address</text><text x="485" y="252" text-anchor="middle" font-size="12">hard bounce?</text>
+      <rect x="640" y="180" width="300" height="56" fill="var(--caubg)" stroke="var(--cau)" stroke-width="2"/>
+      <text x="790" y="200" text-anchor="middle" font-weight="700" font-size="12">Yes: suppress that address</text><text x="790" y="218" text-anchor="middle" font-size="12">CMS writes the flag to the profile. No more sends.</text>
+      <rect x="640" y="250" width="300" height="56" fill="var(--posbg)" stroke="var(--pos)" stroke-width="2"/>
+      <text x="790" y="270" text-anchor="middle" font-weight="700" font-size="12">No: log as delivered</text><text x="790" y="288" text-anchor="middle" font-size="12">Campaign report counts it. Analytics shows later visits.</text>
+    </g>
+    <line x1="170" y1="236" x2="213" y2="236" stroke="var(--fg)" stroke-width="2" marker-end="url(#ah2)"/>
+    <line x1="365" y1="236" x2="408" y2="236" stroke="var(--fg)" stroke-width="2" marker-end="url(#ah2)"/>
+    <path d="M560,226 H600 V208 H638" fill="none" stroke="var(--fg)" stroke-width="2" marker-end="url(#ah2)"/>
+    <path d="M560,246 H600 V278 H638" fill="none" stroke="var(--fg)" stroke-width="2" marker-end="url(#ah2)"/>
+    <!-- failure notes -->
+    <rect x="20" y="330" width="920" height="54" fill="var(--panel)" stroke="var(--line)"/>
+    <text x="32" y="351" font-size="12" font-weight="700" style="fill:var(--cau)">Failure points</text>
+    <text x="32" y="368" font-size="12">Step 5 has no fallback if outbound access is blocked. Step 6 loses status after about seven days. Step 3 returns the send if the approver says no (shown in the wizard, not drawn).</text>
+  </svg></div>
+  <details class="learn"><summary>Learn: how to draw a process flow</summary>
+    <p>Show the happy path first, then the exceptions in their own row. A "Decision:" box has two exits, and each exit says what happened. A loop back to an earlier step needs a label that gives the reason.</p></details>
+</section>
+
+<section id="learning">
+  <h2>What we are learning about these artefacts</h2>
+  <div class="callout teamview"><span class="tag t-team">Team view</span>
+    <p>These observations come from building this draft. They are our own judgement, and we should test them as we use more of these artefacts.</p></div>
+  <div class="grid4">
+    <div class="box"><h4>A map without research is a hypothesis</h4>
+      <p>Used as a prompt in a stakeholder session, it is useful. It is easier for business analysts to correct a drawing than to write a requirement from scratch.</p></div>
+    <div class="box"><h4>The blueprint shows what the map hides</h4>
+      <p>The journey map looks fine. The blueprint shows that every send depends on one outbound access rule with no fallback.</p></div>
+    <div class="box"><h4>Naming real things exposes gaps</h4>
+      <p>Writing every cell as a real screen, role or system found open items: system owners, the MFA method, MFA recovery, delegated access, the feedback owner's tools.</p></div>
+    <div class="box"><h4>Unknowns can be shown, not hidden</h4>
+      <p>Client types are unknown, so the table shows where they would matter and marks personas "to be resolved". The structure holds while the unknown is closed.</p></div>
+  </div>
+  <h3>How we could measure the value</h3>
+  <ul>
+    <li>Which decisions changed because of a drawing?</li>
+    <li>How many gaps did each artefact find that the use case tables did not?</li>
+    <li>How long did the business analysts take to correct a draft, compared with writing from a blank page?</li>
+    <li>Which artefact did nobody open after it was shared?</li>
+  </ul>
+</section>
+
+<section id="gate">
+  <h2>What this draft does not cover</h2>
+  <ul>
+    <li>Real client feelings, quotes and the length of each low. Research to confirm: a short interview round with 5 to 8 registered clients, plus the portal's support log for resets and lockouts.</li>
+    <li>Staff effort and service targets. All availability figures say to confirm.</li>
+    <li>Client types and personas. Marked to be resolved until the mix is known.</li>
+    <li>Feedback owner features beyond view and close, such as assigning, tagging, replying or reporting. Suggest a separate UX and product management exploration with the feedback owners.</li>
+    <li>French wording. The English and French files will be separate. French runs 20 to 30 per cent longer, so shapes will leave room.</li>
+  </ul>
+  <div class="next">
+    <b>Before building finished files, three questions to answer:</b>
+    <ol>
+      <li>Are the phases and the emotional curve right? Which pain points are wrong or missing?</li>
+      <li>Which deck: a detailed reference deck read at a desk, or a briefing deck shown to a room?</li>
+      <li>Client types are to be resolved. Can the business analysts name the five that matter most, or can registration data show the mix?</li>
+    </ol>
+  </div>
+</section>
+
+<footer>Sources: the <a href="{{ '/client-email-tiers/' | relative_url }}">capability tiers page</a> (use cases, platform choices, policy map, decisions D-1 to D-9). Phase content, staff roles, metrics and scores are Team view. Storyboard scenes are Illustrative.</footer>
+</div>
+
+<script>
+(function(){
+  var P=[
+   {n:"Register and confirm",ic:"i-form",s:0,ch:"Web form, email",
+    act:"Fills in the registration form and opens the confirmation email (T-1, T-2). Wants access quickly.",
+    feel:"Another account to set up. I hope this is quick.",
+    pain:["Friction","The confirmation email is slow or lands in junk."],succ:"Account active within minutes, in the client's language."},
+   {n:"Choose topics",ic:"i-sliders",s:1,ch:"Preference centre page",
+    act:"Picks topics, sector and language. Wants only what is relevant to them.",
+    feel:"Good, I can choose. I just need the topic names to make sense.",
+    pain:["Friction","Topic names reflect the program's structure, not the client's work."],succ:"At least one topic chosen and a clear save message."},
+   {n:"First alert arrives",ic:"i-mail",s:2,ch:"Email (S-1, S-4)",
+    act:"Reads a short alert about new content and clicks through.",
+    feel:"This is exactly what I would have missed.",
+    pain:["Risk","A wrong segment gets a message they did not ask for."],succ:"Alert is relevant, short, and in the right language."},
+   {n:"Read on the portal",ic:"i-page",s:1,ch:"Portal page behind sign-in",
+    act:"Signs in and reads the full page. Wants the answer without hunting.",
+    feel:"Fine, but I had to sign in again.",
+    pain:["Friction","The email link leads to a sign-in before the content."],succ:"Content opens after one sign-in, with no lost place."},
+   {n:"Locked out",ic:"i-lock",s:-2,ch:"Sign-in page, email (T-3, T-4, T-6)",
+    act:"Forgot the password. Requests a reset, then enters an MFA verification code.",
+    feel:"I just want in. Why is this taking so long?",
+    pain:["Blocked","Reset email is late, the code expires, or there is no other route in. Support route to confirm."],succ:"Back in within five minutes without calling anyone."},
+   {n:"Hear about a service change",ic:"i-bell",s:-1,ch:"Email (O-1 to O-3), banner on sign-in",
+    act:"Reads a maintenance, outage or privacy notice.",
+    feel:"I need to know this, but I did not expect it.",
+    pain:["Risk","A client who opted out of all email never learns the privacy notice changed (D-4)."],succ:"Every client sees the notice by email or by banner."},
+   {n:"Take part and give feedback",ic:"i-chat",s:1,ch:"Email (E-3, E-4, E-6, F-1), forms",
+    act:"Registers for an event, answers a survey, or submits the feedback form.",
+    feel:"Good to be asked. I hope someone reads this.",
+    pain:["Risk","Owners can only view and close feedback for now, so the client gets no reply. Whether to send an acknowledgement (F-1) is to confirm."],succ:"Registration confirmed. Feedback submits and an owner sees it."},
+   {n:"Correction, change or leave",ic:"i-mail",s:0,ch:"Email (S-3, T-7, T-8), confirmation page",
+    act:"Reads a correction, changes topics, unsubscribes, or ignores an inactivity reminder.",
+    feel:"I acted on that page. I need to know what changed.",
+    pain:["Risk","A correction reaches the client late. A mail scanner clicks unsubscribe for them."],succ:"Change takes effect with no sign-in. Record is kept."}
+  ];
+  var SC={2:{c:"pos",w:"Positive"},1:{c:"pos",w:"Positive"},0:{c:"neu",w:"Neutral"},"-1":{c:"cau",w:"Friction"},"-2":{c:"dan",w:"Blocked"}};
+  function sc(v){return (v>0?"+":"")+v}
+  /* curve */
+  var W=960,H=340,x0=70,dx=112,y0=130,k=48;
+  function X(i){return x0+i*dx} function Y(v){return y0-v*k}
+  var s='<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" role="img" aria-labelledby="ct"><title id="ct">Assumed emotional curve: lowest at step 5, locked out, highest at step 3, first alert</title>';
+  [2,1,0,-1,-2].forEach(function(v){s+='<line x1="46" x2="'+(W-20)+'" y1="'+Y(v)+'" y2="'+Y(v)+'" stroke="var(--line)" stroke-width="'+(v===0?1.5:0.6)+'" '+(v===0?'':'stroke-dasharray="2 4"')+'/><text x="38" y="'+(Y(v)+4)+'" text-anchor="end" font-size="12">'+sc(v)+'</text>';});
+  s+='<text x="8" y="'+(Y(2)-18)+'" font-size="11" style="fill:var(--fg2)">Feeling</text>';
+  var pts=P.map(function(p,i){return X(i)+","+Y(p.s)}).join(" ");
+  s+='<polyline points="'+pts+'" fill="none" stroke="var(--c1)" stroke-width="3" stroke-dasharray="9 6" stroke-linejoin="round"/>';
+  P.forEach(function(p,i){
+    var c=SC[p.s].c, col=c==="pos"?"var(--pos)":c==="cau"?"var(--cau)":c==="dan"?"var(--dan)":"var(--line)";
+    s+='<circle cx="'+X(i)+'" cy="'+Y(p.s)+'" r="9" fill="var(--card)" stroke="'+col+'" stroke-width="4"/>';
+    s+='<text x="'+(X(i)+14)+'" y="'+(Y(p.s)-10)+'" font-size="13" font-weight="700">'+sc(p.s)+'</text>';
+    var words=p.n.split(" "),l1="",l2="";
+    words.forEach(function(w){ if((l1+" "+w).trim().length<=16 && !l2) l1=(l1+" "+w).trim(); else l2=(l2+" "+w).trim();});
+    s+='<text x="'+X(i)+'" y="260" text-anchor="middle" font-size="12" font-weight="700">'+(i+1)+'</text>';
+    s+='<text x="'+X(i)+'" y="277" text-anchor="middle" font-size="12">'+l1+'</text>';
+    if(l2) s+='<text x="'+X(i)+'" y="292" text-anchor="middle" font-size="12">'+l2+'</text>';
+    s+='<text x="'+X(i)+'" y="310" text-anchor="middle" font-size="10" style="fill:var(--fg2)">'+SC[p.s].w+'</text>';
+  });
+  s+='<text x="'+X(2)+'" y="'+(Y(2)-24)+'" text-anchor="middle" font-size="13" font-weight="700" style="fill:var(--pos)">Peak: first alert arrives</text>';
+  s+='<text x="'+X(4)+'" y="'+(Y(-2)+32)+'" text-anchor="middle" font-size="13" font-weight="700" style="fill:var(--dan)">Trough: locked out</text>';
+  s+='<text x="'+(W-20)+'" y="26" text-anchor="end" font-size="11" style="fill:var(--cau)">Assumed. No research behind any point.</text>';
+  s+='</svg>';
+  document.getElementById("curve").innerHTML=s;
+  /* cards */
+  var h="";
+  P.forEach(function(p,i){
+    var c=SC[p.s].c;
+    h+='<article class="card"><header><svg style="color:var(--title)" aria-hidden="true"><use href="#'+p.ic+'" width="34" height="34"/></svg><div><div class="n">Step '+(i+1)+'</div><h4>'+p.n+'</h4></div><span class="score s-'+c+'">'+sc(p.s)+' '+SC[p.s].w+'</span></header><dl>'
+     +'<div><dt>Channel</dt><dd>'+p.ch+'</dd></div>'
+     +'<div><dt>Action and goal</dt><dd>'+p.act+'</dd></div>'
+     +'<div><dt>Thoughts and feelings <span class="tag t-ass">Assumed</span></dt><dd>'+p.feel+'</dd></div>'
+     +'<div><dt>Pain point</dt><dd class="pain'+(p.pain[0]==="Blocked"?' blocked':'')+'"><b>'+p.pain[0]+':</b> '+p.pain[1]+'</dd></div>'
+     +'<div><dt>Success looks like</dt><dd>'+p.succ+'</dd></div></dl></article>';
+  });
+  document.getElementById("cards").innerHTML=h;
+  /* storyboard */
+  var S=[
+   {i:0,dev:"laptop",cap:"Registers and waits for the confirmation email.",th:"Assumed: I hope this is quick.",mood:"neu"},
+   {i:2,dev:"phone",cap:"Reads a short alert and taps the link.",th:"Assumed: This is what I would have missed.",mood:"pos"},
+   {i:4,dev:"laptop",cap:"Locked out. Waits for the reset email.",th:"Assumed: Why is this taking so long?",mood:"dan"},
+   {i:5,dev:"phone",cap:"Reads a notice about a privacy change.",th:"Assumed: I did not expect this.",mood:"cau"},
+   {i:7,dev:"laptop",cap:"Unsubscribes from one topic, no sign-in.",th:"Assumed: Good, that was easy.",mood:"pos"}
+  ];
+  var o="";
+  S.forEach(function(p){
+    var col=p.mood==="pos"?"var(--pos)":p.mood==="cau"?"var(--cau)":p.mood==="dan"?"var(--dan)":"var(--line)";
+    var d=p.dev==="laptop"
+      ? '<rect x="70" y="118" width="86" height="54" rx="3" fill="var(--card)" stroke="var(--fg)" stroke-width="2"/><rect x="58" y="172" width="110" height="7" rx="2" fill="var(--fg)"/>'
+      : '<rect x="86" y="112" width="42" height="70" rx="6" fill="var(--card)" stroke="var(--fg)" stroke-width="2"/>';
+    o+='<figure class="panel" style="margin:0"><svg viewBox="0 0 220 200" width="220" role="img" aria-label="'+p.cap+'">'
+     +'<rect x="0" y="0" width="220" height="200" fill="var(--neubg)"/>'
+     +'<text x="10" y="18" font-size="11" font-weight="700" style="fill:var(--fg2)">Step '+(p.i+1)+' · Illustrative</text>'
+     +'<ellipse cx="170" cy="76" rx="38" ry="24" fill="var(--card)" stroke="'+col+'" stroke-width="2.5"/>'
+     +'<circle cx="150" cy="104" r="4" fill="var(--card)" stroke="'+col+'" stroke-width="2"/><circle cx="143" cy="114" r="2.5" fill="var(--card)" stroke="'+col+'" stroke-width="2"/>'
+     +'<text x="170" y="72" text-anchor="middle" font-size="10">Assumed</text><text x="170" y="84" text-anchor="middle" font-size="10">thought</text>'
+     +'<circle cx="104" cy="52" r="15" fill="var(--title)"/>'
+     +'<rect x="84" y="70" width="40" height="46" rx="10" fill="var(--title)"/>'
+     +d+'</svg><figcaption class="cap"><b>'+p.cap+'</b><br><span class="small">'+p.th+'</span></figcaption></figure>';
+  });
+  document.getElementById("story").innerHTML=o;
+  /* blueprint table */
+  var L=[
+   ["Customer action","",[
+    "Fills in the form, opens the confirmation email","Picks topics, sector and language","Reads a short alert, clicks the link","Signs in, reads the full page","Requests a reset, enters a code","Reads a maintenance, outage or privacy notice","Registers for an event, answers a survey, sends feedback","Reads a correction, edits topics, unsubscribes"]],
+   ["Touchpoint","",[
+    "Registration form. Email T-1, T-2","Preference centre page","Email S-1, S-4. Landing page","Portal page behind sign-in","Sign-in page and MFA screen. Email T-3, T-4, T-6","Email O-1 to O-3. Banner on sign-in","Email E-3, E-4, E-6, F-1. Forms","Email S-3, T-7, T-8. Confirmation page"]],
+   ["Frontstage actions","l-front",[
+    "Confirmation page. English and French template pair","Topic list with plain labels. Save message","Teaser email in the client's language. Link carries a campaign tag","Accessible bilingual page content","Reset form, email and MFA code screen. Wording <span class=tbc>to confirm</span>","Plain notice. Banner on next sign-in if D-4 option (c) is chosen","Event page, survey form, acknowledgement email","Correction email names the page. Unsubscribe page needs no sign-in"]],
+   "sepv",
+   ["Backstage actions","l-back",[
+    "Staff approve the account <span class=tbc>(manual or automatic, to confirm)</span>","Taxonomy steward keeps role, sector, region and topic lists current","Author builds audience. Two people approve. Translator supplies French","Content editor publishes and tags the page by topic","Support staff handle lockouts <span class=tbc>(to confirm)</span>","Service owner drafts the notice. Privacy officer reviews terms changes","Event organizer runs the list. Feedback owner views and closes forms in the CMS","Editor flags the correction. Privacy officer reviews retention. Records kept"]],
+   "sepi",
+   ["Support systems","l-sys",[
+    "CMS user record, consent log, Notification service","CMS profile, taxonomies, consent log","CMS audience query, send queue, Notification service, Search index, Analytics","CMS, Search index, Analytics","CMS sign-in with MFA, Notification service priority send. MFA method <span class=tbc>to confirm</span>","CMS audience query, Notification service, sign-in banner","CMS feedback view (view and close). Notification service for event emails","CMS consent log, suppression flag, Notification service, Search index"]],
+   ["Metrics and failure points","l-met",[
+    "<b>Metric:</b> confirmation rate.<br><b>Failure:</b> typo in address bounces. <span class=nf>No fallback</span> if outbound access is blocked","<b>Metric:</b> share of accounts with a topic.<br><b>Failure:</b> default topics wrong (D-3)","<b>Metric:</b> portal visits per send.<br><b>Failure:</b> wrong segment. Scanners pre-click links. <span class=nf>No fallback</span> if outbound access is blocked","<b>Metric:</b> page reads per campaign.<br><b>Failure:</b> session expires and loses the client's place","<b>Metric:</b> time to reset.<br><b>Failure:</b> late code or reset email from the notification service. Lost MFA device with no recovery route <span class=tbc>(to confirm)</span>","<b>Metric:</b> notices delivered.<br><b>Failure:</b> opted-out client misses a privacy change. The notification service is not an emergency channel","<b>Metric:</b> registrations, survey responses.<br><b>Failure:</b> no reply to the client. Owners have only view and close. Feedback can sit unseen","<b>Metric:</b> unsubscribes processed within 10 business days (Team view, anti-spam law benchmark).<br><b>Failure:</b> scanner clicks unsubscribe. Status gone after about 7 days"]]
+  ];
+  var t='<table class="bp"><thead><tr><th class="lane">Lane</th>';
+  P.forEach(function(p,i){t+='<th>'+(i+1)+'. '+p.n+'</th>'});
+  t+='</tr></thead><tbody>';
+  L.forEach(function(r){
+    if(r==="sepv"){t+='<tr class="sep"><td class="lane" colspan="1">Line of visibility</td><td colspan="8"></td></tr>';return;}
+    if(r==="sepi"){t+='<tr class="sep heavy"><td class="lane" colspan="1">Line of internal interaction</td><td colspan="8"></td></tr>';return;}
+    t+='<tr class="'+r[1]+'"><th class="lane" scope="row">'+r[0]+'</th>';
+    r[2].forEach(function(c){t+='<td>'+c+'</td>'});
+    t+='</tr>';
+  });
+  t+='</tbody></table>';
+  document.getElementById("bpwrap").innerHTML=t;
+})();
+</script>
+<div id="tip" role="tooltip"></div>
+<script>
+(function(){
+  var NO="No opt-out", PT="Opt-out per topic", DEC="Opt-out is a decision";
+  var UC={
+   "T-1":["Confirm your email address","Registration submitted",NO],
+   "T-2":["Account approved, welcome","Account activated",NO],
+   "T-3":["Password reset","Client requests it",NO],
+   "T-4":["Sign-in verification code","Sign-in with MFA",NO],
+   "T-5":["Email address changed","Profile change, sent to the old and new address",NO],
+   "T-6":["Unusual sign-in, account locked","Security event",NO],
+   "T-7":["Account inactive, act now","Inactivity threshold reached",NO],
+   "T-8":["Account closed","Deactivation",NO],
+   "S-1":["New content in a topic you follow","Publication, to subscribers of that topic",PT],
+   "S-2":["Periodic digest","Weekly or monthly, by role, sector and region",PT],
+   "S-3":["Content you read was corrected or withdrawn","Editorial change on a page the client opened",DEC],
+   "S-4":["Scheduled release is now available","Publication calendar date",PT],
+   "S-5":["Saved search has new results","New content matches a saved search",PT+" or saved search"],
+   "E-1":["Announcement to all clients","Manual, all active accounts",PT],
+   "E-2":["Targeted announcement","Manual, by role, sector or region",PT],
+   "E-3":["Event invitation","Manual, to clients subscribed to events",PT],
+   "E-4":["Event reminder and follow-up","Scheduled from event registration",PT],
+   "E-5":["Re-engagement of dormant accounts","Scheduled, no sign-in for a set number of days",PT],
+   "E-6":["Survey or consultation invitation","Manual, to a segment",PT],
+   "O-1":["Planned maintenance notice","Scheduled, all active accounts",DEC],
+   "O-2":["Unplanned outage notice","Incident",DEC],
+   "O-3":["Terms or privacy notice change","Policy change, all accounts",DEC],
+   "F-1":["We received your feedback","Feedback form submitted. Whether to send it is to confirm","Not applicable"],
+   "F-2":["A staff member replies to you","Not planned now. Owners can only view and close feedback","Not applicable"],
+   "F-3":["Was this page useful, follow-up","Rating submitted. Not in scope for now","Not applicable"],
+   "D-1":["Decision: role AND sector, or role OR sector?","Default: the author chooses, with a live recipient count"],
+   "D-2":["Decision: do clients choose their topics?","Default: the client chooses"],
+   "D-3":["Decision: are new accounts subscribed by default?","Default: announcements on, everything else off"],
+   "D-4":["Decision: is any email non-optional?","Default: a named, disclosed class of service email"],
+   "D-5":["Decision: how is feedback answered?","Narrowed in review: no reply route for now. Owners view and close in the CMS"],
+   "D-6":["Decision: do we need open rates?","Default: no. Portal activity is the measure"],
+   "D-7":["Decision: which sender domain?","Default: a dedicated notification domain"],
+   "D-8":["Decision: what is the inactivity policy?","Default: remind at 90 days, up to three times, then review"],
+   "D-9":["Decision: who approves a campaign?","Default: two people, and a director for all-client sends"]
+  };
+  var re=/\b([TSEOFD]-\d)\b/g;
+  function walk(n){
+    if(n.nodeType===3){
+      var t=n.nodeValue; re.lastIndex=0;
+      if(!re.test(t)) return;
+      re.lastIndex=0;
+      var f=document.createDocumentFragment(),last=0,m;
+      while((m=re.exec(t))){
+        if(!UC[m[1]]) continue;
+        f.appendChild(document.createTextNode(t.slice(last,m.index)));
+        var a=document.createElement("abbr"); a.className="uc"; a.tabIndex=0; a.setAttribute("data-id",m[1]); a.textContent=m[1];
+        f.appendChild(a); last=m.index+m[0].length;
+      }
+      if(!last) return;
+      f.appendChild(document.createTextNode(t.slice(last)));
+      n.parentNode.replaceChild(f,n);
+    } else if(n.nodeType===1){
+      var tag=n.tagName.toLowerCase();
+      if(tag==="svg"||tag==="script"||tag==="style"||tag==="abbr"||tag==="title"||n.id==="tip") return;
+      Array.prototype.slice.call(n.childNodes).forEach(walk);
+    }
+  }
+  Array.prototype.slice.call(document.querySelectorAll(".wrap")).forEach(walk);
+  var tip=document.getElementById("tip");
+  function show(el){
+    var d=UC[el.getAttribute("data-id")]; if(!d) return;
+    var html="<b>"+el.getAttribute("data-id")+" · "+d[0]+"</b><br>"+(d[2]?"Trigger: ":"")+d[1]+(d[2]?"<br>"+d[2]:"");
+    tip.innerHTML=html; tip.style.display="block";
+    var r=el.getBoundingClientRect(),w=tip.offsetWidth,h=tip.offsetHeight;
+    var left=Math.min(Math.max(8,r.left),window.innerWidth-w-8);
+    var top=r.bottom+6; if(top+h>window.innerHeight-8) top=Math.max(8,r.top-h-6);
+    tip.style.left=left+"px"; tip.style.top=top+"px";
+    el.setAttribute("aria-describedby","tip");
+  }
+  function hide(){ tip.style.display="none"; }
+  document.addEventListener("mouseover",function(e){var el=e.target.closest&&e.target.closest(".uc"); if(el) show(el);});
+  document.addEventListener("mouseout",function(e){var el=e.target.closest&&e.target.closest(".uc"); if(el) hide();});
+  document.addEventListener("focusin",function(e){var el=e.target.closest&&e.target.closest(".uc"); if(el) show(el);});
+  document.addEventListener("focusout",function(e){var el=e.target.closest&&e.target.closest(".uc"); if(el) hide();});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape") hide();});
+  window.addEventListener("scroll",hide,{passive:true});
+})();
+</script>
+</body>
+</html>

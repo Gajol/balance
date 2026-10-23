@@ -16,6 +16,8 @@ Notes on how digital services get designed, built and run, with a focus on gover
 
 ## Product management and UX
 - [Client email capability tiers]({{ '/client-email-tiers/' | relative_url }}) - an interactive tool to pick capability tiers for client email, with the dependencies and transition value carried into the BRD, security and integration work.
+- [Client email: journey map and service blueprint]({{ '/client-email-journey-blueprint/' | relative_url }}) - a worked example of the client's journey, and the staff work, systems and dependencies behind each step.
+- [From strawman to blueprint: designing client email]({{ '/journey-map-and-service-blueprint/' | relative_url }}) - how the strawman, tiers, journey map and blueprint fit together.
 
 ## Azure DevOps (AZ-400)
 {% include theme-list.html theme="digital" path="application/devops" %}
