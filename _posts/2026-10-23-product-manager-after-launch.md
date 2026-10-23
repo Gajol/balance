@@ -5,6 +5,8 @@ date: 2026-10-23 09:25:00 -0400
 description: "Projects end at launch, but content ages from that day. Someone has to own the product after the project team leaves."
 excerpt: "Projects end at launch, but content ages from that day. Someone has to own the product after the project team leaves."
 theme: digital
+author_profile: false
+classes: wide
 tags: [product management, ux, governance, intranet]
 ---
 

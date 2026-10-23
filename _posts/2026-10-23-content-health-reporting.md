@@ -5,6 +5,8 @@ date: 2026-10-23 09:05:00 -0400
 description: "Four simple measures show which parts of a site are healthy and which need attention, with no extra work for readers."
 excerpt: "Four simple measures show which parts of a site are healthy and which need attention, with no extra work for readers."
 theme: digital
+author_profile: false
+classes: wide
 tags: [analytics, content, governance, matomo]
 ---
 

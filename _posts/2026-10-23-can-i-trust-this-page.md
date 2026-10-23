@@ -5,6 +5,8 @@ date: 2026-10-23 09:00:00 -0400
 description: "Owner, last reviewed date and status: three small signals that turn a page people doubt into a page people use."
 excerpt: "Owner, last reviewed date and status: three small signals that turn a page people doubt into a page people use."
 theme: digital
+author_profile: false
+classes: wide
 tags: [intranet, content, trust, ux]
 ---
 

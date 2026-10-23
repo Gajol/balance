@@ -5,6 +5,8 @@ date: 2026-10-23 09:15:00 -0400
 description: "If search, reports and menus all use the same list of terms, you can finally compare them."
 excerpt: "If search, reports and menus all use the same list of terms, you can finally compare them."
 theme: digital
+author_profile: false
+classes: wide
 tags: [taxonomy, search, analytics, navigation]
 ---
 

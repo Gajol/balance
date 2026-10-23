@@ -5,6 +5,8 @@ date: 2026-10-23 09:20:00 -0400
 description: "A platform that launches without a plan for who runs it will drift. A short RACI and five roles keep it healthy."
 excerpt: "A platform that launches without a plan for who runs it will drift. A short RACI and five roles keep it healthy."
 theme: digital
+author_profile: false
+classes: wide
 tags: [operating model, raci, governance, roles]
 ---
 

@@ -5,6 +5,8 @@ date: 2026-10-23 09:30:00 -0400
 description: "A web platform is only as strong as the team behind it. Explore which skills a team needs, how experience changes coverage, and how hiring delays and turnover open gaps over time."
 excerpt: "A web platform is only as strong as the team behind it. Explore which skills a team needs, how experience changes coverage, and how hiring delays and turnover open gaps over time."
 theme: digital
+author_profile: false
+classes: wide
 tags: [resourcing, skills, operating model, product management, staffing]
 ---
 
