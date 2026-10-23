@@ -755,6 +755,22 @@ Viral pandemics are guaranteed to reappear.
 | H1N1 2009                                                  | 3                  |
 | Seasonal Influenza 2007-2015 (removing pandemic year 2009) | 6                  |
 
+**Editors' note (2026):** COVID-19 was the pandemic that "reappeared". It was far deadlier than any flu in the table above. In the US the rate was roughly 90 per 100,000 in 2020 and about 150 in the year to December 2021, falling to about 60 in 2022. At its worst year that is about four times the 1957 flu. Worldwide, the WHO estimates about 14.8 million excess deaths in 2020 and 2021, almost three times the 5.4 million officially reported.
+
+<div class="hv" markdown="0">
+<h4>Deaths per 100,000 people, per year: flu pandemics vs COVID-19</h4>
+<div class="r " tabindex="0"><div class="l">H1N1<small>2009</small></div><div class="b"><i style="width:2.0%"></i><em style="left:calc(2.0% + 8px)">3</em></div><div class="tip">Pandemic flu, from the table above.</div></div>
+<div class="r " tabindex="0"><div class="l">Seasonal flu<small>2007 to 2015 average</small></div><div class="b"><i style="width:4.0%"></i><em style="left:calc(4.0% + 8px)">6</em></div><div class="tip">Seasonal influenza with the pandemic year removed, from the table above.</div></div>
+<div class="r " tabindex="0"><div class="l">H3N2<small>1968 to 1970</small></div><div class="b"><i style="width:18.7%"></i><em style="left:calc(18.7% + 8px)">28</em></div><div class="tip">From the table above.</div></div>
+<div class="r " tabindex="0"><div class="l">H2N2<small>1957 to 1959</small></div><div class="b"><i style="width:25.3%"></i><em style="color:#fff">38</em></div><div class="tip">From the table above. The worst flu pandemic in these notes.</div></div>
+<div class="r hot" tabindex="0"><div class="l">COVID-19<small>US, 2022</small></div><div class="b"><i style="width:40.7%"></i><em style="color:#fff">about 61</em></div><div class="tip">Rate for 2022 (Statista, May 2023).</div></div>
+<div class="r hot" tabindex="0"><div class="l">COVID-19<small>US, 2020</small></div><div class="b"><i style="width:62.0%"></i><em style="color:#fff">about 93</em></div><div class="tip">Rate for 2020 (Statista, May 2023).</div></div>
+<div class="r hot" tabindex="0"><div class="l">COVID-19<small>US, Dec 2020 to Dec 2021</small></div><div class="b"><i style="width:100.0%"></i><em style="color:#fff">about 150</em></div><div class="tip">My estimate: about 504,000 US deaths in that year (775,000 minus 271,000, from Wikipedia's counts) divided by about 330 million people.</div></div>
+<p class="n">Hover or tap a row for detail. These are rough, and not a perfect match: the notes do not say what period the older flu figures cover, and the COVID figures come from different sources. Read it as order of magnitude, not exact.</p>
+</div>
+
+Sources: [Statista, COVID-19 death rates in the US](https://www.statista.com/statistics/1382356/covid-death-rates-us-by-year); [Wikipedia, COVID-19 pandemic deaths](https://en.wikipedia.org/wiki/COVID-19_pandemic_deaths) (WHO excess-mortality estimate of December 2022 and US counts).
+
 Seasonal flu: 67% of deaths are among people over 65.
 
 COVID-19: USA 81% of deaths were people aged 65 and over.
