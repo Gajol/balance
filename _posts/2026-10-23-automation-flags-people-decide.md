@@ -55,6 +55,25 @@ Machines are good at noticing and reminding. People are good at judging. So:
 .wx .tag.am{border-color:#d98e04;color:#d98e04}
 .wx .sr{border:1px solid rgba(128,128,128,.35);border-radius:6px;padding:7px 10px;margin:4px 0;transition:all .3s}
 .wx .sr.me{border:2px solid #1f6feb;background:rgba(31,111,235,.1)}
+.wx .tlw{overflow-x:auto;padding-bottom:4px}
+.wx .tl{display:grid;grid-template-columns:repeat(17,minmax(26px,1fr));gap:2px;min-width:480px;margin-top:8px}
+.wx .tl .c{text-align:center;border-radius:6px;padding:2px 0;opacity:.38;transition:opacity .25s}
+.wx .tl .c.on{opacity:1}
+.wx .tl .c.cur{outline:2px solid #1f6feb;background:rgba(31,111,235,.12)}
+.wx .tl .n{font-size:.7em;opacity:.8}
+.wx .tl .ic{font-size:1.25em;line-height:1.5em;height:1.5em;cursor:default}
+.wx .rib{height:12px;border-radius:3px;margin-top:2px}
+.wx .ri{font-size:.95em;line-height:1.3em;height:1.3em}
+.wx .legend{display:flex;flex-wrap:wrap;gap:2px 14px;font-size:.82em;opacity:.9;margin-top:6px}
+.wx .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:10px}
+.wx .tile{border:2px solid rgba(128,128,128,.4);border-radius:10px;padding:8px;text-align:center;transition:all .25s}
+.wx .tile .ti{font-size:1.8em;line-height:1.2}
+.wx .tile .tv{font-weight:700}
+.wx .tile .tl2{font-size:.76em;text-transform:uppercase;letter-spacing:.06em;opacity:.75}
+.wx .tile.g{border-color:#2da44e;background:rgba(45,164,78,.1)}
+.wx .tile.y{border-color:#d98e04;background:rgba(217,142,4,.1)}
+.wx .tile.r{border-color:#e5534b;background:rgba(229,83,75,.1)}
+.wx .tile.x{border-color:rgba(128,128,128,.6);background:rgba(128,128,128,.12)}
 .wx .dots{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;max-width:340px}
 .wx .dots i{display:block;aspect-ratio:1;border-radius:50%;background:#e5534b;transition:background .3s}
 .wx .dots i.a{background:#d98e04}.wx .dots i.g{background:#2da44e}.wx .dots i.x{background:rgba(128,128,128,.5)}
@@ -62,7 +81,7 @@ Machines are good at noticing and reminding. People are good at judging. So:
 
 ## Try it: one stale page, week by week
 
-Follow a single stale page. Choose how reminders are sent, how the owner behaves, and how long the grace period is. Then drag the week slider, or press **Play**. On the right, the page changes in search results and the log shows the **impact**. On the left, three people react. All numbers are illustrative.
+Follow a single stale page. Choose how reminders are sent, how the owner behaves, and how long the grace period is. Then drag the week slider, or press **Play**. On the right, the page moves in the search results, a timeline of icons shows what happened and when, and four tiles show the **impact** on the page. On the left, three people react. All numbers are illustrative.
 
 <div class="wx" markdown="0" id="w10">
 <div class="row">
@@ -80,8 +99,11 @@ Follow a single stale page. Choose how reminders are sent, how the owner behaves
 <div>
 <div class="note">Staff search for: <strong>leave policy</strong></div>
 <div id="w10sr"></div>
-<div style="overflow-x:auto"><table id="w10t" style="margin-top:8px"></table></div>
-<div class="card" id="w10r" aria-live="polite"></div>
+<div class="tlw"><div class="tl" id="w10tl"></div><div class="tl" id="w10rb" aria-hidden="true"></div></div>
+<div class="legend"><span>&#128681; Flagged</span><span>&#128276; Reminder: owner</span><span>&#128084; Escalated: manager</span><span>&#129517; Escalated: product owner</span><span>&#8618;&#65039; Rerouted</span><span>&#9989; Resolved</span><span>&#128230; Archived</span></div>
+<div class="tiles" id="w10im"></div>
+<div class="card" id="w10cap" aria-live="polite" style="margin-top:10px"></div>
+<div class="card" id="w10r"></div>
 </div>
 </div>
 </div>
@@ -148,9 +170,21 @@ function draw(){
  var h=rows.join('');
  if(st=="archived")h+='<div class="note" style="margin-top:4px">&ldquo;Leave policy&rdquo; is no longer in search. It is in the archive, with a restore link.</div>';
  g('w10sr').innerHTML=h;
- var t='<tr><th>Week</th><th>What happens</th><th>Impact on the page</th></tr>';
- M.ev.forEach(function(e){if(e.w<=w)t+='<tr><td>'+e.w+'</td><td style="text-align:left">'+e.t+'</td><td style="text-align:left">'+e.i+'</td></tr>';});
- g('w10t').innerHTML=t;
+ var IC={flag:"&#128681;",ro:"&#128276;",rm:"&#128084;",rp:"&#129517;",bounce:"&#8618;&#65039;",ok:"&#9989;",arch:"&#128230;"};
+ var byW={};M.ev.forEach(function(e){byW[e.w]=e;});
+ var SC={stale:"#f0b429",demoted:"#f08c00",candidate:"#e5534b",current:"#2da44e",archived:"#8a8f98"},SI={stale:"&#127991;&#65039;",demoted:"&#128201;",candidate:"&#9888;&#65039;",current:"&#9989;",archived:"&#128230;"};
+ var tl='',rb='',prev='',k;
+ for(k=0;k<=16;k++){var e=byW[k],sk=stage(k),on=k<=w,cl='c'+(on?' on':'')+(k==w?' cur':'');
+  tl+='<div class="'+cl+'"><div class="n">'+k+'</div><div class="ic" title="'+(e?'Week '+k+': '+e.t.replace(/"/g,''):'')+'">'+(e?IC[e.k]:'')+'</div></div>';
+  rb+='<div class="'+cl+'"><div class="rib" style="background:'+SC[sk]+'"></div><div class="ri">'+(sk!=prev?SI[sk]:'')+'</div></div>';prev=sk;}
+ g('w10tl').innerHTML=tl;g('w10rb').innerHTML=rb;
+ var lab={stale:["&#127991;&#65039;","Needs review","r"],demoted:["&#127991;&#65039;","May be out of date","r"],candidate:["&#127991;&#65039;","Archive candidate","r"],current:["&#127991;&#65039;","Reviewed","g"],archived:["&#127991;&#65039;","None","x"]}[st];
+ var rk={current:["#1","g"],stale:["#2","y"],demoted:["#3","y"],candidate:["#4","r"],archived:["Out","x"]}[st];
+ var mn={current:["Listed","g"],stale:["Listed","g"],demoted:["Listed","g"],candidate:["Dropped","r"],archived:["Removed","x"]}[st];
+ var ar={current:["No","g"],stale:["No","g"],demoted:["No","g"],candidate:["Next","y"],archived:["Yes, restorable","x"]}[st];
+ g('w10im').innerHTML='<div class="tile '+lab[2]+'"><div class="ti">'+lab[0]+'</div><div class="tv">'+lab[1]+'</div><div class="tl2">Label on page</div></div><div class="tile '+rk[1]+'"><div class="ti">&#128269;</div><div class="tv">'+rk[0]+'</div><div class="tl2">Search position</div></div><div class="tile '+mn[1]+'"><div class="ti">&#129517;</div><div class="tv">'+mn[0]+'</div><div class="tl2">Menus and featured</div></div><div class="tile '+ar[1]+'"><div class="ti">&#128230;</div><div class="tv">'+ar[0]+'</div><div class="tl2">Archived</div></div>';
+ var lastE=null;M.ev.forEach(function(e){if(e.w<=w)lastE=e;});
+ g('w10cap').innerHTML=lastE?'<span style="font-size:1.4em" aria-hidden="true">'+IC[lastE.k]+'</span> <strong>Week '+lastE.w+':</strong> '+lastE.t:'';
  var msg={current:'<span class="good">Resolved by the owner in week '+M.done+'.</span> The page stays live and its review date resets. Automation did the chasing. A person made the call.',reassigned:'<span class="good">Resolved by the product owner in week '+M.done+'.</span> Because the owner had left, the system rerouted the task instead of letting it sit. Also check why the owner field was out of date.',archived:'<span class="bad">No one answered.</span> The page was archived in week '+M.gr+' and can be restored with one click. A longer grace period is kinder to busy owners. A shorter one keeps the site cleaner.'};
  g('w10r').innerHTML=w>=M.last?msg[M.res]:'<span class="note">Keep going. Drag the week slider or press Play to see what happens next.</span>';
 }
