@@ -598,285 +598,268 @@ Neural networks have been setup to validate prospect theory.  The theory is fair
 
 # Reference
 
-## Articles
+This section is the working library behind the notes above. It is grouped so you can scan it: use the jump links, type in the filter box, or open and close the groups. The "In design" column in the first table is my own reading of each idea for interface and service design, not Kahneman's.
 
-- [Afiki, Y., Bar, M. Our need for associative coherence. *Humanit Soc Sci Commun* **7**, 80 (2020).](https://doi.org/10.1057/s41599-020-00577-w)
-- [Conditions for intuitive expertise: a failure to disagree](https://doi.org/10.1037/a0016755)
-- Judgment Under Uncertainty: Heuristics and Biases - Tversky and Kahneman
-- [[PDF\] Choices, Values, and Frames | Semantic Scholar](https://www.semanticscholar.org/paper/Choices%2C-Values%2C-and-Frames-Kahneman-Tversky/44eab3013cb6c63a534570994c9cffe3935ec7ed)
-- [Dawn of Post Theory Science - 2022 - The Guardian](https://www.theguardian.com/technology/2022/jan/09/are-we-witnessing-the-dawn-of-post-theory-science)
+<div id="ref-tools" markdown="0">
+<nav class="ref-jump" aria-label="Jump within the reference section">
+<a href="#ref-biases">Biases</a>
+<a href="#ref-other-biases">Other biases</a>
+<a href="#ref-terms">Terms</a>
+<a href="#ref-people">People</a>
+<a href="#ref-reading">Books and papers</a>
+<a href="#ref-more">Quotes and more</a>
+</nav>
+<div class="ref-filter">
+<label for="ref-q">Filter the reference</label>
+<input id="ref-q" type="search" placeholder="Try: anchor, risk, Slovic, survey" autocomplete="off">
+<span id="ref-count" aria-live="polite"></span>
+<button type="button" id="ref-clear" hidden>Clear</button>
+</div>
+</div>
 
-## Biases of Judgment
+<div id="ref-wrap" markdown="1">
 
-- Overconfidence:  We fail to allow for the possibility that evidence that should be critical to our judgment is missing.  Our beliefs depend mostly on the quality of the story.
+<details class="ref-group" open markdown="1">
+<summary id="ref-biases">Biases and heuristics, with what they mean in design</summary>
 
-- [Framing Effects](https://en.wikipedia.org/wiki/Framing_effect_(psychology)):  Presenting the same information differently can evoke different effects.  The odds of surviving are 90%.  The odds of dying are 10%.  The framing effect is a cognitive bias where people decide on options based on whether the options are presented with positive or negative connotations; e.g. as a loss or as a gain.
+A **heuristic** is a quick rule of thumb. A **bias** is the predictable error it sometimes causes. Each row links to the part of these notes that covers it.
 
-- Base-Rate Neglect
+| Bias or heuristic | What it is | In design (UI/UX) | In these notes |
+| --- | --- | --- | --- |
+| Anchoring | The first number or reference point seen pulls later estimates toward it, even when it is random (wheel of fortune; the asking price on a house). | Defaults, suggested amounts and "was / now" prices act as anchors. Choose defaults on purpose and test them. | [Anchors](#anchors) |
+| Availability heuristic | Judging how common something is by how easily examples come to mind. Vivid or recent events feel more likely. | A feed of recent incidents makes rare events feel common. Show rates next to stories. | [Science of Availability](#science-of-availability) |
+| Affect heuristic | Likes and dislikes decide beliefs about risk and benefit (Paul Slovic[^Slovic]). | Tone and visual style change how risky a choice feels. Test wording and look, not only function. | [Availability, Emotion and Risk](#availability-emotion-and-risk) |
+| Mood heuristic | The present state of mind colours judgment. When students were asked about their dates before their happiness, the two answers correlated strongly; reverse the order and the link disappears. | Question order in surveys and forms changes answers. Separate related questions or vary their order. | [Availability, Emotion and Risk](#availability-emotion-and-risk) |
+| Substitution and representativeness | Answering an easier question ("does this look like X?") in place of the hard one ("how likely is X?"). Scouts picked athletes who looked the part until *Moneyball* replaced looks with past performance. | People judge a service by how polished it looks. A good-looking screen can pass for a good service, so measure the service. | [Representativeness and Logic](#representativeness--logic) |
+| Base-rate neglect | Ignoring how common something is in the whole population. A New York Times reader on the subway is more likely to have no degree than a PhD, because far more people have no degree. | When a screen shows a match, score or risk, show the base rate beside it ("3 in 1,000"). | [Representativeness and Logic](#representativeness--logic) |
+| Conjunction fallacy | Judging "A and B" more likely than "A" alone because it fits a story (Linda the bank teller who is active in the feminist movement). | Detailed personas feel real because of their detail, yet each added detail makes them less likely. Treat personas as hypotheses. | [Representativeness and Logic](#representativeness--logic) |
+| Framing effect | The same facts presented differently lead to different choices ("90% survive" versus "10% die"). | Labels, defaults and messages that frame a gain or a loss change behaviour. Write honestly, and test both frames. | [Frames and Reality](#frames-and-reality) |
+| Loss aversion | Losses weigh more than equal gains (System 1). | "You will lose access" is a strong message. Use it truthfully and sparingly, never as a pressure tactic. | [Prospect Theory](#prospect-theory) |
+| Endowment effect | We value what we own more than the same thing when we do not own it. | Free trials work because users feel ownership. Make leaving or cancelling as clear as joining. | [The Endowment Effect](#the-endowment-effect) |
+| Probability neglect | We ignore small risks or give them too much weight. | Warnings for rare risks are either skipped or over-weighted. Keep them specific, and say what to do. | [Risk](#risk) |
+| Planning fallacy | Plans built from the best case, ignoring what happened last time. | Estimate delivery from similar past work, then run a premortem. | [Premortem](#premortem) |
+| Overconfidence and the illusion of understanding | Belief follows the quality of the story, not the evidence. We do not allow for evidence that is missing. | A fluent research summary feels true. Check what each persona or journey map is built on, and label assumptions. | [Illusion of Understanding](#illusion-of-understanding) |
+| WYSIATI (what you see is all there is) | We judge on the information in front of us and ignore what is missing. | Users decide from what is on the screen. If key information is hidden, it will not count. | [Part 1: Two Systems](#part-1-two-systems) |
+| Cognitive ease | Information that is easy to process feels more true and more familiar. | Plain language and legible type raise trust. Use that for clarity, never to disguise weak content. | [Part 1: Two Systems](#part-1-two-systems) |
+| Associative coherence | A coherent story forms quickly from very little (Mindy "will be a good leader"). We stop asking what else we would need to know. | The first screen sets the story and everything after is judged against it. Design the first impression with care. | [Tests](#tests) |
+| Halo effect | One strong trait colours the judgment of the whole. | A polished interface raises the perceived competence of the service. Do not let it hide gaps. | [Part 1: Two Systems](#part-1-two-systems) |
+| Hindsight bias | After the outcome we believe we knew it all along, and cannot recall what we thought before. | In post-incident reviews, write down predictions before the result is known. | [Hindsight Bias](#hindsight-bias) |
+| Law of small numbers | Trusting small samples. Extreme results turn up in small groups: the lowest and highest cancer rates are both in sparsely populated counties[^smallschool]. | A usability test with five people finds problems, not rates. Do not quote percentages from a handful of users. | [The Law of Small Numbers](#the-law-of-small-numbers) |
+| Regression to the mean | Extreme results are followed by more ordinary ones. Luck explains more than we think, which is why praise seems to "cause" worse results and punishment better ones. | Do not credit a redesign for improvement after an unusually bad week. | [Regression to the Mean](#regression-to-the-mean) |
+| Confirmation bias | Favouring evidence that supports what we already believe. The "mother of all biases" in these notes. | Write the research question before the interviews, and ask a colleague to try to disprove the finding. | [Taming Intuitive Predictions](#taming-intuitive-predictions) |
 
-- Heuristics and Biases Approach:  
+</details>
 
-- General Bias:  Favours certainty over doubt.
+<details class="ref-group" markdown="1">
+<summary id="ref-other-biases">Other biases and illusions</summary>
 
-- Hindsight Bias: Once the someone changes their mind, they have a hard time remember why they believed the other point of view. They are no longer able to argue their original point of view. — *hindsight bias*
+Thomas Gilovich's work on how we misread ourselves and others[^Gilovich], plus two perceptual illusions.
 
-- Judgment of representativeness: Ignoring base rates and determining relation by representativeness (description of person being nerdy and guessing they are in engineering, when the base-rate of humanities is much higher).  Substitution is used, since the question of probability is more difficult than the question of similarity is easier.  People substitute the easier question to answer; invoking a mental shotgun.   Example, Moneyball where scouts (representativeness ; look & feel like an athlete) was replaced with statistics about past performance.
+| Name | What it is |
+| --- | --- |
+| Hot hand | Seeing streaks in random sequences, such as a basketball player who "can't miss". |
+| Clustering illusion | Seeing "clusters" in a random sequence of data as if they were not random. |
+| Spotlight effect | The gap between how we think we look to others and how others actually see us. |
+| Bias blind spot | Recognizing biases in other people, but not in ourselves. |
+| Illusion of non-transparency | Overestimating how much others can tell about our thoughts and feelings. |
+| Self-handicapping | Managing how others see us by controlling the reasons they attribute to our performance. |
+| General bias | A preference for certainty over doubt. |
+| Müller-Lyer illusion | Two lines of equal length look different because of the arrowheads on them. |
+| Three men illusion | In a 3D perspective drawing, figures of the same size look progressively smaller. |
 
+</details>
 
-- See Gilovich for Biases discoveries [^Gilovich]
+<details class="ref-group" markdown="1">
+<summary id="ref-terms">Terms and ideas</summary>
 
-  - Confirmation Biases: The mother of all biases.
+| Term | Meaning |
+| --- | --- |
+| Base rate | How common something is in the whole group. If 1% of the public are medical professionals, the base rate is 1%. |
+| Bayesian reasoning | From Thomas Bayes (18th century). [Bayes' theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem) gives the probability of an event from prior knowledge of related conditions. In practice: anchor your judgment on a plausible base rate, then question how diagnostic your evidence is. |
+| Bounded rationality | The study of how people search for information and decide with limited time and resources. Ralph Hertwig[^Hertwig] is a key contributor. |
+| Coherence, plausibility and probability | Easily confused by anyone not using System 2. A plausible story is not a probable one. Without a competing intuition, logic wins. |
+| Decision theory | The [formal study of choices](https://en.wikipedia.org/wiki/Decision_theory) under uncertainty. |
+| Diagnosticity | The [informational value](https://dictionary.apa.org/diagnosticity) of an event or feedback. High diagnosticity has clear implications; low diagnosticity is ambiguous. |
+| Expected utility and Bernoulli | [Daniel Bernoulli](https://en.wikipedia.org/wiki/Daniel_Bernoulli), who also gave his name to the fluid dynamics principle, proposed that people value outcomes by utility rather than by amount. The [St. Petersburg paradox](https://en.wikipedia.org/wiki/St._Petersburg_paradox) shows why: a coin-flip game with an infinite expected payoff is worth only a small amount to players. |
+| Naturalistic decision making (NDM) | The study of real people deciding in real-world conditions. It is the counterpart to the heuristics and biases approach in this book. Gary Klein[^Klein] studied intuition in experienced professionals such as firefighters (*Sources of Power*). |
+| Planning fallacy | Predicting how long a task will take with an optimism bias, even when you know similar tasks ran long. |
+| Polymath | Someone whose knowledge spans many subjects. Francis Galton, cousin of Charles Darwin, was one. |
+| Prospect theory | Kahneman and Tversky's model of how people judge gains and losses from a reference point. See [Prospect Theory](#prospect-theory). |
+| Regression to the mean (example) | Children's heights relative to their parents, studied by Francis Galton. |
+| Single-issue negotiation | A negotiation on one issue, such as the price of a house. The first number has a powerful anchoring effect. If the other side opens with an outrageous number, do not answer with an equally outrageous one. Make it clear, to yourself and to them, that you will not continue with that number on the table. |
+| Stereotyping | The neutral word in psychology. There is a social norm against stereotypes, which has made society more civilized and more equal, but ignoring valid stereotypes leads to worse judgments. The cost is worth paying. |
+| The test of learning psychology | Whether your understanding of the situations you meet has changed, not whether you learned a new fact. Learn through individual cases rather than statistics alone. |
+| Sample size | Belief in the law of small numbers means drawing conclusions from samples that are too small. |
 
+</details>
 
-  - Hot hand Bias
+<details class="ref-group" markdown="1">
+<summary id="ref-people">People</summary>
 
+| Person | Field | Why they appear here |
+| --- | --- | --- |
+| [Thomas Gilovich](https://en.wikipedia.org/wiki/Thomas_Gilovich) | Psychology | Studied the hot hand ([The Hot Hand in Basketball](https://doi.org/10.1016%2F0010-0285%2885%2990010-6)) and the biases above. |
+| [Paul Slovic](https://en.wikipedia.org/wiki/Paul_Slovic) | Psychology, risk perception | Proposed the **affect heuristic**. Argues the public has a richer concept of risk than experts do. President of [Decision Research](https://www.decisionresearch.org/about/), University of Oregon. In [The Perception of Risk](https://doi.org/10.1126/science.3563507) (1987) he showed that risk can be defined in at least nine ways (deaths per million people, deaths per million dollars of product), and the choice of measure changes the answer: defining risk is an exercise in power. |
+| [Gary Klein](https://en.wikipedia.org/wiki/Gary_A._Klein) | Psychology | Naturalistic decision making. Co-author with Kahneman of [Conditions for intuitive expertise](https://doi.org/10.1037/a0016755). |
+| [Ralph Hertwig](https://en.wikipedia.org/wiki/Ralph_Hertwig) | Psychology | Bounded rationality and judgment and decision making. |
+| [Baruch Fischhoff](https://en.wikipedia.org/wiki/Baruch_Fischhoff) | Psychology | Studied under Kahneman. Research on judgment, risk perception and risk analysis. |
+| [Nick Epley](https://www.nicholasepley.com/) | Behavioural science | University of Chicago Booth School of Business. Author of *Mindwise*, on how we read other minds. |
+| Martin Seligman | Psychology | Founder of positive psychology. |
+| [Richard Thaler](https://en.wikipedia.org/wiki/Richard_Thaler) | Economics | Nobel Prize in Economics for work on individual decision making and behavioural economics. |
+| [Howard Kunreuther](https://en.wikipedia.org/wiki/Howard_Kunreuther) | Economics | Risk and insurance. How the dynamics of memory explain recurring cycles of disaster, concern and complacency. |
+| [Max Bazerman](https://en.wikipedia.org/wiki/Max_H._Bazerman) | Behavioural economics | Negotiation, decision making and ethics. Books listed under Books and papers. |
+| [Orley Ashenfelter](https://en.wikipedia.org/wiki/Orley_Ashenfelter) | Economics | Predicted the price of wine from three variables, beating the experts. |
+| [Paul Samuelson](https://en.wikipedia.org/wiki/Paul_Samuelson) | Economics | American economist, the first American to win the economics Nobel (1970). |
+| [Antonio Damasio](https://en.wikipedia.org/wiki/Antonio_Damasio) | Neuroscience | Emotional evaluations and bodily states play a central role in guiding decisions. |
+| [Cass Sunstein](https://en.wikipedia.org/wiki/Cass_Sunstein) | Law | Believes risk can be assessed objectively through science and deliberation, in contrast to Slovic, who sees risk as subjective. Applies behavioural economics to law. |
+| [Jonathan Haidt](https://en.wikipedia.org/wiki/Jonathan_Haidt) | Social psychology | Moral psychology and moral emotions: "the emotional tail wags the rational dog". |
+| [George Pólya](https://en.wikipedia.org/wiki/George_P%C3%B3lya) | Mathematics | Combinatorics, probability, and heuristics in mathematics education (*How to Solve It*). |
+| Howard Wainer and Harris L. Zwerling | Statistics | Showed that extreme results (cancer rates, and the "best" small schools) cluster in small populations. An accident of sampling. |
+| [William Feller](https://en.wikipedia.org/wiki/William_Feller) | Probability | Showed how readily people see patterns where none exist (the rocket bombing of London in the Second World War). |
+| Thomas Mussweiler and Fritz Strack | Psychology | Anchoring and associative coherence: an anchoring question about temperature selectively activates comparable memories. |
+| Adam Galinsky and Thomas Mussweiler | Psychology | Subtle ways to resist anchoring in negotiation: focus your attention and search memory for arguments against the anchor (this activates System 2). |
+| Norbert Schwarz | Psychology | Impressions of frequency depend on how easily examples come to mind, not only how many. Self-ratings are dominated by ease of recall. |
+| Nisbett and Borgida | Psychology | The helping experiment: students who knew that 45% of people will not help still predicted a person would help. |
+| Virginia Apgar | Medicine | In 1953 created a simple five-variable newborn assessment (heart rate, respiration, reflex, muscle tone, colour; each scored 0 to 2). An example of a consistent standard replacing unstructured deliberation. |
 
-  - Spotlight Effect: frequent disparities between the way we view our performance (and think others will view it) and the way it is actually seen by others
+[Oregon Research Institute](http://www.ori.org/) is where Kahneman was a guest in 1971 to 1972, working on judgment, decision making and intuitive prediction.
 
+</details>
 
-  - Bias Blind Spot: the tendency to recognize biases in other people, but not in ourselves
+<details class="ref-group" markdown="1">
+<summary id="ref-reading">Books and papers</summary>
 
+**Papers and articles**
 
-  - Clustering Illusion: the tendency to see "clusters" of data in a random sequence of data as non-random
+| Reference | Why it matters here |
+| --- | --- |
+| [Tversky and Kahneman, Judgment under Uncertainty: Heuristics and Biases (1974)](https://www.science.org/doi/10.1126/science.185.4157.1124) | The founding paper on anchoring, availability and representativeness. |
+| [Kahneman and Tversky, Choices, Values, and Frames (1984)](https://www.semanticscholar.org/paper/Choices%2C-Values%2C-and-Frames-Kahneman-Tversky/44eab3013cb6c63a534570994c9cffe3935ec7ed) | Prospect theory and framing in one paper. |
+| [Kahneman and Klein, Conditions for intuitive expertise: a failure to disagree (2009)](https://doi.org/10.1037/a0016755) | When an expert's intuition can be trusted: regular environments and a chance to learn them. |
+| [Morewedge and Kahneman, Associative processes in intuitive judgment (2010)](https://doi.org/10.1016%2Fj.tics.2010.07.004) | Explains associative coherence, the engine behind System 1. |
+| [Slovic, Perception of Risk (1987)](https://doi.org/10.1126/science.3563507) | Why experts and the public disagree about risk. |
+| [Afiki and Bar, Our need for associative coherence (2020)](https://doi.org/10.1057/s41599-020-00577-w) | Humanities and Social Sciences Communications 7, 80. A recent view of why we need coherent stories. |
+| [Wainer and Zwerling, Evidence that smaller schools do not improve student achievement (2006)](https://www.semanticscholar.org/paper/Evidence-That-Smaller-Schools-Do-Not-Improve-Wainer-Zwerling/7dd9b8c39bde33b3464060717e0052d86d8ec040)[^smallschool] | *Phi Delta Kappan* 88, 300 to 303. Small schools are over-represented among both the best and worst results. |
+| [Dawn of post-theory science (The Guardian, 2022)](https://www.theguardian.com/technology/2022/jan/09/are-we-witnessing-the-dawn-of-post-theory-science) | Can data find answers without a theory? See [Post Theory Science](#post-theory-science). |
 
-  - Illusion of non-transparency: the tendency to overestimate the extent to which people telegraph their inner thoughts and emotions
+**Books**
 
-  - Heuristics research:
-    - self-handicapping: attempts to manage how others perceive us by controlling the attributions they make for our performance
-      - regret
-      - anchoring
+| Reference | Why it matters here |
+| --- | --- |
+| [Pólya, *How to Solve It* (Princeton, 2014)](https://worldcat.org/en/title/893557156), also on [Wikipedia](https://en.wikipedia.org/wiki/How_to_Solve_It) | The classic on heuristics as problem-solving aids. |
+| [Surowiecki, *The Wisdom of Crowds* (Doubleday, 2004)](https://worldcat.org/en/title/54022622)[^Wisdom] | Independent judgments, averaged, beat most individuals. The basis for the independent-judgment principle. |
+| [Meehl, *Clinical Versus Statistical Prediction* (2013)](https://worldcat.org/en/title/946987970)[^disturbing] | Simple formulas often beat expert judgment. Kahneman called it "my disturbing little book". |
+| [Epley, *Mindwise* (Knopf, 2014)](https://worldcat.org/en/title/869739904) | How well, and how badly, we understand what others think and feel. Related talk: [more well-being by being more pro-social](https://youtu.be/1fqL-6am0bg). |
+| [Bazerman and Moore, *Judgment in Managerial Decision Making* (Wiley, 8th ed. 2013)](https://worldcat.org/en/title/154800238) | Heuristics and biases applied to management. |
+| [Bazerman, *Better Not Perfect* (Harper Business, 2020)](https://worldcat.org/en/title/1134457846) | A realist's guide to doing the most good. |
+| [Luca and Bazerman, *The Power of Experiments* (MIT Press, 2021)](https://worldcat.org/en/title/1155705441) | Running experiments to decide in a data-driven world. Marked "seems interesting". |
+| [*The Halo Effect* (2007)](https://en.wikipedia.org/wiki/The_Halo_Effect_(book)) | How the halo effect misleads managers about what makes companies succeed. |
+| Malkiel, *A Random Walk Down Wall Street* | Why picking stocks is mostly luck. |
+| Gawande, *The Checklist Manifesto* | Checklists as a simple, consistent standard, like the Apgar score. |
 
+</details>
 
-## Books
+<details class="ref-group" markdown="1">
+<summary id="ref-more">Quotes, learning, vocabulary and links</summary>
 
-- [Polya, G. *How to Solve It: A New Aspect of Mathematical Method*. Princeton Science Library. Princeton, NJ: Princeton University Press, 2014.](https://worldcat.org/en/title/893557156): [Wikipedia](https://en.wikipedia.org/wiki/How_to_Solve_It)
+**Quotes**
 
-- [Surowiecki James. 2004. *The Wisdom of Crowds : Why the Many Are Smarter Than the Few and How Collective Wisdom Shapes Business Economies Societies and Nations*. 1st ed. New York: Doubleday.](https://worldcat.org/en/title/54022622)
+> "We evolved to be goal-striving creatures. You'll regret more the things that you didn't do than the things you did." — **Thomas Gilovich**
 
-- [Wainer, Howard and Harris L. Zwerling. “Evidence That Smaller Schools Do Not Improve Student Achievement.” *Phi Delta Kappan Magazine* 88 (2006): 300 - 303.](https://www.semanticscholar.org/paper/Evidence-That-Smaller-Schools-Do-Not-Improve-Wainer-Zwerling/7dd9b8c39bde33b3464060717e0052d86d8ec040) - [Semantic Scholar - Google Account](https://www.semanticscholar.org/paper/Evidence-That-Smaller-Schools-Do-Not-Improve-Wainer-Zwerling/7dd9b8c39bde33b3464060717e0052d86d8ec040)
+> "Plans are best-case scenarios. Let's avoid anchoring on plans when we forecast actual outcomes. Thinking about ways the plan could go wrong is one way to do it." — *Think Fast, Think Slow*, "Speaking of Anchors"
 
-- [Epley Nicholas. 2014. *Mindwise : How We Understand What Others Think Believe Feel and Want* First ed. New York: Alfred A. Knopf.](https://worldcat.org/en/title/869739904): An exploration of the human mind's capacity for instinctive understanding about the feelings and desires of others explains how the ability or inability to understand the minds of those around us leads to connection or conflict.  
+> "I don't spend a lot of time taking polls around the world to tell me what I think is the right way to act. I've just got to know how I feel." — **George W. Bush**, November 2002 (an example of availability bias)
 
-  - [To live a life of more well-being be more pro-social.  Connect, act more assertively - Extrovert. YouTube](https://youtu.be/1fqL-6am0bg)
+> "The emotional tail wags the rational dog." — **Jonathan Haidt**
 
-- [The Halo Effect - 2007](https://en.wikipedia.org/wiki/The_Halo_Effect_(book))
+> "Defining risk is an exercise in power." — **Paul Slovic**, *The Perception of Risk*[^Slovic]
 
-- A Random Walk Down Wall Street - Malkiel
+> "Subjects' unwillingness to deduce the particular from the general was matched only by their willingness to infer the general from the particular." — **Nisbett and Borgida**, the helping experiment. When told that 45% of people will not help, students still predicted that a person would; when shown two people not helping, they quickly inferred a low rate of helping.
 
-- [Meehl Paul E. 2013. *Clinical Versus Statistical Prediction : A Theoretical Analysis and a Review of the Evidence*. place of publication not identified: Echo Point Books & Media.](https://worldcat.org/en/title/946987970) — *My disturbing little book.*
+**Learning and training**
 
-- A Checklist Manifesto - Atul Gawande
+Rewards for improved performance train better than punishment for mistakes. Four traits help learning: aspiration (focus on what you gain), self-awareness (be objective, not defensive), curiosity (follow up with learning) and vulnerability (expect to be slow at first, and ask for detailed guidance), from [7 learning psychology routes to effective training](https://www.learnlight.com/en/articles/7-learning-psychology-routes-effective-training/). On reward and punishment, remember regression to the mean: praise after a good outcome is often followed by a worse one, because luck helped the first.
 
-## Illusions
+**An aside on history**
 
-Three Men Illusion : perspective.  Once on a 3D perspective the same sized figures look progressively smaller.
+Social movements of the twentieth century were driven by Hitler, Stalin and Mao Zedong. If each had a one in two chance of being born female, there was a 1 in 8 chance (12%) that all three would have been women. Long-term developments are not predictable, because a few people with enormous impact might never have existed. It is impossible to argue that history would have been roughly the same without them.
 
-## Institutions
+**Vocabulary** (words I wanted to look up, unrelated to the thinking)
+
+| Word | Meaning |
+| --- | --- |
+| [axiom](https://www.merriam-webster.com/dictionary/axiom) | An established rule or principle, or a self-evident truth accepted as the basis for argument. |
+| [epidemiology](https://www.merriam-webster.com/dictionary/epidemiology) | The branch of medical science that deals with the incidence, distribution and control of disease in a population. |
+| [heuristic](https://www.merriam-webster.com/dictionary/heuristic) | A simple procedure that helps find adequate, though often imperfect, answers to difficult questions. From the same root as *eureka*. |
+| [poignancy](https://www.merriam-webster.com/dictionary/poignancy) | The state of being painfully or deeply affecting to the feelings. |
+| [precocious](https://www.merriam-webster.com/dictionary/precocious) | Exceptionally early in development, showing mature qualities at an unusually early age. |
+| [salient](https://www.merriam-webster.com/dictionary/salient) | Standing out conspicuously. |
+
+**Institutions and references**
 
 - [American Economic Review](https://www.aeaweb.org/journals/aer/issues)
-- [American Psychological Association ](https://www.apa.org/).  [Psychology Dictionary](https://dictionary.apa.org)
-
-- [Oregon Research Institute](http://www.ori.org/): Where Kahneman was a guest in 1971-72.   Worked on judgment, decision making and intuitive prediction.
-
-##  Inventions
-
-1953 Anaesthesiologist Virginia Apgar developed standard procedure to prevent infant birth deaths.  Prior to this much deliberation was done, danger signs missed, and many new-borns died. — A systemic assessment of new-borns; 5-variables heart rate, respiration, reflex, muscle tone and colour.   Rate each one 0, 1 or 2; sum them for the Apgar score.  A consistent standard.
-
-##  People
-
-- [Nick Epley](https://www.nicholasepley.com/): Behavioural Science and Decision Research at the University of Chicago Booth School of Business.
-
-### Psychology
-
-- [Thomas Gilovich](https://en.wikipedia.org/wiki/Thomas_Gilovich) : [The Hot Hand in Basketball](https://doi.org/10.1016%2F0010-0285%2885%2990010-6)
-
-
-- [Paul Slovic](https://en.wikipedia.org/wiki/Paul_Slovic). Professor of [psychology](https://en.wikipedia.org/wiki/Psychology) at the [University of Oregon](https://en.wikipedia.org/wiki/University_of_Oregon) and the president of [Decision Research](https://www.decisionresearch.org/about/)Proposed **affect heuristic**.  A leading theorist and researcher in the [risk perception](https://en.wikipedia.org/wiki/Risk_perception) field.  Argues public has a richer concept of risks than experts. Has received [Bower Award](https://en.wikipedia.org/wiki/Franklin_Institute_Awards#Bower_Awards) - Noam Chomsky has won this award, too.
-
-  - [Perception of Risk - Slovic - 1987](https://doi.org/10.1126/science.3563507).  Nine ways of defining the mortality risk.  The evaluation of the risk depends on the choice of measure.  Death per million people.  Death per million dollars of product produced.  Defining risk is an exercise in power.
-
-
-- [Gary Klein](https://en.wikipedia.org/wiki/Gary_A._Klein) is a psychologist famous for [naturalistic decision making](https://en.wikipedia.org/wiki/Naturalistic_decision_making). The naturalistic decision making (NDM) framework emerged as a means of studying how people make decisions and perform cognitively complex functions in demanding, real-world situations. These include situations marked by limited time, uncertainty, high stakes, team and organizational constraints, unstable conditions, and varying amounts of experience.
-
-- [Hertwig, Ralph](https://en.wikipedia.org/wiki/Ralph_Hertwig): German psychologist whose work focuses on the psychology of human judgment and decision making.  Phd University of Konstanz 1995.
-
-
-- [Baruch Fischhoff](https://en.wikipedia.org/wiki/Baruch_Fischhoff): Studied under Kahneman.  His research focuses on judgment and decision making, including [risk perception](https://en.wikipedia.org/wiki/Risk_perception) and risk Analysis
-
-- Martin Seligman: founder of positive psychology
-
-- [Richard](https://en.wikipedia.org/wiki/Richard_Thaler) Thaler - Nobel Prize in Economics for individual decision making and behavioural economics
-
-### Economist
-
-- [Howard Kunreuther](https://en.wikipedia.org/wiki/Howard_Kunreuther): American [economist](https://en.wikipedia.org/wiki/Economist) focusing on the study of risk insurance. Phd from MIT. managing and financing losses due to technological and natural hazards such as climate change, terrorism, earthquakes.  Research Guiding Principles for Insurance, The Behavioural Risk Audit, Interdependent Security.  How the dynamics of memory help explain the recurrent cycles of disaster, concern and complacency.
-
-- [Max Bazerman](https://en.wikipedia.org/wiki/Max_H._Bazerman): Behavioural Economist. Max's work focuses on negotiation, behavioral economics, and ethics.  Books include:
-
-  - **seems interesting** - [Luca Michael and Max H Bazerman. 2021. *The Power of Experiments : Decision Making in a Data-Driven World* First MIT Press paperback ed. Cambridge Massachusetts: MIT Press.](https://worldcat.org/en/title/1155705441) - [Spring DOI Link](https://doi.org/10.1057/s11369-021-00218-3)
-
-  - [Bazerman Max H. 2020. *Better Not Perfect : A Realist's Guide to Maximum Sustainable Goodness* First ed. New York NY: Harper Business an imprint of HarperCollins.](https://worldcat.org/en/title/1134457846)
-
-  - [Bazerman Max H and Don A Moore. 2013. *Judgment in Managerial Decision Making*. 8th ed. New York: Wiley.](https://worldcat.org/en/title/154800238)
-
-- [Orley Ashenfelter	](https://en.wikipedia.org/wiki/Orley_Ashenfelter): Use statistics to predict price of wine
-
-- [Paul Samuelson - USA Economist](https://en.wikipedia.org/wiki/Paul_Samuelson?wprov=srpw1_0) : Father of Modern Economics
-- [Top German Economists](https://www.economicsdiscussion.net/economists/german-economists-top-9-german-economists-of-all-times/12197)
-
-### Neuroscientist
-
-- [Antonio Damasio](https://en.wikipedia.org/wiki/Antonio_Damasio): Peoples emotional evaluations and outcomes play a central role in guiding decision making.  This includes the bodily states and the approach and avoidance tendencies associated with emotional evaluations.
-
-### Legal Scholar
-
-- [Cass Sunstein](https://en.wikipedia.org/wiki/Cass_Sunstein): Cass Sunstein is a Regulatory and Constitution Law expert. Sunstein believes risk assessment can be objective by science, expertise and careful deliberation.   In contrast to Slovic[^Slovic] who believes risk and its measurement is subjective.  2014 - most frequently cited American legal scholar by a wide margin.  Brings [behavioral economics](https://en.wikipedia.org/wiki/Behavioral_economics) to bear on law, suggesting that the "rational actor" model will sometimes produce an inadequate understanding of how people will respond to legal intervention.
-
-
-### Statisticians
-
-- [George Polya](https://en.wikipedia.org/wiki/George_P%C3%B3lya): He made fundamental contributions to [combinatorics](https://en.wikipedia.org/wiki/Combinatorics), [number theory](https://en.wikipedia.org/wiki/Number_theory), [numerical analysis](https://en.wikipedia.org/wiki/Numerical_analysis) and [probability theory](https://en.wikipedia.org/wiki/Probability_theory). He is also noted for his work in [heuristics](https://en.wikipedia.org/wiki/Heuristics) and [mathematics education](https://en.wikipedia.org/wiki/Mathematics_education).
-
-- Howard Wainer : cancer rates in rural counties are highest / lowest (extreme outcomes are more likely to found in sparsely populated counties sinc the probability of kidney cancer is low - an accident of sampling).
-
-- [Harris Zerling](https://en.wikipedia.org/wiki/Zellig_Harris): Linguistics study
-
-- [William Feller](https://en.wikipedia.org/wiki/William_Feller): Probability Theory. Illustrated the ease with which people see patterns where non exist (rocket bombing of London in WWII)
-
-- Thomas Mussweiler and Fritz Strack: Associative Coherence. An anchoring question about temperature.  Selective activation of comparable memory.
-
-- Adam Galinsky and Thomas Mussweiler: Subtle ways to resist the anchoring effect in negotiations.  When negotiating focus attention, and search your memory for arguments against the anchor (activated System 2)
-
-- Norbert Schwarz: 1990's How impressions of frequency are impacted by listing required number of instances. Two routes: number of instances required and ease with which they come to mind.  Self-ratings are dominated by the ease with which examples come to mind.
-
-- [Jonathan Haidt](https://en.wikipedia.org/wiki/Jonathan_Haidt): Social Psychologist.  Main areas of study are the [psychology of morality](https://en.wikipedia.org/wiki/Moral_psychology) and [moral emotions](https://en.wikipedia.org/wiki/Moral_emotions).
-
-## Psychology
-
-### Cognitive Psychology
-
-Psychology of effective training:  Important principle of skill training; rewards for improved performance training are better than punishment of mistakes.   
-
-- Four key traits for successful learning; aspiration (focus on what we will gain from learning), self-awareness (be objective and not defensive), curiosity (foster it, and follow-up with learning), vulnerability (expect to be slow at first, needing detailed guidance) - [[reference]](https://www.learnlight.com/en/articles/7-learning-psychology-routes-effective-training/)
-- efficacy of reward and punishment: *regression to the mean* (praise a good outcome, and next attempt is worse, is likely caused by luck/probability creating the good outcome)
-
-## Quotes
-
-> "We evolved to be goal-striving creatures. You'll regret more the things that you didn't do than the things you did."
-> —**Thomas Gilovich**
-
-> "Plans are best-case scenarios.  Let's avoid anchoring on plans when we forecast actual outcomes.  Thinking about ways the plan could go wrong is one way to do it."
-> —**Think Fast, Think Slow - Speaking of Anchors**
-
-> "I don't spend a lot of time taking polls around the world to tell me what I think is the right way to act.  I've just got to know how I feel." - Availability Bias
-> —**George W. Bush - November 2002**
-
-> "The emotional tail wags the rational dog."
-> — **Jonathan Haidt, Psychologist**
-
-> "Defining risk is an exercise in power"
-> **— Slovic - The Perception of Risk[^slovic]**
-
-> "Subject's unwillingness to deduce the particular from the general was matched only their willingness to infer the general from the particular."
-> **— Nisbett and Borgida - The Helping Experiment**  *When aware of the general statistic that 45% will not help, students still predicted a person would help.  When shown particulars of two people not helping, they were quick to infer a low rate of people helping.*
-
-## Terms
-
-- [Anchoring Effect](https://en.wikipedia.org/wiki/Anchoring_(cognitive_bias)): The **anchoring effect** is a [cognitive bias](https://en.wikipedia.org/wiki/Cognitive_bias) whereby an individual's decisions are influenced by a particular reference point or 'anchor'.   If you consider how much you should pay for a house, you will be influenced by the asking price.  [Judgment under Uncertainty: Heuristics and Biases](https://www.science.org/doi/10.1126/science.185.4157.1124)
-
-- Associative Coherence: A stimulus evokes a coherent and self-reinforcing pattern of reciprocal activation in associative memory. [Associative Processes in Intuitive Judgment - Kahneman](https://doi.org/10.1016%2Fj.tics.2010.07.004). Consistent affect is a central element of associative coherence.
-
-- [base rate](https://en.wikipedia.org/wiki/Base_rate): statistics the rate of group. If 1% of the public were medical professionals, and 99% of the public were *not* medical professionals, then the base rate of medical professionals is 1%.
-- Bayesian statistics.  18th century Thomas Bayes.  [Bayes Rule / Bayes Theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem) describes the [probability](https://en.wikipedia.org/wiki/Probability) of an [event](https://en.wikipedia.org/wiki/Event_(probability_theory)), based on prior knowledge of conditions that might be related to the event.  Bayesian reasoning; a) anchor your judgment of the probability fo an outcome on a plausible base rate, b) question the diagnosticity of your evidence.
-- bounded rationality:  the study of bounded rationality, or how people search for information and make decisions with limited resources. Hertwig[^Hertwig] has been a key contributor.
-- Cognitive Ease (Part 1 - Chapter 5)
-- coherence, plausibility and probability: easily confused by unwary (those not using System 2).  People want to substitute plausibility for probability.  In the absence of competing intuition (plausibility), logic prevails.
-- conjunction fallacy: the conflict between intuition and logic.
-- [diagnosticity](https://dictionary.apa.org/diagnosticity): the informational value of an interaction, event, or feedback for someone seeking self-knowledge. Information with high diagnosticity has clear implications for the [self-concept](https://dictionary.apa.org/self-concept), whereas information with low diagnosticity may be unclear, ambiguous, or inaccurate.
-
-- Halo Effect
-
-- Loss Aversion: Respond more strongly to losses than to gains (System 1)
-
-- [Naturalistic Decision Making (NDM)](https://en.wikipedia.org/wiki/Naturalistic_decision-making): Study real people doing things that matter in a real-world environment.   Opposite of this book which is focused on biases in heuristics and biases approach.  Gary Klein[^Klein] - Sources of Power : intuition in experienced professionals (Firefighters)
-
-- [Planning Fallacy](https://en.wikipedia.org/wiki/Planning_fallacy):  Basing plans while ignoring information you have from past experience.  Instead realistic plans should be provided.
-  - *The **planning fallacy** is a phenomenon in which predictions about how much time will be needed to complete a future task display an [optimism bias](https://en.wikipedia.org/wiki/Optimism_bias) and underestimate the time needed. This phenomenon sometimes occurs regardless of the individual's knowledge that past tasks of a similar nature have taken longer to complete than generally planned.*
-
-- Polymath: A polymath is an individual whose knowledge spans a substantial number of subjects, known to draw on complex bodies of knowledge to solve specific problems.
-
-- Probability Neglect: A basic limitation in the ability of our mind to deal with small risks.  We either ignore them, or give them too much weight.  Terrorists, daughter coming home late.
-- Prospect Theory
-
-- Regression to the mean:  
-
-- Children's heights in relation to their parents.  Francis Galton (a polymath and cousin of Charles Darwin)
-
-- Research Techniques
-- Sense of agency (subject sense of ..)
-- Sense of autonomy (subject sense of ..)
-
-- Single-Issue Negotiations.  Example, when price is the only issue to be settled (like selling a house).  Initial anchor effect has a powerful effect.  Advice:  When the other party starts with an outrageous proposal (high price) do not make an equally outrageous counteroffer.  This creates a gap that will be difficult to bridge in further negotiations.   Instead, make a scene, storm out, or threaten to storm out.   Make it clear, to yourself (to break the anchor effect) and to the other side, that you will not continue the negotiation with that number on the table.  
-  - *Any number of the table has had an anchoring effect on you, and if the stakes are high (buying a house) you should ask yourself to combat the effect*.
-
-- Stereotyping: neutral word is psychology (bad word in culture).  There is a social norm against stereotyping, including the opposition to profiling.  This has been beneficial in creating a more civilized and more equal society.  However neglecting valid stereotypes inevitably results in suboptimal judgments.  The costs are worth paying to achieve a better society.
-- Test of Understanding Psychology:  The test of learning psychology is whether your understanding of situations you encounter has changed, not whether you have learned a new fact.  There is a deep gap between our thinking about statistics and out thinking about individual cases.  It is better to learn psychology through individual cases, than by statistical means.
-- Theoretical Ideas
-- WYSIATI: What you see is all there is.
-
-## Thinking
-
-- Associative Thinking
-- Causal Thinking
-- Conscious Thinking
-- Intuitive Thinking
-- Intuitive Judgment
-- Decision Making
-- Problem Solving
-
-## Thoughts
-
-Social movements of  the 20th century; Hitler, Stalin, Mao Zedong
-
-- 1/8 (12% chance) these three great villians might not have existed (they could have been female).   It is impossible to argue that history would have been roughly the same in their absence.   Long term developments are not predictable; since these three people had incredible impact on the world, but they may not have existed.
-
-## Statistics
-
-- artifact:
-
-- intuitive statistics:
-
-- sample size: belief in the law of small numbers (not experimenting with a sufficiently large enough sample size)
-
-## Theories
-
-- [Decision Theory - Wikipedia](https://en.wikipedia.org/wiki/Decision_theory)
-- [Bernoulli Principle](https://en.wikipedia.org/wiki/Bernoulli%27s_principle) by [Daniel Bernoulli](https://en.wikipedia.org/wiki/Daniel_Bernoulli): same person who has the fluid dynamics principles.
-  - [St Petersburg Paradox](https://en.wikipedia.org/wiki/St._Petersburg_paradox): The **St. Petersburg paradox** or **St. Petersburg lottery** is a paradox involving the game of flipping a coin where the expected payoff of the theoretical lottery game approaches infinity but nevertheless seems to be worth only a very small amount to the participants.    
-
-## Words
-
-Unrelated to the thinking.  Simply words I am not familiar with using:
-
-- [axiom](https://www.merriam-webster.com/dictionary/axiom): an established rule or principle or a self-evident truth,  a statement accepted as true as the basis for argument or inference
-- economics: is the social science that studies the production, distribution, and consumption of goods and services.
-- [epidemiology](https://www.merriam-webster.com/dictionary/epidemiology): a branch of medical science that deals with the incidence, distribution, and control of disease in a population
-- [heuristic](https://www.merriam-webster.com/dictionary/heuristic): A simple procedure that helps find adequate, though often imperfect, answers to difficult questions.  The word comes the same root as eureka.  involving or serving as an aid to learning, discovery, or problem-solving by experimental and especially [trial-and-error](https://www.merriam-webster.com/dictionary/trial and error) methods.  *heuristic assumption*: of or relating to exploratory problem-solving techniques that utilize self-educating techniques (such as the evaluation of [feedback](https://www.merriam-webster.com/dictionary/feedback)) to improve performance
-  - Affect Heuristic: Emotions and the dominance of conclusions over arguments.   People let their likes and dislikes determine their beliefs about the world.  Paul Slovic.
-  - Availability Heuristic: 1971 definition: the process of judging frequency by "the ease with which instances come to mind."
-  - Mood Heuristic:  The present state of mind looms very large when people evaluate questions.  Students (How many dates last month?  How happy are you?  is highly correlated.   Reverse the question order and there is no correlation.).  Impact on surveys.
-
-- [poignancy](https://www.merriam-webster.com/dictionary/poignancy): that state of being poignant (painfully affecting the feelings, deeply affecting)
-- [precocious](https://www.merriam-webster.com/dictionary/precocious): exceptionally early in development or occurrence, exhibiting mature qualities at an unusually early age
-- [salient](https://www.merriam-webster.com/dictionary/salient): projecting beyond a line, surface, or level. standing out conspicuously
-
-## Videos
-
-- [The riddle of experience vs. memory - TED 2010 - Daniel Kahneman](https://www.ted.com/talks/daniel_kahneman_the_riddle_of_experience_vs_memory)
-
-## Other Summaries
-
-- [The Art of Living Summary](https://theartofliving.com/thinking-fast-and-slow-summary/#hindsight-bias)
+- [American Psychological Association](https://www.apa.org/) and its [Psychology Dictionary](https://dictionary.apa.org)
+- [Google Ngram Viewer](https://books.google.com/ngrams/) for how often terms appear in print (not specific to this book)
+
+**Watch and read more**
+
+- [The riddle of experience vs. memory](https://www.ted.com/talks/daniel_kahneman_the_riddle_of_experience_vs_memory), Daniel Kahneman, TED 2010
+- [The Art of Living: Thinking, Fast and Slow summary](https://theartofliving.com/thinking-fast-and-slow-summary/#hindsight-bias)
+
+</details>
+
+</div>
+
+<button type="button" id="ref-top" class="ref-top" hidden>Back to top</button>
+
+<script>
+(function () {
+  var q = document.getElementById('ref-q');
+  var wrap = document.getElementById('ref-wrap');
+  if (!q || !wrap) return;
+  var count = document.getElementById('ref-count');
+  var clear = document.getElementById('ref-clear');
+  var groups = wrap.querySelectorAll('details.ref-group');
+  var openState = [];
+  function items(g) { return g.querySelectorAll('tbody tr, li, blockquote'); }
+  function apply() {
+    var t = q.value.trim().toLowerCase();
+    var total = 0;
+    clear.hidden = !t;
+    if (!t) {
+      wrap.querySelectorAll('[data-hidden]').forEach(function (e) { e.style.display = ''; e.removeAttribute('data-hidden'); });
+      groups.forEach(function (g, i) { g.style.display = ''; if (openState.length) g.open = openState[i]; });
+      openState = [];
+      count.textContent = '';
+      return;
+    }
+    if (!openState.length) groups.forEach(function (g) { openState.push(g.open); });
+    groups.forEach(function (g) {
+      var hits = 0;
+      items(g).forEach(function (e) {
+        var ok = e.textContent.toLowerCase().indexOf(t) !== -1;
+        e.style.display = ok ? '' : 'none';
+        e.setAttribute('data-hidden', ok ? '' : '1');
+        if (ok) hits++;
+      });
+      g.style.display = hits ? '' : 'none';
+      g.open = hits > 0;
+      total += hits;
+    });
+    count.textContent = total + (total === 1 ? ' match' : ' matches');
+  }
+  q.addEventListener('input', apply);
+  clear.addEventListener('click', function () { q.value = ''; apply(); q.focus(); });
+  var top = document.getElementById('ref-top');
+  window.addEventListener('scroll', function () { top.hidden = window.scrollY < 800; }, { passive: true });
+  top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  if (location.hash) {
+    var target = document.getElementById(location.hash.slice(1));
+    var d = target && target.closest ? target.closest('details') : null;
+    if (d) d.open = true;
+  }
+})();
+</script>
 
 # Modern References
 

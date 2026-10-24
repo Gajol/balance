@@ -71,5 +71,16 @@ sidebar-think-fast-think-slow:
         url: /books/Think-Fast-Think-Slow/#two-selves
       - title: "Conclusions"
         url: /books/Think-Fast-Think-Slow/#conclusions
+      - title: "Reference"
+        url: /books/Think-Fast-Think-Slow/#reference
+        children:
+          - title: "Biases and design"
+            url: /books/Think-Fast-Think-Slow/#ref-biases
+          - title: "Terms"
+            url: /books/Think-Fast-Think-Slow/#ref-terms
+          - title: "People"
+            url: /books/Think-Fast-Think-Slow/#ref-people
+          - title: "Books and papers"
+            url: /books/Think-Fast-Think-Slow/#ref-reading
       - title: "Modern References"
         url: /books/Think-Fast-Think-Slow/#modern-references
