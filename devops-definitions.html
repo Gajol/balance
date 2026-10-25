@@ -1,0 +1,462 @@
+---
+layout: null
+permalink: /devops-definitions/
+title: "DevOps Definitions"
+description: "Plain-language meanings for the terms used across the DevOps pages: what each means, why it matters and keys to success."
+tags: [devops]
+sitemap: true
+---
+{% raw %}
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DevOps Definitions</title>
+<style>
+
+/* Page frame: title band, sticky contents rail, one reading column. Black, white and grey only. */
+.pg-skip{position:absolute;left:-999px}.pg-skip:focus{left:8px;top:8px;background:#fff;padding:6px 10px;z-index:99}
+body{margin:0;background:#fff;color:#333;font:14px/1.55 "Noto Sans","Segoe UI",Roboto,Arial,sans-serif}
+.pg-band{background:#333;color:#fff;padding:14px 20px}
+.pg-band a{color:#fff}
+.pg-band .pg-in{max-width:1200px;margin:0 auto}
+.pg-band h1{margin:4px 0 4px;font:700 22px/1.25 Lato,"Helvetica Neue",Arial,sans-serif;color:#fff;border:0}
+.pg-band p{margin:0;color:#ddd;font-size:13px;max-width:70ch}
+.pg-crumb{font-size:12px;color:#ccc}
+.pg-wrap{max-width:1200px;margin:0 auto;padding:16px 20px 60px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:28px}
+.pg-toc{position:sticky;top:12px;align-self:start;max-height:calc(100vh - 24px);overflow:auto;font-size:12.5px;border-right:1px solid #ddd;padding-right:12px}
+.pg-toc h2{font:700 12px Lato,Arial,sans-serif;text-transform:uppercase;letter-spacing:.05em;color:#595959;margin:0 0 6px}
+.pg-toc ol{list-style:none;margin:0;padding:0}
+.pg-toc li{margin:0}
+.pg-toc a{display:block;padding:3px 6px;color:#333;text-decoration:none;border-left:3px solid transparent}
+.pg-toc a:hover{background:#f2f2f2}
+.pg-toc a.on{border-left-color:#333;font-weight:700;background:#f2f2f2}
+.pg-find{width:100%;box-sizing:border-box;padding:5px 7px;margin:0 0 8px;border:1px solid #8c8c8c;font:inherit}
+.pg-tools{display:flex;gap:8px;margin:0 0 10px;flex-wrap:wrap}
+.pg-tools button{border:1px solid #595959;background:#fff;color:#333;padding:4px 10px;font:inherit;cursor:pointer}
+.pg-tools button:hover{background:#f2f2f2}
+.pg-body{min-width:0}
+.pg-body mark{background:#e6e6e6;color:#000;outline:1px solid #8c8c8c}
+.pg-copy{position:absolute;right:6px;top:6px;border:1px solid #8c8c8c;background:#fff;color:#333;font:11px Arial,sans-serif;padding:2px 7px;cursor:pointer;opacity:.85}
+.pg-pre{position:relative}
+.pg-foot{max-width:1200px;margin:0 auto;padding:10px 20px 30px;font-size:12px;color:#595959}
+.pg-body{font-size:14px;line-height:1.55}
+.pg-body p,.pg-body li,.pg-body dd,.pg-body dt,.pg-body blockquote{font-size:14px;line-height:1.55}
+.pg-body td,.pg-body th{font-size:12.5px;line-height:1.4;padding:5px 8px;vertical-align:top}
+.pg-body h2{font-size:21px;margin:30px 0 8px}.pg-body h3{font-size:16.5px}.pg-body h4{font-size:14.5px}
+.pg-body .tablewrap,.pg-body .table-wrap,.pg-body .fig-scroll{overflow-x:auto;max-width:100%}
+.pg-body table{border-collapse:collapse}
+.pg-body pre,.pg-body pre code{font-size:12px;line-height:1.45}
+.pg-body svg{max-width:100%;height:auto}
+.pg-body main,.pg-body section{max-width:none}
+@media (max-width:820px){.pg-wrap{display:block}.pg-toc{position:static;max-height:none;border:0;margin-bottom:12px}}
+@media print{.pg-toc,.pg-tools,.pg-copy{display:none}.pg-wrap{display:block}}
+
+/* ---- Content styles ---- */
+img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+
+
+:root {
+  --c-text-primary: #333333;
+  --c-text-secondary: #585858;
+  --c-text-light: #fefefe;
+  --c-link-default: #565656;
+  --c-link-hover: #515151;
+  --c-link-light: #fefefe;
+  --c-bg-white: #fefefe;
+  --c-bg-light: #f2f2f2;
+  --c-bg-primary: #484848;
+  --c-border-default: #8c8c8c;
+  --c-focus-border: #515151;
+  --c-color-blue-50: #f0f0f0;
+  --c-color-blue-700: #565656;
+  --c-color-yellow-50: #f7f7f7;
+  --c-color-yellow-500: #afafaf;
+  --c-spacing-50: 4px;
+  --c-spacing-100: 8px;
+  --c-spacing-150: 12px;
+  --c-spacing-200: 16px;
+  --c-spacing-300: 24px;
+  --c-spacing-400: 32px;
+  --c-spacing-600: 48px;
+  --c-spacing-800: 64px;
+  --font-heading: Lato, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Noto Sans", "Segoe UI", Arial, sans-serif;
+  
+}
+body.hc {
+  --c-text-primary: #1a1a1a;
+  --c-text-secondary: #333333;
+  --c-link-default: #404040;
+  --c-link-hover: #353535;
+  --c-border-default: #333333;
+  --c-focus-border: #404040;
+}
+* { box-sizing: border-box; }
+
+.inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--c-link-default); text-decoration: underline; text-underline-offset: 3px; }
+a:hover { color: var(--c-link-hover); }
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--c-focus-border);
+  outline-offset: 2px;
+}
+.skip { position: absolute; left: -9999px; top: 0; background: var(--c-bg-white); color: var(--c-link-default); padding: var(--c-spacing-150) var(--c-spacing-300); }
+.skip:focus { left: var(--c-spacing-200); top: var(--c-spacing-200); z-index: 20; }
+
+.band { background: var(--c-bg-primary); color: var(--c-text-light); }
+.band-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--c-spacing-200); padding-block: var(--c-spacing-200); }
+.sig { display: block; width: min(100%, 440px); height: auto; }
+.btn {
+  font: 600 0.956rem/1.4 var(--font-body);
+  min-height: 44px; min-width: 44px;
+  padding: var(--c-spacing-100) var(--c-spacing-300);
+  border: 2px solid var(--c-text-light);
+  border-radius: 4px;
+  background: var(--c-bg-primary); color: var(--c-text-light);
+  cursor: pointer;
+}
+.btn[aria-pressed="true"] { background: var(--c-text-light); color: var(--c-bg-primary); }
+.band .btn:focus-visible { outline-color: var(--c-text-light); }
+
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(1.7rem, 5.2vw, 2.176rem); line-height: 1.17; margin-top: var(--c-spacing-400); }
+h2 { font-size: clamp(1.488rem, 4.4vw, 2.074rem); line-height: 1.23; padding-bottom: var(--c-spacing-150); border-bottom: 2px solid var(--c-text-primary); }
+h3 { font-size: 1.275rem; line-height: 1.33; }
+.lead { max-width: 65ch; margin: var(--c-spacing-200) 0 0; }
+.meta-line { color: var(--c-text-secondary); font-size: 0.96rem; margin: var(--c-spacing-200) 0 0; }
+main { padding-block: var(--c-spacing-300) var(--c-spacing-800); }
+section { margin-top: var(--c-spacing-800); }
+section > p { max-width: 65ch; margin: var(--c-spacing-200) 0 0; }
+
+.notice { margin: var(--c-spacing-300) 0 0; padding: var(--c-spacing-200) var(--c-spacing-300); background: var(--c-color-blue-50); border: 1px solid var(--c-color-blue-700); max-width: 65ch; }
+.notice h3 { font-size: 1.173rem; margin: 0 0 var(--c-spacing-50); }
+.notice p { margin: 0; font-size: 0.96rem; line-height: 1.55; }
+
+.path { list-style: none; counter-reset: step; padding: 0; margin: var(--c-spacing-300) 0 0; display: grid; gap: var(--c-spacing-200); }
+.path li { counter-increment: step; display: grid; grid-template-columns: 44px 1fr; gap: var(--c-spacing-200); align-items: start; min-width: 0; }
+.path li::before { content: counter(step); width: 44px; height: 44px; display: grid; place-items: center; background: var(--c-bg-primary); color: var(--c-text-light); font: 700 1.062rem/1 var(--font-heading); }
+.path p { margin: 0; max-width: 65ch; }
+.path strong { font-family: var(--font-heading); }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--c-spacing-300); margin-top: var(--c-spacing-300); }
+.card { border: 1px solid var(--c-border-default); background: var(--c-bg-white); padding: var(--c-spacing-300); display: flex; flex-direction: column; gap: var(--c-spacing-150); min-width: 0; }
+.card h3 a { text-decoration-thickness: 2px; }
+.card p { margin: 0; font-size: 0.96rem; line-height: 1.55; }
+.card .tag { font: 700 0.807rem/1.3 var(--font-body); color: var(--c-text-secondary); letter-spacing: .04em; text-transform: uppercase; }
+.card ul { margin: 0; padding-left: 1.2em; font-size: 0.96rem; line-height: 1.55; }
+.card li + li { margin-top: var(--c-spacing-50); }
+.card .open { margin-top: auto; padding-top: var(--c-spacing-100); font-weight: 600; font-size: 0.96rem; }
+.card.wide { grid-column: 1 / -1; }
+
+.table-wrap { margin-top: var(--c-spacing-300); overflow-x: auto; border: 1px solid var(--c-border-default); }
+table { width: 100%; min-width: 620px; border-collapse: collapse; font-size: 0.96rem; line-height: 1.5; }
+caption { text-align: left; font-family: var(--font-heading); font-weight: 700; font-size: 1.173rem; padding: var(--c-spacing-200); }
+th, td { text-align: left; vertical-align: top; padding: var(--c-spacing-150) var(--c-spacing-200); border-top: 1px solid var(--c-border-default); }
+thead th { background: var(--c-bg-light); border-top: 2px solid var(--c-text-primary); }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(even) { background: var(--c-bg-light); }
+
+footer { background: var(--c-bg-primary); color: var(--c-text-light); padding-block: var(--c-spacing-400); font-size: 0.96rem; line-height: 1.55; }
+footer .sig { margin-bottom: var(--c-spacing-200); }
+footer p { margin: 0; max-width: 65ch; }
+footer p + p { margin-top: var(--c-spacing-150); }
+
+@media (max-width: 560px) {  .card.wide { grid-column: auto; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+@media (forced-colors: active) { .notice, .table-wrap, .card, .btn { border: 2px solid CanvasText; } }
+
+
+.jump { margin: var(--c-spacing-300) 0 0; padding: var(--c-spacing-200) var(--c-spacing-300); background: var(--c-bg-light); border: 1px solid var(--c-border-default); }
+.jump h2 { font-size: 1.173rem; border: 0; padding: 0; margin: 0 0 var(--c-spacing-100); }
+.jump ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--c-spacing-100) var(--c-spacing-300); }
+.jump a { font-size: 0.96rem; }
+.back { margin: var(--c-spacing-300) 0 0; font-size: 0.96rem; }
+.defs { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: var(--c-spacing-300); margin-top: var(--c-spacing-300); }
+.def { border: 1px solid var(--c-border-default); background: var(--c-bg-white); padding: var(--c-spacing-300); display: flex; flex-direction: column; gap: var(--c-spacing-150); min-width: 0; scroll-margin-top: var(--c-spacing-300); }
+.def h3 { font-size: 1.488rem; line-height: 1.2; }
+.def .full { margin: 0; color: var(--c-text-secondary); font-size: 0.892rem; line-height: 1.45; }
+.def dl { margin: 0; display: grid; gap: var(--c-spacing-150); }
+.def dt { font: 700 0.807rem/1.3 var(--font-body); letter-spacing: .04em; text-transform: uppercase; color: var(--c-text-secondary); }
+.def dd { margin: var(--c-spacing-50) 0 0; font-size: 0.96rem; line-height: 1.55; }
+.def dd ul { margin: 0; padding-left: 1.2em; }
+.def dd li + li { margin-top: var(--c-spacing-50); }
+.def .more { margin-top: auto; padding-top: var(--c-spacing-100); font-weight: 600; font-size: 0.96rem; }
+.def:target { outline: 3px solid var(--c-focus-border); outline-offset: 2px; }
+.totop { position: fixed; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 15; display: inline-flex; align-items: center; gap: var(--c-spacing-100); min-height: 44px; min-width: 44px; padding: var(--c-spacing-100) var(--c-spacing-200); background: var(--c-bg-primary); color: var(--c-text-light); border: 2px solid var(--c-text-light); border-radius: 4px; font: 600 0.892rem/1.2 var(--font-body); text-decoration: none; box-shadow: 0 2px 6px rgba(0,0,0,.35); }
+.totop:hover { color: var(--c-text-light); background: #3e3e3e; }
+.totop:focus-visible { outline: 3px solid var(--c-focus-border); outline-offset: 3px; }
+.totop svg { width: 18px; height: 18px; flex: none; }
+.group-nav { margin: var(--c-spacing-300) 0 0; font-size: 0.96rem; }
+
+@media (prefers-reduced-motion: reduce) {  }
+@media (max-width: 560px) { .defs { grid-template-columns: 1fr; } .totop span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; } .totop { padding: var(--c-spacing-100); justify-content: center; } }
+@media (forced-colors: active) { .def, .jump { border: 2px solid CanvasText; } }
+
+</style>
+</head>
+<body>
+<a class="pg-skip" href="#pg-main">Skip to content</a>
+<header class="pg-band"><div class="pg-in">
+<div class="pg-crumb"><a href="{% endraw %}{{ '' | relative_url }}{% raw %}/digital/">Digital</a> / DevOps</div>
+<h1>DevOps Definitions</h1>
+<p>Plain meanings for the terms used on the DevOps pages. Each entry says what it is, why it matters and a few keys to success.</p>
+</div></header>
+<div class="pg-wrap">
+<nav class="pg-toc" aria-label="Contents">
+<h2>Contents</h2>
+<input id="pg-find" class="pg-find" type="search" placeholder="Find in page (3+ letters)" aria-label="Find in page">
+<ol id="pg-toc-list"></ol>
+</nav>
+<main id="pg-main" class="pg-body">
+
+<nav class="jump" aria-label="Jump to a term"><h2>Jump to a term</h2><ul><li><a href="#signing">Artefact signing</a></li><li><a href="#cac">CaC</a></li><li><a href="#ci-cd">CI/CD</a></li><li><a href="#platform">CMS, Search and Analytics</a></li><li><a href="#container">Container</a></li><li><a href="#drift">Drift</a></li><li><a href="#gate">Gate</a></li><li><a href="#iac">IaC</a></li><li><a href="#isolated-network">Isolated network</a></li><li><a href="#kubernetes">Kubernetes</a></li><li><a href="#maturity">Maturity level</a></li><li><a href="#mirror">Mirror</a></li><li><a href="#noc">NOC</a></li><li><a href="#observability">Observability</a></li><li><a href="#pipeline">Pipeline</a></li><li><a href="#podman">Podman</a></li><li><a href="#quadlet">Quadlet</a></li><li><a href="#rollback">Rollback</a></li><li><a href="#siem-soc">SIEM and SOC</a></li></ul></nav><div class="pg-tools"><input id="def-filter" class="pg-find" style="max-width:320px;margin:0" type="search" placeholder="Filter terms" aria-label="Filter terms"></div>
+
+  <section aria-labelledby="g-delivery">
+    <h2 id="g-delivery">Delivery and pipelines</h2>
+    <p>How a change moves from a request to production.</p>
+    <div class="defs">
+      <article class="def" id="ci-cd">
+        <h3>CI/CD</h3>
+        <p class="full">Continuous Integration and Continuous Delivery</p>
+        <dl>
+          <div><dt>What it means</dt><dd>A way of working where every change is built, tested and prepared for release automatically. Continuous Integration merges and tests small changes often. Continuous Delivery keeps the result ready to deploy at any time.</dd></div>
+          <div><dt>Why it matters</dt><dd>Small, frequent, tested changes are safer than large, rare ones. Fewer surprises reach production, and fixes arrive faster.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Keep changes small and merge them often</li><li>Automate the build and the tests, not just some of them</li><li>Treat a broken build as the team&#x27;s first priority</li></ul></dd></div>
+        </dl> Read more: CI/CD Pipeline Guide
+      </article>
+      <article class="def" id="pipeline">
+        <h3>Pipeline</h3>
+        <p class="full">The automated path a change follows</p>
+        <dl>
+          <div><dt>What it means</dt><dd>The ordered set of automated steps that takes code from a commit to a running system. Typical stages are build, test, scan, package and deploy.</dd></div>
+          <div><dt>Why it matters</dt><dd>The same path runs every time, so results are repeatable and every release leaves a record. It also shows exactly where a change failed.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Build once and promote the same package through each environment</li><li>Keep the pipeline definition in version control</li><li>Make every run visible to the whole team</li></ul></dd></div>
+        </dl> Read more: Delivery cycle
+      </article>
+      <article class="def" id="gate">
+        <h3>Gate</h3>
+        <p class="full">A rule that can stop a build</p>
+        <dl>
+          <div><dt>What it means</dt><dd>A check in the pipeline that must pass before the change moves on. Examples are failed tests, a known vulnerability, or a missing approval.</dd></div>
+          <div><dt>Why it matters</dt><dd>Gates turn policy into something that runs every time. Security and quality rules apply to every change, not only the ones someone remembers to review.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Start with a few clear gates and add more as trust grows</li><li>Give a clear message when a gate fails and say how to fix it</li><li>Review exceptions on purpose and record them</li></ul></dd></div>
+        </dl> Read more: CI/CD Pipeline Guide
+      </article>
+      <article class="def" id="maturity">
+        <h3>Maturity level</h3>
+        <p class="full">How far a team has taken its automation</p>
+        <dl>
+          <div><dt>What it means</dt><dd>A simple scale that describes how developed a team&#x27;s delivery practice is, from mostly manual steps to fully automated and measured.</dd></div>
+          <div><dt>Why it matters</dt><dd>It lets teams agree on where they are and what the next step is. It also keeps goals realistic, because nobody jumps to the top level in one move.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Assess honestly and name one next step</li><li>Improve one level at a time</li><li>Measure results such as lead time and failed releases</li></ul></dd></div>
+        </dl> Read more: CI/CD Pipeline Guide
+      </article>
+      <article class="def" id="rollback">
+        <h3>Rollback</h3>
+        <p class="full">Returning to the last working version</p>
+        <dl>
+          <div><dt>What it means</dt><dd>Putting the previous, known-good release back in place when a new release causes a problem.</dd></div>
+          <div><dt>Why it matters</dt><dd>It limits the damage of a bad release. A fast, tested way back lets teams release with less fear.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Keep the previous release package available</li><li>Practise the rollback before you need it</li><li>Plan for data changes, because code can go back but data may not</li></ul></dd></div>
+        </dl> Read more: Delivery cycle
+      </article>
+    </div>
+    <p class="group-nav"><a href="#jump">Back to the term list</a></p>
+  </section>
+
+  <section aria-labelledby="g-platform">
+    <h2 id="g-platform">Platform and containers</h2>
+    <p>What runs, and how it is packaged, deployed and described.</p>
+    <div class="defs">
+      <article class="def" id="platform">
+        <h3>CMS, Search and Analytics</h3>
+        <p class="full">The three parts of the web platform</p>
+        <dl>
+          <div><dt>What it means</dt><dd>CMS manages and publishes the web content. Search provides search. Analytics measures how the site is used.</dd></div>
+          <div><dt>Why it matters</dt><dd>The three parts depend on each other and are released together. A shared delivery cycle keeps their versions compatible.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Agree on one delivery cycle for the three parts</li><li>Test the connections between them, not only each part alone</li><li>Name one owner for each part</li></ul></dd></div>
+        </dl> Read more: Delivery cycle
+      </article>
+      <article class="def" id="container">
+        <h3>Container</h3>
+        <p class="full">A packaged application and what it needs to run</p>
+        <dl>
+          <div><dt>What it means</dt><dd>A sealed package that holds an application and its libraries. It runs the same way on a laptop, in test and in production.</dd></div>
+          <div><dt>Why it matters</dt><dd>It removes the problem of software working in one place and not another. It also makes patching a matter of replacing a package, not repairing a server.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Build images from approved, scanned base images</li><li>Run as a non-root user with limited resources</li><li>Keep data outside the container</li></ul></dd></div>
+        </dl> Read more: Podman to Kubernetes
+      </article>
+      <article class="def" id="podman">
+        <h3>Podman</h3>
+        <p class="full">A tool for running containers</p>
+        <dl>
+          <div><dt>What it means</dt><dd>A container engine that runs containers without a central background service. It can run as an ordinary user and works well with systemd.</dd></div>
+          <div><dt>Why it matters</dt><dd>It is the planned starting point for the platform. It is simple to operate on a server and does not need a cluster.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Run containers rootless where possible</li><li>Use Kubernetes YAML so the later move stays small</li><li>Keep host patching on a regular schedule</li></ul></dd></div>
+        </dl> Read more: Podman to Kubernetes
+      </article>
+      <article class="def" id="quadlet">
+        <h3>Quadlet</h3>
+        <p class="full">Container units managed by systemd</p>
+        <dl>
+          <div><dt>What it means</dt><dd>A way to describe a container or a Kubernetes YAML file in a small unit file. Systemd then starts it, restarts it and logs it like any other service.</dd></div>
+          <div><dt>Why it matters</dt><dd>It gives containers the same start, stop and restart behaviour as the rest of the server. Operations teams already know how to run it.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Use the .kube unit type to run the Kubernetes YAML</li><li>Deploy the unit files with Ansible</li><li>Test a restart after every change</li></ul></dd></div>
+        </dl> Read more: Podman to Kubernetes
+      </article>
+      <article class="def" id="kubernetes">
+        <h3>Kubernetes</h3>
+        <p class="full">A platform that runs and manages many containers</p>
+        <dl>
+          <div><dt>What it means</dt><dd>A system that schedules containers across servers, restarts them when they fail, scales them and connects them through a network.</dd></div>
+          <div><dt>Why it matters</dt><dd>It is the planned later stage. It offers more automatic recovery and scaling, but it also adds new skills, new security work and new cost.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Plan the move from the start, so it is a move and not a rebuild</li><li>Set network rules to deny traffic by default</li><li>Confirm storage and backup before the first workload</li></ul></dd></div>
+        </dl> Read more: Podman to Kubernetes
+      </article>
+      <article class="def" id="iac">
+        <h3>IaC</h3>
+        <p class="full">Infrastructure as Code</p>
+        <dl>
+          <div><dt>What it means</dt><dd>Describing servers, networks and platform settings in files that are stored, reviewed and run by tools, instead of being set up by hand.</dd></div>
+          <div><dt>Why it matters</dt><dd>Environments can be rebuilt the same way each time. Every change has an author and a record, which supports audit and recovery.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Store all definitions in version control</li><li>Review changes like application code</li><li>Run the same code in every environment</li></ul></dd></div>
+        </dl> Read more: Podman to Kubernetes
+      </article>
+      <article class="def" id="cac">
+        <h3>CaC</h3>
+        <p class="full">Configuration as Code</p>
+        <dl>
+          <div><dt>What it means</dt><dd>Describing application and system settings in files, such as the CMS configuration, the Search configset or an Ansible playbook, so they are applied automatically.</dd></div>
+          <div><dt>Why it matters</dt><dd>It removes hand-edited settings that nobody can explain later. Drift between environments is found and corrected.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Keep secrets out of the files and use the secret store</li><li>Apply configuration through the pipeline, not by hand</li><li>Check for drift on a schedule</li></ul></dd></div>
+        </dl> Read more: Podman to Kubernetes
+      </article>
+      <article class="def" id="isolated-network">
+        <h3>Isolated network</h3>
+        <p class="full">A network with no connection to the internet</p>
+        <dl>
+          <div><dt>What it means</dt><dd>A secure network that is physically or logically separated from the internet. Software and updates cross only through a controlled transfer.</dd></div>
+          <div><dt>Why it matters</dt><dd>It protects sensitive systems, but it changes how teams build and update software. Nothing can be pulled from the internet at deploy time.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Build outside, sign the package, then carry it across</li><li>Use internal mirrors for libraries and images</li><li>Turn off update checks and other calls to the outside</li></ul></dd></div>
+        </dl> Read more: Podman to Kubernetes
+      </article>
+      <article class="def" id="mirror">
+        <h3>Mirror</h3>
+        <p class="full">An internal copy of outside software sources</p>
+        <dl>
+          <div><dt>What it means</dt><dd>A copy of public libraries, packages and container images, held inside the secure network and kept up to date by a controlled process.</dd></div>
+          <div><dt>Why it matters</dt><dd>Inside an isolated network, builds and installs cannot reach the internet. The mirror is where they get what they need.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Name an owner and a refresh schedule</li><li>Scan what comes in before it is added</li><li>Pin exact versions so builds repeat</li></ul></dd></div>
+        </dl> Read more: Podman to Kubernetes
+      </article>
+      <article class="def" id="signing">
+        <h3>Artefact signing</h3>
+        <p class="full">Proving who built a package and that it has not changed</p>
+        <dl>
+          <div><dt>What it means</dt><dd>Adding a digital signature and a checksum to each image, file and deployment definition. The receiving side checks both before it uses them.</dd></div>
+          <div><dt>Why it matters</dt><dd>It lets the secure side trust what crossed the isolated network. Anyone assessing the system can trace a running container back to its source commit.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Sign at build time, in the pipeline</li><li>Verify on import and again before deploy</li><li>Protect the signing keys and record who can use them</li></ul></dd></div>
+        </dl> Read more: Podman to Kubernetes
+      </article>
+      <article class="def" id="drift">
+        <h3>Drift</h3>
+        <p class="full">When a running system no longer matches its code</p>
+        <dl>
+          <div><dt>What it means</dt><dd>The gap that appears when someone changes a server or a setting by hand, so it differs from what the IaC and CaC files say.</dd></div>
+          <div><dt>Why it matters</dt><dd>Drift causes surprises, hides security gaps and makes a rebuild unreliable. It often explains a problem that shows up in only one environment.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Make changes through the pipeline only</li><li>Compare running systems to the code on a schedule</li><li>When you find drift, fix the system or update the code, and record the decision</li></ul></dd></div>
+        </dl> Read more: Podman to Kubernetes
+      </article>
+    </div>
+    <p class="group-nav"><a href="#jump">Back to the term list</a></p>
+  </section>
+
+  <section aria-labelledby="g-monitoring">
+    <h2 id="g-monitoring">Monitoring and security</h2>
+    <p>How the platform tells the enterprise how it is doing.</p>
+    <div class="defs">
+      <article class="def" id="observability">
+        <h3>Observability</h3>
+        <p class="full">Being able to tell what a system is doing from what it reports</p>
+        <dl>
+          <div><dt>What it means</dt><dd>Collecting logs, events and health signals from the platform so a team can see what is happening and find the cause of a problem.</dd></div>
+          <div><dt>Why it matters</dt><dd>Problems are found before users report them, and the cause is found faster. Security and operations teams get the same facts.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Decide what each signal is for before collecting it</li><li>Use consistent log formats and timestamps</li><li>Test the signal path as part of the pipeline</li></ul></dd></div>
+        </dl> Read more: Observability and security monitoring
+      </article>
+      <article class="def" id="siem-soc">
+        <h3>SIEM and SOC</h3>
+        <p class="full">Security Information and Event Management, and the Security Operations Centre</p>
+        <dl>
+          <div><dt>What it means</dt><dd>The SIEM is the tool that collects and correlates security logs. The SOC is the team that watches it, investigates alerts and responds.</dd></div>
+          <div><dt>Why it matters</dt><dd>Attacks are often seen first as a pattern across many logs. The platform must send the right events, or the SOC cannot see a problem.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Agree with the SOC on which events to send</li><li>Include user, time, source and result in each event</li><li>Plan how logs are kept if the link goes down</li></ul></dd></div>
+        </dl> Read more: Observability and security monitoring
+      </article>
+      <article class="def" id="noc">
+        <h3>NOC</h3>
+        <p class="full">Network Operations Centre</p>
+        <dl>
+          <div><dt>What it means</dt><dd>The team that watches the health of services and networks and responds to outages.</dd></div>
+          <div><dt>Why it matters</dt><dd>It sees availability and performance problems around the clock. It needs clear alerts to act quickly.</dd></div>
+          <div><dt>Keys to success</dt><dd><ul><li>Send alerts that say what is wrong and who owns it</li><li>Keep alert noise low so real issues stand out</li><li>Write a short runbook for each alert</li></ul></dd></div>
+        </dl> Read more: Observability and security monitoring
+      </article>
+    </div>
+    <p class="group-nav"><a href="#jump">Back to the term list</a></p>
+  </section>
+
+
+</main>
+</div>
+<div class="pg-foot">Generic definitions. Product and organization names are removed on purpose. <a href="{% endraw %}{{ '' | relative_url }}{% raw %}/creating-a-government-website/">Back to the website article</a></div>
+<div style="display:none"><button id="pg-open" type="button"></button><button id="pg-close" type="button"></button></div>
+<script>
+
+(function(){
+  var body=document.querySelector('.pg-body');
+  var heads=[].slice.call(body.querySelectorAll('h2[id]'));
+  var toc=document.getElementById('pg-toc-list');
+  heads.forEach(function(h){var li=document.createElement('li'),a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent;li.appendChild(a);toc.appendChild(li);});
+  var links=[].slice.call(toc.querySelectorAll('a'));
+  function spy(){var cur=0;heads.forEach(function(h,i){if(h.getBoundingClientRect().top<120)cur=i;});links.forEach(function(a,i){a.classList.toggle('on',i===cur);});}
+  window.addEventListener('scroll',spy,{passive:true});spy();
+  [].slice.call(body.querySelectorAll('pre')).forEach(function(p){
+    var w=document.createElement('div');w.className='pg-pre';p.parentNode.insertBefore(w,p);w.appendChild(p);
+    var b=document.createElement('button');b.className='pg-copy';b.type='button';b.textContent='Copy';
+    b.addEventListener('click',function(){var t=p.innerText;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1200)},function(){b.textContent='Select + copy'});});
+    w.appendChild(b);
+  });
+  var find=document.getElementById('pg-find');
+  function clear(){[].slice.call(body.querySelectorAll('mark')).forEach(function(m){var t=document.createTextNode(m.textContent);m.parentNode.replaceChild(t,m);});body.normalize();}
+  find.addEventListener('input',function(){
+    clear();var q=find.value.trim();if(q.length<3)return;
+    var rx=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+    var walker=document.createTreeWalker(body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){return n.parentNode.closest('svg,script,style,mark')?NodeFilter.FILTER_REJECT:(rx.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT)}});
+    var nodes=[],n;while(n=walker.nextNode())nodes.push(n);
+    nodes.slice(0,200).forEach(function(node){rx.lastIndex=0;var frag=document.createDocumentFragment(),last=0,m,s=node.nodeValue;while((m=rx.exec(s))){frag.appendChild(document.createTextNode(s.slice(last,m.index)));var mk=document.createElement('mark');mk.textContent=m[0];frag.appendChild(mk);last=m.index+m[0].length;if(m[0].length===0)rx.lastIndex++;}frag.appendChild(document.createTextNode(s.slice(last)));node.parentNode.replaceChild(frag,node);});
+    var first=body.querySelector('mark');if(first)first.scrollIntoView({block:'center'});
+  });
+  document.getElementById('pg-open').addEventListener('click',function(){[].slice.call(document.querySelectorAll('details')).forEach(function(d){d.open=true;});});
+  document.getElementById('pg-close').addEventListener('click',function(){[].slice.call(document.querySelectorAll('details')).forEach(function(d){d.open=false;});});
+})();
+
+
+(function(){
+  var f=document.getElementById('def-filter'); if(!f) return;
+  var arts=[].slice.call(document.querySelectorAll('article.def'));
+  f.addEventListener('input',function(){var q=f.value.trim().toLowerCase();arts.forEach(function(a){a.style.display=(!q||a.textContent.toLowerCase().indexOf(q)>-1)?'':'none';});});
+})();
+
+</script>
+</body>
+</html>
+
+{% endraw %}

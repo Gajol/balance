@@ -1,0 +1,1861 @@
+---
+layout: null
+permalink: /podman-to-kubernetes/
+title: "Podman to Kubernetes: Moving a Web Platform Without Rework"
+description: "Run on Podman now, move to Kubernetes later, and keep the rework small. Design rules, work breakdown, code examples, diagrams, change map and sizing for an isolated network."
+tags: [devops, architecture]
+sitemap: true
+---
+{% raw %}
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Podman to Kubernetes: Moving a Web Platform Without Rework</title>
+<style>
+
+/* Page frame: title band, sticky contents rail, one reading column. Black, white and grey only. */
+.pg-skip{position:absolute;left:-999px}.pg-skip:focus{left:8px;top:8px;background:#fff;padding:6px 10px;z-index:99}
+body{margin:0;background:#fff;color:#333;font:14px/1.55 "Noto Sans","Segoe UI",Roboto,Arial,sans-serif}
+.pg-band{background:#333;color:#fff;padding:14px 20px}
+.pg-band a{color:#fff}
+.pg-band .pg-in{max-width:1200px;margin:0 auto}
+.pg-band h1{margin:4px 0 4px;font:700 22px/1.25 Lato,"Helvetica Neue",Arial,sans-serif;color:#fff;border:0}
+.pg-band p{margin:0;color:#ddd;font-size:13px;max-width:70ch}
+.pg-crumb{font-size:12px;color:#ccc}
+.pg-wrap{max-width:1200px;margin:0 auto;padding:16px 20px 60px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:28px}
+.pg-toc{position:sticky;top:12px;align-self:start;max-height:calc(100vh - 24px);overflow:auto;font-size:12.5px;border-right:1px solid #ddd;padding-right:12px}
+.pg-toc h2{font:700 12px Lato,Arial,sans-serif;text-transform:uppercase;letter-spacing:.05em;color:#595959;margin:0 0 6px}
+.pg-toc ol{list-style:none;margin:0;padding:0}
+.pg-toc li{margin:0}
+.pg-toc a{display:block;padding:3px 6px;color:#333;text-decoration:none;border-left:3px solid transparent}
+.pg-toc a:hover{background:#f2f2f2}
+.pg-toc a.on{border-left-color:#333;font-weight:700;background:#f2f2f2}
+.pg-find{width:100%;box-sizing:border-box;padding:5px 7px;margin:0 0 8px;border:1px solid #8c8c8c;font:inherit}
+.pg-tools{display:flex;gap:8px;margin:0 0 10px;flex-wrap:wrap}
+.pg-tools button{border:1px solid #595959;background:#fff;color:#333;padding:4px 10px;font:inherit;cursor:pointer}
+.pg-tools button:hover{background:#f2f2f2}
+.pg-body{min-width:0}
+.pg-body mark{background:#e6e6e6;color:#000;outline:1px solid #8c8c8c}
+.pg-copy{position:absolute;right:6px;top:6px;border:1px solid #8c8c8c;background:#fff;color:#333;font:11px Arial,sans-serif;padding:2px 7px;cursor:pointer;opacity:.85}
+.pg-pre{position:relative}
+.pg-foot{max-width:1200px;margin:0 auto;padding:10px 20px 30px;font-size:12px;color:#595959}
+.pg-body{font-size:14px;line-height:1.55}
+.pg-body p,.pg-body li,.pg-body dd,.pg-body dt,.pg-body blockquote{font-size:14px;line-height:1.55}
+.pg-body td,.pg-body th{font-size:12.5px;line-height:1.4;padding:5px 8px;vertical-align:top}
+.pg-body h2{font-size:21px;margin:30px 0 8px}.pg-body h3{font-size:16.5px}.pg-body h4{font-size:14.5px}
+.pg-body .tablewrap,.pg-body .table-wrap,.pg-body .fig-scroll{overflow-x:auto;max-width:100%}
+.pg-body table{border-collapse:collapse}
+.pg-body pre,.pg-body pre code{font-size:12px;line-height:1.45}
+.pg-body svg{max-width:100%;height:auto}
+.pg-body main,.pg-body section{max-width:none}
+@media (max-width:820px){.pg-wrap{display:block}.pg-toc{position:static;max-height:none;border:0;margin-bottom:12px}}
+@media print{.pg-toc,.pg-tools,.pg-copy{display:none}.pg-wrap{display:block}}
+
+/* ---- Content styles ---- */
+img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+
+:root{--bg:#fefefe;--bg-light:#f2f2f2;--bg-primary:#484848;--text:#333333;--text2:#585858;--text-light:#fefefe;--link:#565656;--link-h:#515151;--link-v:#505050;--border:#8c8c8c;--focus:#515151;--rule:#e6e6e6;--blue50:#f0f0f0;--green50:#f4f4f4;--yellow50:#f7f7f7;--red50:#f3e6e6;--green700:#6c6c6c;--danger:#8b2f2f;--c1:#6c6c6c;--c2:#7f7f7f;--c3:#777777;--c4:#7b7b7b;--cother:#8c8c8c;--arch-app:#f0f0f0;--arch-tech:#f4f4f4;--arch-biz:#f7f7f7;--arch-ext:#f2f2f2;--st-same-bg:#e6e6e6;--st-same-bd:#585858;--st-new-bg:#f0f0f0;--st-new-bd:#6c6c6c;--st-chg-bg:#f7f7f7;--st-chg-bd:#7d7d7d;--st-ret-bg:#efefef;--st-ret-bd:#6d6d6d;--font-heading:Lato,"Helvetica Neue",Arial,sans-serif;--font-body:"Noto Sans","Segoe UI",system-ui,-apple-system,Arial,sans-serif;--font-mono:"Noto Sans Mono",ui-monospace,Consolas,monospace}
+.gcwrap[data-contrast="high"]{--st-same-bd:#1a1a1a;--st-new-bd:#404040;--st-chg-bd:#616161;--st-ret-bd:#3e3e3e;--text:#1a1a1a;--text2:#333333;--link:#404040;--link-h:#353535;--link-v:#3e3e3e;--border:#333333;--focus:#404040;--danger:#8b2f2f;--green700:#4f4f4f}
+@media (prefers-contrast:more){.gcwrap:not([data-contrast="standard"]){--st-same-bd:#1a1a1a;--st-new-bd:#404040;--st-chg-bd:#616161;--st-ret-bd:#3e3e3e;--text:#1a1a1a;--text2:#333333;--link:#404040;--link-h:#353535;--link-v:#3e3e3e;--border:#333333;--focus:#404040;--danger:#8b2f2f;--green700:#4f4f4f}}
+
+.gcwrap{background:var(--bg);color:var(--text);font:400 1.062rem/1.6 var(--font-body);min-height:100vh}
+.gcwrap *{box-sizing:border-box}
+.inner{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.skip{position:absolute;left:-999px;top:0;background:var(--bg);color:var(--link);padding:8px 16px;z-index:20}
+.skip:focus{left:0;outline:3px solid var(--focus)}
+.band{background:var(--bg-primary);color:var(--text-light)}
+.band-in{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:16px}
+.fip{min-width:0;line-height:0}
+.sig{display:block;width:min(520px,100%);height:auto}
+.titleband{border-bottom:1px solid var(--rule);padding-block:32px 24px}
+.gcwrap h1{font:700 2.176rem/1.17 var(--font-heading);margin:0 0 8px;color:var(--text);text-wrap:balance}
+.sub{font:700 1.173rem/1.45 var(--font-heading);margin:0 0 12px;max-width:65ch}
+.meta{font-size:0.96rem;color:var(--text2);margin:0;max-width:65ch}
+.gcwrap h2{font:700 2.074rem/1.23 var(--font-heading);margin:56px 0 16px;padding-top:24px;border-top:1px solid var(--rule);text-wrap:balance}
+.gcwrap h3{font:700 1.538rem/1.37 var(--font-heading);margin:40px 0 12px}
+.gcwrap h4{font:700 1.436rem/1.33 var(--font-heading);margin:28px 0 8px}
+.prose p,.prose ul,.prose ol{max-width:65ch}
+.prose p{margin:0 0 16px}
+.prose ul,.prose ol{padding-left:28px;margin:0 0 20px}
+.prose li{margin-bottom:6px}
+a{color:var(--link);text-decoration:underline;text-underline-offset:3px}
+a:hover{color:var(--link-h)}
+a:visited{color:var(--link-v)}
+a:focus-visible,button:focus-visible,[tabindex="0"]:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.gcwrap[data-contrast="high"] a:focus-visible,.gcwrap[data-contrast="high"] button:focus-visible,.gcwrap[data-contrast="high"] [tabindex="0"]:focus-visible{outline-width:4px}
+.gc-btn{font:600 0.956rem/1.4 var(--font-body);padding:12px 24px;min-height:44px;border:2px solid var(--bg-primary);border-radius:6px;cursor:pointer}
+.gc-btn.secondary{background:var(--bg);color:var(--bg-primary)}
+.band .gc-btn{border-color:var(--text-light)}
+.toc{margin:32px 0 0;padding:24px;background:var(--bg-light);border:1px solid var(--rule)}
+.gcwrap .toc-title{font:700 1.275rem/1.33 var(--font-heading);margin:0 0 12px;padding:0;border:0}
+.toc ul{list-style:none;margin:0;padding:0;columns:2 18.7rem;column-gap:32px;max-width:none}
+.toc li{margin:0 0 8px;font-size:0.96rem;break-inside:avoid}
+.tablewrap{overflow-x:auto;max-width:100%;margin:16px 0 28px}
+table{border-collapse:collapse;width:100%;font-size:0.96rem;line-height:1.5}
+th,td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule);min-width:5.1rem}
+thead th{background:var(--bg-primary);color:var(--text-light);font-weight:600}
+tr.grp th{background:var(--bg-light);color:var(--text);font-family:var(--font-heading)}
+td code{white-space:nowrap}
+code{font:400 0.85rem/1.5 var(--font-mono);background:var(--bg-light);padding:1px 5px;border:1px solid var(--rule)}
+pre{font:400 0.892rem/1.5 var(--font-mono);background:var(--bg-light);border:1px solid var(--border);padding:16px;overflow-x:auto;margin:16px 0 28px;max-width:100%}
+pre code{background:none;border:0;padding:0;font-size:inherit}
+pre.diff code{display:block}
+.dl{display:block;white-space:pre;padding:0 8px;border-left:0}
+.dl.add{background:var(--green50);color:var(--text)}
+.dl.del{background:var(--red50);color:var(--text)}
+.dl.add::before{content:"+ ";font-weight:700}
+.dl.del::before{content:"\2212  ";font-weight:700}
+.dl.ctx::before{content:"   "}
+.dl.add,.dl.del{}
+blockquote{margin:24px 0;padding:20px 24px;background:var(--blue50);border-left:6px solid var(--link);max-width:75ch}
+blockquote p,blockquote ul{max-width:none}
+blockquote>:last-child{margin-bottom:0}
+hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
+.fig,.chart{margin:24px 0 36px}
+.diagram{overflow-x:auto;border:1px solid var(--rule);background:var(--bg);padding:12px}
+.diagram svg{display:block;width:100%;min-width:760px;height:auto}
+figcaption{font-size:0.96rem;color:var(--text2);margin-top:10px;max-width:90ch}
+figcaption strong{color:var(--text)}
+svg text{font-family:var(--font-body);font-size:12.5px;fill:var(--text)}
+svg .bold{font-weight:700}
+svg .rl{font-weight:700;fill:var(--text2);font-size:12px}
+svg .tag{font-size:10px;font-weight:700;fill:var(--text);letter-spacing:.04em}
+svg .lbl{font-size:10.5px;fill:var(--text2);paint-order:stroke;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round}
+svg rect.b{stroke:var(--text);stroke-width:1.5}
+svg .app{fill:var(--arch-app)} svg .tech{fill:var(--arch-tech)} svg .biz{fill:var(--arch-biz)}
+svg .ext{fill:var(--arch-ext);stroke-dasharray:5 3}
+svg .region{fill:none;stroke:var(--text2);stroke-width:1.5;stroke-dasharray:7 4}
+svg .edge{stroke:var(--text2);stroke-width:1.5;fill:none}
+svg .edge.async{stroke-dasharray:6 4}
+svg .ah{fill:var(--text2)}
+svg .chip{fill:var(--bg);stroke:var(--text);stroke-width:1.5}
+.gcwrap[data-contrast="high"] svg .edge,.gcwrap[data-contrast="high"] svg .region{stroke-width:2.5}
+.chart-
+.bar-row{display:grid;grid-template-columns:5.95rem 1fr 5.1rem;gap:12px;align-items:center;font-size:0.96rem}
+.bar-track{display:block;height:28px}
+.bar{display:block;height:100%;border:1.5px solid var(--text)}
+.bar-val{font-variant-numeric:tabular-nums}
+.foot{border-top:1px solid var(--rule);margin-top:56px;padding-block:24px 56px;color:var(--text2);font-size:0.96rem}
+.foot p{max-width:65ch}
+@media (max-width:600px){.gcwrap h1{font-size:1.7rem}.gcwrap h2{font-size:1.615rem}.gcwrap h3{font-size:1.275rem}.bar-row{grid-template-columns:4.675rem 1fr 4.25rem}}
+@media (forced-colors:active){.gc-btn,blockquote,.toc,pre,.st{border:2px solid CanvasText}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.bar-same{background:#8c8c8c} .bar-new{background:#6c6c6c} .bar-change{background:#7f7f7f} .bar-retire{background:#777777}
+.gcwrap[data-contrast="high"] .bar-same{background:#585858} .gcwrap[data-contrast="high"] .bar-new{background:#404040} .gcwrap[data-contrast="high"] .bar-change{background:#7d7d7d} .gcwrap[data-contrast="high"] .bar-retire{background:#505050}
+.st{display:inline-block;font:700 0.722rem/1 var(--font-body);letter-spacing:.04em;padding:5px 9px;color:var(--text);white-space:nowrap}
+.st-same{background:var(--st-same-bg);border:2px solid var(--st-same-bd)}
+.st-new{background:var(--st-new-bg);border:3px solid var(--st-new-bd)}
+.st-change{background:var(--st-chg-bg);border:4px double var(--st-chg-bd)}
+.st-retire{background:var(--st-ret-bg);border:2px dashed var(--st-ret-bd)}
+.bar-name{display:block}
+svg .grid{stroke:var(--rule);stroke-width:1}
+svg .axis{font-size:11px;fill:var(--text2)}
+svg .val{font-size:11px;font-weight:700}
+svg .sbar{stroke:var(--text);stroke-width:1}
+svg .sb0{fill:#8c8c8c} svg .sb1{fill:#6c6c6c} svg .sb2{fill:#7f7f7f} svg .sb3{fill:#7b7b7b}
+.crumbs{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0 0 16px;font-size:0.96rem}.crumbs li+li::before{content:"\203A";margin-right:8px;color:var(--text2)}.crumbs li[aria-current]{color:var(--text2)}
+
+</style>
+</head>
+<body>
+<a class="pg-skip" href="#pg-main">Skip to content</a>
+<header class="pg-band"><div class="pg-in">
+<div class="pg-crumb"><a href="{% endraw %}{{ '' | relative_url }}{% raw %}/digital/">Digital</a> / DevOps</div>
+<h1>Podman to Kubernetes: Moving a Web Platform Without Rework</h1>
+<p>Working paper. Build the deployment as Kubernetes YAML from day one, run it on Podman now, and move to a cluster later without a rewrite.</p>
+</div></header>
+<div class="pg-wrap">
+<nav class="pg-toc" aria-label="Contents">
+<h2>Contents</h2>
+<input id="pg-find" class="pg-find" type="search" placeholder="Find in page (3+ letters)" aria-label="Find in page">
+<ol id="pg-toc-list"></ol>
+</nav>
+<main id="pg-main" class="pg-body">
+<div class="gcwrap">
+<h2 id="executive-summaries">Executive summaries</h2>
+<p>Four short versions, one per audience. Each stands alone.</p>
+<h3 id="a-delivery team-executive-summary-how-do-we-build-this">A. Delivery team executive summary: "How do we build this?"</h3>
+<p><strong>One sentence:</strong> A standard open-source CMS, search engine and analytics tool, packaged as signed container images, built once outside the isolated network, carried across under Security's procedure, and deployed unchanged. We start on Podman. The same definitions later run on Kubernetes.</p>
+<p><strong>Talking points</strong></p>
+<ol>
+<li><strong>Three services, all open source, all mainstream.</strong> The CMS core, a search engine for search, an analytics tool for analytics. No custom platform. Core and first-class modules first.</li>
+<li><strong>Build once, deploy many.</strong> Images are built on the build side from internal mirrors, tested, signed and listed in a manifest with checksums. Nothing is built, downloaded or fixed by hand inside the isolated network.</li>
+<li><strong>Same image in every environment.</strong> Alpha, then development, staging and production. Only configuration and scale change. What we test is what we approve is what we run.</li>
+<li><strong>Portable by design.</strong> Deployment is written as Kubernetes YAML even while it runs on Podman. Moving to Kubernetes later adds things (ingress, storage classes, policies). It does not rewrite things.</li>
+<li><strong>State is kept outside the app.</strong> Database, CMS files, Search index and Analytics data sit on managed storage. That is what makes rollback and moving platforms safe.</li>
+<li><strong>Bilingual is measured, not claimed.</strong> EN and FR are tracked separately for search indexing lag, traffic and accessibility. A stalled French queue cannot hide inside an average.</li>
+<li><strong>Content freshness and ownership come from the stack.</strong> CMS metadata joined with Analytics traffic, reported to owners and executives.</li>
+</ol>
+<p><strong>What we ask teams to show</strong> (we evaluate; we do not dictate the design):
+- How their design keeps the move to Kubernetes small.
+- How every dependency reaches the isolated network with no public source at install or run time.
+- How they prove EN/FR parity on an ongoing basis.
+- How they restore Search and CMS files from backup, on both platforms.</p>
+<p><strong>Likely questions</strong></p>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Short answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Why Podman first?</td>
+<td>Lower platform prerequisite and a faster start. Kubernetes follows when the organization platform is ready.</td>
+</tr>
+<tr>
+<td>Why not just wait for Kubernetes?</td>
+<td>The project should not be gated on a platform it does not control. Portable design removes the gate.</td>
+</tr>
+<tr>
+<td>Can we use cloud services?</td>
+<td>No. On-prem, isolated. A cloud dependency fails the constraint.</td>
+</tr>
+<tr>
+<td>Can we use Helm charts and operators?</td>
+<td>Only if vendored, mirrored and justified as a patch cost. Plain YAML is preferred where it is not much harder.</td>
+</tr>
+<tr>
+<td>Who patches?</td>
+<td>Build side rebuilds from refreshed mirrors. Updates cross the gap by the same signed path.</td>
+</tr>
+<tr>
+<td>Hardest part?</td>
+<td>Search on Kubernetes, then backup and restore.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="b-it-executive-summary">B. IT executive summary</h3>
+<ul>
+<li><strong>What IT is asked to provide:</strong> a Podman host pattern now; later, an approved on-prem Kubernetes platform with fast block storage (Search), shared read-write-many storage (CMS files), an ingress controller, an internal certificate process, secret delivery and log/metric collection.</li>
+<li><strong>What stays the same at the move:</strong> the images, the configuration, the pipeline promotion rule, the EN/FR checks.</li>
+<li><strong>What changes:</strong> storage, networking, secrets, scheduling, backups, rollout method, and patching of the cluster itself.</li>
+<li><strong>Effort hot spots:</strong> Search (clustered state), backup and restore, and cluster security approval.</li>
+<li><strong>Capacity (section 15):</strong> on Podman, about 11% more vCPU and 9% more RAM than the sizing baseline. On Kubernetes, 104 vCPU and 242 GB for the containerized part if staging mirrors production, against 68 and 164 on Podman.</li>
+<li><strong>Databases stay where they are¹:</strong> on non-containerized servers run by the database team. Agree the firewall allow-list and connection limits for the new platform early.</li>
+<li><strong>Operating model:</strong> Communications consumes the site as a service. IT owns the platform and the Analytics platform instrumentation.</li>
+<li><strong>Decisions IT can make early:</strong> does the platform exist, storage on offer, operator and chart policy, and how long Podman is expected to serve as production.</li>
+<li><strong>Ongoing cost:</strong> every added component is a permanent patch obligation on a network that does not refresh itself. Mirror cadence needs a named owner.</li>
+</ul>
+<h3 id="c-security-executive-summary">C. Security executive summary</h3>
+<ul>
+<li><strong>Posture:</strong> isolated. Production is deploy-only. No outbound connection is required or permitted at any stage.</li>
+<li><strong>Provenance:</strong> commit, build, signature, manifest, transfer, deploy. The assessor can trace every running container back to a source commit.</li>
+<li><strong>Transfer:</strong> Security owns the crossing procedure. It carries images, but also deployment definitions, Ansible content, platform images and the Search configset, all signed and checksummed.</li>
+<li><strong>Phone-home controls:</strong> CMS update checks, Analytics internet features, marketplace installs and GeoIP downloads are switched off and verified. See section 2.</li>
+<li><strong>Container hardening:</strong> non-root, read-only root filesystem, dropped capabilities, resource limits, no host paths.</li>
+<li><strong>Network:</strong> default deny. On Kubernetes, NetworkPolicy allows only the paths needed (for example, only CMS reaches Search). On Podman, the host firewall does the same job.</li>
+<li><strong>Secrets:</strong> from the isolated network secret store. Not in images, not in Git.</li>
+<li><strong>Database path¹:</strong> TLS to the database servers, egress limited to the database host and port. After the move the database sees new source addresses, so firewall rules need a planned change.</li>
+<li><strong>Security approval:</strong> Podman stage is approved first. Moving to Kubernetes needs a security re-assessment of the cluster deployment. Evidence from the Podman stage can be reused where the image is unchanged.</li>
+<li><strong>Security asks:</strong> an admission rule that only signed images run, internal-only certificate authority, and a verified egress test on each environment.</li>
+</ul>
+<h3 id="d-project-manager-summary-non-technical">D. Project manager summary (non-technical)</h3>
+<p><strong>What will happen, in plain terms</strong></p>
+<ol>
+<li><strong>Build the pieces once, outside the secure network.</strong> The delivery team builds the website, search and analytics as sealed packages.</li>
+<li><strong>Show people early.</strong> A short-lived trial environment lets stakeholders see and use the core ideas.</li>
+<li><strong>Carry the packages across the secure gap.</strong> Security checks and approves each crossing.</li>
+<li><strong>Install on the secure network.</strong> First development, then staging (a dress rehearsal with real content), then production.</li>
+<li><strong>Accredit, then go live.</strong></li>
+<li><strong>Later, move to a bigger platform (Kubernetes).</strong> This is planned for from the start so it is a move, not a rebuild.</li>
+</ol>
+<p><strong>Why the architecture guidance makes this efficient</strong></p>
+<ul>
+<li><strong>Same package everywhere.</strong> Fewer surprises between test and production.</li>
+<li><strong>Rules set up front.</strong> The delivery team builds it portable now, so the later move is mostly adding things.</li>
+<li><strong>Standard parts.</strong> CMS, Search and Analytics are widely known. Fewer special skills needed.</li>
+<li><strong>Early proof.</strong> Rehearsing the crossing and the restore finds problems early, when they are cheap.</li>
+</ul>
+<p><strong>What the PM should watch</strong></p>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table>
+<thead>
+<tr>
+<th>Watch item</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Does the organization have an approved Kubernetes platform?</td>
+<td>Longest lead time. Gates the later move, not the first release</td>
+</tr>
+<tr>
+<td>Storage for the move (shared files, fast disks)</td>
+<td>Cannot be added at the last minute</td>
+</tr>
+<tr>
+<td>Cleared staff with access to the secure network</td>
+<td>Narrows who can do the work</td>
+</tr>
+<tr>
+<td>Someone owns refreshing the internal software mirrors</td>
+<td>Otherwise the secure side falls behind on security fixes</td>
+</tr>
+<tr>
+<td>Capacity for the Kubernetes stage (section 15)</td>
+<td>More vCPU and RAM than Podman: node overhead, a three-pod ZooKeeper, spare capacity, and a production-like staging</td>
+</tr>
+<tr>
+<td>Database firewall rules for the new platform¹</td>
+<td>Database sees new source addresses after the move</td>
+</tr>
+<tr>
+<td>Re-security approval after the move</td>
+<td>Plan the time early</td>
+</tr>
+<tr>
+<td>Staging environment ready before install</td>
+<td>Needed for real-data checks</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-bottom-line">1. Bottom line</h2>
+<ul>
+<li>Starting on Podman and moving to Kubernetes later is <strong>a sound plan</strong>, if the work is built <strong>portable from day one</strong>.</li>
+<li>The images do not change. The <strong>wrapper around them does</strong>: networking, storage, secrets, scheduling, scaling.</li>
+<li>The cheapest way to keep the move small is to <strong>write the Podman deployment as Kubernetes YAML</strong> and run it with <code>podman kube play</code>. Then the later move is mostly adding things, not rewriting.</li>
+<li><strong>Search is the hardest to move.</strong> CMS is medium. Analytics is easiest.</li>
+<li>The biggest risk is not technical. It is <strong>the Kubernetes platform itself</strong>: it must exist on-prem, be approved, and be able to run this workload.</li>
+</ul>
+<hr />
+<h2 id="2-isolated-network-constraint-how-this-paper-stays-inside-it">2. Isolated-network constraint: how this paper stays inside it</h2>
+<p><strong>Short answer:</strong> this paper stays inside the isolated network constraint. Nothing in it requires an outbound connection at any stage. The list below names the places where a default setting could quietly break that, and what to do about each. Items marked <strong>verify</strong> depend on the exact version we pin and must be tested, not assumed.</p>
+<h3 id="21-where-things-happen">2.1 Where things happen</h3>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Where</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Build, test, scan and sign images</td>
+<td><strong>Build side</strong>, from internal mirrors</td>
+<td>Nothing fetched from the public internet</td>
+</tr>
+<tr>
+<td>Resolve packages (Composer, npm, OS, Ansible collections)</td>
+<td>Build side only</td>
+<td>The isolated side cannot resolve anything</td>
+</tr>
+<tr>
+<td>Carry across</td>
+<td>Security-owned transfer procedure</td>
+<td>Signed artefacts, manifest, checksums</td>
+</tr>
+<tr>
+<td>What is carried</td>
+<td>Images, <strong>deployment YAML and overlays, Ansible roles and collections, Search configset, Kubernetes platform images, GeoIP data, plugin packages</strong></td>
+<td>Not just application images</td>
+</tr>
+<tr>
+<td>Run on Podman</td>
+<td>Alpha on the build side, then dev, staging and production on the <strong>isolated side</strong></td>
+<td>Deploy-only in production</td>
+</tr>
+<tr>
+<td>Run on Kubernetes</td>
+<td><strong>Isolated side</strong></td>
+<td>Same artefacts, same path</td>
+</tr>
+<tr>
+<td>Fix or change in production</td>
+<td>Never interactively</td>
+<td>Rebuild on the build side, transfer, redeploy</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="22-flags">2.2 Flags</h3>
+<ul>
+<li>Flag: <strong>No public registries.</strong> Images, Helm charts, operators and Kubernetes add-ons must all come from the internal registry. Anything that pulls from a public source at install or run time fails the constraint.</li>
+<li>Flag: <strong>No cloud storage classes.</strong> Persistent volumes come from on-prem storage. Shared (read-write-many) storage is needed for the CMS files directory.</li>
+<li>Flag: <strong>Operators and Helm charts are new dependencies.</strong> Each is a permanent patch obligation on a network where nothing refreshes itself. Keep a local copy of the charts. Mirror the images. Prefer plain YAML where it is not much harder.</li>
+<li>Flag: <strong>Applications must not phone home.</strong> Switch these off and test that they stay off:</li>
+<li>Analytics: marketplace, update checks and other internet features (the <code>enable_internet_features</code> setting; <strong>verify</strong> on the pinned version), plus GeoIP auto-download.</li>
+<li>CMS: the Update Status module, which contacts the project's update server. Do not install it, or disable its checks. Updates arrive only through the pipeline.</li>
+<li>Search: no external plugin or package repository.</li>
+<li>Flag: <strong>Kubernetes bootstrap images.</strong> The platform itself needs images (pause image, networking plugin, DNS, ingress controller, metrics). All must be mirrored. A node that tries to pull from a public registry will fail or, worse, succeed on the wrong network.</li>
+<li>Flag: <strong>Podman infra image.</strong> <code>podman kube play</code> creates a small helper ("infra") container per pod. <strong>Verify</strong> it is built or mirrored locally and never pulled externally.</li>
+<li>Flag: <strong>Certificates.</strong> Automatic public certificate issuance (ACME, such as Let's Encrypt) is not allowed. Use the organization's internal certificate authority. Certificate revocation checks must also point to internal responders.</li>
+<li>Flag: <strong>Tooling that fetches by default.</strong></li>
+<li>Kustomize: no remote bases. Every base and overlay is in the repository.</li>
+<li>Ansible: only <code>ansible.builtin</code> modules or vendored collections. No Galaxy at run time.</li>
+<li>the CI tool: no <code>include:</code> from outside, and no <code>image:</code> from a public registry.</li>
+<li><code>kubectl</code> and <code>podman</code>: installed from internal mirrors.</li>
+<li>Flag: <strong>Time and name services.</strong> Internal NTP and internal DNS only.</li>
+<li>Flag: <strong>The Kubernetes platform needs its own security approval.</strong> If the organization does not have one, this is a project dependency with its own lead time.</li>
+</ul>
+<h3 id="23-isolated-network-acceptance-checks">2.3 Isolated-network acceptance checks</h3>
+<p>Run on every environment, and again after the move to Kubernetes.</p>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Check</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Egress test: from each pod or container, outbound connections fail</td>
+<td>Test log</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Every running image digest appears in the signed manifest</td>
+<td>Digest comparison</td>
+</tr>
+<tr>
+<td>3</td>
+<td>No image reference points outside the internal registry</td>
+<td>Scan of rendered YAML</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Analytics and CMS update and marketplace checks are off</td>
+<td>Config export and run-time test</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Platform bootstrap images all come from the internal registry</td>
+<td>Node image list</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Certificates issued by the internal CA only</td>
+<td>Certificate chain</td>
+</tr>
+<tr>
+<td>7</td>
+<td>A rebuild from the transferred artefacts alone succeeds</td>
+<td>Rehearsal record</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="3-design-rules-to-follow-now-so-the-move-is-small">3. Design rules to follow now (so the move is small)</h2>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Rule</th>
+<th>Why it matters later</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Build standard <strong>OCI images</strong> only. No Podman-specific tricks inside the image</td>
+<td>The same image runs on both</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>One process per container.</strong> app server, web server, Search, Analytics each separate</td>
+<td>Maps directly to pods and containers</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Keep <strong>web-server and app server in one pod</strong> (shared localhost)</td>
+<td>Works the same in a Kubernetes pod</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>All config from environment variables or mounted files.</strong> Nothing baked in per environment</td>
+<td>Becomes ConfigMaps and Secrets</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>No host paths.</strong> Use named volumes / claims only</td>
+<td>Host paths do not exist in Kubernetes</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Give every container a <strong>health endpoint</strong> and define probes now</td>
+<td><code>podman kube play</code> honours probes; Kubernetes needs them</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Set <strong>CPU and memory limits</strong> now</td>
+<td>Kubernetes scheduling depends on them. Search heap depends on them</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Run <strong>non-root, read-only root filesystem</strong>, writable temp dirs only</td>
+<td>Matches Kubernetes pod security rules</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>Scheduled jobs are separate from web containers</strong></td>
+<td>Become CronJobs</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>Deploy steps are scripted</strong> (database updates, config import, cache rebuild)</td>
+<td>Become a Job or Helm hook</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>State lives outside the app container</strong>: database¹, files, Search index, Analytics data</td>
+<td>Moves without touching the app</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Keep <strong>EN and FR per-language metrics</strong> in the monitoring design</td>
+<td>Provable bilingualism must survive the move</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="4-podman-options-compared">4. Podman options compared</h2>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Looks like</th>
+<th>Migration effort</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>podman kube play</code></strong> on Kubernetes YAML, run under systemd with <strong>Quadlet</strong> <code>.kube</code> units</td>
+<td>Kubernetes YAML</td>
+<td><strong>Low</strong></td>
+<td><strong>Recommended</strong></td>
+</tr>
+<tr>
+<td>Quadlet <code>.container</code> files</td>
+<td>systemd units per container</td>
+<td>Medium. Rewrite as YAML later</td>
+<td>Good fallback</td>
+</tr>
+<tr>
+<td><code>podman-compose</code> / Compose files</td>
+<td>Compose YAML</td>
+<td>Medium to high. Tool-assisted conversion needs cleanup</td>
+<td>Not recommended</td>
+</tr>
+<tr>
+<td>Raw <code>podman run</code> scripts</td>
+<td>Shell</td>
+<td>High</td>
+<td>Rejected. Not repeatable, no provenance</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Gaps in <code>podman kube play</code> to plan for:</strong></p>
+<ul>
+<li>It does not give you Ingress, NetworkPolicy, or real Services. Use the reverse proxy cache container as the front door on Podman.</li>
+<li>Scheduled jobs: use <strong>systemd timers</strong> on Podman. They become <strong>CronJobs</strong> on Kubernetes. Check whether the pinned Podman version handles Job and CronJob objects before relying on them.</li>
+<li>No rolling updates, no automatic rescheduling. Podman gives restart on failure, not high availability.</li>
+</ul>
+<hr />
+<h2 id="5-what-changes-by-area">5. What changes, by area</h2>
+<p>Effort: <strong>L</strong> low, <strong>M</strong> medium, <strong>H</strong> high.</p>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>On Podman</th>
+<th>On Kubernetes</th>
+<th>Effort</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image supply</td>
+<td>Internal registry, signed images</td>
+<td>Same registry. Add admission control that only allows signed images</td>
+<td>L</td>
+</tr>
+<tr>
+<td>Networking</td>
+<td>Podman network, reverse proxy cache as front door</td>
+<td>Ingress controller, Services, DNS, TLS secrets</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Network rules</td>
+<td>Host firewall</td>
+<td>NetworkPolicy (default deny, then allow)</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Named volumes on host or NFS</td>
+<td>StorageClass, PersistentVolumeClaims, RWX for CMS files</td>
+<td><strong>H</strong></td>
+</tr>
+<tr>
+<td>Config</td>
+<td>Env files, mounted files</td>
+<td>ConfigMaps</td>
+<td>L</td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td>Podman secrets / isolated network store</td>
+<td>Kubernetes Secrets backed by the isolated network secret store</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Scheduling</td>
+<td>systemd timers</td>
+<td>CronJobs</td>
+<td>L</td>
+</tr>
+<tr>
+<td>Deploy steps</td>
+<td>Script run by the pipeline</td>
+<td>Job or Helm hook, ordered before rollout</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Scale and HA</td>
+<td>One instance, restart on failure</td>
+<td>Replicas, rolling updates, pod disruption budgets</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Security</td>
+<td>Rootless Podman</td>
+<td>Pod Security Standards, RBAC, service accounts</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Logging</td>
+<td>journald</td>
+<td>Cluster log collection to the on-prem log platform</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Metrics</td>
+<td>Host exporters</td>
+<td>Cluster metrics, per-pod scrape</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Backups</td>
+<td>Volume copy, database dump</td>
+<td>Volume snapshots plus app-level backups</td>
+<td><strong>H</strong></td>
+</tr>
+<tr>
+<td>Database access¹</td>
+<td>Fixed host IP to the DB server</td>
+<td>Traffic leaves from node or egress IPs. Egress NetworkPolicy to DB host and port</td>
+<td>M</td>
+</tr>
+<tr>
+<td>Patching</td>
+<td>Rebuild image, restart unit</td>
+<td>Rebuild image, rolling update. Plus patching the cluster</td>
+<td>M</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="6-component-by-component">6. Component by component</h2>
+<h3 id="61-cms-app-server-web-server">6.1 CMS (app server + web server)</h3>
+<p><strong>Impact: medium.</strong> The application is stateless except for files and sessions.</p>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Podman</th>
+<th>Kubernetes</th>
+<th>Action now</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Files directory</td>
+<td>Local or NFS volume</td>
+<td><strong>RWX volume</strong> shared by all pods</td>
+<td>Pick shared storage design now. Never rely on local disk</td>
+</tr>
+<tr>
+<td>Config</td>
+<td><code>settings.php</code> reads env vars</td>
+<td>Same, from ConfigMap and Secret</td>
+<td>Make <code>settings.php</code> fully env-driven</td>
+</tr>
+<tr>
+<td>Cron</td>
+<td>systemd timer runs <code>cms-cli cron</code></td>
+<td>CronJob</td>
+<td>Keep cron out of the web container</td>
+</tr>
+<tr>
+<td>Queue workers</td>
+<td>Separate container or timer</td>
+<td>Separate Deployment</td>
+<td>Split Search indexing and archive-API workers from web</td>
+</tr>
+<tr>
+<td>Deploy steps</td>
+<td>Script: <code>updb</code>, <code>cim</code>, <code>cr</code></td>
+<td>One-shot Job before rollout</td>
+<td>Script them now, idempotent</td>
+</tr>
+<tr>
+<td>Sessions and cache</td>
+<td>Single instance, so easy</td>
+<td>Many pods need a <strong>shared cache</strong> (Redis)</td>
+<td>Use Redis from the start</td>
+</tr>
+<tr>
+<td>Reverse proxy</td>
+<td>Reverse proxy cache sets headers</td>
+<td>Ingress sets headers</td>
+<td>Set trusted proxies and host patterns by env var</td>
+</tr>
+<tr>
+<td>Temp and private files</td>
+<td>Writable volume</td>
+<td><code>emptyDir</code> for temp. Claim for private files</td>
+<td>Declare both paths explicitly</td>
+</tr>
+<tr>
+<td>Update checks</td>
+<td>Update Status module would call the project's update server</td>
+<td>Same</td>
+<td>Do not install it, or disable it. Updates arrive only through the pipeline</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Work to move:</strong> Deployment with 2+ replicas, Service, Ingress, CronJob, deploy Job, RWX claim, Redis, probes, NetworkPolicy.</p>
+<p><strong>Watch for:</strong> read-only root filesystem breaking CMS writes. Cache behaviour between replicas. Authenticated pages caching differently from anonymous ones.</p>
+<h3 id="62-search">6.2 Search</h3>
+<p><strong>Impact: high.</strong> Search holds state, needs tuned memory, and is clustered differently on Kubernetes.</p>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Podman</th>
+<th>Kubernetes</th>
+<th>Action now</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mode</td>
+<td>Single node</td>
+<td>StatefulSet, ideally <strong>cluster mode</strong> with a 3-node ZooKeeper</td>
+<td>Run <strong>cluster mode with one Search and one ZooKeeper container</strong> on Podman, so configsets and collections are managed the same way</td>
+</tr>
+<tr>
+<td>Config</td>
+<td>Config files in image or volume</td>
+<td>Configset in ZooKeeper, uploaded by a Job</td>
+<td>Package the configset as an artefact. Upload with a script, not by hand</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Named volume</td>
+<td>One PVC per Search pod (fast local-class storage)</td>
+<td>Size for the index. Keep it off shared NFS if possible</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>Container limit and heap set together</td>
+<td>Same, but pod limit must exceed heap by a margin</td>
+<td>Set heap to about half the memory limit now. Leave room for OS cache</td>
+</tr>
+<tr>
+<td>File limits</td>
+<td><code>--ulimit nofile</code> on run</td>
+<td>Inherited from the runtime. Not set per pod</td>
+<td>Confirm the node and runtime allow high open-file limits</td>
+</tr>
+<tr>
+<td>Permissions</td>
+<td><code>:U</code> volume flag, runs as uid 8983</td>
+<td><code>fsGroup: 8983</code> or an init container</td>
+<td>Do not run as root to fix permissions</td>
+</tr>
+<tr>
+<td>Backups</td>
+<td>Collection backup API to a mounted path</td>
+<td>Same API to a backup claim</td>
+<td>Test restore, not just backup</td>
+</tr>
+<tr>
+<td>Reindexing</td>
+<td>Rebuild from CMS</td>
+<td>Same</td>
+<td>Keep it a one-command job. It is also the recovery plan</td>
+</tr>
+<tr>
+<td>Bilingual</td>
+<td>Per-language fields and analysers</td>
+<td>Same</td>
+<td>EN and FR index lag tracked separately</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Work to move:</strong> StatefulSet, headless Service, ZooKeeper ensemble (or operator), configset Job, backup CronJob, PVCs, anti-affinity so replicas land on different nodes, NetworkPolicy so only CMS reaches Search.</p>
+<p><strong>Watch for:</strong> switching from single node to cloud mode late. It changes how collections, replicas and configsets work, which is why the Podman setup above runs cloud mode from day one. Operator or chart choice is a patch obligation. Decide deliberately.</p>
+<h3 id="63-analytics">6.3 Analytics</h3>
+<p><strong>Impact: low to medium.</strong> Mostly a PHP app with a database and one heavy scheduled job.</p>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Podman</th>
+<th>Kubernetes</th>
+<th>Action now</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Config file</td>
+<td><code>config.ini.php</code> is written by the installer</td>
+<td>Cannot simply be a read-only ConfigMap</td>
+<td>Generate it at build or first-run. Use environment-variable overrides where the pinned version supports them</td>
+</tr>
+<tr>
+<td>Archiving</td>
+<td>systemd timer runs <code>core:archive</code></td>
+<td>CronJob, concurrency forbidden</td>
+<td>Turn off browser-triggered archiving now</td>
+</tr>
+<tr>
+<td>Plugins</td>
+<td>Baked into image</td>
+<td>Same</td>
+<td><strong>No marketplace installs</strong> in an isolated network. Pin plugin versions in the image</td>
+</tr>
+<tr>
+<td>GeoIP</td>
+<td>Database file mounted</td>
+<td>Same, from a claim or the image</td>
+<td>Supply the database offline. Never auto-download</td>
+</tr>
+<tr>
+<td>Internet features</td>
+<td>Off in config</td>
+<td>Off in config</td>
+<td>Disable update checks and marketplace. Verify on the pinned version, and test</td>
+</tr>
+<tr>
+<td>Tracking load</td>
+<td>One instance</td>
+<td>Scale web pods. Optional queued tracking with Redis</td>
+<td>Not needed on day one. Do not rule it out</td>
+</tr>
+<tr>
+<td>Writable paths</td>
+<td><code>tmp/</code> volume</td>
+<td><code>emptyDir</code> for <code>tmp/</code>. Claim for anything that must persist</td>
+<td>List every writable path</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>External</td>
+<td>External</td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td>Reporting pipeline</td>
+<td>Reads Analytics API</td>
+<td>Same, through an internal Service</td>
+<td>Keep API access internal only</td>
+</tr>
+<tr>
+<td>Audiences</td>
+<td>Role-based access</td>
+<td>Same</td>
+<td>Unchanged. IT owns platform. Comms owns reports</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Work to move:</strong> Deployment, Service, Ingress path for the tracking endpoint, CronJob for archiving, config generation, NetworkPolicy, probes.</p>
+<p><strong>Watch for:</strong> the content-freshness reporting job. It depends on archiving finishing on time, so alert when a CronJob run is missed.</p>
+<hr />
+<h2 id="7-work-breakdown">7. Work breakdown</h2>
+<p>Sizes are relative (S, M, L). Owner: <strong>V</strong> delivery team, <strong>D</strong> IT, <strong>S</strong> Security.</p>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Work package</th>
+<th>Phase</th>
+<th>Owner</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A. Build portable (during Podman delivery)</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>A1</td>
+<td>Author deployment as Kubernetes YAML for all three components</td>
+<td>Now</td>
+<td>V</td>
+<td>M</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>Kustomize layout: one base, overlays for each environment</td>
+<td>Now</td>
+<td>V</td>
+<td>S</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>Env-driven config for CMS and Analytics</td>
+<td>Now</td>
+<td>V</td>
+<td>M</td>
+</tr>
+<tr>
+<td>A4</td>
+<td>Search run in cluster mode, configset as an artefact</td>
+<td>Now</td>
+<td>V</td>
+<td>M</td>
+</tr>
+<tr>
+<td>A5</td>
+<td>Probes, resource limits, non-root, read-only filesystem</td>
+<td>Now</td>
+<td>V</td>
+<td>S</td>
+</tr>
+<tr>
+<td>A6</td>
+<td>Scheduled jobs as systemd timers, kept in separate units</td>
+<td>Now</td>
+<td>V</td>
+<td>S</td>
+</tr>
+<tr>
+<td>A7</td>
+<td>Scripted deploy steps (idempotent)</td>
+<td>Now</td>
+<td>V</td>
+<td>S</td>
+</tr>
+<tr>
+<td>A8</td>
+<td>Ansible role for host setup, Quadlet units, secrets</td>
+<td>Now</td>
+<td>V + D</td>
+<td>M</td>
+</tr>
+<tr>
+<td>A9</td>
+<td>Per-language EN/FR metrics in monitoring</td>
+<td>Now</td>
+<td>V</td>
+<td>S</td>
+</tr>
+<tr>
+<td>A10</td>
+<td>Isolated-network acceptance checks (section 2.3) written and run</td>
+<td>Now</td>
+<td>V + S</td>
+<td>S</td>
+</tr>
+<tr>
+<td>A11</td>
+<td>Everything carried across is listed in the manifest, including YAML, Ansible and configset</td>
+<td>Now</td>
+<td>V + S</td>
+<td>S</td>
+</tr>
+<tr>
+<td><strong>B. Kubernetes readiness (organization)</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>B1</td>
+<td>Confirm platform exists, approved, can host this workload</td>
+<td>Early</td>
+<td>D + S</td>
+<td><strong>L</strong></td>
+</tr>
+<tr>
+<td>B2</td>
+<td>Storage classes: fast block for Search, RWX for CMS files</td>
+<td>Early</td>
+<td>D</td>
+<td>L</td>
+</tr>
+<tr>
+<td>B3</td>
+<td>Ingress, DNS and internal TLS</td>
+<td>Early</td>
+<td>D</td>
+<td>M</td>
+</tr>
+<tr>
+<td>B4</td>
+<td>Registry import path, admission policy for signed images</td>
+<td>Early</td>
+<td>D + S</td>
+<td>M</td>
+</tr>
+<tr>
+<td>B5</td>
+<td>Secret store integration</td>
+<td>Early</td>
+<td>D + S</td>
+<td>M</td>
+</tr>
+<tr>
+<td>B6</td>
+<td>Log and metric collection</td>
+<td>Early</td>
+<td>D</td>
+<td>M</td>
+</tr>
+<tr>
+<td>B7</td>
+<td>Namespaces, RBAC, quotas, NetworkPolicy defaults</td>
+<td>Early</td>
+<td>D + S</td>
+<td>M</td>
+</tr>
+<tr>
+<td>B8</td>
+<td>Mirror Kubernetes bootstrap images. Internal CA and revocation. Internal NTP and DNS</td>
+<td>Early</td>
+<td>D + S</td>
+<td>M</td>
+</tr>
+<tr>
+<td><strong>C. Migration build</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>C1</td>
+<td>CMS: Deployment, Service, Ingress, CronJob, Job, RWX claim, Redis</td>
+<td>Move</td>
+<td>V</td>
+<td>M</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>Search: StatefulSet, ZooKeeper, PVCs, backup CronJob</td>
+<td>Move</td>
+<td>V</td>
+<td><strong>L</strong></td>
+</tr>
+<tr>
+<td>C3</td>
+<td>Analytics: Deployment, CronJob, config generation</td>
+<td>Move</td>
+<td>V</td>
+<td>S</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>NetworkPolicies for all three</td>
+<td>Move</td>
+<td>V + S</td>
+<td>M</td>
+</tr>
+<tr>
+<td>C5</td>
+<td>Pipeline: deploy job to cluster, promotion dev to staging to production</td>
+<td>Move</td>
+<td>V + D</td>
+<td>M</td>
+</tr>
+<tr>
+<td>C6</td>
+<td>Backup and restore for volumes and applications</td>
+<td>Move</td>
+<td>V + D</td>
+<td><strong>L</strong></td>
+</tr>
+<tr>
+<td><strong>D. Prove and cut over</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>D1</td>
+<td>Rebuild on staging with real data. Reindex Search. Re-run Analytics archiving</td>
+<td>Prove</td>
+<td>V + D</td>
+<td>M</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>Load, failover and rolling update test</td>
+<td>Prove</td>
+<td>V + D</td>
+<td>M</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>Bilingual parity check on the new platform</td>
+<td>Prove</td>
+<td>V + D</td>
+<td>S</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>Security re-assessment of the cluster deployment</td>
+<td>Prove</td>
+<td>S</td>
+<td>M</td>
+</tr>
+<tr>
+<td>D5</td>
+<td>Cutover plan, rollback to Podman, runbooks, training</td>
+<td>Cutover</td>
+<td>V + D</td>
+<td>M</td>
+</tr>
+<tr>
+<td>D6</td>
+<td>Parallel run, then retire the Podman host</td>
+<td>Cutover</td>
+<td>D</td>
+<td>S</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Critical path:</strong> B1 (platform), then C2 (Search), then C6 (backup and restore), then D4 (security re-assessment).</p>
+<hr />
+<h2 id="8-iac-cac-examples">8. IaC / CaC examples</h2>
+<blockquote>
+<p><strong>Illustration only. Not a deliverable.</strong> The delivery team designs the real thing. These show the shape and why it keeps the move small.</p>
+</blockquote>
+<h3 id="81-repository-layout">8.1 Repository layout</h3>
+<pre tabindex="0" class="plain"><code>deploy/
+  base/                       # the same for every environment and both platforms
+    cms.yaml
+    search.yaml
+    analytics.yaml
+    kustomization.yaml
+  overlays/
+    podman/                   # single host, no Ingress, no NetworkPolicy
+    dev/
+    staging/
+    prod/                     # replicas, real storage classes, policies
+  search/configset/             # artefact, not a hand-edited file
+ansible/
+  roles/podman_host/          # CaC: host, Quadlet units, timers
+  roles/k8s_node_prep/        # CaC later: node settings for Search
+</code></pre>
+<h3 id="82-podman-run-kubernetes-yaml-under-systemd-quadlet">8.2 Podman: run Kubernetes YAML under systemd (Quadlet)</h3>
+<pre tabindex="0"><code class="language-ini"># /etc/containers/systemd/web-cms.kube
+[Unit]
+Description=CMS pod (web-server + app server)
+After=network-online.target
+
+[Kube]
+Yaml=/opt/web/deploy/rendered/cms.yaml
+ConfigMap=/opt/web/deploy/rendered/cms-config.yaml
+PublishPort=8443:8443
+AutoUpdate=disabled        # isolated-network: updates come only through the pipeline
+
+[Service]
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>The same <code>cms.yaml</code> is later applied to the cluster. Only the overlay changes.</p>
+<h3 id="83-cms-pod-with-probes-limits-and-hardening">8.3 CMS: pod with probes, limits and hardening</h3>
+<pre tabindex="0"><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cms
+spec:
+  replicas: 1                      # prod overlay patches this to 2 or more
+  selector:
+    matchLabels: { app: cms }
+  template:
+    metadata:
+      labels: { app: cms }
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 82
+      containers:
+        - name: app-server
+          image: registry.example.internal/web/cms:1.4.2
+          envFrom:
+            - configMapRef: { name: cms-env }
+            - secretRef:    { name: cms-secrets }
+          resources:
+            requests: { cpu: &quot;500m&quot;, memory: 1Gi }
+            limits:   { memory: 2Gi }
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: { drop: [&quot;ALL&quot;] }
+          readinessProbe:
+            exec: { command: [&quot;app-server-healthcheck&quot;] }
+            periodSeconds: 10
+          volumeMounts:
+            - { name: files,   mountPath: /app/web/sites/default/files }
+            - { name: tmp,     mountPath: /tmp }
+        - name: web-server
+          image: registry.example.internal/web/web:1.4.2
+          ports: [{ containerPort: 8443 }]
+          readinessProbe:
+            httpGet: { path: /healthz, port: 8443, scheme: HTTPS }
+          securityContext:
+            readOnlyRootFilesystem: true
+      volumes:
+        - name: files
+          persistentVolumeClaim: { claimName: cms-files }   # RWX on Kubernetes
+        - name: tmp
+          emptyDir: {}
+</code></pre>
+<h3 id="84-cms-cron-and-deploy-steps">8.4 CMS: cron and deploy steps</h3>
+<pre tabindex="0"><code class="language-yaml">apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cms-cron
+spec:
+  schedule: &quot;*/15 * * * *&quot;
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: cron
+              image: registry.example.internal/web/cms:1.4.2
+              command: [&quot;cms-cli&quot;, &quot;cron&quot;]
+              envFrom:
+                - configMapRef: { name: cms-env }
+                - secretRef:    { name: cms-secrets }
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cms-deploy-1-4-2          # one per release
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: deploy
+          image: registry.example.internal/web/cms:1.4.2
+          command: [&quot;/bin/sh&quot;, &quot;-c&quot;]
+          args: [&quot;cms-cli updb -y &amp;&amp; cms-cli cim -y &amp;&amp; cms-cli cr&quot;]
+</code></pre>
+<p>On Podman the same three commands run as a pipeline step before the unit restarts.</p>
+<h3 id="85-search-statefulset-the-part-that-really-changes">8.5 Search: StatefulSet (the part that really changes)</h3>
+<pre tabindex="0"><code class="language-yaml">apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: search
+spec:
+  serviceName: search-headless
+  replicas: 1                        # staging/prod overlays patch to 2 (matches the sizing baseline)
+  selector:
+    matchLabels: { app: search }
+  template:
+    metadata:
+      labels: { app: search }
+    spec:
+      securityContext:
+        runAsUser: 8983
+        runAsNonRoot: true
+        fsGroup: 8983
+      containers:
+        - name: search
+          image: registry.example.internal/web/search:9.x-pinned
+          args: [&quot;search&quot;, &quot;start&quot;, &quot;-f&quot;, &quot;-c&quot;, &quot;-z&quot;, &quot;zk-0.zk-headless:2181&quot;]
+          env:
+            - { name: SEARCH_HEAP, value: &quot;2g&quot; }          # about half the limit
+          resources:
+            requests: { cpu: &quot;1&quot;, memory: 4Gi }
+            limits:   { memory: 4Gi }
+          readinessProbe:
+            httpGet: { path: /search/admin/info/system, port: 8983 }
+          volumeMounts:
+            - { name: data, mountPath: /var/search }
+  volumeClaimTemplates:
+    - metadata: { name: data }
+      spec:
+        accessModes: [&quot;ReadWriteOnce&quot;]
+        storageClassName: fast-block
+        resources: { requests: { storage: 100Gi } }
+</code></pre>
+<p>Configset upload as a one-shot Job, so it is repeatable and not a hand step:</p>
+<pre tabindex="0"><code class="language-yaml">apiVersion: batch/v1
+kind: Job
+metadata: { name: search-configset-1-4-2 }
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: upload
+          image: registry.example.internal/web/search-config:1.4.2   # configset baked in
+          command: [&quot;/bin/sh&quot;, &quot;-c&quot;]
+          args:
+            - search zk upconfig -z zk-0.zk-headless:2181 -n web -d /configset &amp;&amp;
+              search create_collection -c iss_en -n web -z zk-0.zk-headless:2181 &amp;&amp;
+              search create_collection -c iss_fr -n web -z zk-0.zk-headless:2181
+</code></pre>
+<p>Separate EN and FR collections (or fields) keep per-language index lag measurable.</p>
+<h3 id="86-analytics-archiving-as-a-cronjob">8.6 Analytics: archiving as a CronJob</h3>
+<pre tabindex="0"><code class="language-yaml">apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: analytics-archive
+spec:
+  schedule: &quot;5 * * * *&quot;
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 3000
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: archive
+              image: registry.example.internal/web/analytics:5.x-pinned
+              command: [&quot;php&quot;, &quot;console&quot;, &quot;core:archive&quot;]
+              envFrom:
+                - secretRef: { name: analytics-secrets }
+              volumeMounts:
+                - { name: tmp, mountPath: /var/www/html/tmp }
+          volumes:
+            - { name: tmp, emptyDir: {} }
+</code></pre>
+<h3 id="87-network-rule-only-cms-may-reach-search">8.7 Network rule: only CMS may reach Search</h3>
+<pre tabindex="0"><code class="language-yaml">apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: search-from-cms-only }
+spec:
+  podSelector:
+    matchLabels: { app: search }
+  policyTypes: [&quot;Ingress&quot;]
+  ingress:
+    - from:
+        - podSelector: { matchLabels: { app: cms } }
+        - podSelector: { matchLabels: { app: search } }     # Search to Search
+      ports: [{ port: 8983 }]
+</code></pre>
+<h3 id="88-overlay-what-changes-between-podman-and-production">8.8 Overlay: what changes between Podman and production</h3>
+<pre tabindex="0"><code class="language-yaml"># overlays/prod/kustomization.yaml
+resources: [../../base, networkpolicies.yaml, ingress.yaml]
+patches:
+  - target: { kind: Deployment, name: cms }
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 2
+  - target: { kind: StatefulSet, name: search }
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 2
+</code></pre>
+<p><code>kubectl apply -k</code> ships with <code>kubectl</code>. No chart repository, no download. All bases are local to the repository. No remote bases.</p>
+<p>The Solution architecture's deployment concept uses Helm charts from an internal mirror. That is compatible with section 2 if each chart is vendored and reviewed. This paper prefers Kustomize because it needs no chart repository at all.</p>
+<h3 id="89-configuration-as-code-ansible-prepare-the-host">8.9 Configuration as code (Ansible): prepare the host</h3>
+<pre tabindex="0"><code class="language-yaml"># roles/podman_host/tasks/main.yml (concept)
+- name: Install Podman from the internal mirror
+  ansible.builtin.package:
+    name: [podman, crun]
+    state: present
+
+- name: Raise open-file limits for Search
+  ansible.builtin.copy:
+    dest: /etc/security/limits.d/search.conf
+    content: |
+      search soft nofile 65000
+      search hard nofile 65000
+
+- name: Place rendered Kubernetes YAML
+  ansible.builtin.copy:
+    src: &quot;rendered/{{ item }}&quot;
+    dest: &quot;/opt/web/deploy/rendered/{{ item }}&quot;
+  loop: [cms.yaml, search.yaml, analytics.yaml]
+
+- name: Place Quadlet units
+  ansible.builtin.template:
+    src: &quot;{{ item }}.kube.j2&quot;
+    dest: &quot;/etc/containers/systemd/{{ item }}.kube&quot;
+  loop: [web-cms, web-search, web-analytics]
+  notify: Reload systemd and restart units
+
+- name: Analytics archive timer
+  ansible.builtin.systemd:
+    name: analytics-archive.timer
+    enabled: true
+    state: started
+</code></pre>
+<p>The <code>k8s_node_prep</code> role later applies the same limits to cluster nodes. The host setting is the part teams forget.</p>
+<h3 id="810-pipeline-one-image-promoted">8.10 Pipeline: one image, promoted</h3>
+<pre tabindex="0"><code class="language-yaml"># pipeline.yml (concept, isolated side)
+stages: [render, deploy_dev, deploy_staging, deploy_prod]
+
+.render: &amp;render
+  script:
+    - kubectl kustomize deploy/overlays/$ENV &gt; rendered.yaml
+
+deploy_staging:
+  stage: deploy_staging
+  variables: { ENV: staging }
+  script:
+    - kubectl kustomize deploy/overlays/$ENV | kubectl apply -f -
+    - kubectl rollout status deployment/cms --timeout=300s
+  rules: [{ if: '$CI_COMMIT_TAG' }]
+  # Same image tag as dev. Never rebuilt on the way up.
+</code></pre>
+<p>Before Kubernetes the deploy step copies the rendered YAML to the Podman host and restarts the Quadlet unit. The promotion rule does not change.</p>
+<hr />
+<h2 id="9-what-carries-over-and-what-is-thrown-away">9. What carries over and what is thrown away</h2>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table>
+<thead>
+<tr>
+<th>Carries over unchanged</th>
+<th>Changes</th>
+<th>Thrown away</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Container images</td>
+<td>Networking and ingress</td>
+<td>Quadlet units and systemd timers</td>
+</tr>
+<tr>
+<td>Kubernetes YAML in <code>base/</code></td>
+<td>Storage and backups</td>
+<td>Podman host Ansible role (partly)</td>
+</tr>
+<tr>
+<td>CMS config, Search configset, Analytics plugin set</td>
+<td>Secrets handling</td>
+<td>TLS and routing front end (the cache stays)</td>
+</tr>
+<tr>
+<td>Pipeline promotion rule</td>
+<td>Logging and metrics collection</td>
+<td>Podman-specific runbooks</td>
+</tr>
+<tr>
+<td>EN/FR parity checks</td>
+<td>Patching and rollout method</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>If rules in section 3 are followed, <strong>throwaway is small and mostly operational.</strong></p>
+<hr />
+<h2 id="10-risks">10. Risks</h2>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Impact</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kubernetes platform not available or not approved</td>
+<td>Move cannot happen</td>
+<td>Confirm early (B1). Decide the "stay on Podman" case explicitly</td>
+</tr>
+<tr>
+<td>Late switch of Search to cluster mode</td>
+<td>Rework, reindex, downtime</td>
+<td>Run cloud mode from day one</td>
+</tr>
+<tr>
+<td>Shared storage for CMS files not available</td>
+<td>Cannot run more than one CMS pod</td>
+<td>Pick the storage design now</td>
+</tr>
+<tr>
+<td>Podman treated as long-term production</td>
+<td>Single-host risk, no failover</td>
+<td>Set a review date. State the exposure</td>
+</tr>
+<tr>
+<td>Database firewall allow-list still names the Podman host¹</td>
+<td>Pods cannot reach the database after cutover</td>
+<td>Agree a stable node or egress address range with the database team and Security before the move</td>
+</tr>
+<tr>
+<td>Operators and charts pulled in without mirror discipline</td>
+<td>Constraint failure</td>
+<td>Keep a local copy of everything. Review each as a patch cost</td>
+</tr>
+<tr>
+<td>A default setting quietly calls out (update check, GeoIP, image pull)</td>
+<td>Constraint failure that is easy to miss</td>
+<td>Egress test and acceptance checks (section 2.3) on every environment</td>
+</tr>
+<tr>
+<td>Analytics archiving falls behind</td>
+<td>Content-freshness reports go stale</td>
+<td>Alert on missed CronJobs</td>
+</tr>
+<tr>
+<td>Cluster security approval needs repeating</td>
+<td>Schedule slip</td>
+<td>Plan D4 early. Reuse evidence from Podman where possible</td>
+</tr>
+<tr>
+<td>Backups tested only on Podman</td>
+<td>Restore fails on cluster</td>
+<td>Test restore on staging (C6, D1)</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="11-questions-for-organization-it">11. Questions for IT</h2>
+<ol>
+<li>Is there an on-prem Kubernetes platform today? Which distribution, which version, who runs it?</li>
+<li>Is it approved for this classification? What is the lead time to get a new workload onto it?</li>
+<li>What storage is on offer: block, shared file, snapshots? Is read-write-many available?</li>
+<li>Which ingress controller and internal certificate process is standard?</li>
+<li>How are secrets delivered to pods? How are signed images enforced?</li>
+<li>Is there an approved operator or Helm chart policy?</li>
+<li>Who patches the cluster and how often, on an isolated network?</li>
+<li>How long does the organization expect to run on Podman before moving?</li>
+<li>Confirm the databases are on non-containerized servers¹. Who runs them, which engine, and what are the connection limits and the firewall process?</li>
+</ol>
+<hr />
+<h2 id="12-proposed-positions-for-the-ea-to-take-or-leave">12. Proposed positions (for the enterprise architect to take or leave)</h2>
+<ul>
+<li><strong>P1.</strong> Author deployment as Kubernetes YAML from the start, run on Podman via Quadlet.</li>
+<li><strong>P2.</strong> Run Search in cloud mode from the start, even with one node.</li>
+<li><strong>P3.</strong> Use Kustomize with overlays. No Helm repositories in the isolated network unless a chart is vendored and reviewed.</li>
+<li><strong>P4.</strong> Put scheduled jobs in separate units from day one.</li>
+<li><strong>P5.</strong> Require the delivery team to show portability in the design, not promise it. Evaluate on that.</li>
+<li><strong>P6.</strong> Set an explicit review date for Podman as a production platform.</li>
+</ul>
+<p>These are <strong>not recorded in the decision log.</strong> They stay here until you choose where, if anywhere, they belong.</p>
+<hr />
+<h2 id="13-logical-diagrams">13. Logical diagrams</h2>
+<p>Four views and one footnote. Each figure has a text description, so nothing depends on seeing the picture. The Markdown file carries text versions of the figures.</p>
+<p><strong>Notation:</strong> informal boxes and arrows in the style of a C4 container view. Solid arrow: synchronous call or data flow. Dashed arrow: asynchronous. Dashed box: a hosting boundary, or a system outside the platform. <strong>NEW</strong> and <strong>CHANGE</strong> tags mark what is different on Kubernetes. <strong>Scope:</strong> CMS, Search and Analytics, plus what they depend on.</p>
+<h3 id="131-podman-stage">13.1 Podman stage</h3>
+<figure class="fig"><div class="diagram" tabindex="0" role="group" aria-label="Figure 1: Logical view, Podman stage (scrollable)"><svg viewBox="0 0 960 500" role="img" aria-labelledby="f1-t f1-d" xmlns="http://www.w3.org/2000/svg"><title id="f1-t">Logical view, Podman stage</title><desc id="f1-d">Users reach a reverse proxy cache, then the CMS and Analytics pods on one Podman host. CMS uses Search, Redis and a transcode worker. Databases, managed storage and enterprise systems sit outside the containers.</desc><defs><marker id="f1-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><rect class="b ext" x="10" y="170" width="110" height="56" rx="4"/><text class="bold" x="65.0" y="194.0" text-anchor="middle">Users</text><text x="65.0" y="209.0" text-anchor="middle">EN / FR</text><rect class="b tech" x="150" y="170" width="130" height="56" rx="4"/><text class="bold" x="215.0" y="194.0" text-anchor="middle">Reverse proxy</text><text x="215.0" y="209.0" text-anchor="middle">cache, TLS</text><path class="edge" d="M120 198 H150" marker-end="url(#f1-ah)"/><text class="lbl" x="135" y="188" text-anchor="middle">HTTPS</text><rect class="region" x="310" y="20" width="470" height="460"/><text class="rl" x="320" y="36">Podman host: one per environment (systemd + Quadlet)</text><rect class="region" x="326" y="52" width="438" height="112"/><text class="rl" x="336" y="68">Pod: cms</text><rect class="b app" x="340" y="84" width="100" height="64" rx="4"/><text x="390.0" y="119.5" text-anchor="middle">web-server</text><rect class="b app" x="452" y="84" width="100" height="64" rx="4"/><text x="502.0" y="119.5" text-anchor="middle">app server</text><rect class="b app" x="564" y="84" width="186" height="64" rx="4"/><text class="bold" x="657.0" y="112.0" text-anchor="middle">Queue workers</text><text x="657.0" y="127.0" text-anchor="middle">Search index, archive API</text><rect class="region" x="326" y="180" width="170" height="112"/><text class="rl" x="336" y="196">Pod: search</text><rect class="b app" x="336" y="212" width="76" height="64" rx="4"/><text class="bold" x="374.0" y="232.5" text-anchor="middle">Search</text><text x="374.0" y="247.5" text-anchor="middle">cloud</text><text x="374.0" y="262.5" text-anchor="middle">mode x1</text><rect class="b app" x="418" y="212" width="70" height="64" rx="4"/><text class="bold" x="453.0" y="240.0" text-anchor="middle">ZooKeeper</text><text x="453.0" y="255.0" text-anchor="middle">x1</text><rect class="b app" x="506" y="196" width="100" height="80" rx="4"/><text class="bold" x="556.0" y="232.0" text-anchor="middle">Redis</text><text x="556.0" y="247.0" text-anchor="middle">cache</text><rect class="region" x="620" y="180" width="144" height="112"/><text class="rl" x="630" y="196">Pod: analytics</text><rect class="b app" x="630" y="212" width="124" height="64" rx="4"/><text class="bold" x="692.0" y="240.0" text-anchor="middle">web-server +</text><text x="692.0" y="255.0" text-anchor="middle">app server</text><rect class="b tech" x="326" y="308" width="210" height="60" rx="4"/><text class="bold" x="431.0" y="334.0" text-anchor="middle">systemd timers</text><text x="431.0" y="349.0" text-anchor="middle">CMS cron, Analytics archive</text><rect class="b app" x="554" y="308" width="210" height="60" rx="4"/><text class="bold" x="659.0" y="334.0" text-anchor="middle">Transcode worker</text><text x="659.0" y="349.0" text-anchor="middle">ffmpeg, 4 renditions</text><rect class="b tech" x="326" y="384" width="438" height="60" rx="4"/><text class="bold" x="545.0" y="410.0" text-anchor="middle">Named volumes on the host</text><text x="545.0" y="425.0" text-anchor="middle">Search index, Analytics tmp</text><path class="edge" d="M280 190 H300 V116 H340" marker-end="url(#f1-ah)"/><text class="lbl" x="296" y="150" text-anchor="end">HTTPS</text><path class="edge async" d="M400 164 V212" marker-end="url(#f1-ah)"/><text class="lbl" x="406" y="198" text-anchor="start">index (async)</text><path class="edge" d="M556 164 V196" marker-end="url(#f1-ah)"/><text class="lbl" x="562" y="184" text-anchor="start">cache</text><rect class="region" x="820" y="20" width="130" height="460"/><text class="rl" x="830" y="36">Outside containers</text><rect class="b tech" x="830" y="52" width="110" height="120" rx="4"/><text class="bold" x="885.0" y="85.5" text-anchor="middle">Databases¹</text><text x="885.0" y="100.5" text-anchor="middle">MariaDB or</text><text x="885.0" y="115.5" text-anchor="middle">PostgreSQL</text><text x="885.0" y="130.5" text-anchor="middle">dedicated</text><text x="885.0" y="145.5" text-anchor="middle">servers</text><rect class="b tech" x="830" y="190" width="110" height="100" rx="4"/><text class="bold" x="885.0" y="228.5" text-anchor="middle">Managed</text><text x="885.0" y="243.5" text-anchor="middle">storage</text><text x="885.0" y="258.5" text-anchor="middle">files, backups</text><rect class="b ext" x="830" y="308" width="110" height="136" rx="4"/><text class="bold" x="885.0" y="349.5" text-anchor="middle">Enterprise systems</text><text x="885.0" y="364.5" text-anchor="middle">Identity</text><text x="885.0" y="379.5" text-anchor="middle">Mail</text><text x="885.0" y="394.5" text-anchor="middle">records system</text><text x="885.0" y="409.5" text-anchor="middle">Service desk</text><path class="edge" d="M780 112 H830" marker-end="url(#f1-ah)"/><text class="lbl" x="784" y="105" text-anchor="start">SQL/TLS</text><path class="edge" d="M780 240 H830" marker-end="url(#f1-ah)"/><text class="lbl" x="790" y="233" text-anchor="start">files</text><path class="edge" d="M780 376 H830" marker-end="url(#f1-ah)"/><text class="lbl" x="790" y="369" text-anchor="start">APIs</text></svg></div><figcaption><strong>Figure 1: Logical view, Podman stage.</strong> Scope: CMS, Search, Analytics and their dependencies, one host (as in development and staging).</figcaption></figure>
+<p><strong>Text description.</strong> This is the single-host view used for development and staging. Production on Podman uses two hosts (Figure 7). Users in both official languages reach the reverse proxy cache, which handles TLS with the internal certificate authority. It sends traffic to the CMS pod (web server, app server, queue workers) and the Analytics pod (tracking and reports). CMS talks to Search, which runs in cloud mode with one ZooKeeper, to a Redis cache, and queues video work for the transcode worker. Systemd timers run CMS cron and the Analytics archive job. Search and Analytics use named volumes on the host. Outside the containers, the databases¹ run on dedicated servers, CMS files and backups sit on managed storage, and CMS reaches enterprise systems (identity provider, Mail, records system, Service desk).</p>
+<h3 id="132-kubernetes-stage">13.2 Kubernetes stage</h3>
+<figure class="fig"><div class="diagram" tabindex="0" role="group" aria-label="Figure 2: Logical view, Kubernetes stage (scrollable)"><svg viewBox="0 0 960 600" role="img" aria-labelledby="f2-t f2-d" xmlns="http://www.w3.org/2000/svg"><title id="f2-t">Logical view, Kubernetes stage</title><desc id="f2-d">The same services run in an on-prem Kubernetes cluster with default-deny network policy. Ingress and reverse proxy cache, replicas, StatefulSets, CronJobs and Jobs are new or changed. Databases, managed storage and enterprise systems remain outside.</desc><defs><marker id="f2-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><rect class="b ext" x="10" y="230" width="90" height="56" rx="4"/><text class="bold" x="55.0" y="254.0" text-anchor="middle">Users</text><text x="55.0" y="269.0" text-anchor="middle">EN / FR</text><rect class="b tech" x="130" y="222" width="150" height="72" rx="4"/><text class="bold" x="205.0" y="246.5" text-anchor="middle">Ingress +</text><text x="205.0" y="261.5" text-anchor="middle">reverse proxy cache</text><text x="205.0" y="276.5" text-anchor="middle">TLS, 2 replicas</text><text class="tag" x="276" y="233" text-anchor="end">CHANGE</text><path class="edge" d="M100 258 H130" marker-end="url(#f2-ah)"/><text class="lbl" x="115" y="248" text-anchor="middle">HTTPS</text><rect class="region" x="290" y="16" width="500" height="568"/><text class="rl" x="300" y="32">Kubernetes cluster, NetworkPolicy: default deny</text><text class="tag" x="782" y="32" text-anchor="end">NEW</text><rect class="region" x="304" y="50" width="472" height="120"/><text class="rl" x="314" y="66">Deployment: cms, 2+ replicas</text><text class="tag" x="768" y="66" text-anchor="end">CHANGE</text><rect class="b app" x="316" y="82" width="140" height="76" rx="4"/><text class="bold" x="386.0" y="116.0" text-anchor="middle">Pod</text><text x="386.0" y="131.0" text-anchor="middle">web-server + app server</text><rect class="b app" x="466" y="82" width="140" height="76" rx="4"/><text class="bold" x="536.0" y="116.0" text-anchor="middle">Pod</text><text x="536.0" y="131.0" text-anchor="middle">web-server + app server</text><rect class="b app" x="616" y="82" width="148" height="76" rx="4"/><text class="bold" x="690.0" y="116.0" text-anchor="middle">Deployment</text><text x="690.0" y="131.0" text-anchor="middle">queue workers</text><rect class="region" x="304" y="186" width="270" height="128"/><text class="rl" x="314" y="202">StatefulSet: search x2</text><text class="tag" x="566" y="202" text-anchor="end">CHANGE</text><rect class="b app" x="316" y="214" width="116" height="84" rx="4"/><text x="374.0" y="259.5" text-anchor="middle">search-0</text><rect class="b app" x="442" y="214" width="120" height="84" rx="4"/><text x="502.0" y="259.5" text-anchor="middle">search-1</text><rect class="region" x="590" y="186" width="186" height="128"/><text class="rl" x="600" y="202">StatefulSet: zk x3</text><text class="tag" x="768" y="202" text-anchor="end">NEW</text><rect class="b app" x="600" y="214" width="52" height="84" rx="4"/><text x="626.0" y="259.5" text-anchor="middle">zk-0</text><rect class="b app" x="658" y="214" width="52" height="84" rx="4"/><text x="684.0" y="259.5" text-anchor="middle">zk-1</text><rect class="b app" x="716" y="214" width="52" height="84" rx="4"/><text x="742.0" y="259.5" text-anchor="middle">zk-2</text><rect class="b app" x="304" y="330" width="90" height="70" rx="4"/><text class="bold" x="349.0" y="361.0" text-anchor="middle">Redis</text><text x="349.0" y="376.0" text-anchor="middle">Deployment</text><rect class="b app" x="402" y="330" width="112" height="70" rx="4"/><text class="bold" x="458.0" y="353.5" text-anchor="middle">Transcode</text><text x="458.0" y="368.5" text-anchor="middle">Deployment</text><text x="458.0" y="383.5" text-anchor="middle">ffmpeg</text><rect class="region" x="524" y="330" width="252" height="86"/><text class="rl" x="534" y="346">Deployment: analytics, 1 to 2</text><rect class="b app" x="532" y="356" width="116" height="50" rx="4"/><text class="bold" x="590.0" y="377.0" text-anchor="middle">Pod</text><text x="590.0" y="392.0" text-anchor="middle">web-server + app server</text><rect class="b app" x="656" y="356" width="112" height="50" rx="4"/><text class="bold" x="712.0" y="377.0" text-anchor="middle">Pod</text><text x="712.0" y="392.0" text-anchor="middle">web-server + app server</text><rect class="region" x="304" y="432" width="472" height="70"/><text class="rl" x="314" y="448">Jobs and CronJobs</text><text class="tag" x="768" y="448" text-anchor="end">NEW</text><rect class="b tech" x="316" y="456" width="108" height="40" rx="4"/><text class="bold" x="370.0" y="472.0" text-anchor="middle">CronJob</text><text x="370.0" y="487.0" text-anchor="middle">CMS cron</text><rect class="b tech" x="430" y="456" width="108" height="40" rx="4"/><text class="bold" x="484.0" y="472.0" text-anchor="middle">CronJob</text><text x="484.0" y="487.0" text-anchor="middle">Analytics archive</text><rect class="b tech" x="544" y="456" width="108" height="40" rx="4"/><text class="bold" x="598.0" y="472.0" text-anchor="middle">Job</text><text x="598.0" y="487.0" text-anchor="middle">deploy steps</text><rect class="b tech" x="658" y="456" width="108" height="40" rx="4"/><text class="bold" x="712.0" y="472.0" text-anchor="middle">Job</text><text x="712.0" y="487.0" text-anchor="middle">Search configset</text><rect class="region" x="304" y="516" width="472" height="62"/><text class="rl" x="314" y="532">PersistentVolumeClaims</text><text class="tag" x="768" y="532" text-anchor="end">CHANGE</text><rect class="b tech" x="316" y="540" width="150" height="30" rx="4"/><text x="391.0" y="558.5" text-anchor="middle">RWX: CMS files</text><rect class="b tech" x="476" y="540" width="140" height="30" rx="4"/><text x="546.0" y="558.5" text-anchor="middle">Block: Search x2</text><rect class="b tech" x="626" y="540" width="140" height="30" rx="4"/><text x="696.0" y="558.5" text-anchor="middle">Block: ZooKeeper x3</text><path class="edge" d="M280 258 H284 V100 H316" marker-end="url(#f2-ah)"/><text class="lbl" x="282" y="92" text-anchor="end">Service</text><path class="edge async" d="M500 158 V214" marker-end="url(#f2-ah)"/><text class="lbl" x="508" y="184" text-anchor="start">index (async)</text><path class="edge" d="M316 140 H298 V365 H304" marker-end="url(#f2-ah)"/><text class="lbl" x="306" y="326" text-anchor="start">cache</text><rect class="region" x="826" y="16" width="124" height="568"/><text class="rl" x="836" y="32">Outside the cluster</text><rect class="b tech" x="836" y="50" width="104" height="130" rx="4"/><text class="bold" x="888.0" y="88.5" text-anchor="middle">Databases¹</text><text x="888.0" y="103.5" text-anchor="middle">dedicated</text><text x="888.0" y="118.5" text-anchor="middle">servers</text><text x="888.0" y="133.5" text-anchor="middle">(not</text><text x="888.0" y="148.5" text-anchor="middle">containerized)</text><rect class="b tech" x="836" y="200" width="104" height="110" rx="4"/><text class="bold" x="888.0" y="236.0" text-anchor="middle">Managed</text><text x="888.0" y="251.0" text-anchor="middle">storage</text><text x="888.0" y="266.0" text-anchor="middle">RWX, block</text><text x="888.0" y="281.0" text-anchor="middle">backend</text><rect class="b ext" x="836" y="330" width="104" height="140" rx="4"/><text class="bold" x="888.0" y="373.5" text-anchor="middle">Enterprise systems</text><text x="888.0" y="388.5" text-anchor="middle">Identity</text><text x="888.0" y="403.5" text-anchor="middle">Mail</text><text x="888.0" y="418.5" text-anchor="middle">records system</text><text x="888.0" y="433.5" text-anchor="middle">Service desk</text><rect class="b ext" x="836" y="490" width="104" height="84" rx="4"/><text class="bold" x="888.0" y="513.0" text-anchor="middle">Platform</text><text x="888.0" y="528.0" text-anchor="middle">services</text><text x="888.0" y="543.0" text-anchor="middle">registry, CA</text><text x="888.0" y="558.0" text-anchor="middle">secrets, logs</text><path class="edge" d="M790 115 H836" marker-end="url(#f2-ah)"/><text class="lbl" x="794" y="108" text-anchor="start">SQL/TLS</text><path class="edge" d="M790 255 H836" marker-end="url(#f2-ah)"/><text class="lbl" x="794" y="248" text-anchor="start">volumes</text><path class="edge" d="M790 400 H836" marker-end="url(#f2-ah)"/><text class="lbl" x="794" y="393" text-anchor="start">APIs</text><path class="edge" d="M790 530 H836" marker-end="url(#f2-ah)"/><text class="lbl" x="794" y="523" text-anchor="start">pull, logs</text></svg></div><figcaption><strong>Figure 2: Logical view, Kubernetes stage.</strong> Scope: same services after the move. Tags show what is new or changed.</figcaption></figure>
+<p><strong>Text description.</strong> The same three services run inside an on-prem Kubernetes cluster that denies network traffic by default. The ingress controller and the reverse proxy cache receive user traffic. CMS runs as two or more replicas with separate queue workers. Search becomes a two-pod StatefulSet, matching the sizing baseline, with a three-pod ZooKeeper ensemble. Analytics runs as one or two pods. The transcode worker is its own Deployment. Cron and archive work becomes CronJobs, and deploy steps and Search configset upload become Jobs. Storage comes from claims: shared read-write-many for CMS files, block storage for Search and ZooKeeper. The databases¹ stay on their own servers, as do managed storage and enterprise systems. The platform pulls images from the internal registry and gets secrets and certificates from internal services.</p>
+<p><strong>Interfaces (both stages)</strong></p>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table>
+<thead>
+<tr>
+<th>From</th>
+<th>To</th>
+<th>Kind</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Users</td>
+<td>Reverse proxy cache (Podman) or Ingress and cache (Kubernetes)</td>
+<td>Synchronous</td>
+<td>HTTPS, internal CA</td>
+</tr>
+<tr>
+<td>Proxy or Ingress</td>
+<td>CMS</td>
+<td>Synchronous</td>
+<td>HTTPS</td>
+</tr>
+<tr>
+<td>CMS</td>
+<td>Transcode worker</td>
+<td>Asynchronous</td>
+<td>Video jobs via queue</td>
+</tr>
+<tr>
+<td>Proxy or Ingress</td>
+<td>Analytics</td>
+<td>Synchronous</td>
+<td>Tracking requests and report views</td>
+</tr>
+<tr>
+<td>CMS</td>
+<td>Search</td>
+<td>Asynchronous</td>
+<td>Index updates via queue workers</td>
+</tr>
+<tr>
+<td>CMS</td>
+<td>Search</td>
+<td>Synchronous</td>
+<td>Search queries</td>
+</tr>
+<tr>
+<td>CMS</td>
+<td>Redis</td>
+<td>Synchronous</td>
+<td>Cache and sessions</td>
+</tr>
+<tr>
+<td>CMS, Analytics</td>
+<td>Databases¹</td>
+<td>Synchronous</td>
+<td>SQL over TLS</td>
+</tr>
+<tr>
+<td>CMS</td>
+<td>Enterprise systems</td>
+<td>Synchronous</td>
+<td>Identity, mail, archive and catalog calls</td>
+</tr>
+<tr>
+<td>Reporting job</td>
+<td>Analytics</td>
+<td>Synchronous</td>
+<td>Reporting API, internal only</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="133-what-maps-to-what">13.3 What maps to what</h3>
+<figure class="fig"><div class="diagram" tabindex="0" role="group" aria-label="Figure 3: Podman constructs and their Kubernetes counterparts (scrollable)"><svg viewBox="0 0 960 636" role="img" aria-labelledby="f3-t f3-d" xmlns="http://www.w3.org/2000/svg"><title id="f3-t">What maps to what, Podman to Kubernetes</title><desc id="f3-d">Thirteen Podman constructs and their Kubernetes counterparts, each with a change tag and an effort rating.</desc><defs><marker id="f3-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><text class="rl" x="20" y="26" text-anchor="start">Podman stage</text><text class="rl" x="600" y="26" text-anchor="start">Kubernetes stage</text><text class="rl" x="480" y="26" text-anchor="middle">Effort</text><rect class="b tech" x="20" y="44" width="340" height="34" rx="4"/><text x="30" y="64.5" text-anchor="start">Quadlet .kube unit</text><rect class="b tech" x="600" y="44" width="340" height="34" rx="4"/><text x="610" y="64.5" text-anchor="start">Deployment / StatefulSet</text><text class="tag" x="930" y="56" text-anchor="end">SAME</text><path class="edge" d="M360 61 H600" marker-end="url(#f3-ah)"/><rect class="chip" x="448" y="48" width="64" height="26" rx="4"/><text class="bold" x="480" y="66" text-anchor="middle">Low</text><rect class="b tech" x="20" y="88" width="340" height="34" rx="4"/><text x="30" y="108.5" text-anchor="start">Reverse proxy cache container</text><rect class="b tech" x="600" y="88" width="340" height="34" rx="4"/><text x="610" y="108.5" text-anchor="start">Cache Deployment, same image</text><text class="tag" x="930" y="100" text-anchor="end">SAME</text><path class="edge" d="M360 105 H600" marker-end="url(#f3-ah)"/><rect class="chip" x="448" y="92" width="64" height="26" rx="4"/><text class="bold" x="480" y="110" text-anchor="middle">Low</text><rect class="b tech" x="20" y="132" width="340" height="34" rx="4"/><text x="30" y="152.5" text-anchor="start">systemd timer</text><rect class="b tech" x="600" y="132" width="340" height="34" rx="4"/><text x="610" y="152.5" text-anchor="start">CronJob</text><text class="tag" x="930" y="144" text-anchor="end">NEW</text><path class="edge" d="M360 149 H600" marker-end="url(#f3-ah)"/><rect class="chip" x="448" y="136" width="64" height="26" rx="4"/><text class="bold" x="480" y="154" text-anchor="middle">Low</text><rect class="b tech" x="20" y="176" width="340" height="34" rx="4"/><text x="30" y="196.5" text-anchor="start">Pipeline deploy script</text><rect class="b tech" x="600" y="176" width="340" height="34" rx="4"/><text x="610" y="196.5" text-anchor="start">Job before rollout</text><text class="tag" x="930" y="188" text-anchor="end">NEW</text><path class="edge" d="M360 193 H600" marker-end="url(#f3-ah)"/><rect class="chip" x="448" y="180" width="64" height="26" rx="4"/><text class="bold" x="480" y="198" text-anchor="middle">Med</text><rect class="b tech" x="20" y="220" width="340" height="34" rx="4"/><text x="30" y="240.5" text-anchor="start">Reverse proxy TLS and routing</text><rect class="b tech" x="600" y="220" width="340" height="34" rx="4"/><text x="610" y="240.5" text-anchor="start">Ingress controller and Service</text><text class="tag" x="930" y="232" text-anchor="end">NEW</text><path class="edge" d="M360 237 H600" marker-end="url(#f3-ah)"/><rect class="chip" x="448" y="224" width="64" height="26" rx="4"/><text class="bold" x="480" y="242" text-anchor="middle">Med</text><rect class="b tech" x="20" y="264" width="340" height="34" rx="4"/><text x="30" y="284.5" text-anchor="start">Named volume or NFS</text><rect class="b tech" x="600" y="264" width="340" height="34" rx="4"/><text x="610" y="284.5" text-anchor="start">PVC and StorageClass</text><text class="tag" x="930" y="276" text-anchor="end">CHANGE</text><path class="edge" d="M360 281 H600" marker-end="url(#f3-ah)"/><rect class="chip" x="448" y="268" width="64" height="26" rx="4"/><text class="bold" x="480" y="286" text-anchor="middle">High</text><rect class="b tech" x="20" y="308" width="340" height="34" rx="4"/><text x="30" y="328.5" text-anchor="start">Env files, Podman secrets</text><rect class="b tech" x="600" y="308" width="340" height="34" rx="4"/><text x="610" y="328.5" text-anchor="start">ConfigMap and Secret</text><text class="tag" x="930" y="320" text-anchor="end">CHANGE</text><path class="edge" d="M360 325 H600" marker-end="url(#f3-ah)"/><rect class="chip" x="448" y="312" width="64" height="26" rx="4"/><text class="bold" x="480" y="330" text-anchor="middle">Med</text><rect class="b tech" x="20" y="352" width="340" height="34" rx="4"/><text x="30" y="372.5" text-anchor="start">Host firewall</text><rect class="b tech" x="600" y="352" width="340" height="34" rx="4"/><text x="610" y="372.5" text-anchor="start">NetworkPolicy</text><text class="tag" x="930" y="364" text-anchor="end">NEW</text><path class="edge" d="M360 369 H600" marker-end="url(#f3-ah)"/><rect class="chip" x="448" y="356" width="64" height="26" rx="4"/><text class="bold" x="480" y="374" text-anchor="middle">Med</text><rect class="b tech" x="20" y="396" width="340" height="34" rx="4"/><text x="30" y="416.5" text-anchor="start">Restart on failure</text><rect class="b tech" x="600" y="396" width="340" height="34" rx="4"/><text x="610" y="416.5" text-anchor="start">Replicas, probes, rolling update</text><text class="tag" x="930" y="408" text-anchor="end">NEW</text><path class="edge" d="M360 413 H600" marker-end="url(#f3-ah)"/><rect class="chip" x="448" y="400" width="64" height="26" rx="4"/><text class="bold" x="480" y="418" text-anchor="middle">Med</text><rect class="b tech" x="20" y="440" width="340" height="34" rx="4"/><text x="30" y="460.5" text-anchor="start">journald</text><rect class="b tech" x="600" y="440" width="340" height="34" rx="4"/><text x="610" y="460.5" text-anchor="start">Cluster log and metric collection</text><text class="tag" x="930" y="452" text-anchor="end">CHANGE</text><path class="edge" d="M360 457 H600" marker-end="url(#f3-ah)"/><rect class="chip" x="448" y="444" width="64" height="26" rx="4"/><text class="bold" x="480" y="462" text-anchor="middle">Med</text><rect class="b tech" x="20" y="484" width="340" height="34" rx="4"/><text x="30" y="504.5" text-anchor="start">Ansible: podman_host</text><rect class="b tech" x="600" y="484" width="340" height="34" rx="4"/><text x="610" y="504.5" text-anchor="start">Ansible: k8s_node_prep</text><text class="tag" x="930" y="496" text-anchor="end">CHANGE</text><path class="edge" d="M360 501 H600" marker-end="url(#f3-ah)"/><rect class="chip" x="448" y="488" width="64" height="26" rx="4"/><text class="bold" x="480" y="506" text-anchor="middle">Med</text><rect class="b tech" x="20" y="528" width="340" height="34" rx="4"/><text x="30" y="548.5" text-anchor="start">Search single node, cloud mode</text><rect class="b tech" x="600" y="528" width="340" height="34" rx="4"/><text x="610" y="548.5" text-anchor="start">Search StatefulSet x2 + ZooKeeper x3</text><text class="tag" x="930" y="540" text-anchor="end">CHANGE</text><path class="edge" d="M360 545 H600" marker-end="url(#f3-ah)"/><rect class="chip" x="448" y="532" width="64" height="26" rx="4"/><text class="bold" x="480" y="550" text-anchor="middle">High</text><rect class="b tech" x="20" y="572" width="340" height="34" rx="4"/><text x="30" y="592.5" text-anchor="start">Volume copy, database dump</text><rect class="b tech" x="600" y="572" width="340" height="34" rx="4"/><text x="610" y="592.5" text-anchor="start">Snapshots + app-level backups</text><text class="tag" x="930" y="584" text-anchor="end">CHANGE</text><path class="edge" d="M360 589 H600" marker-end="url(#f3-ah)"/><rect class="chip" x="448" y="576" width="64" height="26" rx="4"/><text class="bold" x="480" y="594" text-anchor="middle">High</text></svg></div><figcaption><strong>Figure 3: Podman constructs and their Kubernetes counterparts.</strong> Scope: deployment, scheduling, storage, networking, operations.</figcaption></figure>
+<p><strong>Text description.</strong> Thirteen things on the Podman side each have a counterpart on Kubernetes. Two are unchanged (the deployment YAML and the reverse proxy cache). Four are new objects that did not exist on Podman. Seven change form. The three marked high effort are shared storage, the Search move to a StatefulSet with ZooKeeper, and backup and restore.</p>
+<h3 id="134-build-and-carry-across-the-isolated-network">13.4 Build and carry across into the isolated network</h3>
+<figure class="fig"><div class="diagram" tabindex="0" role="group" aria-label="Figure 4: Build and carry across into the isolated network (scrollable)"><svg viewBox="0 0 960 390" role="img" aria-labelledby="f4-t f4-d" xmlns="http://www.w3.org/2000/svg"><title id="f4-t">Build and carry across into the isolated network</title><desc id="f4-d">Source is built, tested and signed on the build side, carried across by Security, then imported, verified and promoted through development, staging and production on the isolated side.</desc><defs><marker id="f4-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><rect class="region" x="10" y="20" width="430" height="176"/><text class="rl" x="20" y="36">Build side: the build side, internal mirrors only</text><rect class="b tech" x="24" y="48" width="86" height="56" rx="4"/><text class="bold" x="67.0" y="72.0" text-anchor="middle">Source</text><text x="67.0" y="87.0" text-anchor="middle">the CI tool CE</text><rect class="b tech" x="130" y="48" width="86" height="56" rx="4"/><text class="bold" x="173.0" y="72.0" text-anchor="middle">Build</text><text x="173.0" y="87.0" text-anchor="middle">from mirrors</text><rect class="b tech" x="236" y="48" width="86" height="56" rx="4"/><text class="bold" x="279.0" y="72.0" text-anchor="middle">Test</text><text x="279.0" y="87.0" text-anchor="middle">and scan</text><rect class="b tech" x="342" y="48" width="88" height="56" rx="4"/><text class="bold" x="386.0" y="72.0" text-anchor="middle">Sign</text><text x="386.0" y="87.0" text-anchor="middle">+ manifest</text><path class="edge" d="M110 76 H130" marker-end="url(#f4-ah)"/><path class="edge" d="M216 76 H236" marker-end="url(#f4-ah)"/><path class="edge" d="M322 76 H342" marker-end="url(#f4-ah)"/><text class="lbl" x="120" y="120" text-anchor="middle">commit</text><text class="lbl" x="226" y="120" text-anchor="middle">image</text><text class="lbl" x="332" y="120" text-anchor="middle">pass</text><rect class="b app" x="24" y="128" width="406" height="58" rx="4"/><text class="bold" x="227.0" y="145.5" text-anchor="middle">Artefact set</text><text x="227.0" y="160.5" text-anchor="middle">images, YAML and overlays, Ansible,</text><text x="227.0" y="175.5" text-anchor="middle">Search configset, platform images, GeoIP, plugins</text><path class="edge" d="M227 186 V208 H74 V270" marker-end="url(#f4-ah)"/><text class="lbl" x="240" y="218" text-anchor="start">Transfer: Security-owned, signed, checksummed</text><rect class="region" x="10" y="230" width="940" height="140"/><text class="rl" x="20" y="246">Isolated side: isolated</text><rect class="b tech" x="24" y="270" width="100" height="60" rx="4"/><text class="bold" x="74.0" y="296.0" text-anchor="middle">Import</text><text x="74.0" y="311.0" text-anchor="middle">and verify</text><rect class="b tech" x="154" y="270" width="100" height="60" rx="4"/><text class="bold" x="204.0" y="296.0" text-anchor="middle">Registry</text><text x="204.0" y="311.0" text-anchor="middle">internal</text><rect class="b app" x="284" y="270" width="90" height="60" rx="4"/><text x="329.0" y="303.5" text-anchor="middle">Dev</text><rect class="b app" x="404" y="270" width="90" height="60" rx="4"/><text x="449.0" y="303.5" text-anchor="middle">Staging</text><rect class="b app" x="524" y="270" width="100" height="60" rx="4"/><text class="bold" x="574.0" y="296.0" text-anchor="middle">Production</text><text x="574.0" y="311.0" text-anchor="middle">deploy-only</text><path class="edge" d="M124 300 H154" marker-end="url(#f4-ah)"/><path class="edge" d="M254 300 H284" marker-end="url(#f4-ah)"/><path class="edge" d="M374 300 H404" marker-end="url(#f4-ah)"/><path class="edge" d="M494 300 H524" marker-end="url(#f4-ah)"/><text class="lbl" x="139" y="348" text-anchor="middle">verified</text><text class="lbl" x="269" y="348" text-anchor="middle">push</text><text class="lbl" x="389" y="348" text-anchor="middle">promote</text><text class="lbl" x="509" y="348" text-anchor="middle">promote</text><rect class="b tech" x="644" y="262" width="296" height="76" rx="4"/><text class="bold" x="792.0" y="288.5" text-anchor="middle">Runs on Podman now</text><text x="792.0" y="303.5" text-anchor="middle">Kubernetes later</text><text x="792.0" y="318.5" text-anchor="middle">same artefacts, same path</text><path class="edge" d="M624 300 H644" marker-end="url(#f4-ah)"/></svg></div><figcaption><strong>Figure 4: Build and carry across into the isolated network.</strong> Scope: how artefacts reach each environment, both stages.</figcaption></figure>
+<p><strong>Text description.</strong> Source code is built on the build side from internal mirrors, tested and scanned, then signed with a manifest. The artefact set includes images, deployment definitions, Ansible content, the Search configset and platform images. Security's transfer procedure carries it across. On the isolated side it is imported and verified, pushed to the internal registry, and promoted through development, staging and production without rebuilding. The same artefacts run on Podman now and on Kubernetes later.</p>
+<h3 id="135-footnote-1-databases-are-not-containerized">13.5 Footnote 1: databases are not containerized</h3>
+<blockquote>
+<p><strong>Assumed from the project lead's note. Confirm with the database team.</strong></p>
+<p>The CMS and Analytics databases run on dedicated, non-containerized servers owned by the organization. That is the same on Podman and on Kubernetes, so it is the part that does not change. What does change:</p>
+<ul>
+<li><strong>Firewall allow-list.</strong> On Podman the database sees one fixed host address. On Kubernetes, traffic leaves from node addresses or an egress range. Agree a stable range with the database team and Security early.</li>
+<li><strong>Connection count.</strong> More replicas mean more connections. Check the connection limits and use pooling if needed.</li>
+<li><strong>Network rules.</strong> NetworkPolicy allows egress to the database host and port, and nothing else.</li>
+<li><strong>Encryption and credentials.</strong> TLS to the database with the internal CA. Credentials from the isolated network secret store.</li>
+<li><strong>Backups.</strong> Database backup and restore belong to the database team. Test them together with volume backups for CMS files and Search.</li>
+<li><strong>Rollback.</strong> A rollback of the application does not roll back the database. Database updates must work with the previous release for one version, or be paired with a restore.</li>
+<li><strong>Search rebuild.</strong> Rebuilding the Search index from CMS needs the database reachable, so the order of recovery matters.</li>
+</ul>
+</blockquote>
+<hr />
+<h2 id="14-iac-and-cac-change-map">14. IaC and CaC change map</h2>
+<p>What happens to the code and configuration files when the platform moves. Generated from one list, so the picture and the table agree.</p>
+<h3 id="141-files-at-a-glance">14.1 Files at a glance</h3>
+<figure class="chart"><div class="chart-body" role="group" aria-label="Number of files by status"><div class="bar-row"><span class="bar-name"><span class="st st-same"><span aria-hidden="true">=</span> Same</span></span><span class="bar-track" aria-hidden="true"><span class="bar bar-same" style="width:100%"></span></span><span class="bar-val">9 of 25</span></div><div class="bar-row"><span class="bar-name"><span class="st st-new"><span aria-hidden="true">+</span> New</span></span><span class="bar-track" aria-hidden="true"><span class="bar bar-new" style="width:78%"></span></span><span class="bar-val">7 of 25</span></div><div class="bar-row"><span class="bar-name"><span class="st st-change"><span aria-hidden="true">~</span> Changed</span></span><span class="bar-track" aria-hidden="true"><span class="bar bar-change" style="width:56%"></span></span><span class="bar-val">5 of 25</span></div><div class="bar-row"><span class="bar-name"><span class="st st-retire"><span aria-hidden="true">x</span> Retired</span></span><span class="bar-track" aria-hidden="true"><span class="bar bar-retire" style="width:44%"></span></span><span class="bar-val">4 of 25</span></div></div><figcaption>Figure 5: Of 25 files and folders, 9 carry over unchanged and 7 are new. Colour is a second cue: the word, the symbol and the border style carry the meaning. Scope: deployment and configuration files for the three components.</figcaption></figure>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table><thead><tr><th>Status</th><th>File or folder</th><th>What happens</th></tr></thead><tbody><tr class="grp"><th colspan="3" scope="colgroup">Deployment definitions</th></tr><tr><td><span class="st st-same"><span aria-hidden="true">=</span> SAME</span></td><td><code>deploy/base/cms.yaml</code></td><td>Written as Kubernetes YAML from day one.</td></tr><tr><td><span class="st st-same"><span aria-hidden="true">=</span> SAME</span></td><td><code>deploy/base/proxy-cache.yaml</code></td><td>The reverse proxy cache keeps its image and settings. It sits behind the Ingress.</td></tr><tr><td><span class="st st-same"><span aria-hidden="true">=</span> SAME</span></td><td><code>deploy/base/analytics.yaml</code></td><td>Same object on both platforms.</td></tr><tr><td><span class="st st-same"><span aria-hidden="true">=</span> SAME</span></td><td><code>deploy/base/redis.yaml</code></td><td>Same object on both platforms.</td></tr><tr><td><span class="st st-same"><span aria-hidden="true">=</span> SAME</span></td><td><code>deploy/base/transcode.yaml</code></td><td>The ffmpeg worker is the same Deployment object. It can request less and burst on Kubernetes.</td></tr><tr><td><span class="st st-same"><span aria-hidden="true">=</span> SAME</span></td><td><code>deploy/base/cms-config.yaml</code></td><td>ConfigMap content does not change.</td></tr><tr><td><span class="st st-change"><span aria-hidden="true">~</span> CHANGE</span></td><td><code>deploy/base/search.yaml</code></td><td>One pod becomes a StatefulSet of 2 (matching the sizing baseline) with a volume per pod.</td></tr><tr><td><span class="st st-new"><span aria-hidden="true">+</span> NEW</span></td><td><code>deploy/base/zookeeper.yaml</code></td><td>A separate 3-pod ensemble. On Podman one ZooKeeper container sits in the Search pod.</td></tr><tr><td><span class="st st-change"><span aria-hidden="true">~</span> CHANGE</span></td><td><code>deploy/base/pvc.yaml</code></td><td>Named volumes become claims: shared (RWX) for CMS files, block for Search.</td></tr><tr><td><span class="st st-change"><span aria-hidden="true">~</span> CHANGE</span></td><td><code>deploy/base/secrets (references)</code></td><td>Podman secrets become Kubernetes Secrets fed from the isolated network store.</td></tr><tr class="grp"><th colspan="3" scope="colgroup">Jobs and scheduling</th></tr><tr><td><span class="st st-new"><span aria-hidden="true">+</span> NEW</span></td><td><code>deploy/base/cronjobs.yaml</code></td><td>Replaces the systemd timers.</td></tr><tr><td><span class="st st-new"><span aria-hidden="true">+</span> NEW</span></td><td><code>deploy/base/jobs.yaml</code></td><td>Deploy steps and Search configset upload.</td></tr><tr class="grp"><th colspan="3" scope="colgroup">Overlays and policy</th></tr><tr><td><span class="st st-retire"><span aria-hidden="true">x</span> RETIRE</span></td><td><code>deploy/overlays/podman/</code></td><td>Keep until the parallel run ends, for rollback.</td></tr><tr><td><span class="st st-change"><span aria-hidden="true">~</span> CHANGE</span></td><td><code>deploy/overlays/dev and staging</code></td><td>Add replica counts and storage class names.</td></tr><tr><td><span class="st st-new"><span aria-hidden="true">+</span> NEW</span></td><td><code>deploy/overlays/prod</code></td><td>Replicas, storage classes, policies.</td></tr><tr><td><span class="st st-new"><span aria-hidden="true">+</span> NEW</span></td><td><code>deploy/overlays/*/ingress.yaml</code></td><td>Ingress rules and internal TLS.</td></tr><tr><td><span class="st st-new"><span aria-hidden="true">+</span> NEW</span></td><td><code>deploy/overlays/*/networkpolicies.yaml</code></td><td>Default deny plus allowed paths, including egress to the database¹.</td></tr><tr class="grp"><th colspan="3" scope="colgroup">Host configuration (CaC)</th></tr><tr><td><span class="st st-retire"><span aria-hidden="true">x</span> RETIRE</span></td><td><code>/etc/containers/systemd/*.kube</code></td><td>Quadlet units are not needed on Kubernetes.</td></tr><tr><td><span class="st st-retire"><span aria-hidden="true">x</span> RETIRE</span></td><td><code>/etc/systemd/system/*.timer</code></td><td>Replaced by CronJobs.</td></tr><tr><td><span class="st st-retire"><span aria-hidden="true">x</span> RETIRE</span></td><td><code>ansible/roles/podman_host</code></td><td>Partly reused for node preparation.</td></tr><tr><td><span class="st st-new"><span aria-hidden="true">+</span> NEW</span></td><td><code>ansible/roles/k8s_node_prep</code></td><td>Open-file limits and other node settings Search needs.</td></tr><tr class="grp"><th colspan="3" scope="colgroup">Pipeline</th></tr><tr><td><span class="st st-change"><span aria-hidden="true">~</span> CHANGE</span></td><td><code>pipeline.yml deploy jobs</code></td><td>Copy-and-restart becomes apply-and-wait.</td></tr><tr class="grp"><th colspan="3" scope="colgroup">Build assets</th></tr><tr><td><span class="st st-same"><span aria-hidden="true">=</span> SAME</span></td><td><code>Containerfiles and images</code></td><td>The image is the unit of deployment on both platforms.</td></tr><tr><td><span class="st st-same"><span aria-hidden="true">=</span> SAME</span></td><td><code>search/configset/</code></td><td>Uploaded by a Job instead of a script.</td></tr><tr><td><span class="st st-same"><span aria-hidden="true">=</span> SAME</span></td><td><code>Artefact manifest and signing</code></td><td>Now also lists the new YAML and Ansible files.</td></tr></tbody></table></div>
+<h3 id="142-the-five-changes-that-matter-most">14.2 The five changes that matter most</h3>
+<p><strong>1. The pipeline deploy job</strong> switches from copy-and-restart to apply-and-wait.</p>
+<pre tabindex="0" class="diff" aria-label="Code change, added lines start with plus, removed lines with minus"><code><span class="dl ctx"> deploy_staging:</span><span class="dl ctx">   script:</span><span class="dl del">-    - scp rendered.yaml deploy@podman-host:/opt/web/deploy/rendered/</span><span class="dl del">-    - ssh deploy@podman-host &quot;systemctl restart web-cms web-search web-analytics&quot;</span><span class="dl add">+    - kubectl kustomize deploy/overlays/staging | kubectl apply -f -</span><span class="dl add">+    - kubectl rollout status deployment/cms --timeout=300s</span><span class="dl ctx"> </span></code></pre>
+<p><strong>2. Storage</strong> moves from host volumes to claims with storage classes.</p>
+<pre tabindex="0" class="diff" aria-label="Code change, added lines start with plus, removed lines with minus"><code><span class="dl ctx"> kind: PersistentVolumeClaim</span><span class="dl ctx"> metadata: { name: cms-files }</span><span class="dl ctx"> spec:</span><span class="dl del">-  accessModes: [&quot;ReadWriteOnce&quot;]      # Podman: named volume on one host</span><span class="dl add">+  accessModes: [&quot;ReadWriteMany&quot;]</span><span class="dl add">+  storageClassName: shared-rwx</span><span class="dl ctx">   resources: { requests: { storage: 200Gi } }</span><span class="dl ctx"> </span></code></pre>
+<p><strong>3. Timers</strong> become CronJobs.</p>
+<pre tabindex="0" class="diff" aria-label="Code change, added lines start with plus, removed lines with minus"><code><span class="dl del">-# /etc/systemd/system/cms-cron.timer</span><span class="dl del">-[Timer]</span><span class="dl del">-OnCalendar=*:0/15</span><span class="dl add">+# deploy/base/cronjobs.yaml</span><span class="dl add">+kind: CronJob</span><span class="dl add">+spec:</span><span class="dl add">+  schedule: &quot;*/15 * * * *&quot;</span><span class="dl add">+  concurrencyPolicy: Forbid</span><span class="dl ctx"> </span></code></pre>
+<p><strong>4. Search</strong> goes from one pod to a StatefulSet. This is the biggest single change.</p>
+<pre tabindex="0" class="diff" aria-label="Code change, added lines start with plus, removed lines with minus"><code><span class="dl del">-kind: Deployment            # Podman: one Search, volume on the host</span><span class="dl add">+kind: StatefulSet</span><span class="dl ctx"> metadata: { name: search }</span><span class="dl ctx"> spec:</span><span class="dl del">-  replicas: 1</span><span class="dl add">+  serviceName: search-headless</span><span class="dl add">+  replicas: 2</span><span class="dl add">+  volumeClaimTemplates:</span><span class="dl add">+    - metadata: { name: data }</span><span class="dl add">+      spec:</span><span class="dl add">+        accessModes: [&quot;ReadWriteOnce&quot;]</span><span class="dl add">+        storageClassName: fast-block</span><span class="dl add">+        resources: { requests: { storage: 100Gi } }</span><span class="dl ctx"> </span></code></pre>
+<p><strong>5. Database access¹</strong> needs an explicit egress rule. Address shown is an example only.</p>
+<pre tabindex="0" class="diff" aria-label="Code change, added lines start with plus, removed lines with minus"><code><span class="dl add">+kind: NetworkPolicy</span><span class="dl add">+metadata: { name: cms-egress-db }</span><span class="dl add">+spec:</span><span class="dl add">+  podSelector: { matchLabels: { app: cms } }</span><span class="dl add">+  policyTypes: [&quot;Egress&quot;]</span><span class="dl add">+  egress:</span><span class="dl add">+    - to: [{ ipBlock: { cidr: 192.0.2.10/32 } }]   # example database server</span><span class="dl add">+      ports: [{ port: 3306 }]</span><span class="dl ctx"> </span></code></pre>
+<hr />
+<h2 id="15-sizing-how-vcpu-and-ram-change">15. Sizing: how vCPU and RAM change</h2>
+<p><strong>Short answer.</strong> The application containers keep the sizes in the solution architecture (section 8). What changes is what surrounds them. On Podman the total is close to the baseline. On Kubernetes it is higher, because of platform overhead on every node, a three-pod ZooKeeper, spare capacity, and a staging environment that has to behave like production.</p>
+<p><strong>Is a full engineering diagram overkill?</strong> Yes, at this stage. A diagram of every pod, port, volume and network segment would be the delivery team's design, and this paper sets constraints and outcomes. Two small views are enough: the sizing comparison (Figure 6) and one indicative placement of production on each platform (Figure 7). The delivery team designs the real thing.</p>
+<h3 id="151-starting-point">15.1 Starting point</h3>
+<ul>
+<li>The Solution architecture sizes the three environments at <strong>83 vCPU and 230 GB RAM</strong> (planning estimate).</li>
+<li>The databases¹ are on their own servers: <strong>22 vCPU and 80 GB</strong> of that total. They do not change between Podman and Kubernetes.</li>
+<li>That leaves <strong>61 vCPU and 150 GB</strong> for the containerized part. Everything below is about that part.</li>
+<li>The Solution architecture counts instances. Container limits here equal those instance sizes.</li>
+</ul>
+<h3 id="152-assumptions">15.2 Assumptions</h3>
+<p>Planning estimates. The delivery team validates them in load testing.</p>
+<ul>
+<li>Production instance counts stay as in the solution architecture: reverse proxy cache 2, CMS 2, Search 2, Redis 1, Analytics 1, transcode worker 1.</li>
+<li>ZooKeeper is new in both stages (the solution architecture assumed standalone Search). One instance is 1 vCPU and 2 GB. Podman production runs one. Kubernetes production runs three.</li>
+<li>Each Podman host or Kubernetes worker node reserves 1 vCPU and 2 GB for the operating system, container runtime and agents. The Kubernetes control plane is the organization's shared platform and is not counted.</li>
+<li>Production on Podman uses two hosts. Production on Kubernetes uses three worker nodes, the minimum for a ZooKeeper quorum.</li>
+<li>The <strong>recommended</strong> Kubernetes column adds about 30% spare capacity for rolling updates, rescheduling single pods and bursts. Anti-affinity keeps replicas on different nodes.</li>
+<li>The <strong>recommended</strong> Kubernetes staging mirrors production topology (CMS 2, Search 2, ZooKeeper 3). That closes a gap in the solution architecture for the move.</li>
+</ul>
+<h3 id="153-the-numbers">15.3 The numbers</h3>
+<p>Containerized part, vCPU and GB RAM.</p>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table>
+<thead>
+<tr>
+<th>Environment</th>
+<th>Solution architecture baseline</th>
+<th>Podman</th>
+<th>Kubernetes, same topology</th>
+<th>Kubernetes, recommended</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Production</td>
+<td>36 / 88</td>
+<td>39 / 94</td>
+<td>42 / 100</td>
+<td>54 / 126</td>
+</tr>
+<tr>
+<td>Staging</td>
+<td>16 / 40</td>
+<td>18 / 44</td>
+<td>18 / 44</td>
+<td>36 / 84</td>
+</tr>
+<tr>
+<td>Development</td>
+<td>9 / 22</td>
+<td>11 / 26</td>
+<td>11 / 26</td>
+<td>14 / 32</td>
+</tr>
+<tr>
+<td><strong>Containerized total</strong></td>
+<td><strong>61 / 150</strong></td>
+<td><strong>68 / 164</strong></td>
+<td><strong>71 / 170</strong></td>
+<td><strong>104 / 242</strong></td>
+</tr>
+<tr>
+<td>Database servers¹ (unchanged)</td>
+<td>22 / 80</td>
+<td>22 / 80</td>
+<td>22 / 80</td>
+<td>22 / 80</td>
+</tr>
+<tr>
+<td><strong>Grand total</strong></td>
+<td><strong>83 / 230</strong></td>
+<td><strong>90 / 244</strong></td>
+<td><strong>93 / 250</strong></td>
+<td><strong>126 / 322</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>Podman adds about <strong>11% vCPU and 9% RAM</strong> to the containerized part of the baseline.</li>
+<li>Kubernetes, recommended, adds <strong>53% vCPU and 48% RAM</strong> over Podman on the containerized part. Including the databases it is about <strong>40% and 32%</strong>.</li>
+<li>Kubernetes with the same topology as Podman adds only <strong>3 vCPU and 6 GB</strong> over Podman. Most of the difference is a choice about how much to prove and how much spare capacity to keep.</li>
+</ul>
+<figure class="fig"><div class="diagram" tabindex="0" role="group" aria-label="Figure 6: vCPU and RAM by environment and platform (scrollable)"><svg viewBox="0 0 960 470" role="img" aria-labelledby="f6-t f6-d" xmlns="http://www.w3.org/2000/svg"><title id="f6-t">vCPU and RAM by environment and platform</title><desc id="f6-d">Grouped bars for vCPU and RAM in production, staging and development under four scenarios: baseline, Podman, Kubernetes same topology, Kubernetes recommended.</desc><defs><marker id="f6-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><text class="rl" x="20" y="22" text-anchor="start">vCPU, containerized part</text><line class="grid" x1="50" x2="460" y1="380.0" y2="380.0"/><text class="axis" x="44" y="384.0" text-anchor="end">0</text><line class="grid" x1="50" x2="460" y1="297.5" y2="297.5"/><text class="axis" x="44" y="301.5" text-anchor="end">15</text><line class="grid" x1="50" x2="460" y1="215.0" y2="215.0"/><text class="axis" x="44" y="219.0" text-anchor="end">30</text><line class="grid" x1="50" x2="460" y1="132.5" y2="132.5"/><text class="axis" x="44" y="136.5" text-anchor="end">45</text><line class="grid" x1="50" x2="460" y1="50.0" y2="50.0"/><text class="axis" x="44" y="54.0" text-anchor="end">60</text><rect class="sbar sb0" x="66" y="182.0" width="26" height="198.0"/><text class="val" x="79" y="177.0" text-anchor="middle">36</text><rect class="sbar sb1" x="96" y="165.5" width="26" height="214.5"/><text class="val" x="109" y="160.5" text-anchor="middle">39</text><rect class="sbar sb2" x="126" y="149.0" width="26" height="231.0"/><text class="val" x="139" y="144.00000000000003" text-anchor="middle">42</text><rect class="sbar sb3" x="156" y="83.0" width="26" height="297.0"/><text class="val" x="169" y="78.0" text-anchor="middle">54</text><text class="axis" x="126" y="398" text-anchor="middle">Production</text><rect class="sbar sb0" x="200" y="292.0" width="26" height="88.0"/><text class="val" x="213" y="287.0" text-anchor="middle">16</text><rect class="sbar sb1" x="230" y="281.0" width="26" height="99.0"/><text class="val" x="243" y="276.0" text-anchor="middle">18</text><rect class="sbar sb2" x="260" y="281.0" width="26" height="99.0"/><text class="val" x="273" y="276.0" text-anchor="middle">18</text><rect class="sbar sb3" x="290" y="182.0" width="26" height="198.0"/><text class="val" x="303" y="177.0" text-anchor="middle">36</text><text class="axis" x="260" y="398" text-anchor="middle">Staging</text><rect class="sbar sb0" x="334" y="330.5" width="26" height="49.5"/><text class="val" x="347" y="325.5" text-anchor="middle">9</text><rect class="sbar sb1" x="364" y="319.5" width="26" height="60.5"/><text class="val" x="377" y="314.5" text-anchor="middle">11</text><rect class="sbar sb2" x="394" y="319.5" width="26" height="60.5"/><text class="val" x="407" y="314.5" text-anchor="middle">11</text><rect class="sbar sb3" x="424" y="303.0" width="26" height="77.0"/><text class="val" x="437" y="298.0" text-anchor="middle">14</text><text class="axis" x="394" y="398" text-anchor="middle">Development</text><text class="rl" x="500" y="22" text-anchor="start">GB RAM, containerized part</text><line class="grid" x1="530" x2="940" y1="380.0" y2="380.0"/><text class="axis" x="524" y="384.0" text-anchor="end">0</text><line class="grid" x1="530" x2="940" y1="297.5" y2="297.5"/><text class="axis" x="524" y="301.5" text-anchor="end">35</text><line class="grid" x1="530" x2="940" y1="215.0" y2="215.0"/><text class="axis" x="524" y="219.0" text-anchor="end">70</text><line class="grid" x1="530" x2="940" y1="132.5" y2="132.5"/><text class="axis" x="524" y="136.5" text-anchor="end">105</text><line class="grid" x1="530" x2="940" y1="50.0" y2="50.0"/><text class="axis" x="524" y="54.0" text-anchor="end">140</text><rect class="sbar sb0" x="546" y="172.6" width="26" height="207.4"/><text class="val" x="559" y="167.57142857142858" text-anchor="middle">88</text><rect class="sbar sb1" x="576" y="158.4" width="26" height="221.6"/><text class="val" x="589" y="153.42857142857144" text-anchor="middle">94</text><rect class="sbar sb2" x="606" y="144.3" width="26" height="235.7"/><text class="val" x="619" y="139.28571428571428" text-anchor="middle">100</text><rect class="sbar sb3" x="636" y="83.0" width="26" height="297.0"/><text class="val" x="649" y="78.0" text-anchor="middle">126</text><text class="axis" x="606" y="398" text-anchor="middle">Production</text><rect class="sbar sb0" x="680" y="285.7" width="26" height="94.3"/><text class="val" x="693" y="280.7142857142857" text-anchor="middle">40</text><rect class="sbar sb1" x="710" y="276.3" width="26" height="103.7"/><text class="val" x="723" y="271.2857142857143" text-anchor="middle">44</text><rect class="sbar sb2" x="740" y="276.3" width="26" height="103.7"/><text class="val" x="753" y="271.2857142857143" text-anchor="middle">44</text><rect class="sbar sb3" x="770" y="182.0" width="26" height="198.0"/><text class="val" x="783" y="177.0" text-anchor="middle">84</text><text class="axis" x="740" y="398" text-anchor="middle">Staging</text><rect class="sbar sb0" x="814" y="328.1" width="26" height="51.9"/><text class="val" x="827" y="323.14285714285717" text-anchor="middle">22</text><rect class="sbar sb1" x="844" y="318.7" width="26" height="61.3"/><text class="val" x="857" y="313.7142857142857" text-anchor="middle">26</text><rect class="sbar sb2" x="874" y="318.7" width="26" height="61.3"/><text class="val" x="887" y="313.7142857142857" text-anchor="middle">26</text><rect class="sbar sb3" x="904" y="304.6" width="26" height="75.4"/><text class="val" x="917" y="299.57142857142856" text-anchor="middle">32</text><text class="axis" x="874" y="398" text-anchor="middle">Development</text><rect class="sbar sb0" x="40" y="426" width="18" height="18"/><text class="" x="66" y="440" text-anchor="start">Baseline</text><rect class="sbar sb1" x="255" y="426" width="18" height="18"/><text class="" x="281" y="440" text-anchor="start">Podman</text><rect class="sbar sb2" x="470" y="426" width="18" height="18"/><text class="" x="496" y="440" text-anchor="start">K8s same topology</text><rect class="sbar sb3" x="685" y="426" width="18" height="18"/><text class="" x="711" y="440" text-anchor="start">K8s recommended</text></svg></div><figcaption><strong>Figure 6: vCPU and RAM by environment and platform.</strong> Scope: containerized part only. Databases are unchanged. Planning estimates.</figcaption></figure>
+<p><strong>Text description.</strong> Grouped bars compare vCPU and RAM for production, staging and development under four scenarios: the solution architecture baseline, Podman, Kubernetes with the same topology, and Kubernetes as recommended. Production grows from 36 vCPU in the baseline to 54 in the recommended Kubernetes case. Staging grows most in relative terms, from 18 on Podman to 36, because it mirrors production on Kubernetes.</p>
+<h3 id="154-what-drives-the-change">15.4 What drives the change</h3>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table (scrollable)"><table>
+<thead>
+<tr>
+<th>Driver</th>
+<th>Podman</th>
+<th>Kubernetes</th>
+<th>Added (production)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ZooKeeper</td>
+<td>1 instance</td>
+<td>3 instances</td>
+<td>+2 vCPU, +4 GB</td>
+</tr>
+<tr>
+<td>Platform overhead</td>
+<td>2 hosts</td>
+<td>3 worker nodes</td>
+<td>+1 vCPU, +2 GB</td>
+</tr>
+<tr>
+<td>Spare capacity</td>
+<td>Within the host sizing</td>
+<td>About 30% pooled spare</td>
+<td>+12 vCPU, +26 GB</td>
+</tr>
+<tr>
+<td>Staging topology</td>
+<td>Single instance</td>
+<td>Mirrors production</td>
+<td>+10 vCPU, +24 GB before spare capacity (staging only)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Where Kubernetes can save capacity</strong></p>
+<ul>
+<li><strong>Transcode worker.</strong> On Kubernetes it can request little (for example 2 vCPU and 8 GB) and burst to its limit (8 vCPU and 16 GB) only while encoding. That frees about 6 vCPU and 8 GB of reserved capacity. The cost is slower encoding when the node is busy. Not counted in the numbers above.</li>
+<li><strong>Shared platform.</strong> If the organization's cluster already carries spare capacity, some of the recommended spare capacity is already paid for.</li>
+</ul>
+<h3 id="155-indicative-production-placement">15.5 Indicative production placement</h3>
+<figure class="fig"><div class="diagram" tabindex="0" role="group" aria-label="Figure 7: Indicative production placement, Podman and Kubernetes (scrollable)"><svg viewBox="0 0 960 500" role="img" aria-labelledby="f7-t f7-d" xmlns="http://www.w3.org/2000/svg"><title id="f7-t">Indicative production placement</title><desc id="f7-d">Podman production on two hosts and Kubernetes production on three worker nodes, with each workload and its vCPU and RAM.</desc><defs><marker id="f7-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><text class="bold" x="10" y="26" text-anchor="start">Podman: 2 hosts, 39 vCPU / 94 GB</text><text class="bold" x="490" y="26" text-anchor="start">Kubernetes: 3 worker nodes (minimum), 42 vCPU / 100 GB</text><rect class="region" x="10" y="40" width="215" height="372"/><text class="rl" x="20" y="56">Host A</text><rect class="b app" x="20" y="66" width="195" height="40" rx="4"/><text class="bold" x="117.5" y="82.0" text-anchor="middle">Reverse proxy cache</text><text x="117.5" y="97.0" text-anchor="middle">4 vCPU / 16 GB</text><rect class="b app" x="20" y="114" width="195" height="40" rx="4"/><text class="bold" x="117.5" y="130.0" text-anchor="middle">CMS</text><text x="117.5" y="145.0" text-anchor="middle">4 vCPU / 8 GB</text><rect class="b app" x="20" y="162" width="195" height="40" rx="4"/><text class="bold" x="117.5" y="178.0" text-anchor="middle">Search</text><text x="117.5" y="193.0" text-anchor="middle">4 vCPU / 8 GB</text><rect class="b app" x="20" y="210" width="195" height="40" rx="4"/><text class="bold" x="117.5" y="226.0" text-anchor="middle">Redis</text><text x="117.5" y="241.0" text-anchor="middle">2 vCPU / 4 GB</text><rect class="b app" x="20" y="258" width="195" height="40" rx="4"/><text class="bold" x="117.5" y="274.0" text-anchor="middle">ZooKeeper (single)</text><text x="117.5" y="289.0" text-anchor="middle">1 vCPU / 2 GB</text><rect class="b app" x="20" y="306" width="195" height="40" rx="4"/><text class="bold" x="117.5" y="322.0" text-anchor="middle">Analytics app</text><text x="117.5" y="337.0" text-anchor="middle">2 vCPU / 4 GB</text><rect class="b ext" x="20" y="354" width="195" height="30" rx="4"/><text x="117.5" y="372.5" text-anchor="middle">OS, Podman, agents: 1 / 2</text><text class="bold" x="117.5" y="406" text-anchor="middle">Host A: 18 vCPU / 44 GB</text><rect class="region" x="235" y="40" width="215" height="276"/><text class="rl" x="245" y="56">Host B</text><rect class="b app" x="245" y="66" width="195" height="40" rx="4"/><text class="bold" x="342.5" y="82.0" text-anchor="middle">Reverse proxy cache</text><text x="342.5" y="97.0" text-anchor="middle">4 vCPU / 16 GB</text><rect class="b app" x="245" y="114" width="195" height="40" rx="4"/><text class="bold" x="342.5" y="130.0" text-anchor="middle">CMS</text><text x="342.5" y="145.0" text-anchor="middle">4 vCPU / 8 GB</text><rect class="b app" x="245" y="162" width="195" height="40" rx="4"/><text class="bold" x="342.5" y="178.0" text-anchor="middle">Search</text><text x="342.5" y="193.0" text-anchor="middle">4 vCPU / 8 GB</text><rect class="b app" x="245" y="210" width="195" height="40" rx="4"/><text class="bold" x="342.5" y="226.0" text-anchor="middle">Transcode worker</text><text x="342.5" y="241.0" text-anchor="middle">8 vCPU / 16 GB</text><rect class="b ext" x="245" y="258" width="195" height="30" rx="4"/><text x="342.5" y="276.5" text-anchor="middle">OS, Podman, agents: 1 / 2</text><text class="bold" x="342.5" y="310" text-anchor="middle">Host B: 21 vCPU / 50 GB</text><rect class="region" x="480" y="40" width="152" height="324"/><text class="rl" x="490" y="56">Node 1</text><rect class="b app" x="490" y="66" width="132" height="40" rx="4"/><text class="bold" x="556.0" y="82.0" text-anchor="middle">Reverse proxy cache</text><text x="556.0" y="97.0" text-anchor="middle">4 vCPU / 16 GB</text><rect class="b app" x="490" y="114" width="132" height="40" rx="4"/><text class="bold" x="556.0" y="130.0" text-anchor="middle">CMS</text><text x="556.0" y="145.0" text-anchor="middle">4 vCPU / 8 GB</text><rect class="b app" x="490" y="162" width="132" height="40" rx="4"/><text class="bold" x="556.0" y="178.0" text-anchor="middle">Search</text><text x="556.0" y="193.0" text-anchor="middle">4 vCPU / 8 GB</text><rect class="b app" x="490" y="210" width="132" height="40" rx="4"/><text class="bold" x="556.0" y="226.0" text-anchor="middle">ZooKeeper</text><text x="556.0" y="241.0" text-anchor="middle">1 vCPU / 2 GB</text><rect class="b app" x="490" y="258" width="132" height="40" rx="4"/><text class="bold" x="556.0" y="274.0" text-anchor="middle">Redis</text><text x="556.0" y="289.0" text-anchor="middle">2 vCPU / 4 GB</text><rect class="b ext" x="490" y="306" width="132" height="30" rx="4"/><text x="556.0" y="324.5" text-anchor="middle">Node overhead: 1 / 2</text><text class="bold" x="556.0" y="358" text-anchor="middle">16 vCPU / 40 GB</text><rect class="region" x="642" y="40" width="152" height="324"/><text class="rl" x="652" y="56">Node 2</text><rect class="b app" x="652" y="66" width="132" height="40" rx="4"/><text class="bold" x="718.0" y="82.0" text-anchor="middle">Reverse proxy cache</text><text x="718.0" y="97.0" text-anchor="middle">4 vCPU / 16 GB</text><rect class="b app" x="652" y="114" width="132" height="40" rx="4"/><text class="bold" x="718.0" y="130.0" text-anchor="middle">CMS</text><text x="718.0" y="145.0" text-anchor="middle">4 vCPU / 8 GB</text><rect class="b app" x="652" y="162" width="132" height="40" rx="4"/><text class="bold" x="718.0" y="178.0" text-anchor="middle">Search</text><text x="718.0" y="193.0" text-anchor="middle">4 vCPU / 8 GB</text><rect class="b app" x="652" y="210" width="132" height="40" rx="4"/><text class="bold" x="718.0" y="226.0" text-anchor="middle">ZooKeeper</text><text x="718.0" y="241.0" text-anchor="middle">1 vCPU / 2 GB</text><rect class="b app" x="652" y="258" width="132" height="40" rx="4"/><text class="bold" x="718.0" y="274.0" text-anchor="middle">Analytics app</text><text x="718.0" y="289.0" text-anchor="middle">2 vCPU / 4 GB</text><rect class="b ext" x="652" y="306" width="132" height="30" rx="4"/><text x="718.0" y="324.5" text-anchor="middle">Node overhead: 1 / 2</text><text class="bold" x="718.0" y="358" text-anchor="middle">16 vCPU / 40 GB</text><rect class="region" x="804" y="40" width="146" height="180"/><text class="rl" x="814" y="56">Node 3</text><rect class="b app" x="814" y="66" width="126" height="40" rx="4"/><text class="bold" x="877.0" y="82.0" text-anchor="middle">Transcode worker</text><text x="877.0" y="97.0" text-anchor="middle">8 vCPU / 16 GB</text><rect class="b app" x="814" y="114" width="126" height="40" rx="4"/><text class="bold" x="877.0" y="130.0" text-anchor="middle">ZooKeeper</text><text x="877.0" y="145.0" text-anchor="middle">1 vCPU / 2 GB</text><rect class="b ext" x="814" y="162" width="126" height="30" rx="4"/><text x="877.0" y="180.5" text-anchor="middle">Node overhead: 1 / 2</text><text class="bold" x="877.0" y="214" text-anchor="middle">10 vCPU / 20 GB</text><text class="" x="480" y="458" text-anchor="start">Recommended: 3 identical nodes,</text><text class="" x="480" y="476" text-anchor="start">18 vCPU / 42 GB each (54 / 126), about 30% spare.</text><text class="" x="10" y="470" text-anchor="start">One ZooKeeper cannot form a quorum. Two hosts cannot safely hold three.</text></svg></div><figcaption><strong>Figure 7: Indicative production placement, Podman and Kubernetes.</strong> Scope: production only. Illustration, not a design.</figcaption></figure>
+<p><strong>Text description.</strong> On Podman, two hosts carry production. Each runs a reverse proxy cache, a CMS pod and a Search pod. Host A also runs Redis, ZooKeeper and Analytics. Host B also runs the transcode worker. On Kubernetes, three worker nodes carry the same workloads, plus two more ZooKeeper pods, with a ZooKeeper pod on every node so a quorum survives losing any one node.</p>
+<p><strong>Illustration only.</strong> Placement is the scheduler's job on Kubernetes. The figure shows that the workload fits, not where each pod must run.</p>
+<h3 id="156-flags">15.6 Flags</h3>
+<ul>
+<li><strong>Flag: a two-host Podman production cannot form a safe ZooKeeper quorum.</strong> Two hosts can hold one instance, which is a single point of failure for index changes, or three instances where losing one host can still lose the quorum. Options: accept one instance and write the risk down, or add a small third host as a witness. Kubernetes fixes this with three nodes. <strong>Verify</strong> how Search behaves for reads and writes when ZooKeeper is unavailable, on the pinned version.</li>
+<li><strong>Flag: the numbers are planning estimates.</strong> They come from the solution architecture sizing and the assumptions in 15.2. They are not a delivery team design.</li>
+<li><strong>Flag: ask IT what overhead its platform really reserves per node.</strong> The 1 vCPU and 2 GB figure is an assumption.</li>
+<li><strong>Flag: network, not servers, is still the real constraint.</strong> About 400 Mbps leaves the proxy at 200 viewers. Check the network capacity of the nodes that run the reverse proxy cache.</li>
+<li><strong>Flag: CPU limits can throttle latency-sensitive pods.</strong> Consider requests without hard CPU limits for CMS and the proxy, and test in load testing. Memory limits stay, and Search's heap stays at about half of its memory limit.</li>
+</ul>
+</div>
+</main>
+</div>
+<div class="pg-foot">Generic working paper. Product and organization names are removed on purpose. <a href="{% endraw %}{{ '' | relative_url }}{% raw %}/creating-a-government-website/">Back to the website article</a></div>
+<div style="display:none"><button id="pg-open" type="button"></button><button id="pg-close" type="button"></button></div>
+<script>
+
+(function(){
+  var body=document.querySelector('.pg-body');
+  var heads=[].slice.call(body.querySelectorAll('h2[id]'));
+  var toc=document.getElementById('pg-toc-list');
+  heads.forEach(function(h){var li=document.createElement('li'),a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent;li.appendChild(a);toc.appendChild(li);});
+  var links=[].slice.call(toc.querySelectorAll('a'));
+  function spy(){var cur=0;heads.forEach(function(h,i){if(h.getBoundingClientRect().top<120)cur=i;});links.forEach(function(a,i){a.classList.toggle('on',i===cur);});}
+  window.addEventListener('scroll',spy,{passive:true});spy();
+  [].slice.call(body.querySelectorAll('pre')).forEach(function(p){
+    var w=document.createElement('div');w.className='pg-pre';p.parentNode.insertBefore(w,p);w.appendChild(p);
+    var b=document.createElement('button');b.className='pg-copy';b.type='button';b.textContent='Copy';
+    b.addEventListener('click',function(){var t=p.innerText;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1200)},function(){b.textContent='Select + copy'});});
+    w.appendChild(b);
+  });
+  var find=document.getElementById('pg-find');
+  function clear(){[].slice.call(body.querySelectorAll('mark')).forEach(function(m){var t=document.createTextNode(m.textContent);m.parentNode.replaceChild(t,m);});body.normalize();}
+  find.addEventListener('input',function(){
+    clear();var q=find.value.trim();if(q.length<3)return;
+    var rx=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+    var walker=document.createTreeWalker(body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){return n.parentNode.closest('svg,script,style,mark')?NodeFilter.FILTER_REJECT:(rx.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT)}});
+    var nodes=[],n;while(n=walker.nextNode())nodes.push(n);
+    nodes.slice(0,200).forEach(function(node){rx.lastIndex=0;var frag=document.createDocumentFragment(),last=0,m,s=node.nodeValue;while((m=rx.exec(s))){frag.appendChild(document.createTextNode(s.slice(last,m.index)));var mk=document.createElement('mark');mk.textContent=m[0];frag.appendChild(mk);last=m.index+m[0].length;if(m[0].length===0)rx.lastIndex++;}frag.appendChild(document.createTextNode(s.slice(last)));node.parentNode.replaceChild(frag,node);});
+    var first=body.querySelector('mark');if(first)first.scrollIntoView({block:'center'});
+  });
+  document.getElementById('pg-open').addEventListener('click',function(){[].slice.call(document.querySelectorAll('details')).forEach(function(d){d.open=true;});});
+  document.getElementById('pg-close').addEventListener('click',function(){[].slice.call(document.querySelectorAll('details')).forEach(function(d){d.open=false;});});
+})();
+
+
+</script>
+</body>
+</html>
+
+{% endraw %}

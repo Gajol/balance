@@ -1,0 +1,789 @@
+---
+layout: null
+permalink: /cicd-pipeline-guide/
+title: "CI/CD Pipeline Guide for a Web Platform"
+description: "A plain guide to CI/CD for a government web platform: pipeline stages, tools, maturity levels, block-build gates, delivery cycle, observability and the platform-team option."
+tags: [devops, architecture]
+sitemap: true
+---
+{% raw %}
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CI/CD Pipeline Guide for a Web Platform</title>
+<style>
+
+/* Page frame: title band, sticky contents rail, one reading column. Black, white and grey only. */
+.pg-skip{position:absolute;left:-999px}.pg-skip:focus{left:8px;top:8px;background:#fff;padding:6px 10px;z-index:99}
+body{margin:0;background:#fff;color:#333;font:14px/1.55 "Noto Sans","Segoe UI",Roboto,Arial,sans-serif}
+.pg-band{background:#333;color:#fff;padding:14px 20px}
+.pg-band a{color:#fff}
+.pg-band .pg-in{max-width:1200px;margin:0 auto}
+.pg-band h1{margin:4px 0 4px;font:700 22px/1.25 Lato,"Helvetica Neue",Arial,sans-serif;color:#fff;border:0}
+.pg-band p{margin:0;color:#ddd;font-size:13px;max-width:70ch}
+.pg-crumb{font-size:12px;color:#ccc}
+.pg-wrap{max-width:1200px;margin:0 auto;padding:16px 20px 60px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:28px}
+.pg-toc{position:sticky;top:12px;align-self:start;max-height:calc(100vh - 24px);overflow:auto;font-size:12.5px;border-right:1px solid #ddd;padding-right:12px}
+.pg-toc h2{font:700 12px Lato,Arial,sans-serif;text-transform:uppercase;letter-spacing:.05em;color:#595959;margin:0 0 6px}
+.pg-toc ol{list-style:none;margin:0;padding:0}
+.pg-toc li{margin:0}
+.pg-toc a{display:block;padding:3px 6px;color:#333;text-decoration:none;border-left:3px solid transparent}
+.pg-toc a:hover{background:#f2f2f2}
+.pg-toc a.on{border-left-color:#333;font-weight:700;background:#f2f2f2}
+.pg-find{width:100%;box-sizing:border-box;padding:5px 7px;margin:0 0 8px;border:1px solid #8c8c8c;font:inherit}
+.pg-tools{display:flex;gap:8px;margin:0 0 10px;flex-wrap:wrap}
+.pg-tools button{border:1px solid #595959;background:#fff;color:#333;padding:4px 10px;font:inherit;cursor:pointer}
+.pg-tools button:hover{background:#f2f2f2}
+.pg-body{min-width:0}
+.pg-body mark{background:#e6e6e6;color:#000;outline:1px solid #8c8c8c}
+.pg-copy{position:absolute;right:6px;top:6px;border:1px solid #8c8c8c;background:#fff;color:#333;font:11px Arial,sans-serif;padding:2px 7px;cursor:pointer;opacity:.85}
+.pg-pre{position:relative}
+.pg-foot{max-width:1200px;margin:0 auto;padding:10px 20px 30px;font-size:12px;color:#595959}
+.pg-body{font-size:14px;line-height:1.55}
+.pg-body p,.pg-body li,.pg-body dd,.pg-body dt,.pg-body blockquote{font-size:14px;line-height:1.55}
+.pg-body td,.pg-body th{font-size:12.5px;line-height:1.4;padding:5px 8px;vertical-align:top}
+.pg-body h2{font-size:21px;margin:30px 0 8px}.pg-body h3{font-size:16.5px}.pg-body h4{font-size:14.5px}
+.pg-body .tablewrap,.pg-body .table-wrap,.pg-body .fig-scroll{overflow-x:auto;max-width:100%}
+.pg-body table{border-collapse:collapse}
+.pg-body pre,.pg-body pre code{font-size:12px;line-height:1.45}
+.pg-body svg{max-width:100%;height:auto}
+.pg-body main,.pg-body section{max-width:none}
+@media (max-width:820px){.pg-wrap{display:block}.pg-toc{position:static;max-height:none;border:0;margin-bottom:12px}}
+@media print{.pg-toc,.pg-tools,.pg-copy{display:none}.pg-wrap{display:block}}
+
+/* ---- Content styles ---- */
+img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+
+
+:root {
+  --c-text-primary: #333333;
+  --c-text-secondary: #585858;
+  --c-text-light: #fefefe;
+  --c-link-default: #565656;
+  --c-link-hover: #515151;
+  --c-link-light: #fefefe;
+  --c-bg-white: #fefefe;
+  --c-bg-light: #f2f2f2;
+  --c-bg-primary: #484848;
+  --c-bg-dark: #333333;
+  --c-border-default: #8c8c8c;
+  --c-focus-border: #515151;
+  --c-color-blue-50: #f0f0f0;
+  --c-color-blue-700: #565656;
+  --c-color-yellow-50: #f7f7f7;
+  --c-color-yellow-500: #afafaf;
+  --c-color-grayscale-100: #e6e6e6;
+  --c-spacing-50: 4px;
+  --c-spacing-100: 8px;
+  --c-spacing-150: 12px;
+  --c-spacing-200: 16px;
+  --c-spacing-300: 24px;
+  --c-spacing-400: 32px;
+  --c-spacing-600: 48px;
+  --c-spacing-800: 64px;
+  --font-heading: Lato, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Noto Sans", "Segoe UI", Arial, sans-serif;
+  
+}
+body.hc {
+  --c-text-primary: #1a1a1a;
+  --c-text-secondary: #333333;
+  --c-link-default: #404040;
+  --c-link-hover: #353535;
+  --c-border-default: #333333;
+  --c-focus-border: #404040;
+}
+
+* { box-sizing: border-box; }
+
+.inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+a { color: var(--c-link-default); text-decoration: underline; text-underline-offset: 3px; }
+a:hover { color: var(--c-link-hover); }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--c-focus-border);
+  outline-offset: 2px;
+}
+
+.skip {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--c-bg-white); color: var(--c-link-default);
+  padding: var(--c-spacing-150) var(--c-spacing-300);
+}
+.skip:focus { left: var(--c-spacing-200); top: var(--c-spacing-200); z-index: 20; }
+
+
+.band { background: var(--c-bg-primary); color: var(--c-text-light); }
+.band-row {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: var(--c-spacing-200);
+  padding-block: var(--c-spacing-200);
+}
+.fip {
+  border: 2px dashed var(--c-text-light);
+  padding: var(--c-spacing-100) var(--c-spacing-200);
+  font-size: 0.85rem; line-height: 1.4; max-width: 23.8rem;
+}
+.fip strong { display: block; font-family: var(--font-heading); font-size: 0.96rem; }
+.sig { display: block; width: min(100%, 440px); height: auto; }
+.btn {
+  font: 600 0.956rem/1.4 var(--font-body);
+  min-height: 44px; min-width: 44px;
+  padding: var(--c-spacing-100) var(--c-spacing-300);
+  border: 2px solid var(--c-text-light);
+  border-radius: 4px;
+  background: var(--c-bg-primary); color: var(--c-text-light);
+  cursor: pointer;
+}
+.btn[aria-pressed="true"] { background: var(--c-text-light); color: var(--c-bg-primary); }
+.band .btn:focus-visible { outline-color: var(--c-text-light); }
+
+
+.crumbs {
+  display: flex; flex-wrap: wrap; gap: var(--c-spacing-100);
+  list-style: none; padding: 0; margin: var(--c-spacing-300) 0 0; font-size: 0.96rem;
+}
+.crumbs li + li::before { content: "\203A"; margin-right: var(--c-spacing-100); color: var(--c-text-secondary); }
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(1.7rem, 5.2vw, 2.176rem); line-height: 1.17; margin-top: var(--c-spacing-300); }
+h2 { font-size: clamp(1.488rem, 4.4vw, 2.074rem); line-height: 1.23; }
+h3 { font-size: 1.173rem; line-height: 1.45; }
+.lead { max-width: 65ch; margin: var(--c-spacing-200) 0 0; }
+.meta-line { color: var(--c-text-secondary); font-size: 0.96rem; margin: var(--c-spacing-200) 0 0; }
+
+main { padding-block: var(--c-spacing-300) var(--c-spacing-800); }
+section { margin-top: var(--c-spacing-800); }
+section > h2 { padding-bottom: var(--c-spacing-150); border-bottom: 2px solid var(--c-text-primary); }
+section > p, section > ul, section > ol { max-width: 65ch; }
+section p { margin: var(--c-spacing-200) 0 0; }
+section ul, section ol { margin: var(--c-spacing-200) 0 0; padding-left: 1.4em; }
+section li + li { margin-top: var(--c-spacing-150); }
+
+
+.notice {
+  margin: var(--c-spacing-300) 0 0;
+  padding: var(--c-spacing-200) var(--c-spacing-300);
+  border-left: 6px solid var(--c-color-blue-700);
+  background: var(--c-color-blue-50);
+  max-width: 65ch;
+}
+.notice.warning { border-left-color: var(--c-color-yellow-500); background: var(--c-color-yellow-50); }
+.notice h3 { margin: 0 0 var(--c-spacing-50); }
+.notice p { margin: 0; font-size: 0.96rem; line-height: 1.55; }
+
+
+.table-wrap { margin-top: var(--c-spacing-300); overflow-x: auto; border: 1px solid var(--c-border-default); }
+table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 0.96rem; line-height: 1.5; }
+caption { text-align: left; font-family: var(--font-heading); font-weight: 700; font-size: 1.173rem; padding: var(--c-spacing-200); }
+th, td { text-align: left; vertical-align: top; padding: var(--c-spacing-150) var(--c-spacing-200); border-top: 1px solid var(--c-border-default); }
+thead th { background: var(--c-bg-light); font-weight: 700; border-top: 2px solid var(--c-text-primary); }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(even) { background: var(--c-bg-light); }
+
+
+figure { margin: var(--c-spacing-300) 0 0; }
+.fig-scroll { overflow-x: auto; border: 1px solid var(--c-border-default); padding: var(--c-spacing-200); }
+.fig-scroll svg { display: block; width: 100%; min-width: 640px; height: auto; }
+.ring { stroke: var(--c-text-secondary); stroke-width: 1.5; }
+.head { fill: var(--c-text-secondary); }
+.node { fill: var(--c-bg-white); stroke: var(--c-text-primary); stroke-width: 1.5; }
+.node.focus { fill: var(--c-bg-primary); stroke: var(--c-bg-primary); }
+.ext { fill: var(--c-bg-light); stroke: var(--c-text-primary); stroke-width: 1.5; stroke-dasharray: 6 4; }
+.signal { stroke: var(--c-text-secondary); stroke-width: 1.5; stroke-dasharray: 6 4; fill: none; }
+svg text { fill: var(--c-text-primary); font-family: var(--font-body); }
+svg .name { font-family: var(--font-heading); font-weight: 700; font-size: 15px; }
+svg .sub { font-size: 12px; fill: var(--c-text-secondary); }
+svg .edge { font-size: 12px; fill: var(--c-text-secondary); }
+svg .on-navy { fill: var(--c-text-light); }
+figcaption { margin-top: var(--c-spacing-200); font-size: 0.96rem; line-height: 1.5; }
+.fig-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.173rem; margin: 0 0 var(--c-spacing-100); }
+.legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--c-spacing-150) var(--c-spacing-300); list-style: none; padding: 0; margin: var(--c-spacing-200) 0 0; }
+.legend li { display: flex; gap: var(--c-spacing-150); align-items: flex-start; margin: 0; }
+.legend svg { flex: none; width: 44px; height: 24px; min-width: 0; }
+.meta { display: grid; grid-template-columns: max-content 1fr; gap: var(--c-spacing-50) var(--c-spacing-300); margin: var(--c-spacing-200) 0 0; }
+.meta dt { font-weight: 600; }
+.meta dd { margin: 0; min-width: 0; }
+
+
+footer { background: var(--c-bg-primary); color: var(--c-text-light); padding-block: var(--c-spacing-400); font-size: 0.96rem; line-height: 1.55; }
+footer .sig { margin-bottom: var(--c-spacing-200); }
+footer p { margin: 0; max-width: 65ch; }
+footer p + p { margin-top: var(--c-spacing-150); }
+footer a { color: var(--c-link-light); }
+
+@media (max-width: 560px) {
+  
+  .meta { grid-template-columns: 1fr; }
+  .meta dd { margin-bottom: var(--c-spacing-100); }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+@media (forced-colors: active) {
+  .notice, .table-wrap, .fig-scroll, .btn, .fip { border: 2px solid CanvasText; }
+}
+
+.band-box { fill: var(--c-bg-light); stroke: var(--c-text-primary); stroke-width: 1.5; }
+.ln { stroke: var(--c-text-secondary); stroke-width: 1.5; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--c-spacing-300); margin-top: var(--c-spacing-300); }
+.card { border: 1px solid var(--c-border-default); padding: var(--c-spacing-300); background: var(--c-bg-white); min-width: 0; }
+.card h3 { margin: 0 0 var(--c-spacing-100); font-size: 1.275rem; line-height: 1.33; }
+.card p { margin: 0; font-size: 0.96rem; line-height: 1.55; }
+.card ul { margin: var(--c-spacing-150) 0 0; padding-left: 1.2em; font-size: 0.96rem; line-height: 1.55; }
+.card li + li { margin-top: var(--c-spacing-100); }
+section .card ul, section .card p { max-width: none; }
+.t3 table { min-width: 560px; }
+.t4 table { min-width: 680px; }
+.persona { border-left: 6px solid var(--c-color-blue-700); background: var(--c-color-blue-50); padding: var(--c-spacing-200) var(--c-spacing-300); min-width: 0; }
+.persona h3 { margin: 0 0 var(--c-spacing-50); font-size: 1.173rem; }
+.persona p { margin: 0 0 var(--c-spacing-100); font-size: 0.96rem; line-height: 1.55; }
+.persona p:last-child { margin-bottom: 0; }
+.personas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--c-spacing-300); margin-top: var(--c-spacing-300); }
+
+img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+
+
+:root {
+  --c-text-primary: #333333;
+  --c-text-secondary: #585858;
+  --c-text-light: #fefefe;
+  --c-link-default: #565656;
+  --c-link-hover: #515151;
+  --c-link-light: #fefefe;
+  --c-bg-white: #fefefe;
+  --c-bg-light: #f2f2f2;
+  --c-bg-primary: #484848;
+  --c-bg-dark: #333333;
+  --c-border-default: #8c8c8c;
+  --c-focus-border: #515151;
+  --c-color-blue-50: #f0f0f0;
+  --c-color-blue-700: #565656;
+  --c-color-yellow-50: #f7f7f7;
+  --c-color-yellow-500: #afafaf;
+  --c-color-grayscale-100: #e6e6e6;
+  --c-spacing-50: 4px;
+  --c-spacing-100: 8px;
+  --c-spacing-150: 12px;
+  --c-spacing-200: 16px;
+  --c-spacing-300: 24px;
+  --c-spacing-400: 32px;
+  --c-spacing-600: 48px;
+  --c-spacing-800: 64px;
+  --font-heading: Lato, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Noto Sans", "Segoe UI", Arial, sans-serif;
+  
+}
+body.hc {
+  --c-text-primary: #1a1a1a;
+  --c-text-secondary: #333333;
+  --c-link-default: #404040;
+  --c-link-hover: #353535;
+  --c-border-default: #333333;
+  --c-focus-border: #404040;
+}
+
+* { box-sizing: border-box; }
+
+.inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+a { color: var(--c-link-default); text-decoration: underline; text-underline-offset: 3px; }
+a:hover { color: var(--c-link-hover); }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--c-focus-border);
+  outline-offset: 2px;
+}
+
+.skip {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--c-bg-white); color: var(--c-link-default);
+  padding: var(--c-spacing-150) var(--c-spacing-300);
+}
+.skip:focus { left: var(--c-spacing-200); top: var(--c-spacing-200); z-index: 20; }
+
+
+.band { background: var(--c-bg-primary); color: var(--c-text-light); }
+.band-row {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: var(--c-spacing-200);
+  padding-block: var(--c-spacing-200);
+}
+.fip {
+  border: 2px dashed var(--c-text-light);
+  padding: var(--c-spacing-100) var(--c-spacing-200);
+  font-size: 0.85rem; line-height: 1.4; max-width: 23.8rem;
+}
+.fip strong { display: block; font-family: var(--font-heading); font-size: 0.96rem; }
+.sig { display: block; width: min(100%, 440px); height: auto; }
+.btn {
+  font: 600 0.956rem/1.4 var(--font-body);
+  min-height: 44px; min-width: 44px;
+  padding: var(--c-spacing-100) var(--c-spacing-300);
+  border: 2px solid var(--c-text-light);
+  border-radius: 4px;
+  background: var(--c-bg-primary); color: var(--c-text-light);
+  cursor: pointer;
+}
+.btn[aria-pressed="true"] { background: var(--c-text-light); color: var(--c-bg-primary); }
+.band .btn:focus-visible { outline-color: var(--c-text-light); }
+
+
+.crumbs {
+  display: flex; flex-wrap: wrap; gap: var(--c-spacing-100);
+  list-style: none; padding: 0; margin: var(--c-spacing-300) 0 0; font-size: 0.96rem;
+}
+.crumbs li + li::before { content: "\203A"; margin-right: var(--c-spacing-100); color: var(--c-text-secondary); }
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(1.7rem, 5.2vw, 2.176rem); line-height: 1.17; margin-top: var(--c-spacing-300); }
+h2 { font-size: clamp(1.488rem, 4.4vw, 2.074rem); line-height: 1.23; }
+h3 { font-size: 1.173rem; line-height: 1.45; }
+.lead { max-width: 65ch; margin: var(--c-spacing-200) 0 0; }
+.meta-line { color: var(--c-text-secondary); font-size: 0.96rem; margin: var(--c-spacing-200) 0 0; }
+
+main { padding-block: var(--c-spacing-300) var(--c-spacing-800); }
+section { margin-top: var(--c-spacing-800); }
+section > h2 { padding-bottom: var(--c-spacing-150); border-bottom: 2px solid var(--c-text-primary); }
+section > p, section > ul, section > ol { max-width: 65ch; }
+section p { margin: var(--c-spacing-200) 0 0; }
+section ul, section ol { margin: var(--c-spacing-200) 0 0; padding-left: 1.4em; }
+section li + li { margin-top: var(--c-spacing-150); }
+
+
+.notice {
+  margin: var(--c-spacing-300) 0 0;
+  padding: var(--c-spacing-200) var(--c-spacing-300);
+  border-left: 6px solid var(--c-color-blue-700);
+  background: var(--c-color-blue-50);
+  max-width: 65ch;
+}
+.notice.warning { border-left-color: var(--c-color-yellow-500); background: var(--c-color-yellow-50); }
+.notice h3 { margin: 0 0 var(--c-spacing-50); }
+.notice p { margin: 0; font-size: 0.96rem; line-height: 1.55; }
+
+
+.table-wrap { margin-top: var(--c-spacing-300); overflow-x: auto; border: 1px solid var(--c-border-default); }
+table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 0.96rem; line-height: 1.5; }
+caption { text-align: left; font-family: var(--font-heading); font-weight: 700; font-size: 1.173rem; padding: var(--c-spacing-200); }
+th, td { text-align: left; vertical-align: top; padding: var(--c-spacing-150) var(--c-spacing-200); border-top: 1px solid var(--c-border-default); }
+thead th { background: var(--c-bg-light); font-weight: 700; border-top: 2px solid var(--c-text-primary); }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(even) { background: var(--c-bg-light); }
+
+
+figure { margin: var(--c-spacing-300) 0 0; }
+.fig-scroll { overflow-x: auto; border: 1px solid var(--c-border-default); padding: var(--c-spacing-200); }
+.fig-scroll svg { display: block; width: 100%; min-width: 640px; height: auto; }
+.ring { stroke: var(--c-text-secondary); stroke-width: 1.5; }
+.head { fill: var(--c-text-secondary); }
+.node { fill: var(--c-bg-white); stroke: var(--c-text-primary); stroke-width: 1.5; }
+.node.focus { fill: var(--c-bg-primary); stroke: var(--c-bg-primary); }
+.ext { fill: var(--c-bg-light); stroke: var(--c-text-primary); stroke-width: 1.5; stroke-dasharray: 6 4; }
+.signal { stroke: var(--c-text-secondary); stroke-width: 1.5; stroke-dasharray: 6 4; fill: none; }
+svg text { fill: var(--c-text-primary); font-family: var(--font-body); }
+svg .name { font-family: var(--font-heading); font-weight: 700; font-size: 15px; }
+svg .sub { font-size: 12px; fill: var(--c-text-secondary); }
+svg .edge { font-size: 12px; fill: var(--c-text-secondary); }
+svg .on-navy { fill: var(--c-text-light); }
+figcaption { margin-top: var(--c-spacing-200); font-size: 0.96rem; line-height: 1.5; }
+.fig-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.173rem; margin: 0 0 var(--c-spacing-100); }
+.legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--c-spacing-150) var(--c-spacing-300); list-style: none; padding: 0; margin: var(--c-spacing-200) 0 0; }
+.legend li { display: flex; gap: var(--c-spacing-150); align-items: flex-start; margin: 0; }
+.legend svg { flex: none; width: 44px; height: 24px; min-width: 0; }
+.meta { display: grid; grid-template-columns: max-content 1fr; gap: var(--c-spacing-50) var(--c-spacing-300); margin: var(--c-spacing-200) 0 0; }
+.meta dt { font-weight: 600; }
+.meta dd { margin: 0; min-width: 0; }
+
+
+footer { background: var(--c-bg-primary); color: var(--c-text-light); padding-block: var(--c-spacing-400); font-size: 0.96rem; line-height: 1.55; }
+footer .sig { margin-bottom: var(--c-spacing-200); }
+footer p { margin: 0; max-width: 65ch; }
+footer p + p { margin-top: var(--c-spacing-150); }
+footer a { color: var(--c-link-light); }
+
+@media (max-width: 560px) {
+  
+  .meta { grid-template-columns: 1fr; }
+  .meta dd { margin-bottom: var(--c-spacing-100); }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+@media (forced-colors: active) {
+  .notice, .table-wrap, .fig-scroll, .btn, .fip { border: 2px solid CanvasText; }
+}
+
+</style>
+</head>
+<body>
+<a class="pg-skip" href="#pg-main">Skip to content</a>
+<header class="pg-band"><div class="pg-in">
+<div class="pg-crumb"><a href="{% endraw %}{{ '' | relative_url }}{% raw %}/digital/">Digital</a> / DevOps</div>
+<h1>CI/CD Pipeline Guide for a Web Platform</h1>
+<p>Every code change becomes a tested, secure, accessible and traceable release. One delivery cycle, three separately versioned parts, and gates that stop a bad build.</p>
+</div></header>
+<div class="pg-wrap">
+<nav class="pg-toc" aria-label="Contents">
+<h2>Contents</h2>
+<input id="pg-find" class="pg-find" type="search" placeholder="Find in page (3+ letters)" aria-label="Find in page">
+<ol id="pg-toc-list"></ol>
+</nav>
+<main id="pg-main" class="pg-body">
+
+
+
+  <section aria-labelledby="s-exec">
+    <h2 id="s-exec">Executive summaries</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>For Executives</h3>
+        <p>CI/CD lowers the risk of every change to the public website. Each release is built the same way, tested automatically, scanned for security and accessibility problems, and traceable back to an approved request. The result: fewer outages, faster fixes for vulnerabilities, and evidence for audit and accessibility compliance.</p>
+        <ul>
+          <li><strong>Outcome:</strong> safer releases, faster delivery, and an audit trail by default.</li>
+          <li><strong>Investment:</strong> time to set up tooling and habits first; savings come from less rework and fewer emergency fixes.</li>
+          <li><strong>Decision needed:</strong> agree on the minimum quality gates that no release may skip (see <a href="#s-gates">Regression and block-build rules</a>).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>For IT</h3>
+        <p>The pipeline is one automated path from code to production. It builds a versioned package of CMS code, Search configuration and Analytics settings once, then promotes that same package through test, staging and production. Servers are changed only by the pipeline, not by hand.</p>
+        <ul>
+          <li><strong>Build once, deploy many:</strong> the same artifact moves through every environment.</li>
+          <li><strong>Config in code:</strong> CMS configuration, Search schema and Analytics settings are stored in version control.</li>
+          <li><strong>Rollback:</strong> the previous artifact is kept so a bad release can be reversed quickly.</li>
+          <li><strong>Watch it run:</strong> logs, metrics and alerts show health after every release.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>For Project Managers</h3>
+        <p>The pipeline makes progress visible and releases routine. Work is tracked in the work tracker from request to release, and each release records what changed, who approved it and what tests passed. Teams can release smaller changes more often, with less drama.</p>
+        <ul>
+          <li><strong>Predictable:</strong> smaller releases mean smaller risks and easier planning.</li>
+          <li><strong>Visible:</strong> work tickets link to builds, test results and release notes.</li>
+          <li><strong>Gated:</strong> a failed check stops the release; no one has to chase it manually.</li>
+          <li><strong>Staged adoption:</strong> start with Level 1 and add controls as the team matures (see <a href="#s-maturity">Maturity stages</a>).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-glance">
+    <h2 id="s-glance">The pipeline at a glance</h2>
+    <p>Work moves left to right. A failed gate sends the change back to its author. Only a build that passes every gate reaches production, and what happens there flows back into planning.</p>
+    <figure>
+      <div class="fig-scroll" role="region" aria-label="Pipeline diagram, scrolls sideways on small screens" tabindex="0">
+        <svg viewBox="0 0 800 372" role="img" aria-label="Pipeline from Plan to Production: Plan, Commit, Build, Test, Staging, Production. Gates stop the build between Commit and Staging. Evidence is kept from Build to Production. Production feeds back into Plan." xmlns="http://www.w3.org/2000/svg"><g data-part="evidence"><rect class="band-box" x="280" y="56" width="492" height="56" rx="2"/><text class="name" x="526.0" y="80" text-anchor="middle">Evidence kept with each release</text><text class="sub" x="526.0" y="98" text-anchor="middle">reports · component list · approvals · release notes · the work tracker links</text></g><g data-part="gates"><rect class="node focus" x="152" y="240" width="492" height="56" rx="2"/><text class="name on-navy" x="398.0" y="264" text-anchor="middle">Gates that stop the build</text><text class="sub on-navy" x="398.0" y="282" text-anchor="middle">standards · secrets · dependencies · tests · accessibility · security</text></g><line class="ln" x1="132" y1="180" x2="144" y2="180"/><polygon class="head" points="144,174 152,180 144,186"/><line class="ln" x1="260" y1="180" x2="272" y2="180"/><polygon class="head" points="272,174 280,180 272,186"/><line class="ln" x1="388" y1="180" x2="400" y2="180"/><polygon class="head" points="400,174 408,180 400,186"/><line class="ln" x1="516" y1="180" x2="528" y2="180"/><polygon class="head" points="528,174 536,180 528,186"/><line class="ln" x1="644" y1="180" x2="656" y2="180"/><polygon class="head" points="656,174 664,180 656,186"/><line class="ln" x1="334.0" y1="144" x2="334.0" y2="120"/><polygon class="head" points="328.0,120 334.0,112 340.0,120"/><line class="ln" x1="462.0" y1="144" x2="462.0" y2="120"/><polygon class="head" points="456.0,120 462.0,112 468.0,120"/><line class="ln" x1="590.0" y1="144" x2="590.0" y2="120"/><polygon class="head" points="584.0,120 590.0,112 596.0,120"/><line class="ln" x1="718.0" y1="144" x2="718.0" y2="120"/><polygon class="head" points="712.0,120 718.0,112 724.0,120"/><line class="ln" x1="206.0" y1="216" x2="206.0" y2="240"/><line class="ln" x1="334.0" y1="216" x2="334.0" y2="240"/><line class="ln" x1="462.0" y1="216" x2="462.0" y2="240"/><line class="ln" x1="590.0" y1="216" x2="590.0" y2="240"/><path class="ln" fill="none" d="M718.0 216V332H78.0V226"/><polygon class="head" points="72.0,226 78.0,216 84.0,226"/><g data-stage="plan"><rect class="node" x="24" y="144" width="108" height="72" rx="2"/><text class="name" x="78.0" y="170" text-anchor="middle">Plan</text><text class="sub" x="78.0" y="188" text-anchor="middle">work ticket</text><text class="sub" x="78.0" y="204" text-anchor="middle">Acceptance</text></g><g data-stage="commit"><rect class="node" x="152" y="144" width="108" height="72" rx="2"/><text class="name" x="206.0" y="170" text-anchor="middle">Commit</text><text class="sub" x="206.0" y="188" text-anchor="middle">Pull request</text><text class="sub" x="206.0" y="204" text-anchor="middle">Peer review</text></g><g data-stage="build"><rect class="node" x="280" y="144" width="108" height="72" rx="2"/><text class="name" x="334.0" y="170" text-anchor="middle">Build</text><text class="sub" x="334.0" y="188" text-anchor="middle">Versioned</text><text class="sub" x="334.0" y="204" text-anchor="middle">artifact</text></g><g data-stage="test"><rect class="node" x="408" y="144" width="108" height="72" rx="2"/><text class="name" x="462.0" y="170" text-anchor="middle">Test</text><text class="sub" x="462.0" y="188" text-anchor="middle">Config and</text><text class="sub" x="462.0" y="204" text-anchor="middle">regression</text></g><g data-stage="staging"><rect class="node" x="536" y="144" width="108" height="72" rx="2"/><text class="name" x="590.0" y="170" text-anchor="middle">Staging</text><text class="sub" x="590.0" y="188" text-anchor="middle">Full scans</text><text class="sub" x="590.0" y="204" text-anchor="middle">Sign-off</text></g><g data-stage="production"><rect class="node" x="664" y="144" width="108" height="72" rx="2"/><text class="name" x="718.0" y="170" text-anchor="middle">Production</text><text class="sub" x="718.0" y="188" text-anchor="middle">Release and</text><text class="sub" x="718.0" y="204" text-anchor="middle">monitor</text></g><text class="edge" x="398.0" y="356" text-anchor="middle">Alerts and Analytics insights feed the next work ticket</text></svg>
+      </div>
+      <figcaption>
+        <p class="fig-title">CI/CD pipeline from plan to production, with block-build gates and evidence</p>
+        <ul class="legend" aria-label="Legend">
+          <li><svg viewBox="0 0 44 24" aria-hidden="true"><line x1="2" y1="12" x2="30" y2="12" stroke-width="1.5" style="stroke: var(--c-text-secondary)"/><polygon points="30,6 42,12 30,18" style="fill: var(--c-text-secondary)"/></svg><span>Arrow: next step, or evidence produced</span></li>
+          <li><svg viewBox="0 0 44 24" aria-hidden="true"><rect x="2" y="3" width="40" height="18" rx="2" style="fill: var(--c-bg-primary)"/></svg><span>Navy box: the gates that can block a build</span></li>
+          <li><svg viewBox="0 0 44 24" aria-hidden="true"><rect x="2" y="3" width="40" height="18" rx="2" stroke-width="1.5" style="fill: var(--c-bg-light); stroke: var(--c-text-primary)"/></svg><span>Grey box: records kept with each release</span></li>
+        </ul>
+        <dl class="meta">
+          <dt>Notation</dt><dd>Simple flow diagram, not C4 or ArchiMate</dd>
+          <dt>Scope</dt><dd>One change moving from plan to production for a CMS, Search and Analytics website</dd>
+          <dt>Version and date</dt><dd>0.1, October 23, 2026</dd>
+          <dt>Author</dt><dd>enterprise architecture</dd>
+          <dt>Status</dt><dd>Draft</dd>
+        </dl>
+        <p><strong>Text description.</strong> Six stages run left to right: Plan, Commit, Build, Test, Staging and Production. Gates that stop the build apply from Commit through Staging. Evidence such as reports, the component list, approvals, release notes and the work tracker links is kept from Build through Production. A feedback path returns from Production to Plan: alerts and Analytics insights feed the next work ticket.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="s-tools">
+    <h2 id="s-tools">Common tools by stage</h2>
+    <p>These are examples, all open source or self-hostable. Start from the tools your platform team already approves, and add only what is missing.</p>
+    <div class="table-wrap t4" role="region" aria-label="Common tools table, scrolls sideways on small screens" tabindex="0"><table><caption>Common tools by stage</caption><thead><tr><th scope="col">Stage</th><th scope="col">Job to be done</th><th scope="col">Common tools</th><th scope="col">Notes for the CMS, search and analytics parts</th></tr></thead><tbody><tr><th scope="row">Plan</th><td>Track work and requirements</td><td>the work tracker, the wiki</td><td>Every ticket carries acceptance criteria for security and accessibility.</td></tr><tr><th scope="row">Source control and review</th><td>Keep code and config in one place, reviewed before merge</td><td>Gitea, Bitbucket or a similar host; protected branches; pull requests</td><td>CMS code, theme and config export, the Search configset and the Analytics settings all live in version control.</td></tr><tr><th scope="row">Build</th><td>Produce one versioned artifact per component</td><td>A CI server such as Jenkins; Composer; npm; Docker or Podman</td><td>One build job per component. The Composer lock file pins CMS core and modules.</td></tr><tr><th scope="row">Artifact storage</th><td>Store, sign and keep artifacts</td><td>Nexus, Artifactory or Harbor; Cosign; Syft or CycloneDX</td><td>Keep the previous release so a rollback is one step.</td></tr><tr><th scope="row">Static checks and security</th><td>Catch problems before anything runs</td><td>PHPCS (CMS standards), PHPStan, Gitleaks, composer audit, Trivy, OWASP Dependency-Check, SonarQube</td><td>Check CMS security advisories on every build.</td></tr><tr><th scope="row">Regression tests</th><td>Prove nothing that worked has broken</td><td>PHPUnit, Behat, Playwright, Nightwatch; BackstopJS for visual comparison</td><td>Add a fixed list of Search queries with the results you expect, and a check that the Analytics tag fires.</td></tr><tr><th scope="row">Accessibility checks</th><td>Find barriers early and track them</td><td>axe-core, Pa11y CI, Lighthouse CI; manual keyboard and screen-reader testing</td><td>Scan key pages in the integrated test environment, not just components.</td></tr><tr><th scope="row">Security scan of the running site</th><td>Test the deployed site like an attacker would</td><td>OWASP ZAP baseline and authenticated scans</td><td>Include the CMS administration paths.</td></tr><tr><th scope="row">Deploy and configure</th><td>Promote the same artifact, change servers only through the pipeline</td><td>The CMS command line (config import, database updates), Ansible, Terraform; Helm if containers are used</td><td>Search: load the new configset, then reindex. Analytics: run its own update, then check the tag.</td></tr><tr><th scope="row">Observe</th><td>Show health after every release</td><td>Prometheus, Grafana, Alertmanager, Loki or OpenSearch, Sentry, Uptime Kuma; a Prometheus exporter for Search</td><td>Forward the agreed logs and alerts to the enterprise SIEM and NOC.</td></tr><tr><th scope="row">Learn</th><td>Turn what happens in production into the next change</td><td>Analytics reports, work-tracker dashboards</td><td>Failed searches and 404 pages become improvement tickets.</td></tr></tbody></table></div>
+  </section>
+
+  <section aria-labelledby="s-maturity">
+    <h2 id="s-maturity">Maturity stages</h2>
+    <p>A new team should reach Level 2 first, then move up one level at a time. Each level adds controls without replacing the last.</p>
+    <div class="table-wrap " role="region" aria-label="Maturity levels table, scrolls sideways on small screens" tabindex="0"><table><caption>Four levels of CI/CD maturity</caption><thead><tr><th scope="col">Level</th><th scope="col">Name</th><th scope="col">What it looks like</th><th scope="col">Typical tools</th><th scope="col">Ready to move up when</th></tr></thead><tbody><tr><th scope="row">1</th><td>Foundation</td><td>All code and config in Git. One automated build per commit. Deploys are scripted but started by a person.</td><td>Git, Composer, The CMS command line, CI runner, code linting</td><td>Every build is repeatable from a clean checkout</td></tr><tr><th scope="row">2</th><td>Automated validation</td><td>Tests, coding standards, dependency and secret scans, and basic accessibility checks run on every change. Test environment deploys automatically.</td><td>PHPUnit, PHPCS, PHPStan, composer audit, Gitleaks, axe-core, Pa11y</td><td>Failed checks are fixed within the sprint, not ignored</td></tr><tr><th scope="row">3</th><td>Controlled release</td><td>Failed gates block the build. Regression suite covers key journeys, search and accessibility. Artifacts are versioned, signed and stored. Approvals and rollback are one step.</td><td>Artifact repository, Trivy, OWASP ZAP, SonarQube, Playwright or Nightwatch, SBOM tool, Cosign</td><td>Releases are routine and no manual hotfixes bypass the pipeline</td></tr><tr><th scope="row">4</th><td>Measured and continuous</td><td>Production health and user telemetry feed back into planning. Low-risk changes can go to production automatically. Policy is enforced as code.</td><td>Prometheus, Grafana, log search, uptime checks, Analytics reports, delivery metrics</td><td>Trends in quality, security and accessibility are reviewed every quarter</td></tr></tbody></table></div>
+  </section>
+
+  <section aria-labelledby="s-artifacts">
+    <h2 id="s-artifacts">Artifacts, build and validate</h2>
+    <p>The pipeline builds each artifact once, stores it with a version number, and promotes the same artifact through every environment. Nothing is rebuilt or edited by hand on the way to production.</p>
+    <div class="table-wrap t3" role="region" aria-label="Artifacts table, scrolls sideways on small screens" tabindex="0"><table><caption>What the pipeline produces</caption><thead><tr><th scope="col">Artifact</th><th scope="col">What is in it</th><th scope="col">Why it matters</th></tr></thead><tbody><tr><th scope="row">Application package</th><td>CMS core, contributed modules (pinned by Composer lock file), custom modules and theme</td><td>Same code in test, staging and production</td></tr><tr><th scope="row">Configuration bundle</th><td>CMS configuration export and per-environment settings</td><td>Config changes are reviewed like code</td></tr><tr><th scope="row">Search configset</th><td>Search schema, analyzers, synonyms and stop words</td><td>Search behaviour changes are tested before release</td></tr><tr><th scope="row">Analytics settings</th><td>Tracking tag, privacy settings, goals and segments, documented in Git</td><td>Telemetry stays consistent and privacy-safe</td></tr><tr><th scope="row">Reports</th><td>Test, security and accessibility results for this build</td><td>Evidence for approvers and auditors</td></tr><tr><th scope="row">Component list (SBOM)</th><td>Every library and version in the package</td><td>Fast answer when a new vulnerability is announced</td></tr><tr><th scope="row">Release notes</th><td>work tickets included in the release</td><td>Traceability from request to production</td></tr></tbody></table></div>
+    <h3 style="margin-top: var(--c-spacing-600);">Three layers of validation</h3>
+    <p>Validation runs from cheapest to most thorough:</p>
+    <ol>
+      <li><strong>On commit:</strong> coding standards, static analysis, secret scan, dependency audit. Results in minutes.</li>
+      <li><strong>On build:</strong> unit and functional tests, package and image scan, SBOM creation, signing.</li>
+      <li><strong>On deploy to test and staging:</strong> configuration import and database updates, search checks against known queries, tracking-tag check, browser journeys, accessibility and security scans of the running site.</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="s-security">
+    <h2 id="s-security">Security and accessibility tools across the pipeline</h2>
+    <p>Security and accessibility checks run at every stage, not just before release. The tools below are open source or self-hostable examples. Swap in the organization's approved equivalents.</p>
+    <div class="table-wrap t3" role="region" aria-label="Security and accessibility tools table, scrolls sideways on small screens" tabindex="0"><table><caption>Security and accessibility tools by stage</caption><thead><tr><th scope="col">Stage</th><th scope="col">Security tools</th><th scope="col">Accessibility tools</th></tr></thead><tbody><tr><th scope="row">Plan</th><td>Threat model and security requirements as work tickets</td><td>Accessibility requirements (WCAG 2.x AA) as acceptance criteria</td></tr><tr><th scope="row">Commit</th><td>Gitleaks (secrets), PHPCS with CMS standards, PHPStan, composer audit</td><td>HTML and template linting; use of the approved accessible component library</td></tr><tr><th scope="row">Build</th><td>Trivy or OWASP Dependency-Check, SonarQube, SBOM tool (Syft or CycloneDX), artifact signing (Cosign)</td><td>axe-core on theme components</td></tr><tr><th scope="row">Test and staging</th><td>OWASP ZAP baseline scan, authenticated scan of admin paths</td><td>Pa11y CI, axe-core and Lighthouse CI on key pages; keyboard and screen-reader testing for major changes</td></tr><tr><th scope="row">Release</th><td>Signature check, approval record, change ticket linked</td><td>Accessibility sign-off on open findings</td></tr><tr><th scope="row">Production</th><td>CMS security advisory monitoring, host vulnerability scans, log monitoring, web application firewall</td><td>Scheduled page scans, an accessibility checker for content authors for content authors, user feedback channel</td></tr></tbody></table></div>
+    <div class="notice warning" role="status">
+      <h3>Automated checks are not enough</h3>
+      <p>Automated accessibility tools catch only a portion of real problems. Keep manual testing with assistive technology in the plan for major releases.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-gates">
+    <h2 id="s-gates">Regression and block-build rules</h2>
+    <p>Regression testing proves that a new change did not break something that worked yesterday. A block build means the pipeline stops and nothing moves forward until the problem is fixed or a risk acceptance is recorded.</p>
+    <div class="table-wrap t4" role="region" aria-label="Gates table, scrolls sideways on small screens" tabindex="0"><table><caption>Gates that can block a build</caption><thead><tr><th scope="col">Gate</th><th scope="col">What is checked</th><th scope="col">Blocks the build when</th><th scope="col">Start at level</th></tr></thead><tbody><tr><th scope="row">Code quality</th><td>Coding standards, static analysis</td><td>Any error</td><td>1</td></tr><tr><th scope="row">Secrets</th><td>Passwords or keys in code</td><td>Any finding</td><td>2</td></tr><tr><th scope="row">Dependencies</th><td>Known vulnerabilities in CMS, modules and libraries</td><td>Critical or high severity without an approved exception</td><td>2</td></tr><tr><th scope="row">Functional regression</th><td>Key journeys: search, forms, login, content publishing</td><td>Any failed journey</td><td>3</td></tr><tr><th scope="row">Search regression</th><td>A set of known queries returns the expected results from Search; reindex completes</td><td>Expected results missing or index errors</td><td>3</td></tr><tr><th scope="row">Accessibility regression</th><td>Automated scans compared with the last release</td><td>New violations on key pages</td><td>3</td></tr><tr><th scope="row">Visual regression</th><td>Screenshots compared with the last release</td><td>Unexplained layout change</td><td>3</td></tr><tr><th scope="row">Configuration drift</th><td>Environment matches the configuration in Git</td><td>Differences found</td><td>3</td></tr><tr><th scope="row">Telemetry check</th><td>Analytics tag fires and privacy settings are intact</td><td>Tag missing or privacy setting changed</td><td>3</td></tr><tr><th scope="row">Security scan of running site</th><td>OWASP ZAP baseline</td><td>High severity finding</td><td>3</td></tr></tbody></table></div>
+    <p>Start with fewer gates that are always enforced, rather than many gates that people learn to ignore. Every exception needs an owner, a reason and an expiry date recorded in the work tracker.</p>
+  </section>
+
+  <section aria-labelledby="s-observe">
+    <h2 id="s-observe">Observability and telemetry</h2>
+    <p>Observability tells the team whether the system is healthy. Telemetry tells the team how people use the site. Both close the loop: what happens in production decides what gets built and fixed next.</p>
+    <div class="table-wrap t4" role="region" aria-label="Observability table, scrolls sideways on small screens" tabindex="0"><table><caption>What we watch in production</caption><thead><tr><th scope="col">Area</th><th scope="col">What we watch</th><th scope="col">Typical tools</th><th scope="col">Who uses it</th></tr></thead><tbody><tr><th scope="row">CMS</th><td>Errors, response time, cron and queue status, failed logins</td><td>Central log search, Prometheus and Grafana</td><td>IT, Developer</td></tr><tr><th scope="row">Search</th><td>Query time, error rate, index size, last successful index</td><td>Search metrics into Grafana, alerts</td><td>IT, Developer</td></tr><tr><th scope="row">Platform</th><td>CPU, memory, disk, certificate expiry, uptime</td><td>Prometheus, uptime checks</td><td>IT</td></tr><tr><th scope="row">Security</th><td>Advisories, blocked requests, scan results over time</td><td>Log monitoring, firewall reports, scan dashboards</td><td>Security</td></tr><tr><th scope="row">User experience</th><td>Visits, top searches, failed searches, 404 pages, task completion</td><td>Analytics</td><td>Product Manager</td></tr><tr><th scope="row">Pipeline</th><td>Build time, failure rate, release frequency, time to restore service</td><td>CI reports, dashboard</td><td>Project Manager, Executive</td></tr></tbody></table></div>
+    <h3 style="margin-top: var(--c-spacing-600);">Three habits that make this work</h3>
+    <ul>
+      <li><strong>Post-release watch:</strong> after each release, compare errors and response time with the previous version and roll back if they get worse.</li>
+      <li><strong>Alerts become tickets:</strong> every alert that needs action creates a work ticket with an owner.</li>
+      <li><strong>Telemetry feeds the backlog:</strong> failed searches and 404s from Analytics become improvement requests.</li>
+    </ul>
+    <p>Keep personal information out of logs and telemetry, and follow enterprise privacy and retention rules. How these signals reach the enterprise SIEM and NOC is covered on the <a href="#s-signals">delivery cycle section above</a>.</p>
+  </section>
+
+  <section aria-labelledby="s-personas">
+    <h2 id="s-personas">Persona call-outs</h2>
+    <p>Each role touches the pipeline at different points. The artifacts and gates are the shared language between them.</p>
+    <div class="personas">
+      <div class="persona"><h3>IT (platform and operations)</h3><p>Owns environments, the artifact repository, deployment and rollback.</p><p>Cares about: signed artifacts, configuration drift checks, Search and Analytics upgrades, monitoring and capacity.</p><p>Works from: runbooks in the wiki and incident and change tickets in the work tracker.</p></div>
+      <div class="persona"><h3>Developer</h3><p>Owns code, tests and fixing failed builds.</p><p>Cares about: fast feedback on commit, clear failure messages, reproducible local builds, Composer lock file and configuration export.</p><p>Works from: work-tracker stories with acceptance criteria; ticket key in every branch and commit.</p></div>
+      <div class="persona"><h3>Security</h3><p>Owns the security gates, exception approvals and vulnerability response.</p><p>Cares about: dependency and image scan results, the component list (SBOM), scan trends, and evidence for assessments.</p><p>Works from: security requirements and risk acceptances recorded in the work tracker and the wiki.</p></div>
+      <div class="persona"><h3>Product Manager</h3><p>Owns what gets built and whether it meets user and accessibility needs.</p><p>Cares about: release notes, accessibility results, Analytics insights, and a predictable release rhythm.</p><p>Works from: the work-tracker backlog, definition of done and release notes in the wiki.</p></div>
+    </div>
+    <h3 style="margin-top: var(--c-spacing-600);">How the work tracker and the wiki tie it together</h3>
+    <ul>
+      <li><strong>Work tracker:</strong> every change starts as a ticket with acceptance criteria that include security and accessibility. The ticket key links commits, builds and releases, so one view shows status end to end.</li>
+      <li><strong>Wiki:</strong> holds the definition of done, gate rules, runbooks, architecture decisions, release notes and risk acceptances.</li>
+      <li><strong>Rule of thumb:</strong> if it cannot be traced to a ticket, it does not go to production.</li>
+    </ul>
+  </section>
+
+  
+
+  <section aria-labelledby="s-parts">
+    <h2 id="s-parts">One pipeline or three?</h2>
+    <div class="notice" role="status">
+      <h3>Short answer</h3>
+      <p>Run one delivery cycle with three separately versioned parts. Build and deploy each part on its own. Test all three together every time.</p>
+    </div>
+    <p>CMS, Search and Analytics are separate services with their own upgrades and risks. A single build for all three would force a full release for every small change. Three fully separate pipelines would miss the places where the parts depend on each other.</p>
+
+    <div class="table-wrap" role="region" aria-label="Components table, scrolls sideways on small screens" tabindex="0">
+      <table>
+        <caption>What the pipeline builds and deploys, by component</caption>
+        <thead>
+          <tr><th scope="col">Component</th><th scope="col">What is built</th><th scope="col">What is deployed</th><th scope="col">Can deploy alone for</th><th scope="col">Must move together when</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">CMS</th><td>Package of core, contributed modules, custom code and theme (Composer), plus the configuration export</td><td>Web servers; configuration import and database updates run on deploy</td><td>Code, theme and content-type changes</td><td>Search fields change (with Search) or the tracking tag changes (with Analytics)</td></tr>
+          <tr><th scope="row">Search</th><td>Configset: schema, analyzers, synonyms and stop words</td><td>Search cores or collections; reindex after a schema change</td><td>Synonyms, stop words and relevance tuning</td><td>Fields or index structure change (with CMS search configuration)</td></tr>
+          <tr><th scope="row">Analytics</th><td>Application version, plus settings kept in Git: sites, goals, privacy settings and the tag</td><td>Analytics servers; its own database upgrade</td><td>Version upgrades and report changes</td><td>The tracking tag or custom events change (with CMS)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top: var(--c-spacing-600);">Recommended pattern</h3>
+    <ol>
+      <li><strong>One cycle, three build jobs.</strong> Each part builds into its own versioned artifact. Jobs start only when that part changes, so a theme edit does not rebuild Search.</li>
+      <li><strong>One release manifest.</strong> A small file lists the exact CMS package, Search configset and Analytics version that were tested together. This file is what moves to staging and production.</li>
+      <li><strong>Test together, always.</strong> The integrated test environment runs the search checks and the tracking check on the whole set, even when only one part changed.</li>
+      <li><strong>Keep changes reversible.</strong> Add the new field or index first, switch over, then remove the old one. Each part can then roll back alone. When a change touches more than one part, a common order is Search, then CMS, then Analytics.</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="s-cycle">
+    <h2 id="s-cycle">The delivery cycle</h2>
+    <p>Each change goes round once. A failed gate at Validate sends the change back to its author. What happens in production feeds the next plan.</p>
+
+    <figure>
+      <div class="fig-scroll" role="region" aria-label="Delivery cycle diagram, scrolls sideways on small screens" tabindex="0">
+        <svg viewBox="0 0 760 500" role="img" aria-label="Delivery cycle: Plan, Code, Build, Validate, Release, Deploy, Observe and Learn, repeating. Observe also sends logs and alerts to the enterprise SIEM and NOC." xmlns="http://www.w3.org/2000/svg"><ellipse class="ring" cx="380" cy="250" rx="280" ry="190" fill="none"/><polygon class="head" points="-8,-6 8,0 -8,6" transform="translate(487.2 74.5) rotate(15.7)"/><polygon class="head" points="-8,-6 8,0 -8,6" transform="translate(638.7 177.3) rotate(58.6)"/><polygon class="head" points="-8,-6 8,0 -8,6" transform="translate(638.7 322.7) rotate(121.4)"/><polygon class="head" points="-8,-6 8,0 -8,6" transform="translate(487.2 425.5) rotate(164.3)"/><polygon class="head" points="-8,-6 8,0 -8,6" transform="translate(272.8 425.5) rotate(-164.3)"/><polygon class="head" points="-8,-6 8,0 -8,6" transform="translate(121.3 322.7) rotate(-121.4)"/><polygon class="head" points="-8,-6 8,0 -8,6" transform="translate(121.3 177.3) rotate(-58.6)"/><polygon class="head" points="-8,-6 8,0 -8,6" transform="translate(272.8 74.5) rotate(-15.7)"/><g data-stage="plan"><rect class="node" x="306.0" y="34.0" width="148" height="52" rx="2"/><text class="name" x="380.0" y="56.0" text-anchor="middle">Plan</text><text class="sub" x="380.0" y="74.0" text-anchor="middle">work ticket</text></g><g data-stage="code"><rect class="node" x="504.0" y="89.6" width="148" height="52" rx="2"/><text class="name" x="578.0" y="111.6" text-anchor="middle">Code</text><text class="sub" x="578.0" y="129.6" text-anchor="middle">Branch and review</text></g><g data-stage="build"><rect class="node" x="586.0" y="224.0" width="148" height="52" rx="2"/><text class="name" x="660.0" y="246.0" text-anchor="middle">Build</text><text class="sub" x="660.0" y="264.0" text-anchor="middle">One per component</text></g><g data-stage="validate"><rect class="node focus" x="504.0" y="358.4" width="148" height="52" rx="2"/><text class="name on-navy" x="578.0" y="380.4" text-anchor="middle">Validate</text><text class="sub on-navy" x="578.0" y="398.4" text-anchor="middle">Tests and scans</text></g><g data-stage="release"><rect class="node" x="306.0" y="414.0" width="148" height="52" rx="2"/><text class="name" x="380.0" y="436.0" text-anchor="middle">Release</text><text class="sub" x="380.0" y="454.0" text-anchor="middle">Approve and sign</text></g><g data-stage="deploy"><rect class="node" x="108.0" y="358.4" width="148" height="52" rx="2"/><text class="name" x="182.0" y="380.4" text-anchor="middle">Deploy</text><text class="sub" x="182.0" y="398.4" text-anchor="middle">Promote one package</text></g><g data-stage="observe"><rect class="node" x="26.0" y="224.0" width="148" height="52" rx="2"/><text class="name" x="100.0" y="246.0" text-anchor="middle">Observe</text><text class="sub" x="100.0" y="264.0" text-anchor="middle">Metrics and alerts</text></g><g data-stage="learn"><rect class="node" x="108.0" y="89.6" width="148" height="52" rx="2"/><text class="name" x="182.0" y="111.6" text-anchor="middle">Learn</text><text class="sub" x="182.0" y="129.6" text-anchor="middle">Usage and incidents</text></g><g data-stage="siem-noc"><rect class="ext" x="290.0" y="218.0" width="180" height="64" rx="2"/><text class="name" x="380" y="246" text-anchor="middle">SIEM and NOC</text><text class="sub" x="380" y="266" text-anchor="middle">Enterprise monitoring</text></g><line class="signal" x1="174.0" y1="250" x2="282.0" y2="250"/><polygon class="head" points="-8,-6 8,0 -8,6" transform="translate(290.0 250) rotate(0)"/><text class="edge" x="232.0" y="240" text-anchor="middle">Logs and alerts</text></svg>
+      </div>
+      <figcaption>
+        <p class="fig-title">Delivery cycle for CMS, Search and Analytics, with enterprise monitoring links</p>
+        <ul class="legend" aria-label="Legend">
+          <li><svg viewBox="0 0 44 24" aria-hidden="true"><line x1="2" y1="12" x2="30" y2="12" stroke="currentColor" stroke-width="1.5" style="color: var(--c-text-secondary)"/><polygon points="28,6 42,12 28,18" style="fill: var(--c-text-secondary)"/></svg><span>Solid arrow: next stage in the cycle</span></li>
+          <li><svg viewBox="0 0 44 24" aria-hidden="true"><line x1="2" y1="12" x2="30" y2="12" stroke-width="1.5" stroke-dasharray="6 4" style="stroke: var(--c-text-secondary)"/><polygon points="28,6 42,12 28,18" style="fill: var(--c-text-secondary)"/></svg><span>Dashed arrow: signals sent outside the team</span></li>
+          <li><svg viewBox="0 0 44 24" aria-hidden="true"><rect x="2" y="3" width="40" height="18" rx="2" style="fill: var(--c-bg-primary)"/></svg><span>Navy box: the stage that can block a build</span></li>
+          <li><svg viewBox="0 0 44 24" aria-hidden="true"><rect x="2" y="3" width="40" height="18" rx="2" stroke-width="1.5" stroke-dasharray="6 4" style="fill: var(--c-bg-light); stroke: var(--c-text-primary)"/></svg><span>Grey dashed box: outside the delivery team</span></li>
+        </ul>
+        <dl class="meta">
+          <dt>Notation</dt><dd>Simple flow diagram, not C4 or ArchiMate</dd>
+          <dt>Scope</dt><dd>One change moving through the web platform: CMS, Search and Analytics</dd>
+          <dt>Version and date</dt><dd>0.1, October 23, 2026</dd>
+          <dt>Author</dt><dd>enterprise architecture</dd>
+          <dt>Status</dt><dd>Draft</dd>
+        </dl>
+        <p><strong>Text description.</strong> Eight stages run clockwise: Plan, Code, Build, Validate, Release, Deploy, Observe and Learn, and Learn leads back to Plan. Validate is highlighted because its gates can stop a build. From Observe, a dashed arrow carries logs and alerts to the enterprise SIEM and NOC, which sit outside the team.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="s-signals">
+    <h2 id="s-signals">Observability, telemetry and the enterprise SIEM and NOC</h2>
+    <p>Telemetry is the signals the platform gives off: logs, metrics and usage data. Observability is how the delivery team uses those signals to judge each release. The SIEM and NOC are enterprise services that receive a chosen part of the same signals. They are separate jobs with separate owners, joined by agreed links.</p>
+
+    <div class="table-wrap" role="region" aria-label="Signals table, scrolls sideways on small screens" tabindex="0">
+      <table>
+        <caption>Same signals, different jobs</caption>
+        <thead>
+          <tr><th scope="col">Use</th><th scope="col">Purpose</th><th scope="col">Owner</th><th scope="col">Typical signals</th><th scope="col">Where it goes</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Team observability</th><td>Check that the site and each release are healthy; decide whether to roll back</td><td>Delivery team, with DevOps</td><td>CMS errors and response time, Search query time and index status, release markers</td><td>Team dashboards and alerts</td></tr>
+          <tr><th scope="row">Usage analytics</th><td>Learn how people use the site; feed the backlog</td><td>Product</td><td>Visits, searches, failed searches and 404 pages in Analytics</td><td>Analytics reports only</td></tr>
+          <tr><th scope="row">Enterprise monitoring (NOC)</th><td>Keep services available; run incidents</td><td>Enterprise operations</td><td>Up and down checks, capacity, service health, alert severity</td><td>Enterprise monitoring and ticketing</td></tr>
+          <tr><th scope="row">Security monitoring (SIEM)</th><td>Detect and investigate attacks and misuse</td><td>Security operations</td><td>Sign-in events, administrator actions, web server and firewall logs</td><td>Enterprise SIEM</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top: var(--c-spacing-600);">How they connect</h3>
+    <ul>
+      <li><strong>Send once, route many.</strong> The platform writes standard logs and health checks. An enterprise forwarder sends the right part to the SIEM and the NOC. The team does not build a second pipeline for them.</li>
+      <li><strong>The pipeline deploys the connection.</strong> Forwarder settings, health endpoints and alert rules live in Git and are deployed like code.</li>
+      <li><strong>Every deployment leaves a marker.</strong> It carries the release number and the work ticket, so a NOC alert or a SIEM finding can be tied to a change record.</li>
+      <li><strong>Agree alert routing early.</strong> Decide which alerts page the team, which go to the NOC, and use the enterprise severity names.</li>
+      <li><strong>Keep Analytics data apart.</strong> Usage data does not go to the SIEM unless Security asks. Keep personal information out of every log.</li>
+    </ul>
+
+    <div class="notice warning" role="status">
+      <h3>Confirm with Security and the NOC</h3>
+      <p>Required log fields, retention periods and severity levels differ between organizations. Treat the lists above as a starting point.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-platform">
+    <h2 id="s-platform">Platform team option</h2>
+    <div class="notice" role="status">
+      <h3>Short answer</h3>
+      <p>Align to the DevOps team's platform and tools, then create your own pipeline instance from their shared template. Do not start a new toolchain.</p>
+    </div>
+    <p>A platform team already runs and secures the CI/CD service, the runners and the artifact repository. Using them shortens the path to a working pipeline and keeps the web platform inside enterprise support and security approval. The web team adds only what is specific to CMS, Search and Analytics.</p>
+
+    <div class="table-wrap" role="region" aria-label="Platform team responsibilities table, scrolls sideways on small screens" tabindex="0">
+      <table>
+        <caption>Who provides what with a platform team</caption>
+        <thead>
+          <tr><th scope="col">Area</th><th scope="col">Platform team provides</th><th scope="col">Web team adds</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Pipeline service</th><td>CI/CD platform, runners, shared pipeline template, access control</td><td>One pipeline instance for the web platform, with three build jobs</td></tr>
+          <tr><th scope="row">Artifacts</th><td>Artifact repository, signing and retention rules</td><td>Versioned CMS package, Search configset, Analytics settings and the release manifest</td></tr>
+          <tr><th scope="row">Security gates</th><td>Approved scanners, secret handling, base policies</td><td>CMS-specific checks and the rules for exceptions to block-build gates</td></tr>
+          <tr><th scope="row">Validation</th><td>Common test and scan stages</td><td>Regression journeys, search checks, accessibility checks and the tracking check</td></tr>
+          <tr><th scope="row">Environments</th><td>Hosting, on-premises runners, deployment tooling</td><td>Environment settings and deployment steps for each component</td></tr>
+          <tr><th scope="row">Monitoring</th><td>Logging and monitoring stack, SIEM and NOC forwarding</td><td>Health endpoints, alert rules and release markers, kept in Git</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top: var(--c-spacing-600);">When to use an instance or a new pipeline</h3>
+    <ul>
+      <li><strong>Use an instance of the shared pipeline</strong> when the template can accept your own stages. This is the usual case and the fastest.</li>
+      <li><strong>Ask for a new template</strong> when several teams need the same CMS, Search or Analytics stages. Offer yours back to the platform team so others can reuse it.</li>
+      <li><strong>Request an exception</strong> only when a required tool cannot run your checks, for example accessibility scans on a running site. Record the reason and an expiry date.</li>
+    </ul>
+    <p>With a platform team, the early maturity steps shrink to onboarding onto their template. Most of the web team's effort moves to the CMS, Search and Analytics gates and the regression suite.</p>
+  </section>
+
+  <section aria-labelledby="s-questions">
+    <h2 id="s-questions">Questions for DevOps and Security</h2>
+    <ol>
+      <li>Does the enterprise provide a log forwarder, or do we install one?</li>
+      <li>Which events must reach the SIEM, and in what format?</li>
+      <li>Which health checks does the NOC need, and how are they registered?</li>
+      <li>Can Search and Analytics run on shared platform services, or does the team host them?</li>
+      <li>Who approves an exception to a block-build gate, and how long does it last?</li>
+    </ol>
+  </section>
+<section aria-labelledby="s-next">
+    <h2 id="s-next">Next steps</h2>
+    <p>A practical path for a team starting out. Finish each step before the next begins.</p>
+    <ol>
+      <li><strong>Weeks 1 to 4 (Level 1):</strong> put all code and configuration in version control, pin dependencies with Composer, and create one automated build.</li>
+      <li><strong>Weeks 5 to 8 (Level 2):</strong> add coding standards, dependency and secret scans, and basic accessibility checks; deploy to a test environment automatically.</li>
+      <li><strong>Weeks 9 to 12 (start Level 3):</strong> agree on the block-build rules with Security and the Product Manager, build the first regression journeys (search and key forms), and store signed, versioned artifacts.</li>
+      <li><strong>After 90 days:</strong> add monitoring dashboards and a post-release check, then review the maturity level with the executive sponsor.</li>
+    </ol>
+    <h3 style="margin-top: var(--c-spacing-600);">Decisions to confirm</h3>
+    <ul>
+      <li>Confirm the approved CI tool and artifact repository.</li>
+      <li>Agree the minimum block-build rules.</li>
+      <li>Name an owner for each gate.</li>
+      <li>Define the definition of done in the wiki, including security and accessibility.</li>
+    </ul>
+  </section>
+
+
+</main>
+</div>
+<div class="pg-foot">Generic guide. Product and organization names are removed on purpose. <a href="{% endraw %}{{ '' | relative_url }}{% raw %}/creating-a-government-website/">Back to the website article</a></div>
+<div style="display:none"><button id="pg-open" type="button"></button><button id="pg-close" type="button"></button></div>
+<script>
+
+(function(){
+  var body=document.querySelector('.pg-body');
+  var heads=[].slice.call(body.querySelectorAll('h2[id]'));
+  var toc=document.getElementById('pg-toc-list');
+  heads.forEach(function(h){var li=document.createElement('li'),a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent;li.appendChild(a);toc.appendChild(li);});
+  var links=[].slice.call(toc.querySelectorAll('a'));
+  function spy(){var cur=0;heads.forEach(function(h,i){if(h.getBoundingClientRect().top<120)cur=i;});links.forEach(function(a,i){a.classList.toggle('on',i===cur);});}
+  window.addEventListener('scroll',spy,{passive:true});spy();
+  [].slice.call(body.querySelectorAll('pre')).forEach(function(p){
+    var w=document.createElement('div');w.className='pg-pre';p.parentNode.insertBefore(w,p);w.appendChild(p);
+    var b=document.createElement('button');b.className='pg-copy';b.type='button';b.textContent='Copy';
+    b.addEventListener('click',function(){var t=p.innerText;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1200)},function(){b.textContent='Select + copy'});});
+    w.appendChild(b);
+  });
+  var find=document.getElementById('pg-find');
+  function clear(){[].slice.call(body.querySelectorAll('mark')).forEach(function(m){var t=document.createTextNode(m.textContent);m.parentNode.replaceChild(t,m);});body.normalize();}
+  find.addEventListener('input',function(){
+    clear();var q=find.value.trim();if(q.length<3)return;
+    var rx=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+    var walker=document.createTreeWalker(body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){return n.parentNode.closest('svg,script,style,mark')?NodeFilter.FILTER_REJECT:(rx.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT)}});
+    var nodes=[],n;while(n=walker.nextNode())nodes.push(n);
+    nodes.slice(0,200).forEach(function(node){rx.lastIndex=0;var frag=document.createDocumentFragment(),last=0,m,s=node.nodeValue;while((m=rx.exec(s))){frag.appendChild(document.createTextNode(s.slice(last,m.index)));var mk=document.createElement('mark');mk.textContent=m[0];frag.appendChild(mk);last=m.index+m[0].length;if(m[0].length===0)rx.lastIndex++;}frag.appendChild(document.createTextNode(s.slice(last)));node.parentNode.replaceChild(frag,node);});
+    var first=body.querySelector('mark');if(first)first.scrollIntoView({block:'center'});
+  });
+  document.getElementById('pg-open').addEventListener('click',function(){[].slice.call(document.querySelectorAll('details')).forEach(function(d){d.open=true;});});
+  document.getElementById('pg-close').addEventListener('click',function(){[].slice.call(document.querySelectorAll('details')).forEach(function(d){d.open=false;});});
+})();
+
+
+(function(){
+  var sec=document.getElementById('s-gates'); if(!sec) return;
+  var tbl=sec.querySelector('table'); if(!tbl) return;
+  var bar=document.createElement('div'); bar.className='pg-tools'; bar.setAttribute('role','group'); bar.setAttribute('aria-label','Show gates by maturity level');
+  var lab=document.createElement('span'); lab.textContent='Show gates active at level:'; lab.style.alignSelf='center'; bar.appendChild(lab);
+  var rows=[].slice.call(tbl.querySelectorAll('tbody tr'));
+  function set(l){rows.forEach(function(r){var c=r.cells[r.cells.length-1];var v=parseInt(c.textContent,10);r.style.display=(v<=l)?'':'none';});[].slice.call(bar.querySelectorAll('button')).forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l==l?'true':'false');b.style.background=b.dataset.l==l?'#333':'#fff';b.style.color=b.dataset.l==l?'#fff':'#333';});}
+  [1,2,3].forEach(function(l){var b=document.createElement('button');b.type='button';b.dataset.l=l;b.textContent='Level '+l;b.addEventListener('click',function(){set(l)});bar.appendChild(b);});
+  tbl.parentNode.parentNode.insertBefore(bar, tbl.parentNode);
+  set(3);
+  // role filter on the executive cards and persona cards
+  var cards=[].slice.call(document.querySelectorAll('#s-exec .card'));
+  if(cards.length){var rb=document.createElement('div');rb.className='pg-tools';rb.setAttribute('role','group');rb.setAttribute('aria-label','Show summary for');
+    var names=['All'].concat(cards.map(function(c){return c.querySelector('h3').textContent.replace('For ','')}));
+    names.forEach(function(n,idx){var b=document.createElement('button');b.type='button';b.textContent=n;b.addEventListener('click',function(){cards.forEach(function(c,j){c.style.display=(idx===0||j===idx-1)?'':'none'});});rb.appendChild(b);});
+    cards[0].parentNode.parentNode.insertBefore(rb,cards[0].parentNode);}
+})();
+
+</script>
+</body>
+</html>
+
+{% endraw %}

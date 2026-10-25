@@ -1,0 +1,803 @@
+---
+layout: null
+permalink: /observability-security-monitoring/
+title: "Observability and Security Monitoring for a Web Platform"
+description: "How a web platform sends logs, events and health checks to the security operations centre (SOC-SIEM) and the network operations centre (NOC), using IaC and CaC and a pipeline that guards the link."
+tags: [devops, architecture]
+sitemap: true
+---
+{% raw %}
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Observability and Security Monitoring for a Web Platform</title>
+<style>
+
+/* Page frame: title band, sticky contents rail, one reading column. Black, white and grey only. */
+.pg-skip{position:absolute;left:-999px}.pg-skip:focus{left:8px;top:8px;background:#fff;padding:6px 10px;z-index:99}
+body{margin:0;background:#fff;color:#333;font:14px/1.55 "Noto Sans","Segoe UI",Roboto,Arial,sans-serif}
+.pg-band{background:#333;color:#fff;padding:14px 20px}
+.pg-band a{color:#fff}
+.pg-band .pg-in{max-width:1200px;margin:0 auto}
+.pg-band h1{margin:4px 0 4px;font:700 22px/1.25 Lato,"Helvetica Neue",Arial,sans-serif;color:#fff;border:0}
+.pg-band p{margin:0;color:#ddd;font-size:13px;max-width:70ch}
+.pg-crumb{font-size:12px;color:#ccc}
+.pg-wrap{max-width:1200px;margin:0 auto;padding:16px 20px 60px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:28px}
+.pg-toc{position:sticky;top:12px;align-self:start;max-height:calc(100vh - 24px);overflow:auto;font-size:12.5px;border-right:1px solid #ddd;padding-right:12px}
+.pg-toc h2{font:700 12px Lato,Arial,sans-serif;text-transform:uppercase;letter-spacing:.05em;color:#595959;margin:0 0 6px}
+.pg-toc ol{list-style:none;margin:0;padding:0}
+.pg-toc li{margin:0}
+.pg-toc a{display:block;padding:3px 6px;color:#333;text-decoration:none;border-left:3px solid transparent}
+.pg-toc a:hover{background:#f2f2f2}
+.pg-toc a.on{border-left-color:#333;font-weight:700;background:#f2f2f2}
+.pg-find{width:100%;box-sizing:border-box;padding:5px 7px;margin:0 0 8px;border:1px solid #8c8c8c;font:inherit}
+.pg-tools{display:flex;gap:8px;margin:0 0 10px;flex-wrap:wrap}
+.pg-tools button{border:1px solid #595959;background:#fff;color:#333;padding:4px 10px;font:inherit;cursor:pointer}
+.pg-tools button:hover{background:#f2f2f2}
+.pg-body{min-width:0}
+.pg-body mark{background:#e6e6e6;color:#000;outline:1px solid #8c8c8c}
+.pg-copy{position:absolute;right:6px;top:6px;border:1px solid #8c8c8c;background:#fff;color:#333;font:11px Arial,sans-serif;padding:2px 7px;cursor:pointer;opacity:.85}
+.pg-pre{position:relative}
+.pg-foot{max-width:1200px;margin:0 auto;padding:10px 20px 30px;font-size:12px;color:#595959}
+.pg-body{font-size:14px;line-height:1.55}
+.pg-body p,.pg-body li,.pg-body dd,.pg-body dt,.pg-body blockquote{font-size:14px;line-height:1.55}
+.pg-body td,.pg-body th{font-size:12.5px;line-height:1.4;padding:5px 8px;vertical-align:top}
+.pg-body h2{font-size:21px;margin:30px 0 8px}.pg-body h3{font-size:16.5px}.pg-body h4{font-size:14.5px}
+.pg-body .tablewrap,.pg-body .table-wrap,.pg-body .fig-scroll{overflow-x:auto;max-width:100%}
+.pg-body table{border-collapse:collapse}
+.pg-body pre,.pg-body pre code{font-size:12px;line-height:1.45}
+.pg-body svg{max-width:100%;height:auto}
+.pg-body main,.pg-body section{max-width:none}
+@media (max-width:820px){.pg-wrap{display:block}.pg-toc{position:static;max-height:none;border:0;margin-bottom:12px}}
+@media print{.pg-toc,.pg-tools,.pg-copy{display:none}.pg-wrap{display:block}}
+
+/* ---- Content styles ---- */
+img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+
+
+:root {
+  --gcds-text-primary: #333333;
+  --gcds-text-secondary: #585858;
+  --gcds-text-light: #fefefe;
+  --gcds-link-default: #565656;
+  --gcds-link-hover: #515151;
+  --gcds-link-light: #fefefe;
+  --gcds-bg-white: #fefefe;
+  --gcds-bg-light: #f2f2f2;
+  --gcds-bg-primary: #484848;
+  --gcds-border-default: #8c8c8c;
+  --gcds-focus-border: #515151;
+  --gcds-color-blue-50: #f0f0f0;
+  --gcds-color-blue-700: #565656;
+  --gcds-color-yellow-50: #f7f7f7;
+  --gcds-color-yellow-500: #afafaf;
+  --gcds-spacing-50: 4px;
+  --gcds-spacing-100: 8px;
+  --gcds-spacing-150: 12px;
+  --gcds-spacing-200: 16px;
+  --gcds-spacing-300: 24px;
+  --gcds-spacing-400: 32px;
+  --gcds-spacing-600: 48px;
+  --gcds-spacing-800: 64px;
+  --font-heading: Lato, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Noto Sans", "Segoe UI", Arial, sans-serif;
+  --font-mono: "Noto Sans Mono", ui-monospace, Consolas, monospace;
+  
+}
+body.hc {
+  --gcds-text-primary: #1a1a1a;
+  --gcds-text-secondary: #333333;
+  --gcds-link-default: #404040;
+  --gcds-link-hover: #353535;
+  --gcds-border-default: #333333;
+  --gcds-focus-border: #404040;
+}
+* { box-sizing: border-box; }
+
+.inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--gcds-link-default); text-decoration: underline; text-underline-offset: 3px; }
+a:hover { color: var(--gcds-link-hover); }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--gcds-focus-border); outline-offset: 2px; }
+.skip { position: absolute; left: -9999px; top: 0; background: var(--gcds-bg-white); color: var(--gcds-link-default); padding: var(--gcds-spacing-150) var(--gcds-spacing-300); }
+.skip:focus { left: var(--gcds-spacing-200); top: var(--gcds-spacing-200); z-index: 20; }
+
+.band { background: var(--gcds-bg-primary); color: var(--gcds-text-light); }
+.band-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--gcds-spacing-200); padding-block: var(--gcds-spacing-200); }
+.sig { display: block; width: min(100%, 440px); height: auto; }
+.btn {
+  font: 600 0.956rem/1.4 var(--font-body);
+  min-height: 44px; min-width: 44px;
+  padding: var(--gcds-spacing-100) var(--gcds-spacing-300);
+  border: 2px solid var(--gcds-text-light); border-radius: 4px;
+  background: var(--gcds-bg-primary); color: var(--gcds-text-light); cursor: pointer;
+}
+.btn[aria-pressed="true"] { background: var(--gcds-text-light); color: var(--gcds-bg-primary); }
+.band .btn:focus-visible { outline-color: var(--gcds-text-light); }
+
+.crumbs { display: flex; flex-wrap: wrap; gap: var(--gcds-spacing-100); list-style: none; padding: 0; margin: var(--gcds-spacing-300) 0 0; font-size: 0.96rem; }
+.crumbs li + li::before { content: "\203A"; margin-right: var(--gcds-spacing-100); color: var(--gcds-text-secondary); }
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(1.7rem, 5.2vw, 2.176rem); line-height: 1.17; margin-top: var(--gcds-spacing-300); }
+h2 { font-size: clamp(1.488rem, 4.4vw, 2.074rem); line-height: 1.23; }
+h3 { font-size: 1.173rem; line-height: 1.45; margin-top: var(--gcds-spacing-600); }
+.lead { max-width: 65ch; margin: var(--gcds-spacing-200) 0 0; }
+.meta-line { color: var(--gcds-text-secondary); font-size: 0.96rem; margin: var(--gcds-spacing-200) 0 0; }
+
+main { padding-block: var(--gcds-spacing-300) var(--gcds-spacing-800); }
+section { margin-top: var(--gcds-spacing-800); }
+section > h2 { padding-bottom: var(--gcds-spacing-150); border-bottom: 2px solid var(--gcds-text-primary); }
+section > p, section > ul, section > ol { max-width: 65ch; }
+section p { margin: var(--gcds-spacing-200) 0 0; }
+section ul, section ol { margin: var(--gcds-spacing-200) 0 0; padding-left: 1.4em; }
+section li + li { margin-top: var(--gcds-spacing-150); }
+.toc { margin-top: var(--gcds-spacing-400); padding: var(--gcds-spacing-300); background: var(--gcds-bg-light); border: 1px solid var(--gcds-border-default); }
+.toc h2 { font-size: 1.275rem; line-height: 1.33; padding: 0; border: 0; }
+.toc ol { margin: var(--gcds-spacing-150) 0 0; padding-left: 1.4em; columns: 2 17rem; column-gap: var(--gcds-spacing-400); font-size: 0.96rem; }
+.toc li { margin: 0 0 var(--gcds-spacing-100); break-inside: avoid; }
+
+.notice { margin: var(--gcds-spacing-300) 0 0; padding: var(--gcds-spacing-200) var(--gcds-spacing-300); border-left: 6px solid var(--gcds-color-blue-700); background: var(--gcds-color-blue-50); max-width: 65ch; }
+.notice.warning { border-left-color: var(--gcds-color-yellow-500); background: var(--gcds-color-yellow-50); }
+.notice h3 { margin: 0 0 var(--gcds-spacing-50); }
+.notice p { margin: 0; font-size: 0.96rem; line-height: 1.55; }
+section > .notice { margin-top: var(--gcds-spacing-300); }
+
+.table-wrap { margin-top: var(--gcds-spacing-300); overflow-x: auto; border: 1px solid var(--gcds-border-default); }
+table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 0.96rem; line-height: 1.5; }
+caption { text-align: left; font-family: var(--font-heading); font-weight: 700; font-size: 1.173rem; padding: var(--gcds-spacing-200); }
+th, td { text-align: left; vertical-align: top; padding: var(--gcds-spacing-150) var(--gcds-spacing-200); border-top: 1px solid var(--gcds-border-default); }
+thead th { background: var(--gcds-bg-light); font-weight: 700; border-top: 2px solid var(--gcds-text-primary); }
+tbody th { font-weight: 600; }
+tbody tr:nth-child(even) { background: var(--gcds-bg-light); }
+
+code { font: 400 0.85rem/1.5 var(--font-mono); background: var(--gcds-bg-light); padding: 1px 5px; border: 1px solid var(--gcds-border-default); }
+pre { font: 400 0.85rem/1.5 var(--font-mono); background: var(--gcds-bg-light); border: 1px solid var(--gcds-border-default); padding: var(--gcds-spacing-200); overflow-x: auto; margin: var(--gcds-spacing-200) 0 0; max-width: 100%; }
+pre code { background: none; border: 0; padding: 0; font-size: inherit; }
+td code { white-space: nowrap; }
+table.wide { min-width: 980px; }
+.sources { max-width: 65ch; }
+
+figure { margin: var(--gcds-spacing-300) 0 0; }
+.fig-scroll { overflow-x: auto; border: 1px solid var(--gcds-border-default); padding: var(--gcds-spacing-200); }
+.fig-scroll svg { display: block; width: 100%; min-width: 760px; height: auto; }
+.node { fill: var(--gcds-bg-white); stroke: var(--gcds-text-primary); stroke-width: 1.5; }
+.node.focus { fill: var(--gcds-bg-primary); stroke: var(--gcds-bg-primary); }
+.ext { fill: var(--gcds-bg-light); stroke: var(--gcds-text-primary); stroke-width: 1.5; stroke-dasharray: 6 4; }
+.ctl { fill: var(--gcds-bg-light); stroke: var(--gcds-border-default); stroke-width: 1.5; }
+.region { fill: none; stroke: var(--gcds-text-secondary); stroke-width: 1.5; stroke-dasharray: 8 5; }
+.edge { stroke: var(--gcds-text-secondary); stroke-width: 1.5; fill: none; }
+.edge.dash { stroke-dasharray: 6 4; }
+.ah { fill: var(--gcds-text-secondary); }
+svg text { fill: var(--gcds-text-primary); font-family: var(--font-body); }
+svg .name { font-family: var(--font-heading); font-weight: 700; font-size: 15px; }
+svg .name.s { font-size: 13.5px; }
+svg .sub { font-size: 12px; fill: var(--gcds-text-secondary); }
+svg .sub.s { font-size: 11px; }
+svg .line { font-size: 11px; }
+svg .rl { font-size: 12.5px; font-weight: 700; fill: var(--gcds-text-secondary); }
+svg .lbl { font-size: 11.5px; fill: var(--gcds-text-secondary); paint-order: stroke; stroke: var(--gcds-bg-white); stroke-width: 4px; stroke-linejoin: round; }
+svg .on-navy { fill: var(--gcds-text-light); }
+figcaption { margin-top: var(--gcds-spacing-200); font-size: 0.96rem; line-height: 1.5; }
+.fig-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.173rem; margin: 0 0 var(--gcds-spacing-100); }
+.legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--gcds-spacing-150) var(--gcds-spacing-300); list-style: none; padding: 0; margin: var(--gcds-spacing-200) 0 0; }
+.legend li { display: flex; gap: var(--gcds-spacing-150); align-items: flex-start; margin: 0; }
+.legend svg { flex: none; width: 44px; height: 24px; }
+.meta { display: grid; grid-template-columns: max-content 1fr; gap: var(--gcds-spacing-50) var(--gcds-spacing-300); margin: var(--gcds-spacing-200) 0 0; }
+.meta dt { font-weight: 600; }
+.meta dd { margin: 0; min-width: 0; }
+
+footer { background: var(--gcds-bg-primary); color: var(--gcds-text-light); padding-block: var(--gcds-spacing-400); font-size: 0.96rem; line-height: 1.55; }
+footer .sig { margin-bottom: var(--gcds-spacing-200); }
+footer p { margin: 0; max-width: 65ch; }
+footer p + p { margin-top: var(--gcds-spacing-150); }
+
+@media (max-width: 560px) {
+  
+  .meta { grid-template-columns: 1fr; }
+  .meta dd { margin-bottom: var(--gcds-spacing-100); }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+@media (forced-colors: active) { .notice, .table-wrap, .fig-scroll, .btn, .toc, pre { border: 2px solid CanvasText; } }
+
+</style>
+</head>
+<body>
+<a class="pg-skip" href="#pg-main">Skip to content</a>
+<header class="pg-band"><div class="pg-in">
+<div class="pg-crumb"><a href="{% endraw %}{{ '' | relative_url }}{% raw %}/digital/">Digital</a> / DevOps</div>
+<h1>Observability and Security Monitoring for a Web Platform</h1>
+<p>Working paper. Send once, route many. Agree a log contract. Treat silence as a failure.</p>
+</div></header>
+<div class="pg-wrap">
+<nav class="pg-toc" aria-label="Contents">
+<h2>Contents</h2>
+<input id="pg-find" class="pg-find" type="search" placeholder="Find in page (3+ letters)" aria-label="Find in page">
+<ol id="pg-toc-list"></ol>
+</nav>
+<main id="pg-main" class="pg-body">
+
+
+
+  <section aria-labelledby="s-short">
+    <h2 id="s-short">Short answer</h2>
+    <div class="notice" role="status">
+      <h3>Yes, IaC and CaC are part of this</h3>
+      <p>The pipeline does not carry the logs. It builds, tests and deploys the settings that do. IaC creates the hosts and containers and the path out of them. CaC sets the log format, the forwarder and the alert rules. Both live in Git, so a log cannot be switched off by accident and the link can be rebuilt on demand.</p>
+    </div>
+    <p>Three ideas carry the design.</p>
+    <ol>
+      <li><strong>Send once, route many.</strong> The platform writes standard logs. One local forwarder sends them to the enterprise collector. The SIEM and the NOC take what they need from there.</li>
+      <li><strong>Agree a contract.</strong> A small file in Git lists the required fields, ports, severity names and owners. The team and the enterprise both test against it.</li>
+      <li><strong>Treat silence as a failure.</strong> A heartbeat event every minute means a quiet link raises an alert. Without it, a broken link looks like a calm system.</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="s-terms">
+    <h2 id="s-terms">Terms in plain language</h2>
+    <div class="table-wrap" role="region" aria-label="Terms table, scrolls sideways on small screens" tabindex="0">
+      <table>
+        <caption>Terms used in this paper</caption>
+        <thead><tr><th scope="col">Term</th><th scope="col">What it means here</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Log</th><td>A line of text a system writes when something happens, such as a sign-in or an error.</td></tr>
+          <tr><th scope="row">Event</th><td>A log line that matters to someone else, such as a failed sign-in, a role change or a deployment.</td></tr>
+          <tr><th scope="row">Trace</th><td>The path of one request across CMS, Search and Analytics, with timing. It helps the team find slow steps. The SOC and NOC rarely need it. Start with logs and events. Add traces later by putting a request ID in every log line.</td></tr>
+          <tr><th scope="row">SOC and SIEM</th><td>The Security Operations Centre and its tool. The SIEM collects security logs, looks for attacks and supports investigations.</td></tr>
+          <tr><th scope="row">NOC</th><td>The Network Operations Centre. It watches that services are up, healthy and fast, and it runs incidents.</td></tr>
+          <tr><th scope="row">Forwarder</th><td>A small program on each host. It collects logs, adds tags, holds them on disk if the network fails and sends them to the enterprise collector.</td></tr>
+                    <tr><th scope="row">Collector</th><td>The enterprise server that receives logs from every forwarder.</td></tr>
+          <tr><th scope="row">Agent and shipper</th><td>Small programs on a host that send data elsewhere. A shipper only sends logs. An agent may also collect metrics and security data.</td></tr>
+          <tr><th scope="row">Buffer</th><td>A holding area on disk for events that cannot be sent yet.</td></tr>
+          <tr><th scope="row">Heartbeat</th><td>A small event sent on a fixed beat. If it stops, something is wrong.</td></tr>
+          <tr><th scope="row">Drift</th><td>When what runs on a host no longer matches what Git says.</td></tr>
+          <tr><th scope="row">Telemetry contract</th><td>The agreed list of fields, event names, port and owners, kept in Git.</td></tr>
+          <tr><th scope="row">Syslog</th><td>A long-standing standard for sending log messages. Almost every log tool understands it.</td></tr>
+          <tr><th scope="row">TLS</th><td>Encryption for data in transit. With certificates on both sides, each side also proves who it is.</td></tr>
+          <tr><th scope="row">ELK and Elastic Stack</th><td>ELK is Elasticsearch (store and search), Logstash (parse and route) and Kibana (screens). The Elastic Stack adds Beats.</td></tr>
+          <tr><th scope="row">Beats</th><td>Light Elastic programs on hosts, each shipping one kind of data. Filebeat ships log files.</td></tr>
+          <tr><th scope="row">Logstash</th><td>A server that receives data, parses and enriches it and passes it on.</td></tr>
+          <tr><th scope="row">OpenTelemetry (OTel)</th><td>An open standard and toolset for logs, metrics and traces. Its Collector receives data and forwards it.</td></tr>
+          <tr><th scope="row">IaC</th><td>Infrastructure as code. Hosts, containers, networks and storage are described in files, not built by hand.</td></tr>
+          <tr><th scope="row">CaC</th><td>Configuration as code. The settings inside those systems are described in files too: log format, forwarder, alert rules.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-what">
+    <h2 id="s-what">What goes where</h2>
+    <p>The same signals serve four jobs. Each job has a different owner and a different destination.</p>
+    <div class="table-wrap" role="region" aria-label="Signals table, scrolls sideways on small screens" tabindex="0">
+      <table>
+        <caption>Signals from CMS, Search and Analytics, and where they go</caption>
+        <thead><tr><th scope="col">Signal</th><th scope="col">Examples</th><th scope="col">SOC-SIEM</th><th scope="col">NOC</th><th scope="col">Team</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Security events</th><td>CMS sign-in, failed sign-in, role change, administrator actions. Web server access and error logs. Operating system sign-ins.</td><td>Yes</td><td>No</td><td>Yes</td></tr>
+          <tr><th scope="row">Application errors</th><td>PHP errors in CMS, Search errors and slow queries, Analytics errors</td><td>Only repeated or suspicious errors</td><td>Major and critical ones</td><td>Yes</td></tr>
+          <tr><th scope="row">Health and availability</th><td>Up and down checks, Search core status, queue backlog, heartbeat</td><td>Heartbeat only</td><td>Yes</td><td>Yes</td></tr>
+          <tr><th scope="row">Performance</th><td>Page response time, Search query time, disk and memory use</td><td>No</td><td>When a limit is crossed</td><td>Yes</td></tr>
+          <tr><th scope="row">Change events</th><td>Deploy marker with release number and the work tracker ticket</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+          <tr><th scope="row">Traces</th><td>Slow-request traces</td><td>No</td><td>Only if enterprise tools accept them</td><td>Yes, optional</td></tr>
+          <tr><th scope="row">Usage analytics</th><td>Visits, searches and 404 pages in Analytics reports</td><td>No, unless Security asks</td><td>No</td><td>Product team</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notice warning" role="status">
+      <h3>Keep personal information out of logs</h3>
+      <p>The SOC needs a user ID and source address for investigations. It does not need passwords, tokens, form content or search terms. Privacy should confirm which fields are allowed. The pipeline checks sample logs for these items before release.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-flow">
+    <h2 id="s-flow">How the signals travel</h2>
+    <p>Each source writes to the host. The local forwarder tags the events, keeps a copy on disk and sends them over an encrypted link to the enterprise collector. The collector feeds the SIEM and the NOC. The NOC also probes the platform's health endpoints. The pipeline puts the settings in place and registers the checks and alert rules.</p>
+
+    <figure>
+      <div class="fig-scroll" role="region" aria-label="Signal flow diagram, scrolls sideways on small screens" tabindex="0">
+        <svg viewBox="0 0 980 500" role="img" aria-labelledby="f1-t f1-d" xmlns="http://www.w3.org/2000/svg"><title id="f1-t">How logs, events and health checks reach the SOC-SIEM and NOC</title><desc id="f1-d">CMS, Search, Analytics, the web server and the host feed one local forwarder. The forwarder sends logs over TLS to the enterprise collector, which feeds the SOC-SIEM and the NOC. The NOC probes health endpoints. Git and the pipeline deploy the settings and register checks.</desc><defs><marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><rect class="region" x="20" y="110" width="520" height="380"/><text class="rl" x="32" y="130">Web platform: the team owns this</text><rect class="region" x="640" y="110" width="320" height="380"/><text class="rl" x="652" y="130">Enterprise: other teams own this</text><rect class="node" x="32" y="14" width="170" height="56" rx="2"/><text class="name" x="117.0" y="39.0" text-anchor="middle">Git</text><text class="sub" x="117.0" y="58.0" text-anchor="middle">IaC and CaC files</text><rect class="node focus" x="262" y="14" width="170" height="56" rx="2"/><text class="name on-navy" x="347.0" y="39.0" text-anchor="middle">Pipeline</text><text class="sub on-navy" x="347.0" y="58.0" text-anchor="middle">Tests, signs, deploys</text><path class="edge" d="M202 42 H254" marker-end="url(#ah1)"/><path class="edge dash" d="M347 70 V108" marker-end="url(#ah1)"/><text class="lbl" x="357" y="94">Deploys settings</text><path class="edge dash" d="M432 42 H800 V108" marker-end="url(#ah1)"/><text class="lbl" x="616" y="34" text-anchor="middle">Registers checks and alert rules</text><rect class="node" x="32" y="146" width="92" height="64" rx="2"/><text class="name s" x="78.0" y="175.0" text-anchor="middle">CMS</text><text class="sub s" x="78.0" y="194.0" text-anchor="middle">app, sign-in</text><path class="edge" d="M78 210 V250"/><rect class="node" x="134" y="146" width="92" height="64" rx="2"/><text class="name s" x="180.0" y="175.0" text-anchor="middle">Search</text><text class="sub s" x="180.0" y="194.0" text-anchor="middle">errors, slow</text><path class="edge" d="M180 210 V250"/><rect class="node" x="236" y="146" width="92" height="64" rx="2"/><text class="name s" x="282.0" y="175.0" text-anchor="middle">Analytics</text><text class="sub s" x="282.0" y="194.0" text-anchor="middle">app errors</text><path class="edge" d="M282 210 V250"/><rect class="node" x="338" y="146" width="92" height="64" rx="2"/><text class="name s" x="384.0" y="175.0" text-anchor="middle">Web server</text><text class="sub s" x="384.0" y="194.0" text-anchor="middle">access, TLS</text><path class="edge" d="M384 210 V250"/><rect class="node" x="440" y="146" width="92" height="64" rx="2"/><text class="name s" x="486.0" y="175.0" text-anchor="middle">Host</text><text class="sub s" x="486.0" y="194.0" text-anchor="middle">OS, audit</text><path class="edge" d="M486 210 V250"/><path class="edge" d="M78 250 H486"/><path class="edge" d="M282 250 V288" marker-end="url(#ah1)"/><rect class="node focus" x="32" y="290" width="500" height="72" rx="2"/><text class="name on-navy" x="282.0" y="323.0" text-anchor="middle">Local forwarder</text><text class="sub on-navy" x="282.0" y="342.0" text-anchor="middle">Tags and formats events, buffers on disk, retries</text><rect class="node" x="32" y="410" width="500" height="56" rx="2"/><text class="name" x="282.0" y="435.0" text-anchor="middle">Health endpoints and heartbeat</text><text class="sub" x="282.0" y="454.0" text-anchor="middle">Status pages for CMS, Search and Analytics. Heartbeat event every minute.</text><rect class="ext" x="660" y="146" width="280" height="64" rx="2"/><text class="name" x="800.0" y="175.0" text-anchor="middle">SOC-SIEM</text><text class="sub" x="800.0" y="194.0" text-anchor="middle">Detection and investigation</text><rect class="ext" x="660" y="290" width="280" height="72" rx="2"/><text class="name" x="800.0" y="323.0" text-anchor="middle">Enterprise log collector</text><text class="sub" x="800.0" y="342.0" text-anchor="middle">Receives over TLS, queues, parses</text><rect class="ext" x="660" y="410" width="280" height="56" rx="2"/><text class="name" x="800.0" y="435.0" text-anchor="middle">NOC monitoring</text><text class="sub" x="800.0" y="454.0" text-anchor="middle">Probes, alerts, tickets</text><path class="edge" d="M532 326 H658" marker-end="url(#ah1)"/><text class="lbl" x="596" y="316" text-anchor="middle">Logs over TLS</text><path class="edge" d="M800 290 V212" marker-end="url(#ah1)"/><text class="lbl" x="810" y="256">Security events</text><path class="edge" d="M800 362 V408" marker-end="url(#ah1)"/><text class="lbl" x="810" y="392">Alerts from logs</text><path class="edge dash" d="M660 438 H534" marker-end="url(#ah1)"/><text class="lbl" x="596" y="428" text-anchor="middle">Health checks</text></svg>
+      </div>
+      <figcaption>
+        <p class="fig-title">How logs, events and health checks reach the SOC-SIEM and NOC</p>
+        <ul class="legend" aria-label="Legend">
+          <li><svg viewBox="0 0 44 24" aria-hidden="true"><line x1="2" y1="12" x2="30" y2="12" stroke-width="1.5" style="stroke: var(--gcds-text-secondary)"/><polygon points="28,6 42,12 28,18" style="fill: var(--gcds-text-secondary)"/></svg><span>Solid arrow: logs and events moving on</span></li>
+          <li><svg viewBox="0 0 44 24" aria-hidden="true"><line x1="2" y1="12" x2="30" y2="12" stroke-width="1.5" stroke-dasharray="6 4" style="stroke: var(--gcds-text-secondary)"/><polygon points="28,6 42,12 28,18" style="fill: var(--gcds-text-secondary)"/></svg><span>Dashed arrow: settings, checks and registrations</span></li>
+          <li><svg viewBox="0 0 44 24" aria-hidden="true"><rect x="2" y="3" width="40" height="18" rx="2" style="fill: var(--gcds-bg-primary)"/></svg><span>Navy box: the parts that deploy and carry the link</span></li>
+          <li><svg viewBox="0 0 44 24" aria-hidden="true"><rect x="2" y="3" width="40" height="18" rx="2" stroke-width="1.5" stroke-dasharray="6 4" style="fill: var(--gcds-bg-light); stroke: var(--gcds-text-primary)"/></svg><span>Grey dashed box: owned by other teams</span></li>
+        </ul>
+        <dl class="meta">
+          <dt>Notation</dt><dd>Simple flow diagram, not C4 or ArchiMate</dd>
+          <dt>Scope</dt><dd>Telemetry from the CMS, Search and Analytics platform to enterprise monitoring</dd>
+          <dt>Version and date</dt><dd>0.1, October 23, 2026</dd>
+          
+          <dt>Status</dt><dd>Draft</dd>
+        </dl>
+        <p><strong>Text description.</strong> On the left is the web platform, owned by the team. Five sources sit in a row: CMS, Search, Analytics, the web server and the host. They join into one local forwarder, which tags events, buffers them on disk and retries. A solid arrow carries logs over TLS from the forwarder to the enterprise log collector on the right. The collector sends security events up to the SOC-SIEM and alerts built from logs down to the NOC. Below the forwarder, health endpoints and a heartbeat sit on the platform. A dashed arrow shows the NOC probing those endpoints. At the top, Git feeds the pipeline. A dashed arrow shows the pipeline deploying settings to the platform. Another dashed arrow shows it registering checks and alert rules with the enterprise side.</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="s-code">
+    <h2 id="s-code">Where IaC and CaC fit</h2>
+    <p>IaC builds the place. CaC sets how it behaves. For observability, both matter, because a missing firewall rule and a wrong log format break the link in the same way: silently.</p>
+    <div class="table-wrap" role="region" aria-label="IaC and CaC table, scrolls sideways on small screens" tabindex="0">
+      <table>
+        <caption>What IaC, CaC and the pipeline each own for observability</caption>
+        <thead><tr><th scope="col">Layer</th><th scope="col">What it defines for the SOC and NOC link</th><th scope="col">Kept as</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">IaC</th><td>Podman Quadlet units now and Kubernetes YAML later, with the log driver set. Host settings: persistent journal, time sync, buffer folder, heartbeat timer. Network rule to the collector.</td><td>Quadlet files, Kubernetes YAML, Ansible tasks</td></tr>
+          <tr><th scope="row">CaC</th><td>Forwarder settings and certificate paths. CMS syslog settings. Analytics log settings. NOC alert rules. The list of health endpoints to register.</td><td>Exported CMS config, config files, Ansible templates, alert rule files</td></tr>
+          <tr><th scope="row">Telemetry contract</th><td>Required fields, event names, severity names, port, heartbeat timing and owners. Both sides test against it.</td><td>One YAML file in Git, versioned</td></tr>
+          <tr><th scope="row">Pipeline</th><td>Tests the code and the contract, deploys the settings, sends the deploy marker and checks that the heartbeat returns.</td><td>Stages from the shared DevOps template</td></tr>
+          <tr><th scope="row">Enterprise side</th><td>Collector, SIEM parsing and detection rules, NOC probes and ticketing. These have their own IaC and CaC. The team agrees the contract and does not edit them.</td><td>Owned by Security and Operations</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Why code beats hand-built</h3>
+    <ul>
+      <li><strong>Repeatable.</strong> Test, staging and production send logs the same way, so the test proves something about production.</li>
+      <li><strong>Reviewable.</strong> A change to what is logged goes through review, and Security can be one of the reviewers.</li>
+      <li><strong>Traceable.</strong> Git shows who changed a log setting and when. That answers audit questions.</li>
+      <li><strong>Recoverable.</strong> A lost host is rebuilt from Git with the link already in place.</li>
+      <li><strong>Checkable.</strong> A daily job compares what runs with what Git says. A difference is drift, and it raises a ticket.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="s-resilient">
+    <h2 id="s-resilient">What keeps the link resilient</h2>
+    <p>Resilience comes from two places. The pipeline stops a bad change from reaching production. Runtime controls keep logs flowing when the network or the collector has a bad hour.</p>
+
+    <h3 style="margin-top: var(--gcds-spacing-400);">Pipeline controls</h3>
+    <figure>
+      <div class="fig-scroll" role="region" aria-label="Pipeline controls diagram, scrolls sideways on small screens" tabindex="0">
+        <svg viewBox="0 0 980 290" role="img" aria-labelledby="f2-t f2-d" xmlns="http://www.w3.org/2000/svg"><title id="f2-t">Pipeline controls that protect the SOC-SIEM and NOC link</title><desc id="f2-d">Six stages: Code, Build, Validate, Release, Deploy and Observe. Each has a box of controls. Observe returns to Code when drift or silence opens a ticket.</desc><defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><rect class="node" x="16" y="20" width="140" height="52" rx="2"/><text class="name" x="86.0" y="43.0" text-anchor="middle">Code</text><text class="sub" x="86.0" y="62.0" text-anchor="middle">Branch and review</text><path class="edge" d="M86 72 V100"/><rect class="ctl" x="16" y="100" width="140" height="84" rx="2"/><text class="line" x="24" y="126">Settings kept in Git</text><text class="line" x="24" y="150">Fields agreed with SOC</text><text class="line" x="24" y="174">Security reviews it</text><path class="edge" d="M156 46 H174" marker-end="url(#ah2)"/><rect class="node" x="176" y="20" width="140" height="52" rx="2"/><text class="name" x="246.0" y="43.0" text-anchor="middle">Build</text><text class="sub" x="246.0" y="62.0" text-anchor="middle">Package once</text><path class="edge" d="M246 72 V100"/><rect class="ctl" x="176" y="100" width="140" height="84" rx="2"/><text class="line" x="184" y="126">Built once, signed</text><text class="line" x="184" y="150">Same in every stage</text><text class="line" x="184" y="174">Version recorded</text><path class="edge" d="M316 46 H334" marker-end="url(#ah2)"/><rect class="node focus" x="336" y="20" width="140" height="52" rx="2"/><text class="name on-navy" x="406.0" y="43.0" text-anchor="middle">Validate</text><text class="sub on-navy" x="406.0" y="62.0" text-anchor="middle">Gates can block</text><path class="edge" d="M406 72 V100"/><rect class="ctl" x="336" y="100" width="140" height="84" rx="2"/><text class="line" x="344" y="126">Lint forwarder file</text><text class="line" x="344" y="150">Check log format</text><text class="line" x="344" y="174">Test event must arrive</text><path class="edge" d="M476 46 H494" marker-end="url(#ah2)"/><rect class="node" x="496" y="20" width="140" height="52" rx="2"/><text class="name" x="566.0" y="43.0" text-anchor="middle">Release</text><text class="sub" x="566.0" y="62.0" text-anchor="middle">Approve</text><path class="edge" d="M566 72 V100"/><rect class="ctl" x="496" y="100" width="140" height="84" rx="2"/><text class="line" x="504" y="126">SOC and NOC notified</text><text class="line" x="504" y="150">Release number set</text><text class="line" x="504" y="174">Exceptions expire</text><path class="edge" d="M636 46 H654" marker-end="url(#ah2)"/><rect class="node" x="656" y="20" width="140" height="52" rx="2"/><text class="name" x="726.0" y="43.0" text-anchor="middle">Deploy</text><text class="sub" x="726.0" y="62.0" text-anchor="middle">Promote package</text><path class="edge" d="M726 72 V100"/><rect class="ctl" x="656" y="100" width="140" height="84" rx="2"/><text class="line" x="664" y="126">Settings go with app</text><text class="line" x="664" y="150">Forwarder restarted</text><text class="line" x="664" y="174">Deploy marker sent</text><path class="edge" d="M796 46 H814" marker-end="url(#ah2)"/><rect class="node" x="816" y="20" width="140" height="52" rx="2"/><text class="name" x="886.0" y="43.0" text-anchor="middle">Observe</text><text class="sub" x="886.0" y="62.0" text-anchor="middle">Watch and alert</text><path class="edge" d="M886 72 V100"/><rect class="ctl" x="816" y="100" width="140" height="84" rx="2"/><text class="line" x="824" y="126">Heartbeat watched</text><text class="line" x="824" y="150">Daily drift check</text><text class="line" x="824" y="174">Silence raises alert</text><path class="edge dash" d="M886 184 V226 H86 V186" marker-end="url(#ah2)"/><text class="lbl" x="486" y="250" text-anchor="middle">Drift or silence opens a ticket. The fix goes through this same pipeline.</text></svg>
+      </div>
+      <figcaption>
+        <p class="fig-title">Pipeline controls that protect the SOC-SIEM and NOC link</p>
+        <dl class="meta">
+          <dt>Notation</dt><dd>Simple flow diagram, not C4 or ArchiMate</dd>
+          <dt>Scope</dt><dd>Six stages of one change and the control each stage adds</dd>
+          <dt>Version and date</dt><dd>0.1, October 23, 2026</dd>
+          <dt>Status</dt><dd>Draft</dd>
+        </dl>
+        <p><strong>Text description.</strong> Six stages run left to right: Code, Build, Validate, Release, Deploy and Observe. Validate is navy because its gates can block a build. Under each stage is a box of controls. Code keeps settings in Git, agrees fields with the SOC and has Security review the change. Build builds once, signs and records the version. Validate lints the forwarder file, checks the log format and requires a test event to arrive. Release notifies the SOC and NOC and makes exceptions expire. Deploy sends settings with the app, restarts the forwarder and sends a deploy marker. Observe watches the heartbeat, checks drift daily and alerts on silence. A return arrow from Observe to Code shows that drift or silence opens a ticket, and the fix goes through the same pipeline.</p>
+      </figcaption>
+    </figure>
+
+    <div class="table-wrap" role="region" aria-label="Pipeline controls table, scrolls sideways on small screens" tabindex="0">
+      <table>
+        <caption>Pipeline controls and the failure each one prevents</caption>
+        <thead><tr><th scope="col">Stage</th><th scope="col">Control</th><th scope="col">Failure it prevents</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Code</th><td>Log settings, forwarder files and the contract are in Git. Changes to logging need a security reviewer.</td><td>Someone turns off a log or renames a field by accident</td></tr>
+          <tr><th scope="row">Build</th><td>Settings are built once, signed and listed in the release manifest.</td><td>Test and production run different settings</td></tr>
+          <tr><th scope="row">Validate</th><td>Lint IaC and CaC. Check sample events against the contract. Scan samples for passwords and tokens. Send a test event and wait for it to arrive at the test collector.</td><td>A format change that breaks SIEM parsing. A broken forwarder file. Secrets in logs.</td></tr>
+          <tr><th scope="row">Release</th><td>The SOC and NOC are told about changes to logging, ports or alert rules. Exceptions to a gate carry an expiry date.</td><td>Surprise changes and permanent exceptions</td></tr>
+          <tr><th scope="row">Deploy</th><td>Settings go with the app. The forwarder restarts. The heartbeat must return within five minutes or the deploy rolls back. A deploy marker is sent.</td><td>A deploy that cuts the link while nobody is looking</td></tr>
+          <tr><th scope="row">Observe</th><td>Heartbeat alert. Daily drift check against Git. Certificate expiry alert 30 days ahead.</td><td>Slow decay: drift, expired certificates, a full buffer</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Runtime controls</h3>
+    <div class="table-wrap" role="region" aria-label="Runtime controls table, scrolls sideways on small screens" tabindex="0">
+      <table>
+        <caption>Runtime controls and what they do when the link is down</caption>
+        <thead><tr><th scope="col">Control</th><th scope="col">How it works</th><th scope="col">When the collector or network is down</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Disk buffer</th><td>The forwarder queues events on disk before sending.</td><td>Events wait on disk and are sent when the link returns. Size the buffer for at least a day of peak volume. Confirm the size with the SOC.</td></tr>
+          <tr><th scope="row">Retry without blocking</th><td>Apps write to the local system log. The forwarder retries with a pause between tries.</td><td>The website keeps running. A logging outage never takes the site down.</td></tr>
+          <tr><th scope="row">Encrypted and authenticated link</th><td>TLS with certificates from the internal authority. Each side checks the other.</td><td>Nobody can read or inject logs in transit. Renewal is automated, with an alert 30 days before expiry.</td></tr>
+          <tr><th scope="row">Heartbeat</th><td>A small event every minute carries the release number.</td><td>After five minutes of silence the NOC is alerted. The SIEM also has a rule for a host that goes quiet.</td></tr>
+          <tr><th scope="row">Second collector</th><td>The forwarder lists two enterprise collectors, if the enterprise offers them.</td><td>Events switch to the second one without anyone acting.</td></tr>
+          <tr><th scope="row">One clock</th><td>All hosts use the same time source and write UTC time.</td><td>Events from different hosts line up in an investigation.</td></tr>
+          <tr><th scope="row">Protected settings</th><td>Only the pipeline changes forwarder settings. A change sends a notice to the SOC.</td><td>Logging cannot be quietly turned off by one person on one host.</td></tr>
+          <tr><th scope="row">Rollback</th><td>The previous settings stay on the host.</td><td>A bad logging change goes back with the release.</td></tr>
+          <tr><th scope="row">Separate failure paths</th><td>The NOC probes from outside the platform.</td><td>If the platform dies and cannot report, the probe still sees it.</td></tr>
+          <tr><th scope="row">Isolated-network fit</th><td>The forwarder reaches only the internal collector. No cloud service is used.</td><td>Matches the data residency and network rules of the platform.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-tools">
+    <h2 id="s-tools">Common tools</h2>
+    <p>A tool does one or more jobs. Pick by job, not by brand. The enterprise already runs the SIEM and the NOC, so the web team usually chooses only the first job below: the forwarder on its own hosts. The rest helps you talk with Security and Operations and shows what you may meet on their side.</p>
+
+    <div class="notice" role="status">
+      <h3>Short answer on ELK, Beats and Splunk</h3>
+      <p>ELK is Elasticsearch (store and search), Logstash (parse and route) and Kibana (screens). Add Beats, the light shippers on each host, and it is called the Elastic Stack. Splunk does the same jobs in one commercial product, with a strong search language and a ready-made SIEM add-on. Either can receive what the rsyslog example sends. Choose the one the enterprise already runs.</p>
+    </div>
+    <div class="notice warning" role="status">
+      <h3>How these notes were checked</h3>
+      <p>Ownership, licence and price notes for Elastic, Splunk, QRadar, Graylog and Wazuh were checked on public pages on October 23, 2026. Other rows come from general knowledge. Licences and prices change, so confirm before any buying decision. Cloud-only services are listed for awareness and do not fit the platform's isolated-network and data residency rules.</p>
+    </div>
+
+    <h3>Tools by job</h3>
+    <div class="table-wrap" role="region" aria-label="Tools by job table, scrolls sideways on small screens" tabindex="0">
+      <table class="wide">
+        <caption>Common tools for each job in the signal path</caption>
+        <thead><tr><th scope="col">Job</th><th scope="col">What it does</th><th scope="col">Open source</th><th scope="col">Commercial</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Collect on the host</th><td>Reads logs on each host, tags them, buffers them and sends them on. This is the web team's choice.</td><td>rsyslog, syslog-ng, Fluent Bit, Vector, OpenTelemetry Collector, Filebeat (Elastic Beats)</td><td>Splunk Universal Forwarder, Elastic Agent, agents from the SIEM supplier</td></tr>
+          <tr><th scope="row">Route and transform</th><td>Receives from many sources, parses, filters, adds detail and sends to one or more places.</td><td>Logstash, Vector, Fluent Bit, OpenTelemetry Collector, syslog-ng</td><td>Splunk heavy forwarder, Cribl Stream</td></tr>
+          <tr><th scope="row">Store and search</th><td>Keeps the logs and answers searches.</td><td>Elasticsearch, OpenSearch, Graylog Open, Grafana Loki</td><td>Elastic subscriptions, Splunk Enterprise, Graylog Enterprise</td></tr>
+          <tr><th scope="row">SIEM</th><td>Applies detection rules, links related events and supports investigations.</td><td>Wazuh, Elastic Security (some features need a paid subscription), OpenSearch Security Analytics</td><td>Splunk Enterprise Security, IBM QRadar on-premises, Graylog Security. Cloud only: Microsoft Sentinel, Palo Alto Cortex XSIAM.</td></tr>
+          <tr><th scope="row">NOC monitoring and alerts</th><td>Runs health checks, watches metrics, raises alerts and opens tickets.</td><td>Prometheus with Alertmanager, Grafana, Zabbix, Icinga</td><td>SolarWinds, Dynatrace. Cloud only: Datadog.</td></tr>
+          <tr><th scope="row">Traces</th><td>Follows one request across CMS, Search and Analytics.</td><td>OpenTelemetry, Jaeger, Grafana Tempo</td><td>Dynatrace. Cloud only: Datadog, Splunk Observability Cloud.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>What each popular name does best</h3>
+    <div class="table-wrap" role="region" aria-label="Popular tools table, scrolls sideways on small screens" tabindex="0">
+      <table class="wide">
+        <caption>Strengths and watch-points of widely used tools</caption>
+        <thead><tr><th scope="col">Tool</th><th scope="col">What it is</th><th scope="col">Where it excels</th><th scope="col">Inputs and outputs</th><th scope="col">Watch for</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Beats (Filebeat, Auditbeat, Metricbeat, Heartbeat)</th><td>Small single-purpose shippers from Elastic. Filebeat reads log files, Auditbeat reads audit and file changes, Metricbeat sends metrics, Heartbeat runs uptime checks.</td><td>Light installs on hosts. Heartbeat suits the NOC's up and down checks.</td><td>Sends to Elasticsearch directly or through Logstash.</td><td>Built for the Elastic Stack. Less natural if the enterprise SIEM is not Elastic.</td></tr>
+          <tr><th scope="row">Elastic Agent and Fleet</th><td>One agent per host, managed centrally from Fleet. It takes the place of several Beats.</td><td>Central control of what each host collects. Fewer agents to install.</td><td>Sends to Elasticsearch, or through Logstash.</td><td>Settings live in Fleet. Decide how they are kept as code in Git.</td></tr>
+          <tr><th scope="row">Logstash</th><td>A pipeline server. Inputs come in, filters parse and enrich, outputs go out.</td><td>Parsing and reshaping messy logs. Large plugin library.</td><td>Receives syslog, Beats, TCP and queues such as Kafka. Sends to many stores.</td><td>Heavier, so run it on the collector side, not on every host.</td></tr>
+          <tr><th scope="row">Elasticsearch and Kibana (ELK)</th><td>Elasticsearch stores and searches. Kibana shows dashboards. Elastic Security adds detection rules.</td><td>Fast full-text search over large log volumes. One stack for logs, metrics and security.</td><td>Receives from Beats, Elastic Agent, Logstash and an HTTP interface.</td><td>Licences: AGPL was added in August 2024 beside the SSPL and Elastic licences. Some features need a paid subscription.</td></tr>
+          <tr><th scope="row">OpenSearch</th><td>A fork of Elasticsearch led by the Linux Foundation, with its own dashboards and security analytics.</td><td>Similar search and dashboards under an open licence.</td><td>Works with Logstash, Fluent Bit and Vector.</td><td>The two projects drift apart over time. Check which one your tools target.</td></tr>
+          <tr><th scope="row">Splunk (Cisco)</th><td>Commercial platform. Universal Forwarder on hosts, Enterprise to store and search, Enterprise Security as the SIEM.</td><td>Mature search language, reports, a large app catalogue and ready security content.</td><td>Forwarders send to Splunk. An HTTP event collector accepts direct sends. Syslog is usually taken in by a collector first.</td><td>Cost depends on data volume or compute. Confirm the licence model with the enterprise.</td></tr>
+          <tr><th scope="row">Wazuh</th><td>Open source SIEM and endpoint security. Agent, manager, indexer and dashboard.</td><td>Host security: log analysis, file integrity checks, vulnerability detection and compliance checks.</td><td>Agents send to the Wazuh manager. Can also take in syslog.</td><td>Needs people to run and tune it. Good for hosts like this platform's.</td></tr>
+          <tr><th scope="row">Graylog</th><td>Central log management with Open, Enterprise and Security editions.</td><td>Simple log search and alerts. Open edition is free with no volume limit. Security edition adds SIEM rules and Sigma support.</td><td>Syslog and GELF inputs, plus Beats and others.</td><td>Paid editions are priced by daily data volume. Listed from about $15,000 a year (Enterprise) and $18,000 a year (Security). Confirm currency and quote.</td></tr>
+          <tr><th scope="row">IBM QRadar</th><td>Commercial SIEM. IBM sold its cloud service assets to Palo Alto Networks in 2024 and keeps supporting on-premises QRadar.</td><td>Event correlation and offense handling in large security operations.</td><td>Takes syslog and supplier connectors.</td><td>Roadmap for on-premises customers is worth asking about.</td></tr>
+          <tr><th scope="row">Fluent Bit</th><td>A very small log shipper from the CNCF. About 1 to 5 MB of memory.</td><td>Cheap log shipping on each node. Strong Kubernetes detail. A natural fit when the platform moves from Podman to Kubernetes.</td><td>Many inputs and outputs, including syslog, files, Elasticsearch, Splunk and Kafka.</td><td>Transforms are basic. Use a collector-side tool for heavy parsing.</td></tr>
+          <tr><th scope="row">Vector</th><td>A fast Rust pipeline tool, open sourced by Datadog.</td><td>Reshaping events with its own language, and sending one source to many places.</td><td>Syslog, Kafka, S3, OTLP and more.</td><td>Newer to many teams. Weaker trace support.</td></tr>
+          <tr><th scope="row">OpenTelemetry Collector</th><td>The CNCF's vendor-neutral collector for logs, metrics and traces.</td><td>Traces and a standard format (OTLP) that works with many back ends.</td><td>OTLP plus many receivers and exporters.</td><td>Heavier than Fluent Bit, roughly 100 to 300 MB. Log support is newer than its trace support.</td></tr>
+          <tr><th scope="row">rsyslog and syslog-ng</th><td>The classic Linux log services.</td><td>Reliable disk queues, TLS and routing rules. Already present on most hosts. The examples in this paper use rsyslog.</td><td>Syslog in and out, files, and many outputs.</td><td>Less friendly to container and Kubernetes detail than newer agents.</td></tr>
+          <tr><th scope="row">Prometheus, Alertmanager and Grafana</th><td>Metrics collection, alert routing and dashboards.</td><td>NOC-style health and threshold alerts, and the heartbeat rule in example 10.</td><td>Pulls metrics from health endpoints. Alertmanager sends to tickets and chat.</td><td>Built for metrics, not for logs.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Protocols and features, and who does them well</h3>
+    <div class="table-wrap" role="region" aria-label="Protocols and features table, scrolls sideways on small screens" tabindex="0">
+      <table>
+        <caption>Match the need to the tool</caption>
+        <thead><tr><th scope="col">Need</th><th scope="col">Why it matters here</th><th scope="col">Tools that do it well</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Syslog over TLS</th><td>The common language between hosts and enterprise collectors. Encrypted and authenticated.</td><td>rsyslog, syslog-ng, then Fluent Bit and Vector. Most SIEMs accept it. Check mutual authentication in each product.</td></tr>
+          <tr><th scope="row">Disk buffering</th><td>Keeps events during an outage. This is the heart of resilience.</td><td>rsyslog and syslog-ng (disk queues), Fluent Bit (filesystem buffering), Vector (disk buffers), Logstash (persistent queues), OpenTelemetry Collector (persistent queue with file storage).</td></tr>
+          <tr><th scope="row">Parsing and enriching</th><td>Turns raw text into the fields the contract requires.</td><td>Logstash, Vector, Fluent Bit parsers, Graylog pipelines. Splunk parses at index or search time.</td></tr>
+          <tr><th scope="row">Host security and file integrity</th><td>Detects changes to files and suspicious activity on the host.</td><td>Wazuh, Auditbeat or Elastic Agent, or the operating system audit service with a SIEM.</td></tr>
+          <tr><th scope="row">Detection rules and security content</th><td>Saves the SOC from writing every rule.</td><td>Splunk Enterprise Security, Elastic Security, Wazuh, Graylog Security (Sigma support), QRadar.</td></tr>
+          <tr><th scope="row">Health probes</th><td>Lets the NOC see the platform from outside.</td><td>Heartbeat (Beats), Prometheus with a probe exporter, Zabbix.</td></tr>
+          <tr><th scope="row">Traces and OTLP</th><td>Optional later step for slow-request analysis.</td><td>OpenTelemetry Collector, Jaeger, Grafana Tempo, Elastic APM.</td></tr>
+          <tr><th scope="row">Kubernetes later</th><td>The platform moves from Podman to Kubernetes.</td><td>Fluent Bit as a node-level shipper, OpenTelemetry Collector, Elastic Agent.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="notice" role="status">
+      <h3>Suggested starting point (to confirm)</h3>
+      <p>Use the collector and SIEM that Security and Operations already run. On the hosts, use the enterprise-approved forwarder. If there is none, start with rsyslog, as in the examples. When the platform moves to Kubernetes, look at Fluent Bit. If traces are added, put the OpenTelemetry Collector in front of whatever the enterprise stores them in. Do not run a second SIEM or log store for the team.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-examples">
+    <h2 id="s-examples">IaC and CaC examples</h2>
+    <div class="notice" role="status">
+      <h3>Illustration only. Not a deliverable.</h3>
+      <p>These show the shape of the code. Host names, ports, paths and metric names are placeholders. The DevOps team, Security and the NOC set the real values and tools.</p>
+    </div>
+
+    <h3 style="margin-top: var(--gcds-spacing-400);">1. Repository layout</h3>
+    <p>IaC and CaC sit in separate folders. The contract and the tests sit beside them.</p>
+<pre tabindex="0"><code>platform-repo/
+  iac/
+    podman/            # Quadlet units, host settings, heartbeat timer
+    kubernetes/        # the same services as YAML, used later
+  cac/
+    forwarder/         # forwarder settings and templates
+    cms/config/     # exported CMS configuration
+    analytics/            # log section of the Analytics settings
+    ansible/roles/     # applies the files above to each host
+  contract/
+    telemetry-contract.yaml
+  monitoring/
+    alert-rules/       # heartbeat and health alerts for the NOC
+    checks/            # health endpoints to register with the NOC
+  tests/
+    log-format/        # sample events and field checks
+    drills/            # failure drill scripts
+  pipeline/            # stages that extend the shared template
+</code></pre>
+
+    <h3>2. IaC: run CMS under Quadlet with logs to the host journal</h3>
+    <p>The log driver sends container output to the host journal, where the forwarder picks it up. Search and CMS need no extra log shipping inside the container.</p>
+<pre tabindex="0"><code># iac/podman/web-cms.kube
+[Unit]
+Description=CMS pod
+After=network-online.target rsyslog.service
+
+[Kube]
+Yaml=/opt/web/deploy/rendered/cms.yaml
+LogDriver=journald
+PublishPort=8443:8443
+
+[Service]
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+
+    <h3>3. IaC: host settings for reliable logging</h3>
+<pre tabindex="0"><code># iac/podman/host-logging.yml  (Ansible tasks)
+- name: Keep the journal on disk so a reboot loses nothing
+  ansible.builtin.copy:
+    dest: /etc/systemd/journald.conf.d/persist.conf
+    content: |
+      [Journal]
+      Storage=persistent
+      SystemMaxUse=2G
+
+- name: Keep one time source for every host
+  ansible.builtin.service: name=chronyd enabled=true state=started
+
+- name: Create the forwarder buffer folder
+  ansible.builtin.file:
+    path: /var/spool/rsyslog
+    state: directory
+    owner: root
+    group: root
+    mode: "0750"
+</code></pre>
+
+    <h3>4. IaC: a heartbeat every minute</h3>
+<pre tabindex="0"><code># iac/podman/web-heartbeat.service
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/web/release.env
+ExecStart=/bin/sh -c 'logger -p local7.info -t web-heartbeat "heartbeat release=$RELEASE_ID"'
+
+# iac/podman/web-heartbeat.timer
+[Timer]
+OnCalendar=minutely
+
+[Install]
+WantedBy=timers.target
+</code></pre>
+
+    <h3>5. CaC: CMS and Analytics log settings</h3>
+    <p>CMS's syslog module sends its events to the system log. The settings are exported with the rest of the CMS configuration. Source address and user ID are personal data, so confirm them with Privacy.</p>
+<pre tabindex="0"><code># cac/cms/config/syslog.settings.yml
+identity: web-platform-cms
+facility: 128
+format: '!base_url|!timestamp|!type|!ip|!request_uri|!referer|!uid|!link|!message'
+
+; cac/analytics/config.ini.php  (log section only)
+[log]
+log_writers[] = file
+log_level = WARN
+logger_file_path = tmp/logs/analytics.log
+</code></pre>
+
+    <h3>6. CaC: the forwarder settings</h3>
+    <p>The forwarder reads the Analytics log file, adds tags, and sends events over TLS. The disk queue and endless retry are what protect the data during an outage.</p>
+<pre tabindex="0"><code># cac/forwarder/50-siem.conf
+global(
+  DefaultNetstreamDriver="gtls"
+  DefaultNetstreamDriverCAFile="/etc/pki/web/ca.pem"
+  DefaultNetstreamDriverCertFile="/etc/pki/web/forwarder.pem"
+  DefaultNetstreamDriverKeyFile="/etc/pki/web/forwarder.key"
+)
+
+module(load="imfile")
+input(type="imfile" File="/opt/web/analytics/tmp/logs/analytics.log"
+      Tag="analytics:" Severity="info" Facility="local1")
+
+template(name="siem" type="string"
+  string="&lt;%PRI%&gt;1 %TIMESTAMP:::date-rfc3339% %HOSTNAME% %APP-NAME% %PROCID% %MSGID% - %msg%\n")
+
+if ($syslogfacility-text startswith "local") or
+   ($syslogfacility-text == "authpriv") then {
+  action(type="omfwd" target="collector.example.internal" port="6514"
+    protocol="tcp" template="siem"
+    StreamDriver="gtls" StreamDriverMode="1"
+    StreamDriverAuthMode="x509/name"
+    StreamDriverPermittedPeers="collector.example.internal"
+    queue.type="LinkedList" queue.filename="fwd_siem"
+    queue.spoolDirectory="/var/spool/rsyslog"
+    queue.maxDiskSpace="2g" queue.saveOnShutdown="on"
+    action.resumeRetryCount="-1" action.resumeInterval="10")
+}
+</code></pre>
+
+    <h3>7. CaC: apply the forwarder settings with Ansible</h3>
+    <p>The role keeps a backup of the old file, checks the full configuration and only then restarts the forwarder.</p>
+<pre tabindex="0"><code># cac/ansible/roles/forwarder/tasks/main.yml
+- name: Install the forwarder settings from Git
+  ansible.builtin.template:
+    src: 50-siem.conf.j2
+    dest: /etc/rsyslog.d/50-siem.conf
+    owner: root
+    group: root
+    mode: "0640"
+    backup: true
+  notify: restart rsyslog
+
+- name: Check the whole configuration before any restart
+  ansible.builtin.command: rsyslogd -N1
+  changed_when: false
+
+- name: Record the release for the drift check
+  ansible.builtin.copy:
+    content: "{{ release_id }}\n"
+    dest: /etc/web/forwarder.version
+</code></pre>
+
+    <h3>8. The telemetry contract</h3>
+    <p>This file is the agreement. The pipeline tests against it. The SOC and NOC review changes to it.</p>
+<pre tabindex="0"><code># contract/telemetry-contract.yaml
+version: 1
+transport:
+  collector: collector.example.internal
+  port: 6514
+  protocol: syslog over TLS
+  clock: UTC from the enterprise time source
+required_fields:
+  - timestamp
+  - host
+  - app
+  - severity
+  - user_id
+  - source_ip
+  - request_id
+  - release
+severity_names: [info, minor, major, critical]   # use the enterprise names
+heartbeat:
+  interval_seconds: 60
+  silence_alert_after_seconds: 300
+  routed_to: NOC
+security_events:
+  - cms.login_success
+  - cms.login_failure
+  - cms.role_change
+  - cms.admin_action
+  - web.access
+  - os.auth
+deploy_marker:
+  fields: [release, jira_ticket, approved_by, time]
+owners:
+  forwarder: web-team
+  collector: enterprise-operations
+  siem_rules: security-operations
+</code></pre>
+
+    <h3>9. Pipeline: the gates that protect the link</h3>
+    <p>The first job blocks a build when the test event does not arrive. The second checks that the platform is talking again after a deploy.</p>
+<pre tabindex="0"><code># pipeline/telemetry.yml  (generic CI syntax)
+verify-telemetry:
+  stage: validate
+  script:
+    - ansible-lint cac/ansible iac/podman
+    - tests/log-format/check.sh contract/telemetry-contract.yaml tests/log-format/samples/
+    - tests/send-test-event.sh --target test-collector --release "$RELEASE_ID"
+    - tests/expect-arrival.sh --target test-collector --release "$RELEASE_ID" --timeout 120
+  allow_failure: false
+
+announce-deploy:
+  stage: deploy
+  script:
+    - tools/send-deploy-marker.sh --release "$RELEASE_ID" --ticket "$JIRA_KEY"
+    - tools/expect-heartbeat.sh --host "$TARGET_HOST" --release "$RELEASE_ID" --timeout 300
+</code></pre>
+
+    <h3>10. CaC: the NOC alert for a silent platform</h3>
+<pre tabindex="0"><code># monitoring/alert-rules/heartbeat.yaml  (example format)
+groups:
+  - name: web-platform-telemetry
+    rules:
+      - alert: WebPlatformLogsSilent
+        expr: time() - web_heartbeat_last_seen_timestamp_seconds > 300
+        for: 2m
+        labels:
+          severity: major      # use the enterprise severity name
+          route: noc
+        annotations:
+          summary: "No heartbeat from the web platform for 5 minutes"
+</code></pre>
+  </section>
+
+  <section aria-labelledby="s-prove">
+    <h2 id="s-prove">Proving it works</h2>
+    <p>A link that is never tested will fail when it is needed. These checks make the proof routine.</p>
+    <div class="table-wrap" role="region" aria-label="Checks table, scrolls sideways on small screens" tabindex="0">
+      <table>
+        <caption>Checks that show the SOC-SIEM and NOC link works</caption>
+        <thead><tr><th scope="col">Check</th><th scope="col">When</th><th scope="col">Passes when</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Test event</th><td>Every build, in the test environment</td><td>The event reaches the test collector within two minutes with all required fields.</td></tr>
+          <tr><th scope="row">Heartbeat after deploy</th><td>Every deploy</td><td>The heartbeat with the new release number is seen within five minutes.</td></tr>
+          <tr><th scope="row">Detection test</th><td>Each release that changes logging, and every quarter</td><td>A burst of failed sign-ins in test raises a SIEM alert.</td></tr>
+          <tr><th scope="row">Failure drill</th><td>Every quarter, in test</td><td>With the collector cut for an hour, the buffer fills and then empties after reconnection. No gap appears in the SIEM.</td></tr>
+          <tr><th scope="row">Drift check</th><td>Daily</td><td>Running settings match Git. A difference opens a ticket.</td></tr>
+          <tr><th scope="row">Certificate check</th><td>Daily</td><td>No forwarder certificate expires within 30 days.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-questions">
+    <h2 id="s-questions">Questions for Security and the NOC</h2>
+    <ol>
+      <li>What are the collector address, port and protocol? Is a second collector available?</li>
+      <li>Which fields and event names must every log line carry? Who approves changes to that list?</li>
+      <li>Which fields may include personal information, and which are forbidden?</li>
+      <li>How long must logs be kept, and where? Does the local disk buffer count?</li>
+      <li>Who writes the SIEM parsing and detection rules for CMS, Search and Analytics events?</li>
+      <li>How does the NOC register health checks and alert rules? Can the pipeline do it through a request or an interface?</li>
+      <li>Which severity names does the enterprise use, and which severities page a person?</li>
+      <li>Can we send test events to a non-production collector and run a detection test there?</li>
+      <li>Are there isolated-network rules that limit how the forwarder reaches the collector?</li>
+    </ol>
+    <div class="notice warning" role="status">
+      <h3>Confirm before use</h3>
+      <p>Required fields, retention, severity levels and collector details differ between organizations. This paper is a starting point. It is a draft and has not been reviewed by the Enterprise Architect, Security or the NOC.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-sources">
+    <h2 id="s-sources">Sources</h2>
+    <p>Public pages used to check tool facts on October 23, 2026.</p>
+    <ul class="sources">
+      <li><a href="https://elastic.co/guide/en/fleet/current/beats-agent-comparison.html" target="_blank" rel="noopener">Elastic: Beats, Elastic Agent, Fleet and Logstash</a></li>
+      <li><a href="https://techcrunch.com/2024/09/29/elastic-founder-on-why-they-returned-to-open-source-four-years-after-going-proprietary" target="_blank" rel="noopener">TechCrunch: Elastic returns to an open source licence</a></li>
+      <li><a href="https://www.cisco.com/c/dam/en_us/about/doing_business/legal/OfferDescriptions/Splunk-On-Premises-Subscription.pdf" target="_blank" rel="noopener">Cisco: Splunk On-Premises Subscription offer description</a></li>
+      <li><a href="https://techtarget.com/searchsecurity/news/366585436/IBM-sells-QRadar-SaaS-assets-to-Palo-Alto-Networks" target="_blank" rel="noopener">TechTarget: IBM sells QRadar SaaS assets to Palo Alto Networks</a></li>
+      <li><a href="https://graylog.org/pricing/" target="_blank" rel="noopener">Graylog: editions and pricing</a></li>
+      <li><a href="https://inlab.fib.upc.edu/en/blog/wazuh-an-open-source-platform-unifying-siem-and-xdr" target="_blank" rel="noopener">UPC inLab: Wazuh as an open source SIEM and XDR</a></li>
+      <li><a href="https://devopsboys.com/blog/opentelemetry-collector-vs-vector-vs-fluent-bit-2026" target="_blank" rel="noopener">DevOpsBoys: OpenTelemetry Collector, Vector and Fluent Bit compared</a></li>
+    </ul>
+  </section>
+
+
+</main>
+</div>
+<div class="pg-foot">Generic working paper. Product and organization names are removed on purpose. <a href="{% endraw %}{{ '' | relative_url }}{% raw %}/creating-a-government-website/">Back to the website article</a></div>
+<div style="display:none"><button id="pg-open" type="button"></button><button id="pg-close" type="button"></button></div>
+<script>
+
+(function(){
+  var body=document.querySelector('.pg-body');
+  var heads=[].slice.call(body.querySelectorAll('h2[id]'));
+  var toc=document.getElementById('pg-toc-list');
+  heads.forEach(function(h){var li=document.createElement('li'),a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent;li.appendChild(a);toc.appendChild(li);});
+  var links=[].slice.call(toc.querySelectorAll('a'));
+  function spy(){var cur=0;heads.forEach(function(h,i){if(h.getBoundingClientRect().top<120)cur=i;});links.forEach(function(a,i){a.classList.toggle('on',i===cur);});}
+  window.addEventListener('scroll',spy,{passive:true});spy();
+  [].slice.call(body.querySelectorAll('pre')).forEach(function(p){
+    var w=document.createElement('div');w.className='pg-pre';p.parentNode.insertBefore(w,p);w.appendChild(p);
+    var b=document.createElement('button');b.className='pg-copy';b.type='button';b.textContent='Copy';
+    b.addEventListener('click',function(){var t=p.innerText;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1200)},function(){b.textContent='Select + copy'});});
+    w.appendChild(b);
+  });
+  var find=document.getElementById('pg-find');
+  function clear(){[].slice.call(body.querySelectorAll('mark')).forEach(function(m){var t=document.createTextNode(m.textContent);m.parentNode.replaceChild(t,m);});body.normalize();}
+  find.addEventListener('input',function(){
+    clear();var q=find.value.trim();if(q.length<3)return;
+    var rx=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+    var walker=document.createTreeWalker(body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){return n.parentNode.closest('svg,script,style,mark')?NodeFilter.FILTER_REJECT:(rx.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT)}});
+    var nodes=[],n;while(n=walker.nextNode())nodes.push(n);
+    nodes.slice(0,200).forEach(function(node){rx.lastIndex=0;var frag=document.createDocumentFragment(),last=0,m,s=node.nodeValue;while((m=rx.exec(s))){frag.appendChild(document.createTextNode(s.slice(last,m.index)));var mk=document.createElement('mark');mk.textContent=m[0];frag.appendChild(mk);last=m.index+m[0].length;if(m[0].length===0)rx.lastIndex++;}frag.appendChild(document.createTextNode(s.slice(last)));node.parentNode.replaceChild(frag,node);});
+    var first=body.querySelector('mark');if(first)first.scrollIntoView({block:'center'});
+  });
+  document.getElementById('pg-open').addEventListener('click',function(){[].slice.call(document.querySelectorAll('details')).forEach(function(d){d.open=true;});});
+  document.getElementById('pg-close').addEventListener('click',function(){[].slice.call(document.querySelectorAll('details')).forEach(function(d){d.open=false;});});
+})();
+
+
+</script>
+</body>
+</html>
+
+{% endraw %}
