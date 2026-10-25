@@ -20,7 +20,7 @@ A website is not one thing. It is a design, a platform, a delivery path, an oper
 2. **Architect it** with a small set of repeatable patterns.
 3. **Build and release it** through one pipeline with gates.
 4. **Run it** on containers that can move from one host to a cluster.
-5. **Watch it** by sending logs once to security and operations.
+5. **Watch it** by sending logs once to security and operations, and tell users what is working on a status page.
 6. **Own it** with named owners, review dates and a product manager after launch.
 
 ## 1. Design: the look, the parts and the rules
@@ -55,11 +55,12 @@ Write the deployment as Kubernetes YAML from day one. Run it on Podman today. Mo
 - [Podman Now, Kubernetes Later]({{ '/podman-now-kubernetes-later/' | relative_url }}): the five rules.
 - [Podman to Kubernetes working paper]({{ '/podman-to-kubernetes/' | relative_url }}): work breakdown, code, diagrams, change map and sizing.
 
-## 5. Operations: tell security and operations once
+## 5. Operations: tell security, operations and users
 
 One forwarder sends logs to the enterprise collector. A heartbeat makes silence an alert.
 
 - [Send Logs Once, Route Many]({{ '/send-logs-once-route-many/' | relative_url }}): the three ideas.
+- [Tell Staff Before They Call: A Status Page for Your Website]({{ '/a-status-page-for-your-website/' | relative_url }}): one page that shows what is working, and the pattern behind it ([PAT-015]({{ '/architecture/pat-015/' | relative_url }})).
 - [Observability and security monitoring working paper]({{ '/observability-security-monitoring/' | relative_url }}): the signal path, tools and examples.
 
 ## 6. Ownership: a site is a product
