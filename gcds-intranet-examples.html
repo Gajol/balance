@@ -1,0 +1,658 @@
+---
+layout: null
+permalink: /gcds-intranet-examples/
+title: "Changing the GC Design System for an Intranet: Working Examples"
+description: "Interactive examples of what an intranet keeps, changes and adds to the GC Design System: identity, density, French length, search enhancements, hover cards, bulletin boards and an override register."
+tags: [design system, intranet, accessibility]
+sitemap: true
+---
+{% raw %}
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Changing the GC Design System for an Intranet: Working Examples</title>
+<style>
+
+/* Page frame: title band, sticky contents rail, one reading column. Black, white and grey only. */
+.pg-skip{position:absolute;left:-999px}.pg-skip:focus{left:8px;top:8px;background:#fff;padding:6px 10px;z-index:99}
+body{margin:0;background:#fff;color:#333;font:14px/1.55 "Noto Sans","Segoe UI",Roboto,Arial,sans-serif}
+.pg-band{background:#333;color:#fff;padding:14px 20px}
+.pg-band a{color:#fff}
+.pg-band .pg-in{max-width:1200px;margin:0 auto}
+.pg-band h1{margin:4px 0 4px;font:700 22px/1.25 Lato,"Helvetica Neue",Arial,sans-serif;color:#fff;border:0}
+.pg-band p{margin:0;color:#ddd;font-size:13px;max-width:70ch}
+.pg-crumb{font-size:12px;color:#ccc}
+.pg-wrap{max-width:1200px;margin:0 auto;padding:16px 20px 60px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:28px}
+.pg-toc{position:sticky;top:12px;align-self:start;max-height:calc(100vh - 24px);overflow:auto;font-size:12.5px;border-right:1px solid #ddd;padding-right:12px}
+.pg-toc h2{font:700 12px Lato,Arial,sans-serif;text-transform:uppercase;letter-spacing:.05em;color:#595959;margin:0 0 6px}
+.pg-toc ol{list-style:none;margin:0;padding:0}
+.pg-toc li{margin:0}
+.pg-toc a{display:block;padding:3px 6px;color:#333;text-decoration:none;border-left:3px solid transparent}
+.pg-toc a:hover{background:#f2f2f2}
+.pg-toc a.on{border-left-color:#333;font-weight:700;background:#f2f2f2}
+.pg-find{width:100%;box-sizing:border-box;padding:5px 7px;margin:0 0 8px;border:1px solid #8c8c8c;font:inherit}
+.pg-tools{display:flex;gap:8px;margin:0 0 10px;flex-wrap:wrap}
+.pg-tools button{border:1px solid #595959;background:#fff;color:#333;padding:4px 10px;font:inherit;cursor:pointer}
+.pg-tools button:hover{background:#f2f2f2}
+.pg-body{min-width:0}
+.pg-body mark{background:#e6e6e6;color:#000;outline:1px solid #8c8c8c}
+.pg-copy{position:absolute;right:6px;top:6px;border:1px solid #8c8c8c;background:#fff;color:#333;font:11px Arial,sans-serif;padding:2px 7px;cursor:pointer;opacity:.85}
+.pg-pre{position:relative}
+.pg-foot{max-width:1200px;margin:0 auto;padding:10px 20px 30px;font-size:12px;color:#595959}
+.pg-body{font-size:14px;line-height:1.55}
+.pg-body p,.pg-body li,.pg-body dd,.pg-body dt,.pg-body blockquote{font-size:14px;line-height:1.55}
+.pg-body td,.pg-body th{font-size:12.5px;line-height:1.4;padding:5px 8px;vertical-align:top}
+.pg-body h2{font-size:21px;margin:30px 0 8px}.pg-body h3{font-size:16.5px}.pg-body h4{font-size:14.5px}
+.pg-body .tablewrap,.pg-body .table-wrap,.pg-body .fig-scroll{overflow-x:auto;max-width:100%}
+.pg-body table{border-collapse:collapse}
+.pg-body pre,.pg-body pre code{font-size:12px;line-height:1.45}
+.pg-body svg{max-width:100%;height:auto}
+.pg-body main,.pg-body section{max-width:none}
+@media (max-width:820px){.pg-wrap{display:block}.pg-toc{position:static;max-height:none;border:0;margin-bottom:12px}}
+@media print{.pg-toc,.pg-tools,.pg-copy{display:none}.pg-wrap{display:block}}
+
+/* ---- Content styles ---- */
+.demo{border:1px solid #8c8c8c;background:#fafafa;padding:14px 16px;margin:16px 0}
+.demo .row{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:flex-start;margin-bottom:10px}
+.demo fieldset{border:1px solid #bbb;padding:6px 12px 8px;margin:0 0 8px;min-width:0}
+.demo legend{font-weight:700;padding:0 4px;font-size:13px}
+.demo label{display:block;margin:2px 0;font-size:14px}
+.demo input[type=search],.demo input:not([type]),.demo input[type=text],.demo select{font:inherit;padding:5px 8px;border:1px solid #8c8c8c;background:#fff;max-width:100%}
+.demo button{font:inherit;padding:5px 12px;border:1px solid #333;background:#333;color:#fff;cursor:pointer}
+.demo button.sec{background:#fff;color:#333}
+.demo button:focus-visible,.demo a:focus-visible,.demo input:focus-visible,.demo select:focus-visible,.term:focus-visible{outline:3px solid #000;outline-offset:2px}
+.demo .grow{flex:1 1 280px;min-width:200px}
+.qrow{display:flex;gap:6px}.qrow input{flex:1}
+.stat{padding:6px 10px;border:1px solid #bbb;background:#fff;font-size:13px}
+.small{font-size:12.5px;color:#444;margin:6px 0}
+pre.small{background:#fff;border:1px solid #ddd;padding:8px;white-space:pre-wrap}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:700px){.cols2{grid-template-columns:1fr}}
+.sub{font-size:15px;margin:10px 0 6px}
+kbd{border:1px solid #8c8c8c;border-bottom-width:2px;padding:0 5px;background:#fff;font-size:12px}
+/* identity mock */
+.mock{border:1px solid #666;background:#fff;max-width:640px;margin:8px 0}
+.mock-head{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:3px solid #333}
+.slot{border:2px dashed #666;padding:8px 12px;font-size:12.5px;color:#444}
+.lang{text-decoration:underline;font-size:13px}
+.mock-nav{background:#333;color:#fff;padding:8px 12px;font-size:13px}
+.mock-body{padding:12px}
+.crumbs{font-size:12px;color:#555;margin-bottom:8px}
+.line{height:9px;background:#ddd;margin:7px 0}.w60{width:60%}.w80{width:80%}.w40{width:40%}
+.sbox{border:1px solid #888;padding:5px 8px;font-size:12.5px;color:#666;max-width:240px;margin-top:10px}
+.mock-foot{background:#eee;border-top:3px solid #333;padding:10px 12px;font-size:12.5px}
+/* density */
+.den-view{height:230px;overflow:hidden;border:1px solid #999;background:#fff;position:relative}
+.dt{width:100%;border-collapse:collapse;font-size:var(--den-fs,15px);line-height:var(--den-lh,1.6)}
+.dt th,.dt td{text-align:left;padding:var(--den-pad,10px) 10px;border-bottom:1px solid #ddd}
+.dt thead th{background:#f2f2f2}
+/* french */
+.frbox{display:flex;flex-wrap:wrap;gap:8px;padding:10px;border:1px solid #bbb;background:#fff}
+.frbox button{font:inherit;padding:6px 10px;border:1px solid #333;background:#333;color:#fff}
+.frbox.fixed button{width:150px;height:34px;overflow:hidden;white-space:nowrap;text-overflow:clip;outline:2px solid #8b2f2f}
+.frbox.fixed button.ok{outline:none}
+/* search */
+.opts{display:flex;flex-wrap:wrap;gap:4px 18px}
+.pop{font-size:13px;margin:4px 0 10px}.pop button{background:#fff;color:#333;border:1px solid #888;margin:0 6px 6px 0;padding:2px 9px;border-radius:12px;font-size:13px}
+.grid2{display:grid;grid-template-columns:200px 1fr;gap:20px}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}}
+.res{list-style:none;margin:0;padding:0}
+.res li{border:1px solid #ccc;background:#fff;padding:10px 12px;margin:0 0 8px;position:relative}
+.res h4{margin:0 0 3px;font-size:15.5px}
+.res a{color:#111;text-decoration:underline}
+.res .meta{font-size:12.5px;color:#444;margin:2px 0}
+.res .snip{font-size:13.5px;margin:4px 0}
+.res mark{background:#e6e6e6;color:#000;outline:1px solid #888}
+.tag{display:inline-block;border:1px solid #888;padding:0 6px;font-size:11.5px;margin-right:5px;background:#f2f2f2}
+.tag.warn{border-color:#8b2f2f;color:#8b2f2f;background:#fff}
+.tag.ok{background:#333;color:#fff;border-color:#333}
+.best{border:2px solid #333!important}
+.count{font-weight:700;margin:0 0 6px}
+.note2{font-size:13px;margin-bottom:8px;color:#333}.note2 button{background:none;color:#111;border:0;text-decoration:underline;padding:0}
+.zero{border:1px dashed #666;padding:12px;background:#fff}
+.pvcard,#pv{position:absolute;z-index:30;max-width:340px;background:#fff;border:2px solid #333;padding:10px 12px;box-shadow:0 3px 10px rgba(0,0,0,.25);font-size:13px}
+.demo{position:relative}
+.pvcard b{display:block;margin-bottom:3px;font-size:14px}
+.pvcard i{display:block;font-style:normal;color:#555;margin-top:5px}
+.prev-btn{margin-left:8px;font-size:12px!important;padding:1px 8px!important}
+.inline-prev{margin-top:6px;padding:8px;border-left:4px solid #333;background:#f2f2f2;font-size:13px}
+/* terms */
+.term{border-bottom:2px dotted #333;cursor:help}
+.prose{max-width:75ch;font-size:15px}
+.tip{position:absolute;z-index:40;max-width:320px;background:#fff;border:2px solid #333;padding:9px 11px;font-size:13px;box-shadow:0 3px 10px rgba(0,0,0,.25)}
+.tip b{display:block;margin-bottom:3px}.tip i{display:block;font-style:normal;color:#555;margin-top:5px}
+/* lanes */
+.result{margin-top:10px;padding:12px;border-left:6px solid #333;background:#fff;font-size:14px}
+.result strong{display:block;font-size:16px;margin-bottom:4px}
+/* bulletin */
+.bb{list-style:none;margin:8px 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.bb li{border:1px solid #bbb;background:#fff;padding:10px;font-size:13.5px}
+.bb li.rep{border-color:#8b2f2f;background:#f3e6e6}
+.bb .t{font-weight:700;display:block}
+.bb .m{font-size:12px;color:#555;margin:3px 0}
+.bb button{font-size:12px;padding:2px 8px;margin-right:4px}
+.bbform .row label{font-size:13px}
+.chk{align-self:flex-end}
+
+</style>
+</head>
+<body>
+<meta data-pagefind-filter="Section[content]" content="Papers and guides">
+<a class="pg-skip" href="#pg-main">Skip to content</a>
+<header class="pg-band"><div class="pg-in">
+<div class="pg-crumb"><a href="{% endraw %}{{ '' | relative_url }}{% raw %}/digital/">Digital</a> / Design system</div>
+<h1>Changing the GC Design System for an Intranet: Working Examples</h1>
+<p>What to keep, what to change and what to add. Click through the examples: identity choices, tight tables, longer French, search that earns trust, hover cards, and engagement patterns a public site never needs.</p>
+</div></header>
+<div class="pg-wrap">
+<nav class="pg-toc" aria-label="Contents">
+<h2>Contents</h2>
+<input id="pg-find" class="pg-find" type="search" placeholder="Find in page (3+ letters)" aria-label="Find in page">
+<ol id="pg-toc-list"></ol>
+</nav>
+<main id="pg-main" class="pg-body">
+
+<section aria-labelledby="s-short">
+<h2 id="s-short">Short answer</h2>
+<div class="notice"><h3>Keep the parts, change the surroundings</h3>
+<p>The GC Design System already gives an intranet its forms, accessibility and bilingual behaviour. What an intranet changes is the <strong>identity</strong> (which public-site elements to keep), the <strong>density</strong> (how tight the screens are), the <strong>delivery</strong> (a pinned, self-hosted build) and the <strong>missing patterns</strong> (search results, directories, dashboards). Make each change in one named place, and write it down.</p></div>
+<p>This page is a working example. Each section has a small demo you can click. The demos use made-up content and a plain grey look, so they do not copy any official symbol.</p>
+</section>
+
+<section aria-labelledby="s-map">
+<h2 id="s-map">Keep, change, add</h2>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table, scrolls sideways on small screens"><table>
+<thead><tr><th>Area</th><th>What to do</th><th>How to change it</th><th>Risk if skipped</th></tr></thead>
+<tbody>
+<tr><th scope="row">Forms, errors, language toggle</th><td>Keep</td><td>Use the components as shipped.</td><td>You pay again for accessibility and French behaviour.</td></tr>
+<tr><th scope="row">Identity: menu, footer, signature</th><td>Change once</td><td>Set in the theme configuration. Clear the choice with the identity program coordinator.</td><td>A site that looks like a public site, with symbols you may not use.</td></tr>
+<tr><th scope="row">Density: type and spacing</th><td>Change once</td><td>One documented variant that redefines global tokens in one stylesheet.</td><td>Page-by-page overrides that nobody can upgrade.</td></tr>
+<tr><th scope="row">Delivery</th><td>Change</td><td>Pin the version and host the build yourself on an isolated network.</td><td>An unstyled site when a public CDN or a firewall rule fails.</td></tr>
+<tr><th scope="row">Search results page</th><td>Add</td><td>Build as a plugin component on global tokens. Table first, enhancements second.</td><td>A one-off page that breaks on the next upgrade.</td></tr>
+<tr><th scope="row">Hover cards for terms and previews</th><td>Add, carefully</td><td>As a plugin, with a keyboard and touch route that does not need hover.</td><td>Information only mouse users can reach.</td></tr>
+<tr><th scope="row">Directories, approvals, dashboards</th><td>Add</td><td>Plugins first. Offer them upstream so you do not carry them alone.</td><td>Every team invents its own.</td></tr>
+</tbody></table></div>
+<p><strong>Rule of thumb: wrap, do not fork.</strong> Change tokens, never the inside of a component. Anything new goes into a plugin lane with its own prefix.</p>
+</section>
+
+<section aria-labelledby="s-identity">
+<h2 id="s-identity">1. Identity: what the intranet keeps</h2>
+<p>Components carry public-site elements by default. An intranet is not the public site, so choose on purpose. Change the options and watch the preview.</p>
+<div class="demo" id="d-id">
+<div class="row">
+<fieldset><legend>Top navigation</legend>
+<label><input type="radio" name="id-nav" value="topic"> Public topic menu</label>
+<label><input type="radio" name="id-nav" value="local" checked> Local menu</label></fieldset>
+<fieldset><legend>Footer</legend>
+<label><input type="radio" name="id-foot" value="full"> Full government footer</label>
+<label><input type="radio" name="id-foot" value="compact" checked> Compact</label>
+<label><input type="radio" name="id-foot" value="none"> None</label></fieldset>
+<fieldset><legend>Page features</legend>
+<label><input type="checkbox" id="id-crumb" checked> Breadcrumbs</label>
+<label><input type="checkbox" id="id-search" checked> Local search box</label></fieldset>
+</div>
+<div class="mock" aria-label="Preview of the page frame">
+<div class="mock-head"><span class="slot">Signature slot (approved file only)</span><span class="lang">Français</span></div>
+<div class="mock-nav" id="id-navbar"></div>
+<div class="mock-body"><div id="id-crumbs" class="crumbs">Home / Finance / Travel</div><div class="line w60"></div><div class="line w80"></div><div class="line w40"></div><div id="id-searchbox" class="sbox">Search this site</div></div>
+<div class="mock-foot" id="id-footer"></div>
+</div>
+<p class="small"><strong>Write this in the decision log:</strong></p>
+<pre id="id-log" class="small"></pre>
+</div>
+</section>
+
+<section aria-labelledby="s-density">
+<h2 id="s-density">2. Density: change tokens in one place</h2>
+<p>Public pages are tuned for reading. Directories and tables need to be tighter. If every team fixes this on its own pages, upgrades get expensive. Fix it once, as a variant.</p>
+<div class="demo" id="d-den">
+<div class="row">
+<fieldset><legend>Variant</legend>
+<label><input type="radio" name="den" value="default" checked> Default</label>
+<label><input type="radio" name="den" value="compact"> Compact (documented variant)</label></fieldset>
+<div class="stat"><strong id="den-count">0</strong> rows visible without scrolling</div>
+</div>
+<div class="den-view" id="den-view"><table class="dt"><thead><tr><th>Form</th><th>Owner</th><th>Reviewed</th></tr></thead><tbody id="den-body"></tbody></table></div>
+<p class="small">Variant stylesheet (example names, one file, one owner):</p>
+<pre id="den-css" class="small"></pre>
+<p class="small">The line height and the 65-character reading width stay on prose pages. The variant applies only inside an element that opts in, such as a directory or a table page.</p>
+</div>
+</section>
+
+<section aria-labelledby="s-french">
+<h2 id="s-french">3. French: plan for longer text</h2>
+<p>French text is often 20 to 30 per cent longer. Fixed-width buttons and tabs break. Switch the language and compare.</p>
+<div class="demo" id="d-fr">
+<div class="row"><fieldset><legend>Language of the labels</legend>
+<label><input type="radio" name="fr" value="en" checked> English</label>
+<label><input type="radio" name="fr" value="fr"> Français</label></fieldset>
+<div class="stat">Average length change in these samples: <strong id="fr-pct">0%</strong></div></div>
+<div class="cols2">
+<div><h3 class="sub">Fixed width (breaks)</h3><div id="fr-fixed" class="frbox fixed"></div></div>
+<div><h3 class="sub">Flexible (holds)</h3><div id="fr-flex" class="frbox"></div></div>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="s-search">
+<h2 id="s-search">4. Search results: the enhancements that earn their place</h2>
+<p>A search page is a missing pattern, so it is built as a plugin. Start with an accessible list of results. Then switch enhancements on one at a time and see what each one changes. Try <em>holiday</em>, <em>leve</em>, <em>wfh</em>, <em>laptop</em> or <em>pay</em>.</p>
+<div class="demo" id="d-search">
+<div class="row">
+<div class="grow"><label for="q" id="q-label">Search the intranet</label>
+<div class="qrow"><input id="q" type="search" autocomplete="off" value="holiday"><button type="button" id="q-go">Search</button></div></div>
+<fieldset><legend>Labels</legend><label><input type="radio" name="sl" value="en" checked> EN</label><label><input type="radio" name="sl" value="fr"> FR</label></fieldset>
+</div>
+<fieldset class="opts"><legend>Enhancements</legend>
+<label><input type="checkbox" data-o="syn" checked> Synonyms</label>
+<label><input type="checkbox" data-o="fuzzy"> Close spellings</label>
+<label><input type="checkbox" data-o="boost"> Rank owned and current pages first</label>
+<label><input type="checkbox" data-o="badge" checked> Show owner and review date</label>
+<label><input type="checkbox" data-o="hover" checked> Hover and focus preview</label>
+<label><input type="checkbox" data-o="best"> Best bet at the top</label>
+</fieldset>
+<div class="pop" id="pop"></div>
+<div class="grid2">
+<div class="facets"><fieldset><legend id="lg-type">Type</legend><div id="f-type"></div></fieldset>
+<fieldset><legend id="lg-sec">Section</legend><div id="f-sec"></div></fieldset></div>
+<div><p id="count" class="count" aria-live="polite"></p><div id="note" class="note2"></div><ol id="res" class="res"></ol><div id="zero" class="zero" hidden></div></div>
+</div>
+<div id="pv" class="pvcard" role="tooltip" hidden></div>
+<p class="small" id="log">Behaviour log: nothing yet.</p>
+</div>
+</section>
+
+<section aria-labelledby="s-hover">
+<h2 id="s-hover">5. Hover cards: allowed, with conditions</h2>
+<p>Nothing in the terms of use says no to a hover card. What the terms do say is to avoid deviations, and to base any deviation on user research. So treat a hover card as a <strong>plugin component</strong>, test it with real users, and check whether the design system already has one before you build.</p>
+<p>Try it in the text below. Hover a dotted term, tab to it, press <kbd>Esc</kbd> to close it, or move the pointer onto the card. On a touch screen, tap the term.</p>
+<div class="demo" id="d-hov">
+<p class="prose">A <span class="term" tabindex="0" data-t="Design token" data-d="A named value for a colour, space or type size. Components read tokens, so changing a token changes every component that uses it." data-n="Use global tokens. Do not reach for component tokens.">design token</span> is where a site can express itself. A <span class="term" tabindex="0" data-t="Web component" data-d="A self-contained element with its own markup, style and script. It works in any page, with or without a framework." data-n="Keep the inside as shipped.">web component</span> is where it should not. Anything new belongs in a <span class="term" tabindex="0" data-t="Plugin lane" data-d="An optional package outside the core, with its own owner and prefix, offered upstream when it could help others." data-n="Wrap, do not fork.">plugin lane</span>, and every <span class="term" tabindex="0" data-t="Deviation" data-d="A change that departs from the shipped design system. It needs user research and a written reason, and it goes in the override register." data-n="Avoid where possible.">deviation</span> goes in the register.</p>
+</div>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table, scrolls sideways on small screens"><table>
+<thead><tr><th>Rule</th><th>What it means for the card</th></tr></thead>
+<tbody>
+<tr><th scope="row">Dismissible</th><td>Esc closes it without moving the pointer or focus.</td></tr>
+<tr><th scope="row">Hoverable</th><td>The pointer can move onto the card without it vanishing.</td></tr>
+<tr><th scope="row">Persistent</th><td>It stays until the user moves away, closes it, or it is no longer valid.</td></tr>
+<tr><th scope="row">Keyboard</th><td>Focus shows the same card. Tab order does not change.</td></tr>
+<tr><th scope="row">Touch</th><td>Tap opens it and a second tap closes it.</td></tr>
+<tr><th scope="row">No hidden essentials</th><td>Anything a person must know is also in the page text or a visible disclosure.</td></tr>
+<tr><th scope="row">Screen readers</th><td>The term points to the card with <code>aria-describedby</code> while it is open. The card holds text only.</td></tr>
+<tr><th scope="row">French</th><td>The card text follows the page language, with room for longer text.</td></tr>
+</tbody></table></div>
+</section>
+
+<section aria-labelledby="s-engage">
+<h2 id="s-engage">6. Engagement: patterns a public site never needs</h2>
+<p>A public site speaks to strangers. An intranet speaks to colleagues. That changes who can post, how long posts live, and who looks after them. Two examples show the difference. Neither is a core component, so both are plugins.</p>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table, scrolls sideways on small screens"><table>
+<thead><tr><th>Question</th><th>Public site</th><th>Intranet</th></tr></thead>
+<tbody>
+<tr><th scope="row">Who posts?</th><td>Anyone, so you need spam checks.</td><td>Signed-in staff, so the name is known and no puzzle is needed.</td></tr>
+<tr><th scope="row">How long does a post live?</th><td>Until someone removes it.</td><td>A set time, then it expires on its own.</td></tr>
+<tr><th scope="row">Who moderates?</th><td>A central team.</td><td>A named owner in the business, with a report button for everyone.</td></tr>
+<tr><th scope="row">What is the risk?</th><td>Abuse and fraud.</td><td>Conflict of interest, privacy and tone between colleagues.</td></tr>
+<tr><th scope="row">Language</th><td>Both languages for every item.</td><td>A post may be in one language, with a clear label and the right to ask for the other.</td></tr>
+</tbody></table></div>
+
+<h3 class="sub">A. Staff bulletin board (for sale, wanted, free)</h3>
+<p>Add a post, look at how it expires, and report one. Notice what is missing: no payment, no ads, and no public contact form. People reach each other through the staff directory.</p>
+<div class="demo" id="d-bb">
+<div class="row">
+<fieldset><legend>Show</legend>
+<label><input type="radio" name="bbf" value="all" checked> All</label>
+<label><input type="radio" name="bbf" value="sale"> For sale</label>
+<label><input type="radio" name="bbf" value="wanted"> Wanted</label>
+<label><input type="radio" name="bbf" value="free"> Free</label></fieldset>
+<div class="stat"><strong id="bb-n">0</strong> active posts</div>
+</div>
+<ul class="bb" id="bb-list"></ul>
+<form id="bb-form" class="bbform" aria-labelledby="bb-h">
+<h4 id="bb-h" class="sub">Add a post</h4>
+<div class="row">
+<label>Title <input id="bb-t" required maxlength="60" placeholder="Child bike, 16 inch"></label>
+<label>Type <select id="bb-k"><option value="sale">For sale</option><option value="wanted">Wanted</option><option value="free">Free</option></select></label>
+<label>Lasts <select id="bb-d"><option value="7">7 days</option><option value="14" selected>14 days</option><option value="30">30 days</option></select></label>
+<label class="chk"><input type="checkbox" id="bb-ok"> I agree with the posting rules</label>
+<button type="submit">Post</button>
+</div>
+<p class="small" id="bb-msg" aria-live="polite">Rules: personal items only. No businesses, no vehicles, no animals, no weapons. Meet off site if you prefer.</p>
+</form>
+</div>
+
+<h3 class="sub">B. Shout-outs (recognition wall)</h3>
+<p>Thank a colleague. The choice that matters is who can see it. Try each setting and read what the intranet does.</p>
+<div class="demo" id="d-ko">
+<form id="ko-form" class="bbform">
+<div class="row">
+<label>To <select id="ko-to"><option>Alex (Finance)</option><option>Sam (IT)</option><option>Priya (HR)</option><option>Chris (Facilities)</option></select></label>
+<label>Value <select id="ko-v"><option>Helpful</option><option>Clear writing</option><option>Went the extra mile</option><option>Kept us accessible</option></select></label>
+<label class="grow">Message <input id="ko-m" maxlength="120" value="Thanks for fixing the form before the deadline."></label>
+</div>
+<fieldset><legend>Who can see it</legend>
+<label><input type="radio" name="ko-vis" value="team" checked> The person's team</label>
+<label><input type="radio" name="ko-vis" value="all"> Everyone</label>
+<label><input type="radio" name="ko-vis" value="private"> Only the person</label></fieldset>
+<button type="submit">Send shout-out</button>
+</form>
+<p id="ko-rule" class="small" aria-live="polite"></p>
+<ul class="bb" id="ko-list"></ul>
+</div>
+<p><strong>Plugin checklist for both:</strong> keyboard operable, no colour-only meaning, a visible owner and review date, a moderation route, a retention rule, and labels that fit in French.</p>
+</section>
+
+<section aria-labelledby="s-lanes">
+<h2 id="s-lanes">7. Where does a new thing go?</h2>
+<p>Answer three questions. The result is the lane and the paperwork.</p>
+<div class="demo" id="d-lane">
+<fieldset><legend>1. Does a component in the design system already do this?</legend>
+<label><input type="radio" name="l1" value="y"> Yes</label><label><input type="radio" name="l1" value="n"> No</label><label><input type="radio" name="l1" value="p"> Partly</label></fieldset>
+<fieldset><legend>2. Could a second organization use it?</legend>
+<label><input type="radio" name="l2" value="y"> Yes</label><label><input type="radio" name="l2" value="n"> No</label></fieldset>
+<fieldset><legend>3. Does it need to change how a shipped component looks or acts?</legend>
+<label><input type="radio" name="l3" value="y"> Yes</label><label><input type="radio" name="l3" value="n"> No</label></fieldset>
+<div class="result" id="lane-out" aria-live="polite">Answer all three questions.</div>
+</div>
+</section>
+
+<section aria-labelledby="s-register">
+<h2 id="s-register">8. The override register</h2>
+<p>Every deviation gets one line. The register is the evidence that deviations rest on research and a reason.</p>
+<div class="tablewrap" tabindex="0" role="group" aria-label="Table, scrolls sideways on small screens"><table>
+<thead><tr><th>#</th><th>Change</th><th>Lane</th><th>Reason and evidence</th><th>Owner</th><th>Review</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Compact density variant for tables</td><td>Tokens</td><td>Directory tasks need more rows per screen. Tested with 8 staff.</td><td>Design steward</td><td>Each release</td></tr>
+<tr><td>2</td><td>Local menu in place of the topic menu</td><td>Configuration</td><td>Staff tasks are local. Choice cleared with the identity coordinator.</td><td>Product owner</td><td>Yearly</td></tr>
+<tr><td>3</td><td>Search results component</td><td>Plugin</td><td>No core component. Needed by every section.</td><td>Search owner</td><td>Each release</td></tr>
+<tr><td>4</td><td>Term hover card</td><td>Plugin</td><td>Reduces back-and-forth to a glossary. Keyboard and touch tested.</td><td>Design steward</td><td>Each release</td></tr>
+</tbody></table></div>
+</section>
+
+<section aria-labelledby="s-delivery">
+<h2 id="s-delivery">9. Delivery on an isolated network</h2>
+<ul>
+<li><strong>Build a pinned copy.</strong> Install from the package registry on the build side and carry the build across as signed artefacts.</li>
+<li><strong>Serve it yourself.</strong> No page should fetch styles, scripts or fonts from a public site.</li>
+<li><strong>Do not use "latest".</strong> Upgrade on your schedule and run the tests first.</li>
+<li><strong>Audit external calls.</strong> List every address the theme calls, then remove or mirror it.</li>
+<li><strong>Treat an external link as content.</strong> If a resource lives outside the network, publish a short page about it with an owner and a review date, so it is found and kept fresh.</li>
+</ul>
+</section>
+
+<section aria-labelledby="s-next">
+<h2 id="s-next">Next steps</h2>
+<ol>
+<li>Name an owner and an upgrade cadence for the design system.</li>
+<li>Record the identity choices in the decision log.</li>
+<li>Agree one density variant, and publish it.</li>
+<li>Open the register and list today's deviations.</li>
+<li>Build the search results component first. It is the pattern every section needs.</li>
+</ol>
+<p>Related pages: <a href="{% endraw %}{{ '' | relative_url }}{% raw %}/gc-design-system-on-an-intranet/">Using the GC Design System on an Intranet</a>, <a href="{% endraw %}{{ '' | relative_url }}{% raw %}/architecture/pat-010/">PAT-010: Core first, admit by evidence</a>, <a href="{% endraw %}{{ '' | relative_url }}{% raw %}/architecture/pat-013/">PAT-013: Check accessibility at every gate</a>, and <a href="{% endraw %}{{ '' | relative_url }}{% raw %}/search-needs-content-owners/">Your Search Box Is Only as Good as Your Content Owners</a>.</p>
+</section>
+
+
+</main>
+</div>
+<div class="pg-foot">Generic examples with made-up content. No official symbols are used. <a href="{% endraw %}{{ '' | relative_url }}{% raw %}/creating-a-government-website/">Back to the website article</a></div>
+<div style="display:none"><button id="pg-open" type="button"></button><button id="pg-close" type="button"></button></div>
+<script>
+
+(function(){
+  var body=document.querySelector('.pg-body');
+  var heads=[].slice.call(body.querySelectorAll('h2[id]'));
+  var toc=document.getElementById('pg-toc-list');
+  heads.forEach(function(h){var li=document.createElement('li'),a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent;li.appendChild(a);toc.appendChild(li);});
+  var links=[].slice.call(toc.querySelectorAll('a'));
+  function spy(){var cur=0;heads.forEach(function(h,i){if(h.getBoundingClientRect().top<120)cur=i;});links.forEach(function(a,i){a.classList.toggle('on',i===cur);});}
+  window.addEventListener('scroll',spy,{passive:true});spy();
+  [].slice.call(body.querySelectorAll('pre')).forEach(function(p){
+    var w=document.createElement('div');w.className='pg-pre';p.parentNode.insertBefore(w,p);w.appendChild(p);
+    var b=document.createElement('button');b.className='pg-copy';b.type='button';b.textContent='Copy';
+    b.addEventListener('click',function(){var t=p.innerText;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1200)},function(){b.textContent='Select + copy'});});
+    w.appendChild(b);
+  });
+  var find=document.getElementById('pg-find');
+  function clear(){[].slice.call(body.querySelectorAll('mark')).forEach(function(m){var t=document.createTextNode(m.textContent);m.parentNode.replaceChild(t,m);});body.normalize();}
+  find.addEventListener('input',function(){
+    clear();var q=find.value.trim();if(q.length<3)return;
+    var rx=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+    var walker=document.createTreeWalker(body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){return n.parentNode.closest('svg,script,style,mark,.demo')?NodeFilter.FILTER_REJECT:(rx.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT)}});
+    var nodes=[],n;while(n=walker.nextNode())nodes.push(n);
+    nodes.slice(0,200).forEach(function(node){rx.lastIndex=0;var frag=document.createDocumentFragment(),last=0,m,s=node.nodeValue;while((m=rx.exec(s))){frag.appendChild(document.createTextNode(s.slice(last,m.index)));var mk=document.createElement('mark');mk.textContent=m[0];frag.appendChild(mk);last=m.index+m[0].length;if(m[0].length===0)rx.lastIndex++;}frag.appendChild(document.createTextNode(s.slice(last)));node.parentNode.replaceChild(frag,node);});
+    var first=body.querySelector('mark');if(first)first.scrollIntoView({block:'center'});
+  });
+  document.getElementById('pg-open').addEventListener('click',function(){[].slice.call(document.querySelectorAll('details')).forEach(function(d){d.open=true;});});
+  document.getElementById('pg-close').addEventListener('click',function(){[].slice.call(document.querySelectorAll('details')).forEach(function(d){d.open=false;});});
+})();
+
+(function(){
+function $(i){return document.getElementById(i);}
+function qa(s,r){return [].slice.call((r||document).querySelectorAll(s));}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+function val(n){var c=document.querySelector('input[name="'+n+'"]:checked');return c?c.value:null;}
+
+/* 1 identity */
+(function(){
+  var nav=$('id-navbar'),foot=$('id-footer');
+  function draw(){
+    var n=val('id-nav'),f=val('id-foot');
+    nav.textContent=n==='topic'?'Topic menu (public topics)  |  Search all of the public site':'Local menu:  Home  |  Finance  |  HR  |  IT  |  Facilities';
+    foot.textContent=f==='full'?'Full government footer: contact, about, themes and signature blocks':(f==='compact'?'Compact footer: site name, privacy, terms, accessibility, contact':'No government footer. Local footer only: owner, last reviewed, contact');
+    $('id-crumbs').style.display=$('id-crumb').checked?'':'none';
+    $('id-searchbox').style.display=$('id-search').checked?'':'none';
+    $('id-log').textContent='Navigation: '+(n==='topic'?'public topic menu':'local menu')+'\nFooter: '+f+'\nBreadcrumbs: '+($('id-crumb').checked?'on':'off')+'\nLocal search: '+($('id-search').checked?'on':'off')+'\nSignature: approved file only; cleared with the identity program coordinator\nDecided by: product owner  |  Review: yearly';
+  }
+  qa('#d-id input').forEach(function(i){i.addEventListener('change',draw);});draw();
+})();
+
+/* 2 density */
+(function(){
+  var rows=[['Submit a travel claim','Finance','2 months'],['Request leave','HR','3 months'],['Order a laptop','IT','1 month'],['Book a meeting room','Facilities','4 months'],['Reset your password','IT','2 months'],['Accessibility accommodation','HR','2 months'],['Parking and bike storage','Facilities','11 months'],['Payroll calendar','Finance','6 months'],['Report a security incident','IT','1 month'],['Telework agreement','HR','14 months'],['Request a badge','Facilities','5 months'],['Update emergency contact','HR','7 months']];
+  var tb=$('den-body');rows.forEach(function(r){var tr=el('tr');r.forEach(function(c){tr.appendChild(el('td',null,c));});tb.appendChild(tr);});
+  var v=$('den-view');
+  function draw(){
+    var c=val('den')==='compact';
+    v.style.setProperty('--den-fs',c?'13.5px':'15px');v.style.setProperty('--den-lh',c?'1.35':'1.6');v.style.setProperty('--den-pad',c?'4px':'10px');
+    var h=v.clientHeight,hd=v.querySelector('thead').offsetHeight,rh=tb.rows[0].offsetHeight;
+    $('den-count').textContent=Math.floor((h-hd)/rh);
+    $('den-css').textContent=c?'.dense-view {\n  --gcds-spacing-100: 4px;   /* global tokens, set once */\n  --gcds-spacing-200: 8px;\n  font-size: 0.9rem;         /* documented in the override register */\n  line-height: 1.35;\n}':'/* No variant: the shipped tokens apply. */';
+  }
+  qa('#d-den input').forEach(function(i){i.addEventListener('change',draw);});draw();window.addEventListener('resize',draw);
+})();
+
+/* 3 french */
+(function(){
+  var S=[['Submit claim','Soumettre une demande'],['Request leave','Demander un congé'],['Book a room','Réserver une salle'],['Reset password','Changer le mot de passe'],['Find a colleague','Trouver un collègue']];
+  function draw(){
+    var fr=val('fr')==='fr';
+    [$('fr-fixed'),$('fr-flex')].forEach(function(b,i){b.textContent='';S.forEach(function(s){var x=el('button',null,s[fr?1:0]);x.type='button';if(i===0){x.title=s[fr?1:0];if(s[fr?1:0].length<=22)x.className='ok';}b.appendChild(x);});});
+    var e=0,f=0;S.forEach(function(s){e+=s[0].length;f+=s[1].length;});
+    $('fr-pct').textContent=fr?'+'+Math.round((f/e-1)*100)+'%':'0%';
+  }
+  qa('#d-fr input').forEach(function(i){i.addEventListener('change',draw);});draw();
+})();
+
+/* 4 search */
+(function(){
+  var D=[
+   {id:1,t:'Submit a travel claim',type:'Form',sec:'Finance',own:'Finance Services',age:2,kw:'travel expense reimbursement claim receipts',s:'Claim travel costs after a trip. Attach receipts and send to your manager.'},
+   {id:2,t:'Travel policy summary',type:'Policy',sec:'Finance',own:'Finance Services',age:5,kw:'travel policy per diem hotel',s:'Rates, approvals and booking rules for work travel.'},
+   {id:3,t:'Old travel claim FAQ',type:'Guide',sec:'Finance',own:'',age:40,kw:'travel claim faq',s:'Answers to questions about the 2019 claim form.'},
+   {id:4,t:'Request leave',type:'Form',sec:'HR',own:'HR Services',age:3,kw:'leave vacation holiday time off absence',s:'Ask for annual, sick or family leave and see your balance.'},
+   {id:5,t:'Leave and vacation policy',type:'Policy',sec:'HR',own:'HR Policy',age:8,kw:'leave vacation holiday entitlement',s:'How much leave you earn and how to carry it over.'},
+   {id:6,t:'Telework agreement',type:'Policy',sec:'HR',own:'HR Policy',age:14,kw:'telework remote work from home wfh hybrid',s:'Who can work from home, how often, and what to agree with your manager.'},
+   {id:7,t:'Order a laptop or device',type:'Service',sec:'IT',own:'IT Service Desk',age:1,kw:'laptop computer device equipment hardware',s:'Request a new or replacement device and track delivery.'},
+   {id:8,t:'Reset your password',type:'Guide',sec:'IT',own:'IT Service Desk',age:2,kw:'password login account locked sign in',s:'Unlock your account or choose a new password in five steps.'},
+   {id:9,t:'Parking and bike storage',type:'Service',sec:'Facilities',own:'Facilities',age:11,kw:'parking bicycle bike storage permit',s:'Apply for a parking permit or a secure bike spot.'},
+   {id:10,t:'Book a meeting room',type:'Service',sec:'Facilities',own:'Facilities',age:4,kw:'meeting room booking space',s:'Find an available room, with accessibility details for each.'},
+   {id:11,t:'Payroll calendar',type:'Guide',sec:'Finance',own:'Pay Services',age:6,kw:'pay payroll salary paydays deposit',s:'Pay dates, cut-off dates and holidays that move them.'},
+   {id:12,t:'Accessibility accommodation request',type:'Form',sec:'HR',own:'HR Services',age:2,kw:'accommodation accessibility adaptive needs',s:'Ask for equipment or changes so you can do your work.'},
+   {id:13,t:'Report a security incident',type:'Guide',sec:'IT',own:'IT Security',age:1,kw:'phishing security incident suspicious email report',s:'What to do and who to call if you think something is wrong.'},
+   {id:14,t:'Winter weather office closure',type:'News',sec:'Facilities',own:'',age:30,kw:'closure weather snow storm office',s:'Notice from two winters ago about office closures.'}
+  ];
+  var SYN={holiday:['leave','vacation'],vacation:['leave'],'time':['leave'],pay:['salary','payroll'],salary:['payroll'],wfh:['telework','remote'],home:['telework'],computer:['laptop','device'],laptop:['device'],bike:['bicycle'],car:['parking'],email:['phishing'],hacked:['security','incident'],reimbursement:['claim','expense']};
+  var L={en:{q:'Search the intranet',go:'Search',type:'Type',sec:'Section',res:'results',res1:'result',pop:'Popular searches:',own:'Owner',rev:'Reviewed',mo:'months ago',prev:'Preview',none:'No owner',stale:'May be out of date',cur:'Owned and current',best:'Best bet',zero:'No results. Try fewer words, browse a section, or ask the help desk.',dym:'Did you mean',syn:'Matched',as:'as',close:'Included close spellings.',hide:'Hide preview'},
+         fr:{q:'Rechercher dans l’intranet',go:'Rechercher',type:'Type',sec:'Section',res:'résultats',res1:'résultat',pop:'Recherches populaires :',own:'Responsable',rev:'Révisé il y a',mo:'mois',prev:'Aperçu',none:'Aucun responsable',stale:'Peut être périmé',cur:'Responsable désigné, à jour',best:'Meilleur choix',zero:'Aucun résultat. Essayez moins de mots, parcourez une section ou joignez le centre de dépannage.',dym:'Vouliez-vous dire',syn:'Correspondance :',as:'pour',close:'Orthographes proches incluses.',hide:'Masquer l’aperçu'}};
+  var BEST={leave:4,laptop:7,password:8};
+  var st={syn:true,fuzzy:false,boost:false,badge:true,hover:true,best:false,type:{},sec:{},lang:'en'};
+  var vocab={};D.forEach(function(d){(d.t+' '+d.kw+' '+d.s).toLowerCase().split(/[^a-zà-ÿ]+/).forEach(function(w){if(w.length>2)vocab[w]=1;});});
+  function lev(a,b){var m=a.length,n=b.length,p=[],i,j;for(j=0;j<=n;j++)p[j]=j;for(i=1;i<=m;i++){var c=[i];for(j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c;}return p[n];}
+  function wmatch(q,w){if(w===q)return 1;if(q.length>=3&&w.indexOf(q)===0)return 0.9;if(st.fuzzy&&q.length>=4&&Math.abs(q.length-w.length)<=2){var d=lev(q,w);if(d<=(q.length>=8?2:1))return 0.6;}return 0;}
+  function fieldScore(q,txt){var best=0,ws=txt.toLowerCase().split(/[^a-zà-ÿ]+/);ws.forEach(function(w){var m=wmatch(q,w);if(m>best)best=m;});return best;}
+  function docScore(d,v){return Math.max(6*fieldScore(v,d.t),4*fieldScore(v,d.kw),2*fieldScore(v,d.s));}
+  function run(q){
+    var toks=q.toLowerCase().split(/[^a-zà-ÿ]+/).filter(Boolean),out=[],notes=[],fuzzyUsed=false;
+    D.forEach(function(d){
+      var total=0,ok=true,via=[];
+      toks.forEach(function(t){
+        var s=docScore(d,t),v=t;
+        if(st.syn&&SYN[t]){SYN[t].forEach(function(sv){var ss=docScore(d,sv)*0.75;if(ss>s){s=ss;v=sv;}});}
+        if(s===0)ok=false;else{total+=s;if(v!==t)via.push([t,v]);}
+        if(s>0&&st.fuzzy&&docScore(d,t)>0&&docScore(d,t)<6*0.7&&!fieldHasExact(d,t))fuzzyUsed=true;
+      });
+      if(!ok||!toks.length)return;
+      if(st.boost){if(d.own&&d.age<=12)total+=3;else total-=4;}
+      if(st.best&&toks.length&&BEST[toks[0]]===d.id)total+=50;
+      out.push({d:d,s:total,via:via,best:st.best&&BEST[toks[0]]===d.id});
+    });
+    out.sort(function(a,b){return b.s-a.s;});
+    return {out:out,fuzzy:fuzzyUsed,toks:toks};
+  }
+  function fieldHasExact(d,t){return (d.t+' '+d.kw+' '+d.s).toLowerCase().split(/[^a-zà-ÿ]+/).indexOf(t)>-1;}
+  function mark(node,text,toks){
+    var terms=toks.slice();Object.keys(SYN).forEach(function(k){});
+    var rx=null,esc=function(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');};
+    var words=text.split(/(\s+)/);
+    words.forEach(function(w){var lw=w.toLowerCase().replace(/[^a-zà-ÿ]/g,''),hit=false;if(lw.length>1){toks.forEach(function(t){if(wmatch(t,lw)>0)hit=true;if(st.syn&&SYN[t])SYN[t].forEach(function(sv){if(wmatch(sv,lw)>0)hit=true;});});}
+      if(hit){var m=el('mark',null,w);node.appendChild(m);}else node.appendChild(document.createTextNode(w));});
+  }
+  var pv=$('pv'),pvCur=null,pvT=null,logEl=$('log');
+  function log(s){logEl.textContent='Behaviour log: '+s;}
+  function pvShow(a,d){
+    pv.textContent='';var b=el('b',null,d.t);pv.appendChild(b);pv.appendChild(el('span',null,d.s));
+    pv.appendChild(el('i',null,L[st.lang].own+': '+(d.own||L[st.lang].none)+'  |  '+L[st.lang].rev+' '+d.age+' '+L[st.lang].mo));
+    pv.hidden=false;var demo=$('d-search'),r=a.getBoundingClientRect(),dr=demo.getBoundingClientRect();
+    pv.style.left=Math.max(6,Math.min(r.left-dr.left,demo.clientWidth-pv.offsetWidth-8))+'px';pv.style.top=(r.bottom-dr.top+6)+'px';
+    if(pvCur&&pvCur!==a)pvCur.removeAttribute('aria-describedby');pvCur=a;a.setAttribute('aria-describedby','pv');log('preview shown for "'+d.t+'"');
+  }
+  function pvHide(why){pv.hidden=true;if(pvCur){pvCur.removeAttribute('aria-describedby');pvCur=null;}if(why)log('preview closed ('+why+')');}
+  pv.addEventListener('mouseenter',function(){clearTimeout(pvT);});
+  pv.addEventListener('mouseleave',function(){pvT=setTimeout(function(){pvHide('pointer left the card');},150);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!pv.hidden){pvHide('Esc pressed, focus stays where it was');}});
+  function render(){
+    var q=$('q').value,r=run(q),T=L[st.lang],res=$('res'),zero=$('zero');
+    var out=r.out.filter(function(x){var ty=Object.keys(st.type).filter(function(k){return st.type[k];}),se=Object.keys(st.sec).filter(function(k){return st.sec[k];});return (!ty.length||ty.indexOf(x.d.type)>-1)&&(!se.length||se.indexOf(x.d.sec)>-1);});
+    res.textContent='';pvHide();
+    $('count').textContent=out.length+' '+(out.length===1?T.res1:T.res);
+    var note=$('note');note.textContent='';
+    if(r.fuzzy&&st.fuzzy)note.appendChild(document.createTextNode(T.close));
+    zero.hidden=out.length>0;zero.textContent='';
+    if(!out.length){zero.appendChild(el('p',null,T.zero));
+      var best=null,bd=9;r.toks.forEach(function(t){Object.keys(vocab).forEach(function(w){var d=lev(t,w);if(d<bd&&d<=2&&t.length>=4){bd=d;best=w;}});});
+      if(best&&!st.fuzzy||best&&r.toks.indexOf(best)<0){var p=el('p',null,T.dym+' ');var b=el('button',null,best);b.type='button';b.className='sec';b.addEventListener('click',function(){$('q').value=best;render();});p.appendChild(b);p.appendChild(document.createTextNode(' ?'));zero.appendChild(p);}
+      var row=el('p');['Finance','HR','IT','Facilities'].forEach(function(s){var b=el('button',null,s);b.type='button';b.className='sec';b.style.marginRight='6px';b.addEventListener('click',function(){st.sec={};st.sec[s]=true;buildFacets();render();});row.appendChild(b);});zero.appendChild(row);}
+    out.forEach(function(x,i){
+      var d=x.d,li=el('li',x.best?'best':'');
+      var h=el('h4'),a=el('a');a.href='#';a.setAttribute('data-id',d.id);mark(a,d.t,r.toks);h.appendChild(a);
+      if(x.best){var bt=el('span','tag ok',T.best);h.appendChild(document.createTextNode(' '));h.appendChild(bt);}
+      li.appendChild(h);
+      var m=el('div','meta');m.appendChild(el('span','tag',d.type));m.appendChild(el('span','tag',d.sec));
+      if(st.badge){var stale=d.age>12||!d.own;m.appendChild(el('span','tag '+(stale?'warn':'ok'),stale?T.stale:T.cur));m.appendChild(document.createTextNode(T.own+': '+(d.own||T.none)+'  |  '+T.rev+' '+d.age+' '+T.mo));}
+      li.appendChild(m);
+      var sn=el('div','snip');mark(sn,d.s,r.toks);li.appendChild(sn);
+      if(x.via.length){var vv=el('div','meta',T.syn+' “'+x.via[0][0]+'” '+T.as+' “'+x.via[0][1]+'”');li.appendChild(vv);}
+      var pb=el('button','sec prev-btn',T.prev);pb.type='button';pb.setAttribute('aria-expanded','false');
+      pb.addEventListener('click',function(){var ex=li.querySelector('.inline-prev');if(ex){ex.remove();pb.setAttribute('aria-expanded','false');pb.textContent=T.prev;log('inline preview closed (works with keyboard and touch)');}else{var ip=el('div','inline-prev',d.s+' — '+T.own+': '+(d.own||T.none)+', '+T.rev+' '+d.age+' '+T.mo);li.appendChild(ip);pb.setAttribute('aria-expanded','true');pb.textContent=T.hide;log('inline preview opened with the button (no hover needed)');}});
+      li.appendChild(pb);
+      a.addEventListener('click',function(e){e.preventDefault();log('would open "'+d.t+'" (demo only)');});
+      if(st.hover){
+        a.addEventListener('mouseenter',function(){clearTimeout(pvT);pvShow(a,d);});
+        a.addEventListener('mouseleave',function(){pvT=setTimeout(function(){pvHide('pointer left the link');},180);});
+        a.addEventListener('focus',function(){pvShow(a,d);});
+        a.addEventListener('blur',function(){pvT=setTimeout(function(){pvHide('focus moved away');},120);});
+      }
+      res.appendChild(li);
+    });
+  }
+  function buildFacets(){
+    var T=L[st.lang];$('lg-type').textContent=T.type;$('lg-sec').textContent=T.sec;
+    [['f-type','type'],['f-sec','sec']].forEach(function(p){
+      var box=$(p[0]);box.textContent='';var k={};D.forEach(function(d){k[d[p[1]]]=(k[d[p[1]]]||0)+1;});
+      Object.keys(k).sort().forEach(function(v){var lb=el('label'),c=document.createElement('input');c.type='checkbox';c.checked=!!st[p[1]][v];c.addEventListener('change',function(){st[p[1]][v]=c.checked;render();});lb.appendChild(c);lb.appendChild(document.createTextNode(' '+v+' ('+k[v]+')'));box.appendChild(lb);});
+    });
+  }
+  function labels(){var T=L[st.lang];$('q-label').textContent=T.q;$('q-go').textContent=T.go;var pop=$('pop');pop.textContent=T.pop+' ';['holiday','leve','wfh','laptop','pay','parking'].forEach(function(w){var b=el('button',null,w);b.type='button';b.addEventListener('click',function(){$('q').value=w;render();});pop.appendChild(b);});buildFacets();}
+  qa('#d-search [data-o]').forEach(function(c){c.addEventListener('change',function(){st[c.getAttribute('data-o')]=c.checked;render();});});
+  qa('#d-search input[name="sl"]').forEach(function(r){r.addEventListener('change',function(){st.lang=r.value;labels();render();});});
+  $('q').addEventListener('input',render);$('q-go').addEventListener('click',render);
+  $('q').addEventListener('keydown',function(e){if(e.key==='Enter')render();});
+  st.syn=true;st.badge=true;st.hover=true;labels();render();
+})();
+
+/* 5 hover terms */
+(function(){
+  var tip=el('div','tip');tip.setAttribute('role','tooltip');tip.id='term-tip';tip.hidden=true;$('d-hov').appendChild(tip);
+  var cur=null,t=null;
+  function show(e){clearTimeout(t);tip.textContent='';tip.appendChild(el('b',null,e.getAttribute('data-t')));tip.appendChild(el('span',null,e.getAttribute('data-d')));var n=e.getAttribute('data-n');if(n)tip.appendChild(el('i',null,n));tip.hidden=false;
+    var box=$('d-hov'),r=e.getBoundingClientRect(),br=box.getBoundingClientRect();tip.style.left=Math.max(6,Math.min(r.left-br.left,box.clientWidth-tip.offsetWidth-8))+'px';tip.style.top=(r.bottom-br.top+6)+'px';if(cur&&cur!==e)cur.removeAttribute('aria-describedby');cur=e;e.setAttribute('aria-describedby','term-tip');}
+  function hide(){t=setTimeout(function(){tip.hidden=true;if(cur){cur.removeAttribute('aria-describedby');cur=null;}},150);}
+  qa('.term').forEach(function(e){e.addEventListener('mouseenter',function(){show(e);});e.addEventListener('mouseleave',hide);e.addEventListener('focus',function(){show(e);});e.addEventListener('blur',hide);
+    e.addEventListener('click',function(){if(cur===e&&!tip.hidden){tip.hidden=true;cur.removeAttribute('aria-describedby');cur=null;}else show(e);});
+    e.addEventListener('keydown',function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();e.click();}});});
+  tip.addEventListener('mouseenter',function(){clearTimeout(t);});tip.addEventListener('mouseleave',hide);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!tip.hidden){tip.hidden=true;if(cur){cur.removeAttribute('aria-describedby');cur=null;}}});
+})();
+
+/* 6 engagement */
+(function(){
+  var now=[{t:'Child bike, 16 inch',k:'sale',d:6,by:'Priya'},{t:'Looking for a used standing desk',k:'wanted',d:11,by:'Sam'},{t:'Moving boxes, about 20',k:'free',d:3,by:'Chris'},{t:'Camping stove, barely used',k:'sale',d:1,by:'Alex'}];
+  var KL={sale:'For sale',wanted:'Wanted',free:'Free'};
+  function draw(){
+    var f=val('bbf'),ul=$('bb-list');ul.textContent='';var n=0;
+    now.forEach(function(p,i){if(p.d<=0)return;if(f!=='all'&&p.k!==f)return;n++;
+      var li=el('li',p.rep?'rep':'');li.appendChild(el('span','t',p.t));li.appendChild(el('div','m',KL[p.k]+'  |  by '+p.by+'  |  expires in '+p.d+' day'+(p.d===1?'':'s')));
+      var c=el('button','sec','Contact via directory');c.type='button';c.addEventListener('click',function(){$('bb-msg').textContent='Opens the staff directory card for '+p.by+'. No email address is shown on the board.';});
+      var r=el('button','sec',p.rep?'Reported':'Report');r.type='button';r.disabled=!!p.rep;r.addEventListener('click',function(){p.rep=true;$('bb-msg').textContent='Thanks. The post is held for the board owner to review. It stays visible only to the owner until then.';draw();});
+      li.appendChild(c);li.appendChild(r);
+      if(p.rep){li.appendChild(el('div','m','Held for review'));}
+      ul.appendChild(li);});
+    var shown=now.filter(function(p){return p.d>0&&!p.rep;}).length;$('bb-n').textContent=shown;
+  }
+  qa('#d-bb input[name="bbf"]').forEach(function(r){r.addEventListener('change',draw);});
+  $('bb-form').addEventListener('submit',function(e){e.preventDefault();var t=$('bb-t').value.trim();if(!t)return;
+    if(!$('bb-ok').checked){$('bb-msg').textContent='Please agree with the posting rules first.';return;}
+    if(/\b(car|truck|vehicle|puppy|dog|cat|gun)\b/i.test(t)){$('bb-msg').textContent='This looks like something the rules do not allow (vehicles, animals, weapons). It was not posted.';return;}
+    now.unshift({t:t,k:$('bb-k').value,d:parseInt($('bb-d').value,10),by:'You'});$('bb-t').value='';$('bb-msg').textContent='Posted. It expires on its own after '+$('bb-d').value+' days, and you get a reminder before then.';draw();});
+  draw();
+  var kos=[];
+  var RULE={team:'Visible to the person and their team. Good default: warm, low risk.',all:'Visible to everyone. The sender is shown. A moderator sees it first if it names a client, a price or a complaint.',private:'Only the person sees it. Nothing is added to the wall. Useful for feedback that is not for display.'};
+  function kdraw(){var v=val('ko-vis');$('ko-rule').textContent=RULE[v];var ul=$('ko-list');ul.textContent='';kos.forEach(function(k){var li=el('li');li.appendChild(el('span','t','To '+k.to+': '+k.v));li.appendChild(el('div',null,'“'+k.m+'”'));li.appendChild(el('div','m','Visible to: '+({team:'their team',all:'everyone',private:'only them'})[k.vis]+(k.hold?'  |  held for moderator':'')));ul.appendChild(li);});}
+  qa('#d-ko input[name="ko-vis"]').forEach(function(r){r.addEventListener('change',kdraw);});
+  $('ko-form').addEventListener('submit',function(e){e.preventDefault();var m=$('ko-m').value.trim();if(!m)return;var vis=val('ko-vis');kos.unshift({to:$('ko-to').value,v:$('ko-v').value,m:m,vis:vis,hold:vis==='all'&&/\$|client|complain|price/i.test(m)});if(kos.length>4)kos.pop();kdraw();});
+  kdraw();
+})();
+
+/* 7 lanes */
+(function(){
+  function draw(){
+    var a=val('l1'),b=val('l2'),c=val('l3'),o=$('lane-out');if(!a||!b||!c){o.textContent='Answer all three questions.';return;}
+    var t,d;
+    if(a==='y'&&c==='n'){t='Use the core component as shipped.';d='Nothing to build. Record the page in your inventory.';}
+    else if(c==='y'){t='Stop. This is a deviation.';d='Prefer a token change. If that is not enough, gather user research and a written reason, add a line to the override register, and get approval. Never edit the inside of a core component.';}
+    else if(a==='p'||a==='n'){if(b==='y'){t='Plugin lane (shared prefix).';d='Build it as a plugin on global tokens, with its own owner and tests. Offer it upstream so you do not carry it alone.';}else{t='Organization lane (your own prefix).';d='Build on global tokens for something truly local. Keep this lane small. Revisit it each release to see if it can move up.';}}
+    else{t='Check again.';d='Answers do not point to a single lane.';}
+    o.textContent='';o.appendChild(el('strong',null,t));o.appendChild(document.createTextNode(d));
+  }
+  qa('#d-lane input').forEach(function(i){i.addEventListener('change',draw);});draw();
+})();
+})();
+
+</script>
+</body>
+</html>
+
+{% endraw %}

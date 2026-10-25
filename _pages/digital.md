@@ -24,6 +24,7 @@ Notes on how digital services get designed, built and run, with a focus on gover
 ## Building a government website
 - [Creating a Government Website: How the Pieces Fit]({{ '/creating-a-government-website/' | relative_url }}) - one map from design to delivery, hosting, operations and ownership, with links to every page below.
 - [GC Design System on an Intranet]({{ '/gc-design-system-on-an-intranet/' | relative_url }}) - install routes, keys to success and decisions.
+- [Changing the GC Design System for an Intranet]({{ '/changing-the-gc-design-system-for-an-intranet/' | relative_url }}) - keep, change, add; and the [working examples]({{ '/gcds-intranet-examples/' | relative_url }}) with search enhancements, hover cards, a bulletin board and a recognition wall (standalone page).
 - [CI/CD Pipeline Guide]({{ '/cicd-pipeline-guide/' | relative_url }}) - a full guide with a gate filter by maturity level (standalone page).
 - [DevOps Definitions]({{ '/devops-definitions/' | relative_url }}) - nineteen terms, searchable (standalone page).
 - [Podman to Kubernetes]({{ '/podman-to-kubernetes/' | relative_url }}) - a working paper with code, diagrams, change map and sizing (standalone page).

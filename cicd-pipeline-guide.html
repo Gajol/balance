@@ -663,7 +663,7 @@ footer a { color: var(--c-link-light); }
 
     <div class="notice warning" role="status">
       <h3>Confirm with Security and the NOC</h3>
-      <p>Required log fields, retention periods and severity levels differ between organizations. Treat the lists above as a starting point.</p>
+      <p>Required log fields, retention periods and severity levels differ between departments. Treat the lists above as a starting point.</p>
     </div>
   </section>
 
@@ -755,7 +755,7 @@ footer a { color: var(--c-link-light); }
   find.addEventListener('input',function(){
     clear();var q=find.value.trim();if(q.length<3)return;
     var rx=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
-    var walker=document.createTreeWalker(body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){return n.parentNode.closest('svg,script,style,mark')?NodeFilter.FILTER_REJECT:(rx.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT)}});
+    var walker=document.createTreeWalker(body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){return n.parentNode.closest('svg,script,style,mark,.demo')?NodeFilter.FILTER_REJECT:(rx.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT)}});
     var nodes=[],n;while(n=walker.nextNode())nodes.push(n);
     nodes.slice(0,200).forEach(function(node){rx.lastIndex=0;var frag=document.createDocumentFragment(),last=0,m,s=node.nodeValue;while((m=rx.exec(s))){frag.appendChild(document.createTextNode(s.slice(last,m.index)));var mk=document.createElement('mark');mk.textContent=m[0];frag.appendChild(mk);last=m.index+m[0].length;if(m[0].length===0)rx.lastIndex++;}frag.appendChild(document.createTextNode(s.slice(last)));node.parentNode.replaceChild(frag,node);});
     var first=body.querySelector('mark');if(first)first.scrollIntoView({block:'center'});
