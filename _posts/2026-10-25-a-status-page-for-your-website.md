@@ -25,9 +25,21 @@ It does not list servers or software. A customer cannot act on "database cluster
 
 1. **Name features the way people do.** List what staff do, not what you run.
 2. **Use a short, fixed set of statuses.** For example: Working, Slower than usual, Not working, Planned maintenance, Not known. Write each one in English and French.
-3. **Let automated checks set the status.** A check uses the feature like a person would, once a minute. If the check goes quiet, the status becomes "Not known". It never stays at "Working" by default.
+3. **Let signals set the status, not only checks.** A check uses the feature like a person would, once a minute. Events the platform already records count too, such as how old the search index is. A heartbeat shows each source is alive. If a source goes quiet, the status becomes "Not known". It never stays at "Working" by default.
 4. **Let a named owner explain it.** A short note says what is wrong, what to do and when the next update comes. The owner is a position, not a person.
 5. **Serve the page apart from the site.** A banner inside the main site goes down with the site. A small static page, on its own, still loads.
+
+## Two examples
+
+**Search** (CMS page, search engine, analytics tool). Three signals:
+
+- A check runs one known English and one known French query and expects a known test page back. If it fails, the status is "Not working".
+- Index lag, per language. If the newest published page is missing from the index for too long, the status is "Slower than usual".
+- The analytics tool's search counts and zero-result rate, per language. A jump in searches with no results, or searches falling to near zero during working hours, flags the owner. It does not change the status alone, because usage numbers are slow and noisy.
+
+**Usage reports** (analytics tool). Three signals: a heartbeat that the last tracking hit arrived recently, the last report job finished, and the report page opens. If hits stop while the site is up, the status is "Not known", and the note tells owners their numbers may be incomplete.
+
+The rule behind both: a failed check or an event past its limit can change the status. Usage numbers only raise a flag. The worst status among the signals wins. Use aggregate counts only, never one person's searches.
 
 ## What changes on a government network
 
