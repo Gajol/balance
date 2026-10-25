@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Application Reference Architecture, Updated: A Modern View"
-date: 2026-10-25 19:50:00 -0400
+date: 2026-10-25 01:00:00 -0400
 description: "A short, modern reference for building government applications: what still holds from the 2022 article, what changed, and the defaults to use today."
 excerpt: "A short, modern reference for building government applications: what still holds from the 2022 article, what changed, and the defaults to use today."
 theme: digital
