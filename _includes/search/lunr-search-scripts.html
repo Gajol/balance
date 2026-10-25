@@ -1,0 +1,32 @@
+<link href="{{ '/pagefind/pagefind-ui.css' | relative_url }}" rel="stylesheet">
+<style>
+  #pagefind-search {
+    --pagefind-ui-scale: .9;
+    --pagefind-ui-primary: #333;
+    --pagefind-ui-text: #333;
+    --pagefind-ui-background: #fff;
+    --pagefind-ui-border: #8c8c8c;
+    --pagefind-ui-tag: #eee;
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 3px;
+    --pagefind-ui-font: inherit;
+    max-width: 1100px; margin: 0 auto; padding: 0 1em 1em;
+    max-height: 80vh; overflow: auto;
+  }
+  #pagefind-search mark { background: #e6e6e6; color: #000; }
+</style>
+<script src="{{ '/pagefind/pagefind-ui.js' | relative_url }}"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    if (typeof PagefindUI === 'undefined') { return; }
+    new PagefindUI({
+      element: '#pagefind-search',
+      baseUrl: '{{ "/" | relative_url }}',
+      showSubResults: true,
+      showImages: false,
+      excerptLength: 25,
+      pageSize: 8,
+      translations: { placeholder: 'Search the site' }
+    });
+  });
+</script>

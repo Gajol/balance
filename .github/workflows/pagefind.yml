@@ -27,7 +27,7 @@ jobs:
           JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PAGES_REPO_NWO: ${{ github.repository }}
       - name: Build index
-        run: npx -y pagefind@1.5.2 --site _site --output-path pagefind
+        run: npx -y pagefind@1.5.2 --site _site --output-path pagefind --force-language en
       - name: Commit index
         run: |
           git config user.name "github-actions[bot]"
