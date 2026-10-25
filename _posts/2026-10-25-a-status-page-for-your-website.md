@@ -55,7 +55,7 @@ The same checks and heartbeats that feed [security and operations monitoring]({{
 
 ## Go deeper
 
-- [PAT-015: Publish a status page]({{ '/architecture/pat-015/' | relative_url }}): the rule, two diagrams, the trade-offs and seven questions to ask a vendor.
+- [PAT-015: Publish a status page]({{ '/architecture/pat-015/' | relative_url }}): the rule, two diagrams, a journey map, a service blueprint, a wireframe, a detailed mockup, the trade-offs and seven questions to ask a vendor.
 - [Intranet Architecture Pattern Catalog]({{ '/architecture/pattern-catalog/' | relative_url }}): the other patterns it leans on.
 - [Observability and security monitoring]({{ '/observability-security-monitoring/' | relative_url }}): the signal path behind the checks.
 
