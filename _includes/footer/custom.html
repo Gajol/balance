@@ -2,3 +2,8 @@
 <p class="ai-credit" style="margin:.8em 0 0;font-size:.85em;opacity:.75;">
   &#10024; Written by Doug with help from <a href="https://claude.ai" rel="noopener">Claude</a>, an AI assistant from Anthropic. Doug chooses the topics and reviews what is published.
 </p>
+{%- assign pf_section = "Pages" -%}
+{%- if page.collection == "architecture" -%}{%- assign pf_section = "Patterns" -%}
+{%- elsif page.collection == "books" -%}{%- assign pf_section = "Book notes" -%}
+{%- elsif page.date -%}{%- assign pf_section = "Articles" -%}{%- endif -%}
+<meta data-pagefind-filter="Section[content]" content="{{ pf_section }}">
