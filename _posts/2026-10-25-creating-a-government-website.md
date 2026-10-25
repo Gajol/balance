@@ -75,12 +75,13 @@ The platform is not finished at launch. People use it, it ages and someone must 
 
 | If you are asking | Open |
 | :-- | :-- |
-| What should it look like, and what can we reuse? | Design system post |
-| How do we build a feature that fits? | Pattern catalog |
-| How do we release safely? | CI/CD short version, then the full guide |
-| Where does it run, and how do we move later? | Podman to Kubernetes |
-| How do security and operations see it? | Send logs once |
-| Who looks after it? | Reading guide for running it as a product |
+| What should it look like, and what can we reuse? | [Using the GC Design System on an Intranet]({{ '/gc-design-system-on-an-intranet/' | relative_url }}) |
+| How do we build a feature that fits? | [Intranet Architecture Pattern Catalog]({{ '/architecture/pattern-catalog/' | relative_url }}) |
+| How do we release safely? | [CI/CD short version]({{ '/cicd-for-a-web-platform/' | relative_url }}), then the [full CI/CD guide]({{ '/cicd-pipeline-guide/' | relative_url }}) |
+| What does this term mean? | [DevOps Definitions]({{ '/devops-definitions/' | relative_url }}) |
+| Where does it run, and how do we move later? | [Podman Now, Kubernetes Later]({{ '/podman-now-kubernetes-later/' | relative_url }}) and the [working paper]({{ '/podman-to-kubernetes/' | relative_url }}) |
+| How do security and operations see it? | [Send Logs Once, Route Many]({{ '/send-logs-once-route-many/' | relative_url }}) and the [working paper]({{ '/observability-security-monitoring/' | relative_url }}) |
+| Who looks after it? | [Running a Web Platform as a Product]({{ '/running-a-web-platform-as-a-product/' | relative_url }}) |
 
 ## What is generic here
 
