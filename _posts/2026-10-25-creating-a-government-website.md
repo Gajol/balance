@@ -36,7 +36,8 @@ Start with the federal design system. It gives tokens, accessible web components
 Build features from a short list of patterns, so each new feature looks like the last one.
 
 - [Intranet Architecture Pattern Catalog]({{ '/architecture/pattern-catalog/' | relative_url }}): the full list, from "Index, don't copy" to "Check accessibility at every gate".
-- [Application Reference Architecture]({{ '/architecture/application-reference-architecture/' | relative_url }}): the wider enterprise context.
+- [Application Reference Architecture: A Modern View]({{ '/application-reference-architecture-modern-view/' | relative_url }}): the short, current reference.
+- [Application Reference Architecture]({{ '/architecture/application-reference-architecture/' | relative_url }}): the long 2022 original.
 - [One Vocabulary]({{ '/one-vocabulary-for-search-analytics-navigation/' | relative_url }}): one taxonomy for search, analytics and navigation.
 
 ## 3. Delivery: one pipeline, a few gates
