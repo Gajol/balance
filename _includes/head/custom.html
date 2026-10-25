@@ -4,10 +4,11 @@
 <meta name="theme-color" content="#ffffff">
 
 <style>
-  /* wider reading area on big monitors; keeps the theme's side contents list */
+  /* Book pages keep a left contents list (sidebar), so they keep a 220px gutter.
+     All other pages use full-width: no gutter. Both share one 1500px frame. */
   body.wide-text .masthead__inner-wrap,
   body.wide-text .initial-content,
-  body.wide-text .page__footer { max-width: 1900px; }
+  body.wide-text .page__footer { max-width: 1500px; }
   /* extra-wide: content fills the space beside the sidebar (classes: wide-text wider) */
   @media (min-width: 80em) {
     body.wider .page { width: calc(100% - 220px); padding-right: 0; }
@@ -19,7 +20,7 @@
   /* Tags page */
   body.tags-page .masthead__inner-wrap,
   body.tags-page .initial-content,
-  body.tags-page .page__footer { max-width: 1900px; }
+  body.tags-page .page__footer { max-width: 1500px; }
   body.tags-page .page { width: 100%; padding-right: 0; float: none; }
   .tag-cloud { display: flex; flex-wrap: wrap; gap: .5em; margin: 1.2em 0 2.2em; }
   .tag-cloud a { display: inline-block; padding: .2em .7em; border: 1px solid #ccc; border-radius: 3px; background: transparent; color: #333; text-decoration: none; font-size: .95em; line-height: 1.4; }

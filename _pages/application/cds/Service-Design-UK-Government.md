@@ -4,13 +4,12 @@ excerpt: "How the UK government designs and runs public services: the Service St
 permalink: /application/cds/Service-Design-UK-Government
 layout: single
 author_profile: false
-classes: wide-text
+classes: full-width
 toc: true
 toc_sticky: true
 toc_label: "Contents"
 theme: digital
 tags: ["service design", government, ux]
-classes: full-width
 author_profile: false
 ---
 
