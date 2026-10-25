@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 130" role="img" aria-label="Grandpa's iPhone Help, with a Great Dane and Danish flag badge"><title>Grandpa's iPhone Help, with a Great Dane and Danish flag badge</title><rect x="2" y="2" width="636" height="126" rx="16" fill="#fff" stroke="#cfcfcf" stroke-width="2"/>
+<g transform="translate(18,15) scale(0.55)"><defs><clipPath id="cb2"><circle cx="100" cy="100" r="94"/></clipPath></defs>
+<g clip-path="url(#cb2)"><rect width="200" height="200" fill="#C8102E"/>
+<rect x="56" width="26" height="200" fill="#fff"/><rect y="87" width="200" height="26" fill="#fff"/>
+<g transform="translate(10,8) scale(0.92)" stroke-linejoin="round" stroke-linecap="round">
+<path d="M40 200 C45 160 55 140 62 118 C64 100 72 80 90 70 L112 62 C122 62 128 72 130 78 L138 84 L170 92 C178 94 182 100 181 108 L180 118 C178 128 172 132 166 134 L140 140 C130 146 125 160 120 175 L115 200 Z" fill="#3b3b3b" stroke="#fff" stroke-width="5"/>
+<path d="M88 72 C70 76 60 100 65 124 C68 136 82 136 87 124 C95 108 99 88 96 72 Z" fill="#1c1c1c" stroke="#fff" stroke-width="3"/>
+<path d="M179 116 C165 124 150 126 140 134" fill="none" stroke="#111" stroke-width="3"/>
+<ellipse cx="177" cy="101" rx="7" ry="6" fill="#0d0d0d"/>
+<path d="M119 83 L138 88" stroke="#111" stroke-width="3" fill="none"/>
+<circle cx="130" cy="93" r="5" fill="#f2f2f2"/><circle cx="131" cy="93" r="2.6" fill="#111"/>
+</g></g>
+<circle cx="100" cy="100" r="94" fill="none" stroke="#1a1a1a" stroke-width="6"/></g>
+<text x="150" y="66" font-family="Helvetica, Arial, sans-serif" font-size="38" font-weight="700" fill="#1a1a1a">Grandpa's iPhone Help</text>
+<text x="150" y="101" font-family="Helvetica, Arial, sans-serif" font-size="22" fill="#555">Simple steps. Big pictures.</text></svg>
