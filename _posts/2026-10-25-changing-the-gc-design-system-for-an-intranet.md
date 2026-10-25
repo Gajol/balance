@@ -26,6 +26,8 @@ The GC Design System is built for public service delivery first. An intranet sha
 | Delivery | Pin the version. Host the build yourself on an isolated network. |
 | Missing patterns | Build as plugins on global tokens, and offer them upstream. |
 
+Each example on the page ends with a box, **What changes in the design system**. It says the type of change (configuration, tokens, plugin or outside the design system), what is touched, what is left alone, who owns it and what evidence to keep. The search example updates that box as you switch features on and off. In every case the core design system is not changed.
+
 ## Differences between a public site and an intranet
 
 - **Identity.** Components carry public-site elements by default: a topic menu, a government footer, a signature. An intranet should keep only what it is allowed and needs.
