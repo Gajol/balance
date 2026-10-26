@@ -1004,7 +1004,7 @@ Doubt Everything: *De omnibus dubitandum*
 
 ## Next Read (2026)
 
-If you want one more book in this field, start with Vaclav Smil's newest, **[Numbers Tell Stories: How Data Can Reveal the Surprising Truths About Our World](https://vaclavsmil.com/publications/)** (2026). It continues the theme of this book: question the headline, and check the numbers and the scale. I have not read it yet, so this is a pick from the title and its place in his list, not a review.
+If you want one more book in this field, start with Vaclav Smil's newest, **[Numbers Tell Stories: How Data Can Reveal the Surprising Truths About Our World](https://vaclavsmil.com/publications/)** (2026). It continues the theme of this book: question the headline, and check the numbers and the scale. This is a pick based on the title and its place in his list, not a review.[^claude-next]
 
 Two other good follow-ups from [his publications list](https://vaclavsmil.com/publications/): *How to Feed the World* (2025) goes deeper on the food chapter, and *Speed: How It Explains the World* (2025) is another short, readable one. For a more hopeful counterpoint written for general readers, try Hannah Ritchie, *Not the End of the World* (2024), which is data-driven and easy to read.
 
@@ -1366,3 +1366,4 @@ G.forEach(function(g){
 })();
 </script>
 </div>
+[^claude-next]: The "Next Read" suggestions were found with help from [Claude.ai](https://claude.ai) (Anthropic's AI assistant).

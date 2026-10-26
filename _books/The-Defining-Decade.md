@@ -883,7 +883,7 @@ The book was first published in 2012 and revised in 2021.  Research and writing 
 
 ## Modern books that extend it
 
-I list these from my own knowledge. Please check titles and years before relying on them.
+These books pick up ideas from Meg Jay's work. Confirm titles and years with your library or publisher before you cite them.[^Claude]
 
 | Book | Author | Year | How it adds to Meg Jay |
 | --- | --- | --- | --- |
@@ -904,6 +904,8 @@ I list these from my own knowledge. Please check titles and years before relying
 - Bill Gates: Bill Gates is a believer in continual learning, and a growth mindset. *A growth mindset as the foundation and drive to stay curious and keep learning, says Gates, will help prepare students for immense changes that will take place in health care and climate change.*
 
 # Footnotes
+
+[^Claude]: The "Since the Book" section, including the research summary and the list of modern books, was researched and drafted with help from [Claude.ai](https://claude.ai) (Anthropic's AI assistant) and edited for this site.
 
 [^WeakTies]:  [https://en.wikipedia.org/wiki/Mark_Granovetter](https://en.wikipedia.org/wiki/Mark_Granovetter): Sociologist at Stanford University. He is best known for his work in [social network](https://en.wikipedia.org/wiki/Social_network) theory and in [economic sociology](https://en.wikipedia.org/wiki/Economic_sociology), particularly his theory on the spread of [information](https://en.wikipedia.org/wiki/Information) in social networks known as *The Strength of Weak Ties* (1973). In 1969 Granovetter submitted this paper to American Sociological Review, but it was rejected. Eventually this pioneering research was published in 1973 in American Journal of Sociology and became the most cited work in the social sciences.
 
