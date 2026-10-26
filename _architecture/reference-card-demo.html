@@ -1,0 +1,524 @@
+---
+title: "Reference card demo: find old content from the new site"
+excerpt: "Search for a topic and get a short card about the old site: its name, owner, top five documents with direct links, and a way to carry on with the same search. Try it with leave, telework or travel."
+last_modified_at: 2026-10-26T03:00:00-04:00
+layout: single
+classes: full-width
+toc: false
+author_profile: false
+theme: digital
+tags: [architecture, government, search]
+---
+<p class="small">This is a working demo of the pattern <a href="{{ '/architecture/pat-003/' | relative_url }}">PAT-003: Reference card</a>. It supports the proposal <a href="{{ '/architecture/legacy-content-findability-proposal/' | relative_url }}">Making legacy content findable in the new site</a>.</p>
+<p>Old content does not have to be copied to be found. When someone searches, the new site shows a short card about the old site. It has the site&rsquo;s name, an owner, a review date and the five most useful documents, each with a direct link. A button carries the same search words to the old site. The old site is plain on purpose, so you can see the contrast.</p>
+{% raw %}
+<style>
+.rcd{
+  --text:#333333; --text-2:#595959; --white:#ffffff; --light:#f2f2f2; --primary:#333333; --dark:#222222;
+  --link:#222222; --link-hover:#000000; --link-visited:#444444; --border:#8c8c8c; --focus:#000000;
+  --danger:#8a1c1c; --blue-50:#f2f2f2; --blue-700:#333333; --green-50:#f2f2f2; --green-700:#333333;
+  --yellow-50:#f7f7f7; --yellow-500:#8c8c8c; --gray-100:#e6e6e6;
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:40px; --s8:48px;
+  --font-h:-apple-system,BlinkMacSystemFont,"Roboto","Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --font-b:-apple-system,BlinkMacSystemFont,"Roboto","Segoe UI","Helvetica Neue",Arial,sans-serif;
+  font-family:var(--font-b);font-size:.98rem;line-height:1.6;color:var(--text);background:var(--white)}
+.rcd h1,.rcd h2,.rcd h3,.rcd h4{border:0;padding:0;font-family:var(--font-h);color:var(--text)}
+.rcd p{margin-top:0}
+.rcd table{display:table}
+.rcd .rmain{padding-top:var(--s5)}
+.rcd .band h2{color:#fff;font-size:1.7rem}
+.rcd :focus-visible{color:#fff}
+.rcd .legacy-link:focus-visible{color:#fff}
+.rcd .pin:focus-visible{background:var(--danger)}
+.rcd .demo-bar{background:var(--light);border:1px solid var(--border);font-size:.85rem}
+.rcd .demo-bar .wrap{display:flex;gap:var(--s4);align-items:center;justify-content:space-between;flex-wrap:wrap;padding:var(--s2) var(--s4)}
+.rcd .pin,.rcd .tag.rec{--x:0}
+.rcd .rbtn.primary{background:#222;border-color:#222;color:#fff}
+.rcd .rbtn.primary:hover{background:#000;border-color:#000;color:#fff}
+.rcd .rbtn{border-color:#222;color:#222}
+.rcd .rbtn:hover{background:var(--light);color:#000}
+.rcd .rbtn[aria-pressed="true"]{background:#333;border-color:#333;color:#fff}
+.rcd .band{background:#333}
+.rcd .layout{margin:0}
+.rcd .card-head{background:var(--light)}
+.rcd .card{border-color:#333}
+.rcd .tag.legacy{background:var(--yellow-50);border-color:#333;color:#333}
+.rcd .legacy-link:hover{background:var(--light);border-color:#333}
+.rcd .steps li{border-top-color:#333}
+.rcd aside.notes{background:var(--light);border-color:#333}
+.rcd .opt{border-color:#333}
+.rcd .pin.hl,.rcd .term.hl{outline-color:#8c8c8c}
+.rcd aside.notes li.hl{background:#ececec;outline-color:#8c8c8c}
+.rcd .opt tr.rec{background:#f2f2f2}
+.rcd .opt .tag.rec{border-color:#333;color:#333}
+.rcd .pin{background:#8a1c1c}
+.rcd .term{border-bottom-color:#222}
+.rcd *{box-sizing:border-box}
+.rcd{margin:0;font-family:var(--font-b);color:var(--text);background:var(--white);line-height:1.6;font-size:0.99rem}
+.rcd h1,.rcd h2,.rcd h3,.rcd h4{font-family:var(--font-h);line-height:1.25;margin:0 0 var(--s3);color:var(--text)}
+.rcd h1{font-size:1.98rem;font-weight:700}
+.rcd h2{font-size:1.54rem;font-weight:700}
+.rcd h3{font-size:1.21rem;font-weight:700}
+.rcd h4{font-size:0.99rem;font-weight:700}
+.rcd p{margin:0 0 var(--s4);max-width:65ch}
+.rcd a{color:var(--link);text-underline-offset:.2em}
+.rcd a:hover{color:var(--link-hover);text-decoration-thickness:2px}
+.rcd a:visited{color:var(--link-visited)}
+.rcd :focus-visible{outline:3px solid var(--focus);outline-offset:2px;background:var(--focus);color:#fff}
+.rcd a:focus-visible,.rcd button:focus-visible{background:var(--focus);color:#fff}
+.rcd .wrap{max-width:1140px;margin:0 auto;padding:0 var(--s4)}
+.rcd .demo-strip{background:var(--yellow-50);border-bottom:2px solid var(--yellow-500);font-size:0.825rem}
+.rcd .demo-strip .wrap{display:flex;gap:var(--s4);align-items:center;justify-content:space-between;flex-wrap:wrap;padding-top:var(--s2);padding-bottom:var(--s2)}
+.rcd .rbtn{font:inherit;font-size:0.88rem;min-height:44px;padding:var(--s2) var(--s4);border:2px solid var(--link);background:var(--white);color:var(--link);cursor:pointer;border-radius:0;display:inline-flex;align-items:center;gap:var(--s2);text-decoration:none;font-weight:600}
+.rcd .rbtn:hover{background:var(--blue-50);color:var(--link-hover)}
+.rcd .rbtn.primary{background:var(--link);color:#fff}
+.rcd .rbtn.primary:hover{background:var(--link-hover);border-color:var(--link-hover);color:#fff}
+.rcd .rbtn.primary:visited{color:#fff}
+.rcd .rbtn[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:#fff}
+.rcd .band{background:var(--primary);color:#fff}
+.rcd .band .wrap{padding-top:var(--s6);padding-bottom:var(--s6)}
+.rcd .band h1,.rcd .band p{color:#fff}
+.rcd .band .lead{font-size:1.1rem}
+.rcd form.search{display:flex;gap:0;max-width:720px;margin-top:var(--s4)}
+.rcd form.search label{position:absolute;left:-999px}
+.rcd form.search input{flex:1;min-width:0;font:inherit;min-height:52px;padding:var(--s2) var(--s4);border:2px solid var(--white);border-right:0;border-radius:0;color:var(--text)}
+.rcd form.search button{font:inherit;font-weight:700;min-height:52px;padding:0 var(--s5);border:2px solid var(--white);background:var(--white);color:var(--primary);cursor:pointer;border-radius:0}
+.rcd form.search button:hover{background:var(--blue-50)}
+.rcd .chips{display:flex;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s3);align-items:center;font-size:0.88rem}
+.rcd .chip{font:inherit;font-size:0.88rem;min-height:44px;padding:0 var(--s4);border:2px solid #fff;background:transparent;color:#fff;cursor:pointer;border-radius:0}
+.rcd .chip:hover{background:#fff;color:var(--primary)}
+.rcd .chip:focus-visible{background:var(--focus);color:#fff;outline-color:#fff}
+.rcd .rmain{padding:var(--s6) 0 var(--s8);min-height:50vh}
+.rcd .crumbs{font-size:0.825rem;margin-bottom:var(--s4)}
+.rcd .crumbs a{margin-right:var(--s1)}
+.rcd .layout{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s6)}
+.rcd .layout.with-notes{grid-template-columns:minmax(0,1fr) 320px}
+@media (max-width:960px){.rcd .layout.with-notes{grid-template-columns:minmax(0,1fr)}}
+.rcd .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--s5);list-style:none;margin:var(--s5) 0 0;padding:0}
+.rcd .steps li{border-top:4px solid var(--link);padding-top:var(--s3)}
+.rcd .steps b{font-family:var(--font-h);font-size:1.1rem;display:block}
+.rcd .count{color:var(--text-2);font-size:0.88rem;margin-bottom:var(--s4)}
+.rcd .native{list-style:none;margin:var(--s5) 0 0;padding:0}
+.rcd .native li{padding:var(--s4) 0;border-top:1px solid var(--gray-100)}
+.rcd .native a{font-weight:600;font-size:0.99rem}
+.rcd .native .url{font-size:0.78rem;color:var(--text-2);display:block}
+.rcd .native p{margin:var(--s1) 0 0;font-size:0.88rem}
+.rcd .card{border:2px solid var(--link);background:var(--white);position:relative}
+.rcd .card-head{background:var(--blue-50);border-bottom:1px solid var(--border);padding:var(--s3) var(--s5);display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;align-items:center}
+.rcd .tag{display:inline-block;font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px var(--s2);border:1px solid var(--text);background:var(--white);font-family:var(--font-h)}
+.rcd .tag.legacy{background:var(--yellow-50);border-color:#7a5600;color:#4d3600}
+.rcd .card-body{display:grid;grid-template-columns:260px minmax(0,1fr);gap:var(--s5);padding:var(--s5)}
+@media (max-width:760px){.rcd .card-body{grid-template-columns:minmax(0,1fr);padding:var(--s4)}
+.rcd .card-head{padding:var(--s3) var(--s4)}}
+.rcd .card h2{font-size:1.32rem;margin-bottom:var(--s2)}
+.rcd .meta{display:grid;grid-template-columns:auto 1fr;gap:var(--s1) var(--s4);font-size:0.825rem;margin:var(--s3) 0 0}
+.rcd .meta dt{color:var(--text-2)}
+.rcd .meta dd{margin:0}
+.rcd .preview figure{margin:0}
+.rcd .preview figcaption{font-size:0.78rem;color:var(--text-2);margin-top:var(--s2)}
+.rcd .policies{list-style:none;margin:var(--s4) 0 0;padding:0;counter-reset:p}
+.rcd .policies li{counter-increment:p;border-top:1px solid var(--gray-100);display:grid;grid-template-columns:32px 1fr;gap:var(--s2);padding:var(--s3) 0}
+.rcd .policies li::before{content:counter(p);font-family:var(--font-h);font-weight:700;color:var(--text-2);padding-top:2px}
+.rcd .policies a{font-weight:600}
+.rcd .policies .sub{display:block;font-size:0.78rem;color:var(--text-2)}
+.rcd .card-foot{border-top:1px solid var(--border);background:var(--light);padding:var(--s4) var(--s5);display:flex;gap:var(--s4);align-items:center;justify-content:space-between;flex-wrap:wrap}
+.rcd .card-foot p{margin:0;font-size:0.825rem;color:var(--text-2);max-width:48ch}
+@media (max-width:760px){.rcd .card-foot{padding:var(--s4)}}
+.rcd .legacy-link{display:block;border:2px solid var(--border);background:var(--white);padding:var(--s4);text-decoration:none;color:#0072c6}
+.rcd .legacy-link:visited{color:#0072c6}
+.rcd .legacy-link:hover{border-color:var(--link);background:var(--blue-50)}
+.rcd .legacy-link:focus-visible{color:#fff}
+.rcd .legacy-link .row{display:flex;gap:var(--s3);align-items:center}
+.rcd .lg-logo{flex:none;width:48px;height:48px;background:#ccd;border:1px solid #aab}
+.rcd .lg-name{font-family:"Segoe UI Light","Segoe UI",Arial,sans-serif;font-size:1.21rem;line-height:1.2}
+.rcd .lg-name small{display:block;font-family:"Segoe UI",Arial,sans-serif;font-size:0.78rem;color:#666}
+.rcd .legacy-link .go{display:block;margin-top:var(--s3);font-size:0.825rem;font-weight:600;font-family:var(--font-b)}
+.rcd .legacy-link:hover .go{text-decoration:underline}
+.rcd .legacy-link:focus-visible small,.rcd .legacy-link:focus-visible .go{color:#fff}
+.rcd .pin{display:none;cursor:help;padding:0;font-family:var(--font-h);position:absolute;width:26px;height:26px;border-radius:50%;background:var(--danger);color:#fff;font:700 0.78rem var(--font-h);align-items:center;justify-content:center;border:2px solid #fff;z-index:2}
+.rcd.notes .pin{display:flex}
+.rcd .pin.inl{position:static;display:none;vertical-align:middle;margin-left:6px}
+.rcd.notes .pin.inl{display:inline-flex}
+.rcd .pin.hl,.rcd .term.hl{outline:3px solid var(--yellow-500);outline-offset:2px}
+.rcd .pin::after,.rcd .term::after{content:attr(data-tip);position:absolute;left:50%;top:calc(100% + 8px);transform:translateX(-50%);width:260px;max-width:80vw;background:var(--primary);color:#fff;font:400 0.78rem/1.45 var(--font-b);text-align:left;padding:var(--s2) var(--s3);border:1px solid #fff;display:none;z-index:20;pointer-events:none;text-transform:none;letter-spacing:0}
+.rcd .pin:hover::after,.rcd .pin:focus-visible::after,.rcd .term:hover::after,.rcd .term:focus-visible::after{display:block}
+.rcd .pin.tr::after{left:0;transform:none}
+.rcd .pin.tl::after{left:auto;right:0;transform:none}
+.rcd .pin.up::after{top:auto;bottom:calc(100% + 8px)}
+.rcd .term{position:relative;border-bottom:2px dotted var(--link);cursor:help}
+.rcd .term::after{left:0;transform:none;width:240px}
+.rcd aside.notes li.hl{background:var(--yellow-50);outline:2px solid var(--yellow-500)}
+.rcd .notes-only{display:none}
+.rcd.notes .notes-only{display:block}
+.rcd .opt{border:2px solid var(--primary);padding:var(--s4);margin-top:var(--s6);background:var(--white)}
+.rcd .opt table{width:100%;border-collapse:collapse;font-size:0.825rem}
+.rcd .opt th,.rcd .opt td{text-align:left;vertical-align:top;padding:var(--s2) var(--s3);border-top:1px solid var(--gray-100)}
+.rcd .opt thead th{border-top:0;border-bottom:2px solid var(--text);font-family:var(--font-h)}
+.rcd .opt tr.rec{background:var(--green-50)}
+.rcd .opt .scroll{overflow-x:auto}
+.rcd .opt .tag.rec{border-color:var(--green-700);color:var(--green-700)}
+.rcd .pin.p1{top:52px;left:calc(260px + var(--s5) + 4px)}
+.rcd .pin.p2{top:100px;left:10px}
+.rcd .pin.p3{top:240px;left:calc(260px + var(--s5) - 14px)}
+.rcd .pin.p4{top:300px;left:calc(260px + var(--s5) - 14px)}
+.rcd .pin.p5{bottom:34px;right:12px}
+.rcd .pin.p6{top:-13px;right:12px}
+@media (max-width:760px){.rcd .pin.p1,.rcd .pin.p3,.rcd .pin.p4{left:8px}
+.rcd .pin.p3{top:auto;bottom:140px}
+.rcd .pin.p4{top:auto;bottom:170px}}
+.rcd aside.notes{display:none;border:2px solid var(--primary);background:var(--light);padding:var(--s4);align-self:start}
+.rcd.notes aside.notes{display:block}
+.rcd aside.notes h2{font-size:1.1rem}
+.rcd aside.notes ol{margin:0 0 var(--s4);padding-left:var(--s5);font-size:0.825rem}
+.rcd aside.notes li{margin-bottom:var(--s3)}
+.rcd aside.notes li b{font-family:var(--font-h)}
+.rcd aside.notes ul{font-size:0.825rem;padding-left:var(--s5);margin:0}
+.rcd #legacy{display:none;font-family:"Segoe UI",Tahoma,Arial,sans-serif;font-size:13px;color:#444;background:#fff;line-height:1.4}
+.rcd.is-legacy #modern{display:none}
+.rcd.is-legacy #legacy{display:block}
+.rcd.is-legacy{font-size:13px}
+.rcd .lg-demo{background:#fff8dc;border-bottom:1px solid #d9c36a;padding:6px 12px;font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.rcd .lg-demo a{color:#0072c6}
+.rcd .lg-ribbon{background:#0072c6;color:#fff;display:flex;gap:18px;padding:0 12px;align-items:center;min-height:34px;flex-wrap:wrap}
+.rcd .lg-ribbon a{color:#fff;text-decoration:none;font-size:12px}
+.rcd .lg-ribbon a:visited{color:#fff}
+.rcd .lg-title{display:flex;align-items:center;gap:12px;padding:10px 12px;border-bottom:1px solid #ccc;flex-wrap:wrap}
+.rcd .lg-title .logo{width:42px;height:42px;background:#ccd;border:1px solid #aab}
+.rcd .lg-title h1{font:300 24px "Segoe UI Light","Segoe UI",Arial,sans-serif;margin:0;color:#0072c6}
+.rcd .lg-search{margin-left:auto;display:flex}
+.rcd .lg-search input{font:13px "Segoe UI",Arial;padding:4px 6px;border:1px solid #aaa;width:240px;border-radius:0;min-height:0}
+.rcd .lg-search button{font:13px "Segoe UI",Arial;border:1px solid #aaa;background:#f0f0f0;padding:4px 10px;cursor:pointer;border-radius:0;min-height:0}
+.rcd .lg-body{display:grid;grid-template-columns:200px minmax(0,1fr) 190px;gap:0;min-height:60vh}
+@media (max-width:820px){.rcd .lg-body{grid-template-columns:minmax(0,1fr)}
+.rcd .lg-nav,.rcd .lg-ref{display:none}}
+.rcd .lg-nav{background:#f4f4f4;border-right:1px solid #ddd;padding:12px}
+.rcd .lg-nav h2,.rcd .lg-ref h2{font:600 13px "Segoe UI",Arial;margin:12px 0 4px;color:#444}
+.rcd .lg-nav a,.rcd .lg-ref a{display:block;color:#0072c6;text-decoration:none;padding:2px 0;font-size:13px}
+.rcd .lg-nav a:hover,.rcd .lg-ref a:hover,.rcd .lg-main a:hover{text-decoration:underline;color:#0072c6}
+.rcd .lg-nav a:visited,.rcd .lg-ref a:visited{color:#0072c6}
+.rcd .lg-ref{padding:12px;border-left:1px solid #ddd}
+.rcd .lg-ref span{display:block;padding:2px 0;font-size:12px}
+.rcd .lg-main{padding:12px 18px}
+.rcd .lg-main h1{font:300 21px "Segoe UI Light","Segoe UI",Arial,sans-serif;color:#444;margin:0 0 4px}
+.rcd .lg-main .about{color:#666;font-size:12px;margin-bottom:12px}
+.rcd .lg-tabs{border-bottom:1px solid #ccc;margin-bottom:10px;display:flex;gap:2px}
+.rcd .lg-tabs span{padding:4px 12px;font-size:13px;color:#0072c6}
+.rcd .lg-tabs span.on{border:1px solid #ccc;border-bottom:1px solid #fff;margin-bottom:-1px;color:#444;background:#fff}
+.rcd .lg-hit{display:grid;grid-template-columns:34px 1fr;gap:8px;margin:0 0 14px}
+.rcd .ft{width:30px;height:30px;color:#fff;font:700 9px "Segoe UI",Arial;display:flex;align-items:center;justify-content:center}
+.rcd .ft.doc{background:#2b579a}
+.rcd .ft.pdf{background:#c33}
+.rcd .ft.xls{background:#217346}
+.rcd .ft.asp{background:#777}
+.rcd .lg-hit a.t{color:#0072c6;font-size:15px;text-decoration:none}
+.rcd .lg-hit a.t:visited{color:#0072c6}
+.rcd .lg-hit a.t:hover{text-decoration:underline}
+.rcd .lg-hit .sn{color:#444;font-size:12px}
+.rcd .lg-hit .sn em{font-style:normal;font-weight:700}
+.rcd .lg-hit .u{color:#2e7d32;font-size:11px;word-break:break-all}
+.rcd .lg-hit .d{color:#888;font-size:11px}
+.rcd .lg-pager{color:#0072c6;font-size:12px;margin-top:14px}
+.rcd .lg-main h2{font:600 15px "Segoe UI",Arial,sans-serif;margin:14px 0 6px;color:#444}
+.rcd .lg-doc dl{display:grid;grid-template-columns:140px 1fr;gap:4px 12px;border:1px solid #ddd;padding:10px;background:#fafafa;margin:10px 0}
+.rcd .lg-doc dt{color:#666}
+.rcd .lg-doc dd{margin:0}
+.rcd .lg-foot{border-top:1px solid #ccc;background:#f4f4f4;padding:6px 12px;font-size:11px;color:#777}
+.rcd .sr{position:absolute;left:-999px}
+@media print{.rcd .demo-strip,.rcd .chips,.rcd form.search,.rcd .lg-demo{display:none}}
+@media (prefers-reduced-motion:no-preference){.rcd .card{animation:rise .25s ease-out}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}}
+.rcd .pin.inl{position:relative;top:auto;left:auto;bottom:auto;right:auto}
+.rcd .opt table{min-width:520px}
+
+</style>
+<div class="rcd" id="rcd">
+<div id="modern">
+  <div class="demo-bar"><div class="wrap">
+    <span><strong>Interactive demo.</strong> Made-up content. Try a search, then open the legacy site.</span>
+    <span style="display:flex;gap:8px;flex-wrap:wrap"><button class="rbtn" id="notesBtn" aria-pressed="false" type="button">Show design notes</button></span>
+  </div></div>
+
+  
+  <section class="band" aria-labelledby="bandTitle">
+    <div class="wrap">
+      <h2 id="bandTitle">Find it, even when it is not here</h2>
+      <p class="lead">Some content still lives on the old site. Search once and we will point you to it.</p>
+      <form class="search" role="search" id="searchForm">
+        <label for="q">Search the intranet</label>
+        <input id="q" name="q" type="search" autocomplete="off" placeholder="Try: leave" value="">
+        <button type="submit">Search</button>
+      </form>
+      <div class="chips" aria-label="Example searches"><span>Try:</span>
+        <button class="chip" type="button" data-q="leave">leave</button>
+        <button class="chip" type="button" data-q="telework">telework</button>
+        <button class="chip" type="button" data-q="travel">travel</button>
+        <button class="chip" type="button" data-q="parking">parking (no card)</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="rmain" id="rcd-content" tabindex="-1"><div class="wrap" id="view" aria-live="polite"></div></div>
+
+  </div>
+
+<!-- LEGACY SITE (plain, unbranded) -->
+<div id="legacy" aria-label="Legacy site"></div>
+<script>
+(function(){
+"use strict";
+var ROOT=document.getElementById("rcd");
+var LEGACY = "https://legacy-intranet.example.ca";
+
+var TOPICS = {
+ leave:{
+  keys:["leave","vacation","absence","sick","parental","maternity"],
+  title:"Leave and absence policies",
+  site:"Human Resources (legacy intranet)",
+  about:"Policies and forms for vacation, sick, family and parental leave.",
+  owner:"Human Resources, Workplace Policy", reviewed:"March 2019", status:"Legacy. Still in force.",
+  native:[["Leave and absence: what you need to know","/intranet/hr/leave","A short guide for employees and managers. Links to the policies on the HR site."],
+          ["Request leave in the time and attendance tool","/intranet/tools/time","Step by step help for submitting a leave request."]],
+  docs:[
+   ["Leave Policy: Vacation, Sick and Family Leave","HR-POL-014","doc","Updated 2019-03-12","This <em>policy</em> sets out the rules for vacation, sick and family <em>leave</em> for all employees."],
+   ["Procedure for Requesting and Approving Leave","HR-PRO-021","pdf","Updated 2018-11-02","How to submit a request, who approves it, and how long approval takes."],
+   ["Parental and Maternity Leave Guidelines","HR-GDL-009","pdf","Updated 2019-01-21","Eligibility, top-up pay and return-to-work steps for <em>parental leave</em>."],
+   ["Leave Without Pay: Conditions and Approvals","HR-POL-018","doc","Updated 2017-06-30","When <em>leave</em> without pay can be granted and who can approve it."],
+   ["Carry-over and Cash-out of Vacation Leave","HR-GDL-012","doc","Updated 2019-02-14","Rules for carrying over unused vacation <em>leave</em> at year end."]],
+  more:[["Leave Request Form","HR-FRM-003","doc","Updated 2018-05-09","Paper form for employees without access to the tool."],
+        ["Leave Balance Report (template)","HR-TPL-007","xls","Updated 2017-12-01","Spreadsheet template for managers."],
+        ["Bereavement Leave: Frequently Asked Questions","HR-FAQ-022","asp","Updated 2018-09-18","Answers to common questions about bereavement <em>leave</em>."],
+        ["Special Leave Types: Reference Table","HR-REF-015","pdf","Updated 2016-10-04","Lists every special <em>leave</em> type and its limit."]]
+ },
+ telework:{
+  keys:["telework","remote","hybrid","home office","work from home"],
+  title:"Telework and hybrid work",
+  site:"Corporate Services (legacy intranet)",
+  about:"Rules, agreements and equipment guidance for working away from the office.",
+  owner:"Corporate Services, Workplace Programs", reviewed:"June 2020", status:"Legacy. Under review.",
+  native:[["Hybrid work: how we work together","/intranet/workplace/hybrid","Plain-language overview of expectations."]],
+  docs:[
+   ["Telework Policy","CS-POL-031","doc","Updated 2020-06-15","The <em>telework</em> policy: who is eligible and how arrangements are approved."],
+   ["Telework Agreement (form)","CS-FRM-011","pdf","Updated 2020-06-15","Signed by employee and manager before starting <em>telework</em>."],
+   ["Home Office Equipment Guidelines","CS-GDL-014","pdf","Updated 2020-08-03","What the department provides and what you supply."],
+   ["Security Requirements for Remote Work","IT-GDL-006","doc","Updated 2021-02-22","Protecting information while working outside the office."],
+   ["Hybrid Schedule Guidelines for Managers","CS-GDL-019","doc","Updated 2021-09-10","Setting in-office days and team anchor days."]],
+  more:[["Telework FAQ","CS-FAQ-004","asp","Updated 2020-07-01","Common questions about <em>telework</em>."],
+        ["Ergonomics Checklist","CS-CHK-002","pdf","Updated 2019-10-12","A self-check for your home workspace."]]
+ },
+ travel:{
+  keys:["travel","trip","per diem","mileage","expense"],
+  title:"Travel and expense claims",
+  site:"Finance (legacy intranet)",
+  about:"Policy, rates and claim steps for business travel.",
+  owner:"Finance, Travel Services", reviewed:"January 2021", status:"Legacy. Still in force.",
+  native:[["Booking travel: who to call","/intranet/finance/booking","Contacts for the travel booking service."]],
+  docs:[
+   ["Business Travel Policy","FIN-POL-008","doc","Updated 2021-01-18","Who may travel, how trips are approved and how <em>travel</em> is booked."],
+   ["Travel Claim Procedure","FIN-PRO-012","pdf","Updated 2021-01-18","Steps to submit a <em>travel</em> expense claim and the deadline."],
+   ["Per Diem and Mileage Rates","FIN-REF-003","xls","Updated 2021-04-01","Current rates for meals, incidentals and personal vehicle use."],
+   ["Booking Guidelines: Air, Rail and Hotel","FIN-GDL-007","pdf","Updated 2020-11-09","Approved vendors and fare rules."],
+   ["Use of Rental and Personal Vehicles","FIN-GDL-010","doc","Updated 2019-08-26","Insurance and approval rules for vehicle use on <em>travel</em>."]],
+  more:[["Travel Claim Form","FIN-FRM-005","xls","Updated 2020-02-14","Spreadsheet claim form."],
+        ["Foreign Travel Advisory Process","FIN-PRO-020","pdf","Updated 2019-12-02","Extra steps for <em>travel</em> outside the country."]]
+ }
+};
+
+var NOTES = [
+ ["Information scent","The card title says what is inside (\u201CLeave and absence policies\u201D), not a file name. People know in a glance that it is the right place.","How well the wording of a link tells you what you will find if you click it."],
+ ["Recognition over recall","The old site\u2019s logo and name show where the link goes. No surprise, fewer bounces back.","People find it easier to recognise something they have seen than to remember it."],
+ ["Progressive disclosure","Show the top five first. The full legacy search is one step further, for people who need more.","Show the few most useful things first. Reveal more only when the person asks."],
+ ["One click to the answer","Direct links skip the legacy search page. Most people want one document.","Each extra step loses some people. A direct link removes steps."],
+ ["User control","\u201CContinue\u201D carries the same search words to the old site. No retyping.","People can leave or carry on at any time without losing what they typed."],
+ ["Honest status","Owner, review date and a Legacy tag build trust and show who must keep the card current.","Showing who owns the content and when it was last checked, so people can judge how far to trust it."]
+];
+function term(t,d,n){return '<span class="term" tabindex="0"'+(n?' data-n="'+n+'"':'')+' data-tip="'+esc(d)+'">'+t+'</span>'}
+function pin(n,style,cls){
+  var al={1:"tr",2:"tr",5:"tl up",6:"tl"}[n]||"", nt=NOTES[n-1];
+  return '<button type="button" class="pin p'+n+' '+(cls||"")+' '+al+'" data-n="'+n+'" data-tip="'+esc(nt[0]+': '+nt[1])+'" aria-label="Design note '+n+': '+esc(nt[0])+'" style="'+(style||"")+'"><span aria-hidden="true">'+n+'</span></button>';
+}
+
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function find(q){
+  q=q.toLowerCase().trim(); if(!q) return null;
+  for(var k in TOPICS){ if(TOPICS[k].keys.some(function(w){return q.indexOf(w)>-1||w.indexOf(q)>-1&&q.length>2})) return k; }
+  return null;
+}
+function qs(){ var h=location.hash.split("?")[1]||""; var o={}; h.split("&").forEach(function(p){if(p){var kv=p.split("=");o[kv[0]]=decodeURIComponent((kv[1]||"").replace(/\+/g," "))}}); return o; }
+function route(){ return (location.hash.replace(/^#/,"").split("?")[0])||"/"; }
+
+/* ---------- Modern views ---------- */
+function home(){
+  return '<div class="layout"><div>'+
+   '<h2>How this demo works</h2>'+
+   '<ol class="steps">'+
+   '<li><b>1. Search</b>Type <em>leave</em>, or pick an example above.</li>'+
+   '<li><b>2. Get a reference card</b>See the old site, the top five policies and direct links.</li>'+
+   '<li><b>3. Choose</b>Open a policy, or continue to the old site with the same search.</li>'+
+   '</ol>'+
+   '<h2 style="margin-top:var(--s6)">Why a card, not a migration</h2>'+
+   '<p>Moving every old page takes years. A reference card gives people a useful answer now, and gives us data on what to move first.</p>'+
+   '<p>The card is a pointer, not a copy. The old site stays the source of truth until a page is moved.</p>'+
+   '</div></div>';
+}
+
+function card(key,q){
+  var t=TOPICS[key];
+  var lis=t.docs.map(function(d){
+    return '<li><div><a href="#/legacy/doc?id='+encodeURIComponent(d[1])+'&t='+key+'&q='+encodeURIComponent(q)+'" data-track="direct">'+esc(d[0])+'</a>'+
+           '<span class="sub">'+esc(d[1])+' · '+esc(d[3])+' · opens on the legacy site</span></div></li>';
+  }).join("");
+  return '<article class="card" aria-labelledby="cardTitle">'+
+   pin(6,'')+
+   '<div class="card-head"><span><span class="tag">Reference card</span> <span class="tag legacy">Legacy site</span></span><span style="font-size:.9375rem;color:var(--text-2)">Best match for “'+esc(q)+'”</span></div>'+
+   '<div class="card-body">'+
+    '<div class="preview" style="position:relative">'+pin(2,'top:-12px;left:-12px')+
+     '<a class="legacy-link" href="#/legacy/home?t='+key+'&q='+encodeURIComponent(q)+'" data-track="logo" aria-label="Open the legacy site: '+esc(t.site.split(" (")[0])+'">'+
+       '<span class="row"><span class="lg-logo" aria-hidden="true"></span><span class="lg-name">'+esc(t.site.split(" (")[0])+'<small>Legacy intranet</small></span></span>'+
+       '<span class="go">Open the legacy site <span aria-hidden="true">\u2192</span></span></a>'+
+     '<dl class="meta"><dt>Site</dt><dd>'+esc(t.site)+'</dd><dt>Owner</dt><dd>'+esc(t.owner)+'</dd><dt>Last reviewed</dt><dd>'+esc(t.reviewed)+'</dd><dt>Status</dt><dd>'+esc(t.status)+'</dd></dl>'+
+    '</div>'+
+    '<div style="position:relative">'+pin(1,'top:-30px;left:0')+
+     '<h2 id="cardTitle">'+esc(t.title)+'</h2><p>'+esc(t.about)+' These documents are on the legacy site.</p>'+
+     '<h3 style="font-size:1.125rem;margin-top:var(--s4)">Top 5 documents '+pin(3,'','inl')+pin(4,'','inl')+'</h3>'+
+     '<ol class="policies">'+lis+'</ol>'+
+    '</div>'+
+   '</div>'+
+   '<div class="card-foot" style="position:relative">'+pin(5,'top:-12px;right:12px;bottom:auto')+
+     '<p>Not here? Continue to the legacy site. We will pass on your search for “'+esc(q)+'”.</p>'+
+     '<a class="rbtn primary" href="#/legacy?t='+key+'&q='+encodeURIComponent(q)+'" data-track="continue">Continue to legacy site with “'+esc(q)+'” <span aria-hidden="true">→</span></a>'+
+   '</div>'+
+  '</article>';
+}
+
+function notesPanel(){
+  var li=NOTES.map(function(n,i){return '<li data-n="'+(i+1)+'"><b>'+term(n[0],n[2])+'.</b> '+n[1]+'</li>'}).join("");
+  return '<aside class="notes" aria-labelledby="nTitle"><h2 id="nTitle">Design notes</h2>'+
+   '<p style="font-size:.9375rem">Numbers match the red pins on the card.</p><ol>'+li+'</ol>'+
+   '<h3 style="font-size:1.0625rem">What the product team would measure</h3><ul>'+
+   '<li>Card views per search, and '+term('click-through rate','Clicks on the card divided by the number of times the card was shown.')+'.</li>'+
+   '<li>Direct link clicks versus “Continue” clicks.</li>'+
+   '<li>Searches with no native result that now get a card.</li>'+
+   '<li>Most-clicked documents: move these to the new site first.</li>'+
+   '<li>Cards not reviewed in 12 months.</li></ul>'+
+   '<h3 style="font-size:1.0625rem;margin-top:var(--s4)">Architecture</h3>'+
+   '<p style="font-size:.9375rem;margin:0">The card is data: title, summary, owner, review date, five links and a search URL template. The new site holds the '+term('pointer','A link plus a short description. The content itself is not copied.')+'. The old site keeps the content.</p></aside>';
+}
+
+function optionsSection(){
+  var rows=[
+   ["Site logo and title","Very low. One logo and name per legacy site.","Not exact, but shows where the link goes.",true],
+   ["Screenshot per card","Low. About 5 minutes per card, redone at each review.","Goes stale. Show the capture date.",false],
+   ["Automated screenshots","Medium to high. Service account, network access and upkeep.","Sign-in problems, and one more thing to patch.",false],
+   ["Live view (iframe)","Looks cheap, is not.","The old system often blocks framing. Slow and hard to make accessible.",false]
+  ].map(function(r){return '<tr'+(r[3]?' class="rec"':'')+'><th scope="row">'+r[0]+(r[3]?' <span class="tag rec">Used in this demo</span>':'')+'</th><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>'}).join("");
+  return '<section class="opt notes-only" aria-labelledby="optT"><h3 id="optT">Design option: how to show the old site</h3>'+
+   '<p style="font-size:1rem">A live picture of the old site is expensive. The card only needs to help people recognise where they are going, so a logo and name is enough.</p>'+
+   '<div class="scroll"><table><thead><tr><th scope="col">Option</th><th scope="col">Cost</th><th scope="col">Risk</th></tr></thead><tbody>'+rows+'</tbody></table></div></section>';
+}
+function results(q){
+  var key=find(q);
+  var h='<nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Home</a> / Search results</nav>'+
+        '<h2>Search results for “'+esc(q)+'”</h2>';
+  if(!key){
+    return '<div class="layout"><div>'+h+
+     '<p class="count">0 results on this site.</p>'+
+     '<div class="card" style="border-color:var(--border)"><div class="card-body" style="grid-template-columns:1fr"><div>'+
+     '<h3>No reference card for this search yet</h3><p>This is what happens today: nothing. Try “leave”, “telework” or “travel” to see the card.</p>'+
+     '<p>You can still try the old site.</p><a class="rbtn" href="#/legacy?t=&q='+encodeURIComponent(q)+'">Search the legacy site for “'+esc(q)+'”</a></div></div></div>'+
+     '<p style="margin-top:var(--s4);font-size:1rem"><strong>Why this matters:</strong> a search with no result and no card is a gap. We log it, and it becomes the next card to write.</p>'+
+     '</div>'+notesPanel()+'</div>';
+  }
+  var t=TOPICS[key];
+  var nat=t.native.map(function(n){return '<li><a href="#/results?q='+encodeURIComponent(q)+'">'+esc(n[0])+'</a><span class="url">'+esc(n[1])+'</span><p>'+esc(n[2])+'</p></li>'}).join("");
+  return '<div class="layout"><div>'+h+
+   '<p class="count">'+(t.native.length)+' results on this site, plus 1 reference card.</p>'+
+   card(key,q)+
+   '<h3 style="margin-top:var(--s6)">Results on this site</h3><ul class="native">'+nat+'</ul>'+optionsSection()+
+   '</div>'+notesPanel()+'</div>';
+}
+
+/* ---------- Legacy views ---------- */
+function legacyShell(inner,q){
+  return '<div class="lg-demo"><span>Demo: you are now on the <b>legacy site</b>. It looks the way the old site looks.</span><a href="#/results?q='+encodeURIComponent(q||"leave")+'" id="backLink">← Back to the new site</a></div>'+
+   '<div class="lg-ribbon"><a href="#/legacy?q='+encodeURIComponent(q||"")+'">Browse</a><a href="#/legacy?q='+encodeURIComponent(q||"")+'">Page</a><a href="#/legacy?q='+encodeURIComponent(q||"")+'">Library</a><span style="margin-left:auto;font-size:12px">Welcome, Employee ▾</span></div>'+
+   '<div class="lg-title"><div class="logo" aria-hidden="true"></div><h1>Corporate Intranet</h1>'+
+   '<form class="lg-search" id="lgForm" role="search"><label class="sr" for="lgq">Search this site</label><input id="lgq" value="'+esc(q||"")+'"><button type="submit">Search</button></form></div>'+
+   '<div class="lg-body"><nav class="lg-nav" aria-label="Site navigation"><h2>Quick Launch</h2><a href="#/legacy?q='+encodeURIComponent(q||"")+'">Home</a><a href="#/legacy?q='+encodeURIComponent(q||"")+'">Human Resources</a><a href="#/legacy?q='+encodeURIComponent(q||"")+'">Finance</a><a href="#/legacy?q='+encodeURIComponent(q||"")+'">Corporate Services</a><a href="#/legacy?q='+encodeURIComponent(q||"")+'">IT Services</a><h2>Libraries</h2><a href="#/legacy?q='+encodeURIComponent(q||"")+'">Policies</a><a href="#/legacy?q='+encodeURIComponent(q||"")+'">Forms</a><a href="#/legacy?q='+encodeURIComponent(q||"")+'">Shared Documents</a><h2>Recycle Bin</h2></nav>'+
+   '<div class="lg-main">'+inner+'</div>'+
+   '<div class="lg-ref"><h2>Refine</h2><span><b>Result type</b></span><a href="#/legacy?q='+encodeURIComponent(q||"")+'">Word</a><a href="#/legacy?q='+encodeURIComponent(q||"")+'">PDF</a><a href="#/legacy?q='+encodeURIComponent(q||"")+'">Excel</a><span style="margin-top:8px"><b>Modified date</b></span><a href="#/legacy?q='+encodeURIComponent(q||"")+'">Past year</a><a href="#/legacy?q='+encodeURIComponent(q||"")+'">Older</a><span style="margin-top:8px"><b>Author</b></span><a href="#/legacy?q='+encodeURIComponent(q||"")+'">HR Admin</a><a href="#/legacy?q='+encodeURIComponent(q||"")+'">System Account</a></div></div>'+
+   '<div class="lg-foot">Corporate Intranet · Page last modified 2019-03-12 · Best viewed in a supported browser</div>';
+}
+function legacyResults(q,key){
+  var t=key&&TOPICS[key]; var all=t?t.docs.concat(t.more):[];
+  var hits=all.map(function(d){
+    var id=d[1];
+    return '<div class="lg-hit"><div class="ft '+d[2]+'" aria-hidden="true">'+d[2].toUpperCase()+'</div><div>'+
+      '<a class="t" href="#/legacy/doc?id='+encodeURIComponent(id)+'&t='+key+'&q='+encodeURIComponent(q)+'">'+esc(d[0])+'</a>'+
+      '<div class="sn">'+d[4]+'</div><div class="u">'+LEGACY+'/Policies/'+esc(id)+'.'+(d[2]==="asp"?"aspx":d[2]==="xls"?"xlsx":d[2]==="doc"?"docx":"pdf")+'</div><div class="d">'+esc(d[3])+' · HR Admin</div></div></div>';
+  }).join("");
+  var inner='<h1>Search Results</h1><div class="about">'+(all.length?'About '+all.length+' results':'No results')+' for <b>'+esc(q)+'</b></div>'+
+   '<div class="lg-tabs"><span class="on">Everything</span><span>People</span><span>Conversations</span></div>'+
+   (all.length?hits:'<p>Nothing here matches your search.<br>Check the spelling or try different keywords.</p>')+
+   (all.length?'<div class="lg-pager">1 &nbsp; 2 &nbsp; Next ›</div>':'');
+  return legacyShell(inner,q);
+}
+function legacyHome(key,q){
+  var t=TOPICS[key]; if(!t) return legacyShell('<h1>Welcome</h1>',q);
+  var name=t.site.split(" (")[0];
+  var docs=t.docs.map(function(d){return '<li><a href="#/legacy/doc?id='+encodeURIComponent(d[1])+'&t='+key+'&q='+encodeURIComponent(q)+'" style="color:#0072c6">'+esc(d[0])+'</a></li>'}).join("");
+  return legacyShell('<h1>'+esc(name)+'</h1><div class="about">Corporate Intranet &gt; '+esc(name)+'</div><p>Welcome to the '+esc(name)+' site. '+esc(t.about)+'</p><h2>Popular documents</h2><ul>'+docs+'</ul><p style="color:#888;font-size:11px">Last modified '+esc(t.reviewed)+'</p>',q);
+}
+function legacyDoc(id,key,q){
+  var t=key&&TOPICS[key]; var d=null;
+  if(t){ t.docs.concat(t.more).forEach(function(x){if(x[1]===id)d=x}); }
+  if(!d) return legacyShell('<h1>Document not found</h1>',q);
+  var inner='<h1>'+esc(d[0])+'</h1><div class="about">Policies &gt; '+esc(d[1])+'</div>'+
+    '<div class="lg-doc"><dl><dt>Document ID</dt><dd>'+esc(d[1])+'</dd><dt>Type</dt><dd>'+d[2].toUpperCase()+'</dd><dt>Modified</dt><dd>'+esc(d[3].replace("Updated ",""))+'</dd><dt>Modified By</dt><dd>HR Admin</dd><dt>Owner</dt><dd>'+esc(t.owner)+'</dd></dl>'+
+    '<p>This is a demo stand-in for the document. In the real flow, the card link opens the document on the legacy site.</p>'+
+    '<p><a href="#/legacy?t='+key+'&q='+encodeURIComponent(q)+'" style="color:#0072c6">← Back to search results</a></p></div>';
+  return legacyShell(inner,q);
+}
+
+/* ---------- Render ---------- */
+var view=document.getElementById("view"), legacy=document.getElementById("legacy"), input=document.getElementById("q");
+function render(){
+  var r=route(), p=qs();
+  if(r.indexOf("/legacy")===0){
+    ROOT.classList.add("is-legacy"); var q=p.q||"", key=p.t||find(q)||"";
+    legacy.innerHTML = (r==="/legacy/doc") ? legacyDoc(p.id,key,q) : (r==="/legacy/home") ? legacyHome(key,q) : legacyResults(q,key);
+    var f=document.getElementById("lgForm");
+    f.addEventListener("submit",function(e){e.preventDefault();var v=document.getElementById("lgq").value;location.hash="#/legacy?t="+(find(v)||"")+"&q="+encodeURIComponent(v)});
+    ROOT.scrollIntoView(); return;
+  }
+  ROOT.classList.remove("is-legacy");
+  if(r==="/results"){ var q2=p.q||""; input.value=q2; view.innerHTML=results(q2); }
+  else { input.value=""; view.innerHTML=home(); }
+  if(window.__lay) setNotes(window.__lay);
+  applyLayout();
+}
+function applyLayout(){
+  var lay=view.querySelector(".layout"); if(lay&&ROOT.classList.contains("notes")) lay.classList.add("with-notes");
+}
+function setNotes(on){
+  ROOT.classList.toggle("notes",on);
+  var lay=view.querySelector(".layout"); if(lay) lay.classList.toggle("with-notes",on);
+  var b=document.getElementById("notesBtn"); b.setAttribute("aria-pressed",on?"true":"false"); b.textContent=on?"Hide design notes":"Show design notes";
+}
+document.getElementById("notesBtn").addEventListener("click",function(){var on=!ROOT.classList.contains("notes");window.__lay=on;setNotes(on)});
+document.getElementById("searchForm").addEventListener("submit",function(e){e.preventDefault();var v=input.value.trim();if(v) location.hash="#/results?q="+encodeURIComponent(v)});
+Array.prototype.forEach.call(document.querySelectorAll(".chip"),function(c){c.addEventListener("click",function(){location.hash="#/results?q="+encodeURIComponent(c.getAttribute("data-q"))})});
+window.addEventListener("hashchange",function(){render(); if(!ROOT.classList.contains("is-legacy")){var m=document.getElementById("rcd-content"); if(m&&route()==="/results") m.focus({preventScroll:false})}});
+function hl(e,on){
+  var t=e.target.closest&&e.target.closest("[data-n]"); if(!t) return;
+  Array.prototype.forEach.call(document.querySelectorAll('[data-n="'+t.getAttribute("data-n")+'"]'),function(el){el.classList.toggle("hl",on)});
+}
+document.addEventListener("mouseover",function(e){hl(e,true)});
+document.addEventListener("mouseout",function(e){hl(e,false)});
+document.addEventListener("focusin",function(e){hl(e,true)});
+document.addEventListener("focusout",function(e){hl(e,false)});
+render();
+})();
+</script>
+</div>
+{% endraw %}
+<p class="small">All names, documents and links in this demo are made up. Read the pattern in <a href="{{ '/architecture/pat-003/' | relative_url }}">PAT-003: Reference card</a>, or see the whole approach in <a href="{{ '/architecture/legacy-content-findability-proposal/' | relative_url }}">Making legacy content findable in the new site</a>.</p>
