@@ -15,7 +15,7 @@ When search stops working, people do not know why. Is it their browser, their ne
 
 ## What a good one looks like
 
-[Wealthsimple](https://status.wealthsimple.com/), a Canadian investment firm, publishes a public status page. I could not open it directly while writing this. I read it through outside status trackers, so check the live page yourself. It shows two things I could confirm:
+[Wealthsimple](https://status.wealthsimple.com/), a Canadian investment firm, publishes a public status page. It shows two things worth copying:
 
 - **More than twenty features**, named the way a customer would name them: Account Login, Deposit, E-transfer, Trade and Orders.
 - **One status for each**, in a short word such as "Operational".
