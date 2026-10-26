@@ -1,5 +1,5 @@
 ---
-title: "Technology and Balancing Life"
+title: "Technology & Balance"
 permalink: /
 layout: single
 author_profile: true

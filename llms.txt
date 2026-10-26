@@ -1,4 +1,4 @@
-# Technology and Balancing Life
+# Technology & Balance
 
 > Doug Nielsen's notes on digital government architecture, DevOps and web platforms, plus book summaries on psychology and economics, and some cycling. Written in plain language. Examples are generic: product and organization names are removed on purpose. Written with help from Claude; Doug chooses the topics and reviews what is published.
 
