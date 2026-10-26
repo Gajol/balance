@@ -1,6 +1,8 @@
 main:
   - title: "Digital"
     url: /digital/
+  - title: "Patterns"
+    url: /architecture/pattern-catalog/
   - title: "Psychology"
     url: /psychology/
   - title: "Economics"

@@ -9,6 +9,8 @@ classes: full-width
 
 Notes on how digital services get designed, built and run, with a focus on government.
 
+**Start here:** the [Intranet Architecture Pattern Catalog]({{ '/architecture/pattern-catalog/' | relative_url }}) lists fifteen reusable ways to build intranet features. For the whole picture, read [Creating a Government Website]({{ '/creating-a-government-website/' | relative_url }}).
+
 ## Architecture
 {% include theme-list.html theme="digital" path="_architecture/" %}
 

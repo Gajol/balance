@@ -1,0 +1,65 @@
+# Technology and Balancing Life
+
+> Doug Nielsen's notes on digital government architecture, DevOps and web platforms, plus book summaries on psychology and economics, and some cycling. Written in plain language. Examples are generic: product and organization names are removed on purpose. Written with help from Claude; Doug chooses the topics and reviews what is published.
+
+Site: https://gajol.github.io/balance/
+Sitemap: https://gajol.github.io/balance/sitemap.xml
+Feed: https://gajol.github.io/balance/feed.xml
+
+## Start here (architecture)
+
+- [Intranet Architecture Pattern Catalog](https://gajol.github.io/balance/architecture/pattern-catalog/): fifteen reusable ways to build intranet features: search, directories, messages, accessibility, bilingual parity and delivery into an isolated network
+- [Application Reference Architecture](https://gajol.github.io/balance/architecture/application-reference-architecture/): defaults for building government applications
+- [Application Reference Architecture, Updated: A Modern View](https://gajol.github.io/balance/application-reference-architecture-modern-view/): what still holds, what changed
+- [Creating a Government Website: How the Pieces Fit](https://gajol.github.io/balance/creating-a-government-website/): one map from design to delivery, operations and ownership
+
+## Architecture patterns
+
+- [PAT-001 Index, don't copy](https://gajol.github.io/balance/architecture/pat-001/)
+- [PAT-002 Extract documents in a safe pipeline](https://gajol.github.io/balance/architecture/pat-002/)
+- [PAT-003 Reference card](https://gajol.github.io/balance/architecture/pat-003/)
+- [PAT-004 Pointer, not payload](https://gajol.github.io/balance/architecture/pat-004/)
+- [PAT-005 Batch sync from the source](https://gajol.github.io/balance/architecture/pat-005/)
+- [PAT-006 Read live data from a cache](https://gajol.github.io/balance/architecture/pat-006/)
+- [PAT-007 Fixed value set](https://gajol.github.io/balance/architecture/pat-007/)
+- [PAT-008 Plugin interface adapter](https://gajol.github.io/balance/architecture/pat-008/)
+- [PAT-009 Flag, never remove](https://gajol.github.io/balance/architecture/pat-009/)
+- [PAT-010 Core first, admit by evidence](https://gajol.github.io/balance/architecture/pat-010/)
+- [PAT-011 Measure each language on its own](https://gajol.github.io/balance/architecture/pat-011/)
+- [PAT-012 Cross the boundary as signed artefacts](https://gajol.github.io/balance/architecture/pat-012/)
+- [PAT-013 Check accessibility at every gate](https://gajol.github.io/balance/architecture/pat-013/)
+- [PAT-014 Hand off the query](https://gajol.github.io/balance/architecture/pat-014/)
+- [PAT-015 Publish a status page](https://gajol.github.io/balance/architecture/pat-015/)
+
+## DevOps and delivery
+
+- [CI/CD for a Web Platform: The Short Version](https://gajol.github.io/balance/cicd-for-a-web-platform/)
+- [CI/CD Pipeline Guide](https://gajol.github.io/balance/cicd-pipeline-guide/): full guide with gates by maturity level
+- [DevOps Definitions](https://gajol.github.io/balance/devops-definitions/): nineteen terms in plain language
+- [One Delivery Cycle, Three Parts](https://gajol.github.io/balance/one-delivery-cycle-three-parts/)
+- [Podman Now, Kubernetes Later](https://gajol.github.io/balance/podman-now-kubernetes-later/) and the [full working paper](https://gajol.github.io/balance/podman-to-kubernetes/)
+- [Send Logs Once, Route Many](https://gajol.github.io/balance/send-logs-once-route-many/) and the [full paper on observability and security monitoring](https://gajol.github.io/balance/observability-security-monitoring/)
+- [A Status Page for Your Website](https://gajol.github.io/balance/a-status-page-for-your-website/)
+
+## Design system and web platform as a product
+
+- [Using the GC Design System on an Intranet](https://gajol.github.io/balance/gc-design-system-on-an-intranet/)
+- [Changing the GC Design System for an Intranet](https://gajol.github.io/balance/changing-the-gc-design-system-for-an-intranet/) and its [working examples](https://gajol.github.io/balance/gcds-intranet-examples/)
+- [Running a Web Platform as a Product: A Reading Guide](https://gajol.github.io/balance/running-a-web-platform-as-a-product/)
+- [Who Runs the Website? A Simple Operating Model](https://gajol.github.io/balance/who-runs-the-website-operating-model/)
+- [Adding AI to a Web Platform](https://gajol.github.io/balance/adding-ai-to-a-web-platform/)
+- [Client email capability tiers](https://gajol.github.io/balance/client-email-tiers/) and the [journey map and service blueprint](https://gajol.github.io/balance/client-email-journey-blueprint/)
+
+## Browse
+
+- [All articles](https://gajol.github.io/balance/all/)
+- [Digital](https://gajol.github.io/balance/digital/)
+- [Psychology](https://gajol.github.io/balance/psychology/)
+- [Economics](https://gajol.github.io/balance/economics/)
+- [Cycling](https://gajol.github.io/balance/cycling/)
+- [Tags](https://gajol.github.io/balance/tags/)
+
+## Optional
+
+- [Search](https://gajol.github.io/balance/search/)
+- [About](https://gajol.github.io/balance/about/)
