@@ -9,6 +9,7 @@ author_profile: false
 classes: full-width
 tags: [devops, observability, security]
 ---
+{% include series-nav.html %}
 
 A web platform has to tell two enterprise teams how it is doing: the security operations centre (SOC) and the network operations centre (NOC). The simple way is to send each signal once and let the enterprise route it.
 

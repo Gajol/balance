@@ -11,6 +11,7 @@ toc: true
 toc_label: "Contents"
 tags: [design system, intranet, accessibility, search, architecture]
 ---
+{% include series-nav.html %}
 
 The GC Design System is built for public service delivery first. An intranet shares most of its needs, but not all. This article says what to keep, what to change once, and what to add. Every point has a working example on the [examples page]({{ '/gcds-intranet-examples/' | relative_url }}).
 

@@ -9,6 +9,7 @@ author_profile: false
 classes: full-width
 tags: [gcds, design system, intranet, accessibility]
 ---
+{% include series-nav.html %}
 
 The GC Design System (GCDS) is the federal design system, run by the Canadian Digital Service. It is for federal use only. An intranet is a good fit, because staff expect the same look, the same accessibility and the same bilingual behaviour as public sites.
 

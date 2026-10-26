@@ -9,6 +9,7 @@ author_profile: false
 classes: full-width
 tags: [devops, web platform, architecture]
 ---
+{% include series-nav.html %}
 
 A government web platform is rarely one product. A typical set is a content management system (CMS), a search engine and an analytics tool. They depend on each other, but each has its own upgrades and risks.
 

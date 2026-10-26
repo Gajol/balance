@@ -1,0 +1,22 @@
+{%- comment -%}
+  Shows "Part n of N" with previous and next links for a page listed in _data/series.yml.
+  Add {% include series-nav.html %} near the top of a post. Does nothing if the page is not in a series.
+{%- endcomment -%}
+{%- for s in site.data.series -%}
+  {%- assign series = s[1] -%}
+  {%- for part in series.parts -%}
+    {%- if part.url == page.url -%}
+      {%- assign idx = forloop.index0 -%}
+      {%- assign total = series.parts.size -%}
+      {%- assign prev_i = idx | minus: 1 -%}
+      {%- assign next_i = idx | plus: 1 -%}
+<nav class="series-nav" aria-label="Series: {{ series.title }}">
+  <p class="series-nav__title">Series: <a href="{{ series.start | relative_url }}">{{ series.title }}</a> &middot; Part {{ idx | plus: 1 }} of {{ total }}</p>
+  <p class="series-nav__links">
+    {%- if idx > 0 %}<a href="{{ series.parts[prev_i].url | relative_url }}" rel="prev">&larr; {{ series.parts[prev_i].title }}</a>{% endif %}
+    {%- if next_i < total %}<a href="{{ series.parts[next_i].url | relative_url }}" rel="next" class="series-nav__next">{{ series.parts[next_i].title }} &rarr;</a>{% endif %}
+  </p>
+</nav>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}

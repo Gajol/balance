@@ -9,6 +9,7 @@ author_profile: false
 classes: full-width
 tags: [devops, containers, architecture]
 ---
+{% include series-nav.html %}
 
 Many teams are not ready for a Kubernetes cluster on day one. The risk is building something that has to be thrown away when they are.
 

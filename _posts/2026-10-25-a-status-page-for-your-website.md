@@ -9,6 +9,7 @@ author_profile: false
 classes: full-width
 tags: [architecture, operations, observability, status page]
 ---
+{% include series-nav.html %}
 
 When search stops working, people do not know why. Is it their browser, their network or the platform? They phone the help desk. So does the next person. A status page answers the question once, for everyone.
 

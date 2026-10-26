@@ -7,7 +7,7 @@ excerpt: "Two ways to bring AI to a website or intranet, one shared integration 
 theme: digital
 author_profile: false
 classes: full-width
-tags: [product management, AI, architecture, governance, search]
+tags: [product management, ai, architecture, governance, search]
 ---
 
 Staff and visitors already ask AI tools questions. The real question for a web platform is not *whether* AI touches your content. It is **how, under whose rules, and who is still responsible for the answer.**

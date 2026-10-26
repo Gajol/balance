@@ -11,6 +11,7 @@ toc: true
 toc_label: "Contents"
 tags: [architecture, devops, design system, web platform, intranet]
 ---
+{% include series-nav.html %}
 
 A website is not one thing. It is a design, a platform, a delivery path, an operations link and a team. Each has its own page on this site. This article puts them in order and says which page to open for which question.
 

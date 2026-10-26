@@ -7,6 +7,8 @@ main:
     url: /economics/
   - title: "Cycling"
     url: /cycling/
+  - title: "All articles"
+    url: /all/
   - title: "Tags"
     url: /tags/
   - title: "Search"

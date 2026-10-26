@@ -1,0 +1,22 @@
+# Reading series. Order here is the reading order.
+# Used by _includes/series-nav.html to show "Part n of N", previous and next.
+web-platform:
+  title: "Building a government website"
+  start: /creating-a-government-website/
+  parts:
+    - url: /creating-a-government-website/
+      title: "How the pieces fit"
+    - url: /gc-design-system-on-an-intranet/
+      title: "GC Design System on an intranet"
+    - url: /changing-the-gc-design-system-for-an-intranet/
+      title: "Keep, change, add"
+    - url: /one-delivery-cycle-three-parts/
+      title: "One delivery cycle, three parts"
+    - url: /cicd-for-a-web-platform/
+      title: "CI/CD for a web platform"
+    - url: /podman-now-kubernetes-later/
+      title: "Podman now, Kubernetes later"
+    - url: /send-logs-once-route-many/
+      title: "Send logs once, route many"
+    - url: /a-status-page-for-your-website/
+      title: "A status page for your website"

@@ -9,6 +9,7 @@ author_profile: false
 classes: full-width
 tags: [devops, ci-cd, web platform]
 ---
+{% include series-nav.html %}
 
 A CI/CD pipeline is one automated path from a code change to production. Every change is built the same way, tested, scanned and recorded. Nobody has to remember the checklist, because the pipeline runs it.
 

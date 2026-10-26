@@ -1,3 +1,7 @@
+{%- assign lu = page.last_modified_at | default: page.date -%}
+{%- if lu and page.layout == "single" %}
+<p class="last-updated">Last updated: <time datetime="{{ lu | date_to_xmlschema }}">{{ lu | date: "%B %-d, %Y" }}</time></p>
+{%- endif %}
 {% include related-by-tags.html %}
 <p class="ai-credit" style="margin:.8em 0 0;font-size:.85em;opacity:.75;">
   &#10024; Written by Doug with help from <a href="https://claude.ai" rel="noopener">Claude</a>, an AI assistant from Anthropic. Doug chooses the topics and reviews what is published.
