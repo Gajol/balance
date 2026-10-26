@@ -7,7 +7,7 @@ excerpt: "Better search is mostly a people problem. Owners and review dates help
 theme: digital
 author_profile: false
 classes: full-width
-tags: [search, intranet, content, solr]
+tags: [search, intranet, content]
 ---
 
 When search disappoints, we blame the engine. Usually the real cause is the content: three versions of the same page, nobody who owns any of them, and the oldest ranking highest.

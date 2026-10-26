@@ -5,7 +5,7 @@ excerpt: "The Microsoft course to help prepare for the Microsoft Certified: DevO
 last_modified_at: 2023-01-07T10:23:16-04:00
 toc: true
 theme: digital
-tags: [azure, devops, training]
+tags: [azure, devops]
 classes: full-width
 author_profile: false
 ---

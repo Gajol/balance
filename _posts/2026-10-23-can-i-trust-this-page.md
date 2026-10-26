@@ -7,7 +7,7 @@ excerpt: "Owner, last reviewed date and status: three small signals that turn a 
 theme: digital
 author_profile: false
 classes: full-width
-tags: [intranet, content, trust, ux]
+tags: [intranet, content, ux]
 ---
 
 People do not read an intranet page and then decide if it is true. They decide first, in a second or two, whether to believe it. If they doubt it, they phone a colleague, and the page has failed.

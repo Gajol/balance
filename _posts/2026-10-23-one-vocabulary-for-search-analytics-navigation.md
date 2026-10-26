@@ -7,7 +7,7 @@ excerpt: "If search, reports and menus all use the same list of terms, you can f
 theme: digital
 author_profile: false
 classes: full-width
-tags: [taxonomy, search, analytics, navigation]
+tags: [search, analytics]
 ---
 
 A taxonomy is a controlled list of topic terms. It sounds dull, and it is the quiet foundation of a good website.

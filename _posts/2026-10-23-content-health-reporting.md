@@ -7,7 +7,7 @@ excerpt: "Four simple measures show which parts of a site are healthy and which 
 theme: digital
 author_profile: false
 classes: full-width
-tags: [analytics, content, governance, matomo]
+tags: [analytics, content, governance]
 ---
 
 "How good is our content?" is hard to answer. "How many pages have no owner?" is easy. Good reporting turns the first question into several of the second kind.

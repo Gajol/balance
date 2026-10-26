@@ -7,7 +7,7 @@ excerpt: "Every change becomes a tested, secure, traceable release. Start small,
 theme: digital
 author_profile: false
 classes: full-width
-tags: [devops, ci-cd, web platform]
+tags: [devops, "web platform"]
 ---
 {% include series-nav.html %}
 

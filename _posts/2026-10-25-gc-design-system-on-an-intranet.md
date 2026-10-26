@@ -7,7 +7,7 @@ excerpt: "The GC Design System gives federal sites a shared look and accessible 
 theme: digital
 author_profile: false
 classes: full-width
-tags: [gcds, design system, intranet, accessibility]
+tags: ["design system", intranet, accessibility]
 ---
 {% include series-nav.html %}
 

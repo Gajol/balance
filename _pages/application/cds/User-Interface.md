@@ -3,7 +3,7 @@ title: "User Interface Design"
 excerpt: "User Interface Design"
 permalink: /application/cds/User-Interface
 theme: digital
-tags: [ux, "user interface"]
+tags: [ux]
 classes: full-width
 author_profile: false
 ---

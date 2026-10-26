@@ -9,7 +9,7 @@ sidebar:
   title: "Contents"
   nav: sidebar-change-your-questions
 theme: psychology
-tags: [leadership, "decision making", books]
+tags: [psychology, books]
 author_profile: false
 ---
 

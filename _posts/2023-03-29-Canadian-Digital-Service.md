@@ -7,7 +7,7 @@ header.image: /assets/images/bridge-generated-og.jpeg
 excerpt: "A few notes about the Canadian Digital Service (CDS), its origins, strategy and recent evaluation. "
 # categories: CDS Digital
 theme: digital
-tags: [government, cds, ux, "service design"]
+tags: [government, ux, "service design"]
 classes: full-width
 author_profile: false
 ---

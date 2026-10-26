@@ -10,7 +10,7 @@ sidebar:
   title: "Contents"
   nav: sidebar-think-fast-think-slow
 theme: psychology
-tags: [psychology, statistics, "decision making", books]
+tags: [psychology, books]
 ---
 
 

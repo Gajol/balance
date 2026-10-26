@@ -7,7 +7,7 @@ excerpt: "Owners with many pages, and managers above them, need one prioritized 
 theme: digital
 author_profile: false
 classes: full-width
-tags: [product management, ux, automation, content, governance]
+tags: ["product management", ux, content, governance]
 ---
 
 Automation can flag a page. Flagging fifty pages as fifty separate emails is a different problem. Owners ignore the noise, and managers cannot see the pattern.

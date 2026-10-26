@@ -9,7 +9,7 @@ sidebar:
   title: "Contents"
   nav: sidebar-defining-decade
 theme: psychology
-tags: [psychology, career, books]
+tags: [psychology, books]
 author_profile: false
 ---
 

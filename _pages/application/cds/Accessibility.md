@@ -5,7 +5,7 @@ excerpt: "Accessibility basics for digital design, what the Accessible Canada Ac
 last_modified_at: 2026-10-23T16:00:00-04:00
 toc: true
 theme: digital
-tags: [accessibility, ux, government, "accessible canada act"]
+tags: [accessibility, ux, government]
 classes: full-width
 author_profile: false
 ---

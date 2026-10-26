@@ -5,7 +5,7 @@ date:   2026-10-23 08:50:00 -0400
 description: Ten capabilities at three tiers, so a product team can choose a level rather than approve a list, with notes for the BRD, security and integration.
 excerpt: "What to do when the captured requirement is 'send email and manage client lists' and the architecture cannot start. Ten capabilities, three tiers each, a picker that tallies the build, and notes on what each choice means for the BRD, security and integration."
 theme: digital
-tags: [ux, "product management", email, requirements, government]
+tags: [ux, "product management", email, government]
 classes: full-width
 author_profile: false
 ---

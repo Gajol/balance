@@ -7,7 +7,7 @@ excerpt: "A platform that launches without a plan for who runs it will drift. A 
 theme: digital
 author_profile: false
 classes: full-width
-tags: [operating model, raci, governance, roles]
+tags: ["operating model", governance]
 ---
 
 Projects end on a date. Websites do not. The day after launch, someone has to patch the server, fix a broken page, answer a question and decide what to improve next.

@@ -5,7 +5,7 @@ date:   2026-10-23 12:00:00 -0400
 description: How a strawman, a set of capability tiers, a journey map and a service blueprint work together, and what each one is for.
 excerpt: "A requirement that says 'send email' is not enough to design against. Four artefacts, used in order, turn it into something a business, a security team and an integration team can all work from."
 theme: digital
-tags: [ux, "product management", "service design", email, requirements]
+tags: [ux, "product management", "service design", email]
 classes: full-width
 author_profile: false
 ---

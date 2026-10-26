@@ -7,7 +7,7 @@ excerpt: "Three easy ways to read your iPhone messages from the lock screen, and
 theme: digital
 author_profile: false
 classes: full-width
-tags: [iphone, notifications, how-to, accessibility]
+tags: [how-to, accessibility]
 ---
 
 ![Grandpa's iPhone Help. A Great Dane in front of the Danish flag.]({{ '/assets/images/iphone-notifications/grandpa-banner.svg' | relative_url }})

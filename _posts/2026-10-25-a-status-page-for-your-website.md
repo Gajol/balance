@@ -7,7 +7,7 @@ excerpt: "One page that lists each feature in plain words, with one status for e
 theme: digital
 author_profile: false
 classes: full-width
-tags: [architecture, operations, observability, status page]
+tags: [architecture, observability]
 ---
 {% include series-nav.html %}
 

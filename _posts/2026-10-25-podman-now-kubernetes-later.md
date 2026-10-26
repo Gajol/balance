@@ -7,7 +7,7 @@ excerpt: "Write the deployment as Kubernetes YAML from day one. Run it on Podman
 theme: digital
 author_profile: false
 classes: full-width
-tags: [devops, containers, architecture]
+tags: [devops, architecture]
 ---
 {% include series-nav.html %}
 

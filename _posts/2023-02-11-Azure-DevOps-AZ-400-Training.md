@@ -8,7 +8,7 @@ header.image: /assets/images/bridge-generated-og.jpeg
 theme: digital
 author_profile: false
 classes: full-width
-tags: [azure, devops, engineering, training]
+tags: [azure, devops]
 ---
 
 Microsoft's [AZ-400: Designing and Implementing Microsoft DevOps Solutions](https://learn.microsoft.com/en-us/learn/certifications/exams/az-400) prepares you for the DevOps Engineer Expert certification exam. The course explains why Agile and DevOps are a good way to deliver software to the business, and how to build a working delivery pipeline.

@@ -9,7 +9,7 @@ author_profile: false
 classes: full-width
 toc: true
 toc_label: "Contents"
-tags: [architecture, apis, cloud, ai, government]
+tags: [architecture, ai, government]
 ---
 
 In 2022 I wrote a long [Application Reference Architecture (ARA)]({{ '/architecture/application-reference-architecture/' | relative_url }}). It is a 53-minute read. It is still a good library of definitions, principles and references. But it is dated. It cites a strategic plan that has since been replaced, treats MACH as new, sets WCAG 2.1 as the target, and says nothing about AI, sovereignty or platform teams.

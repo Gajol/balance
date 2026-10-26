@@ -5,7 +5,7 @@ excerpt: "A release strategy embraces pushing software to production using the c
 last_modified_at: 2023-01-07T10:23:16-04:00
 toc: true
 theme: digital
-tags: [azure, ci-cd, "release management", devops]
+tags: [azure, devops]
 classes: full-width
 author_profile: false
 ---

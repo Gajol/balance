@@ -8,7 +8,7 @@ toc_label: "Contents"
 classes: full-width
 categories: world economics canada
 theme: economics
-tags: [economics, energy, books]
+tags: [economics, books]
 author_profile: false
 ---
 [Smil Vaclav. 2022. *How the World Really Works : The Science Behind How We Got Here and Where We're Going* First North American ed. New York: Viking.](https://worldcat.org/en/title/1312328649)

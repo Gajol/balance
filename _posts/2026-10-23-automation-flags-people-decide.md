@@ -7,7 +7,7 @@ excerpt: "A health report only helps if someone acts on it. See how flags, remin
 theme: digital
 author_profile: false
 classes: full-width
-tags: [product management, automation, content, governance, workflow]
+tags: ["product management", content, governance]
 ---
 
 A content health report tells you what is wrong. It does not fix anything. If the report goes to IT, IT ends up with a long list of pages it does not own and cannot judge.

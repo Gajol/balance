@@ -3,7 +3,7 @@ title: "Design Thinking"
 excerpt: "Design Thinking"
 permalink: /application/cds/Design-Thinking
 theme: digital
-tags: ["design thinking", ux, "product management"]
+tags: ["service design", ux, "product management"]
 classes: full-width
 author_profile: false
 ---

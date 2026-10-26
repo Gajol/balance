@@ -7,7 +7,7 @@ excerpt: "A web platform is only as strong as the team behind it. Explore which 
 theme: digital
 author_profile: false
 classes: full-width
-tags: [resourcing, skills, operating model, product management, staffing]
+tags: ["operating model", "product management"]
 ---
 
 A good design with the wrong team fails. A good design with the right team that has left fails too.
