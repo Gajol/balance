@@ -1,0 +1,555 @@
+---
+title: "Phase 1 roadmap, concepts and work breakdown for an on-premises intranet"
+excerpt: "A basic plan for the first release of a bilingual intranet on an isolated network: a roadmap diagram, a storyboard of who gains and when, the concepts being tested, and a work breakdown structure."
+last_modified_at: 2026-10-27T07:00:00-04:00
+layout: single
+classes: wide-text
+toc: false
+author_profile: false
+theme: digital
+tags: [architecture, roadmap, work breakdown, storyboard, government, intranet, product management]
+---
+{% raw %}
+<style>
+.ph1{--ink:#333;--mute:#595959;--line:#c8c8c8;--soft:#f2f2f2;--soft2:#e6e6e6;--dark:#333;--danger:#8a1c1c;
+  font-size:.9rem;line-height:1.55;color:var(--ink)}
+.ph1 *{box-sizing:border-box}
+.ph1 h2.sec{margin:2.4em 0 .6em;font-size:1.25rem;border-bottom:1px solid var(--line);padding-bottom:.25em}
+.ph1 h3{font-size:1rem;margin:1.2em 0 .4em}
+.ph1 p{max-width:72ch}
+.ph1 .lede{font-size:1rem;color:var(--mute)}
+.ph1 .chips{list-style:none;display:flex;flex-wrap:wrap;gap:6px;padding:0;margin:.8em 0}
+.ph1 .chip{border:1px solid var(--line);background:var(--soft);border-radius:12px;padding:1px 10px;font-size:.78rem;color:var(--mute)}
+.ph1 .tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--dark);border-radius:3px;padding:0 6px;margin-right:6px;color:var(--dark);background:#fff;vertical-align:middle}
+.ph1 .tag.prop{border-style:dashed;color:var(--mute);border-color:var(--mute)}
+.ph1 .tag.later{background:var(--soft2);border-color:var(--mute);color:var(--mute)}
+.ph1 .tablewrap{overflow-x:auto;margin:.8em 0}
+.ph1 table{border-collapse:collapse;width:100%;font-size:.82rem;margin:0}
+.ph1 th,.ph1 td{border-bottom:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+.ph1 thead th{background:var(--soft);border-bottom:2px solid var(--dark)}
+.ph1 tbody th{font-weight:600}
+.ph1 details summary{cursor:pointer}
+.ph1 .svgscroll{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:#fff;padding:6px}
+.ph1 .svgscroll svg{display:block;min-width:820px;width:100%;height:auto}
+.ph1 figure{margin:1em 0}
+.ph1 figcaption{font-size:.8rem;color:var(--mute);margin-top:.4em}
+/* roadmap svg */
+.ph1 svg text{font-family:inherit;fill:#333}
+.ph1 .ph{fill:var(--soft2);stroke:#999}
+.ph1 .pht{font-size:12px;font-weight:700}
+.ph1 .tick{stroke:#bbb;stroke-dasharray:3 3}
+.ph1 .tk{font-size:11px;fill:#595959}
+.ph1 .band{fill:#f7f7f7}
+.ph1 .rl{font-size:12px}
+.ph1 .wk{font-size:11px;fill:#595959}
+.ph1 .bar.crit{fill:#333}
+.ph1 .bar.float{fill:#bdbdbd;stroke:#777}
+.ph1 .bar.thru{fill:#e6e6e6;stroke:#777;stroke-dasharray:4 2}
+.ph1 .bar.gate{fill:#fff;stroke:#333;stroke-width:2.5}
+.ph1 .gl{stroke:#333;stroke-width:1.5}
+.ph1 .gem{fill:#000}
+.ph1 .gt{font-size:11px;font-weight:700}
+.ph1 .lg{font-size:11px}
+/* architecture svg */
+.ph1 .n rect{fill:#fff;stroke:#8c8c8c;stroke-width:1}
+.ph1 .n.core rect{fill:#ebebeb;stroke:#333}
+.ph1 .n.int rect{stroke-dasharray:4 3}
+.ph1 .n text{font-size:12px}
+.ph1 .n .h{font-weight:700;font-size:13px}
+.ph1 .zone{fill:none;stroke:#595959;stroke-dasharray:6 4}
+.ph1 .zl{font-size:11px;letter-spacing:.06em;fill:#595959}
+.ph1 .ln{stroke:#595959;stroke-width:1.2;fill:none}
+.ph1 .ahp{fill:#595959}
+/* storyboard */
+.ph1 .strip{display:flex;gap:6px;overflow-x:auto;margin:1em 0;padding-bottom:6px}
+.ph1 .strip a{flex:0 0 auto;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:6px;padding:4px 10px;font-size:.75rem}
+.ph1 .strip a b{font-family:Menlo,Consolas,monospace;font-weight:500;color:var(--mute);margin-right:6px}
+.ph1 .frame{border:1px solid var(--line);border-radius:8px;margin-top:1.1em;overflow:hidden;background:#fff}
+.ph1 .fhead{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:14px 18px 0}
+.ph1 .fnum{font:500 1.5rem/1 Menlo,Consolas,monospace;color:var(--mute)}
+.ph1 .fhead h3{margin:0}
+.ph1 .moment{font-style:italic;color:var(--mute);margin:2px 0 0}
+.ph1 .fbody{padding:12px 18px 18px;display:grid;gap:12px}
+.ph1 .fbody>*{min-width:0}
+.ph1 .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch}
+.ph1 .ba .col{border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+.ph1 .ba .col.after{background:var(--soft)}
+.ph1 .ba .arrow{align-self:center;color:var(--mute)}
+.ph1 .ba ol{margin:6px 0 0;padding-left:20px}
+.ph1 .count{font-size:1.5rem;font-weight:800}
+.ph1 .eyebrow{font:500 .7rem Menlo,Consolas,monospace;letter-spacing:.07em;text-transform:uppercase;color:var(--mute)}
+.ph1 .grid4,.ph1 .grid3{display:grid;gap:10px}
+.ph1 .grid4{grid-template-columns:repeat(4,1fr)}
+.ph1 .grid3{grid-template-columns:repeat(3,1fr)}
+.ph1 .cell{border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.ph1 .cell h4{margin:0 0 4px;font-size:.92rem}
+.ph1 .cell ul{margin:4px 0 0;padding-left:18px;font-size:.82rem}
+.ph1 .cell .q{font-size:.8rem;color:var(--mute);margin:2px 0 8px}
+.ph1 .cell.top{border-top:4px solid var(--dark)}
+.ph1 .cell.go{background:var(--soft)}
+.ph1 .meter{display:flex;gap:3px;margin:6px 0}
+.ph1 .meter i{flex:1;height:8px;border-radius:2px;background:var(--soft2)}
+.ph1 .meter i.on{background:var(--dark)}
+.ph1 .thread{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.ph1 .thread div{background:var(--soft);border-radius:6px;padding:8px 12px;font-size:.8rem}
+.ph1 .thread b{display:block;font:500 .68rem Menlo,Consolas,monospace;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+.ph1 .box{border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+.ph1 .box.warn{border-color:var(--danger);background:#f4eeee}
+.ph1 .box ul{margin:6px 0 0;padding-left:18px;font-size:.84rem}
+.ph1 .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ph1 .waves{display:grid;gap:8px}
+.ph1 .wave{display:grid;grid-template-columns:140px 1fr 200px;gap:14px;border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+.ph1 .wave.later{border-style:dashed}
+.ph1 .wave ul{margin:0;padding-left:18px;font-size:.84rem}
+.ph1 .wave .when{font:500 .74rem Menlo,Consolas,monospace;color:var(--mute)}
+.ph1 .wave .moves{font-size:.8rem;color:var(--mute)}
+/* concepts */
+.ph1 .idea{border:1px solid var(--line);border-left:4px solid var(--dark);border-radius:6px;padding:10px 14px;margin:.8em 0}
+.ph1 .idea.later{border-left-color:#999;border-left-style:dashed}
+.ph1 .idea h3{margin:0 0 4px}
+.ph1 .idea .depends{font-size:.8rem;color:var(--mute)}
+.ph1 .mock{border:1px solid #999;border-radius:6px;background:#fafafa;padding:8px 12px;margin:.6em 0;font-size:.8rem}
+.ph1 .mock .mt{font-weight:700;margin-bottom:4px}
+.ph1 .mock table{font-size:.78rem}
+/* wbs */
+.ph1 .wbs-root{border:1px solid var(--line);border-radius:8px;padding:12px;background:#fff}
+.ph1 .wbs-top{background:var(--dark);color:#fff;padding:8px 14px;border-radius:6px;font-weight:700;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.ph1 .wbs-top span{font-weight:400;font-size:.8rem;color:#ddd}
+.ph1 .wbs-grid{column-count:3;column-gap:10px}
+.ph1 .br{border:1px solid #999;border-radius:6px;background:#fff;break-inside:avoid;margin:0 0 10px}
+.ph1 .br.crit{border:3px solid #333}
+.ph1 .br.gate{border:3px double #333}
+.ph1 .br.thru{border-style:dashed}
+.ph1 .br summary{list-style:none;padding:8px 10px;display:grid;gap:2px}
+.ph1 .br summary::-webkit-details-marker{display:none}
+.ph1 .br[open] summary{border-bottom:1px solid var(--line);background:var(--soft)}
+.ph1 .bid{font:700 .8rem Menlo,Consolas,monospace}
+.ph1 .bn{font-weight:700}
+.ph1 .bm,.ph1 .bk{font-size:.74rem;color:var(--mute)}
+.ph1 .br ul{list-style:none;margin:0;padding:6px 10px 8px;font-size:.8rem}
+.ph1 .br li{padding:3px 0;border-bottom:1px dotted var(--line)}
+.ph1 .br li:last-child{border:0}
+.ph1 .pid{font:500 .74rem Menlo,Consolas,monospace;color:var(--mute);margin-right:4px}
+.ph1 .pw{display:block;font-size:.72rem;color:var(--mute)}
+.ph1 .chain{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:.8em 0;font-weight:700}
+.ph1 .chain span{background:var(--dark);color:#fff;border-radius:4px;padding:2px 10px}
+.ph1 .chain i{font-style:normal;color:var(--mute)}
+.ph1 .note{border:1px solid var(--line);background:var(--soft);border-radius:6px;padding:8px 14px;margin:.8em 0}
+.ph1 .foot{font-size:.78rem;color:var(--mute);margin-top:2.4em;border-top:1px solid var(--line);padding-top:.6em}
+@media(max-width:900px){.ph1 .wbs-grid{column-count:2}.ph1 .grid3{grid-template-columns:repeat(2,1fr)}.ph1 .grid4{grid-template-columns:repeat(2,1fr)}.ph1 .wave{grid-template-columns:1fr}}
+@media(max-width:620px){.ph1 .wbs-grid{column-count:1}.ph1 .grid3,.ph1 .grid4,.ph1 .split,.ph1 .thread{grid-template-columns:1fr}.ph1 .ba{grid-template-columns:1fr}.ph1 .ba .arrow{justify-self:center;transform:rotate(90deg)}}
+</style>
+
+<div class="ph1" id="top">
+<p class="lede">The first release of a bilingual intranet that runs entirely on the organization&#8217;s own isolated network. This page shows what is built, in what order, and how the work breaks down. It is a planning baseline, so it uses week numbers, not dates.</p>
+<ul class="chips"><li class="chip">12 branches</li><li class="chip">71 work packages</li><li class="chip">58 weeks</li><li class="chip">9 gates</li><li class="chip">2026-10-27</li></ul>
+
+<h2 class="sec" id="what">What Phase 1 builds</h2>
+<p>Phase 1 is the first release: publish information, find it, and prove it is current and owned. Everything runs on departmental infrastructure with no outside connections.</p>
+<div class="grid3">
+<div class="cell top"><h4>Publish</h4><p>A CMS with a government design system theme. One workflow carries English and French together. Every page has a named owner and a review date.</p></div>
+<div class="cell top"><h4>Find</h4><p>A search engine with separate English and French indexes. One shared vocabulary runs through the site, search and analytics. A people directory comes from the identity feed.</p></div>
+<div class="cell top"><h4>Prove</h4><p>A self-hosted analytics tool and content health reports. Video plays in the browser. Retired pages are archived to the records system after approval.</p></div>
+</div>
+<p>Existing content is migrated, not rebuilt. Nothing moves without an owner.</p>
+<nav class="strip" aria-label="On this page">
+<a href="#roadmap"><b>01</b>Roadmap</a><a href="#storyboard"><b>02</b>Storyboard</a><a href="#concepts"><b>03</b>Concepts</a><a href="#wbs"><b>04</b>Work breakdown</a><a href="#critical"><b>05</b>Critical path</a><a href="#scope"><b>06</b>Scope</a>
+</nav>
+
+<h2 class="sec" id="roadmap">Roadmap</h2>
+<p>Four phases, twelve branches, nine gates. Dark bars are on the critical path: a delay there delays go-live. Light bars have float. Each gate is accepted against evidence, such as a working system, a test result or a signed authorization. Never against a progress report.</p>
+<figure>
+<div class="svgscroll"><svg viewBox="0 0 1096 520" role="img" aria-labelledby="rm-t rm-d" xmlns="http://www.w3.org/2000/svg">
+<title id="rm-t">Phase 1 roadmap, week 1 to week 58</title>
+<desc id="rm-d">A bar chart of twelve work branches across 58 weeks, in four phases: discover, alpha on a connected network, build and prove on the isolated network, and go-live. The branches on the critical path run in a chain from discovery to go-live. Nine gates, each accepted against evidence, mark the way.</desc>
+<rect class="ph" x="380.0" y="8" width="180.0" height="24" />
+<text class="pht" x="470.0" y="24" text-anchor="middle">Discover</text>
+<rect class="ph" x="560.0" y="8" width="180.0" height="24" />
+<text class="pht" x="650.0" y="24" text-anchor="middle">Alpha on a connected network</text>
+<rect class="ph" x="740.0" y="8" width="264.0" height="24" />
+<text class="pht" x="872.0" y="24" text-anchor="middle">Build and prove on the isolated network</text>
+<rect class="ph" x="1004.0" y="8" width="72.0" height="24" />
+<text class="pht" x="1040.0" y="24" text-anchor="middle">Go-live</text>
+<line class="tick" x1="380.0" y1="38" x2="380.0" y2="430"/>
+<text class="tk" x="380.0" y="52" text-anchor="middle">W1</text>
+<line class="tick" x1="524.0" y1="38" x2="524.0" y2="430"/>
+<text class="tk" x="524.0" y="52" text-anchor="middle">W13</text>
+<line class="tick" x1="680.0" y1="38" x2="680.0" y2="430"/>
+<text class="tk" x="680.0" y="52" text-anchor="middle">W26</text>
+<line class="tick" x1="836.0" y1="38" x2="836.0" y2="430"/>
+<text class="tk" x="836.0" y="52" text-anchor="middle">W39</text>
+<line class="tick" x1="992.0" y1="38" x2="992.0" y2="430"/>
+<text class="tk" x="992.0" y="52" text-anchor="middle">W52</text>
+<line class="tick" x1="1064.0" y1="38" x2="1064.0" y2="430"/>
+<text class="tk" x="1064.0" y="52" text-anchor="middle">W58</text>
+<text class="tk" x="340" y="52" text-anchor="end">Branch</text>
+<rect class="band" x="0" y="70" width="1096" height="30"/>
+<text class="rl" x="372" y="89" text-anchor="end">1.0 Project management and governance</text>
+<rect class="bar thru" x="380.0" y="76" width="696.0" height="18" rx="2"><title>1.0 Project management and governance: week 1 to week 58</title></rect>
+<text class="wk" x="728.0" y="89" text-anchor="middle">W1–W58</text>
+<text class="rl" x="372" y="119" text-anchor="end">2.0 Discovery and requirements</text>
+<rect class="bar crit" x="380.0" y="106" width="108.0" height="18" rx="2"><title>2.0 Discovery and requirements: week 1 to week 9</title></rect>
+<text class="wk" x="492.0" y="119">W1–W9</text>
+<rect class="band" x="0" y="130" width="1096" height="30"/>
+<text class="rl" x="372" y="149" text-anchor="end">3.0 Architecture and design</text>
+<rect class="bar crit" x="464.0" y="136" width="96.0" height="18" rx="2"><title>3.0 Architecture and design: week 8 to week 15</title></rect>
+<text class="wk" x="564.0" y="149">W8–W15</text>
+<text class="rl" x="372" y="179" text-anchor="end">4.0 Build: alpha on a connected network</text>
+<rect class="bar crit" x="536.0" y="166" width="204.0" height="18" rx="2"><title>4.0 Build: alpha on a connected network: week 14 to week 30</title></rect>
+<text class="wk" x="744.0" y="179">W14–W30</text>
+<rect class="band" x="0" y="190" width="1096" height="30"/>
+<text class="rl" x="372" y="209" text-anchor="end">5.0 Content and taxonomy load</text>
+<rect class="bar float" x="584.0" y="196" width="228.0" height="18" rx="2"><title>5.0 Content and taxonomy load: week 18 to week 36</title></rect>
+<text class="wk" x="816.0" y="209">W18–W36</text>
+<text class="rl" x="372" y="239" text-anchor="end">6.0 Offline deployment pipeline</text>
+<rect class="bar crit" x="680.0" y="226" width="108.0" height="18" rx="2"><title>6.0 Offline deployment pipeline: week 26 to week 34</title></rect>
+<text class="wk" x="792.0" y="239">W26–W34</text>
+<rect class="band" x="0" y="250" width="1096" height="30"/>
+<text class="rl" x="372" y="269" text-anchor="end">7.0 Isolated-network installation and integration</text>
+<rect class="bar crit" x="788.0" y="256" width="96.0" height="18" rx="2"><title>7.0 Isolated-network installation and integration: week 35 to week 42</title></rect>
+<text class="wk" x="888.0" y="269">W35–W42</text>
+<text class="rl" x="372" y="299" text-anchor="end">8.0 Test and assurance</text>
+<rect class="bar crit" x="824.0" y="286" width="108.0" height="18" rx="2"><title>8.0 Test and assurance: week 38 to week 46</title></rect>
+<text class="wk" x="936.0" y="299">W38–W46</text>
+<rect class="band" x="0" y="310" width="1096" height="30"/>
+<text class="rl" x="372" y="329" text-anchor="end">9.0 Security assessment and authorization</text>
+<rect class="bar crit" x="860.0" y="316" width="144.0" height="18" rx="2"><title>9.0 Security assessment and authorization: week 41 to week 52</title></rect>
+<text class="wk" x="854.0" y="329" text-anchor="end">W41–W52</text>
+<text class="rl" x="372" y="359" text-anchor="end">10.0 Training, documentation, operational readiness</text>
+<rect class="bar float" x="848.0" y="346" width="132.0" height="18" rx="2"><title>10.0 Training, documentation, operational readiness: week 40 to week 50</title></rect>
+<text class="wk" x="984.0" y="359">W40–W50</text>
+<rect class="band" x="0" y="370" width="1096" height="30"/>
+<text class="rl" x="372" y="389" text-anchor="end">11.0 Go-live and transition</text>
+<rect class="bar crit" x="1004.0" y="376" width="72.0" height="18" rx="2"><title>11.0 Go-live and transition: week 53 to week 58</title></rect>
+<text class="wk" x="998.0" y="389" text-anchor="end">W53–W58</text>
+<text class="rl" x="372" y="419" text-anchor="end">12.0 Publishing and content lifecycle experience</text>
+<rect class="bar gate" x="476.0" y="406" width="312.0" height="18" rx="2"><title>12.0 Publishing and content lifecycle experience: week 9 to week 34</title></rect>
+<text class="wk" x="792.0" y="419">W9–W34</text>
+<line class="gl" x1="380.0" y1="458" x2="1076.0" y2="458"/>
+<text class="rl" x="372" y="462" text-anchor="end">Gates (accepted on evidence)</text>
+<path class="gem" d="M482.0 449 L491.0 458 L482.0 467 L473.0 458 Z"><title>G1 (week 9): Requirements baseline accepted</title></path>
+<text class="gt" x="482.0" y="484" text-anchor="middle">G1</text>
+<path class="gem" d="M554.0 449 L563.0 458 L554.0 467 L545.0 458 Z"><title>G2 (week 15): Design signed off by architecture</title></path>
+<text class="gt" x="554.0" y="484" text-anchor="middle">G2</text>
+<path class="gem" d="M734.0 449 L743.0 458 L734.0 467 L725.0 458 Z"><title>G3 (week 30): Alpha accepted, stakeholders trained</title></path>
+<text class="gt" x="734.0" y="484" text-anchor="middle">G3</text>
+<path class="gem" d="M782.0 449 L791.0 458 L782.0 467 L773.0 458 Z"><title>G4 (week 34): Transfer artefacts and pipeline dry run accepted</title></path>
+<text class="gt" x="782.0" y="484" text-anchor="middle">G4</text>
+<path class="gem" d="M878.0 449 L887.0 458 L878.0 467 L869.0 458 Z"><title>G5 (week 42): Installed and integration-tested on the isolated network</title></path>
+<text class="gt" x="878.0" y="484" text-anchor="middle">G5</text>
+<path class="gem" d="M926.0 449 L935.0 458 L926.0 467 L917.0 458 Z"><title>G6 (week 46): Test and assurance complete</title></path>
+<text class="gt" x="926.0" y="484" text-anchor="middle">G6</text>
+<path class="gem" d="M998.0 449 L1007.0 458 L998.0 467 L989.0 458 Z"><title>G7 (week 52): Authority to operate granted</title></path>
+<text class="gt" x="998.0" y="484" text-anchor="middle">G7</text>
+<path class="gem" d="M1046.0 449 L1055.0 458 L1046.0 467 L1037.0 458 Z"><title>G8 (week 56): Go-live</title></path>
+<text class="gt" x="1046.0" y="484" text-anchor="middle">G8</text>
+<path class="gem" d="M1070.0 449 L1079.0 458 L1070.0 467 L1061.0 458 Z"><title>G9 (week 58): Hypercare complete, project closed</title></path>
+<text class="gt" x="1070.0" y="484" text-anchor="middle">G9</text>
+<rect class="bar crit" x="380" y="493" width="26" height="12" rx="2"/>
+<text class="lg" x="412" y="504">Critical path</text>
+<rect class="bar float" x="521.8" y="493" width="26" height="12" rx="2"/>
+<text class="lg" x="553.8" y="504">Has float</text>
+<rect class="bar thru" x="637.1999999999999" y="493" width="26" height="12" rx="2"/>
+<text class="lg" x="669.1999999999999" y="504">Runs throughout</text>
+<rect class="bar gate" x="792.1999999999999" y="493" width="26" height="12" rx="2"/>
+<text class="lg" x="824.1999999999999" y="504">Gates the content load</text>
+</svg></div>
+<figcaption>Figure 1: Phase 1 roadmap by week. Week 1 is the notional start. Everything shifts week for week with the real start.</figcaption>
+<details><summary>View the roadmap as a table</summary><div class="tablewrap"><table><thead><tr><th scope="col">Branch</th><th scope="col">Weeks</th><th scope="col">Path</th></tr></thead><tbody><tr><th scope="row">1.0 Project management and governance</th><td>W1–W58</td><td>Runs throughout, has float</td></tr><tr><th scope="row">2.0 Discovery and requirements</th><td>W1–W9</td><td>On the critical path</td></tr><tr><th scope="row">3.0 Architecture and design</th><td>W8–W15</td><td>On the critical path</td></tr><tr><th scope="row">4.0 Build: alpha on a connected network</th><td>W14–W30</td><td>On the critical path</td></tr><tr><th scope="row">5.0 Content and taxonomy load</th><td>W18–W36</td><td>Has float</td></tr><tr><th scope="row">6.0 Offline deployment pipeline</th><td>W26–W34</td><td>On the critical path</td></tr><tr><th scope="row">7.0 Isolated-network installation and integration</th><td>W35–W42</td><td>On the critical path</td></tr><tr><th scope="row">8.0 Test and assurance</th><td>W38–W46</td><td>On the critical path</td></tr><tr><th scope="row">9.0 Security assessment and authorization</th><td>W41–W52</td><td>On the critical path</td></tr><tr><th scope="row">10.0 Training, documentation, operational readiness</th><td>W40–W50</td><td>Has float</td></tr><tr><th scope="row">11.0 Go-live and transition</th><td>W53–W58</td><td>On the critical path</td></tr><tr><th scope="row">12.0 Publishing and content lifecycle experience</th><td>W9–W34</td><td>Not on the chain, but gates the content load</td></tr></tbody></table></div></details>
+</figure>
+<h3>The nine gates</h3>
+<div class="tablewrap"><table><thead><tr><th scope="col">Gate</th><th scope="col">Week</th><th scope="col">Accepted when</th></tr></thead><tbody><tr><th scope="row">G1</th><td>W9</td><td>Requirements baseline accepted</td></tr><tr><th scope="row">G2</th><td>W15</td><td>Design signed off by architecture</td></tr><tr><th scope="row">G3</th><td>W30</td><td>Alpha accepted, stakeholders trained</td></tr><tr><th scope="row">G4</th><td>W34</td><td>Transfer artefacts and pipeline dry run accepted</td></tr><tr><th scope="row">G5</th><td>W42</td><td>Installed and integration-tested on the isolated network</td></tr><tr><th scope="row">G6</th><td>W46</td><td>Test and assurance complete</td></tr><tr><th scope="row">G7</th><td>W52</td><td>Authority to operate granted</td></tr><tr><th scope="row">G8</th><td>W56</td><td>Go-live</td></tr><tr><th scope="row">G9</th><td>W58</td><td>Hypercare complete, project closed</td></tr></tbody></table></div>
+<div class="note"><strong>One rule for gate G6.</strong> Do not close testing until the bilingual parity report counts English and French separately. A combined pass rate can hide a stalled French queue. That is an official-languages exposure that only shows after go-live.</div>
+
+<h2 class="sec" id="storyboard">Storyboard</h2>
+<p>The same plan told through the people who use it, run it and own the content. Eight scenes, from the old site to the waves that follow go-live.</p>
+<nav class="strip" aria-label="Scenes">
+<a href="#s1"><b>01</b>Today</a><a href="#s2"><b>02</b>Four jobs</a><a href="#s3"><b>03</b>Road to go-live</a><a href="#s4"><b>04</b>What go-live gives</a><a href="#s5"><b>05</b>The platform</a><a href="#s6"><b>06</b>Who wins</a><a href="#s7"><b>07</b>What we say first</a><a href="#s8"><b>08</b>After go-live</a>
+</nav>
+
+<section class="frame" id="s1"><div class="fhead"><span class="fnum">01</span><div><h3>Today: an intranet nobody trusts</h3><p class="moment">An employee needs the town hall video. Seven steps later, they may still not see it.</p></div></div>
+<div class="fbody"><div class="ba">
+<div class="col"><div class="eyebrow">As is</div><div class="count">7 steps</div><ol><li>Click a link on the intranet</li><li>Land in the corporate document system</li><li>Sign in</li><li>Save the file</li><li>Find the file</li><li>Open it in a desktop player</li><li>Hope the right codec is installed</li></ol></div>
+<div class="arrow" aria-hidden="true">&#8594;</div>
+<div class="col after"><div class="eyebrow">At go-live</div><div class="count">2 steps</div><ol><li>Click the page</li><li>It plays in the browser, with captions in your language</li></ol><p>One managed copy, with an owner and a review date. Views are measured.</p></div>
+</div>
+<p>The video is the visible symptom. Underneath it, pages have no named owner, nobody knows what is read, and nothing says when a page goes stale.</p></div></section>
+
+<section class="frame" id="s2"><div class="fhead"><span class="fnum">02</span><div><h3>&#8220;One-stop shop&#8221; is four jobs</h3><p class="moment">Each job costs a different amount. Phase 1 attacks one of them on purpose.</p></div></div>
+<div class="fbody"><div class="grid4">
+<div class="cell"><h4>Find</h4><p class="q">I can locate information fast, in my language.</p><div class="meter" role="img" aria-label="Phase 1 coverage: strong"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><span class="tag">Directly attacked</span></div>
+<div class="cell"><h4>Know</h4><p class="q">I learn what changed without hunting for it.</p><div class="meter" role="img" aria-label="Phase 1 coverage: partial"><i class="on"></i><i class="on"></i><i></i><i></i></div><span class="tag later">Partly</span> Current and owned. Nothing is pushed yet.</div>
+<div class="cell"><h4>Do</h4><p class="q">I start my task: pay, leave, travel, an IT ticket.</p><div class="meter" role="img" aria-label="Phase 1 coverage: minimal"><i class="on"></i><i></i><i></i><i></i></div><span class="tag later">Barely</span> Links only.</div>
+<div class="cell"><h4>Connect</h4><p class="q">I can respond, ask, or contribute.</p><div class="meter" role="img" aria-label="Phase 1 coverage: one channel"><i class="on"></i><i></i><i></i><i></i></div><span class="tag later">One channel</span> &#8220;Was this useful?&#8221; on every page.</div>
+</div>
+<p><strong>Why this order.</strong> Engagement features on stale content make the problem worse, because they advertise neglect. Fix the content first.</p></div></section>
+
+<section class="frame" id="s3"><div class="fhead"><span class="fnum">03</span><div><h3>The road to go-live</h3><p class="moment">Content moves before the doors open. When the new site goes live, the old one goes dark.</p></div></div>
+<div class="fbody"><div class="grid4">
+<div class="cell top"><h4>Discover</h4><ul><li>Workshops: content, IT, security</li><li>Shared taxonomy agreed</li><li>Content audit and owner list</li><li>Publishing tiers mocked up and agreed</li></ul></div>
+<div class="cell top"><h4>Alpha on a connected network</h4><ul><li>Core concepts only, no real data</li><li>Teams trained on the real tools</li><li>Migration patterns tried</li><li>One and done</li></ul></div>
+<div class="cell top"><h4>Isolated build</h4><ul><li>Development and staging on the isolated network</li><li>Content migrated to staging</li><li>Security hardening, authorization</li><li>Performance and accessibility checks</li></ul></div>
+<div class="cell top go"><h4>Go-live</h4><ul><li>Final content cutover</li><li>Old site switched off</li><li>Owners, review dates and reports running</li><li>Support in place</li></ul></div>
+</div>
+<div><div class="eyebrow" style="margin-bottom:4px">Content migration thread</div>
+<div class="thread"><div><b>Discover</b>Audit. Every page gets an owner or a retire decision.</div><div><b>Alpha</b>Try the migration on sample pages.</div><div><b>Isolated build</b>Migrate owned content to staging, English and French together.</div><div><b>Go-live</b>Cut over. Nothing is carried for old bookmarks.</div></div></div>
+<p>The rule: <strong>nothing migrates without an owner</strong>. The old site is not worth redirect work, so bookmarks are not preserved.</p></div></section>
+
+<section class="frame" id="s4"><div class="fhead"><span class="fnum">04</span><div><h3>What go-live gives everyone</h3><p class="moment">Six promises, all in scope for Phase 1.</p></div></div>
+<div class="fbody"><div class="grid3">
+<div class="cell"><h4>Current and owned</h4><ul><li>Owner and review date on every page</li><li>Automatic keep, refresh or retire reminders</li><li>Approved retirement archived as a record</li></ul></div>
+<div class="cell"><h4>Findable</h4><ul><li>Separate English and French search indexes</li><li>One vocabulary across site, search and analytics</li><li>People directory from the identity feed</li><li>Empty searches logged and reviewed</li></ul></div>
+<div class="cell"><h4>Bilingual, provably</h4><ul><li>English and French measured separately, always</li><li>A one-language page shows as a gap the same day</li><li>No total can hide a stalled French queue</li></ul></div>
+<div class="cell"><h4>Automation</h4><ul><li>Anything on a schedule is the system&#8217;s job</li><li>Scheduled publish and unpublish</li><li>One workflow for both languages</li><li>Reports arrive by email</li></ul></div>
+<div class="cell"><h4>Transparency</h4><ul><li>Readership on the page, for its publisher</li><li>Executives see if a message was read, by language</li><li>The same numbers for everyone</li></ul></div>
+<div class="cell"><h4>Accessibility</h4><ul><li>Accessible by construction, from design-system components</li><li>Checked at build and again on the live site</li><li>Open findings counted per language</li></ul></div>
+</div></div></section>
+
+<section class="frame" id="s5"><div class="fhead"><span class="fnum">05</span><div><h3>The minimum platform underneath</h3><p class="moment">Everything runs inside the isolated network. No cloud, no content delivery network, no outside calls.</p></div></div>
+<div class="fbody"><div class="svgscroll"><svg viewBox="0 0 900 470" role="img" aria-labelledby="ar-t ar-d" xmlns="http://www.w3.org/2000/svg">
+<title id="ar-t">The minimum platform at go-live</title>
+<desc id="ar-d">Employees use the CMS site. The CMS holds the shared taxonomy and feeds the search engine and the analytics tool. A nightly job joins CMS metadata with analytics data in a reporting schema to produce content health reports. The CMS sends notices through the mail system and archives retired pages to the records system. Video is made in a transcoding step. A build pipeline builds every release with a software bill of materials. The service management tool is shown for a later release.</desc>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ahp" d="M0 0L10 5L0 10z"/></marker></defs>
+<rect class="zone" x="12" y="60" width="876" height="398" rx="14"/>
+<text class="zl" x="28" y="82">ISOLATED NETWORK</text>
+<g class="n"><rect x="360" y="8" width="180" height="40" rx="6"/><text class="h" x="450" y="33" text-anchor="middle">Employees · EN / FR</text></g>
+<path class="ln" d="M450 48 V104" marker-end="url(#ah)"/>
+<g class="n core"><rect x="330" y="106" width="240" height="62" rx="6"/><text class="h" x="450" y="131" text-anchor="middle">CMS site</text><text x="450" y="151" text-anchor="middle">Design-system theme · one workflow, two languages</text></g>
+<g class="n core"><rect x="330" y="206" width="240" height="56" rx="6"/><text class="h" x="450" y="229" text-anchor="middle">Shared taxonomy</text><text x="450" y="248" text-anchor="middle">Topic · division · type · owner · language</text></g>
+<path class="ln" d="M450 168 V204" marker-end="url(#ah)"/>
+<g class="n"><rect x="40" y="206" width="220" height="56" rx="6"/><text class="h" x="150" y="229" text-anchor="middle">Search engine</text><text x="150" y="248" text-anchor="middle">Separate EN and FR indexes</text></g>
+<g class="n"><rect x="640" y="206" width="220" height="56" rx="6"/><text class="h" x="750" y="229" text-anchor="middle">Analytics tool</text><text x="750" y="248" text-anchor="middle">Anonymized · terms as dimensions</text></g>
+<path class="ln" d="M330 234 H262" marker-end="url(#ah)"/>
+<path class="ln" d="M570 234 H638" marker-end="url(#ah)"/>
+<g class="n core"><rect x="330" y="300" width="240" height="56" rx="6"/><text class="h" x="450" y="323" text-anchor="middle">Content health reports</text><text x="450" y="342" text-anchor="middle">Nightly join in a reporting schema</text></g>
+<path class="ln" d="M450 262 V298" marker-end="url(#ah)"/>
+<path class="ln" d="M750 262 V328 H572" marker-end="url(#ah)"/>
+<g class="n"><rect x="40" y="300" width="220" height="56" rx="6"/><text class="h" x="150" y="323" text-anchor="middle">Video</text><text x="150" y="342" text-anchor="middle">Transcoded renditions · web player</text></g>
+<path class="ln" d="M330 160 H300 V282 H150 V298" marker-end="url(#ah)"/>
+<g class="n int"><rect x="640" y="106" width="220" height="56" rx="6"/><text class="h" x="750" y="129" text-anchor="middle">Mail system · records system</text><text x="750" y="148" text-anchor="middle">Notices out · retired pages archived</text></g>
+<path class="ln" d="M570 134 H638" marker-end="url(#ah)"/>
+<g class="n int"><rect x="40" y="106" width="220" height="56" rx="6"/><text class="h" x="150" y="129" text-anchor="middle">Identity feed</text><text x="150" y="148" text-anchor="middle">People directory · sign-in</text></g>
+<path class="ln" d="M262 120 H328" marker-end="url(#ah)"/>
+<g class="n"><rect x="40" y="388" width="520" height="50" rx="6"/><text class="h" x="300" y="410" text-anchor="middle">Build pipeline</text><text x="300" y="428" text-anchor="middle">Build, accessibility checks, signed bill of materials, release to the container platform</text></g>
+<g class="n int"><rect x="640" y="388" width="220" height="50" rx="6"/><text class="h" x="750" y="410" text-anchor="middle">Service management tool</text><text x="750" y="428" text-anchor="middle">Later release · not at go-live</text></g>
+</svg></div>
+<p>Dashed boxes belong to other teams. The shared taxonomy sits in the middle on purpose. Terms are applied once, by the author, and search, analytics and reports all inherit them. Get the vocabulary wrong in the first workshops and every one of them inherits the mistake.</p>
+<details><summary>View this diagram as a table</summary><div class="tablewrap"><table><thead><tr><th scope="col">From</th><th scope="col">To</th><th scope="col">What flows</th></tr></thead><tbody>
+<tr><td>Employees</td><td>CMS site</td><td>Page requests in English or French</td></tr>
+<tr><td>CMS site</td><td>Shared taxonomy</td><td>Terms applied by the author</td></tr>
+<tr><td>Shared taxonomy</td><td>Search engine</td><td>Terms and content, indexed per language</td></tr>
+<tr><td>Shared taxonomy</td><td>Analytics tool</td><td>Terms as custom dimensions</td></tr>
+<tr><td>Shared taxonomy and analytics tool</td><td>Content health reports</td><td>Nightly join in a reporting schema</td></tr>
+<tr><td>CMS site</td><td>Video</td><td>Uploaded video, transcoded into renditions</td></tr>
+<tr><td>CMS site</td><td>Mail system and records system</td><td>Notices with no content; retired pages archived</td></tr>
+<tr><td>Identity feed</td><td>CMS site</td><td>Sign-in and people directory</td></tr>
+<tr><td>Build pipeline</td><td>Isolated network</td><td>Signed releases with a bill of materials</td></tr>
+</tbody></table></div></details></div></section>
+
+<section class="frame" id="s6"><div class="fhead"><span class="fnum">06</span><div><h3>Who wins at go-live</h3><p class="moment">Seven groups. Each gets something on day one, and each has a moment that proves it.</p></div></div>
+<div class="fbody"><div class="tablewrap"><table><thead><tr><th scope="col">Group</th><th scope="col">In their words</th><th scope="col">Gets at go-live</th><th scope="col">Grows later</th></tr></thead><tbody>
+<tr><th scope="row">Communications</th><td>&#8220;I can see every page that needs review, and the system chases owners for me.&#8221;</td><td>Bilingual publishing, tiered approval, content health reports, scheduled publishing</td><td>Review queue and flag screens; a monthly search gap backlog</td></tr>
+<tr><th scope="row">Content owners</th><td>&#8220;I get a reminder when my page is due. Keep, refresh or retire, and I&#8217;m done.&#8221;</td><td>Named ownership, review dates, notices that carry no content, only a link</td><td>&#8220;My content&#8221; page with readership and usefulness per page</td></tr>
+<tr><th scope="row">Information management</th><td>&#8220;Retired pages arrive in the records system as one bilingual record.&#8221;</td><td>Automatic archiving on approval; one managed copy of each video</td><td>12 months of traffic beside every retire decision</td></tr>
+<tr><th scope="row">Security</th><td>&#8220;Every release comes with a signed list of what is inside it.&#8221;</td><td>Everything as code, a signed bill of materials, no cloud design tools</td><td>A named owner per component; offline advisory checks</td></tr>
+<tr><th scope="row">IT operations</th><td>&#8220;No hand deploys. If it isn&#8217;t in the pipeline, it isn&#8217;t in production.&#8221;</td><td>One pipeline from build to the isolated network, on a container platform</td><td>The same platform reused for later integrations</td></tr>
+<tr><th scope="row">Employees</th><td>&#8220;I searched in French and got French results, and the video just played.&#8221;</td><td>Fast bilingual search, current pages, a people directory, in-browser video</td><td>Trust signals in search; services, training, &#8220;while you were away&#8221;</td></tr>
+<tr><th scope="row">Executives</th><td>&#8220;I can see whether my message was read, and in which language.&#8221;</td><td>Readership per message by language; the same numbers everyone sees</td><td>Year 2: is search working? Year 3: did people get the task done?</td></tr>
+</tbody></table></div></div></section>
+
+<section class="frame" id="s7"><div class="fhead"><span class="fnum">07</span><div><h3>What we say first</h3><p class="moment">Some things staff lose or do not get. Better they hear it from us.</p></div></div>
+<div class="fbody"><div class="box warn"><h4 style="margin:0">Lost on day one: policy in search</h4>
+<p style="margin-top:6px">Policy moves to its own platform at the same time, and the two systems do not talk. A search for a leave policy returns nothing. Phase 1 softens this with a &#8220;Looking for a policy?&#8221; banner on search results, stub pages for the top 20 policy topics, and a monthly count of dead-end policy searches. The real fix is a feed from the policy platform that the search engine can index. It is cheap to design in while that platform is being built, and expensive afterwards.</p></div>
+<div class="split">
+<div class="box"><h4 style="margin:0">Not in this release</h4><ul><li>Nothing is pushed: no digests or notifications to staff</li><li>No transactions: pay, leave and IT requests are links</li><li>No targeted announcements or follow-a-topic</li><li>No personalization, no mobile</li><li>Live streams link out to the existing platform</li></ul></div>
+<div class="box"><h4 style="margin:0">Ruled out, not deferred</h4><ul><li>Open discussion forums: moderation, language and records risk</li><li>Wiki-style co-editing: a page everyone edits is a page nobody owns</li><li>A separate engagement platform: another system to secure and run, outside the ownership model</li></ul></div>
+</div></div></section>
+
+<section class="frame" id="s8"><div class="fhead"><span class="fnum">08</span><div><h3>After go-live: each wave moves a job</h3><p class="moment">The data is collected from day one. Each wave asks a better question of it, or adds one job.</p></div></div>
+<div class="fbody"><div class="waves">
+<div class="wave"><div><h4 style="margin:0">Wave 1</h4><div class="when">Phase 1 increment</div><span class="tag prop" style="margin-top:6px">Proposed</span></div><ul><li>&#8220;My content&#8221; for owners</li><li>Owner and review date beside each search result</li><li>Monthly owner nudges and a search gap report</li><li>&#8220;Retire with confidence&#8221;</li></ul><div class="moves">Strengthens <b>Find</b> and <b>Know</b>: owners act, and staff can tell current from stale.</div></div>
+<div class="wave later"><div><h4 style="margin:0">Wave 2</h4><div class="when">Later release</div><span class="tag later" style="margin-top:6px">Later</span></div><ul><li>Service catalogue sync from the service management tool</li><li>Services found in the same search as content</li><li>&#8220;My tasks&#8221;, near real time</li><li>Calendar availability beside people</li></ul><div class="moves">Moves <b>Do</b> from links to found services.</div></div>
+<div class="wave later"><div><h4 style="margin:0">Wave 3</h4><div class="when">Year 2</div><span class="tag later" style="margin-top:6px">Later</span></div><ul><li>&#8220;While you were away&#8221; on the home page</li><li>Training catalogue indexed beside content</li><li>Related pages from shared terms</li><li>Role-based views</li><li>Captions drafted by a local AI service</li></ul><div class="moves">Moves <b>Know</b>: change finds you.</div></div>
+<div class="wave later"><div><h4 style="margin:0">Wave 4</h4><div class="when">Year 3</div><span class="tag later" style="margin-top:6px">Later</span></div><ul><li>Task success measured, not just visits</li><li>&#8220;Did this answer your question?&#8221; feeds outcome reports</li><li>Search and content tuned from the evidence</li></ul><div class="moves">Needs new work. Phase 1 only collects the data.</div></div>
+</div>
+<p>Analytics follows the same path: year 1 asks whether the site is used and healthy, year 2 reads the same data better (is search working?), and year 3 asks whether people got the task done.</p></div></section>
+
+<h2 class="sec" id="concepts">Concepts</h2>
+<p>Concepts are ideas that start a conversation. Only the first group, the mock-up set, is proposed Phase 1 scope. The rest are not committed. Each depends on skilled people being in place, such as a content manager, a taxonomy steward, a designer and a developer. Until those posts are filled, the ideas have no owner.</p>
+
+<h3><span class="tag prop">Proposed</span>Mock-ups for the publishing and lifecycle experience</h3>
+<p>Nobody agrees a publishing authority model in the abstract. People argue until they see a screen. These eight mock-ups settle who approves what, with Communications and two business lines, before the build packages start.</p>
+<div class="tablewrap"><table><thead><tr><th scope="col">#</th><th scope="col">Screen</th><th scope="col">The question it answers</th></tr></thead><tbody>
+<tr><td>1</td><th scope="row">&#8220;My content&#8221; owner dashboard</th><td>What does accountability look like on a Tuesday morning?</td></tr>
+<tr><td>2</td><th scope="row">Communications review queue</th><td>Can a small team carry review after publication? What does two days of work look like?</td></tr>
+<tr><td>3</td><th scope="row">Flag and escalation</th><td>Is &#8220;comment, correct by date, unpublish&#8221; proportionate, or does it feel punitive?</td></tr>
+<tr><td>4</td><th scope="row">Publish screen, blocked</th><td>Is the guardrail helpful or infuriating? Does it say what to do next?</td></tr>
+<tr><td>5</td><th scope="row">Tier indicator</th><td>How does an author know, before writing, who approves this?</td></tr>
+<tr><td>6</td><th scope="row">Review-date decision</th><td>Is there enough evidence to decide, or will everyone press &#8220;keep&#8221;?</td></tr>
+<tr><td>7</td><th scope="row">Retire and archive confirmation</th><td>Does the irreversible step feel safe enough to take?</td></tr>
+<tr><td>8</td><th scope="row">&#8220;While you were away&#8221; digest</th><td>Does the site give something back to the people who maintain it?</td></tr>
+</tbody></table></div>
+<p><strong>What a mock-up must show to be useful:</strong> both languages side by side (French runs 15 to 30 percent longer); real content, including stale pages; the unhappy path, such as a page with no owner or a French version never written; realistic volume, because 6 pages look fine and 300 are a different product; and keyboard and screen-reader behaviour, even at concept stage.</p>
+<p><strong>Where they live:</strong> clickable HTML prototypes built on the design system and hosted inside the network. Cloud design tools would put content and structure outside the network. Prototypes must not become the build. They have no caching, no permissions and no tests. Reuse the markup and the pattern, not the code.</p>
+
+<h3>Ideas for later</h3>
+<div class="idea later"><h3><span class="tag later">Idea</span>&#8220;What changed while I was away&#8221;</h3>
+<p>An employee returns from three weeks of leave. The home page says what changed in their areas, what videos were posted, and what they own that needs attention.</p>
+<div class="mock" aria-label="Illustrative mock-up"><div class="mt">Welcome back. You were away 12 days.</div>4 updated pages in your areas (Leave, Telework) &middot; 2 new videos, including the Q3 town hall &middot; 1 page you own is due for review</div>
+<p class="depends">Built from the CMS, not the analytics tool, which stays anonymized. The panel loads separately from the cached page.</p></div>
+
+<div class="idea later"><h3><span class="tag later">Idea</span>The site changes through the day</h3>
+<p>Mornings want news and notices. Midday is for tasks. Late in the day there is room for learning. Three time bands means three cached versions of the home page, not one per person. Test with analytics first: if traffic does not shift by time of day, the idea does not earn its keep.</p></div>
+
+<div class="idea later"><h3><span class="tag later">Idea</span>Search that shows whether a page can be trusted</h3>
+<p>Each result shows its owner and when it was last reviewed, so staff can tell current guidance from stale before clicking. A one-question &#8220;Did this answer your question?&#8221; turns search into a measure of task success.</p>
+<div class="mock" aria-label="Illustrative mock-up"><div class="mt">Search: parental leave</div>Parental leave: how to apply &middot; How-to &middot; HR &middot; <strong>Reviewed 2 months ago</strong><br>Leave: planning your time off &middot; Guidance &middot; HR &middot; <strong>Review due</strong></div>
+<p class="depends">Owner and review date are already Phase 1 fields. Showing them in results is a small step.</p></div>
+
+<div class="idea"><h3><span class="tag prop">Proposed</span>&#8220;My content&#8221;: owners see how their pages are doing</h3>
+<p>An owner opens one page and sees everything they publish: readers in each language, how people found each page, whether it was useful, and what is due for review. No request to IT, no waiting for a report. This one became load-bearing: notices carry no content, only a pointer, so this screen is the whole experience.</p>
+<div class="mock" aria-label="Illustrative mock-up with sample numbers"><div class="mt">My content &middot; Benefits team &middot; last 30 days (sample numbers)</div>
+<table><thead><tr><th scope="col">Page</th><th scope="col">Views EN / FR</th><th scope="col">From search</th><th scope="col">Useful</th><th scope="col">Review</th></tr></thead><tbody>
+<tr><td>Parental leave: how to apply</td><td>1,240 / 410</td><td>64%</td><td>88%</td><td>Reviewed 2 months ago</td></tr>
+<tr><td>Leave: planning your time off</td><td>860 / 295</td><td>51%</td><td>79%</td><td>Review due</td></tr>
+<tr><td>Dental plan changes (old)</td><td>42 / 9</td><td>12%</td><td>&#8211;</td><td><strong>Overdue</strong></td></tr></tbody></table>
+<p style="margin:6px 0 0">One page is overdue and almost unread, so it is a candidate to retire. Retiring is the owner&#8217;s decision. Nothing is removed automatically.</p></div>
+<p class="depends">The data already exists in Phase 1: analytics visits and CMS metadata joined nightly. Figures are aggregate. No individual reader is shown.</p></div>
+
+<div class="idea later"><h3><span class="tag later">Idea</span>Success-based dashboard for Communications</h3>
+<p>One view that answers &#8220;is the intranet healthy?&#8221;: ownership, freshness, parity and findability, with a drill-down by division. Phase 1 delivers the data through content health reporting. This idea is the presentation layer on top.</p></div>
+
+<p>Also on the board: monthly owner nudges by email, and &#8220;retire with confidence&#8221;, which shows 12 months of traffic and the searches that led to a page before it is removed.</p>
+
+<h2 class="sec" id="wbs">Work breakdown structure</h2>
+<p>12 branches and 71 work packages. A heavy border marks a branch on the critical path. A double border marks the branch that is not on the chain but gates the content load. Each branch lists its packages and weeks; use the summary line to fold one away.</p>
+<div class="wbs-root"><div class="wbs-top">Intranet, first release<span>12 branches · 71 work packages</span></div>
+<div class="wbs-grid">
+<details class="br thru" open><summary><span class="bid">1.0</span> <span class="bn">Project management and governance</span><span class="bm">W1–W58 · Delivery lead and PMO</span><span class="bk">Runs throughout, has float · 4 packages</span></summary><ul>
+<li><span class="pid">1.1</span> Charter, project plan, baselined schedule <span class="pw">W1–W3</span></li>
+<li><span class="pid">1.2</span> Governance and reporting cadence <span class="pw">W1–W58</span></li>
+<li><span class="pid">1.3</span> Risk, issue and change management <span class="pw">W1–W58</span></li>
+<li><span class="pid">1.4</span> Gate acceptance against evidence <span class="pw">W9–W58</span></li>
+</ul></details>
+<details class="br crit" open><summary><span class="bid">2.0</span> <span class="bn">Discovery and requirements</span><span class="bm">W1–W9 · Business and delivery team</span><span class="bk">On the critical path · 5 packages</span></summary><ul>
+<li><span class="pid">2.1</span> Content architecture workshops (structure, taxonomy) <span class="pw">W2–W4</span></li>
+<li><span class="pid">2.2</span> IT architecture and environment workshops <span class="pw">W3–W5</span></li>
+<li><span class="pid">2.3</span> Security, privacy and authorization path <span class="pw">W4–W6</span></li>
+<li><span class="pid">2.4</span> Accessibility and official-languages requirements <span class="pw">W5–W6</span></li>
+<li><span class="pid">2.5</span> Requirements baseline and traceability matrix <span class="pw">W7–W9</span></li>
+</ul></details>
+<details class="br crit" open><summary><span class="bid">3.0</span> <span class="bn">Architecture and design</span><span class="bm">W8–W15 · Delivery team</span><span class="bk">On the critical path · 8 packages</span></summary><ul>
+<li><span class="pid">3.1</span> Design conformance to architecture constraints <span class="pw">W8–W11</span></li>
+<li><span class="pid">3.2</span> Shared taxonomy model (CMS, search, analytics) <span class="pw">W8–W12</span></li>
+<li><span class="pid">3.3</span> CMS site architecture (workflow, archive renderings) <span class="pw">W9–W12</span></li>
+<li><span class="pid">3.4</span> Design-system theme and custom component plan <span class="pw">W10–W13</span></li>
+<li><span class="pid">3.5</span> Search design (separate English and French indexes) <span class="pw">W10–W13</span></li>
+<li><span class="pid">3.6</span> Analytics design (freshness and ownership) <span class="pw">W11–W14</span></li>
+<li><span class="pid">3.7</span> Offline build and environment design <span class="pw">W12–W14</span></li>
+<li><span class="pid">3.8</span> Design review and architecture sign-off <span class="pw">W15</span></li>
+</ul></details>
+<details class="br crit" open><summary><span class="bid">4.0</span> <span class="bn">Build: alpha on a connected network</span><span class="bm">W14–W30 · Delivery team</span><span class="bk">On the critical path · 11 packages</span></summary><ul>
+<li><span class="pid">4.1</span> Alpha environment provisioning <span class="pw">W14–W16</span></li>
+<li><span class="pid">4.2</span> CMS install <span class="pw">W16–W19</span></li>
+<li><span class="pid">4.3</span> Theme and custom component build (self-hosted assets) <span class="pw">W17–W22</span></li>
+<li><span class="pid">4.4</span> Content types, taxonomy, workflow, translation <span class="pw">W19–W24</span></li>
+<li><span class="pid">4.5</span> Search integration and English/French indexing <span class="pw">W22–W26</span></li>
+<li><span class="pid">4.10</span> Video pipeline: transcoding, player, captions, play tracking <span class="pw">W22–W27</span></li>
+<li><span class="pid">4.6</span> Analytics install and instrumentation <span class="pw">W24–W27</span></li>
+<li><span class="pid">4.11</span> People directory: identity feed <span class="pw">W24–W28</span></li>
+<li><span class="pid">4.7</span> Content health pipeline (freshness, ownership) <span class="pw">W25–W29</span></li>
+<li><span class="pid">4.9</span> Records-system archive integration <span class="pw">W26–W29</span></li>
+<li><span class="pid">4.8</span> Alpha acceptance and stakeholder upskilling <span class="pw">W28–W30</span></li>
+</ul></details>
+<details class="br float" open><summary><span class="bid">5.0</span> <span class="bn">Content and taxonomy load</span><span class="bm">W18–W36 · Communications</span><span class="bk">Has float · 5 packages</span></summary><ul>
+<li><span class="pid">5.1</span> Content inventory and disposition <span class="pw">W18–W23</span></li>
+<li><span class="pid">5.2</span> Named owner and owning branch for every page <span class="pw">W20–W25</span></li>
+<li><span class="pid">5.3</span> Apply taxonomy; metadata quality checks <span class="pw">W24–W30</span></li>
+<li><span class="pid">5.4</span> English/French parity validation <span class="pw">W26–W33</span></li>
+<li><span class="pid">5.5</span> Migration dry runs <span class="pw">W31–W36</span></li>
+</ul></details>
+<details class="br crit" open><summary><span class="bid">6.0</span> <span class="bn">Offline deployment pipeline</span><span class="bm">W26–W34 · Delivery team and IT</span><span class="bk">On the critical path · 4 packages</span></summary><ul>
+<li><span class="pid">6.1</span> Mirror dependencies (package registries, operating system) <span class="pw">W26–W29</span></li>
+<li><span class="pid">6.2</span> Artefact packaging, manifest and signing <span class="pw">W28–W31</span></li>
+<li><span class="pid">6.3</span> Transfer process and media handling <span class="pw">W30–W32</span></li>
+<li><span class="pid">6.4</span> End-to-end pipeline dry run (connected to isolated network) <span class="pw">W32–W34</span></li>
+</ul></details>
+<details class="br crit" open><summary><span class="bid">7.0</span> <span class="bn">Isolated-network installation and integration</span><span class="bm">W35–W42 · Delivery team and IT</span><span class="bk">On the critical path · 5 packages</span></summary><ul>
+<li><span class="pid">7.1</span> Target environment readiness and hand-off <span class="pw">W35–W36</span></li>
+<li><span class="pid">7.2</span> Install, configure and harden <span class="pw">W36–W39</span></li>
+<li><span class="pid">7.3</span> Integration and smoke testing <span class="pw">W39–W40</span></li>
+<li><span class="pid">7.4</span> Performance, load and failover testing <span class="pw">W40–W41</span></li>
+<li><span class="pid">7.5</span> Backup and restore verification <span class="pw">W41–W42</span></li>
+</ul></details>
+<details class="br crit" open><summary><span class="bid">8.0</span> <span class="bn">Test and assurance</span><span class="bm">W38–W46 · Business and delivery team</span><span class="bk">On the critical path · 5 packages</span></summary><ul>
+<li><span class="pid">8.1</span> Functional testing and user acceptance <span class="pw">W38–W42</span></li>
+<li><span class="pid">8.2</span> Accessibility: automated checks plus manual assistive-technology audit <span class="pw">W40–W44</span></li>
+<li><span class="pid">8.3</span> Bilingual parity testing (English and French separately) <span class="pw">W40–W44</span></li>
+<li><span class="pid">8.4</span> Security testing (scan, penetration test) <span class="pw">W41–W44</span></li>
+<li><span class="pid">8.5</span> Defect triage and resolution <span class="pw">W42–W46</span></li>
+</ul></details>
+<details class="br crit" open><summary><span class="bid">9.0</span> <span class="bn">Security assessment and authorization</span><span class="bm">W41–W52 · Security</span><span class="bk">On the critical path · 4 packages</span></summary><ul>
+<li><span class="pid">9.1</span> Security artefacts (security plan, threat and risk, privacy inputs) <span class="pw">W41–W45</span></li>
+<li><span class="pid">9.2</span> Security control assessment <span class="pw">W45–W49</span></li>
+<li><span class="pid">9.3</span> Remediation of findings <span class="pw">W48–W51</span></li>
+<li><span class="pid">9.4</span> Authorization decision <span class="pw">W52</span></li>
+</ul></details>
+<details class="br float" open><summary><span class="bid">10.0</span> <span class="bn">Training, documentation, operational readiness</span><span class="bm">W40–W50 · Delivery team and business</span><span class="bk">Has float · 4 packages</span></summary><ul>
+<li><span class="pid">10.1</span> Operations runbooks and admin documentation <span class="pw">W40–W45</span></li>
+<li><span class="pid">10.2</span> Content author training (English and French) <span class="pw">W44–W48</span></li>
+<li><span class="pid">10.3</span> Analytics training by audience <span class="pw">W46–W49</span></li>
+<li><span class="pid">10.4</span> Service transition to operations <span class="pw">W47–W50</span></li>
+</ul></details>
+<details class="br crit" open><summary><span class="bid">11.0</span> <span class="bn">Go-live and transition</span><span class="bm">W53–W58 · Business and delivery team</span><span class="bk">On the critical path · 4 packages</span></summary><ul>
+<li><span class="pid">11.1</span> Go / no-go review and cutover plan <span class="pw">W53–W54</span></li>
+<li><span class="pid">11.2</span> Cutover and launch <span class="pw">W55–W56</span></li>
+<li><span class="pid">11.3</span> Hypercare <span class="pw">W56–W58</span></li>
+<li><span class="pid">11.4</span> Warranty start and project closeout <span class="pw">W58</span></li>
+</ul></details>
+<details class="br gate" open><summary><span class="bid">12.0</span> <span class="bn">Publishing and content lifecycle experience</span><span class="bm">W9–W34 · Delivery team and Communications</span><span class="bk">Not on the chain, but gates the content load · 12 packages</span></summary><ul>
+<li><span class="pid">12.1</span> Editorial workflow and publishing authority model <span class="pw">W9–W13</span></li>
+<li><span class="pid">12.2</span> Authoring guardrails: language gate, metadata, taxonomy, accessibility at save <span class="pw">W11–W14</span></li>
+<li><span class="pid">12.12</span> Concepts and mock-ups <span class="pw">W12–W18</span></li>
+<li><span class="pid">12.3</span> “My content” owner and author dashboard <span class="pw">W20–W26</span></li>
+<li><span class="pid">12.8</span> Scheduling, embargo and bilingual preview <span class="pw">W21–W25</span></li>
+<li><span class="pid">12.4</span> Communications review queue and sampling <span class="pw">W21–W27</span></li>
+<li><span class="pid">12.6</span> Owner of record and delegation (owner by position) <span class="pw">W22–W26</span></li>
+<li><span class="pid">12.5</span> Flag and escalation: comment, correct-by-date, unpublish <span class="pw">W22–W28</span></li>
+<li><span class="pid">12.10</span> Audit trail and compliance evidence <span class="pw">W24–W28</span></li>
+<li><span class="pid">12.7</span> Review, reminder and escalation engine <span class="pw">W24–W29</span></li>
+<li><span class="pid">12.9</span> Disposition journey to the records system: screens and approvals <span class="pw">W26–W29</span></li>
+<li><span class="pid">12.11</span> Publisher and owner training and guidance, per tier <span class="pw">W28–W34</span></li>
+</ul></details>
+</div></div>
+<details><summary>View the work breakdown as a table of branches</summary><div class="tablewrap"><table><thead><tr><th scope="col">Branch</th><th scope="col">Weeks</th><th scope="col">Led by</th><th scope="col">Path</th><th scope="col">Packages</th></tr></thead><tbody><tr><th scope="row">1.0 Project management and governance</th><td>W1–W58</td><td>Delivery lead and PMO</td><td>Runs throughout, has float</td><td>4</td></tr><tr><th scope="row">2.0 Discovery and requirements</th><td>W1–W9</td><td>Business and delivery team</td><td>On the critical path</td><td>5</td></tr><tr><th scope="row">3.0 Architecture and design</th><td>W8–W15</td><td>Delivery team</td><td>On the critical path</td><td>8</td></tr><tr><th scope="row">4.0 Build: alpha on a connected network</th><td>W14–W30</td><td>Delivery team</td><td>On the critical path</td><td>11</td></tr><tr><th scope="row">5.0 Content and taxonomy load</th><td>W18–W36</td><td>Communications</td><td>Has float</td><td>5</td></tr><tr><th scope="row">6.0 Offline deployment pipeline</th><td>W26–W34</td><td>Delivery team and IT</td><td>On the critical path</td><td>4</td></tr><tr><th scope="row">7.0 Isolated-network installation and integration</th><td>W35–W42</td><td>Delivery team and IT</td><td>On the critical path</td><td>5</td></tr><tr><th scope="row">8.0 Test and assurance</th><td>W38–W46</td><td>Business and delivery team</td><td>On the critical path</td><td>5</td></tr><tr><th scope="row">9.0 Security assessment and authorization</th><td>W41–W52</td><td>Security</td><td>On the critical path</td><td>4</td></tr><tr><th scope="row">10.0 Training, documentation, operational readiness</th><td>W40–W50</td><td>Delivery team and business</td><td>Has float</td><td>4</td></tr><tr><th scope="row">11.0 Go-live and transition</th><td>W53–W58</td><td>Business and delivery team</td><td>On the critical path</td><td>4</td></tr><tr><th scope="row">12.0 Publishing and content lifecycle experience</th><td>W9–W34</td><td>Delivery team and Communications</td><td>Not on the chain, but gates the content load</td><td>12</td></tr></tbody></table></div></details>
+<div class="note"><strong>Why branch 12.0 exists.</strong> Publishing experience used to be spread across the design, build and content branches with no single owner. That is the gap where a good author experience and Communications&#8217; control get traded off by accident. Packages 12.1, 12.2 and 12.12 must be accepted before the content load starts at week 18, because inventory and owner assignment are made against the publishing authority model. If that model changes afterwards, every ownership decision re-opens.</div>
+
+<h2 class="sec" id="critical">Critical path and dependencies</h2>
+<div class="chain" aria-label="Critical path"><span>2.0 Discovery</span><i>&#8594;</i><span>3.0 Design</span><i>&#8594;</i><span>4.0 Alpha build</span><i>&#8594;</i><span>6.0 Pipeline</span><i>&#8594;</i><span>7.0 Install</span><i>&#8594;</i><span>8.0 Test</span><i>&#8594;</i><span>9.0 Authorization</span><i>&#8594;</i><span>11.0 Go-live</span></div>
+<p>Content load (5.0) and training (10.0) run alongside and carry float. The content load feeds user testing though. Slip it past week 36 and it joins the critical path.</p>
+<div class="tablewrap"><table><thead><tr><th scope="col">Must finish first</th><th scope="col">Before this starts</th><th scope="col">Why</th></tr></thead><tbody>
+<tr><td>2.5 Requirements baseline</td><td>3.1 Design</td><td>No design without agreed scope</td></tr>
+<tr><td>3.8 Architecture sign-off</td><td>4.2 CMS build</td><td>Prevents rework</td></tr>
+<tr><td>3.2 Taxonomy model</td><td>4.4, 4.5, 4.6 Content, search, analytics</td><td>The same vocabulary must reach the CMS, search and analytics</td></tr>
+<tr><td>4.1 Alpha environment</td><td>4.2 onward</td><td>Hard gate on a dependency outside the delivery team</td></tr>
+<tr><td>6.4 Pipeline dry run</td><td>7.2 Install</td><td>Proves no outside dependency remains</td></tr>
+<tr><td>7.5 Restore verification</td><td>8.1 Acceptance testing</td><td>Test on a recoverable system</td></tr>
+<tr><td>8.5 Defects closed</td><td>9.2 Control assessment</td><td>Assess a stable build</td></tr>
+<tr><td>9.4 Authorization decision</td><td>11.2 Launch</td><td>Cannot go live unauthorized</td></tr>
+<tr><td>12.12 Mock-ups agreed</td><td>12.1, 12.2 acceptance</td><td>Tier boundaries are tested against screens before they are built</td></tr>
+<tr><td>12.1, 12.2 accepted</td><td>5.1 Content inventory (week 18)</td><td>Owners are assigned against the publishing authority model</td></tr>
+</tbody></table></div>
+
+<h2 class="sec" id="scope">Scope</h2>
+<div class="split">
+<div class="box"><h4 style="margin:0">In scope for Phase 1</h4><ul>
+<li>CMS built on its core, no distribution</li><li>Design-system theme, assets self-hosted</li><li>Bilingual publishing, parity measured per language</li><li>Search with separate English and French indexes</li><li>Self-hosted analytics, plus content freshness and ownership reporting</li><li>Video playback in the browser, with captions</li><li>People directory from the identity feed</li><li>Automated archiving of retired pages to the records system, after owner and publisher approval</li><li>Offline build pipeline, alpha on a connected network, isolated-network install, authorization, go-live</li></ul></div>
+<div class="box"><h4 style="margin:0">Out of scope, later release candidates</h4><ul>
+<li>Service catalogue batch sync</li><li>&#8220;My tasks&#8221;, near real time</li><li>Personalization and role-based targeting</li><li>A BI tool as the content health surface</li><li>Departmental policy, which has its own site and is not in intranet search</li></ul>
+<p style="font-size:.82rem;margin:8px 0 0">These are sized into the platform so it does not need rework later.</p></div>
+</div>
+
+<p class="foot">Drafted with Claude.ai from a private project hub, then generalized. Product, team and system names are removed on purpose. Weeks, not dates, so the plan holds whatever the real start.</p>
+</div>
+
+{% endraw %}
