@@ -2,7 +2,6 @@
 # - to view on Github set branch to gh-pages-3.1.6
 # Site Information
 title: "Technology & Balance"
-email: tuborgjunior@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Notes on digital technology, psychology and economics, and a little cycling.
 # set as per https://mmistakes.github.io/minimal-mistakes/docs/configuration/
@@ -11,34 +10,7 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "/balance" # the subpath of your site, e.g. /blog
 url: "https://gajol.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
-# twitter_username: Aqvavit
-# github_username:  Gajol
-# linkedin_username: nielsencanada
-
 repository: "gajol/balance"
-
-author:
-  name: "Doug Nielsen"
-  avatar: "/assets/images/doug-bio-2021-11-06.jpg"
-  bio: "Working in technology with a passion for recreation." # Note: Markdown is allowed
-  location: "Ottawa, ON, Canada"
-  links:
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"  # font-awwesome fonts https://fontawesome.com/
-      url: "https://linkedin.com/in/nielsencanada"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/Aqvavit"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/Gajol"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/doug.djn"
-    - label: "Linktree"
-      icon: "fas fa-fw fa-link"
-      url: "https://linktr.ee/dougnielsen"
-
 
 # as per jekyll https://jekyllrb.com/docs/permalinks/, and
 # as per MM https://mmistakes.github.io/minimal-mistakes/docs/navigation/
@@ -76,7 +48,7 @@ defaults:
       type: posts
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       read_time: true
       comments: false
       share: false
@@ -88,7 +60,7 @@ defaults:
       type: pages
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       read_time: true
 
   # collections
@@ -115,12 +87,6 @@ defaults:
 tag_archive:
   type: liquid
   path: /tags/
-
-# Social Sharing
-twitter:
-  username               : &twitter "Aqvavit"
-facebook:
-  username               : &facebook "doug.nielsen.370"
 
 # Default card image for Facebook / Twitter Link Preview (Cards)
 # would a CDN cdn.kapwing.com be better

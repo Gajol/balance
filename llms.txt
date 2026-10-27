@@ -1,6 +1,6 @@
 # Technology & Balance
 
-> Doug Nielsen's notes on digital government architecture, DevOps and web platforms, plus book summaries on psychology and economics, and some cycling. Written in plain language. Examples are generic: product and organization names are removed on purpose. Written with help from Claude; Doug chooses the topics and reviews what is published.
+> Notes on digital government architecture, DevOps and web platforms, plus book summaries on psychology and economics, and some cycling. Written in plain language. Examples are generic: product and organization names are removed on purpose. Written with help from Claude; the author chooses the topics and reviews what is published.
 
 Site: https://gajol.github.io/balance/
 Sitemap: https://gajol.github.io/balance/sitemap.xml

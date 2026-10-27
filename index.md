@@ -2,7 +2,7 @@
 title: "Technology & Balance"
 permalink: /
 layout: single
-author_profile: true
+author_profile: false
 classes: full-width
 ---
 
