@@ -3,7 +3,7 @@ title: "Phase 1 roadmap, concepts and work breakdown for an on-premises intranet
 excerpt: "A basic plan for the first release of a bilingual intranet on an isolated network: a roadmap diagram, a storyboard of who gains and when, the concepts being tested, and a work breakdown structure."
 last_modified_at: 2026-10-27T07:00:00-04:00
 layout: single
-classes: wide-text
+classes: full-width
 toc: false
 author_profile: false
 theme: digital
@@ -137,6 +137,20 @@ tags: [architecture, roadmap, work breakdown, storyboard, government, intranet, 
 .ph1 .note{border:1px solid var(--line);background:var(--soft);border-radius:6px;padding:8px 14px;margin:.8em 0}
 .ph1 .next{border:2px solid #333;border-radius:8px;padding:12px 16px;margin:1.6em 0}
 .ph1 .foot{font-size:.78rem;color:var(--mute);margin-top:2.4em;border-top:1px solid var(--line);padding-top:.6em}
+
+@media print{
+ @page{size:letter;margin:.5in}
+ .ph1{font-size:10pt}
+ .ph1 .strip{display:none}
+ .ph1 .svgscroll{overflow:visible}
+ .ph1 .svgscroll svg{min-width:0}
+ .ph1 .cell,.ph1 .box,.ph1 .idea,.ph1 .note,.ph1 .wave,.ph1 .next,.ph1 figure,.ph1 tr,.ph1 .br{break-inside:avoid}
+ .ph1 h2.sec,.ph1 h3{break-after:avoid}
+ .ph1 .wbs-grid{column-count:2}
+ .ph1 .grid4{grid-template-columns:repeat(2,1fr)}
+ .ph1 .wave{grid-template-columns:110px 1fr 150px}
+ .ph1 *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
 @media(max-width:900px){.ph1 .wbs-grid{column-count:2}.ph1 .grid3{grid-template-columns:repeat(2,1fr)}.ph1 .grid4{grid-template-columns:repeat(2,1fr)}.ph1 .wave{grid-template-columns:1fr}}
 @media(max-width:620px){.ph1 .wbs-grid{column-count:1}.ph1 .grid3,.ph1 .grid4,.ph1 .split,.ph1 .thread{grid-template-columns:1fr}.ph1 .ba{grid-template-columns:1fr}.ph1 .ba .arrow{justify-self:center;transform:rotate(90deg)}}
 </style>
