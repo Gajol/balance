@@ -136,12 +136,13 @@ tags: [architecture, roadmap, work breakdown, storyboard, government, intranet, 
 .ph1 .chain i{font-style:normal;color:var(--mute)}
 .ph1 .note{border:1px solid var(--line);background:var(--soft);border-radius:6px;padding:8px 14px;margin:.8em 0}
 .ph1 .next{border:2px solid #333;border-radius:8px;padding:12px 16px;margin:1.6em 0}
+.ph1 .pdfbox{border:1px solid #8c8c8c;background:#f2f2f2;border-radius:6px;padding:8px 14px;margin:1em 0;font-size:.9rem}.ph1 .pdfbox ul{margin:.3em 0 0;padding-left:1.2em}.ph1 .pdfbox li{margin:.2em 0}
 .ph1 .foot{font-size:.78rem;color:var(--mute);margin-top:2.4em;border-top:1px solid var(--line);padding-top:.6em}
 
 @media print{
  @page{size:letter;margin:.5in}
  .ph1{font-size:10pt}
- .ph1 .strip{display:none}
+ .ph1 .strip,.ph1 .pdfbox{display:none}
  .ph1 .svgscroll{overflow:visible}
  .ph1 .svgscroll svg{min-width:0}
  .ph1 .cell,.ph1 .box,.ph1 .idea,.ph1 .note,.ph1 .wave,.ph1 .next,.ph1 figure,.ph1 tr,.ph1 .br{break-inside:avoid}
@@ -158,6 +159,9 @@ tags: [architecture, roadmap, work breakdown, storyboard, government, intranet, 
 <div class="ph1" id="top">
 <p class="lede">The first release of a bilingual intranet that runs entirely on the organization&#8217;s own isolated network. This page shows what is built, in what order, and how the work breaks down. It is a planning baseline, so it uses week numbers, not dates.</p>
 <p>New here? Start with <a href="{% endraw %}{{ '/architecture/baselines-agile-funding-product/' | relative_url }}{% raw %}">Baselines for an agile product</a>. It explains how a plan like this one gives executives something firm to approve and still leaves the team room to learn.</p>
+<div class="pdfbox"><strong>Download as PDF (Letter size)</strong>
+<ul><li><a href="{% endraw %}{{ '/assets/pdf/Baselines-agile-funding-product-letter.pdf' | relative_url }}{% raw %}">Baselines for an agile product</a> (5 pages)</li>
+<li><a href="{% endraw %}{{ '/assets/pdf/Phase-1-roadmap-concepts-WBS-letter.pdf' | relative_url }}{% raw %}">Phase 1 roadmap, concepts and work breakdown</a> (17 pages)</li></ul></div>
 <ul class="chips"><li class="chip">12 branches</li><li class="chip">71 work packages</li><li class="chip">58 weeks</li><li class="chip">9 gates</li><li class="chip">2026-10-27</li></ul>
 
 <h2 class="sec" id="what">What Phase 1 builds</h2>
