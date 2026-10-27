@@ -1,0 +1,273 @@
+---
+title: "Baselines for an agile product: what executives can expect, and how funding follows"
+excerpt: "How to bridge agile uncertainty to funding and product management with five short baselines, gates that narrow the range of cost and date, and a funded owner after go-live."
+last_modified_at: 2026-10-27T07:00:00-04:00
+layout: single
+classes: wide-text
+toc: false
+author_profile: false
+theme: digital
+tags: [product management, agile, funding, roadmap, governance, government, architecture]
+---
+{% raw %}
+<style>
+.ph1{--ink:#333;--mute:#595959;--line:#c8c8c8;--soft:#f2f2f2;--soft2:#e6e6e6;--dark:#333;--danger:#8a1c1c;
+  font-size:.9rem;line-height:1.55;color:var(--ink)}
+.ph1 *{box-sizing:border-box}
+.ph1 h2.sec{margin:2.4em 0 .6em;font-size:1.25rem;border-bottom:1px solid var(--line);padding-bottom:.25em}
+.ph1 h3{font-size:1rem;margin:1.2em 0 .4em}
+.ph1 p{max-width:72ch}
+.ph1 .lede{font-size:1rem;color:var(--mute)}
+.ph1 .chips{list-style:none;display:flex;flex-wrap:wrap;gap:6px;padding:0;margin:.8em 0}
+.ph1 .chip{border:1px solid var(--line);background:var(--soft);border-radius:12px;padding:1px 10px;font-size:.78rem;color:var(--mute)}
+.ph1 .tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--dark);border-radius:3px;padding:0 6px;margin-right:6px;color:var(--dark);background:#fff;vertical-align:middle}
+.ph1 .tag.prop{border-style:dashed;color:var(--mute);border-color:var(--mute)}
+.ph1 .tag.later{background:var(--soft2);border-color:var(--mute);color:var(--mute)}
+.ph1 .tablewrap{overflow-x:auto;margin:.8em 0}
+.ph1 table{border-collapse:collapse;width:100%;font-size:.82rem;margin:0}
+.ph1 th,.ph1 td{border-bottom:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+.ph1 thead th{background:var(--soft);border-bottom:2px solid var(--dark)}
+.ph1 tbody th{font-weight:600}
+.ph1 details summary{cursor:pointer}
+.ph1 .svgscroll{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:#fff;padding:6px}
+.ph1 .svgscroll svg{display:block;min-width:820px;width:100%;height:auto}
+.ph1 figure{margin:1em 0}
+.ph1 figcaption{font-size:.8rem;color:var(--mute);margin-top:.4em}
+/* roadmap svg */
+.ph1 svg text{font-family:inherit;fill:#333}
+.ph1 .ph{fill:var(--soft2);stroke:#999}
+.ph1 .pht{font-size:12px;font-weight:700}
+.ph1 .tick{stroke:#bbb;stroke-dasharray:3 3}
+.ph1 .tk{font-size:11px;fill:#595959}
+.ph1 .band{fill:#f7f7f7}
+.ph1 .rl{font-size:12px}
+.ph1 .wk{font-size:11px;fill:#595959}
+.ph1 .bar.crit{fill:#333}
+.ph1 .bar.float{fill:#bdbdbd;stroke:#777}
+.ph1 .bar.thru{fill:#e6e6e6;stroke:#777;stroke-dasharray:4 2}
+.ph1 .bar.gate{fill:#fff;stroke:#333;stroke-width:2.5}
+.ph1 .gl{stroke:#333;stroke-width:1.5}
+.ph1 .gem{fill:#000}
+.ph1 .gt{font-size:11px;font-weight:700}
+.ph1 .lg{font-size:11px}
+/* architecture svg */
+.ph1 .n rect{fill:#fff;stroke:#8c8c8c;stroke-width:1}
+.ph1 .n.core rect{fill:#ebebeb;stroke:#333}
+.ph1 .n.int rect{stroke-dasharray:4 3}
+.ph1 .n text{font-size:12px}
+.ph1 .n .h{font-weight:700;font-size:13px}
+.ph1 .zone{fill:none;stroke:#595959;stroke-dasharray:6 4}
+.ph1 .zl{font-size:11px;letter-spacing:.06em;fill:#595959}
+.ph1 .ln{stroke:#595959;stroke-width:1.2;fill:none}
+.ph1 .ahp{fill:#595959}
+/* storyboard */
+.ph1 .strip{display:flex;gap:6px;overflow-x:auto;margin:1em 0;padding-bottom:6px}
+.ph1 .strip a{flex:0 0 auto;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:6px;padding:4px 10px;font-size:.75rem}
+.ph1 .strip a b{font-family:Menlo,Consolas,monospace;font-weight:500;color:var(--mute);margin-right:6px}
+.ph1 .frame{border:1px solid var(--line);border-radius:8px;margin-top:1.1em;overflow:hidden;background:#fff}
+.ph1 .fhead{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:14px 18px 0}
+.ph1 .fnum{font:500 1.5rem/1 Menlo,Consolas,monospace;color:var(--mute)}
+.ph1 .fhead h3{margin:0}
+.ph1 .moment{font-style:italic;color:var(--mute);margin:2px 0 0}
+.ph1 .fbody{padding:12px 18px 18px;display:grid;gap:12px}
+.ph1 .fbody>*{min-width:0}
+.ph1 .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch}
+.ph1 .ba .col{border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+.ph1 .ba .col.after{background:var(--soft)}
+.ph1 .ba .arrow{align-self:center;color:var(--mute)}
+.ph1 .ba ol{margin:6px 0 0;padding-left:20px}
+.ph1 .count{font-size:1.5rem;font-weight:800}
+.ph1 .eyebrow{font:500 .7rem Menlo,Consolas,monospace;letter-spacing:.07em;text-transform:uppercase;color:var(--mute)}
+.ph1 .grid4,.ph1 .grid3{display:grid;gap:10px}
+.ph1 .grid4{grid-template-columns:repeat(4,1fr)}
+.ph1 .grid3{grid-template-columns:repeat(3,1fr)}
+.ph1 .cell{border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.ph1 .cell h4{margin:0 0 4px;font-size:.92rem}
+.ph1 .cell ul{margin:4px 0 0;padding-left:18px;font-size:.82rem}
+.ph1 .cell .q{font-size:.8rem;color:var(--mute);margin:2px 0 8px}
+.ph1 .cell.top{border-top:4px solid var(--dark)}
+.ph1 .cell.go{background:var(--soft)}
+.ph1 .meter{display:flex;gap:3px;margin:6px 0}
+.ph1 .meter i{flex:1;height:8px;border-radius:2px;background:var(--soft2)}
+.ph1 .meter i.on{background:var(--dark)}
+.ph1 .thread{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.ph1 .thread div{background:var(--soft);border-radius:6px;padding:8px 12px;font-size:.8rem}
+.ph1 .thread b{display:block;font:500 .68rem Menlo,Consolas,monospace;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+.ph1 .box{border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+.ph1 .box.warn{border-color:var(--danger);background:#f4eeee}
+.ph1 .box ul{margin:6px 0 0;padding-left:18px;font-size:.84rem}
+.ph1 .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ph1 .waves{display:grid;gap:8px}
+.ph1 .wave{display:grid;grid-template-columns:140px 1fr 200px;gap:14px;border:1px solid var(--line);border-radius:6px;padding:10px 14px}
+.ph1 .wave.later{border-style:dashed}
+.ph1 .wave ul{margin:0;padding-left:18px;font-size:.84rem}
+.ph1 .wave .when{font:500 .74rem Menlo,Consolas,monospace;color:var(--mute)}
+.ph1 .wave .moves{font-size:.8rem;color:var(--mute)}
+/* concepts */
+.ph1 .idea{border:1px solid var(--line);border-left:4px solid var(--dark);border-radius:6px;padding:10px 14px;margin:.8em 0}
+.ph1 .idea.later{border-left-color:#999;border-left-style:dashed}
+.ph1 .idea h3{margin:0 0 4px}
+.ph1 .idea .depends{font-size:.8rem;color:var(--mute)}
+.ph1 .mock{border:1px solid #999;border-radius:6px;background:#fafafa;padding:8px 12px;margin:.6em 0;font-size:.8rem}
+.ph1 .mock .mt{font-weight:700;margin-bottom:4px}
+.ph1 .mock table{font-size:.78rem}
+/* wbs */
+.ph1 .wbs-root{border:1px solid var(--line);border-radius:8px;padding:12px;background:#fff}
+.ph1 .wbs-top{background:var(--dark);color:#fff;padding:8px 14px;border-radius:6px;font-weight:700;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.ph1 .wbs-top span{font-weight:400;font-size:.8rem;color:#ddd}
+.ph1 .wbs-grid{column-count:3;column-gap:10px}
+.ph1 .br{border:1px solid #999;border-radius:6px;background:#fff;break-inside:avoid;margin:0 0 10px}
+.ph1 .br.crit{border:3px solid #333}
+.ph1 .br.gate{border:3px double #333}
+.ph1 .br.thru{border-style:dashed}
+.ph1 .br summary{list-style:none;padding:8px 10px;display:grid;gap:2px}
+.ph1 .br summary::-webkit-details-marker{display:none}
+.ph1 .br[open] summary{border-bottom:1px solid var(--line);background:var(--soft)}
+.ph1 .bid{font:700 .8rem Menlo,Consolas,monospace}
+.ph1 .bn{font-weight:700}
+.ph1 .bm,.ph1 .bk{font-size:.74rem;color:var(--mute)}
+.ph1 .br ul{list-style:none;margin:0;padding:6px 10px 8px;font-size:.8rem}
+.ph1 .br li{padding:3px 0;border-bottom:1px dotted var(--line)}
+.ph1 .br li:last-child{border:0}
+.ph1 .pid{font:500 .74rem Menlo,Consolas,monospace;color:var(--mute);margin-right:4px}
+.ph1 .pw{display:block;font-size:.72rem;color:var(--mute)}
+.ph1 .chain{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:.8em 0;font-weight:700}
+.ph1 .chain span{background:var(--dark);color:#fff;border-radius:4px;padding:2px 10px}
+.ph1 .chain i{font-style:normal;color:var(--mute)}
+.ph1 .note{border:1px solid var(--line);background:var(--soft);border-radius:6px;padding:8px 14px;margin:.8em 0}
+.ph1 .foot{font-size:.78rem;color:var(--mute);margin-top:2.4em;border-top:1px solid var(--line);padding-top:.6em}
+@media(max-width:900px){.ph1 .wbs-grid{column-count:2}.ph1 .grid3{grid-template-columns:repeat(2,1fr)}.ph1 .grid4{grid-template-columns:repeat(2,1fr)}.ph1 .wave{grid-template-columns:1fr}}
+@media(max-width:620px){.ph1 .wbs-grid{column-count:1}.ph1 .grid3,.ph1 .grid4,.ph1 .split,.ph1 .thread{grid-template-columns:1fr}.ph1 .ba{grid-template-columns:1fr}.ph1 .ba .arrow{justify-self:center;transform:rotate(90deg)}}
+
+.ph1 .cone{display:block}
+.ph1 .cone .fill{fill:#e6e6e6;stroke:#777}
+.ph1 .cone .mid{stroke:#333;stroke-width:2;fill:none}
+.ph1 .cone .tx{font-size:12px}
+.ph1 .cone .tk2{font-size:11px;fill:#595959}
+.ph1 .fixed{background:#333;color:#fff;border-radius:3px;padding:0 6px;font-size:.72rem;font-weight:700}
+.ph1 .moves{background:#fff;border:1px solid #333;border-radius:3px;padding:0 6px;font-size:.72rem;font-weight:700}
+.ph1 .next{border:2px solid #333;border-radius:8px;padding:12px 16px;margin:1.6em 0}
+</style>
+
+<div class="ph1" id="top">
+<p class="lede">An agile team learns as it goes. An executive has to say how much, by when, and what will be delivered. Both are right. This article shows how to hold them together with a short set of baselines, and then hands over to the Phase 1 plan to read.</p>
+<ul class="chips"><li class="chip">5 baselines</li><li class="chip">4 funding steps</li><li class="chip">1 funnel</li><li class="chip">2026-10-27</li></ul>
+
+<h2 class="sec" id="problem">The problem in one minute</h2>
+<p>Funding wants a number and a date. Agile says the plan will change as we learn. Put those side by side and each side hears the other as a risk:</p>
+<div class="split">
+<div class="box"><h4 style="margin:0">What executives hear</h4><ul><li>&#8220;We cannot say what it will cost.&#8221;</li><li>&#8220;The scope will move.&#8221;</li><li>&#8220;Trust us.&#8221;</li></ul></div>
+<div class="box"><h4 style="margin:0">What the team hears</h4><ul><li>&#8220;Fix the plan now, before you know enough.&#8221;</li><li>&#8220;Any change is a failure.&#8221;</li><li>&#8220;Report progress, not learning.&#8221;</li></ul></div>
+</div>
+<p>The way through is not to pick a side. It is to decide <strong>what must stay fixed</strong>, so executives can rely on it, and <strong>what may move</strong>, so the team can learn. A baseline is that decision, written down and agreed.</p>
+<div class="note"><strong>A baseline is not a contract.</strong> It is an agreed starting line. When something moves, it moves in the open, against the baseline, with the right person deciding.</div>
+
+<h2 class="sec" id="five">Five baselines</h2>
+<p>Five short baselines cover what executives need. Each one has a part that stays fixed and a part that can move.</p>
+<div class="tablewrap"><table><thead><tr><th scope="col">Baseline</th><th scope="col"><span class="fixed">Fixed</span> Executives can rely on</th><th scope="col"><span class="moves">Moves</span> The team can learn</th><th scope="col">Who decides a change</th></tr></thead><tbody>
+<tr><th scope="row">1. Outcome</th><td>The few results the product must deliver, and how each is measured</td><td>How we reach them</td><td>Sponsor</td></tr>
+<tr><th scope="row">2. Scope boundary</th><td>What is in the first release, what is out, and what is ruled out</td><td>The detail inside each item; the order inside a phase</td><td>Product owner, with the sponsor for anything that crosses the line</td></tr>
+<tr><th scope="row">3. Roadmap and gates</th><td>The phases, the critical path and the gates, each accepted on evidence</td><td>Work packages inside a phase, within the gate dates</td><td>Product owner; sponsor if a gate moves</td></tr>
+<tr><th scope="row">4. Funding envelope</th><td>A ceiling for the release, a range that narrows at each gate, and a held reserve</td><td>Where money goes inside the ceiling</td><td>Sponsor and finance</td></tr>
+<tr><th scope="row">5. Ownership after go-live</th><td>A named product owner and a funded line for improvement</td><td>The improvement backlog</td><td>Sponsor</td></tr>
+</tbody></table></div>
+<p>Baselines 1 to 4 let executives approve the first release. Baseline 5 is the one that is usually missing, and the next section explains why it matters most.</p>
+
+<h2 class="sec" id="funnel">What to expect: a range that narrows</h2>
+<p>Early on, nobody can give an honest single figure. The honest answer is a range, and a promise about when the range will narrow. Each gate is a moment when something real has been built or tested, so the range gets tighter.</p>
+<figure><div class="svgscroll"><svg class="cone" viewBox="0 0 860 300" role="img" aria-labelledby="co-t co-d" xmlns="http://www.w3.org/2000/svg">
+<title id="co-t">How the range of cost and schedule narrows at each gate</title>
+<desc id="co-d">An illustrative funnel. At the start the range of cost and finish date is wide. It narrows at each gate: requirements, design, alpha, installation, authorization and go-live, where the range is a single figure.</desc>
+<polygon class="fill" points="90,48 212,72 333,104 455,122 577,130 698,134 820,136 820,144 698,146 577,150 455,158 333,176 212,208 90,232"/>
+<line class="mid" x1="90" y1="140" x2="820" y2="140"/>
+<line x1="90" y1="40" x2="90" y2="250" stroke="#bbb" stroke-dasharray="3 3"/>
+<path d="M90 132 l8 8 l-8 8 l-8 -8z" fill="#000"/>
+<text class="tk2" x="90" y="272" text-anchor="middle">Start</text>
+<line x1="212" y1="40" x2="212" y2="250" stroke="#bbb" stroke-dasharray="3 3"/>
+<path d="M212 132 l8 8 l-8 8 l-8 -8z" fill="#000"/>
+<text class="tk2" x="212" y="272" text-anchor="middle">G1 Requirements</text>
+<line x1="333" y1="40" x2="333" y2="250" stroke="#bbb" stroke-dasharray="3 3"/>
+<path d="M333 132 l8 8 l-8 8 l-8 -8z" fill="#000"/>
+<text class="tk2" x="333" y="272" text-anchor="middle">G2 Design</text>
+<line x1="455" y1="40" x2="455" y2="250" stroke="#bbb" stroke-dasharray="3 3"/>
+<path d="M455 132 l8 8 l-8 8 l-8 -8z" fill="#000"/>
+<text class="tk2" x="455" y="272" text-anchor="middle">G3 Alpha</text>
+<line x1="577" y1="40" x2="577" y2="250" stroke="#bbb" stroke-dasharray="3 3"/>
+<path d="M577 132 l8 8 l-8 8 l-8 -8z" fill="#000"/>
+<text class="tk2" x="577" y="272" text-anchor="middle">G5 Installed</text>
+<line x1="698" y1="40" x2="698" y2="250" stroke="#bbb" stroke-dasharray="3 3"/>
+<path d="M698 132 l8 8 l-8 8 l-8 -8z" fill="#000"/>
+<text class="tk2" x="698" y="272" text-anchor="middle">G7 Authorized</text>
+<line x1="820" y1="40" x2="820" y2="250" stroke="#bbb" stroke-dasharray="3 3"/>
+<path d="M820 132 l8 8 l-8 8 l-8 -8z" fill="#000"/>
+<text class="tk2" x="820" y="272" text-anchor="middle">G8 Go-live</text>
+<text class="tx" x="80" y="88" text-anchor="end">High</text>
+<text class="tx" x="80" y="202" text-anchor="end">Low</text>
+<text class="tx" x="98" y="26" font-weight="700">Range of cost and finish date (illustrative)</text>
+<text class="tx" x="100" y="106">Say a range, not a number</text>
+<text class="tx" x="812" y="126" text-anchor="end">One figure</text>
+</svg></div><figcaption>Figure 1: The range of cost and finish date narrows at each gate. Illustrative shape only, not a forecast.</figcaption></figure>
+<div class="tablewrap"><table><thead><tr><th scope="col">Stage</th><th scope="col">What executives see</th><th scope="col">What is firm</th><th scope="col">The decision they make</th></tr></thead><tbody>
+<tr><th scope="row">Discover</th><td>Requirements baseline, a taxonomy, a content audit</td><td>Outcomes and scope boundary</td><td>Approve the design stage</td></tr>
+<tr><th scope="row">Design</th><td>Architecture sign-off, mock-ups agreed with the business</td><td>The shape of the solution</td><td>Approve the build</td></tr>
+<tr><th scope="row">Alpha</th><td>A working system that staff can use and learn on</td><td>What the product actually does</td><td>Confirm the range, release the next tranche</td></tr>
+<tr><th scope="row">Isolated build</th><td>Installed and tested on the isolated network</td><td>Cost to finish</td><td>Approve the security assessment</td></tr>
+<tr><th scope="row">Go-live</th><td>Authority to operate, then launch and support</td><td>The final figure</td><td>Go or no-go; fund what comes next</td></tr>
+</tbody></table></div>
+<p>The largest drop in uncertainty comes at the alpha. That is why it is worth doing early, with a real build and real users, before the harder and costlier steps on the isolated network.</p>
+
+<h2 class="sec" id="agile">Where agile fits, and where it does not</h2>
+<p>This plan is not all iterative, and it should not be. Some parts need a fixed order because a later step cannot start until an earlier one is accepted.</p>
+<div class="split">
+<div class="box"><h4 style="margin:0">Learning space: iterate here</h4><ul><li>The alpha on a connected network</li><li>Content and taxonomy decisions</li><li>Publishing screens and the author experience</li><li>Order of work inside a phase</li></ul></div>
+<div class="box"><h4 style="margin:0">Fixed order: plan here</h4><ul><li>Pipeline dry run before installation on the isolated network</li><li>Defects closed before the security control assessment</li><li>Authorization before launch</li><li>Publishing authority agreed before owners are assigned</li></ul></div>
+</div>
+<p>That mix is what makes the baselines honest. The team has room to learn where learning pays. Executives get firm gates where a mistake would be expensive.</p>
+
+<h2 class="sec" id="funding">Bridge to funding: fund the product, not just the project</h2>
+<p>A project has an end date. A product does not. If the money stops at go-live, the product starts to decay on day one: pages go stale, owners drift, and the next release has no home. Staff then lose trust in the site, which is the problem the project set out to fix.</p>
+<p>Product management is the habit that closes this gap. It asks for four things, cheapest first.</p>
+<div class="grid4">
+<div class="cell top"><h4>1. Free</h4><p>No approval, no post, no budget. Name an outcome owner. Publish the gate results. Report on outcomes, such as pages current and owned, not on activity.</p></div>
+<div class="cell top"><h4>2. Inside funded posts</h4><p>Give an existing role the product owner duties. Add a standing review of the improvement backlog each quarter.</p></div>
+<div class="cell top"><h4>3. One decision</h4><p>Set aside an improvement line that continues after closeout, sized as a small share of the build cost. It needs a decision, not a reorganization.</p></div>
+<div class="cell top"><h4>4. Organizational</h4><p>Move from project funding to standing product funding. This is bigger than one project can settle, so name it and hand it to the right forum.</p></div>
+</div>
+<div class="note"><strong>Time-sensitive.</strong> Step 3 has to be decided before closeout, while the delivery team and the money are still there. After closeout it is a new ask against a cold start.</div>
+
+<h3>Five concerns to watch</h3>
+<ul>
+<li><strong>Funding stops at closeout.</strong> The gating issue, covered above.</li>
+<li><strong>No single owner of outcomes.</strong> Many people publish, but nobody answers for the result.</li>
+<li><strong>Activity is reported, not outcomes.</strong> &#8220;We published 200 pages&#8221; says little. &#8220;90 percent are owned and current&#8221; says more.</li>
+<li><strong>Skills decay.</strong> The people who learned the platform move on, and the knowledge goes with them.</li>
+<li><strong>The next release has no home.</strong> Later waves need an owner and a line, or they never start.</li>
+</ul>
+
+<h2 class="sec" id="change">When something moves</h2>
+<p>Change will come. The baselines make it cheap to handle, because everyone knows what changed against what.</p>
+<div class="tablewrap"><table><thead><tr><th scope="col">What moves</th><th scope="col">Handled as</th><th scope="col">Decided by</th></tr></thead><tbody>
+<tr><td>Detail inside a work package, or order inside a phase</td><td>Normal product backlog work</td><td>Product owner</td></tr>
+<tr><td>A gate date or a package that gates another</td><td>A recorded change with its effect on the critical path</td><td>Product owner, sponsor told</td></tr>
+<tr><td>Scope crosses the boundary, in or out</td><td>A change request: what it adds, what it displaces, what it costs</td><td>Sponsor</td></tr>
+<tr><td>Cost passes the envelope or eats the reserve</td><td>A funding decision, with the options set out</td><td>Sponsor and finance</td></tr>
+</tbody></table></div>
+<p>Every change request answers the same four questions: what is proposed, why, what is the effect on cost and schedule, and what happens if we do nothing. Short and plain.</p>
+
+<h2 class="sec" id="ask">Questions an executive can ask at any gate</h2>
+<ul>
+<li>Which baseline does this change, and who decided it?</li>
+<li>What evidence was accepted at this gate? A working system, a test result, a signed authorization?</li>
+<li>Has the range narrowed since the last gate? If not, why not?</li>
+<li>What are we not doing, and has that changed?</li>
+<li>Who owns the outcome after go-live, and what funds it?</li>
+</ul>
+
+<div class="next"><h3 style="margin-top:0">Next: read the Phase 1 plan</h3>
+<p>The baselines above need something concrete to attach to. The Phase 1 article has that: a roadmap diagram with nine gates, a storyboard of who gains and when, the concepts being tested, and a work breakdown structure with the critical path.</p>
+<p><a href="{% endraw %}{{ '/architecture/phase-1-roadmap-concepts-wbs/' | relative_url }}{% raw %}">Phase 1 roadmap, concepts and work breakdown for an on-premises intranet</a></p></div>
+
+<p class="foot">Drafted with Claude.ai from a private project hub, then generalized. No product, team or system names. The funnel is illustrative and is not a forecast.</p>
+</div>
+
+{% endraw %}
