@@ -7,8 +7,6 @@ main:
     url: /psychology/
   - title: "Economics"
     url: /economics/
-  - title: "Cycling"
-    url: /cycling/
   - title: "All articles"
     url: /all/
   - title: "Tags"

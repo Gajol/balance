@@ -4,9 +4,9 @@ Source for https://gajol.github.io/balance/ (Jekyll, Minimal Mistakes theme, Git
 
 ## Themes
 
-Digital, Psychology, Economics, Cycling.
+Digital, Psychology, Economics.
 
-To put a page under a theme, add `theme: digital` (or `psychology`, `economics`, `cycling`) to its front matter. The theme pages in `_pages/` list everything tagged that way.
+To put a page under a theme, add `theme: digital` (or `psychology`, `economics`) to its front matter. The theme pages in `_pages/` list everything tagged that way.
 
 ## Layout
 

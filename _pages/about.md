@@ -15,6 +15,5 @@ Leadership development, and how it influences technology's role in enabling the 
 - [Digital]({{ '/digital/' | relative_url }}): architecture, digital government, service design and DevOps.
 - [Psychology]({{ '/psychology/' | relative_url }}): book summaries on judgment, choice and growing up.
 - [Economics]({{ '/economics/' | relative_url }}): energy, food, trade and policy.
-- [Cycling]({{ '/cycling/' | relative_url }}): bikes, routes and trips.
 - [References]({{ '/references/' | relative_url }}): outside sources, each with an archived copy link.
 - [Tags]({{ '/tags/' | relative_url }}): find notes by topic.

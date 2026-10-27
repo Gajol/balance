@@ -56,7 +56,6 @@ Feed: https://gajol.github.io/balance/feed.xml
 - [Digital](https://gajol.github.io/balance/digital/)
 - [Psychology](https://gajol.github.io/balance/psychology/)
 - [Economics](https://gajol.github.io/balance/economics/)
-- [Cycling](https://gajol.github.io/balance/cycling/)
 - [Tags](https://gajol.github.io/balance/tags/)
 
 ## Optional
