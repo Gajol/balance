@@ -1,0 +1,248 @@
+---
+title: "Web site sign-in and roles: identity, groups and server credentials"
+excerpt: "How a web site fits into identity and access management and governance. Common OIDC, SAML and OAuth patterns, a worked example from directory group to site role, and how servers prove who they are."
+last_modified_at: 2026-10-28T20:45:00-04:00
+layout: single
+classes: wide-text full-width
+toc: false
+author_profile: false
+theme: digital
+tags: [identity, access management, oauth, openid connect, saml, active directory, vault, architecture, security, government]
+---
+{% raw %}
+<style>
+.idam{--ink:#333;--mute:#595959;--line:#c8c8c8;--soft:#f2f2f2;--soft2:#e6e6e6;--dark:#333;--danger:#8a1c1c;
+  font-size:.9rem;line-height:1.55;color:var(--ink)}
+.idam *{box-sizing:border-box}
+.idam h2.sec{margin:2.2em 0 .6em;font-size:1.25rem;border-bottom:1px solid var(--line);padding-bottom:.25em}
+.idam h3{font-size:1rem;margin:1.2em 0 .4em}
+.idam p,.idam li{max-width:78ch}
+.idam .lede{font-size:1rem;color:var(--mute)}
+.idam .tablewrap{overflow-x:auto;margin:.8em 0}
+.idam table{border-collapse:collapse;width:100%;font-size:.82rem;margin:0}
+.idam th,.idam td{border-bottom:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+.idam thead th{background:var(--soft);border-bottom:2px solid var(--dark)}
+.idam tbody th{font-weight:600}
+.idam .svgscroll{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:#fff;padding:6px}
+.idam .svgscroll svg{display:block;min-width:760px;width:100%;height:auto}
+.idam figure{margin:1em 0}
+.idam figcaption{font-size:.8rem;color:var(--mute);margin-top:.4em}
+.idam pre{background:var(--soft);border:1px solid var(--line);border-radius:4px;padding:10px 12px;font-size:.78rem;line-height:1.45;overflow-x:auto;margin:.8em 0}
+.idam .note{border-left:3px solid var(--dark);background:var(--soft);padding:8px 12px;margin:1em 0;max-width:78ch}
+.idam .warn{border-left:3px solid var(--danger);background:var(--soft);padding:8px 12px;margin:1em 0;max-width:78ch}
+.idam .foot{font-size:.78rem;color:var(--mute);margin-top:2em}
+.idam svg text{font-family:inherit;fill:#333}
+.idam svg .bx{fill:#f2f2f2;stroke:#555;stroke-width:1.2}
+.idam svg .bx2{fill:#e6e6e6;stroke:#333;stroke-width:1.4}
+.idam svg .t1{font-size:13px;font-weight:700}
+.idam svg .t2{font-size:11px;fill:#595959}
+.idam svg .num{font-size:11px;font-weight:700}
+.idam svg .ar{stroke:#333;stroke-width:1.4;fill:none}
+.idam svg .lbl{font-size:10.5px;fill:#595959}
+.idam svg .row{font-size:12px;font-weight:700}
+</style>
+<div class="idam">
+
+<p class="lede">A web site should not run its own user accounts. It should trust the organization's identity services, and take its roles from the same groups that governance already manages. This note shows the common patterns, one worked example from group to role, and how servers prove who they are to other services.</p>
+
+<h2 class="sec">1. The pieces, in plain words</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Piece</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><th>Active Directory (AD)</th><td>The directory. Holds people, service accounts and security groups.</td></tr>
+<tr><th>ADFS</th><td>The on-premises federation service. It reads AD and issues sign-in tokens (SAML or OpenID Connect) to applications.</td></tr>
+<tr><th>OpenID Connect (OIDC)</th><td>Sign-in on top of OAuth. The site gets an ID token that says who the user is.</td></tr>
+<tr><th>OAuth 2.0</th><td>Permission to call an API. It says what a caller may do, not who a person is.</td></tr>
+<tr><th>SAML 2.0</th><td>Older, XML-based sign-in. Still common for packaged and older products.</td></tr>
+<tr><th>HashiCorp Vault</th><td>Stores secrets and keys. Can hand out short-lived passwords and certificates to services.</td></tr>
+<tr><th>Identity access governance (IAG)</th><td>The control layer: who asked for access, who approved it, and who reviews it later.</td></tr>
+</tbody></table></div>
+
+<h2 class="sec">2. Four common patterns</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Pattern</th><th>Use it for</th><th>How it works, in short</th></tr></thead>
+<tbody>
+<tr><th>A. OIDC sign-in (authorization code with PKCE)</th><td>New web sites and single-page apps</td><td>The site sends the user to the federation service. The user signs in there. The site gets back an ID token and an access token. The site never sees the password.</td></tr>
+<tr><th>B. SAML single sign-on</th><td>Older apps, or products that only support SAML</td><td>Same idea, but the result is a signed XML assertion posted through the browser. Group membership travels as an attribute.</td></tr>
+<tr><th>C. OAuth client credentials</th><td>One service calling another, with no user present</td><td>The calling service proves its identity and gets a short-lived access token for one API.</td></tr>
+<tr><th>D. Secrets from Vault</th><td>Database passwords, API keys, certificates</td><td>The service logs in to Vault with its own identity. Vault returns a secret that expires on its own.</td></tr>
+</tbody></table></div>
+<p>Patterns A and B are for people. Patterns C and D are for servers. Most sites use one of A or B, plus both C and D.</p>
+
+<div class="note"><strong>Design rule:</strong> build the site against the standards (OIDC or SAML), not against ADFS features. If the federation service is replaced later, the site should only need a new trust setting, not new code.</div>
+
+<h2 class="sec">3. From access request to site role</h2>
+<p>Groups are the thread that connects governance to the site. IAG controls who is in the group. The federation service puts the group into the token. The site turns the group into a role.</p>
+<figure>
+<div class="svgscroll">
+<svg viewBox="0 0 900 250" role="img" aria-label="Flow from IAG request to AD group to federation token to web site to role">
+<defs><marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<g>
+<rect class="bx" x="10" y="30" width="150" height="84" rx="6"/>
+<text class="num" x="22" y="48">1</text>
+<text class="t1" x="85" y="74" text-anchor="middle">IAG</text>
+<text class="t2" x="85" y="92" text-anchor="middle">Request and approve</text>
+
+<rect class="bx" x="195" y="30" width="150" height="84" rx="6"/>
+<text class="num" x="207" y="48">2</text>
+<text class="t1" x="270" y="74" text-anchor="middle">AD security group</text>
+<text class="t2" x="270" y="92" text-anchor="middle">WEB-Publisher</text>
+
+<rect class="bx" x="380" y="30" width="150" height="84" rx="6"/>
+<text class="num" x="392" y="48">3</text>
+<text class="t1" x="455" y="74" text-anchor="middle">Federation (ADFS)</text>
+<text class="t2" x="455" y="92" text-anchor="middle">Group becomes a claim</text>
+
+<rect class="bx" x="565" y="30" width="150" height="84" rx="6"/>
+<text class="num" x="577" y="48">4</text>
+<text class="t1" x="640" y="74" text-anchor="middle">Web site</text>
+<text class="t2" x="640" y="92" text-anchor="middle">Checks the token</text>
+
+<rect class="bx2" x="750" y="30" width="140" height="84" rx="6"/>
+<text class="num" x="762" y="48">5</text>
+<text class="t1" x="820" y="74" text-anchor="middle">Role</text>
+<text class="t2" x="820" y="92" text-anchor="middle">Content publisher</text>
+</g>
+<path class="ar" d="M160,72 L193,72" marker-end="url(#ah1)"/>
+<path class="ar" d="M345,72 L378,72" marker-end="url(#ah1)"/>
+<path class="ar" d="M530,72 L563,72" marker-end="url(#ah1)"/>
+<path class="ar" d="M715,72 L748,72" marker-end="url(#ah1)"/>
+<text class="lbl" x="85" y="140" text-anchor="middle">Manager and owner</text>
+<text class="lbl" x="85" y="153" text-anchor="middle">approve the request</text>
+<text class="lbl" x="270" y="140" text-anchor="middle">IAG adds the user</text>
+<text class="lbl" x="270" y="153" text-anchor="middle">to the group</text>
+<text class="lbl" x="455" y="140" text-anchor="middle">Reads AD at sign-in,</text>
+<text class="lbl" x="455" y="153" text-anchor="middle">signs the token</text>
+<text class="lbl" x="640" y="140" text-anchor="middle">Verifies signature,</text>
+<text class="lbl" x="640" y="153" text-anchor="middle">issuer and expiry</text>
+<text class="lbl" x="820" y="140" text-anchor="middle">Mapped in one place,</text>
+<text class="lbl" x="820" y="153" text-anchor="middle">no group, no access</text>
+<line x1="10" y1="180" x2="890" y2="180" stroke="#c8c8c8" stroke-dasharray="3 3"/>
+<text class="row" x="10" y="205">Leaver or mover:</text>
+<text class="t2" x="130" y="205">IAG removes the group. The next sign-in or token refresh carries no role. Short token and session lifetimes limit the gap.</text>
+<text class="t2" x="10" y="228">Every step writes a log: the request, the approval, the group change, the sign-in and the role used.</text>
+</svg>
+</div>
+<figcaption>Figure 1. How an approved request becomes a role on the site.</figcaption>
+</figure>
+
+<h3>Example roles and groups</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Site role</th><th>AD security group</th><th>How a person gets it</th><th>What they can do</th><th>Extra controls</th></tr></thead>
+<tbody>
+<tr><th>End-user</th><td>WEB-EndUser</td><td>Automatic, from a directory attribute such as employee status</td><td>Read signed-in content, manage own preferences</td><td>Sign-in with MFA</td></tr>
+<tr><th>Content publisher</th><td>WEB-Publisher</td><td>Requested in IAG, approved by the content owner</td><td>Create, edit and publish pages</td><td>Review every 6 to 12 months</td></tr>
+<tr><th>Platform admin</th><td>WEB-PlatformAdmin</td><td>Requested in IAG, approved by the platform owner and security</td><td>Change configuration, modules, users and deployments</td><td>Separate admin account, MFA, time-limited, quarterly review, full logging</td></tr>
+</tbody></table></div>
+<p>Anonymous visitors do not sign in. They see public content only and have no group.</p>
+
+<h3>Worked example</h3>
+<ol>
+<li><strong>Request.</strong> Alex joins the communications team and needs to publish pages. Alex's manager raises an IAG request for the WEB-Publisher group.</li>
+<li><strong>Approve.</strong> The content owner approves. IAG checks for conflicts, for example that Alex does not also hold an admin group.</li>
+<li><strong>Provision.</strong> IAG adds Alex's account to the WEB-Publisher security group in AD.</li>
+<li><strong>Sign in.</strong> Alex opens the site. The site redirects to the federation service. Alex signs in with MFA.</li>
+<li><strong>Token.</strong> The federation service reads Alex's groups from AD. A claim rule sends only the groups that start with WEB-. The token is signed.</li>
+<li><strong>Map.</strong> The site checks the signature, then maps WEB-Publisher to the content publisher role.</li>
+<li><strong>Use.</strong> Alex sees the editor. Alex does not see admin screens.</li>
+<li><strong>Review.</strong> At the next review the content owner confirms or removes the access. If Alex leaves the team, IAG removes the group.</li>
+</ol>
+
+<p>What the site receives (simplified ID token claims):</p>
+<pre>{
+  "iss": "https://sts.example.org/adfs",
+  "aud": "web-site",
+  "sub": "a1b2c3d4",
+  "upn": "alex.example@example.org",
+  "groups": ["WEB-EndUser", "WEB-Publisher"],
+  "exp": 1793300000
+}</pre>
+<p>What the site holds (one mapping, one place):</p>
+<pre>role_mapping:
+  WEB-EndUser:       end_user
+  WEB-Publisher:     content_publisher
+  WEB-PlatformAdmin: platform_admin
+default_role: none        # no matching group means no access</pre>
+
+<h2 class="sec">4. Server-to-service credentials</h2>
+<p>People sign in through the federation service. Servers need their own identity too. Two patterns cover most cases.</p>
+<figure>
+<div class="svgscroll">
+<svg viewBox="0 0 900 330" role="img" aria-label="Two patterns for server credentials: OAuth client credentials and Vault">
+<defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+<text class="row" x="10" y="22">Pattern C: call another service (OAuth client credentials)</text>
+<rect class="bx" x="20" y="40" width="160" height="80" rx="6"/>
+<text class="t1" x="100" y="76" text-anchor="middle">Token service</text>
+<text class="t2" x="100" y="94" text-anchor="middle">OAuth server</text>
+<rect class="bx2" x="370" y="40" width="160" height="80" rx="6"/>
+<text class="t1" x="450" y="76" text-anchor="middle">Web site server</text>
+<text class="t2" x="450" y="94" text-anchor="middle">Has its own service identity</text>
+<rect class="bx" x="720" y="40" width="160" height="80" rx="6"/>
+<text class="t1" x="800" y="76" text-anchor="middle">Internal API</text>
+<text class="t2" x="800" y="94" text-anchor="middle">Search, mail, records</text>
+<path class="ar" d="M370,68 L182,68" marker-end="url(#ah2)"/>
+<text class="lbl" x="276" y="60" text-anchor="middle">1 Proves identity (key or certificate)</text>
+<path class="ar" d="M182,98 L370,98" marker-end="url(#ah2)"/>
+<text class="lbl" x="276" y="113" text-anchor="middle">2 Short-lived access token</text>
+<path class="ar" d="M530,80 L718,80" marker-end="url(#ah2)"/>
+<text class="lbl" x="624" y="72" text-anchor="middle">3 Calls with the token</text>
+
+<line x1="10" y1="160" x2="890" y2="160" stroke="#c8c8c8" stroke-dasharray="3 3"/>
+<text class="row" x="10" y="186">Pattern D: get a secret (Vault)</text>
+<rect class="bx" x="20" y="204" width="160" height="80" rx="6"/>
+<text class="t1" x="100" y="240" text-anchor="middle">Vault</text>
+<text class="t2" x="100" y="258" text-anchor="middle">Secrets and leases</text>
+<rect class="bx2" x="370" y="204" width="160" height="80" rx="6"/>
+<text class="t1" x="450" y="240" text-anchor="middle">Web site server</text>
+<text class="t2" x="450" y="258" text-anchor="middle">Has its own service identity</text>
+<rect class="bx" x="720" y="204" width="160" height="80" rx="6"/>
+<text class="t1" x="800" y="240" text-anchor="middle">Database</text>
+<text class="t2" x="800" y="258" text-anchor="middle">Or other back end</text>
+<path class="ar" d="M370,232 L182,232" marker-end="url(#ah2)"/>
+<text class="lbl" x="276" y="224" text-anchor="middle">1 Logs in (machine identity)</text>
+<path class="ar" d="M182,262 L370,262" marker-end="url(#ah2)"/>
+<text class="lbl" x="276" y="277" text-anchor="middle">2 Short-lived secret</text>
+<path class="ar" d="M530,244 L718,244" marker-end="url(#ah2)"/>
+<text class="lbl" x="624" y="236" text-anchor="middle">3 Connects with the secret</text>
+<text class="t2" x="10" y="312">Vault removes the secret when its time is up. Nothing long-lived sits in code or config files.</text>
+</svg>
+</div>
+<figcaption>Figure 2. Two ways a server proves who it is without a shared, long-lived password.</figcaption>
+</figure>
+
+<h3>Rules that apply to both</h3>
+<ul>
+<li><strong>One identity per service.</strong> Never use a person's account, and never share one account across services.</li>
+<li><strong>Every service account has a named owner.</strong> Track it in IAG, review it like a person's access.</li>
+<li><strong>Prefer keys or certificates to shared secrets</strong> for the OAuth client. Limit it to the one API it needs (scope).</li>
+<li><strong>Short lifetimes.</strong> Access tokens in minutes. Vault leases in hours or less. Rotate what cannot expire.</li>
+<li><strong>Nothing in source control.</strong> No secrets in code, build scripts or shared config.</li>
+<li><strong>Log it.</strong> Vault audit logs and token issuance go to central monitoring.</li>
+</ul>
+
+<h2 class="sec">5. Common traps</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Trap</th><th>What to do</th></tr></thead>
+<tbody>
+<tr><th>Too many groups make the token too big</th><td>Send only the groups the site needs, filtered by a name prefix such as WEB-.</td></tr>
+<tr><th>Removed access still works for a while</th><td>Keep token and session lifetimes short. For admin roles, check again before sensitive actions.</td></tr>
+<tr><th>Group names spread through the code</th><td>Map groups to roles in one configuration. Code checks roles and permissions only.</td></tr>
+<tr><th>Admin work done from a daily account</th><td>Use a separate admin account with MFA, and give time-limited access where possible.</td></tr>
+<tr><th>Locked out if the federation service is down</th><td>Plan a break-glass account, held in Vault or a sealed envelope, with alerts when it is used.</td></tr>
+<tr><th>Tied to one product</th><td>Use OIDC or SAML standards so the federation service can change without rebuilding the site.</td></tr>
+</tbody></table></div>
+
+<h2 class="sec">6. Questions to settle with IAM and IAG</h2>
+<ul>
+<li>Is the site a client of OIDC (preferred) or SAML?</li>
+<li>Who owns each group, and who approves requests for it?</li>
+<li>Which roles are automatic, and which need approval?</li>
+<li>How often is each role reviewed?</li>
+<li>What are the token, session and Vault lease lifetimes?</li>
+<li>Which service accounts exist, and who owns each?</li>
+<li>Where do sign-in, role-change and secret-access logs go?</li>
+</ul>
+
+<p class="foot">Names, groups and addresses are examples only. Check the current product versions and features in your own environment. Written with help from Claude.ai.</p>
+</div>
+{% endraw %}
