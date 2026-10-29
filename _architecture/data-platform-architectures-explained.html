@@ -1,0 +1,286 @@
+---
+title: "Data lake, lakehouse, medallion and data fabric: what each one is for"
+excerpt: "A product owner's guide to four data platform architectures. What problem each solves, what it costs you, and the common open-source and commercial options."
+last_modified_at: 2026-10-28T20:30:00-04:00
+layout: single
+classes: wide-text
+toc: false
+author_profile: false
+theme: digital
+tags: [data platform, data lake, lakehouse, medallion, data fabric, architecture, government, product management]
+---
+{% raw %}
+<style>
+.dl1{--ink:#333;--mute:#595959;--line:#c8c8c8;--soft:#f2f2f2;--soft2:#e6e6e6;--dark:#333;--danger:#8a1c1c;
+  font-size:.9rem;line-height:1.55;color:var(--ink)}
+.dl1 *{box-sizing:border-box}
+.dl1 h2.sec{margin:2.2em 0 .5em;font-size:1.25rem;border-bottom:1px solid var(--line);padding-bottom:.25em}
+.dl1 h3{font-size:1rem;margin:1.2em 0 .35em}
+.dl1 p,.dl1 li{max-width:76ch}
+.dl1 ul{margin:.3em 0 .8em}
+.dl1 .lede{font-size:1rem;color:var(--mute)}
+.dl1 .tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--dark);border-radius:3px;padding:0 6px;margin-right:6px;color:var(--dark);background:#fff;vertical-align:middle}
+.dl1 .tablewrap{overflow-x:auto;margin:.8em 0}
+.dl1 table{border-collapse:collapse;width:100%;font-size:.82rem;margin:0}
+.dl1 th,.dl1 td{border-bottom:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+.dl1 thead th{background:var(--soft);border-bottom:2px solid var(--dark)}
+.dl1 tbody th{font-weight:600;white-space:nowrap}
+.dl1 .callout{border-left:4px solid var(--dark);background:var(--soft);padding:.6em .9em;margin:1em 0;max-width:80ch}
+.dl1 .callout.warn{border-left-color:var(--danger)}
+.dl1 .callout p{margin:.2em 0}
+.dl1 .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:.6em 0 1em}
+.dl1 .card{border:1px solid var(--line);border-radius:6px;padding:.6em .9em;background:#fff}
+.dl1 .card h4{margin:0 0 .3em;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em;color:var(--mute)}
+.dl1 .card ul{margin:0;padding-left:1.1em}
+.dl1 .card li{margin:.15em 0}
+.dl1 .svgscroll{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:#fff;padding:6px}
+.dl1 .svgscroll svg{display:block;min-width:760px;width:100%;height:auto}
+.dl1 figure{margin:1em 0}
+.dl1 figcaption{font-size:.8rem;color:var(--mute);margin-top:.4em}
+.dl1 details{margin:.4em 0}
+.dl1 details summary{cursor:pointer;font-weight:600}
+.dl1 svg text{font-family:inherit;fill:#333}
+.dl1 .b1{fill:#fff;stroke:#333;stroke-width:1.2}
+.dl1 .b2{fill:#f2f2f2;stroke:#777}
+.dl1 .b3{fill:#e6e6e6;stroke:#555}
+.dl1 .bd{fill:none;stroke:#777;stroke-dasharray:5 4}
+.dl1 .ln{stroke:#777;stroke-dasharray:4 3;fill:none}
+.dl1 .ar{stroke:#333;fill:none;stroke-width:1.4}
+.dl1 .t1{font-size:13px;font-weight:700}
+.dl1 .t2{font-size:11.5px}
+.dl1 .t3{font-size:11px;fill:#595959}
+.dl1 .foot{font-size:.78rem;color:var(--mute);margin-top:2em;border-top:1px solid var(--line);padding-top:.6em}
+@media (max-width:700px){.dl1 .cols{grid-template-columns:1fr}}
+</style>
+<div class="dl1">
+<p class="lede">These four names are often presented as rivals. They are not. Each answers a different question, and most real platforms use more than one.</p>
+
+<div class="callout">
+<p><strong>Short answer for a product owner</strong></p>
+<ul>
+<li><strong>Data lake:</strong> where the data is kept. Cheap storage for any kind of data.</li>
+<li><strong>Lakehouse:</strong> a lake with proper tables on top, so you can trust, update and query it.</li>
+<li><strong>Medallion:</strong> a way to organize data in layers, from raw to ready to use. A pattern, not a product.</li>
+<li><strong>Data fabric:</strong> a layer that connects and governs data across many platforms. It points at the data. It does not hold it.</li>
+</ul>
+</div>
+
+<div class="callout">
+<p>"Fabric" here means the architecture idea, <em>data fabric</em>. It is not the same thing as any one vendor's product that happens to use the word.</p>
+</div>
+
+<h2 class="sec">How they fit together</h2>
+<figure>
+<div class="svgscroll">
+<svg viewBox="0 0 820 350" role="img" aria-labelledby="dl1t dl1d" xmlns="http://www.w3.org/2000/svg">
+<title id="dl1t">How the four architectures fit together</title>
+<desc id="dl1d">A data fabric band sits across the top. Below it, one data platform holds three stacked layers: medallion on top, lakehouse in the middle, data lake at the bottom. Other data platforms and source systems sit to the right and connect to the fabric.</desc>
+<defs><marker id="dl1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+
+<rect class="b3" x="10" y="8" width="800" height="62" rx="6"/>
+<text class="t1" x="26" y="32">Data fabric: connects and governs data across many places</text>
+<text class="t2" x="26" y="54">Catalog, lineage, access rules and shared definitions. It points at the data. It does not store it.</text>
+
+<line class="ln" x1="290" y1="70" x2="290" y2="98"/>
+<line class="ln" x1="690" y1="70" x2="690" y2="128"/>
+<line class="ln" x1="790" y1="70" x2="790" y2="208"/>
+
+<rect class="bd" x="10" y="98" width="560" height="244" rx="6"/>
+<text class="t3" x="22" y="116">One data platform</text>
+
+<rect class="b2" x="28" y="124" width="524" height="78" rx="5"/>
+<text class="t1" x="42" y="144">Medallion: how data is organized and cleaned</text>
+<rect class="b1" x="44" y="156" width="140" height="36" rx="4"/>
+<text class="t2" x="58" y="172">Bronze</text><text class="t3" x="58" y="186">as received</text>
+<rect class="b1" x="214" y="156" width="140" height="36" rx="4"/>
+<text class="t2" x="228" y="172">Silver</text><text class="t3" x="228" y="186">cleaned, matched</text>
+<rect class="b1" x="384" y="156" width="152" height="36" rx="4"/>
+<text class="t2" x="398" y="172">Gold</text><text class="t3" x="398" y="186">ready for a use</text>
+<line class="ar" x1="184" y1="174" x2="212" y2="174" marker-end="url(#dl1a)"/>
+<line class="ar" x1="354" y1="174" x2="382" y2="174" marker-end="url(#dl1a)"/>
+
+<rect class="b2" x="28" y="212" width="524" height="62" rx="5"/>
+<text class="t1" x="42" y="233">Lakehouse: tables you can trust on top of the lake</text>
+<text class="t2" x="42" y="256">Open table format + catalog + query engine</text>
+
+<rect class="b3" x="28" y="284" width="524" height="44" rx="5"/>
+<text class="t1" x="42" y="311">Data lake: cheap storage, open file formats</text>
+
+<rect class="b1" x="610" y="128" width="170" height="60" rx="5"/>
+<text class="t2" x="624" y="152">Other data platforms</text><text class="t3" x="624" y="170">other teams, other sites</text>
+<rect class="b1" x="610" y="208" width="170" height="60" rx="5"/>
+<text class="t2" x="624" y="232">Source systems</text><text class="t3" x="624" y="250">databases, apps, files</text>
+<line class="ar" x1="608" y1="238" x2="572" y2="238" marker-end="url(#dl1a)"/>
+</svg>
+</div>
+<figcaption>The four names sit at different levels. Storage at the bottom, then reliable tables, then clean layers, then a connecting layer across platforms.</figcaption>
+</figure>
+
+<h2 class="sec">1. Data lake</h2>
+<p>A data lake is a large store where data lands in its original form: files, extracts, logs, documents, images. You decide the structure when you read it, not when you save it.</p>
+<div class="cols">
+<div class="card"><h4>Problems it solves</h4><ul>
+<li>Data sits in many silos and formats. The lake gives it one place to land.</li>
+<li>Storage in a warehouse is costly. Lake storage is cheap.</li>
+<li>You do not yet know how the data will be used. The lake lets you keep it first and decide later.</li>
+<li>Data science and AI need raw, varied data, not only neat tables.</li>
+</ul></div>
+<div class="card"><h4>Problems it creates</h4><ul>
+<li>Without a catalog and owners, it turns into a "data swamp". Nobody can find or trust anything.</li>
+<li>Files are hard to update or delete. This matters for privacy and correction requests.</li>
+<li>No transactions. Two jobs can leave the data half-changed.</li>
+<li>Weak access control if it is not designed in.</li>
+</ul></div>
+</div>
+<div class="tablewrap"><table>
+<thead><tr><th>Open source</th><th>Commercial</th></tr></thead>
+<tbody><tr>
+<td>Ceph or MinIO-style object storage on your own hardware; Hadoop HDFS (older); Apache Parquet and ORC file formats; Apache Spark and Trino to read the files</td>
+<td>Cloud object storage (Amazon S3, Azure Data Lake Storage, Google Cloud Storage); Cloudera for on-premises and hybrid</td>
+</tr></tbody></table></div>
+
+<h2 class="sec">2. Lakehouse</h2>
+<p>A lakehouse keeps the lake's cheap storage and open files, then adds a table layer on top. The table layer gives the lake the good habits of a database: safe updates, rules on structure, and one place for reports and AI to read from.</p>
+<div class="cols">
+<div class="card"><h4>Problems it solves</h4><ul>
+<li>Two copies of the data: one in a lake for AI, one in a warehouse for reports. A lakehouse aims for one copy.</li>
+<li>Safe updates and deletes (transactions), so jobs do not corrupt each other's data.</li>
+<li>Bad data arriving silently. The table enforces its structure.</li>
+<li>"What did this look like last month?" Tables keep history (time travel).</li>
+<li>Lock-in. Open table formats let several tools read the same data.</li>
+</ul></div>
+<div class="card"><h4>Problems it creates</h4><ul>
+<li>More moving parts: storage, table format, catalog, engine. Someone must run them.</li>
+<li>Tables need regular housekeeping (small-file clean-up, old version removal).</li>
+<li>Table formats compete. Pick one and check which tools support it.</li>
+<li>Overkill if the data is small and neat. A normal database may be enough.</li>
+</ul></div>
+</div>
+<div class="tablewrap"><table>
+<thead><tr><th></th><th>Open source</th><th>Commercial</th></tr></thead>
+<tbody>
+<tr><th>Table format</th><td>Apache Iceberg, Delta Lake, Apache Hudi, Apache Paimon</td><td>Supported inside most commercial platforms below</td></tr>
+<tr><th>Catalog</th><td>Apache Polaris, Unity Catalog (open source version), Project Nessie, Hive Metastore</td><td>Built into each vendor platform</td></tr>
+<tr><th>Query engine</th><td>Apache Spark, Trino, Apache Flink, DuckDB</td><td>Databricks, Snowflake, Dremio, Starburst, Cloudera, Amazon Athena and Redshift, Google BigQuery, Microsoft Fabric</td></tr>
+</tbody></table></div>
+
+<h2 class="sec">3. Medallion</h2>
+<p>Medallion is a design pattern for the inside of a platform. Data moves through three layers. Each layer is cleaner and more useful than the last. The names are Bronze, Silver and Gold. The pattern is usually built on a lakehouse, but it also works in a warehouse.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Layer</th><th>What is in it</th><th>Who uses it</th></tr></thead>
+<tbody>
+<tr><th>Bronze</th><td>Data as received from the source. Kept unchanged, with load date and source. This is your audit copy.</td><td>Data engineers. Anyone who must prove what arrived.</td></tr>
+<tr><th>Silver</th><td>Cleaned, de-duplicated, standardized and matched across sources. One agreed version of each business thing, such as a client or a case.</td><td>Analysts and data scientists.</td></tr>
+<tr><th>Gold</th><td>Shaped for a specific use: a report, a dashboard, a measure, an AI feature. Business names and rules applied.</td><td>Business users and leaders.</td></tr>
+</tbody></table></div>
+<div class="cols">
+<div class="card"><h4>Problems it solves</h4><ul>
+<li>Nobody agrees which number is right. Gold has one agreed version.</li>
+<li>Raw and cleaned data are mixed together. Layers keep them apart.</li>
+<li>"Where did this figure come from?" You can trace Gold back to Silver and Bronze.</li>
+<li>A source changes or a rule was wrong. Rebuild Silver and Gold from Bronze.</li>
+<li>Clear places to put quality checks and access rules.</li>
+</ul></div>
+<div class="card"><h4>Problems it creates</h4><ul>
+<li>More copies of the data, and more storage and processing.</li>
+<li>Delay. Each layer adds time before data is ready.</li>
+<li>It can become ceremony. Three layers will not fix poor ownership or unclear rules.</li>
+<li>Gold tables can multiply with no one owning them.</li>
+</ul></div>
+</div>
+<div class="tablewrap"><table>
+<thead><tr><th>Open source</th><th>Commercial</th></tr></thead>
+<tbody><tr>
+<td>It is a pattern, so you build it with tools: dbt for transformations; Apache Airflow or Dagster to schedule; Great Expectations or Soda for quality checks; Apache Spark or Trino to run it</td>
+<td>Databricks (which popularized the term), Snowflake, and Microsoft Fabric offer built-in pipeline and quality features; Informatica and Talend (Qlik) for data integration</td>
+</tr></tbody></table></div>
+
+<h2 class="sec">4. Data fabric</h2>
+<p>Data fabric is the connecting layer. Large organizations have data in many platforms, sites and clouds. A fabric uses metadata (data about the data) to find it, describe it, track where it came from, and apply the same access rules everywhere. Where it makes sense, it lets you query data where it sits instead of copying it.</p>
+<div class="cols">
+<div class="card"><h4>Problems it solves</h4><ul>
+<li>"Does this data exist, and who owns it?" A shared catalog answers.</li>
+<li>Every team builds its own copy. A fabric lets you reuse data in place.</li>
+<li>Different access rules in every system. A fabric applies policy once.</li>
+<li>Impact and audit questions: lineage shows what feeds what.</li>
+<li>Mergers, reorganizations and multi-site data. Connect without a big move.</li>
+</ul></div>
+<div class="card"><h4>Problems it creates</h4><ul>
+<li>It is only as good as its metadata. Poor descriptions mean poor results.</li>
+<li>Querying live across systems can be slow, and it puts load on source systems.</li>
+<li>It is not a box you buy. It is a set of capabilities plus an operating model.</li>
+<li>Needs clear data owners. Data mesh is the usual ownership model to pair with it.</li>
+<li>Vendor claims vary a lot. Ask what it actually does.</li>
+</ul></div>
+</div>
+<div class="tablewrap"><table>
+<thead><tr><th></th><th>Open source</th><th>Commercial</th></tr></thead>
+<tbody>
+<tr><th>Catalog and metadata</th><td>DataHub, OpenMetadata, Apache Atlas</td><td>Collibra, Alation, Informatica, Microsoft Purview, IBM watsonx.data intelligence</td></tr>
+<tr><th>Lineage</th><td>OpenLineage, Marquez</td><td>Included in the catalog products</td></tr>
+<tr><th>Access policy</th><td>Apache Ranger, Open Policy Agent</td><td>Built into catalog and platform products</td></tr>
+<tr><th>Query in place (federation, virtualization)</th><td>Trino</td><td>Denodo, Starburst, IBM</td></tr>
+</tbody></table></div>
+
+<h2 class="sec">Side by side</h2>
+<div class="tablewrap"><table>
+<thead><tr><th></th><th>Data lake</th><th>Lakehouse</th><th>Medallion</th><th>Data fabric</th></tr></thead>
+<tbody>
+<tr><th>Question it answers</th><td>Where do we keep it?</td><td>Can we trust and update it?</td><td>How do we get from raw to ready?</td><td>How do we find and govern data everywhere?</td></tr>
+<tr><th>Kind of thing</th><td>Storage</td><td>Storage plus table management</td><td>Design pattern</td><td>Connecting and governing layer</td></tr>
+<tr><th>Holds the data?</th><td>Yes</td><td>Yes</td><td>Organizes it</td><td>No, it points to it</td></tr>
+<tr><th>Biggest risk</th><td>Data swamp</td><td>Complexity to run</td><td>Ceremony and copies</td><td>Poor metadata and unclear owners</td></tr>
+<tr><th>You can buy it as a single product?</th><td>Mostly</td><td>Yes, from several vendors</td><td>No</td><td>No, only parts</td></tr>
+</tbody></table></div>
+
+<h2 class="sec">Which problem points to which idea</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>If your problem is...</th><th>Ask for...</th></tr></thead>
+<tbody>
+<tr><td>We need a cheap, safe place to keep lots of varied data</td><td>Data lake, with a catalog and owners from day one</td></tr>
+<tr><td>Our reports and our AI work use different copies and disagree</td><td>Lakehouse</td></tr>
+<tr><td>We cannot update, correct or delete records reliably</td><td>Lakehouse with an open table format</td></tr>
+<tr><td>Users do not trust the numbers and cannot see where they came from</td><td>Medallion layers on top of the lakehouse</td></tr>
+<tr><td>Many teams have their own data and cannot find each other's</td><td>Data fabric: start with the catalog and lineage</td></tr>
+<tr><td>Access rules differ by system and are hard to audit</td><td>Data fabric: central policy</td></tr>
+<tr><td>Our data is small, neat and mostly reports</td><td>A regular database or warehouse. You may need none of these four.</td></tr>
+</tbody></table></div>
+
+<h2 class="sec">What to watch in a federal setting</h2>
+<ul>
+<li><strong>Where the data lives.</strong> Data residency and security categorization decide whether you can use a public cloud, a sovereign cloud or on-premises. Check this before you choose tools.</li>
+<li><strong>Open formats.</strong> Parquet and an open table format keep your exit options open. That matters over a long system life.</li>
+<li><strong>Privacy and records.</strong> You must be able to find, correct and delete personal information, and keep records for the right time. Lakehouse tables help. Plain lakes do not.</li>
+<li><strong>Audit trail.</strong> Bronze plus lineage lets you show where a figure came from.</li>
+<li><strong>Skills and run cost.</strong> These platforms need people to run them. Count that cost, not only licences.</li>
+<li><strong>Start small.</strong> Pick one business domain and one use. Prove it, then grow. A fabric over a mess is still a mess.</li>
+</ul>
+
+<h2 class="sec">Plain-word glossary</h2>
+<details><summary>Words you will hear in meetings</summary>
+<div class="tablewrap"><table>
+<tbody>
+<tr><th>Object storage</th><td>Low-cost storage that holds files at very large scale. The base of a data lake.</td></tr>
+<tr><th>Open table format</th><td>A public standard for how tables are kept in files. It adds safe updates and history. Iceberg, Delta Lake and Hudi are examples.</td></tr>
+<tr><th>Transaction (ACID)</th><td>A change that fully happens or does not happen at all. No half-done updates.</td></tr>
+<tr><th>Time travel</th><td>The ability to see a table as it was at an earlier point.</td></tr>
+<tr><th>Catalog</th><td>The directory of what data exists, what it means and who owns it.</td></tr>
+<tr><th>Metadata</th><td>Data about data: names, descriptions, owners, formats, tags.</td></tr>
+<tr><th>Lineage</th><td>The trail showing where data came from and what it feeds.</td></tr>
+<tr><th>Federation or virtualization</th><td>Querying data where it sits, instead of copying it first.</td></tr>
+<tr><th>Data mesh</th><td>An operating model where each business domain owns and shares its data as a product. Often paired with a data fabric.</td></tr>
+<tr><th>Data warehouse</th><td>A database built for reports on neat, structured data. The older cousin of the lakehouse.</td></tr>
+</tbody></table></div>
+</details>
+
+<h2 class="sec">Further reading</h2>
+<ul>
+<li><a href="https://iceberg.apache.org/">Apache Iceberg</a>, <a href="https://delta.io/">Delta Lake</a> and <a href="https://hudi.apache.org/">Apache Hudi</a>: the three main open table formats</li>
+<li><a href="https://www.databricks.com/glossary/medallion-architecture">Medallion architecture</a>: the vendor description that popularized the pattern</li>
+<li><a href="https://martinfowler.com/articles/data-mesh-principles.html">Data mesh principles</a>: the ownership model often paired with a fabric</li>
+<li><a href="https://datahubproject.io/">DataHub</a> and <a href="https://open-metadata.org/">OpenMetadata</a>: open-source catalog and metadata platforms</li>
+</ul>
+
+<p class="foot">Product and project names are examples, not endorsements. Check current licence terms and feature support before you choose. Written with help from Claude.ai.</p>
+</div>
+{% endraw %}
