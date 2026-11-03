@@ -2,7 +2,7 @@
 layout: null
 permalink: /observability-security-monitoring/
 title: "Observability and Security Monitoring for a Web Platform"
-description: "How a web platform sends logs, events and health checks to the security operations centre (SOC-SIEM) and the network operations centre (NOC), using IaC and CaC and a pipeline that guards the link."
+description: "How a web platform watches itself on its own observability platform, then sends logs, events and a heartbeat one way through a data diode to the security operations centre (SOC-SIEM) and the network operations centre (NOC), using IaC and CaC and a pipeline that guards the link."
 tags: [devops, architecture]
 sitemap: true
 ---
@@ -231,12 +231,23 @@ footer p + p { margin-top: var(--gcds-spacing-150); }
       <h3>Yes, IaC and CaC are part of this</h3>
       <p>The pipeline does not carry the logs. It builds, tests and deploys the settings that do. IaC creates the hosts and containers and the path out of them. CaC sets the log format, the forwarder and the alert rules. Both live in Git, so a log cannot be switched off by accident and the link can be rebuilt on demand.</p>
     </div>
-    <p>Three ideas carry the design.</p>
+    <p>Four ideas carry the design.</p>
     <ol>
-      <li><strong>Send once, route many.</strong> The platform writes standard logs. One local forwarder sends them to the enterprise collector. The SIEM and the NOC take what they need from there.</li>
-      <li><strong>Agree a contract.</strong> A small file in Git lists the required fields, ports, severity names and owners. The team and the enterprise both test against it.</li>
-      <li><strong>Treat silence as a failure.</strong> A heartbeat event every minute means a quiet link raises an alert. Without it, a broken link looks like a calm system.</li>
+      <li><strong>Watch the site from inside first.</strong> The web platform has its own observability platform inside the isolated network. It stores the logs, runs the health checks and shows the team its own dashboards and alerts. The team does not wait for the enterprise to see its own site.</li>
+      <li><strong>Send once, route many, one way.</strong> One local forwarder feeds that platform. One export sender passes the events the contract lists through a data diode. The SIEM and the NOC take what they need on the far side.</li>
+      <li><strong>Agree a contract.</strong> A small file in Git lists the required fields, ports, severity names and owners. Nothing can be sent back across the diode, so the contract is also how the enterprise's needs reach the team: by change request, not by wire.</li>
+      <li><strong>Treat silence as a failure.</strong> A heartbeat event every minute, with a running number on every event, means a quiet link or a missing event raises an alert on the enterprise side.</li>
     </ol>
+    <div class="notice" role="status">
+      <h3>Confirmed: data through a diode moves one way</h3>
+      <p>A data diode is a hardware device that can carry a signal in one direction only. Usually it has a transmit side on one end and a receive side on the other, with no path back. This has four results for the design:</p>
+      <ul>
+        <li><strong>No replies.</strong> There are no acknowledgements, no handshakes and no requests to resend. TCP and TLS cannot run from end to end across a diode, because both need replies. The usual choices are one-way syslog over UDP, or the diode maker's paired sender and receiver programs that stop and restart the connection on each side.</li>
+        <li><strong>The sender cannot know what arrived.</strong> So each event carries a running number. The receiver spots gaps and alerts. The team platform keeps the full copy, and the sender replays on a schedule. The receiver drops repeated numbers.</li>
+        <li><strong>The enterprise cannot reach in.</strong> It cannot probe the platform, pull logs, push rules or send test events. The probes run inside the zone. The results go out.</li>
+        <li><strong>Direction is a design choice.</strong> This paper assumes the flow is from the isolated platform to the enterprise. Security confirms the direction and the product. A gateway that allows any return traffic is not a diode.</li>
+      </ul>
+    </div>
   </section>
 
   <section aria-labelledby="s-terms">
@@ -251,15 +262,19 @@ footer p + p { margin-top: var(--gcds-spacing-150); }
           <tr><th scope="row">Trace</th><td>The path of one request across CMS, Search and Analytics, with timing. It helps the team find slow steps. The SOC and NOC rarely need it. Start with logs and events. Add traces later by putting a request ID in every log line.</td></tr>
           <tr><th scope="row">SOC and SIEM</th><td>The Security Operations Centre and its tool. The SIEM collects security logs, looks for attacks and supports investigations.</td></tr>
           <tr><th scope="row">NOC</th><td>The Network Operations Centre. It watches that services are up, healthy and fast, and it runs incidents.</td></tr>
-          <tr><th scope="row">Forwarder</th><td>A small program on each host. It collects logs, adds tags, holds them on disk if the network fails and sends them to the enterprise collector.</td></tr>
-                    <tr><th scope="row">Collector</th><td>The enterprise server that receives logs from every forwarder.</td></tr>
+          <tr><th scope="row">Forwarder</th><td>A small program on each host. It collects logs, adds tags, holds them on disk if the network fails and sends them to the web observability platform.</td></tr>
+                    <tr><th scope="row">Collector</th><td>The enterprise server that receives the exported events from the diode receiver.</td></tr>
           <tr><th scope="row">Agent and shipper</th><td>Small programs on a host that send data elsewhere. A shipper only sends logs. An agent may also collect metrics and security data.</td></tr>
           <tr><th scope="row">Buffer</th><td>A holding area on disk for events that cannot be sent yet.</td></tr>
           <tr><th scope="row">Heartbeat</th><td>A small event sent on a fixed beat. If it stops, something is wrong.</td></tr>
+          <tr><th scope="row">Web observability platform</th><td>The team's own store, search, dashboards, health checks and alerts for the website. It runs inside the isolated network and serves the team. It does not replace the SIEM or the NOC tools.</td></tr>
+          <tr><th scope="row">Data diode</th><td>A device that lets data pass in one direction only. Nothing, including a reply, can pass back.</td></tr>
+          <tr><th scope="row">Export sender and receiver</th><td>The programs on each side of the diode. The sender picks the events the contract lists and numbers them. The receiver checks the numbers and passes the events to the enterprise collector.</td></tr>
+          <tr><th scope="row">Sequence number</th><td>A running number on each exported event. A missing number tells the receiver that an event was lost, because it cannot ask for a resend.</td></tr>
           <tr><th scope="row">Drift</th><td>When what runs on a host no longer matches what Git says.</td></tr>
           <tr><th scope="row">Telemetry contract</th><td>The agreed list of fields, event names, port and owners, kept in Git.</td></tr>
           <tr><th scope="row">Syslog</th><td>A long-standing standard for sending log messages. Almost every log tool understands it.</td></tr>
-          <tr><th scope="row">TLS</th><td>Encryption for data in transit. With certificates on both sides, each side also proves who it is.</td></tr>
+          <tr><th scope="row">TLS</th><td>Encryption for data in transit. With certificates on both sides, each side also proves who it is. It is used inside the zone. It cannot run across a diode, because it needs replies.</td></tr>
           <tr><th scope="row">ELK and Elastic Stack</th><td>ELK is Elasticsearch (store and search), Logstash (parse and route) and Kibana (screens). The Elastic Stack adds Beats.</td></tr>
           <tr><th scope="row">Beats</th><td>Light Elastic programs on hosts, each shipping one kind of data. Filebeat ships log files.</td></tr>
           <tr><th scope="row">Logstash</th><td>A server that receives data, parses and enriches it and passes it on.</td></tr>
@@ -273,7 +288,7 @@ footer p + p { margin-top: var(--gcds-spacing-150); }
 
   <section aria-labelledby="s-what">
     <h2 id="s-what">What goes where</h2>
-    <p>The same signals serve four jobs. Each job has a different owner and a different destination.</p>
+    <p>The same signals serve four jobs. Each job has a different owner and a different destination. The Team column is served by the web observability platform inside the zone. The SOC-SIEM and NOC columns are served through the diode, so only what the contract lists leaves the zone.</p>
     <div class="table-wrap" role="region" aria-label="Signals table, scrolls sideways on small screens" tabindex="0">
       <table>
         <caption>Signals from CMS, Search and Analytics, and where they go</caption>
@@ -281,7 +296,7 @@ footer p + p { margin-top: var(--gcds-spacing-150); }
         <tbody>
           <tr><th scope="row">Security events</th><td>CMS sign-in, failed sign-in, role change, administrator actions. Web server access and error logs. Operating system sign-ins.</td><td>Yes</td><td>No</td><td>Yes</td></tr>
           <tr><th scope="row">Application errors</th><td>PHP errors in CMS, Search errors and slow queries, Analytics errors</td><td>Only repeated or suspicious errors</td><td>Major and critical ones</td><td>Yes</td></tr>
-          <tr><th scope="row">Health and availability</th><td>Up and down checks, Search core status, queue backlog, heartbeat</td><td>Heartbeat only</td><td>Yes</td><td>Yes</td></tr>
+          <tr><th scope="row">Health and availability</th><td>Up and down checks, Search core status, queue backlog, heartbeat</td><td>Heartbeat only</td><td>Yes, as exported check results</td><td>Yes</td></tr>
           <tr><th scope="row">Performance</th><td>Page response time, Search query time, disk and memory use</td><td>No</td><td>When a limit is crossed</td><td>Yes</td></tr>
           <tr><th scope="row">Change events</th><td>Deploy marker with release number and the work tracker ticket</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
           <tr><th scope="row">Traces</th><td>Slow-request traces</td><td>No</td><td>Only if enterprise tools accept them</td><td>Yes, optional</td></tr>
@@ -297,30 +312,47 @@ footer p + p { margin-top: var(--gcds-spacing-150); }
 
   <section aria-labelledby="s-flow">
     <h2 id="s-flow">How the signals travel</h2>
-    <p>Each source writes to the host. The local forwarder tags the events, keeps a copy on disk and sends them over an encrypted link to the enterprise collector. The collector feeds the SIEM and the NOC. The NOC also probes the platform's health endpoints. The pipeline puts the settings in place and registers the checks and alert rules.</p>
+    <p>Each source writes to the host. The local forwarder tags the events, keeps a copy on disk and sends them over an encrypted link to the web observability platform. The platform stores them, runs the health probes from inside the zone and alerts the team. The export sender takes the events the contract lists, numbers them and sends them once through the data diode. The receiver passes them to the enterprise collector, which feeds the SIEM and the NOC. Nothing comes back. The pipeline also runs inside the zone and deploys the settings.</p>
 
     <figure>
       <div class="fig-scroll" role="region" aria-label="Signal flow diagram, scrolls sideways on small screens" tabindex="0">
-        <svg viewBox="0 0 980 500" role="img" aria-labelledby="f1-t f1-d" xmlns="http://www.w3.org/2000/svg"><title id="f1-t">How logs, events and health checks reach the SOC-SIEM and NOC</title><desc id="f1-d">CMS, Search, Analytics, the web server and the host feed one local forwarder. The forwarder sends logs over TLS to the enterprise collector, which feeds the SOC-SIEM and the NOC. The NOC probes health endpoints. Git and the pipeline deploy the settings and register checks.</desc><defs><marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><rect class="region" x="20" y="110" width="520" height="380"/><text class="rl" x="32" y="130">Web platform: the team owns this</text><rect class="region" x="640" y="110" width="320" height="380"/><text class="rl" x="652" y="130">Enterprise: other teams own this</text><rect class="node" x="32" y="14" width="170" height="56" rx="2"/><text class="name" x="117.0" y="39.0" text-anchor="middle">Git</text><text class="sub" x="117.0" y="58.0" text-anchor="middle">IaC and CaC files</text><rect class="node focus" x="262" y="14" width="170" height="56" rx="2"/><text class="name on-navy" x="347.0" y="39.0" text-anchor="middle">Pipeline</text><text class="sub on-navy" x="347.0" y="58.0" text-anchor="middle">Tests, signs, deploys</text><path class="edge" d="M202 42 H254" marker-end="url(#ah1)"/><path class="edge dash" d="M347 70 V108" marker-end="url(#ah1)"/><text class="lbl" x="357" y="94">Deploys settings</text><path class="edge dash" d="M432 42 H800 V108" marker-end="url(#ah1)"/><text class="lbl" x="616" y="34" text-anchor="middle">Registers checks and alert rules</text><rect class="node" x="32" y="146" width="92" height="64" rx="2"/><text class="name s" x="78.0" y="175.0" text-anchor="middle">CMS</text><text class="sub s" x="78.0" y="194.0" text-anchor="middle">app, sign-in</text><path class="edge" d="M78 210 V250"/><rect class="node" x="134" y="146" width="92" height="64" rx="2"/><text class="name s" x="180.0" y="175.0" text-anchor="middle">Search</text><text class="sub s" x="180.0" y="194.0" text-anchor="middle">errors, slow</text><path class="edge" d="M180 210 V250"/><rect class="node" x="236" y="146" width="92" height="64" rx="2"/><text class="name s" x="282.0" y="175.0" text-anchor="middle">Analytics</text><text class="sub s" x="282.0" y="194.0" text-anchor="middle">app errors</text><path class="edge" d="M282 210 V250"/><rect class="node" x="338" y="146" width="92" height="64" rx="2"/><text class="name s" x="384.0" y="175.0" text-anchor="middle">Web server</text><text class="sub s" x="384.0" y="194.0" text-anchor="middle">access, TLS</text><path class="edge" d="M384 210 V250"/><rect class="node" x="440" y="146" width="92" height="64" rx="2"/><text class="name s" x="486.0" y="175.0" text-anchor="middle">Host</text><text class="sub s" x="486.0" y="194.0" text-anchor="middle">OS, audit</text><path class="edge" d="M486 210 V250"/><path class="edge" d="M78 250 H486"/><path class="edge" d="M282 250 V288" marker-end="url(#ah1)"/><rect class="node focus" x="32" y="290" width="500" height="72" rx="2"/><text class="name on-navy" x="282.0" y="323.0" text-anchor="middle">Local forwarder</text><text class="sub on-navy" x="282.0" y="342.0" text-anchor="middle">Tags and formats events, buffers on disk, retries</text><rect class="node" x="32" y="410" width="500" height="56" rx="2"/><text class="name" x="282.0" y="435.0" text-anchor="middle">Health endpoints and heartbeat</text><text class="sub" x="282.0" y="454.0" text-anchor="middle">Status pages for CMS, Search and Analytics. Heartbeat event every minute.</text><rect class="ext" x="660" y="146" width="280" height="64" rx="2"/><text class="name" x="800.0" y="175.0" text-anchor="middle">SOC-SIEM</text><text class="sub" x="800.0" y="194.0" text-anchor="middle">Detection and investigation</text><rect class="ext" x="660" y="290" width="280" height="72" rx="2"/><text class="name" x="800.0" y="323.0" text-anchor="middle">Enterprise log collector</text><text class="sub" x="800.0" y="342.0" text-anchor="middle">Receives over TLS, queues, parses</text><rect class="ext" x="660" y="410" width="280" height="56" rx="2"/><text class="name" x="800.0" y="435.0" text-anchor="middle">NOC monitoring</text><text class="sub" x="800.0" y="454.0" text-anchor="middle">Probes, alerts, tickets</text><path class="edge" d="M532 326 H658" marker-end="url(#ah1)"/><text class="lbl" x="596" y="316" text-anchor="middle">Logs over TLS</text><path class="edge" d="M800 290 V212" marker-end="url(#ah1)"/><text class="lbl" x="810" y="256">Security events</text><path class="edge" d="M800 362 V408" marker-end="url(#ah1)"/><text class="lbl" x="810" y="392">Alerts from logs</text><path class="edge dash" d="M660 438 H534" marker-end="url(#ah1)"/><text class="lbl" x="596" y="428" text-anchor="middle">Health checks</text></svg>
+        <svg viewBox="0 0 1100 520" role="img" aria-labelledby="f1-t f1-d" xmlns="http://www.w3.org/2000/svg"><title id="f1-t">How logs, events and health checks flow one way from the web platform to the SOC-SIEM and NOC</title><desc id="f1-d">Inside the isolated network zone, CMS, Search, Analytics, the web server and the host feed one local forwarder. The forwarder sends logs over TLS to the web observability platform, which runs the health probes and alerts the team. An export sender takes the events the contract lists and sends them through a data diode. The diode passes data one way only. On the enterprise side a receiver and collector feed the SOC-SIEM and the NOC. Nothing flows back. Git and the pipeline sit inside the zone and deploy settings.</desc><defs><marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs><rect class="region" x="20" y="8" width="650" height="504"/><text class="rl" x="32" y="28">Web platform zone (isolated network): the team owns this</text><rect class="region" x="790" y="8" width="290" height="504"/><text class="rl" x="802" y="28">Enterprise: other teams own this</text><rect class="node" x="32" y="40" width="150" height="48" rx="2"/><text class="name" x="107.0" y="61" text-anchor="middle">Git</text><text class="sub" x="107.0" y="80.0" text-anchor="middle">IaC and CaC files</text><rect class="node focus" x="222" y="40" width="170" height="48" rx="2"/><text class="name on-navy" x="307.0" y="61.0" text-anchor="middle">Pipeline</text><text class="sub on-navy" x="307.0" y="80.0" text-anchor="middle">Tests, signs, deploys</text><path class="edge" d="M182 64 H220" marker-end="url(#ah1)"/><path class="edge dash" d="M307 88 V110" marker-end="url(#ah1)"/><text class="lbl" x="317" y="104">Deploys settings</text><rect class="node" x="32" y="112" width="92" height="64" rx="2"/><text class="name s" x="78" y="141" text-anchor="middle">CMS</text><text class="sub s" x="78" y="160" text-anchor="middle">app, sign-in</text><path class="edge" d="M78 176 V214"/><rect class="node" x="134" y="112" width="92" height="64" rx="2"/><text class="name s" x="180" y="141" text-anchor="middle">Search</text><text class="sub s" x="180" y="160" text-anchor="middle">errors, slow</text><path class="edge" d="M180 176 V214"/><rect class="node" x="236" y="112" width="92" height="64" rx="2"/><text class="name s" x="282" y="141" text-anchor="middle">Analytics</text><text class="sub s" x="282" y="160" text-anchor="middle">app errors</text><path class="edge" d="M282 176 V214"/><rect class="node" x="338" y="112" width="92" height="64" rx="2"/><text class="name s" x="384" y="141" text-anchor="middle">Web server</text><text class="sub s" x="384" y="160" text-anchor="middle">access, TLS</text><path class="edge" d="M384 176 V214"/><rect class="node" x="440" y="112" width="92" height="64" rx="2"/><text class="name s" x="486" y="141" text-anchor="middle">Host</text><text class="sub s" x="486" y="160" text-anchor="middle">OS, audit</text><path class="edge" d="M486 176 V214"/><path class="edge" d="M78 214 H486"/><path class="edge" d="M282 214 V236" marker-end="url(#ah1)"/><rect class="node focus" x="32" y="238" width="500" height="60" rx="2"/><text class="name on-navy" x="282.0" y="265.0" text-anchor="middle">Local forwarder</text><text class="sub on-navy" x="282.0" y="284.0" text-anchor="middle">Tags and formats events, buffers on disk, retries</text><path class="edge" d="M282 298 V328" marker-end="url(#ah1)"/><text class="lbl" x="292" y="318">Logs over TLS</text><rect class="node focus" x="32" y="330" width="500" height="84" rx="2"/><text class="name on-navy" x="282.0" y="369.0" text-anchor="middle">Web observability platform</text><text class="sub on-navy" x="282.0" y="388.0" text-anchor="middle">Stores logs. Runs health probes. Dashboards and alerts for the team.</text><path class="edge dash" d="M282 414 V440" marker-end="url(#ah1)"/><text class="lbl" x="292" y="432">Probes every minute</text><rect class="node" x="32" y="442" width="500" height="56" rx="2"/><text class="name" x="282.0" y="467.0" text-anchor="middle">Health endpoints and heartbeat</text><text class="sub" x="282.0" y="486.0" text-anchor="middle">Status pages for CMS, Search and Analytics. Heartbeat event every minute.</text><rect class="node" x="548" y="330" width="102" height="84" rx="2"/><text class="name s" x="599.0" y="369.0" text-anchor="middle">Export sender</text><text class="sub s" x="599.0" y="388.0" text-anchor="middle">Numbers, sends once</text><path class="edge" d="M532 372 H546" marker-end="url(#ah1)"/><path class="edge" d="M650 372 H692" marker-end="url(#ah1)"/><rect class="node focus" x="694" y="330" width="80" height="84" rx="2"/><text class="name s on-navy" x="734.0" y="369.0" text-anchor="middle">Data diode</text><text class="sub s on-navy" x="734.0" y="388.0" text-anchor="middle">one way only</text><path class="edge" d="M774 372 H808" marker-end="url(#ah1)"/><text class="lbl" x="722" y="440" text-anchor="middle">Nothing flows back.</text><text class="lbl" x="722" y="456" text-anchor="middle">No replies, no probes,</text><text class="lbl" x="722" y="472" text-anchor="middle">no pushes in.</text><rect class="ext" x="810" y="150" width="250" height="60" rx="2"/><text class="name" x="935.0" y="177.0" text-anchor="middle">SOC-SIEM</text><text class="sub" x="935.0" y="196.0" text-anchor="middle">Detection and investigation</text><rect class="ext" x="810" y="330" width="250" height="84" rx="2"/><text class="name s" x="935.0" y="369.0" text-anchor="middle">Receiver and collector</text><text class="sub s" x="935.0" y="388.0" text-anchor="middle">Checks numbers, queues, parses</text><rect class="ext" x="810" y="440" width="250" height="56" rx="2"/><text class="name" x="935.0" y="465.0" text-anchor="middle">NOC monitoring</text><text class="sub" x="935.0" y="484.0" text-anchor="middle">Alerts, tickets, silence and gap rules</text><path class="edge" d="M935 330 V212" marker-end="url(#ah1)"/><text class="lbl" x="945" y="276">Security events</text><path class="edge" d="M935 414 V438" marker-end="url(#ah1)"/><text class="lbl" x="945" y="430">Alerts</text></svg>
       </div>
       <figcaption>
-        <p class="fig-title">How logs, events and health checks reach the SOC-SIEM and NOC</p>
+        <p class="fig-title">How logs, events and health checks flow one way to the SOC-SIEM and NOC</p>
         <ul class="legend" aria-label="Legend">
-          <li><svg viewBox="0 0 44 24" aria-hidden="true"><line x1="2" y1="12" x2="30" y2="12" stroke-width="1.5" style="stroke: var(--gcds-text-secondary)"/><polygon points="28,6 42,12 28,18" style="fill: var(--gcds-text-secondary)"/></svg><span>Solid arrow: logs and events moving on</span></li>
-          <li><svg viewBox="0 0 44 24" aria-hidden="true"><line x1="2" y1="12" x2="30" y2="12" stroke-width="1.5" stroke-dasharray="6 4" style="stroke: var(--gcds-text-secondary)"/><polygon points="28,6 42,12 28,18" style="fill: var(--gcds-text-secondary)"/></svg><span>Dashed arrow: settings, checks and registrations</span></li>
-          <li><svg viewBox="0 0 44 24" aria-hidden="true"><rect x="2" y="3" width="40" height="18" rx="2" style="fill: var(--gcds-bg-primary)"/></svg><span>Navy box: the parts that deploy and carry the link</span></li>
+          <li><svg viewBox="0 0 44 24" aria-hidden="true"><line x1="2" y1="12" x2="30" y2="12" stroke-width="1.5" style="stroke: var(--gcds-text-secondary)"/><polygon points="28,6 42,12 28,18" style="fill: var(--gcds-text-secondary)"/></svg><span>Solid arrow: logs and events moving on. Across the diode they only go one way.</span></li>
+          <li><svg viewBox="0 0 44 24" aria-hidden="true"><line x1="2" y1="12" x2="30" y2="12" stroke-width="1.5" stroke-dasharray="6 4" style="stroke: var(--gcds-text-secondary)"/><polygon points="28,6 42,12 28,18" style="fill: var(--gcds-text-secondary)"/></svg><span>Dashed arrow: settings and health checks, inside the zone only</span></li>
+          <li><svg viewBox="0 0 44 24" aria-hidden="true"><rect x="2" y="3" width="40" height="18" rx="2" style="fill: var(--gcds-bg-primary)"/></svg><span>Navy box: the parts that deploy, store and carry the link, including the diode</span></li>
           <li><svg viewBox="0 0 44 24" aria-hidden="true"><rect x="2" y="3" width="40" height="18" rx="2" stroke-width="1.5" stroke-dasharray="6 4" style="fill: var(--gcds-bg-light); stroke: var(--gcds-text-primary)"/></svg><span>Grey dashed box: owned by other teams</span></li>
         </ul>
         <dl class="meta">
           <dt>Notation</dt><dd>Simple flow diagram, not C4 or ArchiMate</dd>
-          <dt>Scope</dt><dd>Telemetry from the CMS, Search and Analytics platform to enterprise monitoring</dd>
-          <dt>Version and date</dt><dd>0.1, October 23, 2026</dd>
+          <dt>Scope</dt><dd>Telemetry from the CMS, Search and Analytics platform to its own observability platform, and one way out to enterprise monitoring</dd>
+          <dt>Version and date</dt><dd>0.2, November 3, 2026</dd>
           
           <dt>Status</dt><dd>Draft</dd>
         </dl>
-        <p><strong>Text description.</strong> On the left is the web platform, owned by the team. Five sources sit in a row: CMS, Search, Analytics, the web server and the host. They join into one local forwarder, which tags events, buffers them on disk and retries. A solid arrow carries logs over TLS from the forwarder to the enterprise log collector on the right. The collector sends security events up to the SOC-SIEM and alerts built from logs down to the NOC. Below the forwarder, health endpoints and a heartbeat sit on the platform. A dashed arrow shows the NOC probing those endpoints. At the top, Git feeds the pipeline. A dashed arrow shows the pipeline deploying settings to the platform. Another dashed arrow shows it registering checks and alert rules with the enterprise side.</p>
+        <p><strong>Text description.</strong> On the left is the web platform zone, an isolated network owned by the team. Git and the pipeline sit at the top of the zone and deploy settings to the hosts. Five sources sit in a row: CMS, Search, Analytics, the web server and the host. They join into one local forwarder, which tags events, buffers them on disk and retries. A solid arrow carries logs over TLS from the forwarder to the web observability platform. That platform stores the logs, runs the health probes against the health endpoints and heartbeat below it, and gives the team dashboards and alerts. To its right, an export sender picks the events the contract lists, numbers them and sends them once to a data diode. The diode passes data in one direction only, from the zone to the enterprise. A note under the diode says nothing flows back. On the right, in the enterprise area, a diode receiver and collector check the numbers and queue the events. The collector sends security events up to the SOC-SIEM and alerts down to the NOC. There is no arrow from the enterprise back into the zone.</p>
       </figcaption>
     </figure>
+    <h3>What may cross the diode, and what may not</h3>
+    <div class="table-wrap" role="region" aria-label="Direction table, scrolls sideways on small screens" tabindex="0">
+      <table>
+        <caption>Flows between the web platform zone and the enterprise</caption>
+        <thead><tr><th scope="col">Flow</th><th scope="col">Zone to enterprise</th><th scope="col">Enterprise to zone</th><th scope="col">How it is handled</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Logs and security events</th><td>Yes</td><td>No</td><td>Sent once through the diode with a running number.</td></tr>
+          <tr><th scope="row">Heartbeat and health results</th><td>Yes</td><td>No</td><td>The probes run inside the zone. Only the results and the heartbeat leave.</td></tr>
+          <tr><th scope="row">Health probes by the NOC</th><td>No</td><td>No</td><td>Not possible. The NOC reads silence and gaps on its side instead.</td></tr>
+          <tr><th scope="row">Acknowledgements and resend requests</th><td>No</td><td>No</td><td>Not possible. The sender replays on a schedule. The receiver drops repeats.</td></tr>
+          <tr><th scope="row">Alert and parsing rules</th><td>No</td><td>No, not by wire</td><td>Agreed in the telemetry contract. The enterprise keeps its own rules in its own code. Changes go by change request.</td></tr>
+          <tr><th scope="row">Test events from the enterprise</th><td>No</td><td>No</td><td>Tests are sent from the zone. The enterprise confirms receipt by ticket or on a test diode path.</td></tr>
+          <tr><th scope="row">Software and settings into the zone</th><td>No</td><td>Not through this diode</td><td>Uses a separately approved import path, which is outside this paper.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
   </section>
 
   <section aria-labelledby="s-code">
@@ -331,11 +363,11 @@ footer p + p { margin-top: var(--gcds-spacing-150); }
         <caption>What IaC, CaC and the pipeline each own for observability</caption>
         <thead><tr><th scope="col">Layer</th><th scope="col">What it defines for the SOC and NOC link</th><th scope="col">Kept as</th></tr></thead>
         <tbody>
-          <tr><th scope="row">IaC</th><td>Podman Quadlet units now and Kubernetes YAML later, with the log driver set. Host settings: persistent journal, time sync, buffer folder, heartbeat timer. Network rule to the collector.</td><td>Quadlet files, Kubernetes YAML, Ansible tasks</td></tr>
-          <tr><th scope="row">CaC</th><td>Forwarder settings and certificate paths. CMS syslog settings. Analytics log settings. NOC alert rules. The list of health endpoints to register.</td><td>Exported CMS config, config files, Ansible templates, alert rule files</td></tr>
+          <tr><th scope="row">IaC</th><td>Podman Quadlet units now and Kubernetes YAML later, with the log driver set. Host settings: persistent journal, time sync, buffer folder, heartbeat timer. The web observability platform. The export sender, with a send-only network rule toward the diode.</td><td>Quadlet files, Kubernetes YAML, Ansible tasks</td></tr>
+          <tr><th scope="row">CaC</th><td>Forwarder and export settings. Certificate paths for links inside the zone. CMS syslog settings. Analytics log settings. Alert rules and dashboards on the team platform. The list of health endpoints to probe.</td><td>Exported CMS config, config files, Ansible templates, alert rule files</td></tr>
           <tr><th scope="row">Telemetry contract</th><td>Required fields, event names, severity names, port, heartbeat timing and owners. Both sides test against it.</td><td>One YAML file in Git, versioned</td></tr>
-          <tr><th scope="row">Pipeline</th><td>Tests the code and the contract, deploys the settings, sends the deploy marker and checks that the heartbeat returns.</td><td>Stages from the shared DevOps template</td></tr>
-          <tr><th scope="row">Enterprise side</th><td>Collector, SIEM parsing and detection rules, NOC probes and ticketing. These have their own IaC and CaC. The team agrees the contract and does not edit them.</td><td>Owned by Security and Operations</td></tr>
+          <tr><th scope="row">Pipeline</th><td>Tests the code and the contract, deploys the settings, sends the deploy marker and checks that the heartbeat shows on the team platform.</td><td>Stages from the shared DevOps template</td></tr>
+          <tr><th scope="row">Enterprise side</th><td>Diode receiver, collector, SIEM parsing and detection rules, NOC alert rules and ticketing. These have their own IaC and CaC. The team agrees the contract and does not edit them. Security names the owner of the diode itself.</td><td>Owned by Security and Operations</td></tr>
         </tbody>
       </table>
     </div>
@@ -363,7 +395,7 @@ footer p + p { margin-top: var(--gcds-spacing-150); }
         <dl class="meta">
           <dt>Notation</dt><dd>Simple flow diagram, not C4 or ArchiMate</dd>
           <dt>Scope</dt><dd>Six stages of one change and the control each stage adds</dd>
-          <dt>Version and date</dt><dd>0.1, October 23, 2026</dd>
+          <dt>Version and date</dt><dd>0.2, November 3, 2026</dd>
           <dt>Status</dt><dd>Draft</dd>
         </dl>
         <p><strong>Text description.</strong> Six stages run left to right: Code, Build, Validate, Release, Deploy and Observe. Validate is navy because its gates can block a build. Under each stage is a box of controls. Code keeps settings in Git, agrees fields with the SOC and has Security review the change. Build builds once, signs and records the version. Validate lints the forwarder file, checks the log format and requires a test event to arrive. Release notifies the SOC and NOC and makes exceptions expire. Deploy sends settings with the app, restarts the forwarder and sends a deploy marker. Observe watches the heartbeat, checks drift daily and alerts on silence. A return arrow from Observe to Code shows that drift or silence opens a ticket, and the fix goes through the same pipeline.</p>
@@ -377,10 +409,10 @@ footer p + p { margin-top: var(--gcds-spacing-150); }
         <tbody>
           <tr><th scope="row">Code</th><td>Log settings, forwarder files and the contract are in Git. Changes to logging need a security reviewer.</td><td>Someone turns off a log or renames a field by accident</td></tr>
           <tr><th scope="row">Build</th><td>Settings are built once, signed and listed in the release manifest.</td><td>Test and production run different settings</td></tr>
-          <tr><th scope="row">Validate</th><td>Lint IaC and CaC. Check sample events against the contract. Scan samples for passwords and tokens. Send a test event and wait for it to arrive at the test collector.</td><td>A format change that breaks SIEM parsing. A broken forwarder file. Secrets in logs.</td></tr>
+          <tr><th scope="row">Validate</th><td>Lint IaC and CaC. Check sample events against the contract. Scan samples for passwords and tokens. Send a test event and wait for it to arrive at the team platform and in the export queue.</td><td>A format change that breaks SIEM parsing. A broken forwarder file. Secrets in logs.</td></tr>
           <tr><th scope="row">Release</th><td>The SOC and NOC are told about changes to logging, ports or alert rules. Exceptions to a gate carry an expiry date.</td><td>Surprise changes and permanent exceptions</td></tr>
-          <tr><th scope="row">Deploy</th><td>Settings go with the app. The forwarder restarts. The heartbeat must return within five minutes or the deploy rolls back. A deploy marker is sent.</td><td>A deploy that cuts the link while nobody is looking</td></tr>
-          <tr><th scope="row">Observe</th><td>Heartbeat alert. Daily drift check against Git. Certificate expiry alert 30 days ahead.</td><td>Slow decay: drift, expired certificates, a full buffer</td></tr>
+          <tr><th scope="row">Deploy</th><td>Settings go with the app. The forwarder restarts. The heartbeat must show on the team platform within five minutes or the deploy rolls back. A deploy marker is sent.</td><td>A deploy that cuts the link while nobody is looking</td></tr>
+          <tr><th scope="row">Observe</th><td>Heartbeat alert and number-gap alert. Daily drift check against Git. Certificate expiry alert 30 days ahead.</td><td>Slow decay: drift, expired certificates, a full buffer</td></tr>
         </tbody>
       </table>
     </div>
@@ -391,16 +423,19 @@ footer p + p { margin-top: var(--gcds-spacing-150); }
         <caption>Runtime controls and what they do when the link is down</caption>
         <thead><tr><th scope="col">Control</th><th scope="col">How it works</th><th scope="col">When the collector or network is down</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Disk buffer</th><td>The forwarder queues events on disk before sending.</td><td>Events wait on disk and are sent when the link returns. Size the buffer for at least a day of peak volume. Confirm the size with the SOC.</td></tr>
-          <tr><th scope="row">Retry without blocking</th><td>Apps write to the local system log. The forwarder retries with a pause between tries.</td><td>The website keeps running. A logging outage never takes the site down.</td></tr>
-          <tr><th scope="row">Encrypted and authenticated link</th><td>TLS with certificates from the internal authority. Each side checks the other.</td><td>Nobody can read or inject logs in transit. Renewal is automated, with an alert 30 days before expiry.</td></tr>
-          <tr><th scope="row">Heartbeat</th><td>A small event every minute carries the release number.</td><td>After five minutes of silence the NOC is alerted. The SIEM also has a rule for a host that goes quiet.</td></tr>
-          <tr><th scope="row">Second collector</th><td>The forwarder lists two enterprise collectors, if the enterprise offers them.</td><td>Events switch to the second one without anyone acting.</td></tr>
+          <tr><th scope="row">Disk buffer</th><td>The forwarder queues events on disk before sending to the team platform.</td><td>Events wait on disk and are sent when the platform returns. Size the buffer for at least a day of peak volume. Confirm the size with the SOC.</td></tr>
+          <tr><th scope="row">Retry without blocking</th><td>Apps write to the local system log. Inside the zone, the forwarder retries until the platform acknowledges. Across the diode nothing can be acknowledged, so the export sender sends each event once and does not wait.</td><td>The website keeps running. A logging outage never takes the site down.</td></tr>
+          <tr><th scope="row">Encrypted and authenticated link</th><td>Inside the zone: TLS with certificates from the internal authority, each side checking the other. Across the diode: TLS cannot run from end to end, so the diode maker's sender and receiver programs stop and restart the connection, and each batch is numbered and signed.</td><td>Nobody can read or inject logs in transit. Renewal is automated, with an alert 30 days before expiry.</td></tr>
+          <tr><th scope="row">Heartbeat</th><td>A small event every minute carries the release number.</td><td>The team platform alerts the team. The NOC alerts after five minutes of silence on its side of the diode. The SIEM also has a rule for a host that goes quiet. Silence could mean the platform, the sender, the diode or the receiver. Ask the diode owner for a separate status signal.</td></tr>
+          <tr><th scope="row">Local copy is the record</th><td>The team platform keeps every event. The export is a copy.</td><td>If the diode, the receiver or the collector is down, the team loses nothing. The enterprise fills the gap from the replay.</td></tr>
+          <tr><th scope="row">Replay and numbers</th><td>Every exported event has a running number. The sender replays recent events on a schedule. The receiver drops repeated numbers.</td><td>A short loss is filled in without anyone acting. A longer loss raises a gap alert.</td></tr>
+          <tr><th scope="row">Rate limit</th><td>A diode has a fixed speed. The sender sends security events and the heartbeat first and drops low-value noise.</td><td>A burst of debug logs cannot crowd out the events the SOC needs.</td></tr>
+          <tr><th scope="row">Paired diode path</th><td>If the enterprise offers a second diode and receiver, the sender can feed both.</td><td>One path can fail without a gap. The receiver drops duplicates by number.</td></tr>
           <tr><th scope="row">One clock</th><td>All hosts use the same time source and write UTC time.</td><td>Events from different hosts line up in an investigation.</td></tr>
           <tr><th scope="row">Protected settings</th><td>Only the pipeline changes forwarder settings. A change sends a notice to the SOC.</td><td>Logging cannot be quietly turned off by one person on one host.</td></tr>
           <tr><th scope="row">Rollback</th><td>The previous settings stay on the host.</td><td>A bad logging change goes back with the release.</td></tr>
-          <tr><th scope="row">Separate failure paths</th><td>The NOC probes from outside the platform.</td><td>If the platform dies and cannot report, the probe still sees it.</td></tr>
-          <tr><th scope="row">Isolated-network fit</th><td>The forwarder reaches only the internal collector. No cloud service is used.</td><td>Matches the data residency and network rules of the platform.</td></tr>
+          <tr><th scope="row">Separate failure paths</th><td>The health probes run from a small separate host inside the zone. The NOC reads missing heartbeats and missing numbers on its own side.</td><td>If the platform dies and cannot report, the silence is seen from outside. The NOC cannot probe in, so it relies on this.</td></tr>
+          <tr><th scope="row">Isolated-network fit</th><td>Traffic stays inside the zone. The only way out is the diode. No cloud service is used.</td><td>Matches the data residency and network rules of the platform.</td></tr>
         </tbody>
       </table>
     </div>
@@ -408,11 +443,11 @@ footer p + p { margin-top: var(--gcds-spacing-150); }
 
   <section aria-labelledby="s-tools">
     <h2 id="s-tools">Common tools</h2>
-    <p>A tool does one or more jobs. Pick by job, not by brand. The enterprise already runs the SIEM and the NOC, so the web team usually chooses only the first job below: the forwarder on its own hosts. The rest helps you talk with Security and Operations and shows what you may meet on their side.</p>
+    <p>A tool does one or more jobs. Pick by job, not by brand. The enterprise already runs the SIEM and the NOC, so the web team chooses the first job below, the forwarder, and the tools for its own observability platform inside the zone. The rest helps you talk with Security and Operations and shows what you may meet on their side.</p>
 
     <div class="notice" role="status">
       <h3>Short answer on ELK, Beats and Splunk</h3>
-      <p>ELK is Elasticsearch (store and search), Logstash (parse and route) and Kibana (screens). Add Beats, the light shippers on each host, and it is called the Elastic Stack. Splunk does the same jobs in one commercial product, with a strong search language and a ready-made SIEM add-on. Either can receive what the rsyslog example sends. Choose the one the enterprise already runs.</p>
+      <p>ELK is Elasticsearch (store and search), Logstash (parse and route) and Kibana (screens). Add Beats, the light shippers on each host, and it is called the Elastic Stack. Splunk does the same jobs in one commercial product, with a strong search language and a ready-made SIEM add-on. Either can receive what the rsyslog example sends. For the team platform, choose a tool the enterprise already supports, so skills carry over.</p>
     </div>
     <div class="notice warning" role="status">
       <h3>How these notes were checked</h3>
@@ -426,6 +461,7 @@ footer p + p { margin-top: var(--gcds-spacing-150); }
         <thead><tr><th scope="col">Job</th><th scope="col">What it does</th><th scope="col">Open source</th><th scope="col">Commercial</th></tr></thead>
         <tbody>
           <tr><th scope="row">Collect on the host</th><td>Reads logs on each host, tags them, buffers them and sends them on. This is the web team's choice.</td><td>rsyslog, syslog-ng, Fluent Bit, Vector, OpenTelemetry Collector, Filebeat (Elastic Beats)</td><td>Splunk Universal Forwarder, Elastic Agent, agents from the SIEM supplier</td></tr>
+          <tr><th scope="row">Send one way through the diode</th><td>Picks the listed events, numbers them and sends them across. The receiver checks the numbers.</td><td>rsyslog or syslog-ng with UDP output, Fluent Bit or Vector with UDP or file output. Confirm what the diode accepts.</td><td>The diode maker's paired sender and receiver programs</td></tr>
           <tr><th scope="row">Route and transform</th><td>Receives from many sources, parses, filters, adds detail and sends to one or more places.</td><td>Logstash, Vector, Fluent Bit, OpenTelemetry Collector, syslog-ng</td><td>Splunk heavy forwarder, Cribl Stream</td></tr>
           <tr><th scope="row">Store and search</th><td>Keeps the logs and answers searches.</td><td>Elasticsearch, OpenSearch, Graylog Open, Grafana Loki</td><td>Elastic subscriptions, Splunk Enterprise, Graylog Enterprise</td></tr>
           <tr><th scope="row">SIEM</th><td>Applies detection rules, links related events and supports investigations.</td><td>Wazuh, Elastic Security (some features need a paid subscription), OpenSearch Security Analytics</td><td>Splunk Enterprise Security, IBM QRadar on-premises, Graylog Security. Cloud only: Microsoft Sentinel, Palo Alto Cortex XSIAM.</td></tr>
@@ -465,12 +501,13 @@ footer p + p { margin-top: var(--gcds-spacing-150); }
         <caption>Match the need to the tool</caption>
         <thead><tr><th scope="col">Need</th><th scope="col">Why it matters here</th><th scope="col">Tools that do it well</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Syslog over TLS</th><td>The common language between hosts and enterprise collectors. Encrypted and authenticated.</td><td>rsyslog, syslog-ng, then Fluent Bit and Vector. Most SIEMs accept it. Check mutual authentication in each product.</td></tr>
+          <tr><th scope="row">Syslog over TLS</th><td>The common language between hosts and the team platform inside the zone. Encrypted and authenticated. Not used across the diode.</td><td>rsyslog, syslog-ng, then Fluent Bit and Vector. Most SIEMs accept it. Check mutual authentication in each product.</td></tr>
+          <tr><th scope="row">One-way transfer</th><td>Gets events across a diode, which cannot carry replies.</td><td>Syslog over UDP (rsyslog, syslog-ng, Fluent Bit, Vector), or the diode maker's proxy programs. Add running numbers, since the receiver cannot ask for a resend.</td></tr>
           <tr><th scope="row">Disk buffering</th><td>Keeps events during an outage. This is the heart of resilience.</td><td>rsyslog and syslog-ng (disk queues), Fluent Bit (filesystem buffering), Vector (disk buffers), Logstash (persistent queues), OpenTelemetry Collector (persistent queue with file storage).</td></tr>
           <tr><th scope="row">Parsing and enriching</th><td>Turns raw text into the fields the contract requires.</td><td>Logstash, Vector, Fluent Bit parsers, Graylog pipelines. Splunk parses at index or search time.</td></tr>
           <tr><th scope="row">Host security and file integrity</th><td>Detects changes to files and suspicious activity on the host.</td><td>Wazuh, Auditbeat or Elastic Agent, or the operating system audit service with a SIEM.</td></tr>
           <tr><th scope="row">Detection rules and security content</th><td>Saves the SOC from writing every rule.</td><td>Splunk Enterprise Security, Elastic Security, Wazuh, Graylog Security (Sigma support), QRadar.</td></tr>
-          <tr><th scope="row">Health probes</th><td>Lets the NOC see the platform from outside.</td><td>Heartbeat (Beats), Prometheus with a probe exporter, Zabbix.</td></tr>
+          <tr><th scope="row">Health probes</th><td>Lets the team platform check CMS, Search and Analytics from a separate host inside the zone. The results are exported.</td><td>Heartbeat (Beats), Prometheus with a probe exporter, Zabbix.</td></tr>
           <tr><th scope="row">Traces and OTLP</th><td>Optional later step for slow-request analysis.</td><td>OpenTelemetry Collector, Jaeger, Grafana Tempo, Elastic APM.</td></tr>
           <tr><th scope="row">Kubernetes later</th><td>The platform moves from Podman to Kubernetes.</td><td>Fluent Bit as a node-level shipper, OpenTelemetry Collector, Elastic Agent.</td></tr>
         </tbody>
@@ -479,7 +516,7 @@ footer p + p { margin-top: var(--gcds-spacing-150); }
 
     <div class="notice" role="status">
       <h3>Suggested starting point (to confirm)</h3>
-      <p>Use the collector and SIEM that Security and Operations already run. On the hosts, use the enterprise-approved forwarder. If there is none, start with rsyslog, as in the examples. When the platform moves to Kubernetes, look at Fluent Bit. If traces are added, put the OpenTelemetry Collector in front of whatever the enterprise stores them in. Do not run a second SIEM or log store for the team.</p>
+      <p>Build one small observability platform for the website inside the zone, from tools the enterprise already supports. It serves the team. Do not copy the SIEM's detection work there: the SOC keeps detection on the enterprise side. On the hosts, use the enterprise-approved forwarder. If there is none, start with rsyslog, as in the examples. For the diode, use the sender and receiver that its owner provides. When the platform moves to Kubernetes, look at Fluent Bit. If traces are added, put the OpenTelemetry Collector in front of whatever the team platform stores them in. Do not run a second SIEM.</p>
     </div>
   </section>
 
@@ -582,9 +619,9 @@ log_level = WARN
 logger_file_path = tmp/logs/analytics.log
 </code></pre>
 
-    <h3>6. CaC: the forwarder settings</h3>
-    <p>The forwarder reads the Analytics log file, adds tags, and sends events over TLS. The disk queue and endless retry are what protect the data during an outage.</p>
-<pre tabindex="0"><code># cac/forwarder/50-siem.conf
+    <h3>6. CaC: the forwarder settings (inside the zone)</h3>
+    <p>The forwarder reads the Analytics log file, adds tags, and sends events over TLS to the web observability platform. The disk queue and endless retry protect the data when that platform is down. This link is inside the zone, so replies and retries are fine here.</p>
+<pre tabindex="0"><code># cac/forwarder/50-team-platform.conf
 global(
   DefaultNetstreamDriver="gtls"
   DefaultNetstreamDriverCAFile="/etc/pki/web/ca.pem"
@@ -596,30 +633,49 @@ module(load="imfile")
 input(type="imfile" File="/opt/web/analytics/tmp/logs/analytics.log"
       Tag="analytics:" Severity="info" Facility="local1")
 
-template(name="siem" type="string"
+template(name="platform" type="string"
   string="&lt;%PRI%&gt;1 %TIMESTAMP:::date-rfc3339% %HOSTNAME% %APP-NAME% %PROCID% %MSGID% - %msg%\n")
 
 if ($syslogfacility-text startswith "local") or
    ($syslogfacility-text == "authpriv") then {
-  action(type="omfwd" target="collector.example.internal" port="6514"
-    protocol="tcp" template="siem"
+  action(type="omfwd" target="platform.example.internal" port="6514"
+    protocol="tcp" template="platform"
     StreamDriver="gtls" StreamDriverMode="1"
     StreamDriverAuthMode="x509/name"
-    StreamDriverPermittedPeers="collector.example.internal"
-    queue.type="LinkedList" queue.filename="fwd_siem"
+    StreamDriverPermittedPeers="platform.example.internal"
+    queue.type="LinkedList" queue.filename="fwd_platform"
     queue.spoolDirectory="/var/spool/rsyslog"
     queue.maxDiskSpace="2g" queue.saveOnShutdown="on"
     action.resumeRetryCount="-1" action.resumeInterval="10")
 }
 </code></pre>
 
-    <h3>7. CaC: apply the forwarder settings with Ansible</h3>
+    <h3>7. CaC: the one-way export (to the diode)</h3>
+    <p>The platform writes the events the contract lists to one file. The export sender reads that file, adds a running number and sends each event once over UDP to the diode. There is no queue to retry and no TLS here, because the diode cannot carry replies. Keep each event short, so it fits in one datagram. Illustration only: confirm the protocol and the number scheme with the diode owner.</p>
+<pre tabindex="0"><code># cac/export/60-diode-export.conf
+module(load="imfile")
+module(load="mmsequence")
+
+input(type="imfile" File="/var/export/to-enterprise.log"
+      Tag="export:" Severity="info" Facility="local2")
+
+template(name="numbered" type="string"
+  string="&lt;%PRI%&gt;1 %TIMESTAMP:::date-rfc3339% %HOSTNAME% %APP-NAME% %PROCID% %MSGID% [web@32473 seq=\"%$!seq%\"] %msg%\n")
+
+if $syslogtag startswith "export" then {
+  action(type="mmsequence" mode="instance" from="1" to="2000000000" var="$!seq")
+  action(type="omfwd" target="diode-sender.example.internal" port="514"
+    protocol="udp" template="numbered")
+}
+</code></pre>
+
+    <h3>8. CaC: apply the forwarder settings with Ansible</h3>
     <p>The role keeps a backup of the old file, checks the full configuration and only then restarts the forwarder.</p>
 <pre tabindex="0"><code># cac/ansible/roles/forwarder/tasks/main.yml
 - name: Install the forwarder settings from Git
   ansible.builtin.template:
-    src: 50-siem.conf.j2
-    dest: /etc/rsyslog.d/50-siem.conf
+    src: 50-team-platform.conf.j2
+    dest: /etc/rsyslog.d/50-team-platform.conf
     owner: root
     group: root
     mode: "0640"
@@ -636,14 +692,24 @@ if ($syslogfacility-text startswith "local") or
     dest: /etc/web/forwarder.version
 </code></pre>
 
-    <h3>8. The telemetry contract</h3>
-    <p>This file is the agreement. The pipeline tests against it. The SOC and NOC review changes to it.</p>
+    <h3>9. The telemetry contract</h3>
+    <p>This file is the agreement. The pipeline tests against it. The SOC and NOC review changes to it. Because nothing can be sent back across the diode, this file is also how the enterprise's needs reach the team.</p>
 <pre tabindex="0"><code># contract/telemetry-contract.yaml
 version: 1
 transport:
-  collector: collector.example.internal
-  port: 6514
-  protocol: syslog over TLS
+  inside_zone:
+    platform: platform.example.internal
+    port: 6514
+    protocol: syslog over TLS
+  export:
+    direction: out only, through the data diode
+    sender: diode-sender.example.internal
+    protocol: syslog over UDP        # confirm with the diode owner
+    acknowledgements: none
+    numbering: running number per sender, in structured data
+    replay_every_minutes: 60
+    receiver_drops_repeats: true
+    priority: [security_events, heartbeat, deploy_marker, major_errors]
   clock: UTC from the enterprise time source
 required_fields:
   - timestamp
@@ -659,6 +725,9 @@ heartbeat:
   interval_seconds: 60
   silence_alert_after_seconds: 300
   routed_to: NOC
+number_gap_alert:
+  after_missing: 1
+  routed_to: [NOC, SOC]
 security_events:
   - cms.login_success
   - cms.login_failure
@@ -668,32 +737,38 @@ security_events:
   - os.auth
 deploy_marker:
   fields: [release, jira_ticket, approved_by, time]
+inbound_changes: by change request only; nothing flows back through the diode
 owners:
   forwarder: web-team
-  collector: enterprise-operations
+  team_platform: web-team
+  export_sender: web-team
+  diode: to be named by Security
+  receiver_and_collector: enterprise-operations
   siem_rules: security-operations
 </code></pre>
 
-    <h3>9. Pipeline: the gates that protect the link</h3>
-    <p>The first job blocks a build when the test event does not arrive. The second checks that the platform is talking again after a deploy.</p>
+    <h3>10. Pipeline: the gates that protect the link</h3>
+    <p>The first job blocks a build when the test event does not arrive at the team platform or in the export queue. The second checks that the platform is talking again after a deploy. Both checks run inside the zone. The enterprise side confirms receipt by ticket.</p>
 <pre tabindex="0"><code># pipeline/telemetry.yml  (generic CI syntax)
 verify-telemetry:
   stage: validate
   script:
     - ansible-lint cac/ansible iac/podman
     - tests/log-format/check.sh contract/telemetry-contract.yaml tests/log-format/samples/
-    - tests/send-test-event.sh --target test-collector --release "$RELEASE_ID"
-    - tests/expect-arrival.sh --target test-collector --release "$RELEASE_ID" --timeout 120
+    - tests/send-test-event.sh --target team-platform-test --release "$RELEASE_ID"
+    - tests/expect-arrival.sh --target team-platform-test --release "$RELEASE_ID" --timeout 120
+    - tests/expect-in-export-queue.sh --release "$RELEASE_ID" --timeout 120
   allow_failure: false
 
 announce-deploy:
   stage: deploy
   script:
     - tools/send-deploy-marker.sh --release "$RELEASE_ID" --ticket "$JIRA_KEY"
-    - tools/expect-heartbeat.sh --host "$TARGET_HOST" --release "$RELEASE_ID" --timeout 300
+    - tools/expect-heartbeat.sh --source team-platform --host "$TARGET_HOST" --release "$RELEASE_ID" --timeout 300
 </code></pre>
 
-    <h3>10. CaC: the NOC alert for a silent platform</h3>
+    <h3>11. CaC: the NOC alerts for silence and gaps (enterprise side)</h3>
+    <p>These rules live on the enterprise side. The team cannot deploy them across the diode, so they are agreed in the contract and requested by change request. The team platform has its own, similar rules for the team.</p>
 <pre tabindex="0"><code># monitoring/alert-rules/heartbeat.yaml  (example format)
 groups:
   - name: web-platform-telemetry
@@ -706,6 +781,14 @@ groups:
           route: noc
         annotations:
           summary: "No heartbeat from the web platform for 5 minutes"
+
+      - alert: WebPlatformEventsMissing
+        expr: increase(web_export_sequence_gaps_total[15m]) > 0
+        labels:
+          severity: minor      # use the enterprise severity name
+          route: noc
+        annotations:
+          summary: "Numbers are missing: events were lost between the sender and the receiver"
 </code></pre>
   </section>
 
@@ -717,10 +800,12 @@ groups:
         <caption>Checks that show the SOC-SIEM and NOC link works</caption>
         <thead><tr><th scope="col">Check</th><th scope="col">When</th><th scope="col">Passes when</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Test event</th><td>Every build, in the test environment</td><td>The event reaches the test collector within two minutes with all required fields.</td></tr>
-          <tr><th scope="row">Heartbeat after deploy</th><td>Every deploy</td><td>The heartbeat with the new release number is seen within five minutes.</td></tr>
-          <tr><th scope="row">Detection test</th><td>Each release that changes logging, and every quarter</td><td>A burst of failed sign-ins in test raises a SIEM alert.</td></tr>
-          <tr><th scope="row">Failure drill</th><td>Every quarter, in test</td><td>With the collector cut for an hour, the buffer fills and then empties after reconnection. No gap appears in the SIEM.</td></tr>
+          <tr><th scope="row">Test event</th><td>Every build, in the test environment</td><td>The event reaches the team platform within two minutes with all required fields, and shows in the export queue.</td></tr>
+          <tr><th scope="row">Heartbeat after deploy</th><td>Every deploy</td><td>The heartbeat with the new release number shows on the team platform within five minutes, and the NOC sees it after the next export.</td></tr>
+          <tr><th scope="row">Detection test</th><td>Each release that changes logging, and every quarter</td><td>A burst of failed sign-ins in test raises a SIEM alert on the enterprise side, through the test diode path.</td></tr>
+          <tr><th scope="row">Platform failure drill</th><td>Every quarter, in test</td><td>With the team platform cut for an hour, the forwarder buffer fills and then empties after reconnection. No gap appears in the platform.</td></tr>
+          <tr><th scope="row">Diode failure drill</th><td>Every quarter, in test</td><td>With the receiver switched off for an hour, the NOC silence alert fires. After it returns, the replay fills the gap and repeats are dropped.</td></tr>
+          <tr><th scope="row">One-way check</th><td>Every year, with Security</td><td>Every attempt to connect from the enterprise side back into the zone through the diode path fails.</td></tr>
           <tr><th scope="row">Drift check</th><td>Daily</td><td>Running settings match Git. A difference opens a ticket.</td></tr>
           <tr><th scope="row">Certificate check</th><td>Daily</td><td>No forwarder certificate expires within 30 days.</td></tr>
         </tbody>
@@ -731,15 +816,16 @@ groups:
   <section aria-labelledby="s-questions">
     <h2 id="s-questions">Questions for Security and the NOC</h2>
     <ol>
-      <li>What are the collector address, port and protocol? Is a second collector available?</li>
+      <li>Which receiver address, port and protocol does the diode use? Is a paired diode path available?</li>
       <li>Which fields and event names must every log line carry? Who approves changes to that list?</li>
       <li>Which fields may include personal information, and which are forbidden?</li>
       <li>How long must logs be kept, and where? Does the local disk buffer count?</li>
       <li>Who writes the SIEM parsing and detection rules for CMS, Search and Analytics events?</li>
-      <li>How does the NOC register health checks and alert rules? Can the pipeline do it through a request or an interface?</li>
+      <li>Nothing can be sent back, so how does the NOC register health checks and alert rules? Is a change request the route, and who confirms it?</li>
       <li>Which severity names does the enterprise use, and which severities page a person?</li>
-      <li>Can we send test events to a non-production collector and run a detection test there?</li>
-      <li>Are there isolated-network rules that limit how the forwarder reaches the collector?</li>
+      <li>Is there a test diode path, or another way to confirm that test events arrived on the enterprise side?</li>
+      <li>Who owns the diode? Does it run from the zone to the enterprise? How fast can it carry data, and what status signal does it give?</li>
+      <li>Which protocols does the diode accept: UDP syslog, files or its own proxy programs? Can it carry running numbers?</li>
     </ol>
     <div class="notice warning" role="status">
       <h3>Confirm before use</h3>

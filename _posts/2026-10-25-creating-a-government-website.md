@@ -59,9 +59,9 @@ Write the deployment as Kubernetes YAML from day one. Run it on Podman today. Mo
 
 ## 5. Operations: tell security, operations and users
 
-One forwarder sends logs to the enterprise collector. A heartbeat makes silence an alert.
+The site watches itself on its own platform, then sends logs one way through a data diode. A heartbeat makes silence an alert.
 
-- [Send Logs Once, Route Many]({{ '/send-logs-once-route-many/' | relative_url }}): the three ideas.
+- [Send Logs Once, Route Many]({{ '/send-logs-once-route-many/' | relative_url }}): the four ideas.
 - [Tell Staff Before They Call: A Status Page for Your Website]({{ '/a-status-page-for-your-website/' | relative_url }}): one page that shows what is working, and the pattern behind it ([PAT-015]({{ '/architecture/pat-015/' | relative_url }})).
 - [Observability and security monitoring working paper]({{ '/observability-security-monitoring/' | relative_url }}): the signal path, tools and examples.
 
