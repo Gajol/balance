@@ -1,0 +1,252 @@
+---
+title: "An intranet architecture pack: slides, figures and the solution architecture"
+excerpt: "A generalized copy of a working architecture set for a bilingual intranet on an isolated network: a board deck, every figure as editable shapes, and the solution architecture document."
+last_modified_at: 2026-11-03T16:07:00-05:00
+layout: single
+classes: full-width
+toc: false
+author_profile: false
+theme: digital
+tags: [architecture, intranet, observability, patterns, government, accessibility]
+---
+{% raw %}
+<style>
+.pack h2 { margin-top: 1.6em; }
+.pack .files { list-style: none; padding: 0; margin: 1.2em 0; }
+.pack .files li { border: 1px solid #d0d0d0; padding: 0.7em 0.9em; margin-bottom: 0.6em; }
+.pack .files a { font-weight: 700; }
+.pack .files span { display: block; color: #555; font-size: 0.9em; margin-top: 0.2em; }
+.pack figure { margin: 1.6em 0; border: 1px solid #e0e0e0; padding: 0.8em; }
+.pack figure svg { width: 100%; height: auto; display: block; }
+.pack figcaption { font-size: 0.88em; color: #555; margin-top: 0.6em; }
+.pack .note { border-left: 4px solid #999; padding: 0.4em 0 0.4em 0.9em; color: #444; }
+.pack table { font-size: 0.9em; }
+</style>
+<div class="pack">
+
+<p>This is a working set of architecture documents for a bilingual intranet that runs on-premises, on an isolated network. It is published as a worked example. Product names, system names and decision numbers have been replaced with plain words, so what is left is the shape of the thing, not anyone's system.</p>
+
+<p>Three files, all editable:</p>
+
+<ul class="files">
+<li><a href="/balance/assets/files/intranet-architecture-review-deck.pptx">Architecture review deck (PowerPoint, 30 slides)</a>
+<span>For a board: the value proposition, the target state, four patterns, observability, service levels, the operating model and the risks. Diagrams are native shapes, not pictures.</span></li>
+<li><a href="/balance/assets/files/intranet-solution-architecture.docx">Solution architecture (Word, about 80 pages)</a>
+<span>The long form: scope, requirements, principles, the business, data, application, technology, digital, information and security views, the patterns, observability and the decision log.</span></li>
+<li><a href="/balance/assets/files/intranet-architecture-figures.pptx">Every figure, editable (PowerPoint, 20 slides)</a>
+<span>One figure per slide, drawn as PowerPoint shapes, so a box can be moved or a label retyped and the figure pasted back into the document.</span></li>
+</ul>
+
+<h2>What is in it</h2>
+
+<p>The set answers one question for a review board: can staff find what they need, and can the organization show that the content is current, owned and measured? Everything else follows from that.</p>
+
+<ul>
+<li><strong>Find it.</strong> One search across the site, in both languages, with quick links staff can set themselves.</li>
+<li><strong>Trust it.</strong> Every page has an owner, an approval workflow and an expiry date. Content is refreshed or retired, not left to go stale.</li>
+<li><strong>Know what works.</strong> Built-in analytics, measured for each language on its own.</li>
+<li><strong>Grow into it.</strong> Two-way features and personalized news come in later phases.</li>
+</ul>
+
+<h2>The main parts</h2>
+
+<figure>
+<svg preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="680" height="722" viewBox="0 0 680 722" role="img" aria-labelledby="t d" font-family="'Noto Sans', 'Lato', Arial, sans-serif">
+<title id="t">Parts: the main parts inside the New Intranet</title><desc id="d">The main parts inside the New Intranet on the isolated network, how they connect, and the external systems they use.</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#26374a"/></marker></defs>
+<rect width="680" height="722" fill="#ffffff"/>
+<rect x="10.9" y="124.5" width="658.7" height="380.4" fill="none" stroke="#26374a" stroke-width="1" stroke-dasharray="5 3"/>
+<rect x="442.2" y="127.5" width="221.3" height="18" fill="#ffffff"/>
+<text x="446.2" y="140.5" font-size="13.3" font-weight="700" fill="#26374a">Intranet [isolated network]</text>
+<polyline points="311.4,74.2 311.4,116.0 164.2,116.0 164.2,164.5" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="135.4,78.1 135.4,116.0 106.6,116.0 106.6,164.5" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="369.0,74.2 369.0,126.6 311.4,126.6 311.4,168.3" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="545.0,78.1 545.0,116.0 441.0,116.0 441.0,250.4 365.1,250.4 365.1,280.6" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="135.4,231.7 135.4,250.4 265.7,250.4 265.7,280.6" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="325.3,340.2 325.3,370.4 340.2,370.4 340.2,521.1 263.4,521.1 263.4,566.7" fill="none" stroke="#26374a" stroke-width="1.2" stroke-dasharray="5 3" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="384.9,340.2 384.9,359.8 417.0,359.8 417.0,400.6" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="246.5,310.4 229.2,310.4" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="434.0,310.4 451.3,310.4" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="265.7,340.2 265.7,359.8 109.8,359.8 109.8,392.0" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="355.1,340.2 355.1,359.8 292.2,359.8 292.2,398.7" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="193.8,432.3 179.4,432.3" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="340.2,227.8 340.2,261.0 135.4,261.0 135.4,279.7" fill="none" stroke="#26374a" stroke-width="1.2" stroke-dasharray="5 3" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="434.0,198.1 451.3,198.1" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="109.8,574.4 109.8,521.1 186.6,521.1 186.6,370.4 295.5,370.4 295.5,340.2" fill="none" stroke="#26374a" stroke-width="1.2" stroke-dasharray="5 3" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="541.8,475.5 541.8,521.1 417.0,521.1 417.0,574.4" fill="none" stroke="#26374a" stroke-width="2.4" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="599.4,475.5 599.4,521.1 570.6,521.1 570.6,574.4" fill="none" stroke="#26374a" stroke-width="2.4" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="414.8,340.2 414.8,370.4 570.6,370.4 570.6,389.1" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="41.7" y="10.9" width="187.5" height="67.2" rx="14" fill="#26374a" stroke="#26374a" stroke-width="1.1"/>
+<text x="135.4" y="34.0" text-anchor="middle" font-weight="700" font-size="14" fill="#ffffff">Content owners,</text>
+<text x="135.4" y="50.0" text-anchor="middle" font-weight="700" font-size="14" fill="#ffffff">Communications</text>
+<text x="135.4" y="65.0" text-anchor="middle" font-size="12" fill="#ffffff">Person</text>
+<rect x="263.4" y="14.7" width="153.6" height="59.5" rx="14" fill="#26374a" stroke="#26374a" stroke-width="1.1"/>
+<text x="340.2" y="42.0" text-anchor="middle" font-weight="700" font-size="14" fill="#ffffff">Employees</text>
+<text x="340.2" y="57.0" text-anchor="middle" font-size="12" fill="#ffffff">Person</text>
+<rect x="468.2" y="10.9" width="153.6" height="67.2" rx="14" fill="#26374a" stroke="#26374a" stroke-width="1.1"/>
+<text x="545.0" y="34.0" text-anchor="middle" font-weight="700" font-size="14" fill="#ffffff">IT platform</text>
+<text x="545.0" y="50.0" text-anchor="middle" font-weight="700" font-size="14" fill="#ffffff">owner</text>
+<text x="545.0" y="65.0" text-anchor="middle" font-size="12" fill="#ffffff">Person</text>
+<rect x="41.7" y="164.5" width="187.5" height="67.2" rx="0" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<text x="135.4" y="187.6" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Reverse proxy</text>
+<text x="135.4" y="203.6" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">cache</text>
+<text x="135.4" y="218.6" text-anchor="middle" font-size="12" fill="#333333">Reverse proxy</text>
+<rect x="246.5" y="168.3" width="187.5" height="59.5" rx="0" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<text x="340.2" y="195.6" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Analytics tool</text>
+<text x="340.2" y="210.6" text-anchor="middle" font-size="12" fill="#333333">Self-hosted analytics</text>
+<path d="M451.3,176.4 a93.8,9 0 0 1 187.5,0 v43.4 a93.8,9 0 0 1 -187.5,0 z" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<path d="M451.3,176.4 a93.8,9 0 0 0 187.5,0" fill="none" stroke="#26374a" stroke-width="1.1"/>
+<text x="545.0" y="204.6" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Analytics database</text>
+<text x="545.0" y="219.6" text-anchor="middle" font-size="12" fill="#333333">Relational DB</text>
+<path d="M41.7,288.7 a93.8,9 0 0 1 187.5,0 v43.4 a93.8,9 0 0 1 -187.5,0 z" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<path d="M41.7,288.7 a93.8,9 0 0 0 187.5,0" fill="none" stroke="#26374a" stroke-width="1.1"/>
+<text x="135.4" y="316.9" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Content database</text>
+<text x="135.4" y="331.9" text-anchor="middle" font-size="12" fill="#333333">Relational DB</text>
+<rect x="246.5" y="280.6" width="187.5" height="59.5" rx="0" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<text x="340.2" y="307.9" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">CMS</text>
+<text x="340.2" y="322.9" text-anchor="middle" font-size="12" fill="#333333">Open-source CMS</text>
+<path d="M451.3,288.7 a93.8,9 0 0 1 187.5,0 v43.4 a93.8,9 0 0 1 -187.5,0 z" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<path d="M451.3,288.7 a93.8,9 0 0 0 187.5,0" fill="none" stroke="#26374a" stroke-width="1.1"/>
+<text x="545.0" y="316.9" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Memory cache</text>
+<text x="545.0" y="331.9" text-anchor="middle" font-size="12" fill="#333333">In-memory cache</text>
+<path d="M40.2,401.0 a69.6,9 0 0 1 139.2,0 v62.6 a69.6,9 0 0 1 -139.2,0 z" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<path d="M40.2,401.0 a69.6,9 0 0 0 139.2,0" fill="none" stroke="#26374a" stroke-width="1.1"/>
+<text x="109.8" y="430.8" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Shared</text>
+<text x="109.8" y="446.8" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">storage</text>
+<text x="109.8" y="461.8" text-anchor="middle" font-size="12" fill="#333333">Files, video</text>
+<rect x="193.8" y="398.7" width="139.2" height="67.2" rx="0" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<text x="263.4" y="421.8" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Transcode</text>
+<text x="263.4" y="437.8" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">worker</text>
+<text x="263.4" y="452.8" text-anchor="middle" font-size="12" fill="#333333">Video transcoder</text>
+<rect x="347.4" y="400.6" width="139.2" height="63.4" rx="0" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<text x="417.0" y="423.3" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Search engine</text>
+<text x="417.0" y="438.3" text-anchor="middle" font-size="12" fill="#333333">Open-source</text>
+<text x="417.0" y="451.3" text-anchor="middle" font-size="12" fill="#333333">search</text>
+<rect x="501.0" y="389.1" width="139.2" height="86.4" rx="0" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<text x="570.6" y="413.8" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Team</text>
+<text x="570.6" y="429.8" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">observability</text>
+<text x="570.6" y="445.8" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">platform</text>
+<text x="570.6" y="460.8" text-anchor="middle" font-size="12" fill="#333333">Open source</text>
+<rect x="40.2" y="574.4" width="139.2" height="67.2" rx="0" fill="#f2f2f2" stroke="#26374a" stroke-width="1.1"/>
+<text x="109.8" y="597.5" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">HR data</text>
+<text x="109.8" y="613.5" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">service</text>
+<text x="109.8" y="628.5" text-anchor="middle" font-size="12" fill="#333333">External system</text>
+<rect x="193.8" y="566.7" width="139.2" height="82.6" rx="0" fill="#f2f2f2" stroke="#26374a" stroke-width="1.1"/>
+<text x="263.4" y="591.0" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Departmental</text>
+<text x="263.4" y="607.0" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">systems</text>
+<text x="263.4" y="622.0" text-anchor="middle" font-size="12" fill="#333333">Identity, mail,</text>
+<text x="263.4" y="635.0" text-anchor="middle" font-size="12" fill="#333333">records</text>
+<rect x="347.4" y="574.4" width="139.2" height="67.2" rx="0" fill="#f2f2f2" stroke="#26374a" stroke-width="1.1"/>
+<text x="417.0" y="597.5" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Security</text>
+<text x="417.0" y="613.5" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">platform</text>
+<text x="417.0" y="628.5" text-anchor="middle" font-size="12" fill="#333333">External system</text>
+<rect x="501.0" y="574.4" width="139.2" height="67.2" rx="0" fill="#f2f2f2" stroke="#26374a" stroke-width="1.1"/>
+<text x="570.6" y="597.5" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Monitoring</text>
+<text x="570.6" y="613.5" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">platform</text>
+<text x="570.6" y="628.5" text-anchor="middle" font-size="12" fill="#333333">External system</text>
+<rect x="147.7" y="107.0" width="40.5" height="17" fill="#ffffff"/>
+<text x="168.0" y="120.0" text-anchor="middle" font-size="12" fill="#333333">reads</text>
+<rect x="103.0" y="86.4" width="64.9" height="17" fill="#ffffff"/>
+<text x="135.4" y="99.4" text-anchor="middle" font-size="12" fill="#333333">publishes</text>
+<rect x="275.9" y="144.2" width="71.0" height="17" fill="#ffffff"/>
+<text x="311.4" y="157.2" text-anchor="middle" font-size="12" fill="#333333">page views</text>
+<rect x="366.6" y="241.4" width="58.8" height="17" fill="#ffffff"/>
+<text x="396.0" y="254.4" text-anchor="middle" font-size="12" fill="#333333">operates</text>
+<rect x="233.2" y="241.4" width="46.6" height="17" fill="#ffffff"/>
+<text x="256.5" y="254.4" text-anchor="middle" font-size="12" fill="#333333">misses</text>
+<rect x="173.0" y="525.9" width="180.8" height="17" fill="#ffffff"/>
+<text x="263.4" y="538.9" text-anchor="middle" font-size="12" fill="#333333">sign-in, mail, archive, link</text>
+<rect x="375.4" y="376.8" width="83.2" height="17" fill="#ffffff"/>
+<text x="417.0" y="389.8" text-anchor="middle" font-size="12" fill="#333333">index, query</text>
+<rect x="216.8" y="301.4" width="28.3" height="17" fill="#ffffff"/>
+<text x="230.9" y="314.4" text-anchor="middle" font-size="12" fill="#333333">SQL</text>
+<rect x="429.3" y="301.4" width="40.5" height="17" fill="#ffffff"/>
+<text x="449.5" y="314.4" text-anchor="middle" font-size="12" fill="#333333">cache</text>
+<rect x="89.6" y="362.2" width="40.5" height="17" fill="#ffffff"/>
+<text x="109.8" y="375.2" text-anchor="middle" font-size="12" fill="#333333">files</text>
+<rect x="333.3" y="350.8" width="34.4" height="17" fill="#ffffff"/>
+<text x="350.5" y="363.8" text-anchor="middle" font-size="12" fill="#333333">jobs</text>
+<rect x="145.4" y="423.3" width="71.0" height="17" fill="#ffffff"/>
+<text x="180.9" y="436.3" text-anchor="middle" font-size="12" fill="#333333">renditions</text>
+<rect x="119.1" y="252.0" width="46.6" height="17" fill="#ffffff"/>
+<text x="142.4" y="265.0" text-anchor="middle" font-size="12" fill="#333333">visits</text>
+<rect x="435.4" y="189.1" width="28.3" height="17" fill="#ffffff"/>
+<text x="449.5" y="202.1" text-anchor="middle" font-size="12" fill="#333333">SQL</text>
+<rect x="194.8" y="361.4" width="77.1" height="17" fill="#ffffff"/>
+<text x="233.3" y="374.4" text-anchor="middle" font-size="12" fill="#333333">people data</text>
+<rect x="375.6" y="512.1" width="101.5" height="17" fill="#ffffff"/>
+<text x="426.4" y="525.1" text-anchor="middle" font-size="12" fill="#333333">security stream</text>
+<rect x="526.0" y="545.0" width="89.3" height="17" fill="#ffffff"/>
+<text x="570.6" y="558.0" text-anchor="middle" font-size="12" fill="#333333">health stream</text>
+<rect x="524.2" y="361.4" width="89.3" height="17" fill="#ffffff"/>
+<text x="568.9" y="374.4" text-anchor="middle" font-size="12" fill="#333333">logs, metrics</text>
+<rect x="8" y="674.16" width="22" height="16" rx="4.666666666666667" fill="#26374a" stroke="#26374a" stroke-width="1"/>
+<text x="36" y="686.66" font-size="12" fill="#333333">Person</text>
+<rect x="95.4" y="674.16" width="22" height="16" rx="0.0" fill="#e7eff9" stroke="#26374a" stroke-width="1"/>
+<text x="123.4" y="686.66" font-size="12" fill="#333333">Our system or part</text>
+<rect x="265.6" y="674.16" width="22" height="16" rx="0.0" fill="#f2f2f2" stroke="#26374a" stroke-width="1"/>
+<text x="293.6" y="686.66" font-size="12" fill="#333333">External system</text>
+<line x1="8" y1="710.16" x2="42" y2="710.16" stroke="#26374a" stroke-width="1.2"/>
+<text x="48" y="714.66" font-size="12" fill="#333333">live</text>
+<line x1="93.6" y1="710.16" x2="127.6" y2="710.16" stroke="#26374a" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="133.6" y="714.66" font-size="12" fill="#333333">cached or batch</text>
+<line x1="255.1" y1="710.16" x2="289.1" y2="710.16" stroke="#26374a" stroke-width="1.2" stroke-dasharray="1.5 3"/>
+<text x="295.1" y="714.66" font-size="12" fill="#333333">link</text>
+<line x1="340.7" y1="710.16" x2="374.7" y2="710.16" stroke="#26374a" stroke-width="2.4"/>
+<text x="380.7" y="714.66" font-size="12" fill="#333333">one-way feed</text>
+<text x="481.5" y="714.66" font-size="12" fill="#333333">proposed</text>
+</svg>
+<figcaption>The main parts and how they connect. A "part" here means something deployed and run on its own. It does not mean a software container: how each part is hosted is a separate decision, and the databases are not containers.</figcaption>
+</figure>
+
+<h2>Four patterns</h2>
+
+<p>A principle says why. A decision says what was chosen. A pattern says how, so the same problem is solved the same way each time. The set carries four.</p>
+
+<ul>
+<li><strong>Measure each language on its own.</strong> Every number is shown for English and French side by side, so a gap cannot hide inside a total.</li>
+<li><strong>Check accessibility at every gate.</strong> Automated checks where themes are built, where content is published, and on live pages, in both languages. A tool never removes content. A person decides.</li>
+<li><strong>Publish a status page.</strong> One page, served apart from the site, tells staff whether each feature is working.</li>
+<li><strong>Deliver one ranked queue.</strong> One prioritized list per person instead of one email per flag, with bulk decisions and a roll-up by branch.</li>
+</ul>
+
+<h2>Watching it, without reaching in</h2>
+
+<p>An isolated network makes operations awkward. Security events and health metrics leave through a one-way path, so the teams that receive them cannot look back in. That leaves the people who run the site with nothing of their own. The set adds a small observability platform inside the zone, beside the two feeds.</p>
+
+<figure>
+<svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" role="img"><title>Observability: three lanes</title><desc>Logs and metrics from the site parts go through a local forwarder to the team observability platform inside the secure zone. The platform sends a security stream and a health stream through the approved one-way feed to the security platform and the monitoring platform.</desc><defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#595959"/></marker></defs><rect width="720" height="520" fill="#ffffff"/><rect x="8" y="34" width="704" height="308" rx="0" fill="none" stroke="#595959" stroke-width="1.2"/><text x="16" y="50" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#595959" text-anchor="start">Secure zone: The site team owns this</text><rect x="504" y="58" width="190" height="60" rx="0" fill="#EBF2FA" stroke="#333333" stroke-width="1.5"/><text x="599.0" y="86.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#333333" text-anchor="middle">Health probes</text><text x="599.0" y="104.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#595959" text-anchor="middle">separate small host</text><rect x="24" y="150" width="170" height="80" rx="0" fill="#EBF2FA" stroke="#333333" stroke-width="1.5"/><text x="109.0" y="188.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#333333" text-anchor="middle">Site parts</text><text x="109.0" y="206.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#595959" text-anchor="middle">CMS, search, cache, analytics</text><rect x="244" y="150" width="170" height="80" rx="0" fill="#EBF2FA" stroke="#333333" stroke-width="1.5"/><text x="329.0" y="188.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#333333" text-anchor="middle">Local forwarder</text><text x="329.0" y="206.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#595959" text-anchor="middle">tags events, buffers on disk</text><rect x="474" y="150" width="230" height="80" rx="0" fill="#26374A" stroke="#333333" stroke-width="1.5"/><text x="589.0" y="188.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">Team observability platform</text><text x="589.0" y="206.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#ffffff" text-anchor="middle">dashboards, alerts, runbooks</text><rect x="660" y="142" width="40" height="16" rx="0" fill="#ffffff" stroke="#333333" stroke-width="1"/><text x="680" y="154" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#333333" text-anchor="middle">NEW</text><rect x="244" y="262" width="170" height="60" rx="0" fill="#EAF7EE" stroke="#333333" stroke-width="1.5"/><text x="329.0" y="290.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#333333" text-anchor="middle">Local copy</text><text x="329.0" y="308.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#595959" text-anchor="middle">is the record</text><rect x="468" y="262" width="124" height="60" rx="0" fill="#EBF2FA" stroke="#333333" stroke-width="1.5"/><text x="530.0" y="290.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#333333" text-anchor="middle">Security stream</text><text x="530.0" y="308.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#595959" text-anchor="middle">numbered, sent once</text><rect x="598" y="262" width="110" height="60" rx="0" fill="#EBF2FA" stroke="#333333" stroke-width="1.5"/><text x="653.0" y="290.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#333333" text-anchor="middle">Health stream</text><text x="653.0" y="308.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#595959" text-anchor="middle">metrics only</text><line x1="194" y1="190" x2="244" y2="190" stroke="#595959" stroke-width="1.5" marker-end="url(#ar)"/><line x1="414" y1="190" x2="474" y2="190" stroke="#595959" stroke-width="1.5" marker-end="url(#ar)"/><line x1="589" y1="118" x2="589" y2="150" stroke="#595959" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#ar)"/><line x1="329" y1="230" x2="329" y2="262" stroke="#595959" stroke-width="1.5" marker-end="url(#ar)"/><path d="M540 230 L540 246 L530 246 L530 262" fill="none" stroke="#595959" stroke-width="1.5" marker-end="url(#ar)"/><path d="M640 230 L640 246 L653 246 L653 262" fill="none" stroke="#595959" stroke-width="1.5" marker-end="url(#ar)"/><rect x="202.2" y="169" width="33.6" height="15" rx="0" fill="#ffffff" stroke="none" stroke-width="0"/><text x="219" y="180" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="middle">logs</text><rect x="424.0" y="169" width="40.0" height="15" rx="0" fill="#ffffff" stroke="none" stroke-width="0"/><text x="444" y="180" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="middle">sends</text><rect x="587.6" y="127" width="84.80000000000001" height="15" rx="0" fill="#ffffff" stroke="none" stroke-width="0"/><text x="630" y="138" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="middle">every minute</text><rect x="430" y="372" width="284" height="44" rx="0" fill="#26374A" stroke="#333333" stroke-width="1.5"/><text x="572.0" y="392.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">Approved one-way feed</text><text x="572.0" y="410.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#ffffff" text-anchor="middle">no replies cross</text><line x1="530" y1="322" x2="530" y2="372" stroke="#595959" stroke-width="1.5" marker-end="url(#ar)"/><line x1="653" y1="322" x2="653" y2="372" stroke="#595959" stroke-width="1.5" marker-end="url(#ar)"/><rect x="430" y="450" width="140" height="60" rx="0" fill="#EAF7EE" stroke="#333333" stroke-width="1.5"/><text x="500.0" y="478.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#333333" text-anchor="middle">Security platform</text><text x="500.0" y="496.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#595959" text-anchor="middle">security operations</text><rect x="582" y="450" width="132" height="60" rx="0" fill="#EAF7EE" stroke="#333333" stroke-width="1.5"/><text x="648.0" y="478.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#333333" text-anchor="middle">Monitoring platform</text><text x="648.0" y="496.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#595959" text-anchor="middle">network operations</text><line x1="530" y1="416" x2="530" y2="450" stroke="#595959" stroke-width="1.5" marker-end="url(#ar)"/><line x1="653" y1="416" x2="653" y2="450" stroke="#595959" stroke-width="1.5" marker-end="url(#ar)"/><text x="24" y="470" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#333333" text-anchor="start">The platform is not a security platform.</text><text x="24" y="488" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#595959" text-anchor="start">It adds a third, local view for the site team.</text><text x="24" y="506" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="12" font-weight="400" fill="#595959" text-anchor="start">Nothing flows back: settings arrive only in a signed release.</text></svg>
+<figcaption>Three lanes. Logs and metrics go through a local forwarder to a platform inside the secure zone. From there a security stream and a health stream leave through the one-way path. Nothing comes back: settings arrive only in a signed release.</figcaption>
+</figure>
+
+<figure>
+<svg preserveAspectRatio="xMidYMid meet" viewBox="0 0 700 590" xmlns="http://www.w3.org/2000/svg" role="img"><title>Observability mock-up: The site team dashboard</title><desc>Sample numbers. English and French side by side at the top, with a gap alert on French search index delay. Panels for the CMS, the search engine, cache and the analytics tool, then open alerts and what has been sent to the enterprise.</desc><defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#595959"/></marker></defs><rect width="700" height="590" fill="#ffffff"/><rect x="1" y="1" width="698" height="588" rx="0" fill="none" stroke="#333333" stroke-width="1.5"/><rect x="10" y="10" width="680" height="44" rx="0" fill="#F0F0F0" stroke="#595959" stroke-width="1.2"/><text x="18" y="28" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#595959" text-anchor="start">SITE TEAM VIEW</text><text x="18" y="46" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#333333" text-anchor="start">Production · Release r-1.3 · Last 24 hours</text><rect x="430" y="16" width="56" height="22" rx="0" fill="#26374A" stroke="#333333" stroke-width="1.2"/><text x="458" y="31" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">Both</text><rect x="490" y="16" width="56" height="22" rx="0" fill="#ffffff" stroke="#333333" stroke-width="1.2"/><text x="518" y="31" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#333333" text-anchor="middle">English</text><rect x="550" y="16" width="56" height="22" rx="0" fill="#ffffff" stroke="#333333" stroke-width="1.2"/><text x="578" y="31" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#333333" text-anchor="middle">French</text><polygon points="620,24 627,35.9 613,35.9" fill="#B26A00"/><text x="632" y="35" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#333333" text-anchor="start">2 alerts</text><text x="14" y="72" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#595959" text-anchor="start">ENGLISH AND FRENCH SIDE BY SIDE</text><rect x="10" y="78" width="165" height="104" rx="0" fill="#F0F0F0" stroke="#595959" stroke-width="1.2"/><text x="18" y="95" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#333333" text-anchor="start">Page errors</text><text x="18" y="116" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">EN 0.30%</text><rect x="88" y="106" width="65.625" height="12" rx="0" fill="#26374A" stroke="none" stroke-width="0"/><text x="18" y="140" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">FR 0.32%</text><rect x="88" y="130" width="70.0" height="12" rx="0" fill="#26374A" stroke="none" stroke-width="0"/><text x="18" y="170" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#333333" text-anchor="start">Within 10%</text><rect x="181" y="78" width="165" height="104" rx="0" fill="#F0F0F0" stroke="#595959" stroke-width="1.2"/><text x="189" y="95" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#333333" text-anchor="start">Page time (p95)</text><text x="189" y="116" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">EN 1.4 s</text><rect x="259" y="106" width="65.33333333333333" height="12" rx="0" fill="#26374A" stroke="none" stroke-width="0"/><text x="189" y="140" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">FR 1.5 s</text><rect x="259" y="130" width="70.0" height="12" rx="0" fill="#26374A" stroke="none" stroke-width="0"/><text x="189" y="170" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#333333" text-anchor="start">Within 10%</text><rect x="352" y="78" width="165" height="104" rx="0" fill="#F0F0F0" stroke="#B3202F" stroke-width="3"/><text x="360" y="95" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#333333" text-anchor="start">Search index delay</text><text x="360" y="116" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">EN 2 min</text><rect x="430" y="106" width="6.363636363636363" height="12" rx="0" fill="#26374A" stroke="none" stroke-width="0"/><text x="360" y="140" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">FR 22 min</text><rect x="430" y="130" width="70.0" height="12" rx="0" fill="#B3202F" stroke="none" stroke-width="0"/><polygon points="366,160 372,170.2 360,170.2" fill="#B3202F"/><text x="378" y="170" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#333333" text-anchor="start">GAP: French is 11x English</text><rect x="523" y="78" width="165" height="104" rx="0" fill="#F0F0F0" stroke="#595959" stroke-width="1.2"/><text x="531" y="95" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="700" fill="#333333" text-anchor="start">No-result searches</text><text x="531" y="116" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">EN 4.1%</text><rect x="601" y="106" width="66.74418604651163" height="12" rx="0" fill="#26374A" stroke="none" stroke-width="0"/><text x="531" y="140" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">FR 4.3%</text><rect x="601" y="130" width="70.0" height="12" rx="0" fill="#26374A" stroke="none" stroke-width="0"/><text x="531" y="170" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#333333" text-anchor="start">Within 10%</text><rect x="10" y="192" width="336" height="124" rx="0" fill="#F0F0F0" stroke="#595959" stroke-width="1.2"/><text x="18" y="208" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10" font-weight="700" fill="#595959" text-anchor="start">CMS</text><circle cx="276" cy="204" r="5" fill="#2E7D32" stroke="none"/><text x="286" y="208" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#333333" text-anchor="start">OK</text><text x="18" y="228.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Requests per minute 312</text><text x="18" y="242.5" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Error rate (5xx) 0.31%</text><text x="18" y="257.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Page time, p95 1.45 s</text><text x="18" y="271.5" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Queues: video, avail., mail, archive 2/0/0/1</text><text x="18" y="286.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Last cron run 3 min ago</text><text x="18" y="300.5" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Last deploy marker 09:12</text><rect x="354" y="192" width="336" height="124" rx="0" fill="#F0F0F0" stroke="#595959" stroke-width="1.2"/><text x="362" y="208" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10" font-weight="700" fill="#595959" text-anchor="start">SEARCH</text><polygon points="620,198 626,208.2 614,208.2" fill="#B26A00"/><text x="630" y="208" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#333333" text-anchor="start">Warning</text><text x="362" y="228.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Index delay, English 2 min</text><text x="362" y="242.5" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Index delay, French 22 min</text><text x="362" y="257.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Documents, EN / FR 18,420 / 18,412</text><text x="362" y="271.5" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Query time p95, EN / FR 85 / 92 ms</text><text x="362" y="286.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Searches with no results 4.1% / 4.3%</text><text x="362" y="300.5" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Memory in use 58%</text><rect x="10" y="324" width="336" height="124" rx="0" fill="#F0F0F0" stroke="#595959" stroke-width="1.2"/><text x="18" y="340" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10" font-weight="700" fill="#595959" text-anchor="start">CACHE (PROXY AND MEMORY)</text><polygon points="276,330 282,340.2 270,340.2" fill="#B26A00"/><text x="286" y="340" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#333333" text-anchor="start">Warning</text><text x="18" y="360.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Proxy hit ratio, EN / FR 91% / 89%</text><text x="18" y="374.5" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Cache memory 62%</text><text x="18" y="389.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Evictions, last 24 hours 0</text><text x="18" y="403.5" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Purges by tag, EN / FR 21 / 20</text><text x="18" y="418.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Pages newer in one language 0</text><text x="18" y="432.5" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">than the other</text><rect x="354" y="324" width="336" height="124" rx="0" fill="#F0F0F0" stroke="#595959" stroke-width="1.2"/><text x="362" y="340" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10" font-weight="700" fill="#595959" text-anchor="start">ANALYTICS</text><circle cx="620" cy="336" r="5" fill="#2E7D32" stroke="none"/><text x="630" y="340" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#333333" text-anchor="start">OK</text><text x="362" y="360.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Tracker Receiving</text><text x="362" y="374.5" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Last hit received 12 s ago</text><text x="362" y="389.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Nightly archive, last success 02:14</text><text x="362" y="403.5" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Hits last hour, EN / FR 1,240 / 610</text><text x="362" y="418.0" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Language dimension set 99.6%</text><text x="362" y="432.5" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="11" font-weight="400" fill="#333333" text-anchor="start">Database size 34 GB</text><rect x="10" y="462" width="420" height="118" rx="0" fill="#F0F0F0" stroke="#595959" stroke-width="1.2"/><text x="18" y="478" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#595959" text-anchor="start">OPEN ALERTS</text><polygon points="22,485 28,495.2 16,495.2" fill="#B26A00"/><text x="34" y="494" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="700" fill="#333333" text-anchor="start">Major French search index delay over 15 min (22). English 2. 13:48</text><text x="34" y="506" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#595959" text-anchor="start">runbook: search-index-lag</text><polygon points="22,513 28,523.2 16,523.2" fill="#B26A00"/><text x="34" y="522" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#333333" text-anchor="start">Minor Cache memory above 60% (62%). 11:20</text><text x="34" y="534" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#595959" text-anchor="start">runbook: cache-memory</text><circle cx="22" cy="547" r="5" fill="#2E7D32" stroke="none"/><text x="34" y="550" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#333333" text-anchor="start">Info Heartbeat 41 s ago.</text><text x="34" y="562" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10" font-weight="400" fill="#595959" text-anchor="start">runbook: logs-silent</text><rect x="438" y="462" width="252" height="118" rx="0" fill="#F0F0F0" stroke="#595959" stroke-width="1.2"/><text x="446" y="478" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#595959" text-anchor="start">SENT TO THE ENTERPRISE, ONE WAY</text><text x="446" y="494" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#333333" text-anchor="start">Security stream: last no. 1,204,331, gaps 0</text><text x="446" y="508" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#333333" text-anchor="start">Health stream: last no. 88,210, gaps 0</text><text x="446" y="522" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#333333" text-anchor="start">Last replay 14:00 · local copy 14 days</text><text x="446" y="536" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#333333" text-anchor="start">Nearest certificate expiry 62 days</text><text x="446" y="556" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#595959" text-anchor="start">CONTENT HEALTH (FROM THE CMS)</text><text x="446" y="570" font-family="Noto Sans, Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#333333" text-anchor="start">Overdue for review 112 (EN 58, FR 54)</text></svg>
+<figcaption>The dashboard, with sample numbers. English and French sit side by side at the top, and a gap of more than ten percent raises an alert. In this example the French search index is behind, which a combined number would have hidden. Status is always a word and a symbol, never colour alone.</figcaption>
+</figure>
+
+<h2>Service levels</h2>
+
+<p>Service levels are only useful if someone can see them. These are deliberately modest for a first release, and they are measured on the platform above rather than in a new reporting tool.</p>
+
+<table>
+<thead><tr><th>Measure</th><th>Service level</th></tr></thead>
+<tbody>
+<tr><td>Availability</td><td>99.5 per cent in business hours</td></tr>
+<tr><td>Page speed</td><td>95 per cent of pages under 3 seconds, each language counted on its own</td></tr>
+<tr><td>Search index delay</td><td>Under 15 minutes in each language</td></tr>
+<tr><td>Language gap</td><td>No more than 10 per cent between English and French on any measure</td></tr>
+<tr><td>Silence noticed</td><td>Within 15 minutes, in business hours</td></tr>
+<tr><td>Local log copy</td><td>14 days, then the receiving platform owns what it received</td></tr>
+<tr><td>Backups</td><td>Daily</td></tr>
+<tr><td>Recovery point and time</td><td>One week, and one business day</td></tr>
+</tbody>
+</table>
+
+<p class="note">Availability and recovery have to be read together. At 99.5 per cent in business hours the allowed downtime is about fifty minutes a month, so a single outage that used the full one-business-day recovery time would break it. The target is for normal running; the recovery time is the limit for a major failure.</p>
+
+<h2>The part that is hardest to fix later</h2>
+
+<p>The technology in this set is ordinary and well understood. What decides whether the platform stays healthy is whether anyone is funded to run it after the project closes: someone to patch it, developers who can change it, stewards for taxonomy and the design system, and content owners with time to act on what the reports tell them. On an isolated network nothing refreshes itself, and nothing inside announces that an update exists. That is the risk worth arguing about at a review board, not the choice of search engine.</p>
+
+</div>
+{% endraw %}

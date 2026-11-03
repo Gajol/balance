@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="722" viewBox="0 0 680 722" role="img" aria-labelledby="t d" font-family="'Noto Sans', 'Lato', Arial, sans-serif">
+<title id="t">Parts: the main parts inside the New Intranet</title><desc id="d">The main parts inside the New Intranet on the isolated network, how they connect, and the external systems they use.</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#26374a"/></marker></defs>
+<rect width="680" height="722" fill="#ffffff"/>
+<rect x="10.9" y="124.5" width="658.7" height="380.4" fill="none" stroke="#26374a" stroke-width="1" stroke-dasharray="5 3"/>
+<rect x="442.2" y="127.5" width="221.3" height="18" fill="#ffffff"/>
+<text x="446.2" y="140.5" font-size="13.3" font-weight="700" fill="#26374a">Intranet [isolated network]</text>
+<polyline points="311.4,74.2 311.4,116.0 164.2,116.0 164.2,164.5" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="135.4,78.1 135.4,116.0 106.6,116.0 106.6,164.5" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="369.0,74.2 369.0,126.6 311.4,126.6 311.4,168.3" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="545.0,78.1 545.0,116.0 441.0,116.0 441.0,250.4 365.1,250.4 365.1,280.6" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="135.4,231.7 135.4,250.4 265.7,250.4 265.7,280.6" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="325.3,340.2 325.3,370.4 340.2,370.4 340.2,521.1 263.4,521.1 263.4,566.7" fill="none" stroke="#26374a" stroke-width="1.2" stroke-dasharray="5 3" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="384.9,340.2 384.9,359.8 417.0,359.8 417.0,400.6" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="246.5,310.4 229.2,310.4" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="434.0,310.4 451.3,310.4" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="265.7,340.2 265.7,359.8 109.8,359.8 109.8,392.0" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="355.1,340.2 355.1,359.8 292.2,359.8 292.2,398.7" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="193.8,432.3 179.4,432.3" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="340.2,227.8 340.2,261.0 135.4,261.0 135.4,279.7" fill="none" stroke="#26374a" stroke-width="1.2" stroke-dasharray="5 3" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="434.0,198.1 451.3,198.1" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="109.8,574.4 109.8,521.1 186.6,521.1 186.6,370.4 295.5,370.4 295.5,340.2" fill="none" stroke="#26374a" stroke-width="1.2" stroke-dasharray="5 3" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="541.8,475.5 541.8,521.1 417.0,521.1 417.0,574.4" fill="none" stroke="#26374a" stroke-width="2.4" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="599.4,475.5 599.4,521.1 570.6,521.1 570.6,574.4" fill="none" stroke="#26374a" stroke-width="2.4" stroke-linejoin="round" marker-end="url(#a)"/>
+<polyline points="414.8,340.2 414.8,370.4 570.6,370.4 570.6,389.1" fill="none" stroke="#26374a" stroke-width="1.2" stroke-linejoin="round" marker-end="url(#a)"/>
+<rect x="41.7" y="10.9" width="187.5" height="67.2" rx="14" fill="#26374a" stroke="#26374a" stroke-width="1.1"/>
+<text x="135.4" y="34.0" text-anchor="middle" font-weight="700" font-size="14" fill="#ffffff">Content owners,</text>
+<text x="135.4" y="50.0" text-anchor="middle" font-weight="700" font-size="14" fill="#ffffff">Communications</text>
+<text x="135.4" y="65.0" text-anchor="middle" font-size="12" fill="#ffffff">Person</text>
+<rect x="263.4" y="14.7" width="153.6" height="59.5" rx="14" fill="#26374a" stroke="#26374a" stroke-width="1.1"/>
+<text x="340.2" y="42.0" text-anchor="middle" font-weight="700" font-size="14" fill="#ffffff">Employees</text>
+<text x="340.2" y="57.0" text-anchor="middle" font-size="12" fill="#ffffff">Person</text>
+<rect x="468.2" y="10.9" width="153.6" height="67.2" rx="14" fill="#26374a" stroke="#26374a" stroke-width="1.1"/>
+<text x="545.0" y="34.0" text-anchor="middle" font-weight="700" font-size="14" fill="#ffffff">IT platform</text>
+<text x="545.0" y="50.0" text-anchor="middle" font-weight="700" font-size="14" fill="#ffffff">owner</text>
+<text x="545.0" y="65.0" text-anchor="middle" font-size="12" fill="#ffffff">Person</text>
+<rect x="41.7" y="164.5" width="187.5" height="67.2" rx="0" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<text x="135.4" y="187.6" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Reverse proxy</text>
+<text x="135.4" y="203.6" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">cache</text>
+<text x="135.4" y="218.6" text-anchor="middle" font-size="12" fill="#333333">Reverse proxy</text>
+<rect x="246.5" y="168.3" width="187.5" height="59.5" rx="0" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<text x="340.2" y="195.6" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Analytics tool</text>
+<text x="340.2" y="210.6" text-anchor="middle" font-size="12" fill="#333333">Self-hosted analytics</text>
+<path d="M451.3,176.4 a93.8,9 0 0 1 187.5,0 v43.4 a93.8,9 0 0 1 -187.5,0 z" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<path d="M451.3,176.4 a93.8,9 0 0 0 187.5,0" fill="none" stroke="#26374a" stroke-width="1.1"/>
+<text x="545.0" y="204.6" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Analytics database</text>
+<text x="545.0" y="219.6" text-anchor="middle" font-size="12" fill="#333333">Relational DB</text>
+<path d="M41.7,288.7 a93.8,9 0 0 1 187.5,0 v43.4 a93.8,9 0 0 1 -187.5,0 z" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<path d="M41.7,288.7 a93.8,9 0 0 0 187.5,0" fill="none" stroke="#26374a" stroke-width="1.1"/>
+<text x="135.4" y="316.9" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Content database</text>
+<text x="135.4" y="331.9" text-anchor="middle" font-size="12" fill="#333333">Relational DB</text>
+<rect x="246.5" y="280.6" width="187.5" height="59.5" rx="0" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<text x="340.2" y="307.9" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">CMS</text>
+<text x="340.2" y="322.9" text-anchor="middle" font-size="12" fill="#333333">Open-source CMS</text>
+<path d="M451.3,288.7 a93.8,9 0 0 1 187.5,0 v43.4 a93.8,9 0 0 1 -187.5,0 z" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<path d="M451.3,288.7 a93.8,9 0 0 0 187.5,0" fill="none" stroke="#26374a" stroke-width="1.1"/>
+<text x="545.0" y="316.9" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Memory cache</text>
+<text x="545.0" y="331.9" text-anchor="middle" font-size="12" fill="#333333">In-memory cache</text>
+<path d="M40.2,401.0 a69.6,9 0 0 1 139.2,0 v62.6 a69.6,9 0 0 1 -139.2,0 z" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<path d="M40.2,401.0 a69.6,9 0 0 0 139.2,0" fill="none" stroke="#26374a" stroke-width="1.1"/>
+<text x="109.8" y="430.8" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Shared</text>
+<text x="109.8" y="446.8" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">storage</text>
+<text x="109.8" y="461.8" text-anchor="middle" font-size="12" fill="#333333">Files, video</text>
+<rect x="193.8" y="398.7" width="139.2" height="67.2" rx="0" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<text x="263.4" y="421.8" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Transcode</text>
+<text x="263.4" y="437.8" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">worker</text>
+<text x="263.4" y="452.8" text-anchor="middle" font-size="12" fill="#333333">Video transcoder</text>
+<rect x="347.4" y="400.6" width="139.2" height="63.4" rx="0" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<text x="417.0" y="423.3" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Search engine</text>
+<text x="417.0" y="438.3" text-anchor="middle" font-size="12" fill="#333333">Open-source</text>
+<text x="417.0" y="451.3" text-anchor="middle" font-size="12" fill="#333333">search</text>
+<rect x="501.0" y="389.1" width="139.2" height="86.4" rx="0" fill="#e7eff9" stroke="#26374a" stroke-width="1.1"/>
+<text x="570.6" y="413.8" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Team</text>
+<text x="570.6" y="429.8" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">observability</text>
+<text x="570.6" y="445.8" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">platform</text>
+<text x="570.6" y="460.8" text-anchor="middle" font-size="12" fill="#333333">Open source</text>
+<rect x="40.2" y="574.4" width="139.2" height="67.2" rx="0" fill="#f2f2f2" stroke="#26374a" stroke-width="1.1"/>
+<text x="109.8" y="597.5" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">HR data</text>
+<text x="109.8" y="613.5" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">service</text>
+<text x="109.8" y="628.5" text-anchor="middle" font-size="12" fill="#333333">External system</text>
+<rect x="193.8" y="566.7" width="139.2" height="82.6" rx="0" fill="#f2f2f2" stroke="#26374a" stroke-width="1.1"/>
+<text x="263.4" y="591.0" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Departmental</text>
+<text x="263.4" y="607.0" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">systems</text>
+<text x="263.4" y="622.0" text-anchor="middle" font-size="12" fill="#333333">Identity, mail,</text>
+<text x="263.4" y="635.0" text-anchor="middle" font-size="12" fill="#333333">records</text>
+<rect x="347.4" y="574.4" width="139.2" height="67.2" rx="0" fill="#f2f2f2" stroke="#26374a" stroke-width="1.1"/>
+<text x="417.0" y="597.5" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Security</text>
+<text x="417.0" y="613.5" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">platform</text>
+<text x="417.0" y="628.5" text-anchor="middle" font-size="12" fill="#333333">External system</text>
+<rect x="501.0" y="574.4" width="139.2" height="67.2" rx="0" fill="#f2f2f2" stroke="#26374a" stroke-width="1.1"/>
+<text x="570.6" y="597.5" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">Monitoring</text>
+<text x="570.6" y="613.5" text-anchor="middle" font-weight="700" font-size="14" fill="#333333">platform</text>
+<text x="570.6" y="628.5" text-anchor="middle" font-size="12" fill="#333333">External system</text>
+<rect x="147.7" y="107.0" width="40.5" height="17" fill="#ffffff"/>
+<text x="168.0" y="120.0" text-anchor="middle" font-size="12" fill="#333333">reads</text>
+<rect x="103.0" y="86.4" width="64.9" height="17" fill="#ffffff"/>
+<text x="135.4" y="99.4" text-anchor="middle" font-size="12" fill="#333333">publishes</text>
+<rect x="275.9" y="144.2" width="71.0" height="17" fill="#ffffff"/>
+<text x="311.4" y="157.2" text-anchor="middle" font-size="12" fill="#333333">page views</text>
+<rect x="366.6" y="241.4" width="58.8" height="17" fill="#ffffff"/>
+<text x="396.0" y="254.4" text-anchor="middle" font-size="12" fill="#333333">operates</text>
+<rect x="233.2" y="241.4" width="46.6" height="17" fill="#ffffff"/>
+<text x="256.5" y="254.4" text-anchor="middle" font-size="12" fill="#333333">misses</text>
+<rect x="173.0" y="525.9" width="180.8" height="17" fill="#ffffff"/>
+<text x="263.4" y="538.9" text-anchor="middle" font-size="12" fill="#333333">sign-in, mail, archive, link</text>
+<rect x="375.4" y="376.8" width="83.2" height="17" fill="#ffffff"/>
+<text x="417.0" y="389.8" text-anchor="middle" font-size="12" fill="#333333">index, query</text>
+<rect x="216.8" y="301.4" width="28.3" height="17" fill="#ffffff"/>
+<text x="230.9" y="314.4" text-anchor="middle" font-size="12" fill="#333333">SQL</text>
+<rect x="429.3" y="301.4" width="40.5" height="17" fill="#ffffff"/>
+<text x="449.5" y="314.4" text-anchor="middle" font-size="12" fill="#333333">cache</text>
+<rect x="89.6" y="362.2" width="40.5" height="17" fill="#ffffff"/>
+<text x="109.8" y="375.2" text-anchor="middle" font-size="12" fill="#333333">files</text>
+<rect x="333.3" y="350.8" width="34.4" height="17" fill="#ffffff"/>
+<text x="350.5" y="363.8" text-anchor="middle" font-size="12" fill="#333333">jobs</text>
+<rect x="145.4" y="423.3" width="71.0" height="17" fill="#ffffff"/>
+<text x="180.9" y="436.3" text-anchor="middle" font-size="12" fill="#333333">renditions</text>
+<rect x="119.1" y="252.0" width="46.6" height="17" fill="#ffffff"/>
+<text x="142.4" y="265.0" text-anchor="middle" font-size="12" fill="#333333">visits</text>
+<rect x="435.4" y="189.1" width="28.3" height="17" fill="#ffffff"/>
+<text x="449.5" y="202.1" text-anchor="middle" font-size="12" fill="#333333">SQL</text>
+<rect x="194.8" y="361.4" width="77.1" height="17" fill="#ffffff"/>
+<text x="233.3" y="374.4" text-anchor="middle" font-size="12" fill="#333333">people data</text>
+<rect x="375.6" y="512.1" width="101.5" height="17" fill="#ffffff"/>
+<text x="426.4" y="525.1" text-anchor="middle" font-size="12" fill="#333333">security stream</text>
+<rect x="526.0" y="545.0" width="89.3" height="17" fill="#ffffff"/>
+<text x="570.6" y="558.0" text-anchor="middle" font-size="12" fill="#333333">health stream</text>
+<rect x="524.2" y="361.4" width="89.3" height="17" fill="#ffffff"/>
+<text x="568.9" y="374.4" text-anchor="middle" font-size="12" fill="#333333">logs, metrics</text>
+<rect x="8" y="674.16" width="22" height="16" rx="4.666666666666667" fill="#26374a" stroke="#26374a" stroke-width="1"/>
+<text x="36" y="686.66" font-size="12" fill="#333333">Person</text>
+<rect x="95.4" y="674.16" width="22" height="16" rx="0.0" fill="#e7eff9" stroke="#26374a" stroke-width="1"/>
+<text x="123.4" y="686.66" font-size="12" fill="#333333">Our system or part</text>
+<rect x="265.6" y="674.16" width="22" height="16" rx="0.0" fill="#f2f2f2" stroke="#26374a" stroke-width="1"/>
+<text x="293.6" y="686.66" font-size="12" fill="#333333">External system</text>
+<line x1="8" y1="710.16" x2="42" y2="710.16" stroke="#26374a" stroke-width="1.2"/>
+<text x="48" y="714.66" font-size="12" fill="#333333">live</text>
+<line x1="93.6" y1="710.16" x2="127.6" y2="710.16" stroke="#26374a" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="133.6" y="714.66" font-size="12" fill="#333333">cached or batch</text>
+<line x1="255.1" y1="710.16" x2="289.1" y2="710.16" stroke="#26374a" stroke-width="1.2" stroke-dasharray="1.5 3"/>
+<text x="295.1" y="714.66" font-size="12" fill="#333333">link</text>
+<line x1="340.7" y1="710.16" x2="374.7" y2="710.16" stroke="#26374a" stroke-width="2.4"/>
+<text x="380.7" y="714.66" font-size="12" fill="#333333">one-way feed</text>
+<text x="481.5" y="714.66" font-size="12" fill="#333333">proposed</text>
+</svg>
