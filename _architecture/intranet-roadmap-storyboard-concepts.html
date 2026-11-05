@@ -28,9 +28,10 @@ tags: [architecture, roadmap, storyboard, concepts, intranet, personalization, u
 .cx tbody th{font-weight:600}
 .cx .grid{display:grid;gap:12px;margin:.8em 0}
 .cx .g2{grid-template-columns:repeat(2,1fr)}
+.cx .g3{grid-template-columns:repeat(3,1fr)}
 .cx .g4{grid-template-columns:repeat(4,1fr)}
 .cx .g5{grid-template-columns:repeat(5,1fr)}
-@media(max-width:800px){.cx .g2,.cx .g4,.cx .g5{grid-template-columns:1fr}}
+@media(max-width:800px){.cx .g2,.cx .g3,.cx .g4,.cx .g5{grid-template-columns:1fr}}
 .cx .box{border:1px solid var(--line);border-radius:6px;padding:10px 14px;background:#fff}
 .cx .box.dark{background:var(--dark);color:#fff;border-color:var(--dark)}
 .cx .box.dash{border-style:dashed}
@@ -68,12 +69,12 @@ tags: [architecture, roadmap, storyboard, concepts, intranet, personalization, u
 .cx .bars b.fr{background:#999}
 .cx .steps{display:flex;gap:8px;margin:8px 0}
 .cx .steps div{flex:1;border:1px solid var(--line);background:var(--soft);padding:6px 8px;font-size:.76rem}
-.cx .icons{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:.8em 0}
-@media(max-width:700px){.cx .icons{grid-template-columns:1fr}}
-.cx .icon{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);background:var(--soft);padding:10px 12px;border-radius:4px}
-.cx .icon svg{flex:0 0 38px;width:38px;height:38px}
-.cx .icon b{display:block;font-size:.85rem}
-.cx .icon span{font-size:.78rem;color:var(--mute)}
+.cx .pz-icons{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:.8em 0}
+@media(max-width:700px){.cx .pz-icons{grid-template-columns:1fr}}
+.cx .pz-icon{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);background:var(--soft);padding:10px 12px;border-radius:4px}
+.cx .pz-icon svg{flex:0 0 38px;width:38px;height:38px;position:static;top:auto}
+.cx .pz-icon b{display:block;font-size:.85rem}
+.cx .pz-icon span{font-size:.78rem;color:var(--mute)}
 .cx .road{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 @media(max-width:800px){.cx .road{grid-template-columns:1fr}}
 .cx .stage{border:1px solid var(--dark);border-top-width:4px;padding:8px 12px;background:#fff}
@@ -213,7 +214,7 @@ tags: [architecture, roadmap, storyboard, concepts, intranet, personalization, u
 <h3>Concept 5 of 8: Authors should see who approves before they write</h3>
 <div class="concept">
 <div><div class="win"><div class="bar">Edit page · New page</div><div class="body"><div class="box soft"><span class="pill ok">Tier 2</span> Your section publisher approves this before it goes live. Communications reviews it afterwards.</div>
-<div class="grid g2" style="grid-template-columns:repeat(3,1fr);margin-top:8px">
+<div class="grid g3" style="margin-top:8px">
 <div class="box soft"><span class="pill ">Tier 1</span><br><b>Highest consequence</b><br><span class="small">Communications approves before publishing</span></div>
 <div class="box soft"><span class="pill ">Tier 2</span><br><b>Section content</b><br><span class="small">A named section publisher approves</span></div>
 <div class="box soft"><span class="pill ">Tier 3</span><br><b>Routine updates</b><br><span class="small">Author publishes; Communications samples afterwards</span></div></div>
@@ -275,8 +276,8 @@ tags: [architecture, roadmap, storyboard, concepts, intranet, personalization, u
 
 <h2 class="sec">What personalization might mean</h2>
 <p>Familiar controls show what personalization could offer. Every one is an explicit choice by the person using the site. This section is my own read, not a decision.</p>
-<div class="icons"><div class="icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><path d="M11 4h18v32l-9-7-9 7z"/></svg><div><b>Bookmarks</b><span>Save pages to come back to.</span></div></div><div class="icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><circle cx="20" cy="20" r="17"/><path fill="#fff" d="M18 9h4v9h9v4h-9v9h-4v-9H9v-4h9z"/></svg><div><b>Follow a topic</b><span>Changes to a shared taxonomy term appear in my digest.</span></div></div><div class="icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><path d="M20 3l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z"/></svg><div><b>Pinned and recent</b><span>Quick return to what I use. Kept for me, not tracked.</span></div></div><div class="icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><circle cx="20" cy="20" r="16" fill="#fff" stroke="#333" stroke-width="3"/><path d="M20 9v11l8 4" fill="none" stroke="#333" stroke-width="3"/></svg><div><b>Recently visited</b><span>A short list I can see and clear myself.</span></div></div><div class="icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><circle cx="20" cy="12" r="7"/><path d="M6 36c0-9 6-14 14-14s14 5 14 14z"/></svg><div><b>Profile</b><span>Name, branch and role come from the identity feed. Nothing typed twice.</span></div></div><div class="icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><path d="M17 3h6l1 5 4 2 5-2 3 5-4 4v4l4 4-3 5-5-2-4 2-1 5h-6l-1-5-4-2-5 2-3-5 4-4v-4l-4-4 3-5 5 2 4-2z"/><circle cx="20" cy="20" r="6" fill="#fff"/></svg><div><b>Settings</b><span>Digest on or off, display choices. Explicit choices only.</span></div></div><div class="icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><path d="M20 4c-6 0-10 5-10 11v8l-4 5h28l-4-5v-8c0-6-4-11-10-11z"/><circle cx="20" cy="35" r="3.5"/></svg><div><b>Notifications</b><span>A digest, never content in the email.</span></div></div><div class="icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><rect x="2" y="9" width="36" height="22" rx="4"/><text x="20" y="25" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="sans-serif">EN|FR</text></svg><div><b>Language and role view</b><span>Interface follows my language; home shows what my role needs (a later wave).</span></div></div></div>
-<div class="grid g2" style="grid-template-columns:repeat(3,1fr)">
+<div class="pz-icons"><div class="pz-icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><path d="M11 4h18v32l-9-7-9 7z"/></svg><div><b>Bookmarks</b><span>Save pages to come back to.</span></div></div><div class="pz-icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><circle cx="20" cy="20" r="17"/><path fill="#fff" d="M18 9h4v9h9v4h-9v9h-4v-9H9v-4h9z"/></svg><div><b>Follow a topic</b><span>Changes to a shared taxonomy term appear in my digest.</span></div></div><div class="pz-icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><path d="M20 3l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z"/></svg><div><b>Pinned and recent</b><span>Quick return to what I use. Kept for me, not tracked.</span></div></div><div class="pz-icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><circle cx="20" cy="20" r="16" fill="#fff" stroke="#333" stroke-width="3"/><path d="M20 9v11l8 4" fill="none" stroke="#333" stroke-width="3"/></svg><div><b>Recently visited</b><span>A short list I can see and clear myself.</span></div></div><div class="pz-icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><circle cx="20" cy="12" r="7"/><path d="M6 36c0-9 6-14 14-14s14 5 14 14z"/></svg><div><b>Profile</b><span>Name, branch and role come from the identity feed. Nothing typed twice.</span></div></div><div class="pz-icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><path d="M17 3h6l1 5 4 2 5-2 3 5-4 4v4l4 4-3 5-5-2-4 2-1 5h-6l-1-5-4-2-5 2-3-5 4-4v-4l-4-4 3-5 5 2 4-2z"/><circle cx="20" cy="20" r="6" fill="#fff"/></svg><div><b>Settings</b><span>Digest on or off, display choices. Explicit choices only.</span></div></div><div class="pz-icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><path d="M20 4c-6 0-10 5-10 11v8l-4 5h28l-4-5v-8c0-6-4-11-10-11z"/><circle cx="20" cy="35" r="3.5"/></svg><div><b>Notifications</b><span>A digest, never content in the email.</span></div></div><div class="pz-icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><rect x="2" y="9" width="36" height="22" rx="4"/><text x="20" y="25" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="sans-serif">EN|FR</text></svg><div><b>Language and role view</b><span>Interface follows my language; home shows what my role needs (a later wave).</span></div></div></div>
+<div class="grid g3">
 <div class="box"><h3>1 Show what is mine</h3><p class="small">Branch and role come from the identity feed. Nothing is stored.</p></div>
 <div class="box"><h3>2 Let me choose</h3><p class="small">Bookmarks, follow and settings. I set them and I can clear them.</p></div>
 <div class="box warn"><h3>3 Learn about me</h3><p class="small">Recommendations from behaviour. Not advised: analytics is anonymized and aggregate, and personalization must not turn into tracking.</p></div>
