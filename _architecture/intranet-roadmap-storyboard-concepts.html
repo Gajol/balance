@@ -1,0 +1,288 @@
+---
+title: "An intranet roadmap, storyboard and eight screen concepts"
+excerpt: "The plan for a first intranet release in one read: a roadmap, a five-part storyboard of who gains and when, eight screen concepts that settle publishing and content ownership, ideas for later, and what personalization could mean."
+last_modified_at: 2026-11-05T08:00:00-05:00
+layout: single
+classes: full-width
+toc: false
+author_profile: false
+theme: digital
+tags: [architecture, roadmap, storyboard, concepts, intranet, personalization, ux, product management]
+---
+{% raw %}
+<style>
+.cx{--ink:#333;--mute:#595959;--line:#c8c8c8;--soft:#f2f2f2;--soft2:#e6e6e6;--dark:#333;--danger:#8a1c1c;font-size:.9rem;line-height:1.55;color:var(--ink)}
+.cx *{box-sizing:border-box}
+.cx h2.sec{margin:2.4em 0 .6em;font-size:1.25rem;border-bottom:1px solid var(--line);padding-bottom:.25em}
+.cx h3{font-size:1rem;margin:1.2em 0 .4em}
+.cx p{max-width:72ch;margin:.5em 0}
+.cx .lede{font-size:1rem;color:var(--mute)}
+.cx .tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--dark);border-radius:3px;padding:0 6px;margin-right:6px;color:var(--dark);background:#fff;white-space:nowrap}
+.cx .tag.prop{border-style:dashed;color:var(--mute);border-color:var(--mute)}
+.cx .tag.later{background:var(--soft2);border-color:var(--mute);color:var(--mute)}
+.cx .tag.bad{border-color:var(--danger);color:var(--danger)}
+.cx .tablewrap{overflow-x:auto;margin:.8em 0}
+.cx table{border-collapse:collapse;width:100%;font-size:.82rem;margin:0}
+.cx th,.cx td{border-bottom:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+.cx thead th{background:var(--soft);border-bottom:2px solid var(--dark)}
+.cx tbody th{font-weight:600}
+.cx .grid{display:grid;gap:12px;margin:.8em 0}
+.cx .g2{grid-template-columns:repeat(2,1fr)}
+.cx .g4{grid-template-columns:repeat(4,1fr)}
+.cx .g5{grid-template-columns:repeat(5,1fr)}
+@media(max-width:800px){.cx .g2,.cx .g4,.cx .g5{grid-template-columns:1fr}}
+.cx .box{border:1px solid var(--line);border-radius:6px;padding:10px 14px;background:#fff}
+.cx .box.dark{background:var(--dark);color:#fff;border-color:var(--dark)}
+.cx .box.dash{border-style:dashed}
+.cx .box.soft{background:var(--soft)}
+.cx .box.warn{border-color:var(--danger)}
+.cx .box h3{margin:.1em 0 .3em}
+.cx .box ul{margin:.3em 0;padding-left:1.1em}
+.cx .small{font-size:.8rem;color:var(--mute)}
+.cx .meter{display:flex;gap:3px;margin:.5em 0}
+.cx .meter i{flex:1;height:9px;background:var(--soft2);border:1px solid var(--line)}
+.cx .meter i.on{background:var(--dark);border-color:var(--dark)}
+.cx .quote{border-left:3px solid var(--line);padding-left:10px;color:var(--mute);font-style:italic}
+/* concept pairs */
+.cx .concept{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px;align-items:start;margin:1em 0 2em}
+@media(max-width:900px){.cx .concept{grid-template-columns:1fr}}
+.cx .win{border:1px solid var(--mute);border-radius:4px;background:#fff;overflow:hidden;font-size:.78rem}
+.cx .win .bar{background:var(--dark);color:#fff;padding:4px 10px;font-weight:700;font-size:.74rem}
+.cx .win .body{padding:10px 12px}
+.cx .win table{font-size:.76rem}
+.cx .win th,.cx .win td{padding:4px 6px}
+.cx .pill{display:inline-block;border:1px solid var(--mute);border-radius:10px;padding:0 8px;font-size:.7rem;font-weight:700;background:var(--soft);white-space:nowrap}
+.cx .pill.ok{background:#fff;border-color:var(--dark)}
+.cx .pill.bad{border-color:var(--danger);color:var(--danger);background:#fff}
+.cx .pill.warn{border-style:dashed;border-color:var(--dark);background:#fff}
+.cx .btn{display:inline-block;border:1px solid var(--dark);padding:3px 12px;font-weight:700;font-size:.74rem;background:#fff;margin-right:6px}
+.cx .btn.pri{background:var(--dark);color:#fff}
+.cx .btn.off{border-style:dashed;color:var(--mute);border-color:var(--mute);background:var(--soft)}
+.cx .btn.red{background:var(--danger);border-color:var(--danger);color:#fff}
+.cx .note{border:1px solid var(--line);background:var(--soft);border-radius:4px;padding:6px 10px;font-size:.78rem;margin-top:8px}
+.cx .side h3{margin-top:0}
+.cx .side li{margin:.35em 0}
+.cx .bars{display:flex;align-items:flex-end;gap:5px;height:90px;border-bottom:1px solid var(--mute);margin:6px 0}
+.cx .bars span{display:flex;gap:1px;align-items:flex-end}
+.cx .bars b{display:block;width:6px;background:var(--dark)}
+.cx .bars b.fr{background:#999}
+.cx .steps{display:flex;gap:8px;margin:8px 0}
+.cx .steps div{flex:1;border:1px solid var(--line);background:var(--soft);padding:6px 8px;font-size:.76rem}
+.cx .icons{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:.8em 0}
+@media(max-width:700px){.cx .icons{grid-template-columns:1fr}}
+.cx .icon{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);background:var(--soft);padding:10px 12px;border-radius:4px}
+.cx .icon svg{flex:0 0 38px;width:38px;height:38px}
+.cx .icon b{display:block;font-size:.85rem}
+.cx .icon span{font-size:.78rem;color:var(--mute)}
+.cx .road{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:800px){.cx .road{grid-template-columns:1fr}}
+.cx .stage{border:1px solid var(--dark);border-top-width:4px;padding:8px 12px;background:#fff}
+.cx .stage.go{border-style:dashed;border-top-style:solid}
+.cx .foot{margin-top:2.5em;border-top:1px solid var(--line);padding-top:.6em;font-size:.78rem;color:var(--mute)}
+</style>
+
+<div class="cx">
+<p class="lede">The plan for a first bilingual intranet release, in one read: the roadmap, a storyboard of who gains and when, eight screen concepts, ideas for later, and what personalization could mean.</p>
+
+<h2 class="sec">Roadmap</h2>
+<p>Four phases and nine evidence-based gates over 58 weeks. After go-live, each wave moves one of four jobs. Waves are proposed, not committed.</p>
+<div class="road">
+<div class="stage"><h3>Discover</h3><p class="small">Gates: requirements baseline (week 9); design sign-off (week 15). Workshops on content, IT and security.</p></div>
+<div class="stage"><h3>Alpha</h3><p class="small">Gate: alpha accepted (week 30). Built on a connected network, core concepts only, no real data. Teams are trained here.</p></div>
+<div class="stage"><h3>Isolated build</h3><p class="small">Gates: transfer pipeline dry run (34); integration (42); test and assurance (46); authority to operate (52).</p></div>
+<div class="stage go"><h3>Go-live</h3><p class="small">Gates: go-live (56); hypercare done and project closed (58). The old site goes dark.</p></div>
+</div>
+<p class="small">The critical path runs through discovery, design, alpha build, pipeline, install, test, authorization and go-live. Publishing and lifecycle work sits off the chain but gates the content load. At test and assurance, English and French are counted separately.</p>
+<div class="grid g5">
+<div class="box dash"><span class="tag prop">Proposed</span><h3>Wave 1</h3><p class="small">Phase 1 increment: My content, trust signals in search, owner nudges, retire with confidence.</p></div>
+<div class="box dash"><span class="tag later">Later</span><h3>Wave 2</h3><p class="small">Service catalogue, My Tasks, calendar availability.</p></div>
+<div class="box dash"><span class="tag later">Year 2</span><h3>Wave 3</h3><p class="small">While you were away, training catalogue, related pages, role-based views.</p></div>
+<div class="box dash"><span class="tag later">Year 3</span><h3>Wave 4</h3><p class="small">Guided onboarding by role; task success on the top tasks.</p></div>
+<div class="box dash soft"><span class="tag prop">Potential</span><h3>Wave 5</h3><p class="small">Expertise registry. Needs an owner and a freshness rule first.</p></div>
+</div>
+
+<h2 class="sec">Storyboard</h2>
+<h3>1. Seven steps to a video today, two at go-live</h3>
+<div class="grid g2">
+<div class="box warn"><h3>Today: seven steps</h3><ol><li>Click a link on the intranet</li><li>Land in the corporate document system</li><li>Sign in</li><li>Save the file</li><li>Find the file</li><li>Open it in a desktop player</li><li>Hope the codec is installed</li></ol></div>
+<div class="box"><h3>Go-live: two steps</h3><ol><li>Click the page</li><li>It plays in the browser, with captions in your language</li></ol><p class="small">One managed copy, with an owner and a review date. Views are measured.</p></div>
+</div>
+<p>The video is the visible symptom. Underneath it, pages have no named owner, nobody knows what is read, and nothing flags a stale page.</p>
+
+<h3>2. “One-stop shop” is four jobs; Phase 1 attacks one</h3>
+<div class="grid g4">
+<div class="box"><h3>Find</h3><p class="small">Locate information fast, in my language.</p><div class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><span class="tag">Directly attacked</span></div>
+<div class="box"><h3>Know</h3><p class="small">Learn what changed without hunting.</p><div class="meter"><i class="on"></i><i class="on"></i><i></i><i></i></div><span class="tag later">Partly</span></div>
+<div class="box"><h3>Do</h3><p class="small">Start my task: leave, travel, IT ticket.</p><div class="meter"><i class="on"></i><i></i><i></i><i></i></div><span class="tag later">Links only</span></div>
+<div class="box"><h3>Connect</h3><p class="small">Respond, ask or contribute.</p><div class="meter"><i class="on"></i><i></i><i></i><i></i></div><span class="tag later">One channel</span></div>
+</div>
+<p><b>Why this order.</b> Engagement features on stale content make the problem worse, because they advertise neglect. Fix the content first.</p>
+
+<h3>3. Go-live makes six promises, all committed scope</h3>
+<div class="tablewrap"><table><thead><tr><th>Promise</th><th>What staff and owners see</th><th>How it is proved</th></tr></thead><tbody>
+<tr><th>Current and owned</th><td>Owner and review date on every page; keep, refresh or retire reminders</td><td>% of pages owned; % reviewed on time</td></tr>
+<tr><th>Findable</th><td>Separate English and French search; one shared vocabulary; people directory</td><td>Empty searches logged and reviewed</td></tr>
+<tr><th>Bilingual, provably</th><td>English and French measured separately, always</td><td>A one-language page shows as a gap the same day</td></tr>
+<tr><th>Automation</th><td>Scheduled publish and unpublish; one workflow for both languages; reports by email</td><td>Nothing on a schedule depends on a person remembering</td></tr>
+<tr><th>Transparency</th><td>Readership on the page for its publisher; executives see reads by language</td><td>Same numbers for everyone</td></tr>
+<tr><th>Accessibility</th><td>Built from design-system components, checked at build and on the live site</td><td>Open findings counted per language</td></tr>
+</tbody></table></div>
+
+<h3>4. Every group wins something on day one</h3>
+<div class="tablewrap"><table><thead><tr><th>Group</th><th>Gets at go-live</th><th>Proof moment (proposed wording)</th><th>Grows into</th></tr></thead><tbody>
+<tr><th>Communications</th><td>Tiered publishing, content health reports</td><td class="quote">“The system chases owners for me.”</td><td>Review queue, search gap backlog</td></tr>
+<tr><th>Content owners</th><td>Named ownership, review dates, notices</td><td class="quote">“Keep, refresh or retire, and I’m done.”</td><td>My content</td></tr>
+<tr><th>Information management</th><td>Retired pages archived to the records system</td><td class="quote">“Nobody emails us a PDF.”</td><td>Retire with confidence</td></tr>
+<tr><th>Security</th><td>Code-defined builds, signed bill of materials</td><td class="quote">“Every release comes with a signed list.”</td><td>Named owner per component</td></tr>
+<tr><th>IT operations</th><td>One pipeline to the isolated network</td><td class="quote">“If it isn’t in the pipeline, it isn’t in production.”</td><td>Same platform reused</td></tr>
+<tr><th>Employees</th><td>Bilingual search, video in the browser, directory</td><td class="quote">“I searched in French and got French.”</td><td>Trust signals, training</td></tr>
+<tr><th>Executives</th><td>Readership by language</td><td class="quote">“I can see whether my message was read.”</td><td>Search success, task success</td></tr>
+</tbody></table></div>
+<p class="small">Quotes and wave groupings are proposed, pending confirmation.</p>
+
+<h3>5. Say what staff lose or do not get before they find out</h3>
+<div class="grid g2">
+<div class="box"><h3>Not in this release</h3><ul><li>Nothing is pushed: no digests or notifications to staff</li><li>No transactions: pay, leave and IT requests are links</li><li>No targeted announcements, follow-a-topic or personalization</li><li>No mobile; no live streams on the site (they link out)</li></ul></div>
+<div class="box warn"><h3>Ruled out, not deferred</h3><ul><li>Open discussion forums</li><li>Wiki-style co-editing</li><li>A separate engagement platform</li></ul></div>
+</div>
+<div class="box soft"><b>Lost on day one: policy in search.</b> Policy moves to its own platform, which the intranet search cannot see. Mitigate with a banner and stub pages, and ask now for a feed that search can index.</div>
+
+<h2 class="sec">Eight screen concepts</h2>
+<p>Eight bilingual, clickable screens let Communications and business lines agree the publishing experience before anyone builds it. Each one shows real-looking content and the unhappy paths. Only the pattern carries into the build, not the prototype code.</p>
+<h3>Concept 1 of 8: My content shows an owner what to do next</h3>
+<div class="concept">
+<div><div class="win"><div class="bar">My content · Branch: Policy Services · EN | FR</div><div class="body"><table><thead><tr><th>Page</th><th>English</th><th>French</th><th>Review</th><th>Views, 12 mo</th><th>Flags</th><th></th></tr></thead><tbody>
+<tr><td>Travel booking steps</td><td><span class="pill ok">Live</span></td><td><span class="pill ok">Live</span></td><td><span class="pill ok">In 40 days</span></td><td>4,210</td><td></td><td><span class="pill ">Decide</span></td></tr>
+<tr><td>Parking passes</td><td><span class="pill ok">Live</span></td><td><span class="pill bad">Missing</span></td><td><span class="pill warn">In 12 days</span></td><td>980</td><td></td><td><span class="pill ">Decide</span></td></tr>
+<tr><td>Onboarding checklist</td><td><span class="pill ok">Live</span></td><td><span class="pill ok">Live</span></td><td><span class="pill bad">Overdue</span></td><td>2,060</td><td><span class="pill bad">1</span></td><td><span class="pill ">Decide</span></td></tr>
+<tr><td>Room booking guide</td><td><span class="pill ok">Live</span></td><td><span class="pill ok">Live</span></td><td><span class="pill ok">In 75 days</span></td><td>1,540</td><td></td><td><span class="pill ">Decide</span></td></tr>
+<tr><td>Annual leave form</td><td><span class="pill ok">Live</span></td><td><span class="pill ok">Live</span></td><td><span class="pill warn">In 9 days</span></td><td>3,870</td><td></td><td><span class="pill ">Decide</span></td></tr>
+</tbody></table><div class="note"><b>Unhappy paths are on the screen.</b> A page with no French version shows as Missing the same day. A flag or an overdue date is visible without opening anything.</div></div></div></div>
+<div class="side"><ul>
+<li><b>Question it settles:</b> what does accountability look like day to day?</li>
+<li><b>Who needs to see it:</b> Content owners and business lines</li>
+<li><b>Status:</b> Proposed Phase 1 scope. The screen the whole model depends on, because email carries only a pointer.</li>
+<li class="small">Illustrative content. Every screen is built in both languages from the first version.</li>
+</ul></div>
+</div>
+<h3>Concept 2 of 8: The review queue tests if six people can cope</h3>
+<div class="concept">
+<div><div class="win"><div class="bar">Review queue · Communications</div><div class="body"><div class="grid g4" style="margin:0 0 8px"><div class="box soft"><span class="small">Waiting</span><br><b>14</b></div><div class="box soft"><span class="small">Oldest</span><br><b>2 days</b></div><div class="box soft"><span class="small">Flags open</span><br><b>3</b></div><div></div></div>
+<table><thead><tr><th>Page</th><th>Branch</th><th>Tier</th><th>Published</th><th>Age</th><th></th></tr></thead><tbody>
+<tr><td>Travel booking steps</td><td>Corporate</td><td><span class="pill ">Tier 2</span></td><td>Today</td><td>1 d</td><td><span class="pill ">Review</span></td></tr>
+<tr><td>Parking passes</td><td>Facilities</td><td><span class="pill ">Tier 3</span></td><td>Today</td><td>1 d</td><td><span class="pill ">Review</span></td></tr>
+<tr><td>Security reminders</td><td>Security</td><td><span class="pill ">Tier 2</span></td><td>Mon</td><td>2 d</td><td><span class="pill ">Review</span></td></tr>
+<tr><td>Annual leave form</td><td>HR</td><td><span class="pill ">Tier 3</span></td><td>Mon</td><td>2 d</td><td><span class="pill ">Review</span></td></tr>
+</tbody></table><div class="note"><b>Can a small team carry this?</b> Queue age is the number to watch. A growing queue means the review window is wrong or capacity is short.</div></div></div></div>
+<div class="side"><ul>
+<li><b>Question it settles:</b> can a small team review after publication, and what does two days of work look like?</li>
+<li><b>Who needs to see it:</b> Communications</li>
+<li><b>Status:</b> Proposed Phase 1 scope.</li>
+<li class="small">Illustrative content. Every screen is built in both languages from the first version.</li>
+</ul></div>
+</div>
+<h3>Concept 3 of 8: Flagging offers three proportionate moves</h3>
+<div class="concept">
+<div><div class="grid g2" style="margin:0"><div class="win"><div class="bar">Flag this page · Communications</div><div class="body"><div class="box soft" style="margin-bottom:8px">Comment: the opening paragraph gives a phone number that has changed.</div>
+<p style="margin:3px 0"><span class="pill ">( ) Comment only</span></p><p style="margin:3px 0"><span class="pill warn">(x) Correct by 14 Nov</span></p><p style="margin:3px 0"><span class="pill bad">( ) Unpublish now</span></p>
+<p><span class="btn pri">Send flag</span></p><p class="small">All three actions are logged.</p></div></div><div class="win"><div class="bar">Email the owner receives</div><div class="body"><p><b>A page you own needs correction by 14 Nov.</b></p><p class="small">Page: Parking passes (English)<br>Open it: intranet link</p><hr><p><b>Une page dont vous êtes responsable doit être corrigée d’ici le 14 nov.</b></p><p class="small">Page : Parking passes (anglais)<br>Ouvrir : lien intranet</p></div></div></div><div class="note"><b>Pointer, not payload.</b> The email says that something happened, which page, and where to go. The comment text is read on the site, never in the message.</div></div>
+<div class="side"><ul>
+<li><b>Question it settles:</b> is comment, correct by a date, or unpublish proportionate, or does it feel punitive?</li>
+<li><b>Who needs to see it:</b> Communications and business lines, together</li>
+<li><b>Status:</b> Proposed Phase 1 scope.</li>
+<li class="small">Illustrative content. Every screen is built in both languages from the first version.</li>
+</ul></div>
+</div>
+<h3>Concept 4 of 8: A blocked publish screen should name the fix</h3>
+<div class="concept">
+<div><div class="win"><div class="bar">Edit page · Parking passes · Ready to publish?</div><div class="body"><table><tbody>
+<tr><td>Owner and branch set</td><td><span class="pill ok">Done</span></td><td></td></tr>
+<tr><td>Review date set</td><td><span class="pill ok">Done</span></td><td></td></tr>
+<tr><td>Taxonomy terms chosen</td><td><span class="pill ok">Done</span></td><td></td></tr>
+<tr><td>French version</td><td><span class="pill bad">Fix</span></td><td class="small">Add the French version, or request a translation.</td></tr>
+<tr><td>Image text descriptions</td><td><span class="pill warn">Fix</span></td><td class="small">2 images have no text description.</td></tr>
+</tbody></table><p><span class="btn off">Publish (blocked)</span><span class="btn">Save draft</span></p>
+<div class="note"><b>Helpful or infuriating?</b> Checked on the server, not only in the editor. The message names the fix, so the author is never left guessing.</div></div></div></div>
+<div class="side"><ul>
+<li><b>Question it settles:</b> is the guardrail helpful or infuriating, and does it say what to do?</li>
+<li><b>Who needs to see it:</b> Authors and publishers</li>
+<li><b>Status:</b> Proposed Phase 1 scope.</li>
+<li class="small">Illustrative content. Every screen is built in both languages from the first version.</li>
+</ul></div>
+</div>
+<h3>Concept 5 of 8: Authors should see who approves before they write</h3>
+<div class="concept">
+<div><div class="win"><div class="bar">Edit page · New page</div><div class="body"><div class="box soft"><span class="pill ok">Tier 2</span> Your section publisher approves this before it goes live. Communications reviews it afterwards.</div>
+<div class="grid g2" style="grid-template-columns:repeat(3,1fr);margin-top:8px">
+<div class="box soft"><span class="pill ">Tier 1</span><br><b>Highest consequence</b><br><span class="small">Communications approves before publishing</span></div>
+<div class="box soft"><span class="pill ">Tier 2</span><br><b>Section content</b><br><span class="small">A named section publisher approves</span></div>
+<div class="box soft"><span class="pill ">Tier 3</span><br><b>Routine updates</b><br><span class="small">Author publishes; Communications samples afterwards</span></div></div>
+<div class="note"><b>Show the tier before writing.</b> Tier names and wording here are illustrative. Where the boundaries sit is still to be agreed.</div></div></div></div>
+<div class="side"><ul>
+<li><b>Question it settles:</b> how does an author know, before writing, who approves this?</li>
+<li><b>Who needs to see it:</b> Authors and Communications</li>
+<li><b>Status:</b> Proposed Phase 1 scope. Avoids the “I did not know I needed sign-off” conversation.</li>
+<li class="small">Illustrative content. Every screen is built in both languages from the first version.</li>
+</ul></div>
+</div>
+<h3>Concept 6 of 8: Traffic sits beside Keep, Refresh or Retire</h3>
+<div class="concept">
+<div><div class="win"><div class="bar">Review due · Onboarding checklist</div><div class="body"><div class="grid g2" style="margin:0"><div><b>Evidence</b><div class="bars"><span><b style="height:72px"></b><b class="fr" style="height:27px"></b></span><span><b style="height:81px"></b><b class="fr" style="height:36px"></b></span><span><b style="height:63px"></b><b class="fr" style="height:27px"></b></span><span><b style="height:72px"></b><b class="fr" style="height:27px"></b></span><span><b style="height:54px"></b><b class="fr" style="height:18px"></b></span><span><b style="height:45px"></b><b class="fr" style="height:18px"></b></span><span><b style="height:54px"></b><b class="fr" style="height:18px"></b></span><span><b style="height:45px"></b><b class="fr" style="height:18px"></b></span><span><b style="height:36px"></b><b class="fr" style="height:18px"></b></span><span><b style="height:45px"></b><b class="fr" style="height:18px"></b></span><span><b style="height:36px"></b><b class="fr" style="height:9px"></b></span><span><b style="height:27px"></b><b class="fr" style="height:9px"></b></span></div><span class="small">Views per month, last 12 months. Dark: English. Grey: French.</span></div>
+<div><b>Facts</b><p class="small">Last edited: 14 months ago<br>Review date: 3 days overdue<br>Owner: Policy Services<br>French version: live</p><p><span class="pill ok">Keep</span> <span class="pill warn">Refresh</span> <span class="pill bad">Retire</span></p></div></div>
+<div class="note"><b>Evidence beside the decision.</b> Is there enough information to decide, or will everyone press Keep? The traffic sits beside the choice.</div></div></div></div>
+<div class="side"><ul>
+<li><b>Question it settles:</b> is there enough evidence to decide, or will everyone press Keep?</li>
+<li><b>Who needs to see it:</b> Content owners</li>
+<li><b>Status:</b> Proposed Phase 1 scope.</li>
+<li class="small">Illustrative content. Every screen is built in both languages from the first version.</li>
+</ul></div>
+</div>
+<h3>Concept 7 of 8: Retiring takes two approvals and ends in a record</h3>
+<div class="concept">
+<div><div class="win"><div class="bar">Retire this page? · Parking passes</div><div class="body"><div class="steps"><div><b>1 Owner approves</b><br><span class="pill ok">Done</span></div><div><b>2 Publisher approves</b><br><span class="pill warn">Waiting</span></div><div><b>3 Archived</b><br><span class="pill ">Next</span></div></div>
+<p><b>What happens when both have approved</b></p><p>The page leaves the site. A record holding both language versions goes to the records system as one archive file. A person decided; the system only carries it out.</p>
+<p><span class="btn">Cancel</span><span class="btn red">Retire and archive</span></p>
+<div class="note"><b>Does it feel safe?</b> The irreversible step needs two approvals and says what will happen in plain words.</div></div></div></div>
+<div class="side"><ul>
+<li><b>Question it settles:</b> does the irreversible step feel safe enough to take?</li>
+<li><b>Who needs to see it:</b> Owners, Communications and information management</li>
+<li><b>Status:</b> Proposed Phase 1 scope.</li>
+<li class="small">Illustrative content. Every screen is built in both languages from the first version.</li>
+</ul></div>
+</div>
+<h3>Concept 8 of 8: A while-you-were-away panel gives something back</h3>
+<div class="concept">
+<div><div class="win"><div class="bar">Intranet home · EN | FR</div><div class="body"><div class="grid g2" style="grid-template-columns:2fr 1fr;margin:0"><div class="box soft"><b>While you were away (since 14 Oct)</b><hr><p>3 pages changed in Travel and Expenses</p><hr><p>New video: Town hall, 28 Oct (captions EN and FR)</p><hr><p>2 of your pages are due for review</p></div>
+<div class="box soft"><b>Today’s news</b><p class="small">Same for everyone. Cached once.</p></div></div>
+<div class="note"><b>Give something back.</b> Built from the content system, not from analytics. Personal parts load after the page, so the page stays fast.</div></div></div></div>
+<div class="side"><ul>
+<li><b>Question it settles:</b> does the site give something back to the people who maintain it?</li>
+<li><b>Who needs to see it:</b> Everyone</li>
+<li><b>Status:</b> In the concept set; the storyboard places it in a later wave.</li>
+<li class="small">Illustrative content. Every screen is built in both languages from the first version.</li>
+</ul></div>
+</div>
+
+<h2 class="sec">Ideas for later</h2>
+<p>Not committed. They depend on skilled roles being filled.</p>
+<div class="tablewrap"><table><thead><tr><th>Idea</th><th>What it does</th><th>Note</th></tr></thead><tbody>
+<tr><th>What changed while I was away</th><td>On return, shows updates in my areas, new videos and my pages due for review</td><td>Built from the content system, not analytics</td></tr>
+<tr><th>The site changes through the day</th><td>Three time bands (news, tasks, learning) with three cached home pages</td><td>Not one page per person. Test with analytics first</td></tr>
+<tr><th>Search that shows whether a page can be trusted</th><td>Results show owner and last review date, plus “Did this answer your question?”</td><td>Proposed as the Wave 1 increment</td></tr>
+<tr><th>My content: owners see how their pages do</th><td>Views by language, search share, usefulness and review status</td><td>Aggregate only. Never individual readers</td></tr>
+<tr><th>Success-based dashboard for Communications</th><td>One health view: ownership, freshness, parity and findability</td><td>Builds on content health reporting</td></tr>
+</tbody></table></div>
+
+<h2 class="sec">What personalization might mean</h2>
+<p>Familiar controls show what personalization could offer. Every one is an explicit choice by the person using the site. This section is my own read, not a decision.</p>
+<div class="icons"><div class="icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><path d="M11 4h18v32l-9-7-9 7z"/></svg><div><b>Bookmarks</b><span>Save pages to come back to.</span></div></div><div class="icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><circle cx="20" cy="20" r="17"/><path fill="#fff" d="M18 9h4v9h9v4h-9v9h-4v-9H9v-4h9z"/></svg><div><b>Follow a topic</b><span>Changes to a shared taxonomy term appear in my digest.</span></div></div><div class="icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><path d="M20 3l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z"/></svg><div><b>Pinned and recent</b><span>Quick return to what I use. Kept for me, not tracked.</span></div></div><div class="icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><circle cx="20" cy="20" r="16" fill="#fff" stroke="#333" stroke-width="3"/><path d="M20 9v11l8 4" fill="none" stroke="#333" stroke-width="3"/></svg><div><b>Recently visited</b><span>A short list I can see and clear myself.</span></div></div><div class="icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><circle cx="20" cy="12" r="7"/><path d="M6 36c0-9 6-14 14-14s14 5 14 14z"/></svg><div><b>Profile</b><span>Name, branch and role come from the identity feed. Nothing typed twice.</span></div></div><div class="icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><path d="M17 3h6l1 5 4 2 5-2 3 5-4 4v4l4 4-3 5-5-2-4 2-1 5h-6l-1-5-4-2-5 2-3-5 4-4v-4l-4-4 3-5 5 2 4-2z"/><circle cx="20" cy="20" r="6" fill="#fff"/></svg><div><b>Settings</b><span>Digest on or off, display choices. Explicit choices only.</span></div></div><div class="icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><path d="M20 4c-6 0-10 5-10 11v8l-4 5h28l-4-5v-8c0-6-4-11-10-11z"/><circle cx="20" cy="35" r="3.5"/></svg><div><b>Notifications</b><span>A digest, never content in the email.</span></div></div><div class="icon"><svg viewBox="0 0 40 40" aria-hidden="true" fill="#333"><rect x="2" y="9" width="36" height="22" rx="4"/><text x="20" y="25" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="sans-serif">EN|FR</text></svg><div><b>Language and role view</b><span>Interface follows my language; home shows what my role needs (a later wave).</span></div></div></div>
+<div class="grid g2" style="grid-template-columns:repeat(3,1fr)">
+<div class="box"><h3>1 Show what is mine</h3><p class="small">Branch and role come from the identity feed. Nothing is stored.</p></div>
+<div class="box"><h3>2 Let me choose</h3><p class="small">Bookmarks, follow and settings. I set them and I can clear them.</p></div>
+<div class="box warn"><h3>3 Learn about me</h3><p class="small">Recommendations from behaviour. Not advised: analytics is anonymized and aggregate, and personalization must not turn into tracking.</p></div>
+</div>
+<p class="small">Not in the first release. If it comes later, build personal parts of a page as placeholders from the start, so the cache keeps working for signed-in staff.</p>
+
+<p class="foot">Draft for discussion. Screen content and figures are illustrative. Drafted with Claude.ai.</p>
+</div>
+{% endraw %}
