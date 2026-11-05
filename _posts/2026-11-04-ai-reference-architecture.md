@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "An AI Reference Architecture, and How to Test It for Risk"
-date: 2026-11-04 20:00:00 -0500
+date: 2026-11-04 19:00:00 -0500
 description: "One shared set of parts and controls, so each AI use case does not start from zero. Three slide decks: the architecture, the risk addendum and six scenarios."
 excerpt: "One shared set of parts and controls, so each AI use case does not start from zero. Three slide decks: the architecture, the risk addendum and six scenarios."
 theme: digital
